@@ -1039,33 +1039,42 @@ module.exports = {
       collapsed: false,
       items:[
         "zkEVM/zkProver/overview",
-        "zkEVM/zkProver/zkprover-design",
         {
           type: "category",
-          label: "mFibonacci SM",
+          label: "Basic Concepts",
           link: {
             type: "generated-index"
           },
           items:[
-            "zkEVM/zkProver/mfibonacci-overview",
-            "zkEVM/zkProver/mfibonacci-example",
-            "zkEVM/zkProver/commitment-scheme",
-            "zkEVM/zkProver/verification-scheme",
-            "zkEVM/zkProver/pil-stark",
-            "zkEVM/zkProver/pil-stark-demo",
-          ]
-        },
-        {
-          type: "category",
-          label: "Generic SM",
-          link: {
-            type: "generated-index"
-          },
-          items:[
-            "zkEVM/zkProver/intro-generic-sm",
-            "zkEVM/zkProver/exec-trace-correct",
-            "zkEVM/zkProver/ending-program",
-            "zkEVM/zkProver/program-counter"
+            "zkEVM/zkProver/zkprover-design",
+            {
+              type: "category",
+              label: "mFibonacci SM",
+              link: {
+                type: "generated-index"
+              },
+              items:[
+                "zkEVM/zkProver/mfibonacci-overview",
+                "zkEVM/zkProver/mfibonacci-example",
+                "zkEVM/zkProver/commitment-scheme",
+                "zkEVM/zkProver/verification-scheme",
+                "zkEVM/zkProver/pil-stark",
+                "zkEVM/zkProver/pil-stark-demo",
+              ]
+            },
+            {
+              type: "category",
+              label: "Generic SM",
+              link: {
+                type: "generated-index"
+              },
+              items:[
+                "zkEVM/zkProver/intro-generic-sm",
+                "zkEVM/zkProver/exec-trace-correct",
+                "zkEVM/zkProver/ending-program",
+                "zkEVM/zkProver/program-counter"
+              ]
+            },
           ]
         },
         {
