@@ -1000,7 +1000,19 @@ module.exports = {
                 "zkEVM/protocol/emergency-state",
               ]
         },
-        "zkEVM/lx-ly-bridge",
+        {
+              type: "category",
+              label: "zkEVM Bridge",
+              link: {
+                type: "generated-index"
+              },
+              items:[
+               "zkEVM/protocol/zkevm-bridge",
+               "zkEVM/protocol/exit-tree",
+               "zkEVM/protocol/bridge-smart-contract",
+               "zkEVM/protocol/flow-of-asset",
+              ]
+        },
       ]
     },
     "zkEVM/zknode/zknode-overview",
