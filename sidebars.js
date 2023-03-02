@@ -971,7 +971,6 @@ module.exports = {
       items:[
         "zkEVM/protocol/protocol-components",
         "zkEVM/protocol/state-management",
-        "zkEVM/protocol/consensus",
         {
               type: "category",
               label: "Transaction Life Cycle",
