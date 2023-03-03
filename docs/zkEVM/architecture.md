@@ -109,7 +109,7 @@ The Consensus Smart Contract imposes the following requirements on Sequencers an
 An Aggregator receives all the transaction information from the Sequencer and sends it to the Prover which provides a small zk-Proof after complex polynomial computations. The smart contract validates this proof. This way, an aggregator collects the data, sends it to the Prover, receives its output and finally, sends the information to the smart contract to check that the validity proof from the Prover is correct. 
 ​
 - An Aggregator's task is to provide validity proofs for the L2 transactions proposed by Sequencers.
-- In addition to running zkEVM's zkNode software, Aggregators need to have specialised hardware for creating the zero-knowledge validity proofs utilizing zkProver.
+- In addition to running zkEVM's zkNode software, Aggregators need to have specialized hardware for creating the zero-knowledge validity proofs utilizing zkProver.
 - For a given batch or batches, an Aggregator that submits a validity proof first earns the MATIC fee (which is being paid by the Sequencer(s) of the batch(es)).
 - The Aggregators need to indicate their intention to validate transactions. After that, they compete to produce validity proofs based on their own strategy.
 
@@ -150,9 +150,9 @@ In a nutshell, **the zkEVM expresses state changes in a polynomial form**. As a 
 
 ## [zkEVM Bridge](protocol/zkevm-bridge.md)
 
-The **zkEVM bridge** is a Smart Contract that lets users transfer their assets between two layers, LX and LY. The L1-L2 in zkEVM is a decentralised bridge for secure deposits and withdrawal of assets. It is a combination of two smart contracts, one deployed on one chain and the second on the other.
+The **zkEVM bridge** is a Smart Contract that lets users transfer their assets between two layers, LX and LY. The L1-L2 in zkEVM is a decentralized bridge for secure deposits and withdrawal of assets. It is a combination of two smart contracts, one deployed on one chain and the second on the other.
 
-The L1 and L2 contracts in zkEVM are identical except for where each is deployed. **Bridge L1 Contract** is on the Ethereum mainnet in order to manage asset transfers between rollups, while **Bridge L2 Contract** is on a specific rollup and it is responsible for asset transfers between Mainnet and the Rollup (or Rollups).
+The L1 and L2 contracts in zkEVM are identical except for where each is deployed. **Bridge L1 Contract** is on the Ethereum Mainnet in order to manage asset transfers between rollups, while **Bridge L2 Contract** is on a specific rollup and it is responsible for asset transfers between Mainnet and the Rollup (or Rollups).
 
 Layer 2 interoperability allows a native mechanism to migrate assets between different L2 networks. This solution is embedded in the bridge smart contract.
 
@@ -179,7 +179,7 @@ Before getting into a transaction flow in L2, users need some funds to perform a
    - Aggregator will take pending transactions to be verified and build a Proof in order to achieve finality on L1
    - Once the Proof is validated, user's transactions will attain L1 finality (important for withdrawals). This is called the **consolidated state**.
 
-The above process is a summarized version of how transactions are processed in zkEVM. We recommend you to take 
+The above process is a summarized version of how transactions are processed in zkEVM. We recommend you to take a look at the complete [transaction life cycle](protocol/l2-transaction-cycle-intro.md) document.
 
 ## Design Characteristics
 
@@ -201,7 +201,7 @@ Efficiency is key to network performance. zkEVM applies several implementation s
 
 3. The way in which the bridge smart contract is implemented, such as settling accounts in a UTXO manner, by only using the Exit Tree Roots.
 
-4. Utilisation of specialised cryptographic primitives within the zkProver in order to speed up computations and minimise proof sizes, as seen in:
+4. Utilization of specialized cryptographic primitives within the zkProver in order to speed up computations and minimize proof sizes, as seen in:
 
    - Running a special **zero-knowledge Assembly language (zkASM)** for interpretation of byte codes
 
