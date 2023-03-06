@@ -1106,19 +1106,6 @@ module.exports = {
     },
     {
       type: "category",
-      label: "How To Guides",
-      link: {
-        type: "generated-index",
-      },
-      collapsed: false,
-      items: [
-        "zkEVM/develop",
-        "zkEVM/setup-local-node",
-        "zkEVM/setup-production-node",
-      ],
-    },
-    {
-      type: "category",
       label: "zk Assembly",
       link: {
         type: "generated-index",
