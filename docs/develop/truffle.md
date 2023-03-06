@@ -12,7 +12,7 @@ keywords:
   - truffle
   - deploy
   - polygonscan
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 
 ## Overview
@@ -151,7 +151,7 @@ You will see the following output:
 
 ### Configuring the Smart Contract
 
-Before actually depolying the contract, you need to set up the `truffle-config.js` file, inserting network and compilers data. 
+Before actually depolying the contract, you need to set up the `truffle-config.js` file, inserting network and compilers data.
 
 Go to `truffle-config.js` and update the file with Polygon Mumbai network details.
 
@@ -190,7 +190,7 @@ module.exports = {
 }
 ```
 
-Note that it requires mnemonic to be passed in for `maticProvider`. This is the seed phrase (or private key) for the account you would like to deploy from. Create a new `.secret` file in the root directory and enter your 12-word mnemonic seed phrase to get started. To get the seed words from MetaMask wallet, you can go to MetaMask settings, then from the menu, choose **Security and Privacy** where you will see a button that says **reveal seed words**. 
+Note that it requires mnemonic to be passed in for `maticProvider`. This is the seed phrase (or private key) for the account you would like to deploy from. Create a new `.secret` file in the root directory and enter your 12-word mnemonic seed phrase to get started. To get the seed words from MetaMask wallet, you can go to MetaMask settings, then from the menu, choose **Security and Privacy** where you will see a button that says **reveal seed words**.
 
 ### Deploying on Polygon Network
 

@@ -8,7 +8,7 @@ keywords:
   - polygon
   - blockchain
   - ethereum scaling
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 
 [Polygon](https://polygon.technology/) is a Layer 2 scaling solution that achieves scale by utilizing sidechains for off-chain computation and a decentralized network of Proof-of-Stake (PoS) validators.

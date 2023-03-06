@@ -7,7 +7,7 @@ keywords:
   - matic
   - polygon
   - ethereum
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 
 ## Polygon Community Forum Guidelines

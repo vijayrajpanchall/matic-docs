@@ -11,7 +11,7 @@ keywords:
   - efficiency
   - hermez
   - zkEVM
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 
 :::info
@@ -21,7 +21,7 @@ For more information about Polygon zkEVM and its architecture, head over to the 
 :::
 
 ## Introduction
-Before we dive into what a zkEVM really is, we need to understand each component of this product. A zkEVM is a combination of two powerful technologies: zero knowledge, an ingenious cryptographic solution and an EVM, a distributed state machine that ushered in the development of applications in the blockchain space. 
+Before we dive into what a zkEVM really is, we need to understand each component of this product. A zkEVM is a combination of two powerful technologies: zero knowledge, an ingenious cryptographic solution and an EVM, a distributed state machine that ushered in the development of applications in the blockchain space.
 
 ### Zero Knowledge
 Zero knowledge is a cryptography protocol that provides more security when creating proofs to validate a statement. The basic idea behind this is that it is possible to prove a statement without necessarily exposing the information used to reach that solution.
@@ -44,7 +44,7 @@ The zkEVM conjoins the zero-knowledge cryptography speed and security boost with
 
 Rollups serve as a cutting-edge solution for speeding up transactions in the blockchain field. They are the means used to outsource computation from the network to an off-chain environment. After the computation is done, the transaction data is sent back to Layer 1.
 
-ZK-Rollups represent a specific type of rollup that leverages zero-knowledge cryptography to ameliorate this off-chain process. With ZK-Rollups, all the transaction data do not need to go to Ethereum; instead, only the validity proof is sent to Layer 1, which decreases costs and time to process transactions.  
+ZK-Rollups represent a specific type of rollup that leverages zero-knowledge cryptography to ameliorate this off-chain process. With ZK-Rollups, all the transaction data do not need to go to Ethereum; instead, only the validity proof is sent to Layer 1, which decreases costs and time to process transactions.
 
 ## Why build a zkEVM?
 
@@ -101,7 +101,7 @@ Polygon zkEVM is the first to implement recursive STARKs. We've witnessed a mass
 Using ZK allows a ZK L2 to inherit the security of Ethereum. ZK proofs ensure that every transaction on the zkEVM is valid. This ensures that it's impossible for operators of the L2 to steal funds from users.
 
 Security (as well as scalability) is a major benefit for the zkEVM when compared to alt-L1s, and it ensures that the zkEVM is closely aligned with Ethereum, still by far the dominant chain in terms of developer activity, TVL, NFT activity, etc.
- 
+
 ## Use cases for Polygon zkEVM
 
 ### DeFi Applications

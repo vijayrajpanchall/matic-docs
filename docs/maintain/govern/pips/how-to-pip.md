@@ -7,7 +7,7 @@ keywords:
   - matic
   - polygon
   - ethereum
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 
 Polygon Improvement Proposals, or PIPs, are a way for the Polygon community

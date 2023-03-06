@@ -1,13 +1,13 @@
 ---
 id: diadataoracles
-title: DIA Data 
+title: DIA Data
 description: Build your next blockchain app on Polygon.
 keywords:
   - docs
   - matic
   - dia
   - oracle
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 import useBaseUrl from '@docusaurus/useBaseUrl';
 

@@ -13,7 +13,7 @@ keywords:
   - heimdall
   - bor
   - snapshots
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
@@ -88,7 +88,7 @@ tar -xzvf bor-fullnode-snapshot-2022-11-08.tar.gz -C /var/lib/bor/data/bor/chain
 The `aria2c` method is used for downloading snapshots faster.
 There is an alternate way where the downloaded snapshots can be directly extracted without any intervention.
 
-**Steps for that:** 
+**Steps for that:**
 
 
 ```bash title="For Heimdall"

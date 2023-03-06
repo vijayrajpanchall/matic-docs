@@ -9,7 +9,7 @@ keywords:
   - polygon
   - gas
   - transaction fees
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 
 # What is Gas?

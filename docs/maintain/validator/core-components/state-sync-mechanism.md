@@ -9,7 +9,7 @@ keywords:
   - state sync
   - mechanism
 slug: state-sync-mechanism
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 
 Validators on the [Heimdall](/docs/maintain/glossary.md#heimdall) layer pick up the [StateSynced](https://github.com/maticnetwork/contracts/blob/a4c26d59ca6e842af2b8d2265be1da15189e29a4/contracts/root/stateSyncer/StateSender.sol#L24) event and pass the event on to the [Bor](/docs/maintain/glossary.md#bor) layer. See also [Polygon Architecture](/docs/pos/polygon-architecture).

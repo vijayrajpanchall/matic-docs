@@ -123,18 +123,18 @@ function Home() {
         <br />
         <div className="container">
           <div className="row">
-          <div className="index-page">
+          <div className="index-page exclude">
           <section className="section container-fluid">
             <div className="row justify-content-center">
               <div className="col-lg-8">
-                <h1 className="mt-0"><a href="https://polygon.technology" class="landing-page-link">polygon</a> wiki</h1>
+                <h1 className="mt-0"><a href="https://polygon.technology" class="landing-page-link">Polygon</a> Wiki</h1>
                 <h3 className="mt-0"> The official documentation for <a href="https://polygon.technology" class="landing-page-link">0xPolygon</a></h3>
                 <p className="lead">The <b>Polygon Wiki</b> is the source of truth for Polygon, providing comprehensive documentation, community resources, and guides for enthusiasts and developers interested in learning about or building on Polygon.</p>
                 <a href="docs/home/new-to-polygon/" style={{ color: '#ffffff' }}>
                   <button className="btn btn-custom">Get started with Polygon</button>
                 </a>
                 <p className="lead">From its origins as a plasma chain, Polygon has evolved into a multichain powerhouse, providing developers and creators with the tools they need to build innovative, secure, and scalable blockchain solutions. Revolutionize how we interact with the world by building on and participating in the Polygon ecosystem.</p>
-                <a href="#protocol-docs" onClick={(e) => { e.preventDefault(); smoothScrollTo('#protocol-docs'); }}><b>Find out more ↓</b></a>
+                <a href="#common-docs" onClick={(e) => { e.preventDefault(); smoothScrollTo('#common-docs'); }}><b>Find out more ↓</b></a>
               </div>
               <div className="col-lg-4 text-center pt-3 d-none d-lg-block">
                 <img style={{ maxWidth: '100%', maxHeight: '400px' }} src="img/polygon-logo.png" />
@@ -142,25 +142,26 @@ function Home() {
             </div>
           </section>
           </div>
+            <section id="common-docs" className="section container-fluid"></section>
             {firstRow &&
               firstRow.length &&
               firstRow.map((props, idx) => (
                 <FirstRow key={idx} {...props} />
               ))}{" "}
           </div>
-
-          <section id="protocol-docs" className="section container-fluid"></section>
           <div className="row">
             <div className="index-page">
               <section className="section container-fluid">
                 <div className="row justify-content-center">
                   <div className="col-md-10">
-                    <h3 className="mt-0">Scaling Blockchain for Millions</h3>
+                    <h3 className="mt-0">Mass Scale for Mass Adaption</h3>
                     <p className="lead">By leveraging cutting-edge technologies like ZK cryptography and transaction rollups, Polygon is making blockchains more accessible and user-friendly than ever before and is at the forefront of mass adoption through various layer 2s and appchains.</p>
+                    <a href="#polygon-protocol" onClick={(e) => { e.preventDefault(); smoothScrollTo('#polygon-protocols'); }}><b>Protocol docs ↓</b></a>
                   </div>
                 </div>
               </section>
             </div>
+            <section id="polygon-protocols" className="section container-fluid"></section>
             {secondRow &&
               secondRow.length &&
               secondRow.map((props, idx) => (
@@ -175,11 +176,11 @@ function Home() {
               <div className="col-lg-8">
                 <h3 className="mt-0">Explore the Endless Possibilities of Polygon</h3>
                 <p className="lead">Polygon is an enterprise-ready blockchain platform that has emerged as the go-to solution for a growing number of businesses and development teams. With its scalable architecture, fast and low-cost transactions, and growing ecosystem, Polygon is the ideal platform for entrepreneurs, developers, and businesses alike to build and launch their blockchain solutions.</p>
-                <p className="lead">Explore the documentation to learn more about how you can use Polygon to achieve your goals.</p>
+                <p className="lead">Explore the docs to learn more about how you can use Polygon to achieve your goals. <a class="landing-page-link"><b>Stay tuned for the upcoming content!</b></a></p>
                 <a href="#polygon-use-cases" onClick={(e) => { e.preventDefault(); smoothScrollTo('#polygon-use-cases'); }}><b>Check it out ↓</b></a>
               </div>
               <div className="col-lg-4 text-center pt-3 d-none d-lg-block">
-                <img style={{ maxWidth: '100%', maxHeight: '400px' }} src="img/polygon-build.png" />
+                <img style={{ maxWidth: '100%', maxHeight: '400px' }} src="img/header.svg" />
               </div>
             </div>
           </section>

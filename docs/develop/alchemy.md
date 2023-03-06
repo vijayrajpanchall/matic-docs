@@ -10,7 +10,7 @@ keywords:
   - alchemy
   - create smart contract
   - deploy on polygon
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 
 ## Overview
@@ -43,7 +43,7 @@ Following the tutorial, you will:
 
 ### Connect to the Polygon network
 
-There are several ways to make requests to the Polygon PoS chain. Rather than running your own node, you will use a free account on Alchemy's developer platform and interact with the Alchemy Polygon PoS API to communicate with the Polygon PoS chain. The platform consists of a full suite of developer tooling – this includes the ability to monitor requests, data analytics that demonstrates what happens under the hood during smart contract deployment, enhanced APIs (Transact, NFTs, etc), and an ethers.js SDK. 
+There are several ways to make requests to the Polygon PoS chain. Rather than running your own node, you will use a free account on Alchemy's developer platform and interact with the Alchemy Polygon PoS API to communicate with the Polygon PoS chain. The platform consists of a full suite of developer tooling – this includes the ability to monitor requests, data analytics that demonstrates what happens under the hood during smart contract deployment, enhanced APIs (Transact, NFTs, etc), and an ethers.js SDK.
 
 If you don’t already have an Alchemy account, start by signing up for a free account [here](https://www.alchemy.com/polygon/?a=polygon-docs). After creating your account, you have the option of immediately creating your first app before reaching the dashboard.
 
@@ -144,7 +144,7 @@ license: (ISC)
 
 About to write to /Users/.../.../.../hello-world/package.json:
 
-{   
+{
    "name": "hello-world",
    "version": "1.0.0",
    "description": "hello world smart contract",
@@ -358,7 +358,7 @@ async function main() {
    const HelloWorld = await ethers.getContractFactory("HelloWorld");
 
    // Start deployment, returning a promise that resolves to a contract object
-   const hello_world = await HelloWorld.deploy("Hello World!");   
+   const hello_world = await HelloWorld.deploy("Hello World!");
    console.log("Contract deployed to address:", hello_world.address);
 }
 

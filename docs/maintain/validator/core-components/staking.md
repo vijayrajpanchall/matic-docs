@@ -12,7 +12,7 @@ keywords:
   - restake
   - validator
 slug: staking
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 
 For Polygon Network, any participant can be qualified to become a Polygon's validator by running a full node to earn rewards and collect transaction fees. To ensure the good participation by validators, they lock up some of their MATIC tokens as a stake in the ecosystem.

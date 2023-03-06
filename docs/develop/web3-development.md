@@ -10,7 +10,7 @@ keywords:
   - web3
   - development
   - basics
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 
 ## Learn Web3 Programs

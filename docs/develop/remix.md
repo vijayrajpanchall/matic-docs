@@ -10,11 +10,11 @@ keywords:
   - remix
   - deploy
   - smart contract
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-## Overview 
+## Overview
 
 This tutorial guides you to implement a **Hello World** dApp which echoes a message passed to the contract on to the frontend. You will also be able to change the message using the interactive panel.
 
@@ -91,11 +91,11 @@ The `update` function is another public function that is similar to the constr
 
 ## Deploying to the Mumbai Testnet
 
-Now, we have to deploy our smart contract on Mumbai, Polygon Network's Testnet. Not only does it cost money (e.g., gas fees) to deploy a smart contract on Polygon Mainnet, but also, the contract is immutable and can't be changed once deployed. Therefore, it's best to first deploy your smart contract to the Testnet first. 
+Now, we have to deploy our smart contract on Mumbai, Polygon Network's Testnet. Not only does it cost money (e.g., gas fees) to deploy a smart contract on Polygon Mainnet, but also, the contract is immutable and can't be changed once deployed. Therefore, it's best to first deploy your smart contract to the Testnet first.
 
 To deploy to the Mumbai testnet, we have to connect to the Web3 world which can be accomplished by using any of the services like Metamask, Brave, Portis, etc. We will be using MetaMask in this tutorial. Please follow this [guide to set up a MetaMask Account](/docs/develop/metamask/hello).
 
-- Open Metamask. Click on the network dropdown menu (set to **Ethereum Mainnet** by default) and click on the **Add Network** button. MaticVigil provides a public endpoint and is rate-limited. Therefore, most developers use a free blockchain provider like [Alchemy](https://docs.alchemy.com/docs/how-to-add-polygon-to-metamask) or [Quicknode](https://www.quicknode.com/guides/smart-contract-development/how-to-deploy-a-smart-contract-on-maticpolygon#setting-up-metamask-with-polygon-node) to have a dedicated RPC endpoint with faster throughput AKA **computing units per second (CUPs)**. You need to create a free account to get your private API key from one of these providers to put into the dedicated RPC endpoint URL below. 
+- Open Metamask. Click on the network dropdown menu (set to **Ethereum Mainnet** by default) and click on the **Add Network** button. MaticVigil provides a public endpoint and is rate-limited. Therefore, most developers use a free blockchain provider like [Alchemy](https://docs.alchemy.com/docs/how-to-add-polygon-to-metamask) or [Quicknode](https://www.quicknode.com/guides/smart-contract-development/how-to-deploy-a-smart-contract-on-maticpolygon#setting-up-metamask-with-polygon-node) to have a dedicated RPC endpoint with faster throughput AKA **computing units per second (CUPs)**. You need to create a free account to get your private API key from one of these providers to put into the dedicated RPC endpoint URL below.
 
   - **Network:** Polygon Mumbai Testnet
   - **RPC URL (public endpoint):** https://rpc-mumbai.maticvigil.com.
@@ -111,7 +111,7 @@ To deploy to the Mumbai testnet, we have to connect to the Web3 world which can 
 - Head over to [Faucet](https://faucet.polygon.technology/) and request test MATIC - you will need this to pay for gas on the Polygon network. Select **Mumbai** as the network and **MATIC Token** as the token in the faucet. You can also use this free [Mumbai faucet](https://mumbaifaucet.com)
 
 - Finally, to deploy to Mumbai, refer to the instructions in the "Remix deployment" section below
- 
+
 ## Deploying to Polygon Mainnet
 
 After you can deploy on the Mumbai Testnet without any errors (i.e., the purpose of the Testnet), let's deploy the Smart Contract on the Polygon Mainnet. Remember this will cost real $ in the form of MATIC tokens.
@@ -136,7 +136,7 @@ Similar to the steps above when you deployed to Mumbai, you open your MetaMask w
 
 ## Remix Deployment
 
-In both Testnet and Mainnet, you do the below to deploy your smart contract using Remix. The below step will use the connect MetaMask API keys you set up in the previous steps. 
+In both Testnet and Mainnet, you do the below to deploy your smart contract using Remix. The below step will use the connect MetaMask API keys you set up in the previous steps.
 
 - Select **Injected Provider** MetaMask in the **Environment** dropdown and your contract
 

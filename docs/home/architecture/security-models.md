@@ -8,7 +8,7 @@ keywords:
   - polygon
   - security
   - implementation
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 
 # Security Models

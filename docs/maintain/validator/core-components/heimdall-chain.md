@@ -12,7 +12,7 @@ keywords:
   - layer
   - proof of stake
 slug: heimdall-chain
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 
 Heimdall is the proof-of-stake verifier layer, which is responsible for [checkpointing](/docs/maintain/glossary.md#checkpoint-transaction) the representation of the Plasma blocks to the Ethereum mainnet. Heimdall is based on [Tendermint](https://tendermint.com/).

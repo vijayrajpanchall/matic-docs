@@ -7,7 +7,7 @@ keywords:
   - polygon
   - new to polygon
   - wiki
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 
 Polygon is a scaling solution for public blockchain networks. Polygon PoS chain supports all the existing Ethereum tooling along with faster and cheaper transactions.

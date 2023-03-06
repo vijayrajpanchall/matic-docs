@@ -11,7 +11,7 @@ keywords:
   - port management
   - infrastructure
   - default ports
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 
 Here is a list of default ports used across Polygon nodes:

@@ -8,7 +8,7 @@ keywords:
   - polygon wiki
   - state transfer
   - ethereum
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 
 Polygon validators continuously monitor a contract on Ethereum chain called `StateSender`. Each time a registered contract on Ethereum chain calls this contract, it emits an event. Using this event Polygon validators relay the data to another contract on Polygon chain. This **State Sync** mechanism is used to send data from Ethereum to Polygon.
@@ -36,8 +36,8 @@ Use the `FxBaseChildTunnel` contract from [here](https://github.com/jdkanani/fx-
 
 - You need to inherit `FxBaseRootTunnel` contract in your root contract on Ethereum. As an example, you can follow this [contract](https://github.com/jdkanani/fx-portal/blob/main/contracts/examples/state-transfer/FxStateRootTunnel.sol) . Similarly, inherit `FxBaseChildTunnel` contract in your child on Polygon. Follow this [contract](https://github.com/jdkanani/fx-portal/blob/main/contracts/examples/state-transfer/FxStateChildTunnel.sol) as an example.
 - While deploying your root contract on
-  - **Goerli Testnet**, pass the address of `_checkpointManager` as **0x2890bA17EfE978480615e330ecB65333b880928e** and `_fxRoot` as **0x3d1d3E34f7fB6D26245E6640E1c50710eFFf15bA**. 
-  
+  - **Goerli Testnet**, pass the address of `_checkpointManager` as **0x2890bA17EfE978480615e330ecB65333b880928e** and `_fxRoot` as **0x3d1d3E34f7fB6D26245E6640E1c50710eFFf15bA**.
+
   - **Ethereum Mainnet**, `_checkpointManager` is **0x86e4dc95c7fbdbf52e33d563bbdb00823894c287** and `_fxRoot` is **0xfe5e5D361b2ad62c541bAb87C45a0B9B018389a2**.
 - For deploying the child contract on **Mumbai testnet**, pass **0xCf73231F28B7331BBe3124B907840A94851f9f11** as `_fxChild` in constructor. For **Polygon mainnet,** `_fxChild` will be **0x8397259c983751DAf40400790063935a11afa28a**.
 - Call `setFxChildTunnel` on deployed root tunnel with the address of child tunnel. Example: [0x79cd30ace561a226258918b56ce098a08ce0c70707a80bba91197f127a48b5c2](https://goerli.etherscan.io/tx/0x79cd30ace561a226258918b56ce098a08ce0c70707a80bba91197f127a48b5c2)
@@ -58,16 +58,16 @@ Use the `FxBaseChildTunnel` contract from [here](https://github.com/jdkanani/fx-
 
 1. Call `_sendMessageToRoot()` internally in your child contract with data as a parameter to be sent to Ethereum. Example: [0x3cc9f7e675bb4f6af87ee99947bf24c38cbffa0b933d8c981644a2f2b550e66a](https://mumbai.polygonscan.com/tx/0x3cc9f7e675bb4f6af87ee99947bf24c38cbffa0b933d8c981644a2f2b550e66a/logs)
 
-  Note the transaction hash as it will be used to generate proof after it has been included as a checkpoint. 
+  Note the transaction hash as it will be used to generate proof after it has been included as a checkpoint.
 
-2. **Proof Generation to complete the exit on root chain**: Generate the proof using the **tx hash** and **MESSAGE_SENT_EVENT_SIG**. To generate the proof, you can either use the proof generation API hosted by Polygon or you can also spin up your own proof generation API by following the instructions [here](https://github.com/maticnetwork/proof-generation-api). 
+2. **Proof Generation to complete the exit on root chain**: Generate the proof using the **tx hash** and **MESSAGE_SENT_EVENT_SIG**. To generate the proof, you can either use the proof generation API hosted by Polygon or you can also spin up your own proof generation API by following the instructions [here](https://github.com/maticnetwork/proof-generation-api).
 
   The proof generation endpoint hosted by Polygon is available [here](https://apis.matic.network/api/v1/matic/exit-payload/{burnTxHash}?eventSignature={eventSignature}).
 
-    - `burnTxHash` is the transaction hash of the `_sendMessageToRoot()` transaction you initiated on Polygon. 
-    - `eventSignature` is the event signature of the event emitted by the `_sendMessageToRoot()` function. The event signature for the MESSAGE_SENT_EVENT_SIG is `0x8c5261668696ce22758910d05bab8f186d6eb247ceac2af2e82c7dc17669b036`. 
+    - `burnTxHash` is the transaction hash of the `_sendMessageToRoot()` transaction you initiated on Polygon.
+    - `eventSignature` is the event signature of the event emitted by the `_sendMessageToRoot()` function. The event signature for the MESSAGE_SENT_EVENT_SIG is `0x8c5261668696ce22758910d05bab8f186d6eb247ceac2af2e82c7dc17669b036`.
 
-  The proof generation API usage examples for the Mainnet and Testnet are as follows:- 
+  The proof generation API usage examples for the Mainnet and Testnet are as follows:-
 
   &rarr; [Mumbai Testnet Proof generation](https://apis.matic.network/api/v1/mumbai/exit-payload/0x4756b76a9611cffee3d2eb645819e988c34615621ea256f818ab788d81e1f838?eventSignature=0x8c5261668696ce22758910d05bab8f186d6eb247ceac2af2e82c7dc17669b036)
 

@@ -11,7 +11,7 @@ keywords:
   - contracts
   - hardhat
   - deploy on polygon
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 
 ## Overview
@@ -56,7 +56,7 @@ To create a sample project, run `npx hardhat` in your project folder. You should
 
 ![img](/img/hardhat/quickstart.png)
 
-Choose the JavaScript project and go through these steps to compile, test and deploy the sample contract. 
+Choose the JavaScript project and go through these steps to compile, test and deploy the sample contract.
 
 ### Checking the contract
 
@@ -138,7 +138,7 @@ module.exports = {
 
 :::note
 
-Note that the file above requires DOTENV, for managing environment variables and also ethers and etherscan. Make sure to install all those packages. 
+Note that the file above requires DOTENV, for managing environment variables and also ethers and etherscan. Make sure to install all those packages.
 
 Find more instructions on how to use DOTENV on [<ins>this page</ins>](https://www.npmjs.com/package/dotenv).
 

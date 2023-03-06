@@ -10,7 +10,7 @@ keywords:
   - rewards
   - staking
   - incentives
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 
 For an introduction to Polygon and the Proof of Stake algorithm, see [What Is Proof of Stake](/docs/home/polygon-basics/what-is-proof-of-stake)

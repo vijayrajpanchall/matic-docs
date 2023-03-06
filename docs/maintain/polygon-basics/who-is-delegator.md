@@ -8,7 +8,7 @@ keywords:
   - polygon
   - delegator
   - Who is a Delegator
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 
 Delegators are token holders who cannot, or do not want to run a [validator](/docs/maintain/glossary.md#validator) node themselves. Instead, they secure the network by delegating their stake to validator nodes and play a critical role in the system, as they are responsible for choosing validators. They run their delegation transaction on the staking contract on the Ethereum mainnet.
@@ -32,7 +32,7 @@ Delegators have the option to re-delegate their tokens to other validators. Rewa
 :::tip Being an active delegator
 
 Delegation should not be seen as a passive activity, as delegators are an integral part of maintaining
-the Polygon network. Each delegator is responsible for managing their own risk, but in doing so, delegators 
+the Polygon network. Each delegator is responsible for managing their own risk, but in doing so, delegators
 should aim to elect validators that are behaving well.
 
 :::

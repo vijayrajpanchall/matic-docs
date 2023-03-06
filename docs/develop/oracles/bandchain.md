@@ -10,7 +10,7 @@ keywords:
   - bandchain
   - web apis
   - band protocol
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
@@ -27,9 +27,9 @@ Band Protocol allows you to query data from traditional web APIs and use it in t
     - **Using the BandChain explorer**
 
         You can click on the oracle script of your choice, and then from the **Execute** tab you can pass in the parameters and get the response from BandChain. The response will contain the result and also an EVM proof. This proof has to be copied and will be used in the final step. The BandChain docs for querying oracle using explorer is available [**here**](https://docs.bandchain.org/dapp-developers/requesting-data-from-bandchain/requesting-data-via-explorer).
-        
+
         <img src={useBaseUrl("img/bandchain/executeoracle.png")} />
-        
+
         Given above is an example of making an oracle request to get the random number values. The value 100 is passed to the `max_range` parameter of the oracle request. We get a hash in response. Clicking on this hash will show us the complete details of the response.
 
     - **Using the BandChain-Devnet JS Library**
@@ -37,7 +37,7 @@ Band Protocol allows you to query data from traditional web APIs and use it in t
         You can query BandChain directly using the BandChain-Devnet library. When queried, it gives an **EVM proof** in the response. This proof can be used for the final step of BandChain integration. The BandChain docs for querying oracle using BandChain-Devnet JS Library is available [**here**](https://docs.bandchain.org/dapp-developers/requesting-data-from-bandchain/requesting-data-via-js-library). The request payload for the random number oracle will look like this. Make sure the request body is passed in application/json format.
 
 3. **Using the data in Smart Contracts**
-  
+
   The final step is to deploy a validation contract and store the responses from the oracle request into the validation contracts state variables. Once these state variables are set, they can be accessed as and when required by the dApp. Also these state variables can be updated with new values by querying the oracle scripts again from the dApp. Given below is a validation contract that stores the random number value using the random number oracle script.
 
   ```jsx
@@ -53,13 +53,13 @@ Band Protocol allows you to query data from traditional web APIs and use it in t
     bytes32 public codeHash;
     bytes public params;
     IBridge public bridge;
-    
+
     uint256 public latestPrice;
     uint256 public lastUpdate;
 
     constructor(
-      bytes32 _codeHash , 
-      bytes memory _params, 
+      bytes32 _codeHash ,
+      bytes memory _params,
       IBridge _bridge
     ) public {
       codeHash = _codeHash;
@@ -70,7 +70,7 @@ Band Protocol allows you to query data from traditional web APIs and use it in t
     function update(bytes memory _reportPrice) public {
       IBridge.VerifyOracleDataResult memory result = bridge.relayAndVerify(_reportPrice);
       uint64[] memory decodedInfo = result.data.toUint64List();
-      
+
       require(result.codeHash == codeHash, "INVALID_CODEHASH");
       require(keccak256(result.params) == keccak256(params), "INVALID_PARAMS");
       require(uint256(decodedInfo[1]) > lastUpdate, "TIMESTAMP_MUST_BE_OLDER_THAN_THE_LAST_UPDATE");

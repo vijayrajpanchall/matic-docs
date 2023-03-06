@@ -11,7 +11,7 @@ keywords:
   - architecture
   - Validator Index
 slug: validator-index
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 
 :::tip Stay in the know
@@ -20,7 +20,7 @@ Keep up with the latest node and validator updates from the Polygon team and the
 
 :::
 
-Validators are the key actor in maintaining the Polygon network. Validators run a full node and secure 
+Validators are the key actor in maintaining the Polygon network. Validators run a full node and secure
 the network by staking MATIC to produce blocks, validate and participate in PoS consensus.
 
 :::info

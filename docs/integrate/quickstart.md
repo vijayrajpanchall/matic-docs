@@ -8,7 +8,7 @@ keywords:
   - polygon
   - integrate with polygon
   - guide
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 
 # Integrate with Polygon

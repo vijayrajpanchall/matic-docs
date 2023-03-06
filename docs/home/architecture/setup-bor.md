@@ -7,7 +7,7 @@ keywords:
   - matic
   - polygon
   - setup bor
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 
 # Setup Bor
@@ -67,7 +67,7 @@ Generate Bor validator set using `validators.js` file:
 
 This command will generate `genesis-contracts/contracts/BorValidatorSet.sol`.
 
-Generate genesis.json, once `BorValidatorSet.sol` is generated: 
+Generate genesis.json, once `BorValidatorSet.sol` is generated:
 
 ```bash
     $ cd ~/matic/testnets/genesis-contracts
@@ -114,22 +114,22 @@ Add below content into `/usr/local/etc/nginx/nginx.conf` and restart nginx:
 
 ```conf
     worker_processes  1;
-    
+
     events {
         worker_connections 1024;
     }
-    
+
     http {
         server {
             listen 80;
             server_name localhost;
-    
+
             location / {
               add_header 'Access-Control-Allow-Origin' * always;
               add_header 'Access-Control-Allow-Credentials' 'true';
               add_header 'Access-Control-Allow-Headers' 'Authorization,Accept,Origin,DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Content-Range,Range';
               add_header 'Access-Control-Allow-Methods' 'GET,POST,OPTIONS,PUT,DELETE,PATCH';
-    
+
               if ($request_method = 'OPTIONS') {
                 add_header 'Access-Control-Allow-Origin' * always;
                 add_header 'Access-Control-Allow-Credentials' 'true';
@@ -140,7 +140,7 @@ Add below content into `/usr/local/etc/nginx/nginx.conf` and restart nginx:
                 add_header 'Content-Length' 0;
                 return 204;
               }
-    
+
               proxy_redirect off;
               proxy_set_header host $host;
               proxy_set_header X-real-ip $remote_addr;

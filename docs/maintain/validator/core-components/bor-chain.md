@@ -11,7 +11,7 @@ keywords:
   - go ethereum
   - block producer
 slug: bor-chain
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 
 The Bor node or the block producer implementation is the sidechain operator.

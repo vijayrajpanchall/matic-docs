@@ -11,7 +11,7 @@ keywords:
   - web apis
   - standard dataset
   - band protocol
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
@@ -55,7 +55,7 @@ For example, if we call `getReferenceDataBulk` with `['BTC','BTC','ETH']` and `[
 
 | Blockchain           |               Contract Address               |
 | -------------------- | :------------------------------------------: |
-| Polygon (Test) | `0x56e2898e0ceff0d1222827759b56b28ad812f92f` | 
+| Polygon (Test) | `0x56e2898e0ceff0d1222827759b56b28ad812f92f` |
 
 ## BandChain.JS
 
@@ -90,18 +90,18 @@ The corresponding result will then be similar to:
 
 ```bash
 $ node index.js
-[ 
-    { 
+[
+    {
         pair: 'BTC/ETH',
         rate: 30.998744363906173,
         updatedAt: { base: 1615866954, quote: 1615866954 },
-        requestID: { base: 2206590, quote: 2206590 } 
+        requestID: { base: 2206590, quote: 2206590 }
     },
-    { 
+    {
         pair: 'BAND/EUR',
         rate: 10.566138918332376,
         updatedAt: { base: 1615866845, quote: 1615866911 },
-        requestID: { base: 2206539, quote: 2206572 } 
+        requestID: { base: 2206539, quote: 2206572 }
     }
 ]
 ```
@@ -111,7 +111,7 @@ For each pair, the following information will be returned:
 - `pair`: The base/quote symbol pair string
 - `rate`: The resulting rate of the given pair
 - `updated`: The timestamp at which the base and quote symbols was last updated on BandChain. For `USD`, this will be the current timestamp.
-- `rawRate`: This object consists of two parts. 
+- `rawRate`: This object consists of two parts.
   - `value` is the `BigInt` value of the actual rate, multiplied by `10^decimals`
   - `decimals` is then the exponent by which `rate` was multiplied by to get `rawRate`
 

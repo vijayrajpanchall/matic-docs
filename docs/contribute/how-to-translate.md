@@ -11,7 +11,7 @@ keywords:
   - translation
   - contribute
   - language
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 slug: how-to-translate
 ---
 

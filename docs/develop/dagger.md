@@ -8,7 +8,7 @@ keywords:
   - matic
   - polygon
   - dagger
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -180,7 +180,7 @@ const confirmedRoom = dagger.of('confirmed')
 
 Close the dagger, accepts the following options:
 
-- `force`: passing it to true will close the dagger right away. This parameter is 
+- `force`: passing it to true will close the dagger right away. This parameter is
 optional.
 
 ```js
@@ -233,8 +233,8 @@ filter.stopWatching();
 
 ## Events
 
-Every event has a room ∈ {`latest`, `confirmed`}. 
-  - `latest` : Events are fired immediately after block included in chain. 
+Every event has a room ∈ {`latest`, `confirmed`}.
+  - `latest` : Events are fired immediately after block included in chain.
   - `confirmed` : Events are fired after 12 confirmations.
 
 If you want to show updates on UI in your DApp, use `latest` events. It will help to make UI/UX better and user friendly.

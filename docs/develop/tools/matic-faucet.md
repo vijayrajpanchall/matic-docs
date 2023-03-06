@@ -13,7 +13,7 @@ keywords:
   - matic
   - alchemy
   - quicknode
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
@@ -54,7 +54,7 @@ We have listed three faucet tools you can use to receive **MATIC Testnet tokens*
 - Click on the **Submit** button to send your token request
 
 - Click **Confirm** to finalize the transaction
-   
+
    <img src={useBaseUrl("img/tools/confirm-transaction.png")} />
 
 :::caution

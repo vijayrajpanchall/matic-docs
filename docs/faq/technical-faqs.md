@@ -5,7 +5,7 @@ description: Build your next blockchain app on Polygon.
 keywords:
   - docs
   - matic
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 
 :::tip Stay in the know
@@ -84,7 +84,7 @@ We currently have an easy to dive-in list for you for the Linux packages. We wil
 **For linux**:
 
 1. `ps -aux | grep bor`. Get the PID for Bor and then run the following command.
-2. `sudo kill -9 PID` 
+2. `sudo kill -9 PID`
 
 **For Binaries**:
 
@@ -96,11 +96,11 @@ This error occurs because the path for the password.txt file is incorrect. You c
 
 This error occurs because the path for the password.txt and Keystore file is incorrect. You can follow the below steps to rectify this:
 
-1. Copy the bor keystore file to 
+1. Copy the bor keystore file to
 
     /etc/bor/dataDir/keystore
 
-2. And password.txt to 
+2. And password.txt to
 
     /etc/bor/dataDir/
 
@@ -189,7 +189,7 @@ A minimum of 10 Matic tokens is required for the stake amount whereas heimdall f
 
 However, please note that the values entered in stake amount and heimdal-fee-amount should be entered in 18 decimals
 
-For example, 
+For example,
 
     heimdallcli stake --staked-amount 400000000000000000000  --fee-amount 1000000000000000000 --validator 0xf8d1127780b89f167cb4578935e89b8ea1de774f
 
@@ -252,7 +252,7 @@ A minimum of 10 Matic tokens is required for the stake amount whereas heimdall f
 
 However, please note that the values entered in stake amount and heimdal-fee-amount should be entered in 18 decimals
 
-For example, 
+For example,
 
     heimdallcli stake --staked-amount 400000000000000000000  --fee-amount 1000000000000000000 --validator 0xf8d1127780b89f167cb4578935e89b8ea1de774f
 
@@ -268,7 +268,7 @@ This error may occur because of the stake or fee amount format. The values enter
 
 However, please note that the values entered in stake amount and heimdal-fee-amount should be entered in 18 decimals
 
-For example, 
+For example,
 
     heimdallcli stake --staked-amount 400000000000000000000  --fee-amount 1000000000000000000 --validator 0xf8d1127780b89f167cb4578935e89b8ea1de774f
 
@@ -321,7 +321,7 @@ This occurs mostly because when there are typos, or some missing parts or an old
 
 Stop Heimdall: `sudo service heimdalld stop`
 
-Stop Bor: `sudo service bor stop` or 
+Stop Bor: `sudo service bor stop` or
 
 1. `ps -aux | grep bor`. Get the PID for Bor and then run the following command.
 2. `sudo kill -9 PID`

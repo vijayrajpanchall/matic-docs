@@ -10,7 +10,7 @@ keywords:
   - delegation
   - liquid delegation
 slug: liquid-delegation
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 
 In a traditional Proof of Stake mechanism, the blockchain keeps track of a set of validators. Anyone can join this rank or right to validate transactions by sending a special type of transaction which stakes their coins(in Ethereum's case, ETH) and locks up into a deposit. Afterwards, the process of creating and agreeing to new blocks is done through a consensus algorithm by all active validators.
@@ -21,7 +21,7 @@ Staking rewards are distributed as an incentive to the participants.
 
 ## Delegation
 
-Staking may be expensive, raising the barrier to entry, which favours the rich getting richer. Everyone should take part in network security and receive tokens of appreciation. The only other option is to join a staking pool similar to a mining pool, where validators must be trusted. We believe that sticking to the protocol is the best course of action for new delegators. Since capital and rewards are open and protected by in-protocol mechanisms. 
+Staking may be expensive, raising the barrier to entry, which favours the rich getting richer. Everyone should take part in network security and receive tokens of appreciation. The only other option is to join a staking pool similar to a mining pool, where validators must be trusted. We believe that sticking to the protocol is the best course of action for new delegators. Since capital and rewards are open and protected by in-protocol mechanisms.
 
 Delegators can take part in validation even though they don't host entire nodes. However, by staking with validators, they can increase the network's strength and gain rewards by paying a tiny commission charge (which varies depending on the validator) to the validator of their choice.
 

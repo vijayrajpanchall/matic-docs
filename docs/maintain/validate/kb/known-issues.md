@@ -11,7 +11,7 @@ keywords:
   - invalid
   - command
 slug: known-issues
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
@@ -251,7 +251,7 @@ Follow the below steps for adding additional peers in  `vi /var/lib/heimdall/con
 ```bash
 module=span service=processor error="Error while fetching data from url:
 [http://0.0.0.0:1317/bor/prepare-next-span?chain_id=137&proposer=0x29f265b54a298df0c1b762f688e7e7c09d8790ea&span_id=2863&start_block=18317056](http://0.0.0.0:1317/bor/prepare-next-span?chain_id=137&proposer=0x29f265b54a298df0c1b762f688e7e7c09d8790ea&span_id=2863&start_block=18317056), status: 400"
-Aug 23 12:07:23 US-CA-SN01 bridge[2340]: E[2021-08-23|12:07:23.158] Unable to fetch next span details            
+Aug 23 12:07:23 US-CA-SN01 bridge[2340]: E[2021-08-23|12:07:23.158] Unable to fetch next span details
 module=span service=processor lastSpanId=2862
 ```
 
@@ -272,7 +272,7 @@ Then the Heimdall Bridge needs a restart.
 Address is required as an argument.
 
 **Solution:**
-You have to add address. 
+You have to add address.
 
 ```bash
 /etc/matic/metadata
@@ -396,9 +396,9 @@ sudo service rabbitmq-server start
 
 ### 27. Retrying again in 5 seconds to fetch data from Heimdall path=bor/span/1
 
-These logs in Bor mean that it cannot connect to Heimdall. 
+These logs in Bor mean that it cannot connect to Heimdall.
 
-The Heimdall doesn’t look in sync and hence it won’t have data on all the things that Bor would require. 
+The Heimdall doesn’t look in sync and hence it won’t have data on all the things that Bor would require.
 
 So the recommended procedure would be to clear the historical data of both Heimdall and Bor and resync from the snapshot.
 

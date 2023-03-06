@@ -9,7 +9,7 @@ keywords:
   - how to delegate
   - validator
   - stake
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 slug: delegate
 ---
 import useBaseUrl from '@docusaurus/useBaseUrl';

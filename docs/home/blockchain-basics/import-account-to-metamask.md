@@ -10,7 +10,7 @@ keywords:
   - import wallet
   - metamask
   - tokens
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
@@ -34,13 +34,13 @@ Choose the option of **Import Wallet**.
 
 Keep your seed phrase handy now.
 
-When you click on Import Wallet, you will be navigated to a different screen which will ask you to enter your seedphrase. You will also be asked to set a password. 
+When you click on Import Wallet, you will be navigated to a different screen which will ask you to enter your seedphrase. You will also be asked to set a password.
 
 <img src={useBaseUrl("img/home/import-account-seed.png")} />
 
 Make sure that you are adding the seed phrase securely to Metamask. Once you add the seed phrase, make sure that you also add a strong password.
 
-Agree to the **Terms and Conditions** and then click on **Import**. 
+Agree to the **Terms and Conditions** and then click on **Import**.
 
 You are now set. You will have successfully imported your account to Metamask.
 

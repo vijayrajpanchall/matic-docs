@@ -12,7 +12,7 @@ keywords:
   - guide
   - web wallet
   - v3
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
@@ -45,7 +45,7 @@ Click on the Polygon Wallet or Polygon Bridge, and you will see all your token b
 
 Be attentive to all Metamask's popups. Throughout the deposit and withdrawal processes, you will be prompted with Metamask's popups to confirm transactions, switch networks and other procedures. You can only proceed with those transactions if you confirm the actions on Metamask.
 
-::: 
+:::
 
 ## Deposit Funds from Ethereum to Polygon
 
@@ -75,7 +75,7 @@ You can either watch the **video tutorial** here or follow the **step-by-step gu
   :::
 
 3. Once you have added the amount that you want to deposit, you can then click on the **Transfer** button. After you click on the **Transfer** button, you need to click on the **Continue** button on the next popup.
-  
+
   <div align="center"><img src={useBaseUrl("img/wallet/v3/deposit/please-note.png")} width="50%" height="50%"/></div>
 
   You will see a **Transfer Overview** popup with an estimate of the total gas required for the transaction:
@@ -299,7 +299,7 @@ You can find some of the token lists here: https://tokenlists.org/
 <br/>
 
 You can also **make your own list**, import it to Polygon Wallet and even share it with the community.
-To learn more about creating your own token lists, check out this guide to [Authoring Token Lists on Github](https://github.com/uniswap/token-lists#authoring-token-lists). 
+To learn more about creating your own token lists, check out this guide to [Authoring Token Lists on Github](https://github.com/uniswap/token-lists#authoring-token-lists).
 
 :::note
 

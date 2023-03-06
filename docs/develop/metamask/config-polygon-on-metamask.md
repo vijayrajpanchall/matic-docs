@@ -7,7 +7,7 @@ keywords:
   - polygon
   - metamask
   - polygonscan
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
@@ -131,7 +131,7 @@ Once you’ve added the information click on Save. You will be directly switched
 :::tip Easy way to add Polygon mainnet
 If you just need to add Polygon Mainnet, you can follow these steps:
 
-1. On Metamask, select the Network tab: 
+1. On Metamask, select the Network tab:
 <div align="center">
 <img src={useBaseUrl("img/metamask/add-polygon-mainnet.png")} width="400"/>
 </div>

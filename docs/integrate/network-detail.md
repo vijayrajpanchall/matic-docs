@@ -8,7 +8,7 @@ keywords:
   - polygon
   - network details
   - how to read
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 
 # Reading Network Details
@@ -43,7 +43,7 @@ For TestnetV3: https://static.matic.network/network/testnet/v3/index.json
       "ExitNFT": "0xe4202974B2d5b2f26b7A8f27098EC439d1e6C4aa",                  // An address for a ExitNFT contract in Ropsten testnet
       "StateSender": "0x22E1f5aa1BA9e60527250FFeb35e30Aa2913727f",              // An address for a StateSender contract in Ropsten testnet
       "Predicates": {                                                           // Predicated Contracts in Ropsten
-        "ERC20Predicate": "0xaBE79B1B44581c69cCc45146dd8681Fb82a8AA18",         
+        "ERC20Predicate": "0xaBE79B1B44581c69cCc45146dd8681Fb82a8AA18",
         "ERC721Predicate": "0x1F07Aa7eB46414d2F89746C7510E8597E82CF698",
         "MarketplacePredicate": "0x2E3a58bF3644E4D790f93A01527F85E211c57841",
         "TransferWithSigPredicate": "0x3f0dC47C79254cfCA4195519954b444F87a766E0"

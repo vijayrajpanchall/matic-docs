@@ -11,7 +11,7 @@ keywords:
   - smart contract
   - polygon
   - IDE
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
@@ -28,7 +28,7 @@ This article guides you to build and deploy a solidity smart contract on Polygon
 - Create a Repl environment
 - Deploy a sample project on the Polygon Mumbai network
 - Verify the contract
-- Publish your project to a personal Replit profile.  
+- Publish your project to a personal Replit profile.
 
 :::tip
 

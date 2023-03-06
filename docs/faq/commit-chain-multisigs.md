@@ -8,7 +8,7 @@ keywords:
   - matic
   - multisig
   - address
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 
 import Tabs from '@theme/Tabs';
@@ -19,7 +19,7 @@ import TabItem from '@theme/TabItem';
 The primary function of the multisigs is to enable contract upgrades in
 the [current] early phases of development.
 
-As the contracts secured by the multisigs become battle-tested, 
+As the contracts secured by the multisigs become battle-tested,
 Polygon will introduce the following optimizations and changes:
 
 - move from multisigs to governance-controlled proxies;
@@ -59,4 +59,4 @@ To be clear, the current multisigs cannot censor transactions like bridge transa
 | Rights    |Can only do mapping, doesn't have any access to Child token, no deposit/withdrawal rights whatsoever|
 | Signatories    |<ul> <li>Polygon </li> </ul>|
 
-<sub> *To be moved to governance. Exploring Aave's governance contracts and Compound’s time lock contracts</sub> 
+<sub> *To be moved to governance. Exploring Aave's governance contracts and Compound’s time lock contracts</sub>

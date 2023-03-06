@@ -10,7 +10,7 @@ keywords:
   - oracle
   - decentralized
   - data
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
@@ -19,9 +19,9 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 ## Decentralized Data
 
-One of Chainlink's most powerful features is already decentralized, aggregated, and ready to be digested on-chain data on most of the popular cryptocurrencies. These are known as [**Chainlink Data Feeds**](https://docs.chain.link/docs/using-chainlink-reference-contracts). 
+One of Chainlink's most powerful features is already decentralized, aggregated, and ready to be digested on-chain data on most of the popular cryptocurrencies. These are known as [**Chainlink Data Feeds**](https://docs.chain.link/docs/using-chainlink-reference-contracts).
 
-Here is a working example of a contract that pulls the latest price of MATIC in USD on the Mumbai Testnet. 
+Here is a working example of a contract that pulls the latest price of MATIC in USD on the Mumbai Testnet.
 
 All you need to do is swap out the address [with any address of a data feed](https://docs.chain.link/docs/matic-addresses#config) that you wish, and you can start digesting price information.
 
@@ -34,7 +34,7 @@ contract PriceConsumerV3 {
     AggregatorV3Interface internal priceFeed;
 
     /**
-     * Network: Mumbai Testnet 
+     * Network: Mumbai Testnet
      * Aggregator: MATIC/USD
      * Address: 0xd0D5e3DB44DE05E9F294BB0a3bEEaF030DE24Ada
      */
@@ -47,7 +47,7 @@ contract PriceConsumerV3 {
      */
     function getLatestPrice() public view returns (int) {
         (
-            uint80 roundID, 
+            uint80 roundID,
             int price,
             uint startedAt,
             uint timeStamp,
@@ -60,7 +60,7 @@ contract PriceConsumerV3 {
 
 ## Request and Receive Cycle
 
-Chainlink's Request and Receive cycle enables your smart contracts to make a request to any external API and consume the response. To implement it, your contract needs to define two functions: 
+Chainlink's Request and Receive cycle enables your smart contracts to make a request to any external API and consume the response. To implement it, your contract needs to define two functions:
 
 1. One to **request the data**, and
 2. Another to **receive the response**.
@@ -83,11 +83,11 @@ To request data, your contract builds a `request` object which it provides to an
 
 3. **Chainlink API Calls**
 
-   How to configure your smart contract to work with traditional APIs, and customize to get any data, send any requests over the internet, and more. 
+   How to configure your smart contract to work with traditional APIs, and customize to get any data, send any requests over the internet, and more.
 
 ## Code Example
 
-To interact with external APIs, your smart contract should inherit from [`ChainlinkClient.sol`](https://github.com/smartcontractkit/chainlink/blob/develop/contracts/src/v0.6/ChainlinkClient.sol), which is a contract designed to make processing requests easy. It exposes a struct called `Chainlink.Request`, which your contract should use to build the API request. 
+To interact with external APIs, your smart contract should inherit from [`ChainlinkClient.sol`](https://github.com/smartcontractkit/chainlink/blob/develop/contracts/src/v0.6/ChainlinkClient.sol), which is a contract designed to make processing requests easy. It exposes a struct called `Chainlink.Request`, which your contract should use to build the API request.
 
 The request should define the oracle address, job id, fee, adapter parameters, and the callback function signature. In this example, the request is built in the `requestEthereumPrice` function.
 
@@ -101,11 +101,11 @@ import "@chainlink/contracts/src/v0.6/ChainlinkClient.sol";
 contract APIConsumer is ChainlinkClient {
 
     uint256 public price;
-    
+
     address private oracle;
     bytes32 private jobId;
     uint256 private fee;
-    
+
     /**
      * Network: Polygon Mumbai Testnet
      * Oracle: 0x58bbdbfb6fca3129b91f0dbe372098123b38b5e9
@@ -119,19 +119,19 @@ contract APIConsumer is ChainlinkClient {
         jobId = "da20aae0e4c843f6949e5cb3f7cfe8c4";
         fee = 10 ** 16; // 0.01 LINK
     }
-    
+
     /**
      * Create a Chainlink request to retrieve API response, find the target price
      * data, then multiply by 100 (to remove decimal places from price).
      */
-    function requestBTCCNYPrice() public returns (bytes32 requestId) 
+    function requestBTCCNYPrice() public returns (bytes32 requestId)
     {
         Chainlink.Request memory request = buildChainlinkRequest(jobId, address(this), this.fulfill.selector);
-        
+
         // Set the URL to perform the GET request on
-        // NOTE: If this oracle gets more than 5 requests from this job at a time, it will not return. 
+        // NOTE: If this oracle gets more than 5 requests from this job at a time, it will not return.
         request.add("get", "https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=BTC&to_currency=CNY&apikey=demo");
-        
+
        // Set the path to find the desired data in the API response, where the response format is:
        // {
        //     "Realtime Currency Exchange Rate": {
@@ -150,17 +150,17 @@ contract APIConsumer is ChainlinkClient {
         path[0] = "Realtime Currency Exchange Rate";
         path[1] = "5. Exchange Rate";
         request.addStringArray("path", path);
-        
+
         // Multiply the result by 10000000000 to remove decimals
         request.addInt("times", 10000000000);
-        
+
         // Sends the request
         return sendChainlinkRequestTo(oracle, request, fee);
     }
-    
+
     /**
      * Receive the response in the form of uint256
-     */ 
+     */
     function fulfill(bytes32 _requestId, uint256 _price) public recordChainlinkFulfillment(_requestId)
     {
         price = _price;
@@ -173,7 +173,7 @@ contract APIConsumer is ChainlinkClient {
 To get mainnet Polygon LINK token from the Ethereum Mainnet, you must follow a 2-step process.
 
 1. Bridge your LINK using the Plasma or [PoS bridge](https://wallet.polygon.technology/bridge).
-2. Swap the LINK for the ERC677 version via the [Pegswap, deployed by the Chainlink](https://pegswap.chain.link/). 
+2. Swap the LINK for the ERC677 version via the [Pegswap, deployed by the Chainlink](https://pegswap.chain.link/).
 
 The Polygon bridge brings over an ERC20 version of LINK, and LINK is an ERC677, so we just have to update it with this swap.
 
@@ -213,10 +213,10 @@ request.addStringArray("path", path);
 
 You may have noticed that our [example](#code-example) uses a `jobId` parameter when building the request. Jobs are comprised of a sequence of instructions that an oracle is configured to run. In the [code example](#code-example) above, the contract makes a request to the oracle with the job ID: `da20aae0e4c843f6949e5cb3f7cfe8c4`. This particular job is configured to do the following:
 
-* Make a GET request 
+* Make a GET request
 * Parse the JSON response
 * Multiply the value by *x*
-* Convert the value to `uint` 
+* Convert the value to `uint`
 * Submit to the chain
 
 This is why our contract adds in the URL, the path of where to find the desired data in the JSON response, and the times amount to the request; using the `request.add` statements. These instructions are facilitated by what's known as Adapters, in the oracle.

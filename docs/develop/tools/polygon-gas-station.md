@@ -10,7 +10,7 @@ keywords:
   - wiki
   - gas recommendation
   - dapps
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 
 import Tabs from '@theme/Tabs';

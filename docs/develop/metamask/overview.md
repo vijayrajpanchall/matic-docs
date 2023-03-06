@@ -8,7 +8,7 @@ keywords:
   - polygon
   - wallet
   - metamask
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 
 [MetaMask](https://metamask.io/) is a crypto wallet that can be used in a web browser and on mobile devices to interact with the Ethereum blockchain. It allows you to run Ethereum Dapps (Decentralized Apps) right in your browser without running a full Ethereum node.
@@ -125,7 +125,7 @@ Now for any function you’d want to call from your contract, we directly intera
 
 :::tip A quick review
 
-Functions that alter the state of the contract are called `send()` functions. 
+Functions that alter the state of the contract are called `send()` functions.
 Functions that do not alter the state of the contract are called `call()` functions.
 
 :::

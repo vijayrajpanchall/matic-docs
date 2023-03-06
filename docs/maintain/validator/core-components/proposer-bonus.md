@@ -11,7 +11,7 @@ keywords:
   - bonus
   - incentive
 slug: proposer-bonus
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 
 # Proposer Bonus

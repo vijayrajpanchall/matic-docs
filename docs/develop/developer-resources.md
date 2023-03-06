@@ -13,7 +13,7 @@ keywords:
   - web3
   - ethereum
   - blockchain
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 
 :::tip
@@ -22,7 +22,7 @@ Here are some links that might be useful for new Web3 developers and anyone who 
 
 :::
 
-## Basics of Web3 Development 
+## Basics of Web3 Development
 
 - [What is Ethereum?](https://blockgeeks.com/guides/ethereum/)
 - [Mastering Ethereum](https://github.com/ethereumbook/ethereumbook)

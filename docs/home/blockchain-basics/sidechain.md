@@ -8,12 +8,12 @@ keywords:
   - polygon
   - sidechains
   - plasma
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 
 # Sidechains and Plasma
 
-Sidechain is an alternate blockchain to a parent chain. Plasma is a framework of child chains - it is a scaling solution for Ethereum (or any blockchain for that matter). 
+Sidechain is an alternate blockchain to a parent chain. Plasma is a framework of child chains - it is a scaling solution for Ethereum (or any blockchain for that matter).
 
 The sidechain concept is to basically run another blockchain alongside some other “main” blockchain. These two blockchains could then talk to each other in a such a way that it allows assets to move between the two chains.
 

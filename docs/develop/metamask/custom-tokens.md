@@ -6,18 +6,18 @@ keywords:
   - wiki
   - polygon
   - custom token
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-This page demonstrates the process of configuring/adding custom tokens to Metamask. 
+This page demonstrates the process of configuring/adding custom tokens to Metamask.
 
-You can use the same process to add any custom tokens to any network on Metamask. You can refer to [this table](#tokens-and-contract-adresses) to visualize some examples of test tokens with their respective contract addresses. 
+You can use the same process to add any custom tokens to any network on Metamask. You can refer to [this table](#tokens-and-contract-adresses) to visualize some examples of test tokens with their respective contract addresses.
 
-## Adding a custom token to your MetaMask account 
+## Adding a custom token to your MetaMask account
 
-First, choose the appropriate network for the new token on your Metamask's home screen. Then click on "Import Tokens". 
+First, choose the appropriate network for the new token on your Metamask's home screen. Then click on "Import Tokens".
 
 <div align="center">
 <img width="300" src={useBaseUrl("img/metamask/develop/add-test-token.png")} />
@@ -28,18 +28,18 @@ First, choose the appropriate network for the new token on your Metamask's home 
 It will then navigate you to a new screen. On the Import Tokens screen, copy-paste an address in the Token Address field.
 
 :::info
-To illustrate this process, we are using an **ERC20-TESTV4** token on the **Goerli network**. Find other test tokens from other networks [<ins>here</ins>](#tokens-and-contract-adresses). 
+To illustrate this process, we are using an **ERC20-TESTV4** token on the **Goerli network**. Find other test tokens from other networks [<ins>here</ins>](#tokens-and-contract-adresses).
 :::
 
 <div align="center">
 <img width="300" src={useBaseUrl("img/metamask/develop/token-contract-address.png")} />
-</div> 
+</div>
 
 The other fields will auto-populate. Click on Add Custom Tokens and then click on Import Tokens. The `TEST` token should now be displayed on your account on Metamask.
 
 <div align="center">
 <img width="300" src={useBaseUrl("img/metamask/develop/added-token.png")} />
-</div> 
+</div>
 
 **Adding a test ERC1155 token to your MetaMask account**
 

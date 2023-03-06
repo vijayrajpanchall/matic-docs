@@ -11,13 +11,13 @@ keywords:
   - speakers
   - contribute
   - language
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 slug: non-native-speakers
 ---
 
 :::info Page is being updated
 
-Please see the 
+Please see the
 **[OpenStack guide](https://docs.openstack.org/doc-contrib-guide/non-native-english-speakers.html)**
 in the meantime.
 

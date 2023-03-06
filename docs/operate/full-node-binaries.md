@@ -10,7 +10,7 @@ keywords:
   - binaries
   - deploy
   - run full node
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 
 import Tabs from '@theme/Tabs';

@@ -9,7 +9,7 @@ keywords:
   - polygon
   - DAO
   - governance
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 
 The [Polygon Community Forum](forum.polygon.technology) is the central hub

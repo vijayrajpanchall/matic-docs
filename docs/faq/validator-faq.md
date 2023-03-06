@@ -8,7 +8,7 @@ keywords:
   - polygon
   - validator
   - faq
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 
 ## How can I reserve a Validator spot?

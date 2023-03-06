@@ -10,7 +10,7 @@ keywords:
   - full node
   - polygon
   - deploy
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 
 The Polygon team distributes official Docker images which can be used to run nodes on the Polygon Mainnet. These instructions are for running a Full Node, but they can be adapted for running sentry nodes and validators as well.

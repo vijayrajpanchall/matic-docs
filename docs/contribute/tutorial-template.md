@@ -11,26 +11,26 @@ keywords:
   - tutorial
   - contribute
   - template
-image: https://wiki.polygon.technology/img/polygon-wiki.png
-slug: tutorial-template 
+image: https://wiki.polygon.technology/img/polygon-logo.png
+slug: tutorial-template
 ---
 
-This template should be used when contributing a tutorial to the Polygon 
+This template should be used when contributing a tutorial to the Polygon
 Wiki. You may choose to contribute a tutorial on a topic of your choosing.
 
 ## General guidelines
 
-* The tutorial's scope should be clear from the title. 
-* The tutorial should be able to accurately describe the features 
+* The tutorial's scope should be clear from the title.
+* The tutorial should be able to accurately describe the features
   and functionalities of product(s) or service(s).
 * Try to keep the tutorial swift and concise, but expand on key concepts where
   appropriate. Give background information and further context when possible.
-* For configuration and implementation steps, be specific. 
-* Please try your best to add supporting imagery, icons, or screenshots that 
-  complement the written content. 
+* For configuration and implementation steps, be specific.
+* Please try your best to add supporting imagery, icons, or screenshots that
+  complement the written content.
   > The documentation team would also be happy to work with you on creating diagrams.
-* Remember the audience you are writing for. If the material has a certain difficulty 
-  level it should be mentioned in the tutorial. 
+* Remember the audience you are writing for. If the material has a certain difficulty
+  level it should be mentioned in the tutorial.
   > If there are steps a user should take before running through a tutorial, please mention them.
 * The documentation would be happy to jointly work on creating a tutorial.
 * Remember to consider the **[Style guide](writing-style.md)**.
@@ -41,7 +41,7 @@ If you notice that the current tutorials on the Polygon
 Wiki do not follow this template, it is because the documentation team
 decided to implement a standard, so the tutorial flow is consistent across
 all tutorials. The team is working on updating these tutorials
-to resemble this template. If you are interested, you can also update an 
+to resemble this template. If you are interested, you can also update an
 existing tutorial to restructure it.
 
 :::
@@ -51,8 +51,8 @@ existing tutorial to restructure it.
 ### Overview
 
 Explain the product(s) or service(s) being discussed in the tutorial.
-Give background information for the purpose of the tutorial and what the 
-tutorial aims to present. The tutorial should always be based on using a 
+Give background information for the purpose of the tutorial and what the
+tutorial aims to present. The tutorial should always be based on using a
 Polygon product.
 
 ### What you'll learn
@@ -61,24 +61,24 @@ Summarize what the user will learn throughout the tutorial.
 
 :::note Example
 
-You'll explore how to use the Truffle Suite to build dApps 
+You'll explore how to use the Truffle Suite to build dApps
 Polygon.
 
 :::
 
 #### Learning outcomes
 
-Outline the learning outcomes. 
+Outline the learning outcomes.
 
 :::note Example
 
 1. You will learn about Fauna.
 2. You will learn how you can use ReactJS for the UI of your dApp.
-3. You will learn how to safeguard dApp data. 
+3. You will learn how to safeguard dApp data.
 
 :::
 
-Mention prerequisites and what the user should 
+Mention prerequisites and what the user should
 already be familiar with. Link the necessary documentation for areas
 that the user should already be knowledgeable about.
 
@@ -109,7 +109,7 @@ You will use Solidity to create a smart contract in a ChainIDE environment.
 
 ### The tutorial itself
 
-In general, the tutorial can be presented in the best categorization that 
+In general, the tutorial can be presented in the best categorization that
 the writer sees fit; this should be reflected in the [What you'll do](#what-youll-do)
 section. However, the tutorial sections should touch on these three main categories:
 
@@ -137,7 +137,7 @@ Outline next steps that the user can take.
 
 :::note Example
 
-Congratulations on deploying your smart contract. You now know how to use ChainIDE 
+Congratulations on deploying your smart contract. You now know how to use ChainIDE
 to create and deploy smart contracts. Consider trying out "this tutorial".
 
 :::

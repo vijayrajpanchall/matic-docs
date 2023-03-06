@@ -10,7 +10,7 @@ keywords:
   - matic
   - polygon
   - docs
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 
 [Crust Network](https://crust.network) provides a decentralized storage network for Web3. It is designed to realize the core values of decentralization, privacy and assurance. Crust supports multiple storage-layer protocols such as IPFS, and exposes instantly accessible on-chain storage functions to users.

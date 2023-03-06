@@ -8,7 +8,7 @@ keywords:
   - polygon
   - node setup
   - requirements
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 
 ## Minimum Hardware Configuration

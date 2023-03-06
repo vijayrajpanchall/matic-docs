@@ -10,7 +10,7 @@ keywords:
   - ansible
   - polygon
   - docs
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 
 To set the Archive Node, you need to follow the same process for a [<ins>full node deployment using Ansible</ins>](/docs/operate/full-node-deployment). However, it requires a minor configuration change. You should include the following parameter in the `start.sh` file:

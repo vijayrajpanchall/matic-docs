@@ -8,7 +8,7 @@ keywords:
   - polygon
   - wiki
   - validator
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
@@ -32,7 +32,7 @@ At present, there are no open validator slots available on Polygon PoS. There is
 
 
 ### Replacement
-PIP4 introduced the concept of showcasing validator performance for community visibility. If a validator is in an unhealthy state for an extended period of time as outlined in PIP4, they are off-boarded from the network. The validator slot is then made available to those coming off of the waitlist. 
+PIP4 introduced the concept of showcasing validator performance for community visibility. If a validator is in an unhealthy state for an extended period of time as outlined in PIP4, they are off-boarded from the network. The validator slot is then made available to those coming off of the waitlist.
 
 :::info
 

@@ -1,6 +1,6 @@
 ---
 id: move-stake
-title: Moving Stake 
+title: Moving Stake
 description: Moving your stake on polygon network
 keywords:
   - docs
@@ -11,7 +11,7 @@ keywords:
   - validator
   - delegator
 slug: move-stake
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
@@ -33,11 +33,11 @@ Also, the Move Stake function is a temporary function developed by the Polygon t
 
 ## How to Move Stake
 
-In order to Move stake, first you will need to login to the [Staking UI](https://wallet.polygon.technology/staking) using your Delegator Address. 
+In order to Move stake, first you will need to login to the [Staking UI](https://wallet.polygon.technology/staking) using your Delegator Address.
 
 **Delegator Address** : The address that you have already used for Staking on the Foundation Nodes.
 
-Once logged in, you will see a list of Validators. 
+Once logged in, you will see a list of Validators.
 
 <img src={useBaseUrl("img/staking/validator-list.png")} />
 
@@ -57,7 +57,7 @@ Now after choosing your validator that you want to delegate to, click on the **D
 
 <img src={useBaseUrl("img/staking/stake-funds.png")} />
 
-Here you would see an **Amount** field which would automatically populate with entire amount for Delegation. You can also use a partial amount to delegate to a validator. 
+Here you would see an **Amount** field which would automatically populate with entire amount for Delegation. You can also use a partial amount to delegate to a validator.
 
 For example, if you have delegated 100 MATIC tokens to Foundation Node 1 and now you want to move your stake from the foundation node to an external node, you can delegate a partial amount to the external node of your choice, lets say 50 MATIC tokens. The rest of the 50 MATIC tokens will stay on Foundation node 1. You can then choose to either delegate the rest of the 50 tokens to another external node or the same external node.
 

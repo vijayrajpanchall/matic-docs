@@ -8,7 +8,7 @@ keywords:
   - matic
   - wiki
   - polygon
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
@@ -35,7 +35,7 @@ Stakes are at risk of getting slashed in case the validator node commits a
 malicious act like double signing, validator downtime which also affects the linked
 delegators at that checkpoint.
 
-For more details please refer to 
+For more details please refer to
 [End-to-end flow to a Polygon validator](/maintain/polygon-basics/who-is-validator.md#end-to-end-flow-for-a-polygon-validator) and [Responsibilities of a validator](/maintain/validate/validator-responsibilities.md).
 
 

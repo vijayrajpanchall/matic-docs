@@ -13,7 +13,7 @@ keywords:
   - dashboard
   - staking
 slug: validator-performance
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
@@ -22,7 +22,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 This is a guide to help users understand the validator performance parameters the community agreed to in [PIP-4](https://snapshot.org/#/polygonvalidators.eth/proposal/0x1e9d79b6406870ebd0b66ac256b59012f97f3f4d652052681c6fb1077e251804).
 
-These parameters and the related health statuses help provide information about validator performance against a defined performance benchmark. 
+These parameters and the related health statuses help provide information about validator performance against a defined performance benchmark.
 
 
 ### Parameters
@@ -44,7 +44,7 @@ To facilitate the transition, there will be a slightly lower benchmark around th
 
 * PB1 → 95% of the median average of the last 700 checkpoints signed by the validator set (first 2,800 checkpoints))
 * PB2 → 98% of the median average of last checkpoints signed by validator set (continues thereafter)
- 
+
 ### Deficient Validator Process
 
 * If validator <PB in the MP → Grace Period 1 (“GP1”).

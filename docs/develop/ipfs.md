@@ -9,7 +9,7 @@ keywords:
   - polygon
   - storage
   - blockchain
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 
 ### Context
@@ -18,13 +18,13 @@ Polygon blockchain reduces transaction costs to store data versus Ethereum mainn
 
 #### What is IPFS?
 
-IPFS is a distributed system for storing and accessing files, websites, applications, and data. IPFS uses decentralization, content addressing, and a robust peer-to-peer network of active participants to allow users to store, request, and transfer verifiable data with each other. 
+IPFS is a distributed system for storing and accessing files, websites, applications, and data. IPFS uses decentralization, content addressing, and a robust peer-to-peer network of active participants to allow users to store, request, and transfer verifiable data with each other.
 
-Decentralization makes it possible to download a file from many locations that aren't managed by one organization, providing resilience and censorship resistance right out of the box.  
+Decentralization makes it possible to download a file from many locations that aren't managed by one organization, providing resilience and censorship resistance right out of the box.
 
 Content addressing uses cryptography to create a uniquely verifable hash based upon what is in a file rather than where it is located. The resulting content identifier (CID) provides assurance a piece of data is identical regardless of where it is stored.
 
-Finally, an ever growing active community of users makes this peer-to-peer sharing of content possible. Developers upload and pin content to IPFS while Filecoin or Crust storage providers help to ensure persistent storage of that content. 
+Finally, an ever growing active community of users makes this peer-to-peer sharing of content possible. Developers upload and pin content to IPFS while Filecoin or Crust storage providers help to ensure persistent storage of that content.
 
 
 IPFS based storage allows you to simply store the CID for your content rather than loading entire files to Polygon blockchain; allowing for decreased costs, larger file sizes, and provably persistent storage. For more details refer [IPFS Docs](https://docs.ipfs.io/).

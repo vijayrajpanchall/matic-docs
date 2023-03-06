@@ -11,7 +11,7 @@ keywords:
   - checkpoint
   - pos
   - verifier
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 
 # Heimdall Chain
@@ -20,18 +20,18 @@ Heimdall is Polygon Proof-of-Stake Verifier layer, which is responsible for chec
 
 The main chain Stake Manager contract works in conjunction with the Heimdall node to act as the trustless stake management mechanism for the PoS engine, including selecting the validator set, updating validators, etc. Since staking is actually done on the Ethereum smart contract, we do not rely only on validator honesty and instead inherit Ethereum chain security for this key part.
 
-Heimdall layer handles the aggregation of blocks produced by Bor into a merkle tree and publishing the merkle root periodically to the root chain. This periodic publishing is called **"checkpoint"**. For every few blocks on Bor, a validator (on the Heimdall layer): 
+Heimdall layer handles the aggregation of blocks produced by Bor into a merkle tree and publishing the merkle root periodically to the root chain. This periodic publishing is called **"checkpoint"**. For every few blocks on Bor, a validator (on the Heimdall layer):
 
 1. Validates all the blocks since the last checkpoint
 2. Creates a merkle tree of the block hashes
 3. Publishes the merkle root to the main chain
 
-Checkpoints are important for two reasons: 
+Checkpoints are important for two reasons:
 
 1. Providing finality on the Root Chain
 2. Providing Proof of Burn in withdrawal of assets
 
-A bird’s eye view of the process can be explained as: 
+A bird’s eye view of the process can be explained as:
 
 - A subset of active validators from the pool are selected to act as block producers for a span. The selection of each span will also be consented by at least 2/3 in power. These block producers are responsible for creating blocks and broadcasting them to the remaining network.
 - A checkpoint includes the root of all blocks created during any given interval. All nodes validate the same and attach their signatures to it.

@@ -13,7 +13,7 @@ keywords:
   - eip4337
   - EIP-4337
   - ERC-4337
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 slug: account-abstraction
 ---
 

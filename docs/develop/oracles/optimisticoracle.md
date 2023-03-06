@@ -1,15 +1,15 @@
 ---
 id: optimisticoracle
-title: UMA's Optimistic Oracle 
+title: UMA's Optimistic Oracle
 sidebar_label: UMA
 description: UMA's Optimistic Oracle allows contracts to quickly request and receive any kind of data
-keywords:   
+keywords:
   - wiki
   - polygon
   - oracle
   - UMA
   - Optimistic Oracle
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 
 UMA's Optimistic Oracle allows contracts to quickly request and receive any kind of data. UMA's oracle system is comprised of two core components:
@@ -29,7 +29,7 @@ If a dispute is raised, a request is sent to the DVM. All contracts built on UMA
 
 The Data Verification Mechanism (DVM) is the dispute resolution service for contracts built on UMA Protocol. The DVM is powerful because it encompasses an element of human judgment to ensure contracts are securely and correctly managed when issues arise from volatile (and sometimes manipulatable) markets.
 
-## Optimistic Oracle Interface 
+## Optimistic Oracle Interface
 
 The Optimistic Oracle is used by financial contracts or any third party to retrieve prices. Once a price is requested, anyone can propose a price in response. Once proposed, the price goes through a liveness period where anyone can dispute the proposed price and send the disputed price to the UMA DVM for settlement.
 

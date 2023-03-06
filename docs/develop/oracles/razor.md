@@ -8,7 +8,7 @@ keywords:
   - polygon
   - razor
   - oracle
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 
 **Razor Network** is a decentralized oracle providing data to the smart contracts using a network of stakers. The network consists of validators who lock in their tokens as a **Stake** and provide data to the network. The honest validators are rewarded and those who report incoherently are penalized.

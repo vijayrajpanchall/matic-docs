@@ -11,10 +11,10 @@ keywords:
   - deploy smart contract
   - chainstack
   - foundry
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 
-## Overview 
+## Overview
 
 This section guides you through deploying a Hello World contract using [Chainstack](https://chainstack.com/build-better-with-polygon/) and [Foundry](https://github.com/gakonst/foundry/) on the Polygon Mumbai testnet.
 
@@ -130,7 +130,7 @@ forge create HelloWorld --constructor-args "Hello" --contracts CONTRACT_PATH --p
 Here,
 
 * CONTRACT_PATH — path to your `HelloWorld.sol` file.
-* PRIVATE_KEY — the private key from your account. 
+* PRIVATE_KEY — the private key from your account.
 * HTTPS_ENDPOINT — [your node's endpoint](https://docs.chainstack.com/platform/view-node-access-and-credentials).
 
 Example:

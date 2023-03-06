@@ -9,7 +9,7 @@ keywords:
   - polygon
   - bloXroute
   - BDN
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 
 As validators, we need to keep track of block propagation time, given that we offer a 2 sec block time. We are working with [bloXroute](https://bloxroute.com/) to leverage their infrastructure ([Blockchain Distribution Network or BDN](https://docs.bloxroute.com/bdn-architecture)), which would help lower the block propagation time. For this, we need your support in connecting your Polygon network nodes to bloXroute’s gateways.
@@ -39,7 +39,7 @@ StaticNodes = ["enode://static_node_enode1@ip:port", "enode://static_node_enode2
 TrustedNodes = ["enode://<enode_id_of_gateway_provided_by_bloxroute>"]
 ```
 
-Now restart Bor: 
+Now restart Bor:
 
 ```bash
 sudo service bor restart

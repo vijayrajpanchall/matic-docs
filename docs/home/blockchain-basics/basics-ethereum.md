@@ -9,7 +9,7 @@ keywords:
   - polygon
   - what is ethereum
   - ethereum
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 
 # What is Ethereum?

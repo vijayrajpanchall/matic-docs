@@ -9,7 +9,7 @@ keywords:
   - wiki
   - polygon
   - custom token
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 import useBaseUrl from '@docusaurus/useBaseUrl';
 

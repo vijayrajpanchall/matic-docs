@@ -11,7 +11,7 @@ keywords:
   - bugs
   - attacks
 slug: reporting-issues
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 
 ## Where to report a bug

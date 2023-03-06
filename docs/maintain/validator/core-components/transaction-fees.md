@@ -10,7 +10,7 @@ keywords:
   - transaction
   - fees
 slug: transaction-fees
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 
 Each [block producer](/docs/maintain/glossary.md#block-producer) on the [Bor](/docs/maintain/glossary.md#bor) layer is given a certain percentage of the transaction fees collected in each block.

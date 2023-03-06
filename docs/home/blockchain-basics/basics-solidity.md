@@ -8,23 +8,23 @@ keywords:
   - matic
   - polygon
   - solidity
-image: https://wiki.polygon.technology/img/polygon-wiki.png 
+image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 
 # What is Solidity
 
-Solidity is an object-oriented, high-level programming language for implementing smart contracts. It allows to write programs, which governs the behavior of accounts within the blockchain network. It is statically typed, supports contract inheritance and has many built-in Contract Libraries. Solidity is similar to programming languages like  C++, Python and JavaScript. 
+Solidity is an object-oriented, high-level programming language for implementing smart contracts. It allows to write programs, which governs the behavior of accounts within the blockchain network. It is statically typed, supports contract inheritance and has many built-in Contract Libraries. Solidity is similar to programming languages like  C++, Python and JavaScript.
 
-It is comprised of: 
-- variables 
+It is comprised of:
+- variables
 - operators
-- loops 
-- conditionals 
+- loops
+- conditionals
 - modifiers
-- functions 
-- objects and types 
+- functions
+- objects and types
 - events
-- interfaces 
+- interfaces
 - and handles monetary transactions.
 
 Before jumping to coding with Solidity it is important to familiarize oneself with blockchain's mental models - these are essential because of the contrasting difference in a blockchain application architecture and a common web application architecture.

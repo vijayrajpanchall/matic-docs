@@ -10,7 +10,7 @@ keywords:
   - delegation
   - shares
 slug: derivatives
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 
 Polygon supports [delegation](/docs/maintain/glossary#delegator) via validator shares. By using this design, it is easier to distribute rewards and slash with scale on the Ethereum mainnet contracts without much computation.
@@ -37,7 +37,7 @@ The exchange rate is calculated as per the formula:
 
 `sellVoucher`: This is function that is called when a delegator is unbonding from a validator. This function basically initiates the process of selling the vouchers bought during delegation. There is a withdrawal period that is taken into consideration before the delegators can `claim` their tokens.
 
-`withdrawRewards`: As a delegator, you can claim your rewards by invoking the `withdrawRewards` function.  
+`withdrawRewards`: As a delegator, you can claim your rewards by invoking the `withdrawRewards` function.
 
 `reStake`: Restaking can work in two ways: a) delegator can buy more shares using `buyVoucher` or `reStake` rewards. You can restake by staking more tokens towarda a validator or you can restake your accumulated rewards as a delegator. Purpose of `reStaking` is that since delegator's validator has now more active stake, they will earn more rewards for that and so will the delegator.
 

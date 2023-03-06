@@ -9,7 +9,7 @@ keywords:
   - polygon
   - bor chain
   - sidechain VM
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 
 # Bor Chain

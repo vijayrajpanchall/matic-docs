@@ -9,7 +9,7 @@ keywords:
   - authentication
   - dapp
   - integrate
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 
 **SlashAuth** allows developers to quickly authenticate users with their wallets and create **role-based access control based on the on-chain data**. A developer can use SlashAuth to securely log a user in and verify that they have the necessary tokens (ERC20, ERC721, ERC1155) to gain access to the website.
@@ -45,7 +45,7 @@ const root = ReactDOM.createRoot(
 );
 
 root.render(
-  <SlashAuthProvider 
+  <SlashAuthProvider
     clientID={/* YOUR CLIENT ID */}
   >
     <App />
@@ -157,6 +157,6 @@ function App() {
 export default App;
 ```
 
-**Congratulations! You're successfully integrated SlashAuth in your dApp.** 
+**Congratulations! You're successfully integrated SlashAuth in your dApp.**
 
 You can find the full example of this code in our [GitHub repo](https://github.com/slashauth/slashauth-react-quickstart-example).

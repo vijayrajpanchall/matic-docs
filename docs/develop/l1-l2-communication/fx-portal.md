@@ -8,7 +8,7 @@ keywords:
   - polygon
   - FxPortal
   - ethereum to polygon
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
@@ -25,18 +25,18 @@ You can check out the [GitHub repository](https://github.com/fx-portal/contracts
 
 [FxChild](https://github.com/fx-portal/contracts/blob/main/contracts/FxChild.sol) and [FxRoot](https://github.com/fx-portal/contracts/blob/main/contracts/FxRoot.sol) are the main contracts on which FxPortal works. It calls and passes data to user-defined methods on the other chain without any mapping using the state sync mechanism. To use the deployed main contracts, you can implement FxPortal's base contracts in the smart contracts you deploy - [FxBaseRootTunnel](https://github.com/fx-portal/contracts/blob/main/contracts/tunnel/FxBaseRootTunnel.sol) and [FxBaseChildTunnel](https://github.com/fx-portal/contracts/blob/main/contracts/tunnel/FxBaseChildTunnel.sol). By building on these contracts, your deployed contracts will be able to communicate with each other using the data tunnel mechanism.
 
-Otherwise, you can choose to map your tokens with the already deployed tunnel contracts. Default FxTunnel deployment details for Polygon Mainnet and Mumbai Testnet are as follows: 
+Otherwise, you can choose to map your tokens with the already deployed tunnel contracts. Default FxTunnel deployment details for Polygon Mainnet and Mumbai Testnet are as follows:
 
 - [Polygon Mainnet](https://static.matic.network/network/mainnet/v1/index.json)
 - [Mumbai Testnet](https://static.matic.network/network/testnet/mumbai/index.json)
 
-Look for the keyword `FxPortalContracts` in the above links to find all the default tunnel contracts and other important FxPortal contract deployments. 
+Look for the keyword `FxPortalContracts` in the above links to find all the default tunnel contracts and other important FxPortal contract deployments.
 
-## Do I need a Custom FxTunnel Implementation ? 
+## Do I need a Custom FxTunnel Implementation ?
 
 You must go for a **custom FxTunnel implementation** only if the default tunnel implementations do not align with your use case. When you use the default FxPortal tunnels, you can not modify the child contract code. The bytecode for the child token contract is always fixed and always remains the same for the [default FxTunnel deployments](https://github.com/fx-portal/contracts/tree/main/contracts/examples). In case you need a custom child token, you must go for your own custom FxTunnel, and reading the next part will guide you more in deploying your own custom FxTunnels.
 
-It is highly recommended to read and understand [FxPortal State Transfer](state-transfer.md) before you read the upcoming section. Each of these upcoming sections will have example tunnel contract links attached to it. These examples can be taken as a reference while building your own custom fx-tunnels. 
+It is highly recommended to read and understand [FxPortal State Transfer](state-transfer.md) before you read the upcoming section. Each of these upcoming sections will have example tunnel contract links attached to it. These examples can be taken as a reference while building your own custom fx-tunnels.
 
 ## ERC20 Transfer
 
@@ -136,14 +136,14 @@ After you have performed `withdraw()` on the child chain, it will take 30-90 min
 
 :::
 
-1. Generate the burn proof using the **tx hash** and **MESSAGE_SENT_EVENT_SIG**. To generate the proof, you can either use the proof generation API hosted by Polygon or you can also spin up your own proof generation API by following the instructions [here](https://github.com/maticnetwork/proof-generation-api). 
+1. Generate the burn proof using the **tx hash** and **MESSAGE_SENT_EVENT_SIG**. To generate the proof, you can either use the proof generation API hosted by Polygon or you can also spin up your own proof generation API by following the instructions [here](https://github.com/maticnetwork/proof-generation-api).
 
   The proof generation endpoint hosted by Polygon is available [here](https://apis.matic.network/api/v1/matic/exit-payload/{burnTxHash}?eventSignature={eventSignature}).
 
-  - `burnTxHash` is the transaction hash of the `withdraw()` transaction you initiated on Polygon. 
-  - `eventSignature` is the event signature of the event emitted by the `withdraw()` function. The event signature for the MESSAGE_SENT_EVENT_SIG is `0x8c5261668696ce22758910d05bab8f186d6eb247ceac2af2e82c7dc17669b036`. 
+  - `burnTxHash` is the transaction hash of the `withdraw()` transaction you initiated on Polygon.
+  - `eventSignature` is the event signature of the event emitted by the `withdraw()` function. The event signature for the MESSAGE_SENT_EVENT_SIG is `0x8c5261668696ce22758910d05bab8f186d6eb247ceac2af2e82c7dc17669b036`.
 
-  The proof generation API usage examples for the Mainnet and Testnet are as follows:- 
+  The proof generation API usage examples for the Mainnet and Testnet are as follows:-
 
   &rarr; [Polygon Mainnet Proof generation](https://apis.matic.network/api/v1/matic/exit-payload/0x70bb6dbee84bd4ef1cd1891c666733d0803d81ac762ff7fdc4726e4525c1e23b?eventSignature=0x8c5261668696ce22758910d05bab8f186d6eb247ceac2af2e82c7dc17669b036)
 
@@ -157,7 +157,7 @@ In case you need an example, please check out this [Mintable ERC20 Root and Chil
 
 :::info
 
-In the case of Mintable Token FxTunnels, the child token gets deployed first and the root token is deployed only when the first withdraw/exit process is completed. The root token contract address can be pre-determined right after the child contract is deployed, but the mapping will technically exist only when the first withdrawal/exit is completed. 
+In the case of Mintable Token FxTunnels, the child token gets deployed first and the root token is deployed only when the first withdraw/exit process is completed. The root token contract address can be pre-determined right after the child contract is deployed, but the mapping will technically exist only when the first withdrawal/exit is completed.
 
 :::
 
@@ -189,7 +189,7 @@ Feed the generated burn proof as the argument to `receiveMessage()` in `FxMintab
 2. Call `deposit()` in `FxMintableERC20RootTunnel` with the `rootToken` as address of root token and `user` as the recipient.
 3. Wait for the state sync event (22-30 mins). After this, you can query the target recipient's balance on the child chain.
 
-The **ERC721** and **ERC1155** Mintable FxTunnel examples are as follows :- 
+The **ERC721** and **ERC1155** Mintable FxTunnel examples are as follows :-
 
 - [FxMintableERC721Tunnels](https://github.com/fx-portal/contracts/tree/main/contracts/examples/mintable-erc721-transfer)
 - [FxMintableERC1155Tunnels](https://github.com/fx-portal/contracts/tree/main/contracts/examples/mintable-erc1155-transfer)

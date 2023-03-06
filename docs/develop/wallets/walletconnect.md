@@ -9,7 +9,7 @@ keywords:
   - wallet
   - integrate
   - guide
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 
 **WalletConnect** is an open protocol - not a wallet - built to create a communication link between dApps and wallets. A wallet and an application supporting this protocol will enable a secure link through a shared key between any two peers. A connection is initiated by the dApp displaying a QR code with a standard WalletConnect URI and the connection is established when the wallet application approves the connection request. Further requests regarding funds transfer are confirmed on the wallet application itself.
@@ -99,11 +99,11 @@ this.myContractInstance.methods
 
 ### Calling `send()` Functions
 
-Since writing to the blockchain requires a signature, we prompt the user on their wallet (that supports WalletConnect) to sign the transaction. 
+Since writing to the blockchain requires a signature, we prompt the user on their wallet (that supports WalletConnect) to sign the transaction.
 
-This involves three steps: 
-1. Constructing a transaction 
-2. Getting a signature on the transaction 
+This involves three steps:
+1. Constructing a transaction
+2. Getting a signature on the transaction
 3. Sending signed transaction
 
 ```js
@@ -122,7 +122,7 @@ The above code creates a transaction object which is then sent to user’s walle
 maticWeb3.eth.signTransaction(tx)
   .then((result) =>{
     maticWeb3.eth.sendSignedTransaction(result)
-    .then((receipt) => 
+    .then((receipt) =>
     console.log (receipt)
   )
 })

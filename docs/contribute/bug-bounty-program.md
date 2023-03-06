@@ -8,7 +8,7 @@ keywords:
   - matic
   - polygon
   - bug bounty
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 slug: bug-bountry-program
 ---
 

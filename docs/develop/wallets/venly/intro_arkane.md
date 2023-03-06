@@ -1,5 +1,5 @@
 ---
-id: intro 
+id: intro
 title: Introduction to Venly (prev. Arkane)
 sidebar_label: Introduction
 description: Integrate an application with Polygon using Venly Wallet
@@ -11,7 +11,7 @@ keywords:
   - connect
   - blockchain
   - wallet
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 
 **Venly (prev. Arkane Network)** allows you to easily integrate your app to the Polygon blockchain, whether you already have an app integrated with Web3 or are building a new app from scratch. Venly provides a smooth and delightful experience for you and your users on both web & mobile.
@@ -28,9 +28,9 @@ Each application is unique and has different needs, therefore they provide diffe
 - Offers fiat-on-ramp
 - Supports both Polygon and Ethereum
 - Supports NFTs (ERC721 and ERC1155) on Polygon
-- Easy to integrate using Web3 
+- Easy to integrate using Web3
 - Built for a mainstream audience
-- Offers in-app customer support 
+- Offers in-app customer support
 
 ## Getting Started
 
@@ -38,9 +38,9 @@ If you already support Web3 technology, you can improve the UX within your appli
 
 By making use of our Web3 provider you are able to leverage the full potential of Venly with minimal effort and you will be able to onboard users that are less tech savvy without making them leave your application or download third party plugins. Integrating just takes 2 steps and ~5 minutes.
 
-:::tip 
+:::tip
 
-Venly provides a [<ins>Venly Widget</ins>](https://docs.venly.io/widget/) to help developers generate Web 3 support to their applications. 
+Venly provides a [<ins>Venly Widget</ins>](https://docs.venly.io/widget/) to help developers generate Web 3 support to their applications.
 
 :::
 

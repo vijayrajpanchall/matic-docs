@@ -6,7 +6,7 @@ description: Learn how to create a MetaMask wallet.
 keywords:
   - docs
   - matic
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
@@ -56,7 +56,7 @@ The next step is to create an account.
 <img width="500" src={useBaseUrl("img/metamask/develop/create-password.png")} />
 </div>
 
-3. MetaMask will then provide some information about the Secret Recovery Phrase and on the next page you will see your phrase. 
+3. MetaMask will then provide some information about the Secret Recovery Phrase and on the next page you will see your phrase.
 
 <div align="center" >
 <img  src={useBaseUrl("img/metamask/develop/reveal-phrase.png")} />

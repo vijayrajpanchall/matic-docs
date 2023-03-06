@@ -11,7 +11,7 @@ keywords:
   - polygon
   - ethereum
   - fx portal
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
@@ -39,7 +39,7 @@ to optimise for speed and decentralization. We consciously architected the syste
 
 :::info
 
-The [**FxPortal**](/develop/l1-l2-communication/fx-portal.md) is another type of bridge that is very similar to the PoS Bridge. They share the same characteristics as mentioned for PoS in the table above. The only difference is that Tokens need not be mapped on the FxPortal Bridge prior to bridging. The mapping happens during the first deposit transaction which is initiated for a given token. Also, anyone can make use of the FxPortal to build their own custom tunnels/bridges on top of the Polygon bridge. It is highly recommended to use the FxPortal for any bridging use case. New token mappings on PoS and Plasma will be discouraged post-Jan 31st, 2023 so that the mapping process is fully decentralized and flexible. 
+The [**FxPortal**](/develop/l1-l2-communication/fx-portal.md) is another type of bridge that is very similar to the PoS Bridge. They share the same characteristics as mentioned for PoS in the table above. The only difference is that Tokens need not be mapped on the FxPortal Bridge prior to bridging. The mapping happens during the first deposit transaction which is initiated for a given token. Also, anyone can make use of the FxPortal to build their own custom tunnels/bridges on top of the Polygon bridge. It is highly recommended to use the FxPortal for any bridging use case. New token mappings on PoS and Plasma will be discouraged post-Jan 31st, 2023 so that the mapping process is fully decentralized and flexible.
 
 :::
 

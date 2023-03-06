@@ -13,13 +13,13 @@ keywords:
   - http
   - websocket
   - wss
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 slug: endpoints
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-This index guide contains network details for the Polygon Mumbai testnet and Polygon PoS Mainnet and 
+This index guide contains network details for the Polygon Mumbai testnet and Polygon PoS Mainnet and
 lists their associated RPC and node endpoints.
 
 <Tabs
@@ -50,9 +50,9 @@ This allows developers or network maintainers to test configurations and experim
 | Heimdall API                       | [https://heimdall-api-testnet.polygon.technology](https://heimdall-api-testnet.polygon.technology)     |
 | Block Explorer                     | [https://mumbai.polygonscan.com/](https://mumbai.polygonscan.com/)       |
 
-:::note More details 
+:::note More details
 
-See the following [**JSON data**](https://static.matic.network/network/testnet/mumbai/index.json) containing 
+See the following [**JSON data**](https://static.matic.network/network/testnet/mumbai/index.json) containing
 network details.
 
 :::
@@ -71,14 +71,14 @@ The native token of the Polygon PoS is MATIC and is used for gas.
 | chainId                            | `137`                                                            |
 | Gas Token                          | [MATIC](gas-token)                                               |
 | Gas Station                        | [PolygonScan Gas Tracker (**recommended**)](https://polygonscan.com/gastracker) or [Matic Network Gas Station](https://gasstation-mainnet.matic.network/v2) (learn more [here](https://docs.polygon.technology/docs/develop/tools/polygon-gas-station/))                                                                       |
-| RPC Endpoint                       | [https://polygon-rpc.com/](https://polygon-rpc.com/)                     | 
+| RPC Endpoint                       | [https://polygon-rpc.com/](https://polygon-rpc.com/)                     |
 | Node Endpoint                      | [wss://rpc-mainnet.matic.network](wss://rpc-mainnet.matic.network)       |
 | Heimdall API                       | [https://heimdall-api.polygon.technology](https://heimdall-api.polygon.technology) |
 | Block Explorer                     | [https://polygonscan.com/](https://polygonscan.com/)       |
 
-:::note More details 
+:::note More details
 
-See the following [**JSON data**](https://github.com/maticnetwork/static/blob/master/network/mainnet/v1/index.json) 
+See the following [**JSON data**](https://github.com/maticnetwork/static/blob/master/network/mainnet/v1/index.json)
 containing network details.
 
 :::
@@ -88,29 +88,29 @@ containing network details.
 
 ## RPC API Methods
 
-Developers can interact with on-chain data and send different types of transactions to 
+Developers can interact with on-chain data and send different types of transactions to
 the network by utilizing network endpoints. The APIs follow a JSON-RPC standard;
-JSON-RPC is a stateless, lightweight, remote procedure call (RPC) protocol that is 
+JSON-RPC is a stateless, lightweight, remote procedure call (RPC) protocol that is
 commonly used when interacting with a blockchain network.
 
 :::info Get started with RPC calls
 
-Start by visiting the complete set of API documentation for standard 
+Start by visiting the complete set of API documentation for standard
 [**Polygon JSON-RPC calls**](https://edge-docs.polygon.technology/docs/get-started/json-rpc-commands/).
 
-If you want to get started with API requests that require no setup, fix failing requests, or, 
+If you want to get started with API requests that require no setup, fix failing requests, or,
 explore new methods on the Polygon network, try out the [**Composer App**](https://composer.alchemyapi.io?composer_state=%7B%22chain%22%3A2%2C%22network%22%3A401%2C%22methodName%22%3A%22eth_getBlockByNumber%22%2C%22paramValues%22%3A%5B%22latest%22%2Cfalse%5D%7D).
 
 :::
 
 A user can also run their own node when interacting with the Polygon PoS chain or utilize
-one of the public endpoints provided by infrastructure and API service providers to connect to 
-the network. Dagger is the best way to get realtime updates from the chain as it provides a way 
-for your dApps and backend system to get blockchain events in realtime over a socket or websocket. 
+one of the public endpoints provided by infrastructure and API service providers to connect to
+the network. Dagger is the best way to get realtime updates from the chain as it provides a way
+for your dApps and backend system to get blockchain events in realtime over a socket or websocket.
 
 ### Infrastructure Providers
 
-Public RPCs may have traffic or rate-limits depending on usage. 
+Public RPCs may have traffic or rate-limits depending on usage.
 You can sign up for a dedicated free RPC URL at the following:
 
 * [Alchemy](https://www.alchemy.com/)

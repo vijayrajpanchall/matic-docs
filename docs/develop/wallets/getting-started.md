@@ -9,7 +9,7 @@ keywords:
   - wallet
   - integrate
   - guide
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 
 :::tip Stay in the know
@@ -18,7 +18,7 @@ Keep up with the latest Wallet Suite updates from the Polygon team and community
 
 :::
 
-Wallets that support Polygon allow for key management, access to accounts controlled by 
+Wallets that support Polygon allow for key management, access to accounts controlled by
 private keys, and interfaces that allow users to perform chain actions and sign transactions.
 The following page serves as a wallet index for wallets compatible with Polygon. Please note
 that this is not an exhaustive index.
@@ -95,7 +95,7 @@ The following wallets are solutions that Polygon Technology has partnered with:
 
 :::caution Non-native wallet support
 
-Wallets denoted with * in the table above are not natively supported with the wallet software 
+Wallets denoted with * in the table above are not natively supported with the wallet software
 and require manual steps to add the Polygon network.
 
 :::
@@ -104,11 +104,11 @@ and require manual steps to add the Polygon network.
 
 The following basic steps allow for the integration of a client-side application with Polygon:
 
-1. **Set up Web3**: [web3.js](https://web3js.readthedocs.io/) is a javascript library that 
-   allows a client-side application to talk to the blockchain. We configure web3.js to communicate 
+1. **Set up Web3**: [web3.js](https://web3js.readthedocs.io/) is a javascript library that
+   allows a client-side application to talk to the blockchain. We configure web3.js to communicate
    via a developer-based wallet like MetaMask. Use the [web3.js docs](https://web3js.readthedocs.io/en/v1.2.2/getting-started.html#adding-web3-js) to learn about adding `web3.js` to your project.
-2. **Set up an Account**: You will be able to send transactions (specifically those that alter the 
+2. **Set up an Account**: You will be able to send transactions (specifically those that alter the
    state of the blockchain).
-3. **Instantiate Contracts**: Once a web3 object is in place, we next instantiate our deployed contract, 
+3. **Instantiate Contracts**: Once a web3 object is in place, we next instantiate our deployed contract,
    with which we interact.
 4. **Call functions**: Fetch data via functions in the contract through our contract object.

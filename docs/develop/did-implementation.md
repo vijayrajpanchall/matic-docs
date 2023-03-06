@@ -9,7 +9,7 @@ keywords:
   - matic
   - DID
   - identity
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 slug: did-implementation/getting-started
 ---
 
@@ -27,7 +27,7 @@ The Polygon DID method definition conforms to the DID-Core specifications and st
 did:polygon:<Ethereum address>
 ```
 
-Here the scheme is `did`, method name is `polygon` and method specific identifier is an ethereum address. 
+Here the scheme is `did`, method name is `polygon` and method specific identifier is an ethereum address.
 
 ## Polygon DID Implementation
 
@@ -151,7 +151,7 @@ Next, call the function:
 const txHash = await updateDidDoc(did, didDoc, privateKey, url?, contractAddress?);
 ```
 
-It should be noted that to update the DID document, only the owner of DID can send the request. The private key here should also hold some corresponding MATIC tokens. 
+It should be noted that to update the DID document, only the owner of DID can send the request. The private key here should also hold some corresponding MATIC tokens.
 
 If the user does not provide the configuration with `url` and `contractAddress`, the library picks up the default configurations of the network from the DID URI.
 
@@ -169,7 +169,7 @@ Then use,
 const txHash = await deleteDidDoc(did, privateKey, url?, contractAddress?);
 ```
 
-Amongst the parameters it is notable that, `url` and `contractAddress` are optional parameters, which if not provided by the user, a default configuration will be picked up by the function based on the DID URI. 
+Amongst the parameters it is notable that, `url` and `contractAddress` are optional parameters, which if not provided by the user, a default configuration will be picked up by the function based on the DID URI.
 
 It is important for the private key to hold the necessary Matic tokens, as per the network configuration of DID, or the transaction would fail.
 

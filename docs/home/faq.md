@@ -7,7 +7,7 @@ keywords:
   - matic
   - polygon
   - faq
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 
 # Frequently Asked Questions
@@ -42,7 +42,7 @@ Other projects are also offering L2 scaling solutions but there are two key elem
 
 Apart from that, amongst other scaling projects, Polygon stands out due to its ability to achieve scale while maintaining a great degree of decentralization.
 
-More importantly, these scalability projects have a "reinventing the wheel" problem. They are creating new blockchains where the developer community, product ecosystem, technical documentation, and businesses need to be built from **"scratch"**. Polygon, on the other hand, is an EVM-enabled chain and has all the dApps / assets built on Ethereum main chain with scalability available at the click of a button. 
+More importantly, these scalability projects have a "reinventing the wheel" problem. They are creating new blockchains where the developer community, product ecosystem, technical documentation, and businesses need to be built from **"scratch"**. Polygon, on the other hand, is an EVM-enabled chain and has all the dApps / assets built on Ethereum main chain with scalability available at the click of a button.
 
 ### Payments
 
@@ -70,7 +70,7 @@ Relative to state channels, Plasma represents a superior alternative to scaling 
 
 Polygon will strive to be a completely open and public blockchain infra in the future wherein the economic incentives/disincentives will primarily drive the security and stability of the system. So anyone should be able to join the system and participate in the consensus. In the network seeding stage however, initially Polygon will have to play a larger role to enable sidechains.
 
-Also, Polygon sidechains would be primarily public sidechains i.e sidechains available for anyone to use just like other public blockchains. However, Enterprise Polygon chains will intend to provide dedicated sidechains (non-privacy enabled) for particular organizations. The security and decentralization of such chains would still be kept intact using the checkpointing layer and fraud proofs on the main chain. 
+Also, Polygon sidechains would be primarily public sidechains i.e sidechains available for anyone to use just like other public blockchains. However, Enterprise Polygon chains will intend to provide dedicated sidechains (non-privacy enabled) for particular organizations. The security and decentralization of such chains would still be kept intact using the checkpointing layer and fraud proofs on the main chain.
 
 ## Will sidechains also be synced with the main chain (Ethereum)?
 

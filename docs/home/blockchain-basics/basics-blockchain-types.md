@@ -9,7 +9,7 @@ keywords:
   - blockchain
   - polygon
   - networks
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 
 # Types of Blockchain Networks
@@ -30,7 +30,7 @@ This network is run by a single company that grants access to any user who satis
 
 ## Consortium Blockchain Network
 
-In a consortium blockchain, the consensus process in handled by a group of people. The right to read and write may be public or restricted to a participant. Consortium blockchains are considered to be "permissioned blockchains" and best suited for organizations and enterprises.  
+In a consortium blockchain, the consensus process in handled by a group of people. The right to read and write may be public or restricted to a participant. Consortium blockchains are considered to be "permissioned blockchains" and best suited for organizations and enterprises.
 
 ### Resources
 

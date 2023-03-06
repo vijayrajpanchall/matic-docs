@@ -8,7 +8,7 @@ keywords:
   - polygon
   - zkevm
   - gas price prediction
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 
 The goal of **Polygon zkEVM Gas Station** is to provide dApp developers with gas pricing suggestions so they can use it before sending transactions to the **Polygon zkEVM** network. The prediction method is modelled after the [Polygon Gas Station](/develop/tools/polygon-gas-station.md) but is unique in its own ways.

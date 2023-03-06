@@ -10,7 +10,7 @@ keywords:
   - chainlink
   - bandchain
   - api3
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 
 There is often a need to access information from the outside world that is relevant to the contractual agreement. But smart contracts can't access data from outside of their blockchain network. An oracle is a way for a **blockchain or smart contract to interact with external data**.

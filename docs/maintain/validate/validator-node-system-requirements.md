@@ -9,7 +9,7 @@ keywords:
   - prerequisites
   - requirements
 slug: validator-node-system-requirements
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 
 The system requirements listed in this section are both for the [Sentry](/docs/maintain/glossary.md#sentry) node and the [Validator](/docs/maintain/glossary.md#validator) node.

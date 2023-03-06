@@ -13,7 +13,7 @@ keywords:
   - how to launch dapp
   - dapps
   - ethereum
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 
 :::caution Updating the Develop Docs

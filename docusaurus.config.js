@@ -6,7 +6,7 @@ module.exports = {
   tagline: "The official documentation for all Polygon products.",
   url: "https://wiki.polygon.technology",
   baseUrl: "/",
-  favicon: "img/polygon/polygon-logo.svg",
+  favicon: "img/logo-round-purple.png",
   organizationName: "Polygon Labs",
   projectName: "matic-docs",
   customFields: {
@@ -334,6 +334,10 @@ module.exports = {
                 label: 'Telegram',
               },
               {
+                href: 'https://support.polygon.technology/support/home',
+                label: 'Support',
+              },
+              {
                 label: "Get Updates",
                 href: 'https://polygon.technology/notifications/',
               },
@@ -342,12 +346,12 @@ module.exports = {
     ],
     logo: {
       alt: 'Polygon Logo',
-      src: 'img/polygon/polygon-logo.svg',
+      src: 'img/polygon-labs.png',
       href: 'https://polygon.technology/',
     },
-    copyright: `Copyright © ${new Date().getFullYear()} Polygon Labs`,
+    copyright: `Copyright © ${new Date().getFullYear()}`,
     },
-    image: 'img/polygon-wiki.png',
+    image: 'polygon-logo.png',
     prism: {
       theme: require("prism-react-renderer/themes/github"),
       darkTheme: require("prism-react-renderer/themes/dracula"),
@@ -367,8 +371,8 @@ module.exports = {
       hideOnScroll: true,
       logo: {
         alt: "Polygon logo",
-        src: "/img/polygon/polygon-logo.webp",
-        srcDark: "/img/polygon/polygon-logo.webp",
+        src: "/img/polygon-logo.png",
+        srcDark: "/img/polygon-logo.png",
         // width: 100,
         // height: 500,
         // href: 'https://wiki.polygon.technology/', // default to siteConfig.baseUrl
@@ -388,12 +392,6 @@ module.exports = {
                   {
                     to: '/docs/category/polygon-basics',
                     label: 'Polygon',
-                    target: '_self',
-                    rel: null,
-                  },
-                  {
-                    to: '/docs/maintain/govern/governance-pos',
-                    label: 'Governance',
                     target: '_self',
                     rel: null,
                   },
@@ -463,9 +461,15 @@ module.exports = {
                 ],
         },
         {
-          label: "Operate",
+          label: "Maintain",
           position: "left",
           items: [
+                  {
+                    to: '/docs/maintain/govern/governance-pos',
+                    label: 'Governance',
+                    target: '_self',
+                    rel: null,
+                  },
                   {
                     href: '/docs/operate/technical-requirements',
                     label: 'Run a PoS node',
@@ -596,36 +600,7 @@ module.exports = {
                   },
                 ],
         }, */
-        {
-          label: "FAQs",
-          position: "left",
-          items: [
-                  {
-                    to: '/docs/faq/general-faq/',
-                    label: 'PoS FAQ',
-                    target: '_self',
-                    rel: null,
-                  },
-                  {
-                    to: '/docs/supernets/supernets-faq',
-                    label: 'Supernet FAQ',
-                    target: '_self',
-                    rel: null,
-                  },
-                  {
-                    to: '/docs/edge/faq/validators/',
-                    label: 'Edge FAQ',
-                    target: '_self',
-                    rel: null,
-                  },
-                  {
-                    to: '/docs/avail/faq',
-                    label: 'Avail FAQ',
-                    target: '_self',
-                    rel: null,
-                  },
-                ],
-        },
+        /*
         {
           label: "Contribute",
           position: "left",
@@ -650,6 +625,7 @@ module.exports = {
             }
           ]
         },
+        */
         {
           label: "IPs",
           position: "right",
@@ -759,11 +735,34 @@ module.exports = {
           ]
         },
         {
-          href: 'https://support.polygon.technology/support/home',
-          label: 'Support',
-          target: '_blank',
-          rel: null,
-          position: 'right',
+          label: "FAQs",
+          position: "right",
+          items: [
+                  {
+                    to: '/docs/faq/general-faq/',
+                    label: 'PoS FAQ',
+                    target: '_self',
+                    rel: null,
+                  },
+                  {
+                    to: '/docs/supernets/supernets-faq',
+                    label: 'Supernet FAQ',
+                    target: '_self',
+                    rel: null,
+                  },
+                  {
+                    to: '/docs/edge/faq/validators/',
+                    label: 'Edge FAQ',
+                    target: '_self',
+                    rel: null,
+                  },
+                  {
+                    to: '/docs/avail/faq',
+                    label: 'Avail FAQ',
+                    target: '_self',
+                    rel: null,
+                  },
+                ],
         },
         {
           href: "https://github.com/maticnetwork",

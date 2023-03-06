@@ -11,7 +11,7 @@ keywords:
   - stake
   - faq
   - delegator
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
@@ -55,7 +55,7 @@ Once you have completed your delegation, wait for 12 block confirmations on Ethe
 
 ### Where can I check my rewards?
 
-On the Dashboard, you can click on the **My Account** option on the left-hand side. 
+On the Dashboard, you can click on the **My Account** option on the left-hand side.
 
 <div>
   <img src={useBaseUrl("/img/delegator-faq/my-account.png")} />

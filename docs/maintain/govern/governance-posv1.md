@@ -10,7 +10,7 @@ keywords:
   - DAO
   - governance
 slug: governance-pos
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 
 This page includes common governance terms and processes for the Polygon PoS blockchain.
@@ -88,4 +88,4 @@ projects, including [Ethereum](https://forum.polygon.technology/t/pip-1-pip-purp
 
 As a guiding rule, it is recommended that all changes originate from the [Polygon community Forum](https://forum.polygon.technology/) and the [PIP Github repository](https://github.com/maticnetwork/Polygon-Improvement-Proposals), in the form of a proposal written in line with PIP-1.
 
-On the Polygon PoS chain, different classifications of PIPs have different implementation flows. Thus, it is suggested to consult with the Governance processes board regarding the implementation of different types of PIPs. 
+On the Polygon PoS chain, different classifications of PIPs have different implementation flows. Thus, it is suggested to consult with the Governance processes board regarding the implementation of different types of PIPs.

@@ -5,7 +5,7 @@ description: Set up Polygon Mainnet on Wallet Link.
 keywords:
   - wiki
   - polygon
-image: https://wiki.polygon.technology/img/polygon-wiki.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import Tabs from '@theme/Tabs';
@@ -24,11 +24,11 @@ import TabItem from '@theme/TabItem';
 
 <TabItem value="mainnet">
 
-1. From the Walletlink home page, select the Settings button 
+1. From the Walletlink home page, select the Settings button
 
 <img src={useBaseUrl("img/walletlink/config-polygon-walletlink-1.jpg")} width="30%" height="30%" />
 
-2. From the setting page, under the Advanced section, select the Active network Option. 
+2. From the setting page, under the Advanced section, select the Active network Option.
 
 <img src={useBaseUrl("img/walletlink/config-polygon-walletlink-2.jpg")} width="30%" height="30%"/>
 
@@ -40,11 +40,11 @@ import TabItem from '@theme/TabItem';
 
 <TabItem value="mumbai">
 
-1. From the Walletlink home page, select the Settings button 
+1. From the Walletlink home page, select the Settings button
 
 <img src={useBaseUrl("img/walletlink/config-polygon-walletlink-1.jpg")} width="30%" height="30%" />
 
-2. From the setting page, under the Advanced section, select the Active network Option. 
+2. From the setting page, under the Advanced section, select the Active network Option.
 
 <img src={useBaseUrl("img/walletlink/config-polygon-walletlink-2.jpg")} width="30%" height="30%"/>
 
