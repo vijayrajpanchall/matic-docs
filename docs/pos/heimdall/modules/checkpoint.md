@@ -170,16 +170,20 @@ heimdallcli tx checkpoint send-noack --chain-id <chain-id>
 
 |Name                  |Method|Endpoint          |
 |----------------------|------|------------------|
-|Get current checkpoint buffer state|GET   |/checkpoint/buffer|
-|Get checkpoint counts |GET   |/checkpoint/count |
-|Get checkpoint details by block index|GET   |/checkpoint/headers/<header-block-index\>|
-|Get latest checkpoint |GET   |/checkpoint/latest-checkpoint|
-|Get last no-ack details|GET   |/checkpoint/last-no-ack|
-|Checkpoint details for given start and end block|GET   |/checkpoint/<start\>/<end\>|
-|Checkpoint by number  |GET   |/checkpoint/<checkpoint-number\>|
-|All checkpoints       |GET   |/checkpoint/list  |
+|It returns the prepared msg for ack checkpoint|POST   |/checkpoint/ack|
+|It returns the prepared msg for new checkpoint|POST   |/checkpoint/new|
+|It returns the prepared msg for no-ack checkpoint|POST   |/checkpoint/no-ack|
+|Checkpoint by number  |GET   |/checkpoints/<checkpoint-number\>|
+|Get current checkpoint buffer state|GET   |/checkpoints/buffer|
+|Get checkpoint counts |GET   |/checkpoints/count |
+|Get last no-ack details|GET   |/checkpoints/last-no-ack|
+|Get latest checkpoint |GET   |/checkpoints/latest|
+|All checkpoints       |GET   |/checkpoints/list  |
+|It returns the checkpoint parameters|GET   |/checkpoints/parama|
+|It returns the prepared checkpoint|GET   |/checkpoints/prepare|
 |Get ack count, buffer, validator set, validator count and last-no-ack details|GET   |/overview         |
 
+More details about the query and response of the above requests can be found [here](https://heimdall-api.polygon.technology/swagger-ui/#/checkpoint).
 
 All query APIs will provide result in following format:
 
