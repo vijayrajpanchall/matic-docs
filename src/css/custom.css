@@ -980,12 +980,12 @@ html[data-theme='dark'] .header-github-link:before {
 }
 
 .navbar__inner {
-  margin: 0 20px;
+  margin: 0 5px;
 }
 
 .navbar__logo img {
-  height: 65px;
-  margin-top: -18.5px;
+  height: 60px;
+  margin-top: -13px;
 }
 
 @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
