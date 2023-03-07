@@ -9,7 +9,7 @@ keywords:
   - polygon
   - state chain
   - architecture
-image: https://matic.network/banners/matic-network-16x9.png 
+image: https://matic.network/banners/matic-network-16x9.png
 ---
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
@@ -69,7 +69,7 @@ Wrapped ERC20 token is deployed at `0000000000000000000000000000000000001010` as
 
 ### Fees
 
-Native token is used as fees while sending transaction on Bor. This prevents spam on Bor and provides incentives to Block Producers to run the chain for longer period and discourages bad behaviour. 
+Native token is used as fees while sending transaction on Bor. This prevents spam on Bor and provides incentives to Block Producers to run the chain for longer period and discourages bad behaviour.
 
 A transaction sender defines `GasLimit` and `GasPrice` for each transaction and broadcasts it on Bor. Each producer can define how much minimum gas price they can accept using `--gas-price` while starting Bor node. If user-defined `GasPrice` on the transaction is the same or greater than producer defined gas price, the producer will accept the transaction and includes it in the next available block. This enables each producer to allow its own minimum gas price requirement.
 
@@ -81,7 +81,7 @@ Here is the formula for transaction fees:
 Tx.Fee = Tx.GasUsed * Tx.GasPrice
 ```
 
-Collected fees for all transactions in a block are transferred to the producer's account using coinbase transfer. Since having more staking power increases your probability to become a producer, it will allow a validator with high staking power to collect more rewards (in terms of fees) accordingly. 
+Collected fees for all transactions in a block are transferred to the producer's account using coinbase transfer. Since having more staking power increases your probability to become a producer, it will allow a validator with high staking power to collect more rewards (in terms of fees) accordingly.
 
 ### Transfer receipt logs
 
@@ -167,7 +167,7 @@ A user can receive native token by depositing MATIC tokens on Ethereum main-chai
 
 ```jsx
 /**
- * Moves ERC20 tokens from Ethereum chain to Bor. 
+ * Moves ERC20 tokens from Ethereum chain to Bor.
  * Allowance for the `_amount` tokens to DepositManager is needed before calling this function.
  * @param _token   Ethereum ERC20 token address which needs to be deposited
  * @param _amount  Transferred amount
@@ -202,9 +202,9 @@ solc --bin-runtime contract.sol
 Genesis contract is defined in `genesis.json`. When bor starts at block 0, it loads all contracts with the mentioned code and balance.
 
 ```json
-"0x0000000000000000000000000000000000001010": { 
-	"balance": "0x0", 
-	"code" : "0x..." 
+"0x0000000000000000000000000000000000001010": {
+	"balance": "0x0",
+	"code" : "0x..."
 }
 ```
 
@@ -216,7 +216,7 @@ Source: [https://github.com/maticnetwork/genesis-contracts/blob/master/contracts
 
 Deployed at: `0x0000000000000000000000000000000000001000`
 
-`BorValidatorSet.sol` contract manages validator set for spans. Having a current validator set and span information into a contract allows other contracts to use that information. Since Bor uses producers from Heimdall (external source), it uses system call to change the contract state. 
+`BorValidatorSet.sol` contract manages validator set for spans. Having a current validator set and span information into a contract allows other contracts to use that information. Since Bor uses producers from Heimdall (external source), it uses system call to change the contract state.
 
 For first sprint all producers are defined in `BorValidatorSet.sol` directly.
 
@@ -245,7 +245,7 @@ contract BorValidatorSet {
     uint256 power;
     address signer;
   }
-  
+
   // Span details
   struct Span {
     uint256 number;
@@ -258,7 +258,7 @@ contract BorValidatorSet {
 
   // set of all producers
   mapping(uint256 => Validator[]) public producers;
-  
+
   mapping (uint256 => Span) public spans; // span number => span
   uint256[] public spanNumbers; // recent span numbers
 
@@ -277,7 +277,7 @@ contract BorValidatorSet {
   /// Commits span (called through system call)
   function commitSpan(
     uint256 newSpan,
-    uint256 startBlock, 
+    uint256 startBlock,
     uint256 endBlock,
     bytes calldata validatorBytes,
     bytes calldata producerBytes
@@ -298,40 +298,52 @@ Source: [https://github.com/maticnetwork/genesis-contracts/blob/master/contracts
 
 Deployed at: `0x0000000000000000000000000000000000001001`
 
-The state receiver contract manages incoming state sync records. The `state-sync` mechanism is basically a way to move state data from the Ethereum chain to Bor. 
+The `StateReceiver` contract provides a mechanism for receiving and storing state data from other contracts and notifying interested parties (i.e., contracts) of state changes.
+The state-sync mechanism allows for the transfer of state data from the Ethereum chain to Bor.
 
 ```jsx
-contract StateReceiver {
-  // proposed states
-  IterableMapping.Map private proposedStates;
+contract StateReceiver is System {
+  using RLPReader for bytes;
+  using RLPReader for RLPReader.RLPItem;
 
-  // states and proposed states
-  mapping(uint256 => bool) public states;
+  uint256 public lastStateId;
 
-   /**
-	 * Proposes new state from Ethereum chain
-	 * @param stateId  State-id for new state
-	 */
-  function proposeState(
-    uint256 stateId
-  ) external;
+  function commitState(uint256 syncTime, bytes calldata recordBytes) onlySystem external returns(bool success) {
+    // parse state data
+    RLPReader.RLPItem[] memory dataList = recordBytes.toRlpItem().toList();
+    uint256 stateId = dataList[0].toUint();
+    require(
+      lastStateId + 1 == stateId,
+      "StateIds are not sequential"
+    );
+    lastStateId++;
 
-	/**
-	 * Commits new state through the system call
-	 * @param recordBytes   RLP encoded record: {stateId, contractAddress, data}
-	 */
-  function commitState(
-    bytes calldata recordBytes
-  ) external onlySystem;
+    address receiver = dataList[1].toAddress();
+    bytes memory stateData = dataList[2].toBytes();
+    // notify state receiver contract, in a non-revert manner
+    if (isContract(receiver)) {
+      uint256 txGas = 5000000;
+      bytes memory data = abi.encodeWithSignature("onStateReceive(uint256,bytes)", stateId, stateData);
+      // solium-disable-next-line security/no-inline-assembly
+      assembly {
+        success := call(txGas, receiver, 0, add(data, 0x20), mload(data), 0, 0)
+      }
+    }
+  }
 
-  // Get pending state ids
-  function getPendingStates() public view returns (uint256[] memory);
+  // check if address is contract
+  function isContract(address _addr) private view returns (bool){
+    uint32 size;
+    assembly {
+      size := extcodesize(_addr)
+    }
+    return (size > 0);
+  }
 }
 ```
 
-`proposeState` will be called by any valid validator with zero fees. Bor allows `proposeState`  transaction to be free transaction since it is part of the system.
-
-`commitState` is being called through the [system call](https://www.notion.so/maticnetwork/Overview-c8bdb110cd4d4090a7e1589ac1006bab#bba582b9e9c441d983aeec851b9421f9). 
+- `commitState`: Called by authorized contracts, this function updates the contract's state by parsing state data and checking its sequential order. If the data is from a contract, it calls the `onStateReceive` function on that contract.
+- `isContract`: This function checks whether a given address belongs to a contract or not by checking its bytecode size, used in `commitState`.
 
 ### MATIC ERC20 token
 
@@ -382,7 +394,7 @@ contract MaticChildERC20 is BaseERC20 {
   }
 
   /**
-   * Total supply for the token. 
+   * Total supply for the token.
    * This is 10b tokens, same as total Matic supply on Ethereum chain
    */
   function totalSupply() public view returns (uint256) {
@@ -397,7 +409,7 @@ contract MaticChildERC20 is BaseERC20 {
       return account.balance;
   }
 
-  /** 
+  /**
    *  Function that is called when a user or another contract wants to transfer funds
    *  @param to Address of token receiver
    *  @param value Number of tokens to transfer
@@ -411,7 +423,7 @@ contract MaticChildERC20 is BaseERC20 {
   }
 
   /**
-   * This enables to transfer native token between users 
+   * This enables to transfer native token between users
    * while keeping the interface the same as that of an ERC20 Token
    * @param _transfer is invoked by _transferFrom method that is inherited from BaseERC20
    */
@@ -428,7 +440,7 @@ Only system address, `2^160-2`, allows making a system call. Bor calls it intern
 
 System call is helpful to change state to contract without making any transaction.
 
-Limitation: Currently events emitted by system call are not observable and not-included in any transaction or block. 
+Limitation: Currently events emitted by system call are not observable and not-included in any transaction or block.
 
 ## Span Management
 
@@ -494,9 +506,9 @@ There are two way to commit span in Bor.
 
     ```jsx
     function commitSpan(
-        bytes newSpan, 
+        bytes newSpan,
         address proposer,
-        uint256 startBlock, 
+        uint256 startBlock,
         uint256 endBlock,
         bytes validatorBytes,
         bytes producerBytes
@@ -520,7 +532,7 @@ State management sends the state from the Ethereum chain to Bor chain. It is cal
 
 Source: [https://github.com/maticnetwork/contracts/blob/develop/contracts/root/stateSyncer/StateSender.sol](https://github.com/maticnetwork/contracts/blob/develop/contracts/root/stateSyncer/StateSender.sol)
 
-To sync state sync, call following method **state sender contract** on Ethereum chain. The `state-sync` mechanism is basically a way to move state data from the Ethereum chain to Bor. 
+To sync state sync, call following method **state sender contract** on Ethereum chain. The `state-sync` mechanism is basically a way to move state data from the Ethereum chain to Bor.
 
 A user, who wants to move `data` from contract on Ethereum chain to Bor chain, calls `syncSate` method on `StateSender.sol`
 
@@ -532,7 +544,7 @@ contract StateSender {
 	 * @param data        Data to send
 	 */
 	function syncState (
-		address receiver, 
+		address receiver,
 		bytes calldata data
 	) external;
 }
@@ -548,8 +560,8 @@ contract StateSender {
  * @param data                Data to send to Bor chain for Target contract address
  */
 event StateSynced (
-	uint256 indexed id, 
-	address indexed contractAddress, 
+	uint256 indexed id,
+	address indexed contractAddress,
 	bytes data
 );
 ```
@@ -571,11 +583,11 @@ interface IStateReceiver {
 }
 ```
 
-Only `0x0000000000000000000000000000000000001001` — `StateReceiver.sol`, must be allowed to call `onStateReceive` function on target contract. 
+Only `0x0000000000000000000000000000000000001001` — `StateReceiver.sol`, must be allowed to call `onStateReceive` function on target contract.
 
 ## Transaction Speed
 
-Bor currently works as expected with ~2 to 4 seconds' block time with 100 validators and 4 block producers. After multiple stress testing with huge number of transactions, exact block time will be decided. 
+Bor currently works as expected with ~2 to 4 seconds' block time with 100 validators and 4 block producers. After multiple stress testing with huge number of transactions, exact block time will be decided.
 
 Using sprint-based architecture helps Bor to create faster bulk blocks without changing the producer during the current sprint. Having delay between two sprints gives other producers to receive a broadcasted block, often called as `producerDelay`
 
