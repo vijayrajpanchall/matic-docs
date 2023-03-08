@@ -3,41 +3,46 @@ name: Master deployment
 on:
   push:
     paths:
+      - 'docs/**'
       - 'i18n/**'
   workflow_dispatch:
     branches:
-      - main
+      - master
 
 jobs:
   build:
+    strategy:
+      matrix:
+        locale: ['en']
+
     runs-on: ubuntu-latest-8-cores
+
     steps:
       - uses: actions/checkout@v2
         with:
-          ref: ${{ github.ref }}
+          ref: master
 
-      - name: INSTALL
-        run: rm -rf node_modules && yarn install --immutable --immutable-cache --check-cache
+      # Cache Docusaurus artifacts and node_modules
+      - name: Cache Docusaurus artifacts
+        id: cache-docusaurus
+        uses: actions/cache@v2
+        with:
+          path: |
+            .docusaurus
+            node_modules
+          key: ${{ runner.os }}-build-${{ matrix.locale }}-${{ hashFiles('.docusaurus/**', 'node_modules/**') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ matrix.locale }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
 
-      # Build each locale separately
-      - name: Build locales
+      # Install dependencies and build
+      - name: Install dependencies and build
         run: |
-          for locale in en ko de es fr it ja pt br hi id ru th tl
-          do
-            yarn build --locale $locale
-          done
+          yarn install --frozen-lockfile
+          yarn build --locale ${{ matrix.locale }}
 
-      # Merge all the locales into one build
-      - name: Merge locales
-        run: |
-          mkdir -p build/merged
-          for locale in en ko de es fr it ja pt br hi id ru th tl
-          do
-            cp -R build/$locale/. build/merged
-          done
-
-      # Upload the merged build to S3 bucket
-      - name: Upload to S3 bucket
+      - name: Uploading to s3 bucket
         uses: jakejarvis/s3-sync-action@master
         with:
           args: --acl public-read --follow-symlinks --delete
@@ -46,9 +51,9 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.POLYGON_AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.POLYGON_AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: 'us-east-1'
-          SOURCE_DIR: 'build/merged'
+          SOURCE_DIR: ${{secrets.TARGET_DIRECTORY}}
 
-      - name: Invalidate CloudFront distribution and wait for completion
+      - name: invalidate cloudfront distribution and wait for completion
         uses: muratiger/invalidate-cloudfront-and-wait-for-completion-action@master
         env:
           DISTRIBUTION_ID: ${{ secrets.POLYGON_CLOUDFRONT_DISTRIBUTION_ID }}

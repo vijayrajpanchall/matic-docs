@@ -4,10 +4,12 @@ on:
   push:
     branches: [ master ]
     paths:
+      - 'docs/**'
       - 'i18n/**'
   pull_request:
     branches: [ master ]
     paths:
+      - 'docs/**'
       - 'i18n/**'
 
 jobs:
