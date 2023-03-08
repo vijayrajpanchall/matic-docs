@@ -2,6 +2,8 @@ name: Image Optimization
 
 on:
   pull_request:
+    branches:
+      - master
     paths:
       - 'static/img/*.jpg'
       - 'static/img/*.jpeg'
