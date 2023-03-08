@@ -2,7 +2,7 @@
 id: bug-bounty-program
 title: Bug Bounty Program
 sidebar_label: Bug bounty program
-description: Know more about Polygon's Bug Bounty Program.
+description: Learn about Polygon's Bug Bounty Program.
 keywords:
   - docs
   - matic
