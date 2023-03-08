@@ -51,4 +51,10 @@ jobs:
         continue-on-error: true
         run: echo "Package dependencies changed, unable to use node_modules cache"
       - run: yarn install --frozen-lockfile
-      - run: yarn build --locale ${{ matrix.locale }}
+      - run: |
+          mkdir -p build_merged
+          for locale in en ko de es fr it ja pt br hi id ru th tl
+          do
+            yarn build --locale $locale
+            cp -R build/$locale/. build_merged/
+          done
