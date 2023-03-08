@@ -5,9 +5,14 @@ on:
     paths:
       - 'docs/**'
       - 'i18n/**'
-  workflow_dispatch:
     branches:
       - master
+  pull_request:
+    types: [opened, reopened, synchronize]
+    branches:
+      - master
+    # Exclude pull requests against master
+    condition: ${{ github.event.pull_request.base.ref != 'master' }}
 
 jobs:
   build:
