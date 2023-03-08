@@ -11,10 +11,6 @@ on:
 
 jobs:
   build:
-    strategy:
-      matrix:
-        locale: ['en']
-
     runs-on: ubuntu-latest-8-cores
 
     steps:
@@ -40,7 +36,7 @@ jobs:
       - name: Install dependencies and build
         run: |
           yarn install --frozen-lockfile
-          yarn build --locale ${{ matrix.locale }}
+          yarn build
 
       - name: Uploading to s3 bucket
         uses: jakejarvis/s3-sync-action@master
