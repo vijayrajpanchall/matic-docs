@@ -1,32 +1,39 @@
 ---
 id: heimdall-chain
-title: What is Heimdall Chain?
+title: Was ist die Heimdall Chain?
 sidebar_label: Heimdall Chain
-description: Build your next blockchain app on Polygon.
+description: Erstelle die nächste Blockchain-App auf Polygon.
 keywords:
   - docs
   - matic
-image: https://matic.network/banners/matic-network-16x9.png
+  - polygon
+  - heimdall
+  - checkpoint
+  - pos
+  - verifier
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
-Heimdall is Polygon Proof-of-Stake Verifier layer, which is responsible for checkpointing a representation of the Plasma blocks to the main chain in our architecture. We have implemented this by building on top of the Tendermint consensus engine with changes to the signature scheme and various data structures.
+# Heimdall Chain {#heimdall-chain}
 
-The main chain Stake Manager contract works in conjunction with the Heimdall node to act as the trust-less stake management mechanism for the PoS engine, including selecting the Validator set, updating validators, etc. Since staking is actually done on the Ethereum smart contract, we do not rely only on validator honesty and instead inherit Ethereum chain security for this key part.
+Heimdall ist der Polygon Proof-of-Stake Verifier-Layer, der für das Checkpointing einer Repräsentation der Plasma-Blöcke in die Mainchain in unserer Architektur verantwortlich ist. Wir haben dies implementiert, indem wir auf der Tendermint-Konsens-Engine aufbauten und das Signaturschema sowie verschiedene Datenstrukturen änderten.
 
-Heimdall layer handles the aggregation of blocks produced by Bor into a merkle tree and publishing the merkle root periodically to the root chain. This periodic publishing are called ‘checkpoints’. For every few blocks on Bor, a validator (on the Heimdall layer):
+Der Main Chain Stake Manager arbeitet in Verbindung mit dem Heimdall-Knoten daran, als vertrauensloser Stake management für die PoS Engine zu fungieren, einschließlich der Auswahl des Prüfer-Set, der Aktualisierung von Prüfern usw. Da das Staking tatsächlich auf dem Ethereum Smart Contract durchgeführt wird, verlassen wir uns nicht nur auf die validator und erbe stattdessen Ethereum Chain Security für diesen wichtigen Teil.
 
-1. Validates all the blocks since the last checkpoint
-2. Creates a merkle tree of the block hashes
-3. Publishes the merkle root to the main chain
+Der Heimdall-Layer sorgt für die Aggregation der von Bor erzeugten Blöcke zu einem Merkle-Tree und veröffentlicht die Merkle-Root regelmäßig in der Root-Chain. Dieses periodische Publishing nennt sich **"checkpoint"**. Für alle paar Blöcke auf Bor wird ein Validator (auf dem Heimdall-Layer):
 
-Checkpoints are important for two reasons:
+1. Alle Blöcke seit dem letzten Checkpoint überprüfen
+2. Einen Merkle-Tree der Block-Hashes erstellen
+3. Die Merkle-Root in der Mainchain veröffentlichen
 
-1. Providing finality on the Root Chain
-2. Providing proof of burn in withdrawal of assets
+Checkpoints sind aus zwei Gründen wichtig:
 
-A bird’s eye view of the process can be explained as:
+1. Für die Gewährleistung der Endgültigkeit der Root Chain
+2. Für die Gewährleistung des Proof of Burn bei der Entnahme von Assets
 
-- A subset of active validators from the pool are selected to act as block producers for a span. The Selection of each span will also be consented by at least 2/3 in power. These block producers are responsible for creating blocks and broadcasting it to the remaining of the network.
-- A checkpoint includes the root of all blocks created during any given interval. All nodes validate the same and attach their signature to it.
-- A selected proposer from the validator set is responsible for collecting all signatures for a particular checkpoint and committing the same on the main-chain.
-- The responsibility of creating blocks and also proposing checkpoints is variably dependent on a validator’s stake ratio in the overall pool.
+Allgemein lässt sich der Prozess folgendermaßen erklären:
+
+- Es wird eine Teilmenge aktiver Validatoren aus dem Pool ausgewählt, um für eine gewisse Zeitspanne als Block Producer zu fungieren. Die Auswahl für jede Spanne wird ebenfalls mit mindestens 2/3 der Stimmen getroffen. Diese Blockproduzenten sind dafür verantwortlich, Blöcke zu erstellen und an das verbleibende Netzwerk zu übertragen.
+- Ein Checkpoint enthält die Root aller Blöcke, die während eines bestimmten Intervalls erstellt wurden. Alle Knoten validieren dieselbe und fügen ihre Signaturen an sie an.
+- Ein ausgewählter Proposer aus dem validator ist für das Sammeln aller Signaturen für einen bestimmten Prüfpunkt verantwortlich und für den Auftrag auf der Hauptkette.
+- Die Zuständigkeit für die Erstellung von Blöcken und das Vorschlagen von Checkpoints hängt von dem Anteil eines Validators am Gesamtpool ab.

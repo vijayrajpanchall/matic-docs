@@ -1,7 +1,8 @@
 ---
 id: run-validator-binaries
-title: Run a Validator Node from Binaries
-description: "Use binaries to set up your validator node."
+title: Запустить узел валидатора из Binaries
+sidebar_label: Using Binaries
+description: Используйте бинарные файлы для настройки вердикта
 keywords:
   - docs
   - matic
@@ -11,38 +12,44 @@ keywords:
   - validator
   - sentry
 slug: run-validator-binaries
-image: https://matic.network/banners/matic-network-16x9.png
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
-
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-:::tip Steps in this guide involve waiting for the **Heimdall** and **Bor** services to fully sync. This process takes several days to complete. Alternatively, you can use a maintained snapshot, which will reduce the sync time to a few hours. For detailed instructions, see [<ins>Snapshot Instructions for Heimdall and Bor</ins>](../../operate/snapshot-instructions-heimdall-bor).
+:::tip
+Шаги, которые в этом руководстве, предполагают ожидание полной синхронизации сервисов H**eimdall **и **Bor.** В качестве альтернативы вы можете использовать поддерживаемый моментальный снимок, который позволит сократить время синхронизации до нескольких часов.
+Подробнее: [<ins>Инструкции по использованию моментальных снимков для Heimdall и Bor</ins>](https://forum.polygon.technology/t/snapshot-instructions-for-heimdall-and-bor/9233).
 
-For snapshot download links, see [Polygon Chains Snapshots](https://snapshots.matic.today/).
+Ссылки для загрузки снимков см. в [<ins>Polygon Chains Snapshots</ins>](https://snapshot.polygon.technology/).
 
-There is limited space for accepting new validators. New validators can only join the active set when an already active validator unbonds. :::
+:::
 
+Это руководство содержит пошаговое описание процесса запуска узла проверки Polygon с помощью двоичных файлов.
 
-This guide will walk you through running a Polygon validator node from binaries.
+Чтобы удовлетворить системные требования, следуйте руководству [системных требований в узле Validator](validator-node-system-requirements.md) Node.
 
-For system requirements, follow the [Validator Node System Requirements](validator-node-system-requirements.md) guide.
+Если вы хотите запустить и запустить узел валидатора через Ansible, см. в разделе [Запустить узел валидатора с](run-validator-ansible.md) Ansible.
 
-If you would like to start and run the validator node through Ansible, see [Run a Validator Node with Ansible](run-validator-ansible.md).
+:::caution
 
-## Prerequisites
+Количество мест для приема новых валидаторов ограничено. Новые валидаторы могут присоединиться только в том случае, когда уже активный валидатор отключает облигации.
 
-* Two machines — one [sentry](../glossary#sentry) and one [validator](../glossary#validator).
-* `build-essential` installed on both the sentry and the validator machines.
+:::
 
-  To install:
+## Предварительные условия {#prerequisites}
+
+* Два компьютера: один — [сентри-нод](/docs/maintain/glossary.md#sentry), другой — [узел проверки](/docs/maintain/glossary.md#validator).
+* `build-essential` устанавливается как на компьютере сентри-нода, так и на компьютере узла проверки.
+
+  Установка:
 
   ```sh
   sudo apt-get install build-essential
   ```
 
-* Go 1.18 installed on both the sentry and the validator machines.
+* Go 1.18 устанавливается как на компьютере сентри-нода, так и на компьютере узла проверки.
 
-  To install:
+  Установка:
 
   ```sh
   wget https://raw.githubusercontent.com/maticnetwork/node-ansible/master/go-install.sh
@@ -50,40 +57,67 @@ If you would like to start and run the validator node through Ansible, see [Run 
   sudo ln -nfs ~/.go/bin/go /usr/bin/go
   ```
 
-* RabbitMQ installed on both the sentry and the validator machines. See [Downloading and Installing RabbitMQ](https://www.rabbitmq.com/download.html).
+* RabbitMQ устанавливается как на серверных, так и на validator машинах.
 
-## Overview
+Вот команды для установки RabbitMQ:
 
-To get to a running validator node, conduct the following in this **exact sequence of steps**:
+  ```sh
+  sudo apt-get update
+  sudo apt install build-essential
+  sudo apt install erlang
+  wget https://github.com/rabbitmq/rabbitmq-server/releases/download/v3.10.8/rabbitmq-server_3.10.8-1_all.deb
+  sudo dpkg -i rabbitmq-server_3.10.8-1_all.deb
 
-> You will run into configuration issues if these steps are performed out of sequence. It is important to keep in mind that a sentry node must always be set up before the validator node.
+  ```
+:::tip
 
-1. Prepare two machines, one for the sentry node and one for the validator node.
-2. Install the Heimdall and Bor binaries on the sentry and validator machines.
-3. Set up the Heimdall and Bor service files on the sentry and validator machines.
-4. Set up the Heimdall and Bor services on the sentry and validator machines.
-5. Configure the sentry node.
-6. Start the sentry node.
-7. Configure the validator node.
-8. Set the owner and signer keys.
-9. Start the validator node.
-10. Check node health with the community.
+Проверьте дополнительную информацию о загрузке и установке RabbitMQ [<ins>здесь.</ins>](https://www.rabbitmq.com/download.html)
 
-## Installing the Binaries
+:::
 
-Install the binaries for both on the sentry and validator machines.
 
-### Installing Heimdall
+:::info
+Пожалуйста, следуйте [<ins>инструкциям bloXroute</ins>](/maintain/validate/bloxroute.md) для подключения ваших нодов к шлюзам bloXroute.
+:::
 
-[Heimdall](../validator/core-components/heimdall-chain.md) is the proof-of-stake verifier layer responsible for checkpointing the representation of the Plasma blocks to the Ethereum mainnet.
+## Обзор {#overview}
 
-The latest version, [Heimdall v.0.2.9](https://github.com/maticnetwork/heimdall/releases/tag/v0.2.9), contains a few enhancements such as:
-1. Restricting data size in state sync txs to:
-    * **30Kb** when represented in **bytes**
-    * **60Kb** when represented as **string**.
-2. Increasing the **delay time** between the contract events of different validators to ensure that the mempool doesn't get filled very quickly in case of a burst of events which can hamper the progress of the chain.
+Чтобы запустить узел проверки, выполните следующие действия **в точной последовательности**:
 
-The following example shows how the data size is restricted:
+:::caution
+
+Если их выполнять не по порядку, возникнут проблемы с конфигурацией.
+Во всех случаях важно устанавливать сентри-нод перед узлом проверки.
+
+:::
+
+1. Подготовьте два компьютера: один — для сентри-нода, другой — для узла проверки.
+2. Установите двоичные файлы Heimdall и Bor на компьютер сентри-нода и узла проверки.
+3. Установите файлы служб Heimdall и Bor на компьютер сентри-нода и узла проверки.
+4. Установите службы Heimdall и Bor на компьютер сентри-нода и узла проверки.
+5. Настройте сентри-нод.
+6. Запустите сентри-нод.
+7. Настройте узел проверки.
+8. Задайте ключи владельца и подписанта.
+9. Запустите узел проверки.
+10. Проверьте работоспособность нодов с помощью сообщества.
+
+## Установка двоичных файлов {#installing-the-binaries}
+
+Установите двоичные файлы на компьютер сентри-нода и узла проверки.
+
+### Установка Heimdall {#installing-heimdall}
+
+[Heimdall](/docs/pos/heimdall/overview) — это уровень верификатора Proof-of-Stake,
+который отвечает за назначение чекпоинтов для представления блоков Plasma в Ethereum mainnet.
+
+Последняя версия [Heimdall v.0.3.0](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.0) содержит несколько улучшений, таких как:
+1. Ограничение размера данных в транзакциях синхронизации состояний:
+    * **30 КБ** при представлении в **байтах**.
+    * **60 КБ** при представлении в виде **строки**.
+2. Увеличение **времени задержки** между событиями контрактов разных валидаторов с той целью, чтобы в случае резкого увеличения количества событий, которые могут помешать дальнейшей реализации цепочки, пул памяти не заполнялся очень быстро.
+
+На следующем примере показано, как ограничивается размер данных:
 
 ```
 Data - "abcd1234"
@@ -92,33 +126,34 @@ Hex Byte representation - [171 205 18 52]
 Length in byte format - 4
 ```
 
-Clone the [Heimdall repository](https://github.com/maticnetwork/heimdall/):
+Клонируйте [репозиторий Heimdall](https://github.com/maticnetwork/heimdall/):
 
 ```sh
 git clone https://github.com/maticnetwork/heimdall
 ```
 
-Navigate to the correct [release version](https://github.com/maticnetwork/heimdall/releases):
+Перейдите к нужной [версии выпуска](https://github.com/maticnetwork/heimdall/releases):
 
 ```sh
 git checkout RELEASE_TAG
 ```
 
-where `RELEASE_TAG` is the tag of the release version that you install.
+где `RELEASE_TAG` — тег версии выпуска, которую вы устанавливаете.
 
-For instance:
+Например:
 
 ```sh
-git checkout v0.2.9
+git checkout v0.3.0
 ```
 
-Once you are on the correct release, install Heimdall:
+Перейдя к нужной версии выпуска, установите Heimdall:
 
 ```sh
 make install
+source ~/.profile
 ```
 
-Check the Heimdall installation:
+Проверьте установку Heimdall:
 
 ```sh
 heimdalld version --long
@@ -126,48 +161,48 @@ heimdalld version --long
 
 :::note
 
-Before proceeding, Heimdall should be installed on both the sentry and validator machines.
+Прежде чем продолжить, Heimdall необходимо установить на компьютер сентри-нода и узла проверки.
 
 :::
 
-### Installing Bor
+### Установка Bor {#installing-bor}
 
-[Bor](../../pos/bor/) is the sidechain operator that acts as the block production layer, which syncs with Heimdall to select block producers and verifiers for each [span](../glossary#span) and [sprint](../glossary#sprint).
+[Bor](/docs/pos/bor) — оператор sidechain, который действует в качестве слоя производства блока, который синхронизируется с Heimdall для выбора продюсеров блоков и верификаторов для каждого [диапазона](/docs/maintain/glossary.md#span) и [спринта](/docs/maintain/glossary.md#sprint).
 
-Clone the [Bor repository](https://github.com/maticnetwork/bor):
+Клонируйте [репозиторий Bor](https://github.com/maticnetwork/bor):
 
 ```sh
 git clone https://github.com/maticnetwork/bor
 ```
 
-Navigate to the correct [release version](https://github.com/maticnetwork/bor/releases):
+Перейдите к нужной [версии выпуска](https://github.com/maticnetwork/bor/releases):
 
 ```sh
 git checkout RELEASE_TAG
 ```
 
-where `RELEASE_TAG` is the tag of the release version that you install.
+где `RELEASE_TAG` — тег версии выпуска, которую вы устанавливаете.
 
-For instance:
+Например:
 
 ```sh
-git checkout v0.2.16
+git checkout v0.3.3
 ```
 
-Install Bor:
+Установите Bor:
 
 ```sh
 make bor-all
 ```
 
-Create symlinks:
+Создайте символические ссылки:
 
 ```sh
 sudo ln -nfs ~/bor/build/bin/bor /usr/bin/bor
 sudo ln -nfs ~/bor/build/bin/bootnode /usr/bin/bootnode
 ```
 
-Check the Bor installation:
+Проверьте установку Bor:
 
 ```sh
 bor version
@@ -175,216 +210,218 @@ bor version
 
 :::note
 
-Before proceeding, Bor should be installed on both the sentry and validator machines.
+Прежде чем продолжить, Bor необходимо установить на компьютер сентри-нода и узла проверки.
 
 :::
 
-## Setting Up Node Files
+## Установка файлов нодов {#setting-up-node-files}
 
 :::note
 
-Node files need to be set up on both the sentry and validator machines.
+Файлы нодов нужно установить на компьютер сентри-нода и узла проверки.
 
 :::
 
-### Fetching the launch repository
+### Получение репозитория запуска {#fetching-the-launch-repository}
 
-Clone the [launch repository](https://github.com/maticnetwork/launch):
+Клонируйте [репозиторий запуска](https://github.com/maticnetwork/launch):
 
 ```sh
 git clone https://github.com/maticnetwork/launch
 ```
 
-### Setting up the launch directory
+### Создание каталога запуска {#setting-up-the-launch-directory}
 
-#### On the sentry machine
+#### На компьютере сентри-нода {#on-the-sentry-machine}
 
-Create a `node` directory:
+Создайте каталог `node`:
 
 ```sh
 mkdir -p node
 ```
 
-Copy the files and scripts from the `launch` directory to the `node` directory:
+Скопируйте файлы и сценарии из каталога `launch` в каталог `node`:
 
 ```sh
 cp -rf launch/mainnet-v1/sentry/sentry ~/node
 cp launch/mainnet-v1/service.sh ~/node
 ```
 
-#### On the validator machine
+#### На компьютере узла проверки {#on-the-validator-machine}
 
-Create a `node` directory:
+Создайте каталог `node`:
 
 ```sh
 mkdir -p node
 ```
 
-Copy the files and scripts from the `launch` directory to the `node` directory:
+Скопируйте файлы и сценарии из каталога `launch` в каталог `node`:
 
 ```sh
 cp -rf launch/mainnet-v1/sentry/validator ~/node
 cp launch/mainnet-v1/service.sh ~/node
 ```
 
-### Setting up the network directories
+### Создание сетевых каталогов {#setting-up-the-network-directories}
 
 :::note
 
-Run this section both on the sentry and validator machines.
+Выполните действия, описанные в этом разделе, на компьютере сентри-нода и узла проверки.
 
 :::
 
-#### Setting up Heimdall
+#### Установка Heimdall {#setting-up-heimdall}
 
-Change to the `node` directory:
+Измените каталог `node` на следующий:
 
 ```sh
 cd ~/node/heimdall
 ```
 
-Run the setup script:
+Запустите сценарий установки:
 
 ```sh
 bash setup.sh
 ```
 
-#### Setting up Bor
+#### Установка Bor {#setting-up-bor}
 
-Change to the `node` directory:
+Измените каталог `node` на следующий:
 
 ```sh
 cd ~/node/bor
 ```
 
-Run the setup script:
+Запустите сценарий установки:
 
 ```sh
 bash setup.sh
 ```
 
-## Setting Up the Services
+## Установка служб {#setting-up-the-services}
 
 :::note
 
-Run this section both on the sentry and validator machines.
+Выполните действия, описанные в этом разделе, на компьютере сентри-нода и узла проверки.
 
 :::
 
-Navigate to the `node` directory:
+Перейдите в каталог `node`:
 
 ```sh
 cd ~/node
 ```
 
-Run the setup script:
+Запустите сценарий установки:
 
 ```sh
 bash service.sh
 ```
 
-Copy the service file to the system directory:
+Скопируйте файл служб в системный каталог:
 
 ```sh
 sudo cp *.service /etc/systemd/system/
 ```
 
-## Configuring the Sentry Node
+## Настройка сентри-нода {#configuring-the-sentry-node}
 
-Start by logging in to the remote sentry machine.
+Войдите в удаленный компьютер сентри-нода.
 
-### Configuring the Heimdall services
+### Настройка служб Heimdall {#configuring-the-heimdall-services}
 
-Open the Heimdall configuration file for editing:
+Откройте файл конфигурации Heimdall для внесения изменений:
 
 ```sh
 vi ~/.heimdalld/config/config.toml
 ```
 
-In `config.toml`, change the following parameters:
+В `config.toml` измените следующие параметры:
 
-* `moniker` — any name. Example: `moniker = "my-sentry-node"`.
-* `seeds` — the seed node addresses consisting of a node ID, an IP address, and a port.
+* `moniker` — любое имя. Пример: `moniker = "my-sentry-node"`.
+* `seeds` — адреса начального нода, состоящие из идентификатора нода, IP-адреса и порта.
 
-  Use the following values:
+  Используйте следующие значения:
 
   ```toml
   seeds="f4f605d60b8ffaaf15240564e58a81103510631c@159.203.9.164:26656,4fb1bc820088764a564d4f66bba1963d47d82329@44.232.55.71:26656,2eadba4be3ce47ac8db0a3538cb923b57b41c927@35.199.4.13:26656,3b23b20017a6f348d329c102ddc0088f0a10a444@35.221.13.28:26656,25f5f65a09c56e9f1d2d90618aa70cd358aa68da@35.230.116.151:26656"
   ```
 
-* `pex` — set the value to `true` to enable the peer exchange. Example: `pex = true`.
-* `private_peer_ids` — the node ID of Heimdall set up on the validator machine.
+* `pex` — задайте значение `true` для включения функции обмена между одноранговыми узлами. Пример: `pex = true`.
+* `private_peer_ids` — это идентификатор нода уровня Heimdall, установленного на компьютере узла проверки.
 
-  To get the node ID of Heimdall on the validator machine:
+  Чтобы получить идентификатор нода Heimdall на компьютере узла проверки, сделайте следующее:
 
-  1. Log in to the validator machine.
-  2. Run:
+  1. Войдите в компьютер узла проверки.
+  2. Выполните следующую команду:
      ```sh
      heimdalld tendermint show-node-id
      ```
 
-  Example: `private_peer_ids = "0ee1de0515f577700a6a4b6ad882eff1eb15f066"`.
+  Пример: `private_peer_ids = "0ee1de0515f577700a6a4b6ad882eff1eb15f066"`.
 
-* `prometheus` — set the value to `true` to enable the Prometheus metrics. Example: `prometheus = true`.
-* `max_open_connections` — set the value to `100`. Example: `max_open_connections = 100`.
+* `prometheus` — задайте значение `true` для включения метрик Prometheus. Пример: `prometheus = true`.
+* `max_open_connections` — задайте значение `100`. Пример: `max_open_connections = 100`.
 
-Save the changes in `config.toml`.
+Сохраните изменения в `config.toml`.
 
-### Configuring the Bor Service
+### Настройка службы Bor {#configuring-the-bor-service}
 
-Open the Bor configuration file for editing:
+Откройте файл конфигурации Bor для внесения изменений:
 
 ```sh
 `vi ~/node/bor/start.sh`
 ```
 
-In `start.sh`, add the boot node addresses consisting of a node ID, an IP address, and a port by adding the following line at the end of the file:
+В `start.sh` укажите адреса загрузочных нодов, состоящие из идентификатора нода, IP-адреса и порта,
+добавив следующую строку в конце файла:
 
 ```config
 --bootnodes "enode://0cb82b395094ee4a2915e9714894627de9ed8498fb881cec6db7c65e8b9a5bd7f2f25cc84e71e89d0947e51c76e85d0847de848c7782b13c0255247a6758178c@44.232.55.71:30303,enode://88116f4295f5a31538ae409e4d44ad40d22e44ee9342869e7d68bdec55b0f83c1530355ce8b41fbec0928a7d75a5745d528450d30aec92066ab6ba1ee351d710@159.203.9.164:30303,enode://3178257cd1e1ab8f95eeb7cc45e28b6047a0432b2f9412cff1db9bb31426eac30edeb81fedc30b7cd3059f0902b5350f75d1b376d2c632e1b375af0553813e6f@35.221.13.28:30303,enode://16d9a28eadbd247a09ff53b7b1f22231f6deaf10b86d4b23924023aea49bfdd51465b36d79d29be46a5497a96151a1a1ea448f8a8666266284e004306b2afb6e@35.199.4.13:30303,enode://ef271e1c28382daa6ac2d1006dd1924356cfd843dbe88a7397d53396e0741ca1a8da0a113913dee52d9071f0ad8d39e3ce87aa81ebc190776432ee7ddc9d9470@35.230.116.151:30303"
 ```
 
-Save the changes in `start.sh`.
+Сохраните изменения в `start.sh`.
 
-### Configuring a firewall
+### Настройка брандмауэра {#configuring-a-firewall}
 
-The sentry machine must have the following ports open to the world `0.0.0.0/0`:
+На компьютере сентри-нода среде `0.0.0.0/0` должны быть открыты следующие порты:
 
-* `26656`- Your Heimdall service will connect your node to other nodes Heimdall service.
+* `26656` — устанавливает связь между вашим нодом и другими нодами при помощи службы Heimdall.
 
-* `30303`- Your Bor service will connect your node to other nodes Bor service.
+* `30303` — устанавливает связь между вашим нодом и другими нодами при помощи службы Bor.
 
-* `22`- For the validator to be able to ssh from wherever they are.
+* `22` — дает валидатору доступ к SSH из любого места.
 
-## Starting the Sentry Node
+## Запуск сентри-нода {#starting-the-sentry-node}
 
-You will first start the Heimdall service. Once the Heimdall service syncs, you will start the Bor service.
+Сначала запустите службу Heimdall. После синхронизации службы Heimdall запустите службу Bor.
 
 :::note
 
-As mentioned earlier, the Heimdall service takes several days to sync from scratch fully.
+Как отмечалось ранее, для полной синхронизации службы Heimdall с нуля требуется несколько дней.
 
-Alternatively, you can use a maintained snapshot, which will reduce the sync time to a few hours. For detailed instructions, see [<ins>Snapshot Instructions for Heimdall and Bor</ins>](https://forum.polygon.technology/t/snapshot-instructions-for-heimdall-and-bor/9233).
+В качестве альтернативы вы можете использовать поддерживаемый моментальный снимок, который позволит сократить время синхронизации до нескольких часов.
+Подробнее: [<ins>Инструкции по использованию моментальных снимков для Heimdall и Bor</ins>](https://forum.polygon.technology/t/snapshot-instructions-for-heimdall-and-bor/9233).
 
-For snapshot download links, see [Polygon Chains Snapshots](https://snapshots.matic.today/).
+Ссылки на скачивание моментальных снимков доступны на странице [моментальных снимков цепочек Polygon](https://snapshot.polygon.technology/).
 
 :::
 
-### Starting the Heimdall service
+### Запуск службы Heimdall {#starting-the-heimdall-service}
 
-Start the Heimdall service:
+Запустите службу Heimdall:
 
 ```sh
 sudo service heimdalld start
 ```
 
-Start the Heimdall rest-server:
+Запустите сервер Rest Heimdall:
 
 ```sh
 sudo service heimdalld-rest-server start
 ```
 
-Check the Heimdall service logs:
+Проверьте журналы службы Heimdall:
 
 ```sh
 journalctl -u heimdalld.service -f
@@ -392,264 +429,275 @@ journalctl -u heimdalld.service -f
 
 :::note
 
-In the logs, you may see the following errors:
+В журналах вы можете увидеть следующие ошибки:
 
 * `Stopping peer for error`
 * `MConnection flush failed`
 * `use of closed network connection`
 
-These logs mean that one of the nodes on the network refused a connection to your node. Wait for your node to crawl more nodes on the network; you do not need to do anything to address these errors.
+Они означают, что один из нодов в сети отказался от подключения к вашему ноду. Подождите пока ваш нод выполнит обход большего количества нодов в сети. Вам не нужно предпринимать никаких действий
+для устранения этих ошибок.
 
 :::
 
-Check the Heimdall rest-server logs:
+Проверьте журналы сервера Rest Heimdall:
 
 ```sh
 journalctl -u heimdalld-rest-server.service -f
 ```
 
-Check the sync status of Heimdall:
+Проверьте состояние синхронизации Heimdall:
 
 ```sh
 curl localhost:26657/status
 ```
 
-In the output, the `catching_up` value is:
+В результате значение `catching_up` может быть следующим:
 
-* `true` — the Heimdall service is syncing.
-* `false` — the Heimdall service is fully synced.
+* `true` — служба Heimdall синхронизируется.
+* `false` — служба Heimdall полностью синхронизована.
 
-Wait for the Heimdall service to sync fully.
+Дождитесь полной синхронизации службы Heimdall.
 
-### Starting the Bor service
+### Запуск службы Bor {#starting-the-bor-service}
 
-Once the Heimdall service syncs, start the Bor service.
+После синхронизации службы Heimdall запустите службу Bor.
 
-Start the Bor service:
+Запустите службу Bor:
 
 ```sh
 sudo service bor start
 ```
 
-Check the Bor service logs:
+Проверьте журналы службы Bor:
 
 ```sh
 journalctl -u bor.service -f
 ```
 
-## Configuring the Validator Node
+## Настройка узла проверки {#configuring-the-validator-node}
 
 :::note
 
-To complete this section, you must have an RPC endpoint of your fully synced Ethereum mainnet node ready.
+Чтобы выполнить действия, описанные в этом разделе, вам нужна конечная точка удаленного вызова процедур для вашего
+нода, полностью синхронизированного с Ethereum mainnet.
 
 :::
 
-### Configuring the Heimdall service
+### Настройка службы Heimdall {#configuring-the-heimdall-service}
 
-Log in to the remote validator machine.
+Войдите в удаленный компьютер узла проверки.
 
-Open for editing `vi ~/.heimdalld/config/config.toml`.
+Откройте `vi ~/.heimdalld/config/config.toml` для внесения изменений.
 
-In `config.toml`, change the following:
+В `config.toml` внесите следующее изменение:
 
-* `moniker` — any name. Example: `moniker = "my-validator-node"`.
-* `pex` — set the value to `false` to disable the peer exchange. Example: `pex = false`.
-* `private_peer_ids` — comment out the value to disable it. Example: `# private_peer_ids = ""`.
+* `moniker` — любое имя. Пример: `moniker = "my-validator-node"`.
+* `pex` — задайте значение `false` для отключения функции обмена между одноранговыми узлами. Пример: `pex = false`.
+* `private_peer_ids` — закомментируйте значение, чтобы отключить его. Пример: `# private_peer_ids = ""`.
 
-  To get the node ID of Heimdall on the sentry machine:
+  Чтобы получить идентификатор нода Heimdall на компьютере сентри-нода, сделайте следующее:
 
-  1. Log in to the sentry machine.
-  1. Run `heimdalld tendermint show-node-id`.
+  1. Войдите в компьютер сентри-нода.
+  1. Выполните команду `heimdalld tendermint show-node-id`.
 
-Example: `persistent_peers = "sentry_machineNodeID@sentry_instance_ip:26656"`
+Пример: `persistent_peers = "sentry_machineNodeID@sentry_instance_ip:26656"`.
 
-* `prometheus` — set the value to `true` to enable the Prometheus metrics. Example: `prometheus = true`.
+* `prometheus` — задайте значение `true` для включения метрик Prometheus. Пример: `prometheus = true`.
 
-Save the changes in `config.toml`.
+Сохраните изменения в `config.toml`.
 
-Open for editing `vi ~/.heimdalld/config/heimdall-config.toml`.
+Откройте `vi ~/.heimdalld/config/heimdall-config.toml` для внесения изменений.
 
-In `heimdall-config.toml`, change the following:
+В `heimdall-config.toml` внесите следующее изменение:
 
-* `eth_rpc_url` — an RPC endpoint for a fully synced Ethereum mainnet node, i.e Infura. `eth_rpc_url =<insert Infura or any full node RPC URL to Ethereum>`
+* `eth_rpc_url` — конечная точка удаленного вызова процедур для нода, полностью синхронизированного с Ethereum mainnet,
+т. е. Infura. `eth_rpc_url =<insert Infura or any full node RPC URL to Ethereum>`
 
-Example: `eth_rpc_url = "https://nd-123-456-789.p2pify.com/60f2a23810ba11c827d3da642802412a"`
+Пример: `eth_rpc_url = "https://nd-123-456-789.p2pify.com/60f2a23810ba11c827d3da642802412a"`.
 
-Save the changes in `heimdall-config.toml`.
+Сохраните изменения в `heimdall-config.toml`.
 
-### Configuring the Bor service
+### Настройка службы Bor {#configuring-the-bor-service-1}
 
-Open for editing `vi ~/.bor/data/bor/static-nodes.json`.
+Откройте `vi ~/.bor/data/bor/static-nodes.json` для внесения изменений.
 
-In `static-nodes.json`, change the following:
+В `static-nodes.json` внесите следующее изменение:
 
-* `"<replace with enode://sentry_machine_enodeID@sentry_machine_ip:30303>"` — the node ID and IP address of Bor set up on the sentry machine.
+* `"<replace with enode://sentry_machine_enodeID@sentry_machine_ip:30303>"` — идентификатор нода и
+IP-адрес Bor, установленного на компьютер сентри-нода.
 
-  To get the node ID of Bor on the sentry machine:
+  Чтобы получить идентификатор нода Bor на компьютере сентри-нода, сделайте следующее:
 
-  1. Log in to the sentry machine.
-  2. Run `bootnode -nodekey ~/.bor/data/bor/nodekey -writeaddress`.
+  1. Войдите в компьютер сентри-нода.
+  2. Выполните команду `bootnode -nodekey ~/.bor/data/bor/nodekey -writeaddress`.
 
-  Example: `"enode://a8024075291c0dd3467f5af51a05d531f9e518d6cd229336156eb6545581859e8997a80bc679fdb7a3bd7473744c57eeb3411719b973b2d6c69eff9056c0578f@188.166.216.25:30303"`.
+  Пример: `"enode://a8024075291c0dd3467f5af51a05d531f9e518d6cd229336156eb6545581859e8997a80bc679fdb7a3bd7473744c57eeb3411719b973b2d6c69eff9056c0578f@188.166.216.25:30303"`.
 
-Save the changes in `static-nodes.json`.
+Сохраните изменения в `static-nodes.json`.
 
-## Setting the Owner and Signer Key
+## Установка ключей владельца и подписанта {#setting-the-owner-and-signer-key}
 
-On Polygon, it is recommended that you keep the owner and signer keys different.
+На Polygon рекомендуется использовать разные ключи для владельца и подписанта.
 
-* Signer — the address that signs the [checkpoint transactions](../glossary#checkpoint-transaction). The recommendation is to keep at least 1 ETH on the signer address.
-* Owner — the address that does the staking transactions. The recommendation is to keep the MATIC tokens on the owner address.
+* Подписант — это адрес, который подписывает
+[транзакции создания чекпоинта](/docs/maintain/glossary.md#checkpoint-transaction). На адресе подписанта
+рекомендуется хранить как минимум 1 ETH.
+* Владелец — это адрес, который выполняет транзакции стейкинга. На адресе владельца
+рекомендуется хранить токены MATIC.
 
-### Generating a Heimdall private key
+### Генерация закрытого ключа Heimdall {#generating-a-heimdall-private-key}
 
-You must generate a Heimdall private key only on the validator machine. Do not generate a Heimdall private key on the sentry machine.
+Сгенерировать закрытый ключ Heimdall нужно только на компьютере узла проверки. Не генерируйте закрытый ключ Heimdall
+на компьютере сентри-нода.
 
-To generate the private key, run:
+Чтобы сгенерировать закрытый ключ, выполните следующую команду:
 
 ```sh
 heimdallcli generate-validatorkey ETHEREUM_PRIVATE_KEY
 ```
 
-where
+где
 
-* ETHEREUM_PRIVATE_KEY — your Ethereum wallet’s private key.
+* ETHEREUM_PRIVATE_KEY — это закрытый ключ вашего кошелька Ethereum.
 
-This will generate `priv_validator_key.json`. Move the generated JSON file to the Heimdall configuration directory:
+В результате будет сгенерирован файл `priv_validator_key.json`. Переместите сгенерированный JSON-файл
+в каталог конфигурации Heimdall:
 
 ```sh
 mv ./priv_validator_key.json ~/.heimdalld/config
 ```
 
-### Generating a Bor keystore file
+### Генерация файла хранилища ключей Bor {#generating-a-bor-keystore-file}
 
-You must generate a Bor keystore file only on the validator machine. Do not generate a Bor keystore file on the sentry machine.
+Сгенерировать файл хранилища ключей Bor нужно только на компьютере узла проверки. Не генерируйте файл хранилища ключей Bor
+на компьютере сентри-нода.
 
-To generate the private key, run:
+Чтобы сгенерировать закрытый ключ, выполните следующую команду:
 
 ```sh
 heimdallcli generate-keystore ETHEREUM_PRIVATE_KEY
 ```
 
-where
+где
 
-* ETHEREUM_PRIVATE_KEY — your Ethereum wallet’s private key.
+* ETHEREUM_PRIVATE_KEY — это закрытый ключ вашего кошелька Ethereum.
 
-When prompted, set up a password to the keystore file.
+По запросу установите пароль для файла хранилища ключей.
 
-This will generate a `UTC-<time>-<address>` keystore file.
+В результате будет сгенерирован файл хранилища ключей `UTC-<time>-<address>`.
 
-Move the generated keystore file to the Bor configuration directory:
+Переместите сгенерированный файл хранилища ключей в каталог конфигурации Bor:
 
 ```sh
 mv ./UTC-<time>-<address> ~/.bor/keystore/
 ```
 
-### Add password.txt
+### Добавление password.txt {#add-password-txt}
 
-Make sure to create a `password.txt` file then add the Bor keystore file password right in the `~/.bor/password.txt` file.
+Создайте файл `password.txt`, а затем добавьте непосредственно в файл
+`~/.bor/password.txt`пароль файла хранилища ключей Bor.
 
-### Add your Ethereum address
+### Добавление адреса Ethereum {#add-your-ethereum-address}
 
-Open for editing `vi /etc/matic/metadata`.
+Откройте `vi /etc/matic/metadata` для внесения изменений.
 
-In `metadata`, add your Ethereum address. Example: `VALIDATOR_ADDRESS=0xca67a8D767e45056DC92384b488E9Af654d78DE2`.
+В `metadata` добавьте ваш адрес Ethereum. Пример: `VALIDATOR_ADDRESS=0xca67a8D767e45056DC92384b488E9Af654d78DE2`.
 
-Save the changes in `metadata`.
+Сохраните изменения в `metadata`.
 
-## Starting the Validator Node
+## Запуск узла проверки {#starting-the-validator-node}
 
-At this point, you must have:
+На данный момент должно быть сделано следующее:
 
-* The Heimdall service on the sentry machine syncs and is running.
-* The Bor service on the sentry machine running.
-* The Heimdall service and the Bor service on the validator machine configured.
-* Your owner and signer keys configured.
+* На компьютере сентри-нода запущена синхронизирующаяся служба Heimdall.
+* На компьютере сентри-нода запущена служба Bor.
+* На компьютере узла проверки настроены службы Heimdall и Bor.
+* Настроены ваши ключи владельца и подписанта.
 
-### Starting the Heimdall service
+### Запуск службы Heimdall {#starting-the-heimdall-service-1}
 
-You will now start the Heimdall service on the validator machine. Once the Heimdall service syncs, you will start the Bor service on the validator machine.
+Теперь потребуется запустить службу Heimdall на компьютере узла проверки. После синхронизации службы Heimdall
+нужно будет запустить службу Bor на компьютере узла проверки.
 
-:::note
-
-The Heimdall service takes several days to sync from scratch fully.
-
-Alternatively, you can use a maintained snapshot, which will reduce the sync time to a few hours. For detailed instructions, see [<ins>Snapshot Instructions for Heimdall and Bor</ins>](https://forum.polygon.technology/t/snapshot-instructions-for-heimdall-and-bor/9233).
-
-For snapshot download links, see [Polygon Chains Snapshots](https://snapshots.matic.today/).
-
-:::
-
-Start the Heimdall service:
+Запустите службу Heimdall:
 
 ```sh
 sudo service heimdalld start
 ```
 
-Start the Heimdall rest-server:
+Запустите сервер Rest Heimdall:
 
 ```sh
 sudo service heimdalld-rest-server start
 ```
 
-Start the Heimdall bridge:
+Запустите мост Heimdall:
 
 ```sh
 sudo service heimdalld-bridge start
 ```
 
-Check the Heimdall service logs:
+Проверьте журналы службы Heimdall:
 
 ```sh
 journalctl -u heimdalld.service -f
 ```
 
-Check the Heimdall rest-server logs:
+Проверьте журналы сервера Rest Heimdall:
 
 ```sh
 journalctl -u heimdalld-rest-server.service -f
 ```
 
-Check the Heimdall bridge logs:
+Проверьте журналы моста Heimdall:
 
 ```sh
 journalctl -u heimdalld-bridge.service -f
 ```
 
-Check the sync status of Heimdall:
+Проверьте состояние синхронизации Heimdall:
 
 ```sh
 curl localhost:26657/status
 ```
 
-In the output, the `catching_up` value is:
+В результате значение `catching_up` может быть следующим:
 
-* `true` — the Heimdall service is syncing.
-* `false` — the Heimdall service is synced.
+* `true` — служба Heimdall синхронизируется.
+* `false` — служба Heimdall синхронизирована.
 
-Wait for the Heimdall service to fully sync.
+Дождитесь полной синхронизации службы Heimdall.
 
-### Starting the Bor service
+### Запуск службы Bor {#starting-the-bor-service-1}
 
-Once the Heimdall service on the validator machine syncs, start the Bor service on the validator machine.
+После синхронизации службы Heimdall компьютере узла проверки нужно будет запустить службу Bor на
+компьютере узла проверки.
 
-Start the Bor service:
+Запустите службу Bor:
 
 ```sh
 sudo service bor start
 ```
 
-Check the Bor service logs:
+Проверьте журналы службы Bor:
 
 ```sh
 journalctl -u bor.service -f
 ```
 
-## Health Checks with the Community
+## Проверка работоспособности нодов с помощью сообщества {#health-checks-with-the-community}
 
-Now that your sentry and validator nodes are in sync and running, head over to [Discord](https://discord.com/invite/0xPolygon) and ask the community to health-check your nodes.
+Теперь, когда ваш сентри-нод и узел проверки синхронизированы и запущены, перейдите в
+[Discord](https://discord.com/invite/0xPolygon) и попросите участников сообщества проверить их работоспособность.
 
-## Next Steps: Staking
+:::note
 
-Now that you have your sentry and validator nodes are health-checked, proceed to the [Staking](../validator/core-components/staking.md) guide to start backing the network.
+Как валидаторы, всегда необходимо иметь чек адреса подписанта. Если баланс ETH достигает ниже 0,5 ETH, он должен быть пополнен. Избежать этого будет выводить узлы из отправки транзакций checkpoint.
+
+:::
+
+## Следующие действия: стейкинг {#next-steps-staking}
+
+После проверки работоспособности вашего сентри-нода и узла проверки можно переходить к
+руководству по [стейкингу](/docs/maintain/validator/core-components/staking.md), чтобы начать поддержку работы сети.

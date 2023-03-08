@@ -2,11 +2,11 @@
 id: is-withdraw-exited-many
 title: isWithdrawExitedMany
 keywords:
-  - 'pos client, erc721, isWithdrawExitedMany, polygon, sdk'
-description: 'Get started with maticjs'
+- 'pos client, erc721, isWithdrawExitedMany, polygon, sdk'
+description: 'Überprüfen, ob die Auszahlung für mehrere Token beendet wurde. '
 ---
 
-`isWithdrawExitedMany` method check if withdraw has been exited for multiple tokens. It returns boolean value.
+`isWithdrawExitedMany` Methode überprüft, ob die Auszahlung für mehrere Token beendet wurde. Sie liefert einen booleschen Wert.
 
 ```
 const erc721Token = posClient.erc721(<token address>);

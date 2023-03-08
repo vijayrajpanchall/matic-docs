@@ -2,11 +2,11 @@
 id: is-approved-all
 title: isApprovedAll
 keywords:
-  - 'pos client, erc1155, isApprovedAll, polygon, sdk'
-description: 'Check if token is approved all.'
+- 'pos client, erc1155, isApprovedAll, polygon, sdk'
+description: 'Comprueba si todos los tokens están aprobados.'
 ---
 
-`isApprovedAll` method checks if all token is approved for a user. It returns boolean value.
+El método `isApprovedAll` comprueba si todos los tokens están aprobados para un usuario. Devuelve un  valor booleano.
 
 ```
 const erc1155Token = posClient.erc1155(<token address>, true);

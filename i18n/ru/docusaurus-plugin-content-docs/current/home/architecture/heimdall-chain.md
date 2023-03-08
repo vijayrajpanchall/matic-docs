@@ -1,32 +1,39 @@
 ---
 id: heimdall-chain
-title: What is Heimdall Chain?
+title: Что такое цепочка Heimdall?
 sidebar_label: Heimdall Chain
-description: Build your next blockchain app on Polygon.
+description: Создайте свое следующее блокчейн-приложение на Polygon.
 keywords:
   - docs
   - matic
-image: https://matic.network/banners/matic-network-16x9.png
+  - polygon
+  - heimdall
+  - checkpoint
+  - pos
+  - verifier
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
-Heimdall is Polygon Proof-of-Stake Verifier layer, which is responsible for checkpointing a representation of the Plasma blocks to the main chain in our architecture. We have implemented this by building on top of the Tendermint consensus engine with changes to the signature scheme and various data structures.
+# Цепочка Heimdall {#heimdall-chain}
 
-The main chain Stake Manager contract works in conjunction with the Heimdall node to act as the trust-less stake management mechanism for the PoS engine, including selecting the Validator set, updating validators, etc. Since staking is actually done on the Ethereum smart contract, we do not rely only on validator honesty and instead inherit Ethereum chain security for this key part.
+Heimdall — это уровень верификатора PoS Polygon, который отвечает за чекпойнтинг представленности блоков Plasma в основной цепочке нашей архитектуры. Мы реализовали это решение путем надстройки в механизме консенсуса Tendermint с внесением изменений в схему подписи и различные структуры данных.
 
-Heimdall layer handles the aggregation of blocks produced by Bor into a merkle tree and publishing the merkle root periodically to the root chain. This periodic publishing are called ‘checkpoints’. For every few blocks on Bor, a validator (on the Heimdall layer):
+Контракт менеджера стейка в основной цепочке работает совместно с узлом Heimdall, чтобы действовать в качестве механизма управления надежным пакетом пакетов пакетов акций для движка PoS, включая выбор набора валидаторов, обновление валидаторов и т.д. Поскольку стейкинг действительно делается на смарт-контракте Ethereum, мы не полагаемся только на честность валидатора, а вместо этого наследует безопасность цепочки Ethereum для этой ключевой части.
 
-1. Validates all the blocks since the last checkpoint
-2. Creates a merkle tree of the block hashes
-3. Publishes the merkle root to the main chain
+Уровень Heimdall позволяет объединять блоки, созданные Bor, в дерево Меркла и периодически публиковать корень Меркла в основной цепочке. Эта периодическая публикация называется **"checkpoint"**. Валидатор в каждых нескольких блоках Bor (на уровне Heimdall) выполняет следующие действия:
 
-Checkpoints are important for two reasons:
+1. Подтверждает все блоки с момента последней созданного checkpoint
+2. Создает древо Меркла из хэшей блока
+3. Публикует корень Меркла в mainchain
 
-1. Providing finality on the Root Chain
-2. Providing proof of burn in withdrawal of assets
+Точки checkpoint важны по двум причинам:
 
-A bird’s eye view of the process can be explained as:
+1. Обеспечение финализации в основной цепочке
+2. Предоставление подтверждения сжигания при выводе активов
 
-- A subset of active validators from the pool are selected to act as block producers for a span. The Selection of each span will also be consented by at least 2/3 in power. These block producers are responsible for creating blocks and broadcasting it to the remaining of the network.
-- A checkpoint includes the root of all blocks created during any given interval. All nodes validate the same and attach their signature to it.
-- A selected proposer from the validator set is responsible for collecting all signatures for a particular checkpoint and committing the same on the main-chain.
-- The responsibility of creating blocks and also proposing checkpoints is variably dependent on a validator’s stake ratio in the overall pool.
+В целом процесс можно объяснить следующим образом:
+
+- Из пула выбирается подмножество активных валидаторов на роль блок-продюсеров для определенного промежутка блоков. Отбор для каждого промежутка также опирается на одобрение не менее 2/3 голосующих. Эти производители блоков отвечают за создание блоков и их передача в оставшуюся сеть.
+- Checkpoint включает корень всех блоков, созданных в течение любых заданных интервалов. Все узлы проверяют одно и то же и прикрепляют к нему свои подписи.
+- Выбранный proposer из набора валидатора отвечает за сбор всех подписей для конкретного checkpoint и выполнение того же в основной цепочке.
+- Ответственность за создание блоков, а также предложенные контрольные точки имеют вариативную зависимость от соотношения стейка валидатора к общему пулу.

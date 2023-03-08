@@ -1,70 +1,68 @@
 ---
 id: move-stake
-title: Moving Stake
-description: Build your next blockchain app on Polygon.
+title: Stake verschieben
+description: Bewege deinen Einsatz auf Polygon Netzwerk
 keywords:
   - docs
   - polygon
   - matic
   - stake
   - move stake
+  - validator
+  - delegator
 slug: move-stake
-image: https://matic.network/banners/matic-network-16x9.png
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
-
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-## Moving Stake from Foundation nodes to External Nodes
+## Stake von Foundation-Knoten zu externen Knoten verschieben {#moving-stake-from-foundation-nodes-to-external-nodes}
 
-
-<video loop autoplay width="100%" height="100%" controls="true">
+<video loop autoplay width="100%" height="100%" controls="true" >
   <source type="video/mp4" src="/img/staking/MoveStakeDemo.mp4"></source>
   <source type="video/quicktime" src="/img/staking/MoveStakeDemo.mov"></source>
-  <p>Your browser does not support the video element.</p>
+  <p>Dein Browser unterstützt das Video-Element nicht.</p>
 </video>
 
-Delegators are now given an option to move their stake from the Foundation nodes to any External nodes of their choice by using the Move Stake functionality on the Staking UI
+Delegatoren haben jetzt die Möglichkeit, ihren Stake von den Foundation-Knoten auf einen externen Knoten ihrer Wahl zu verschieben, indem sie die Funktion „Stake verschieben„ auf der Staking-UI nutzen
 
-Moving Stake from the foundation node to external node is a single transaction. So there are no delays or unbonding periods durind this event.
+Die Übertragung des Stake vom Foundation-Knoten zum externen Knoten ist eine einzige Transaktion. Während dieses Events gibt es also keine Verzögerungen bzw. können in diesem Zeitraum Bindungen nicht aufgehoben werden.
 
-Please note that Moving Stake is only allowed from Foundation node to External nodes. If you want to move your stake from an External node to another External node, you will have to Unbond first and then Delegate on the new external node.
+Bitte beachte, dass das Verschieben von Stake nur von Foundation-Knoten zu externen Knoten erlaubt ist. Wenn du deinen Stake von einem externen Knoten auf einen anderen externen Knoten verschieben willst, musst du zuerst die Bindung aufheben und dann auf dem neuen externen Knoten delegieren.
 
-Also, the Move Stake function is a temporary function developed by the Polygon team to ensure smooth transistioning of funds from the Foundation nodes to External. And will only stay active until the foundation nodes are turned off.
+Außerdem ist die Funktion „Stake verschieben„ eine temporäre Funktion, die vom Polygon-Team entwickelt wurde, um einen reibungslosen Übergang von Geldern von den Foundation-Knoten zu externen zu gewährleisten. Und bleibt nur so lange aktiv, bis die Foundation-Knoten ausgeschaltet werden.
 
-### How to Move Stake
+## Wie man Stake verschieben kann {#how-to-move-stake}
 
-In order to Move stake, first you will need to login to the Staking UI: https://wallet.polygon.technology/staking using your Delegator Address.
+Um den Einsatz verschieben, musst du dich zuerst mit deiner Delegator-Adresse in die [Staking UI](https://wallet.polygon.technology/staking) anmelden.
 
-**Delegator Address** = The address that you have already used for Staking on the Foundation Nodes.
+**Delegator-Adresse** : Die Adresse, die du bereits für das Staking auf den Foundation-Knoten verwendet hast.
 
-Once logged in your will see a list of Validators.
+Sobald du angemeldet bist, wirst du eine Liste der Validatoren sehen.
 
 <img src={useBaseUrl("img/staking/validator-list.png")} />
 
-Now go to your Delegator Profile by clicking on the "Show Delegator Details" button or the "**My Delegator Details**" option on the left hand side
+Gehe nun zu deinem Delegator-Profil, indem du auf die Schaltfläche **Delegator-Details anzeigen** oder auf der linken Seite die Option **Meine Delegator-Details** klickst.
 
 <img src={useBaseUrl("img/staking/show-delegator-details.png")} />
 
-Here you will find a new button called "**Move Stake**"
+Hier findest du einen neuen Button namens **Move Stake**.
 
 <img src={useBaseUrl("img/staking/move-stake-button.png")} />
 
-Clicking on that button would navigate you to a page with a list of validators that you can Delegate to. You can delegate to any Validator on this list.
+Wenn du auf diese Schaltfläche klickst, wirst du zu einer Seite mit einer Liste von Prüfern weitergeleitet, an die du delegieren kannst. Du kannst an jeden Prüfer auf dieser Liste delegieren.
 
 <img src={useBaseUrl("img/staking/move-stake-validator.png")} />
 
-Now after choosing your validator that you want to delegate to, click on the "**Delegate Here**" button.
-
-Clicking on that button would open up a pop up.
+Nachdem du deinen Prüfer ausgewählt hast, den du delegieren möchtest, klicke auf die Schaltfläche **Hier** übertragen. Wenn du auf diesen Button klickst, öffne ein Popup-Fenster.
 
 <img src={useBaseUrl("img/staking/stake-funds.png")} />
 
-Here you would see an Amount field which would automatically populate with entire amount for Delegation. You can also use a partial amount to delegate to a validator.
+Hier siehst du ein **Feld** Amos, das automatisch mit dem gesamten Betrag für die Delegation ausgefüllt wird. Du kannst auch einen Teilbetrag verwenden, um ihn an einen Prüfer zu delegieren.
 
-**For example**, if you have delegated 100 Matic tokens to Foundation Node 1 and now you want to move your stake from the foundation node to an external node, you can delegate a partial amount to the external node of your choice, lets say 50 Matic tokens. The rest of the 50 Matic tokens will stay on Foundation node 1. You can then choose to either delegate the rest of the 50 tokens to another external node or the same external node.
+Beispiel: Wenn du 100 Matic-Token an Foundation-Knoten 1 delegiert hast und nun deinen Stake vom Foundation-Knoten zu einem externen Knoten verschieben möchtest, kannst du einen Teilbetrag an den externen Knoten deiner Wahl – zum Beispiel 50 Matic-Token – delegieren. Die restlichen 50 Matic-Token verbleiben auf dem Foundation-Knoten 1. Du kannst dann wählen, ob du die restlichen 50 Token an einen anderen externen Knoten oder an denselben externen Knoten delegierst.
 
-Once you have entered the amount you can then click on Stake Funds button. This will then ask for confirmation on your MetaMask to sign the address.
+Sobald du den Betrag eingegeben hast, kannst du auf den **Stake Funds** klicken. Dieser fragt dann nach einer Bestätigung auf deiner Metamask, um die Adresse zu unterschreiben.
 
-Once you have signed the transaction your stake would have successfully moved from the Foundation node to the External node. However, you will have to wait for 12 block confirmations for it reflect on the Staking UI. If your moved funds do not show up after 12 block confirmations, try refreshing the page once to see updated stakes.
+Sobald du die Transaktion unterzeichnet hast, wurde dein Stake erfolgreich vom Foundation-Knoten zum externen Knoten verschoben. Allerdings musst du 12 Blockbestätigungen abwarten, bis sie in der Stake-UI angezeigt werden. Wenn deine verschobenen Gelder nach 12 Blockbestätigungen noch nicht angezeigt werden, versuche, die Seite zu aktualisieren, um die aktualisierten Stakes aufzurufen.
 
-If you have any questions or any issues please submit a ticket [here](https://support.polygon.technology/support/home).
+Wenn du Fragen oder Probleme hast, reiche bitte [hier](https://support.polygon.technology/support/home) ein Ticket ein.

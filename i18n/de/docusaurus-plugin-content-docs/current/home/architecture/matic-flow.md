@@ -1,23 +1,26 @@
 ---
 id: matic-flow
-title: How Matic Works?
-description: Build your next blockchain app on Polygon.
+title: Wie Polygon funktioniert
+description: Erstelle deine nächste Blockchain-App auf Polygon.
 keywords:
   - docs
   - matic
-image: https://matic.network/banners/matic-network-16x9.png
+  - polygon
+  - how polygon works
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
-
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-Polygon is a blockchain application platform that provides hybrid Proof-of-Stake and Plasma-enabled sidechains.
+# Wie Polygon funktioniert {#how-polygon-works}
 
-Polygon has a three-layer architecture:
+Polygon ist eine Blockchain-Anwendungsplattform, die hybride Proof-of-Stake- und Plasma-fähige Sidechains anbietet.
 
-1. Staking and Plasma smart contracts on Ethereum
-2. Heimdall (Proof of Stake layer)
-3. Bor (Block producer layer)
+Polygon hat eine Drei-Layer-Architektur:
 
-The below image will help you understand how the core components interact with each other.
+1. Staking und Plasma intelligente Verträge auf Ethereum
+2. Heimdall (Proof of Stake Layer)
+3. Bor (Block-Produzenten-Layer)
+
+Das folgende Bild wird dir helfen, zu verstehen, wie diese Kernkomponenten miteinander interagieren:
 
 <img src={useBaseUrl("img/Bor/bor-architecture.png")} />

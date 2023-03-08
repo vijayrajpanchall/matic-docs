@@ -1,41 +1,44 @@
 ---
 id: bandchain
 title: BandChain
-sidebar_label: Bandchain
-description: Build your next blockchain app on Polygon.
+sidebar_label: BandChain
+description: BandChain es una cadena de bloques de alto rendimiento creada para Oracle de datos para consultar datos de las API web tradicionales
 keywords:
-  - docs
-  - matic
-image: https://matic.network/banners/matic-network-16x9.png
+  - wiki
+  - polygon
+  - oracles
+  - bandchain
+  - web apis
+  - band protocol
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
-
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-Band Protocol allows you to query data from traditional web APIs and use it in the blockchain. Developers can make query through BandChain, a cosmos-based blockchain for facilitating oracle requests and payment, and then use the data on the dApp through inter-chain communication. Integrating oracle data can be done in 3 simple steps:
+El protocolo Band te permite consultar datos de API web tradicionales y usarlos en la cadena de bloques. Los desarrolladores pueden hacer consultas a través **de BandChain, una cadena de bloques basada en el cosmos** para facilitar las solicitudes de los oráculos y el pago, y luego utilizar los datos en la aplicación a través de la comunicación entre cadenas. La integración de los datos del oráculo se puede hacer en 3 pasos simples:
 
-1. **Choosing the oracle scripts**
+1. **Elegir las secuencias de comandos del oráculo**
 
-    Oracle script is a hash that uniquely identifies the type of data to be requested from band-chain. These scripts can be found [**here**](https://guanyu-devnet.cosmoscan.io/oracle-scripts). These scripts are used as one of the parameters while making the oracle request.
+    La secuencia de comandos del oráculo es un hash que identifica de forma exclusiva el tipo de datos que se le solicitan a BandChain. Esas secuencias de comandos se pueden encontrar [**aquí**](https://guanyu-devnet.cosmoscan.io/oracle-scripts). Las secuencias de comandos se usan como uno de los parámetros al hacerle la solicitud al oráculo.
 
-2. **Requesting Data from BandChain**
+2. **Solicitarle los datos a BandChain**
 
- This can be done in two ways:
+Esto se puede hacer de dos formas:
 
-- Using the BandChain explorer
+    - **Utilizando el explorador de la cadena**
 
-    You can click on the oracle script of your choice and then from the execute tab you can pass in the parameters and get the response from BandChain. The response will contain the result and also an evm proof. This proof has to be copied and will be used in the final step. The BandChain docs for querying oracle using explorer is given [**here**](https://docs.bandchain.org/dapp-developers/requesting-data-from-bandchain/requesting-data-via-explorer).
+    Puedes hacer clic en el guion de la opción y, a continuación, desde la pestaña **Ejecutar** puedes pasar en los parámetros y obtener la respuesta de BandChain. La respuesta contendrá el resultado y también una prueba de la EVM. Tienes que copiar esta prueba para usarla en el paso final. El documento de la cadena de  para consultar el oráculo utilizando el explorador está disponible [**aquí**](https://docs.bandchain.org/dapp-developers/requesting-data-from-bandchain/requesting-data-via-explorer).
 
     <img src={useBaseUrl("img/bandchain/executeoracle.png")} />
 
-    Given above is an example of making an oracle request to get the random number values. The value 100 is passed to the max_range parameter of the oracle request. We get a hash in response. Clicking on this hash will show us the complete details of the response.
+    Dado anteriormente es un ejemplo de hacer una solicitud de oráculo para obtener los valores de número aleatorio. El valor 100 se transmite al `max_range`parámetro de la solicitud oráculo. Se obtiene un hash como respuesta. Al hacer clic en ese hash, se mostrarán todos los detalles de la respuesta.
 
-- Using the BandChain-Devnet JS Library
+    - **Utilizando la biblioteca JS de **
 
-    You can query Bandchain directly using the bandchain Devnet library. When queried, it gives an **evm proof** in the response. This proof can be used for the final step of BandChain integration. The BandChain docs for querying oracle using BandChain-Devnet JS Library is given [**here**](https://docs.bandchain.org/dapp-developers/requesting-data-from-bandchain/requesting-data-via-js-library). The request payload for the random number oracle will look like this. Make sure the request body is passed in application/json format.
+    Puedes consultar BandChain directamente a través de la biblioteca de  . Cuando se hace la consulta, esta incluye una **prueba de la EVM** en la respuesta. Esta prueba puede usarse para el paso final de la integración de BandChain. El documento de la cadena de  para consultar el oráculo utilizando la biblioteca JS de  de  de  está disponible [**aquí**](https://docs.bandchain.org/dapp-developers/requesting-data-from-bandchain/requesting-data-via-js-library). La carga útil de la solicitud de oráculo del número aleatorio se verá así. Asegúrate de que el cuerpo de la solicitud se pase en el formato application/json.
 
-3. **Using the data in smart contracts**
+3. **Uso de los datos en los contratos inteligentes**
 
-  The final step is to deploy a validation contract and store the responses from the oracle request into the validation contracts state variables. Once these state variables are set, they can be accessed as and when required by the dapp. Also these state variables can be updated with new values by querying the oracle scripts again from the dApp. Given below is a validation contract that stores the random number value using the random number oracle script.
+  El último paso es implementar un contrato de validación y guardar las respuestas a la solicitud del oráculo en las variables de estado de los contratos de validación. Una vez que se establezcan esas variables de estado, se puede acceder a ellas cuando la DApp lo requiera. Las variables de estado también pueden actualizarse con valores nuevos consultando las secuencias de comandos del oráculo nuevamente desde la DApp. A continuación, se muestra un contrato de validación que almacena el valor numérico aleatorio usando la secuencia de comandos del oráculo del número aleatorio.
 
   ```jsx
   pragma solidity 0.5.14;
@@ -55,8 +58,8 @@ Band Protocol allows you to query data from traditional web APIs and use it in t
     uint256 public lastUpdate;
 
     constructor(
-      bytes32 _codeHash , 
-      bytes memory _params, 
+      bytes32 _codeHash ,
+      bytes memory _params,
       IBridge _bridge
     ) public {
       codeHash = _codeHash;
@@ -78,10 +81,10 @@ Band Protocol allows you to query data from traditional web APIs and use it in t
   }
   ```
 
-  When deploying, 3 parameters has to be passed. The first parameter is the codeHash which is the oracle script hash. The second parameter is the oracle script request parameters object. This has to be passed in the the bytes format.  BandChain provides a REST API for converting the parameter JSON object to bytes format. The API details can be found [**here**](https://docs.bandchain.org/references/encoding-params). A 0x has to be appended to the response received from this API. The third parameter is the contract address of the Bandchain contract that is already deployed on Polygon network. Band Protocol Supports Polygon TestnetV3: 0x3ba819b03fb8d34995f68304946eefa6dcff7cbf.
+Al desplegar, se deben pasar 3 parámetros. El **primer parámetro** es el `codeHash`que es el hash de guion . El **segundo parámetro** es el objeto de parámetros de solicitud de script . Esto debe ser aprobado en formato de bytes. BandChain ofrece una API de REST para convertir el objeto JSON de parámetros a formato de bytes. Los detalles de la API se encuentran [**aquí**](https://docs.bandchain.org/references/encoding-params). Es necesario agregarle 0x a la respuesta recibida de esta API. El **tercer parámetro** es la dirección del contrato de cadena que ya se despliega en la red de Polygon. El protocolo Band admite la V3 de Polygon: 0x3ba819b03fb8d34995f68304946eefa6dcff7cbf.
 
-  Another thing to note is that the validation contract should import the helper library and interface which is called BandChainLib.sol and IBridge.sol respectively. They can be found from the following links: [**Bandchain**](https://docs.bandchain.org/references/bandchainlib-library) Library  and [**IBridge**](https://docs.bandchain.org/references/ibridge-interface) interface.
+Otra cosa a tener en cuenta es que el contrato de validación debe importar la biblioteca e interfaz que se llama `BandChainLib.sol`y `IBridge.sol`respectivamente. Se pueden encontrar en los siguientes enlaces: Biblioteca de [**la cadena de banda**](https://docs.bandchain.org/references/bandchainlib-library) y la interfaz de [**IBridge**](https://docs.bandchain.org/references/ibridge-interface).
 
-  Once the validation contract is deployed, the state variables can be accessed by querying from a dApp. Similarly multiple validation contracts can be created for different built in oracle scripts. The IBridge interface has a method called relayAndVerify that verifies the values being updated each time in the validation contract. The update method in the validation contract has the logic to update the state variables. The evm proof obtained from querying the oracle script has to be passed to the update method. Each time a value is updated, the BandChain contract deplpyed on Polygon verfies the data before storing it in the contract state variable.
+  Una vez implementado el contrato de validación, se puede acceder a las variables de estado enviando consultas desde una DApp. De igual manera se pueden crear múltiples contratos de validación para diferentes scripts de oracle incorporados. La interfaz de IBridge tiene un método llamado `relayAndVerify()`que verifica los valores que se están actualizando cada vez en el contrato de validación. El `update()`método en el contrato de validación tiene la lógica de actualizar las variables de estado. La prueba de EVM obtenida de la consulta del script oráculo debe pasar al `update()`método. Cada vez que se actualiza un valor, el contrato de BandChain desplegado en Polygon verifica los datos antes de almacenarlos en la variable de estado del contrato.
 
-  The bandChain provides a decentralised network of oracles that can be used by dApps to boost their smart contract logic. The BandChain docs on deploying the contract,storing the values and updating them can be found [**here**](https://docs.bandchain.org/dapp-developers/requesting-data-from-bandchain/requesting-data-via-js-library).
+La cadena de  proporciona una red descentralizada de oráculos que pueden ser utilizados por dApps para impulsar su lógica de contrato inteligente. El documento de la cadena BandChain para desplegar el contrato, almacenar los valores y actualizarlos se puede encontrar [**aquí**](https://docs.bandchain.org/dapp-developers/requesting-data-from-bandchain/requesting-data-via-js-library).

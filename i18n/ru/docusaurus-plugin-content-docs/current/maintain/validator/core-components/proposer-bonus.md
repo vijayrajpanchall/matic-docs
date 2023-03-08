@@ -1,7 +1,7 @@
 ---
 id: proposer-bonus
-title: Proposer Bonus
-description: "Additional incentive of being a validator."
+title: Бонус автора предложения
+description: Дополнительный стимул быть валидатором
 keywords:
   - docs
   - polygon
@@ -11,9 +11,11 @@ keywords:
   - bonus
   - incentive
 slug: proposer-bonus
-image: https://matic.network/banners/matic-network-16x9.png
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
-In Polygon, there is an additional element of committing periodic [checkpoints](../../glossary#checkpoint-transaction) to the Ethereum mainnet. This is a major part of the validator responsibilities and they are incentivized to perform this activity. This constitutes a cost to the validator which is unique to a Layer 2 solution such as Polygon. We strive to accommodate this cost in the validator staking reward payout mechanism as a bonus to be paid to the [proposer](../../glossary#proposer), who is responsible for committing the checkpoint. Rewards minus the bonus is to be shared among all stakers; proposer and [signers](../../glossary#signer-address), proportionally.
+# Бонус автора предложения {#proposer-bonus}
 
-To avail the bonus completely, the proposer must include all signatures in the checkpoint. Because the protocol desires ⅔ +1 weight of the total stake, the checkpoint is accepted even with 80% votes. However, in this case, the proposer gets only 80% of the calculated bonus.
+В Polygon есть дополнительный элемент фиксации периодических [checkpoint](/docs/maintain/glossary.md#checkpoint-transaction) в Ethereum mainnet. Это важная часть обязанностей валидаторов, за выполнение которых их поощряют. Такие обязанности предполагают определенные затраты для валидатора, что является спецификой решений уровня 2, таких как Polygon. Мы стремимся учитывать эти затраты в рамках механизма предоставления валидаторам наград за стейкинг в виде бонуса, выплачиваемого [автору предложения](/docs/maintain/glossary.md#proposer), который несет ответственность за фиксацию чекпоинта. Награды за вычетом бонуса пропорционально распределяются между всеми стейкерами (автором предложения и [подписантами](/docs/maintain/glossary.md#signer-address)).
+
+Чтобы получить бонус целиком, автор предложения должен включить все подписи в чекпоинт. Поскольку протокол требует согласия участников, на которых приходится ⅔ +1 доля от общего стейка, checkpoint принимается даже при получении 80% голосов. Однако в этом случае автор предложения получает только 80% от рассчитанного бонуса.

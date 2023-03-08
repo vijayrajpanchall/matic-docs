@@ -1,109 +1,110 @@
 ---
 id: glossary
-title: Glossary
-description: "Key Polygon terms."
+title: 용어집
+description: 주요 Polygon 용어
 keywords:
   - docs
   - matic
   - polygon
   - glossary
+  - jargons
 slug: glossary
-image: https://matic.network/banners/matic-network-16x9.png
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
-## Block producer
+## 블록프로듀서 {#block-producer}
 
-A block producer is an active [validator](#validator) selected to act as block producer for a [span](#span).
+블록프로듀서는 일정 [범위](#span) 에서 블록프로듀서로 작동하도록 선택된 활성 [유효성 검사자](#validator)입니다.
 
-A block producer is responsible for creating blocks and broadcasting the created blocks to the network.
+블록프로듀서는 블록을 만들고 생성된 블록을 네트워크에 브로드캐스트하는 역할을 합니다.
 
-## Bor
+## Bor {#bor}
 
-A Bor node is a node producing blocks on the Polygon Network.
+Bor 노드는 Polygon 네트워크에서 블록을 생성하는 노드입니다.
 
-Bor is based on [Go Ethereum](https://geth.ethereum.org/).
+Bor는 [Go Ethereum](https://geth.ethereum.org/)에 기반을 두고 있습니다.
 
-## Checkpoint transaction
+## 체크포인트 트랜잭션 {#checkpoint-transaction}
 
-A checkpoint transaction is a transaction containing the Merkle root of blocks of the [Bor](#bor) layer between the checkpoint intervals.
+체크포인트 트랜잭션은 체크포인트 간격 사이에 [Bor](#bor) 계층 블록의 Merkle 루트를 포함하는 트랜잭션입니다.
 
-The transaction is committed to the Polygon staking contracts on the Ethereum mainnet by a [Heimdall](#heimdall) node.
+트랜잭션은 [Heimdall](#heimdall) 노드에 의해 이더리움 메인넷에서 Polygon 스테이크 계약을 수행합니다.
 
-See also:
+참조:
 
-* [Heimdall architecture: Checkpoint](../pos/heimdall/checkpoint)
-* [Checkpoint Mechanism](validator/core-components/checkpoint-mechanism)
+* [Heimdall 아키텍처: 체크포인트](/docs/pos/heimdall/checkpoint)
+* [체크포인트 메커니즘](/docs/maintain/validator/core-components/checkpoint-mechanism)
 
-## Commission
+## 수수료 {#commission}
 
-A commission is the percentage of the rewards taken by [validators](#validator) from the [delegators](#delegator) who stake with the validators.
+수수료는 [유효성 검사자](#validator)가 유효성 검사자에게  스테이크를 위임한  [위임자](#delegator)로부터 받은 보상의 일정 비율입니다.
 
-See also [Validator Commission Operations](/docs/maintain/validate/validator-commission-operations).
+[유효성 검사자 수수료 운영](/docs/maintain/validate/validator-commission-operations)도 참조하세요.
 
-## Delegator
+## 위임자 {#delegator}
 
-The delegator role stakes the MATIC tokens to secure the Polygon Network with existing [validators](#validator) without running the nodes themselves.
+위임자 역할은 매틱 토근을 스테이크하여 노드를 직접 실행하지 않고 기존 [유효성 검사자](#validator)로 Polygon 네트워크를 보호하게 합니다.
 
-See also [Who Is a Delegator](polygon-basics/who-is-delegator).
+[위임자는 누구인가요](/docs/maintain/polygon-basics/who-is-delegator)도 참조하세요.
 
-## Full node
+## 전체 노드 {#full-node}
 
-A full node is a fully synced [sentry node](#sentry) running both [Heimdall](#heimdall) and [Bor](#bor).
+전체 노드는 [Heimdall](#heimdall) 및 [Bor](#bor)를 모두 실행하는 완전히 동기화된 [센트리 노드](#sentry) 입니다.
 
-See also [Full Node Deployment](../operate/full-node-deployment).
+ [전체 노드 배포](/docs/develop/network-details/full-node-deployment)도 참조하세요.
 
-## Heimdall
+## Heimdall {#heimdall}
 
-A Heimdall node is a node running in parallel to the Ethereum mainnet, monitoring the set of contracts deployed on the Ethereum mainnet, and committing the Polygon Network [checkpoints](#checkpoint-transaction) to the Ethereum mainnet.
+Heimdall 노드는 이더리움 메인넷과 병렬로 실행되는 노드로서, 이더리움 메인넷에 배포된 일련의 계약을 모니터링하고 Polygon 네트워크 [체크포인트](#checkpoint-transaction)를 이더리움 메인넷에 커밋합니다.
 
-Heimdall is based on [Tendermint](https://tendermint.com/).
+Heimdall은 [Tendermint](https://tendermint.com/)를 기반으로 합니다.
 
-## Owner address
+## 소유자 주소 {#owner-address}
 
-An owner address is the address used to stake, restake, change the signer address, withdraw rewards and manage delegation related parameters on the Ethereum mainnet.
+소유자 주소는 이더리움 메인넷에서 스테이크, 재스테이크, 서명자 주소 변경, 보상 인출 및 위임 관련 매개 변수의 관리 등에 사용되는 주소입니다.
 
-While the [signer key](#signer-address) is kept on the node and is considered a *hot* wallet, the owner key must be kept very secure, used infrequently, and is considered a *cold* wallet.
+ [서명자 키](#signer-address)는 노드에 보관되며 **핫** 지갑으로 간주되지만, 소유자 키는 매우 안전하게 보관되고, 자주 사용되지 않아야 하며, **콜드** 지갑으로 간주됩니다.
 
-See also [Key Management](validator/core-components/key-management).
+[키 관리](validator/core-components/key-management.md)도 참조하세요.
 
-## Proposer
+## 제안자 {#proposer}
 
-A proposer is the [validator](#validator) selected by the algorithm to propose a new block.
+제안자는 알고리즘이 새 블록을 제안하기 위해 선정한 [유효성 검사자](#validator)입니다.
 
-A proposer is also responsible for collecting all signatures for a particular [checkpoint](#checkpoint-transaction) and committing the checkpoint to the Ethereum mainnet.
+제안자는 또한 특정 [체크포인트](#checkpoint-transaction)에 대한 모든 서명을 수집하고 체크포인트를 이더리움 메인넷에 커밋할 책임이 있습니다.
 
-## Sentry
+## 센트리 {#sentry}
 
-A sentry node is a node running both the [Heimdall](#heimdall) node and the [Bor](#bor) node to download the data from other nodes on the network and to propagate the [validator](#validator) data on the network.
+센트리 노드는 [Heimdall ](#heimdall)노드와 [Bor](#bor) 노드를 모두 실행하여 네트워크의 다른 노드에서 데이터를 다운로드하고 [유효성 검사자](#validator) 데이터를 네트워크에 전파하는 노드입니다.
 
-A sentry node is open to all other sentry nodes on the network.
+센트리 노드는 네트워크의 다른 모든 센트리 노드에 열려 있습니다.
 
-## Span
+## 스팬 {#span}
 
-A logically defined set of blocks for which a set of validators is chosen from all the available [validators](#validator).
+사용 가능한 모든 [유효성 검사자](#validator)중에서 유효성 검사자 세트를 선택하는 논리적으로 정의된 블록 집합
 
-The selection of each span is decided by at least 2/3 of the validators in terms of the staking power.
+각 스팬별 선택은 스테이킹 파워 관점에서 유효성 검사자의 최소 3분의 2에 의해 결정됩니다.
 
-See also [Bor Consensus: Span](../pos/bor/consensus/#span).
+[Bor 합의: 스팬](/docs/pos/bor/consensus.md#span)도 참조하세요.
 
-## Staking
+## 스테이킹 {#staking}
 
-Staking is the process of locking up tokens into a deposit to earn the right to validate and produce blocks on a blockchain. Typically staking is done in the native token for the network — for the MATIC token is locked up by validators/stakers in the Polygon Network. Other examples include ETH in ETH 2.0, ATOM in Cosmos, etc.
+스테이킹은 토큰을 예치하고 블록체인의 블록 유효성 검사 및 생성권을 얻는 과정입니다. 일반적으로 XIC의 토큰은 Polygon 네트워크의 유효성 검사자 / 스테이커에 의해 잠겨 있습니다. 다른 예에는 이더리움(포스트 머지), 코스모스 등의 ATM 등이 포함됩니다.
 
-See also [What Is Proof of Stake](polygon-basics/what-is-proof-of-stake).
+[스테이크 증명이란 무엇인가요](polygon-basics/what-is-proof-of-stake.md)도 참조하세요.
 
-## Signer address
+## 서명자 주소 {#signer-address}
 
-A signer address is the address of an Ethereum account of the [Heimdall](#heimdall) validator node. The signer address signs and submits the [checkpoint transactions](#checkpoint-transaction).
+서명자 주소는 [Heimdall](#heimdall) 유효성 검사자 노드의 이더리움 계정 주소입니다. 서명자 주소는 [체크포인트 트랜잭션](#checkpoint-transaction)을 서명하고 제출합니다.
 
-While the signer key is kept on the node and is considered a *hot* wallet, the [owner key](#owner-address) must be kept very secure, used infrequently, and is considered a *cold* wallet.
+ 서명자 키는 노드에 보관되며** **핫 지갑으로 간주되지만,[ 소유자 ](#owner-address)키는 매우 안전하게 보관되고, 자주 사용되지 않아야 하며,** 콜**드 지갑으로 간주됩니다.
 
-See also [Key Management](validator/core-components/key-management).
+[키 관리](validator/core-components/key-management.md)도 참조하세요.
 
-## Validator
+## 유효성 검사기 {#validator}
 
-The validator role stakes the MATIC tokens and is running both the [Heimdall](#heimdall) node and the [Bor](/docs/maintain/glossary#bor) node to commit the network checkpoints to the Ethereum mainnet and to produce blocks on the network.
+유효성 검사기는 이더리움 메인넷에 배포된 스테이킹 계약을 통해 [MATIC 토큰을 지분을 보유하고](/docs/maintain/validate/validator-staking-operations) 있으며, [Heimdall](#heimdall) 노드와 [Bor](#bor) 노드가 모두 실행하여 Eythog 메인넷에 네트워크 체크포인트를 투입하고 네트워크에서 블록을 생성합니다.
 
-A validator node is only open to its [sentry](#sentry) node and closed to the rest of the network.
+유효성 검사 노드는 해당 [센트리](#sentry) 노드에만 열려 있고 네트워크의 나머지 부분에는 닫혀 있습니다.
 
-See also [Who Is a Validator](polygon-basics/who-is-validator).
+[유효성 검사자는 무엇인가요](polygon-basics/who-is-validator.md)도 참조하세요.

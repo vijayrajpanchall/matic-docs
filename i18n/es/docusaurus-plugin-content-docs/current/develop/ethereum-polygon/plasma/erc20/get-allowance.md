@@ -2,13 +2,13 @@
 id: get-allowance
 title: getAllowance
 keywords:
-  - 'plasma client, erc20, getAllowance, polygon, sdk'
-description: 'Get started with maticjs'
+- 'plasma client, erc20, getAllowance, polygon, sdk'
+description: 'Empieza con Matic.js'
 ---
 
-# getAllowance
+# getAllowance {#getallowance}
 
-`getAllowance` method can be used to get the approved amount for user.
+El método `getAllowance` se puede utilizar para obtener el monto aprobado para el usuario.
 
 ```
 const erc20Token = plasmaClient.erc20(<token address>, true);

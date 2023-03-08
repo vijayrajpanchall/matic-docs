@@ -1,71 +1,104 @@
 ---
 id: replit
-title: Using Replit
+title: Implementa un contrato inteligente utilizando la respuesta
 sidebar_label: Using Replit
-description: Build your next blockchain app on Polygon.
+description: Despliega contratos inteligentes utilizando  en Polygon
 keywords:
   - docs
   - matic
-image: https://matic.network/banners/matic-network-16x9.png
+  - replit
+  - deploy
+  - smart contract
+  - polygon
+  - IDE
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-[Replit](https://docs.replit.com/tutorials/01-introduction-to-the-repl-it-ide) is a coding platform that allows you to write code and host apps. Replit supports [Solidity programming language](https://replit.com/@replit/Solidity-starter-beta?v=1) so it provides all of the features and functionality for Web3 developers to create and deploy smart contracts.
+## Descripción general {#overview}
 
-This article explains how to build and deploy a solidity smart contract on Polygon using [Replit IDE](https://replit.com/signup) and [Replit Solidity development template (Solidity starter beta)](https://replit.com/@replit/Solidity-starter-beta?v=1)
+[Replit](https://docs.replit.com/tutorials/01-introduction-to-the-repl-it-ide) es una plataforma de codificación que permite escribir código y alojar aplicaciones. Replit es compatible con [el lenguaje de programación Solidity](https://replit.com/@replit/Solidity-starter-beta?v=1), por lo que ofrece todas las características y funcionalidades para que los desarrolladores de Web3 creen e implementen contratos inteligentes.
 
-:::note For additional examples about Solidity with Replit, you can read the article <ins>**[Get started with Replit!](https://blog.replit.com/solidity)**</ins> or check <ins>**[Replit Solidity documentation and Escrow contract tutorial](https://docs.replit.com/tutorials/33-escrow-contract-with-solidity)**</ins>
+Este artículo te guía para crear y desplegar un contrato inteligente de solidez en Polygon utilizando la plantilla de desarrollo [de la](https://replit.com/signup) réplica y [la réplica de la solidez (beta de iniciador de solidez)](https://replit.com/@replit/Solidity-starter-beta?v=1).
+
+## Qué vas a hacer {#what-you-will-do}
+
+- Crear una cuenta de Replit
+- Crear un entorno de Repl
+- Implementa un proyecto de muestra en la red Polygon Mumbai
+- Verificar el contrato
+- Publicar tu proyecto en un perfil personal de Replit
+
+:::tip
+
+Para ejemplos adicionales sobre la solidez con la respuesta, puedes leer el artículo <ins>**[Comienza con la](https://blog.replit.com/solidity)**</ins> respuesta o revisa <ins>**[la documentación de la solidez de la respuesta y el tutorial del contrato de Cemento](https://docs.replit.com/tutorials/33-escrow-contract-with-solidity)**</ins>.
 :::
 
-## Prerequisites
+## Prerrequisitos {#prerequisites}
 
-You do not need any local environment to deploy your solidity smart contract on Polygon using Replit.
+No necesitas ninguna configuración de entorno local para desplegar tu contrato inteligente de solidez en Polygon utilizando la respuesta.
 
-You need a browser-based web3 wallet to interact with the Polygon Mumbai Testnet and deployed contracts. If you are already using MetaMask, it is recommended to create a new account for testing with Replit. You can do this from the account menu, which appears when you click on the account avatar in the top right corner of MetaMask interface.
+Necesitas una billetera Web3 integrada en el navegador para interactuar con la red de pruebas Mumbai de Polygon y los contratos implementados. Si ya estás usando MetaMask, te recomendamos crear una cuenta nueva para las pruebas con Replit. Puedes hacerlo desde el menú de la cuenta, que aparece al hacer clic en el avatar de la cuenta, en la esquina superior derecha de la interfaz de MetaMask.
 
-You must setup all of the following Prerequisites to be able to deploy your solidity smart contract on Polygon:
+Tienes que preparar los siguientes requisitos previos para poder implementar tu contrato inteligente en Solidity en Polygon:
 
-1. [Create a Replit account](https://replit.com/signup)
-2. [Download MetaMask wallet](https://docs.polygon.technology/docs/develop/metamask/hello/)
-3. [Configure Polygon on Metamask](https://docs.polygon.technology/docs/develop/metamask/config-polygon-on-metamask/)
-4. [Get testnet tokens](https://faucet.polygon.technology)
+1. [Crear una cuenta de Replit](https://replit.com/signup)
+2. [Descargar la billetera de MetaMask](/docs/develop/metamask/hello)
+3. [Configuración de Polygon en MetaMask](/docs/develop/metamask/config-polygon-on-metamask)
+4. [Obtener tokens de la red de pruebas](https://faucet.polygon.technology)
 
-## Working with a Repl
+## Trabajo con un Repl {#working-with-a-repl}
 
-Every Repl that you create is a fully functional development and production environment. Follow the steps to create a solidity starter Replit:
+Cada Repl que creas es un entorno de desarrollo y producción totalmente funcional. Sigue los pasos para crear un Replit inicial de Solidity:
 
-1. [Login](https://replit.com/login) or [create an account](https://replit.com/signup). After creating your [Replit account](https://docs.replit.com/tutorials/01-introduction-to-the-repl-it-ide), your home screen will include a dashboard where you can view, create projects, and manage your account
-2. Once logged in, create a Solidity starter repl, Select **+ Create Repl** from the left panel or **+** in the top right corner of the screen
-3. Select the [**Solidity starter (beta)**](https://replit.com/@replit/Solidity-starter-beta?v=1) template and give your project a title
-4. Click on **+ Create Repl** to create your project
+1. [Inicia sesión](https://replit.com/login) o [crea una cuenta](https://replit.com/signup). Después de crear tu [cuenta de respuesta](https://docs.replit.com/tutorials/01-introduction-to-the-repl-it-ide), tu pantalla de inicio incluirá un panel donde podrás ver, crear proyectos y administrar tu cuenta.
+
+![img](/img/replit/dashboard.png)
+
+2. Una vez que haya iniciado sesión, crea un respuesta de inicio de Solidez, selecciona **+ Crear Repl** desde el panel izquierdo o **+** en la esquina superior derecha de la pantalla.
+
+![img](/img/replit/solidity.png)
+
+3. Selecciona la plantilla [**de inicio de la solidez (beta)**](https://replit.com/@replit/Solidity-starter-beta?v=1) y dale un título a tu proyecto.
+
+4. Haz clic en **+ Crear Repl** para crear tu proyecto.
 
 :::note
-The Solidity starter repl comes with a friendly web interface, built using the <ins>**[web3 Ethereum JavaScript API](https://web3js.readthedocs.io/en/v1.5.2/)**</ins>, which you can use to deploy and interact with our contracts. We will deploy to Replit’s testnet, a custom version of the Ethereum blockchain managed by Replit and optimised for testing.
+
+El  de inicio viene con una interfaz amigable para el navegador, construida con la <ins>**[API de JavaScript de Ethereum de](https://web3js.readthedocs.io/en/v1.5.2/)**</ins> Web3, que puedes utilizar para desplegar e interactuar con nuestros contratos. desplegaremos a la red de pruebas de respuesta, una versión personalizada de la cadena de bloques Ethereum gestionada por Replit y optimizada para realizar pruebas.
+
 :::
 
-## Deploy on Polygon
+## Implementación en Polygon {#deploy-on-polygon}
 
-Make sure that you have followed the list of Prerequisites above so that you are ready to deploy and interact with your smart contract:
+Asegúrate de haber seguido la lista de **requisitos previos** anteriores para que estés listo para desplegar e interactuar con tu contrato inteligente.
 
-1. Click on **Run** (at the Top) to install all relevant packages, start up the contract deployment UI
-2. Connect your MetaMask wallet to the web interface and switch to the [Mumbai Testnet](https://docs.polygon.technology/docs/integrate/network/)
-3. Click on **Connect wallet**, select your account, then choose Connect
-4. From the Drop-down list, Select your contract that you want to deploy
-5. Click on **Deploy**
-6. Approve the MetaMask pop-up that appears to confirm the transaction from your wallet to deploy your contract
-7. [Navigate to Polyganscan](https://mumbai.polygonscan.com/) to search for your account, view your deployed contract, and copy your account address
+1. Haz clic en **Ejecutar** (en la parte superior) para instalar todos los paquetes relevantes e iniciar la interfaz de usuario de despliegue de contrato.
 
-Once your contract have been deployed, it will show up as expandable boxes below the drop-down box. Expand it and take a look at all the different functions available. You can now interact with your contract using the provided user interface or from a sharable URL shown on the interface.
+2. Conecta tu billetera MetaMask a la interfaz web y cambia a la [red de pruebas de Mumbai](docs/develop/metamask/config-polygon-on-metamask).
 
-## Publish to Replit​
+![img](/img/replit/connect.png)
 
-Replit allows you to publish your projects to a personal profile. After publishing, projects will show up on your spotlight page for others to explore, interact with, clone, and collaborate.
+3. Haz clic en **Conectar **, selecciona tu cuenta y selecciona **Conectar**.
 
-Follow the steps to publish to Replit:
-1. Select the project title at the top of the screen.
-2. Complete your project name and description and click Publish.
+![img](/img/replit/deploy-list.png)
 
-## External resources
+4. En la lista desplegable, selecciona el contrato que quieres desplegar. Haz clic en **desplegar**.
 
-* [Build an escrow contract on the Ethereum blockchain with Solidity and Replit](https://docs.replit.com/tutorials/33-escrow-contract-with-solidity)
+5. Recibirás una ventana emergente de MetaMask pidiendo tu confirmación. Aprueba la transacción desde tu billetera para desplegar tu contrato.
+
+## Verificación e implementación de pruebas del contrato  {#verifying-and-testing-your-contract}
+
+Cuando el contrato esté implementado, [dirígete a Polygonscan](https://mumbai.polygonscan.com/) para buscar tu cuenta, ver el contrato que implementaste y copiar la dirección de tu cuenta.
+
+Una vez que tu contrato haya sido desplegado, se mostrará como cajas expandibles debajo de la caja desplegable. Expándelo y mira todas las distintas funciones disponibles. Ahora puedes interactuar con el contrato mediante la interfaz de usuario proporcionada o desde un URL compartible que aparece en la interfaz.
+
+## Publicación en Replit​ {#publish-to-replit}
+
+Replit te permite publicar tus proyectos en un perfil personal. Después de publicarlos, los proyectos aparecerán en tu página publica para que otras personas los vean, interactúen con ellos, los clonen y colaboren.
+
+Sigue los siguientes pasos para publicar tus proyectos en la respuesta:
+
+1. Selecciona el título del proyecto en la parte superior de la pantalla.
+2. Completa el nombre y la descripción de tu proyecto y haz clic en **Publicar**.

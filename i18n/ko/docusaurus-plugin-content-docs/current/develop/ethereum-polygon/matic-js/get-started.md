@@ -3,32 +3,32 @@ id: get-started
 title: 시작하기
 keywords:
   - maticjs
-  - 소개
-  - 컨트랙트
-  - 폴리곤
+  - introduction
+  - contract
+  - polygon
   - sdk
-description: maticjs으로 시작하기
+description: Matic.js를 시작합니다
 ---
 
-`@matic.js`는 Matic 네트워크의 다양한 구성요소와 상호작용하는 데 도움이 되는 자바스크립트 라이브러리입니다.
+`@matic.js`는 매틱 네트워크의 다양한 구성 요소와 상호작용할 수 있도록 도와주는 javascript 라이브러리입니다.
 
-이 시작하기 자습서에서는 POS 브리지를 설정하고 상호 작용하는 방법을 배웁니다.
+이 시작하기 튜토리얼에서는 설정 및 PoS 브리지와 상호작용하는 방법에 대해 알아볼 것입니다.
 
-## 설치
+## 설치 {#installation}
 
-**npm 을 통해 maticjs 패키지를 설치합니다:**
+**npm을 통한 maticjs 패키지 설치:**
 
 ```bash
 npm install @maticnetwork/maticjs
 ```
 
-**web3js 플러그인 설치하기**
+**web3js 플러그인 설치**
 
 ```bash
 npm install @maticnetwork/maticjs-web3
 ```
 
-## 설정
+## 설정 {#setup}
 
 ```javascript
 import { use } from '@maticnetwork/maticjs'
@@ -38,11 +38,11 @@ import { Web3ClientPlugin } from '@maticnetwork/maticjs-web3'
 use(Web3ClientPlugin)
 ```
 
-위의 코드에서 우리는 `web3js`로 maticjs를 시작하고 있지만 마찬가지로 [ethers](/docs/develop/ethereum-polygon/matic-js/setup/ethers)로 시작할 수 있습니다
+위 코드에서는 `web3js`를 사용하여 maticjs를 시작하지만, 유사한 방법으로 [이더](/docs/develop/ethereum-polygon/matic-js/setup/ethers)를 사용하여 시작할 수도 있습니다.
 
-## Pos client
+## PoS 클라이언트 {#pos-client}
 
-`POSClient`는 POS Bridge와 상호 작용할 수 있도록 도와줍니다.
+`POSClient`는 PoS 브리지와 상호작용할 수 있도록 도와줍니다.
 
 ```
 import { POSClient,use } from "@maticnetwork/maticjs"
@@ -72,37 +72,37 @@ await posClient.init({
 
 ```
 
-`POSClient`가 시작된 후 `erc20`, `erc721` 등과 같은 필수 토큰 유형을 시작해야 합니다.
+`POSClient`가 시작되면, `erc20`, `erc721` 등과 같은 필요한 토큰 유형을 시작해야 합니다.
 
-erc20을 시작합시다.
+`erc20`을 시작해 봅시다.
 
-### erc20
+### ERC20 {#erc20}
 
-**erc20 하위 토큰 만들기**
+**ERC20 하위 토큰 생성**
 
 ```
 const erc20ChildToken = posClient.erc20(<token address>);
 ```
 
-**erc20 상위 토큰 만들기**
+**ERC20 상위 토큰 생성**
 
 ```
 const erc20ParentToken = posClient.erc20(<token address>, true);
 
 ```
 
-erc20이 시작되면 `getBalance`, `approve`, `deposit` , `withdraw` 등과 같이 사용 가능한 다양한 메소드들을 호출할 수 있습니다.
+ERC20이 시작되면, `getBalance`, `approve`, `deposit`, `withdraw` 등 사용 가능한 다양한 메서드를 호출할 수 있습니다.
 
-몇 가지 API 예제를 살펴보겠습니다
+일부 API 예시를 살펴봅시다.
 
-#### get balance
+#### get balance {#get-balance}
 
 ```
 const balance = await erc20ChildToken.getBalance(<userAddress>)
 console.log('balance', balance)
 ```
 
-#### approve
+#### approve {#approve}
 
 ```
 // approve amount 10 on parent token
@@ -116,8 +116,8 @@ const txReceipt = await approveResult.getReceipt();
 ```
 
 
-보시다시피, 간단한 API를 사용하여 maticjs는 maticjs 브리지와 매우 쉽게 상호 작용할 수 있습니다.  **멋진 것을 만드는 것을 시작해 봅시다**
+보시다시피, 간단한 API를 사용해 maticjs는 maticjs 브리지와 쉽게 상호작용할 수 있습니다. **이제 멋진 것을 만들어 봅시다.**
 
-### 몇 가지 중요한 링크
+### 중요한 링크 {#some-important-links}
 
 - [예시](https://github.com/maticnetwork/matic.js/tree/master/examples)

@@ -1,47 +1,47 @@
 ---
 id: general-faq
-title: General FAQ
-description: Common questions on the Polygon network.
+title: FAQ Générale
+description: Questions Fréquement Posées relatives au réseau de Polygon.
 keywords:
   - docs
   - matic
   - polygon
   - faq
-image: https://matic.network/banners/matic-network-16x9.png
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
-## What is Polygon Network?
+## Qu'est-ce que le Réseau de Polygon? {#what-is-polygon-network}
 
-Polygon Network is a Layer 2 scaling solution that achieves scale by utilizing sidechains for off-chain computation, while ensuring asset security and decentralization through Proof-of-Stake (PoS) validators.
+Le Réseau de Polygon est une solution de mise à l'échelle de Couche 2 qui utilise des chaînes latérales pour le calcul hors-chaîne, tout en assurant la sécurité et la décentralisation des actifs grâce à des validateurs de Preuve de Participation (PoS).
 
-See also [What Is Polygon](/docs/home/polygon-basics/what-is-polygon).
+Voir aussi [Qu'est-ce que Polygon](/docs/home/polygon-basics/what-is-polygon)?
 
-## What is Proof of Stake (PoS)?
+## Qu'est-ce que la Preuve de Participation (PoS)? {#what-is-proof-of-stake-pos}
 
-Proof-of-Stake is a system in which the blockchain network aims to achieve distributed consensus. Anyone with sufficient amount of tokens can lock up their cryptocurrencies and the economic incentive lies in the shared value of the decentralized network. The individuals staking their cryptocurrencies validate transactions by voting on the same while consensus is achieved when a transaction or a set of transactions in a block or a set of blocks in a checkpoint receives enough votes. The threshold uses the weight in terms of stake that comes with every vote. For instance, in Polygon, consensus is achieved for committing checkpoints of Polygon blocks to the Ethereum network, when at least ⅔ +1  of the total staking power vote for this.
+La Preuve de Participation est un système dans lequel le réseau blockchain vise à obtenir un consensus distribué. Toute personne disposant d'une quantité suffisante de jetons peut verrouiller ses cryptomonnaies et l'incitation économique réside dans la valeur partagée du réseau décentralisé. Les individus en staking de leurs cryptomonnaies valident les transactions en votant sur celles-ci, alors que le consensus est atteint lorsqu'une transaction ou un ensemble de transactions dans un bloc, ou un ensemble de blocs dans un point de contrôle reçoit suffisamment de votes. Le seuil utilise le poids en ce qui concerne les stakes qui accompagne chaque vote. Par exemple, dans Polygon, le consensus est atteint pour valider des points de contrôle des blocs de Polygon sur le réseau Ethereum, lorsqu'au moins ⅔ +1 du total de la puissance de staking vote pour cela.
 
-See also [What Is Proof of Stake](/docs/home/polygon-basics/what-is-proof-of-stake).
+Voir aussi [Qu'est-ce Que La Preuve De Participation](/docs/home/polygon-basics/what-is-proof-of-stake)?
 
-## What role does Proof-of-Stake play in the Polygon architecture?
+## Quel rôle joue la Preuve de Participation dans l'architecture de Polygon? {#what-role-does-proof-of-stake-play-in-the-polygon-architecture}
 
-The Proof-of-Stake layer in the Polygon architecture serves the following 2 purposes:
+La couche de Preuve de Participation dans l'architecture de Polygon sert les deux objectifs suivants:
 
-* Acts as an incentivization layer for maintaining liveness of the Plasma chain, chiefly mitigating the thorny issue of data unavailability.
-* Implement the Proof-of-Stake security guarantees for state transitions not covered by Plasma.
+* Agir comme une couche d'incitation pour maintenir la vivacité de la chaîne Plasma en atténuant principalement l'épineux problème de l'indisponibilité des données.
+* Mettre en œuvre les garanties de sécurité de la Preuve de Participation pour les transitions d'état non couvertes par Plasma.
 
-## How is Polygon PoS different from other similar systems?
+## En quoi le système de la PoS de Polygon est-il différent des autres systèmes similaires? {#how-is-polygon-pos-different-from-other-similar-systems}
 
-It is different in the sense that it serves a dual purpose — providing data availability guarantees for the Plasma chain covering state transitions via Plasma Predicates, as well as Proof-of-Stake validation for generic smart contracts in the EVM.
+Il est différent dans le sens où on se sert d'un double objectif -  à savoir fournir des garanties de disponibilité des données pour la chaîne Plasma ,couvrant les transitions d'état via les prédicats Plasma, et assurer la validation de la preuve de participation pour les contrats intelligents génériques dans l'EVM.
 
-The Polygon architecture also separates the process of block production and validation into 2 distinct layers. Validators as block producers create blocks as the name suggests on the Polygon chain for quicker (< 2 secs) partial confirmations while the final confirmation is attained once the checkpoint is committed on the main-chain with a certain interval, period of which may vary depending upon multiple factors like Ethereum congestion or number of Polygon transactions. In ideal conditions, it shall be around 15 min to 1 hour.
+L'architecture de Polygon sépare également le processus de production et de validation des blocs en 2 couches distinctes. Les validateurs, en tant que producteurs de blocs, créent des blocs, comme leur nom l'indique, sur la chaîne de Polygon pour des confirmations partielles et plus rapides (< 2 secondes), tandis que la confirmation finale est obtenue une fois que le point de contrôle est validé sur la chaîne principale avec un certain intervalle, dont la période peut varier en fonction de multiples facteurs comme la congestion de l'Ethereum ou le nombre de transactions sur Polygon. Idéalement, cet intervalle sera d'environ 15 minutes à 1 heure.
 
-A checkpoint is basically the Merkle root of all blocks produced in between intervals. Validators play multiple roles, creating blocks at the block producer layer, participating in the consensus by signing all checkpoints and committing the checkpoint when acting as proposer. The probability of a validator becoming the block producer or proposer is based on their stake ratio in the overall pool.
+Un point de contrôle est en fait le root de Merkle de tous les blocs produits entre les intervalles. Les validateurs jouent plusieurs rôles, en créant des blocs au niveau de la couche du producteur de blocs, participant au consensus en signant tous les points de contrôle et en validant le point de contrôle lorsqu'ils agissent en tant que proposant. La probabilité qu'un validateur devienne le producteur ou le proposant de blocs est basée sur leur ratio de stake dans le pool global.
 
-## Encouraging the proposer to include all signatures
+## Encourager le proposant à inclure toutes les signatures {#encouraging-the-proposer-to-include-all-signatures}
 
-To avail the proposer bonus completely, the proposer would need to include all signatures in the checkpoint. Because the protocol desires 2/3+1 weight of the total stake, the checkpoint will be accepted even with 80% votes. However, in this case, proposer gets only 80% of the calculated bonus.
+Pour profiter pleinement de la prime au proposant, ce dernier devra inclure toutes les signatures dans le point de contrôle. Étant donné que le protocole souhaite une pondération de ⅔ +1 du total des stakes, le point de contrôle sera accepté même avec 80 % de votes. Toutefois, dans ce cas, le proposant ne reçoit que 80 % de la prime calculée.
 
-## How can I raise a support ticket or contribute to Polygon documentation?
-If you think something needs to be fixed on our documentation or you even want to add new information here, you can [raise an issue on the Github repository](https://github.com/maticnetwork/matic.js/issues). The [Readme file](https://github.com/maticnetwork/matic-docs/blob/master/README.md) on the repository also gives you a few suggestions on how to contribute to our documentation.
+## Comment puis-je soulever un ticket d'assistance ou contribuer à la documentation de Polygon? {#how-can-i-raise-a-support-ticket-or-contribute-to-polygon-documentation}
+Si vous pensez que quelque chose doit être corrigé dans notre documentation ou si vous voulez même ajouter de nouvelles informations, vous pouvez [soumettre une requête sur le référentiel Github](https://github.com/maticnetwork/matic.js/issues). Le [fichier Readme](https://github.com/maticnetwork/matic-docs/blob/master/README.md) du référentiel vous donne également quelques suggestions sur la façon de contribuer à notre documentation.
 
-If you still need help, you can always contact **our support team**.
+Si vous avez encore besoin d'assistance, vous pouvez toujours contacter **notre équipe de soutien**.

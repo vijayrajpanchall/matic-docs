@@ -1,8 +1,8 @@
 ---
 id: getting-started
-title: Plasma Bridge
+title: Pont Plasmique
 sidebar_label: Introduction
-description: Build your next blockchain app on Polygon.
+description: Interagir avec le pont plasmique et le Réseau de Polygone.
 keywords:
   - docs
   - matic
@@ -11,29 +11,30 @@ image: https://matic.network/banners/matic-network-16x9.png
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-Please check the latest [Matic.js documentation on Plasma](https://maticnetwork.github.io/matic.js/docs/plasma/) to get started.
+Veuillez consulter la dernière [documentation Matic.js sur Plasma](https://maticnetwork.github.io/matic.js/docs/plasma/) pour commencer.
 
-A bridge is basically a set of contracts that help in moving assets from the root chain to the child chain. There are primarily two bridges to move assets between Ethereum and Polygon. First one is the Plasma bridge and the second one is called the **PoS Bridge** or **Proof of Stake bridge**. **Plasma bridge** provides an increased security guarantees due to the Plasma exit mechanism.
+Un pont est essentiellement un ensemble de contrats qui aident à déplacer les actifs de la chaîne root vers la chaîne enfant. Il existe principalement deux ponts pour déplacer les actifs entre Ethereum et Polygone. Le premier est le pont Plasma et le second est appelé le **Pont PoS** ou **pont de Preuve d'Enjeu**
+. **Le pont plasma** fournit des garanties de sécurité accrues dues au mécanisme de sortie Plasma.
 
-However, there are certain restrictions on the child token and there is a 7-day withdrawal period associated with all exits/withdraws from Polygon to Ethereum on the Plasma bridge. The [PoS Bridge](/docs/develop/ethereum-polygon/pos/getting-started) is more flexible and features faster withdrawals.
+Cependant, il existe certaines restrictions sur le jeton enfant et une période de retrait de 7-jours est associée à toutes les sorties/retraits de Polygone vers Ethereum sur le pont Plasmique. Le  [Pont PoS](/docs/develop/ethereum-polygon/pos/getting-started)  est plus flexible et permet des retraits plus rapides.
 
-This tutorial will act as a guide for step-by-step process to understand and use Plasma bridge using [Matic JS](https://github.com/maticnetwork/matic.js), which is the easiest way to interact with the Plasma Bridge on Polygon Network.
+Ce tutoriel agira comme un guide étape par étape pour comprendre et utiliser le pont plasma à l'aide de [JS matique](https://github.com/maticnetwork/matic.js), qui est la façon la plus facile d'interagir avec le pont plasma sur le réseau Polygon.
 
-## Assets flow in Plasma Bridge
+## Flux d'actifs dans le Pont Plasmique {#assets-flow-in-plasma-bridge}
 
-We will be showcasing the flow for asset transfers on Polygon in this tutorial and how you can do the same using Matic.js:
+Dans ce tutoriel, nous allons présenter le flux des transferts d'actifs sur Polygone et comment vous pouvez faire de même en utilisant Matic.js:
 
 <img src={useBaseUrl("img/matic/Matic-Workflow-2.jpg")} />
 
-1. User deposits crypto assets in Polygon contract on mainchain
-2. Once deposited tokens get confirmed on the mainchain, the corresponding tokens will get reflected on the Polygon chain
-   - The user can now transfer tokens to anyone they want instantly with negligible fees. Polygon chain has faster blocks (approximately 1 second). That way, the transfer will be done almost instantly.
-3. Once a user is ready, they can withdraw remaining tokens from the mainchain. Withdrawal of funds is initiated from the Plasma Sidechain. A checkpoint interval of 5 mins is set, where all the blocks on the Polygon block layer are validated since the last checkpoint.
-4. Once the checkpoint is submitted to the mainchain Ethereum contract, an Exit NFT (ERC721) token is created of equivalent value.
-5. The withdrawn funds can be claimed back to your Ethereum acccount from the mainchain contract using a process-exit procedure.
-   - User can also get a fast exit via 0x or Dharma (coming soon!)
+1. Dépose des actifs cryptographiques dans le contrat Polygon sur la chaîne principale
+2. Une fois que les jetons déposés seront confirmés sur la chaîne principale, les jetons correspondants seront reflétés sur la chaîne Polygon
+   - L'utilisateur peut désormais transférer des jetons à qui ils veulent, instantanément et avec des frais négligeables. La chaîne de Polygone a des blocs plus rapides (environ 1 seconde). De cette façon, le transfert sera effectué presque instantanément.
+3. Une fois qu'un utilisateur est prêt, il peut retirer les jetons restants de la chaîne principale. Le retrait des fonds est initié à partir de la Chaîne Latérale Plasmique. Un intervalle de point de contrôle de 5 minutes est défini, où tous les blocs de la couche de blocs de Polygone sont validés depuis le dernier point de contrôle.
+4. Une fois que le point de contrôle est soumis au contrat Ethereum de la chaîne principale, un jeton NFT (ERC721) est créé de valeur équivalente.
+5. Les fonds retirés peuvent être réclamés à votre compte Ethereum depuis le contrat de chaîne principal en utilisant une procédure de processus-sortie.
+   - L'utilisateur peut également obtenir une sortie rapide via 0x ou Dharma (bientôt disponible!)
 
-### Prerequisites:
+### Prérequis: {#prerequisites}
 
 ```
 npm i @maticnetwork/maticjs-plasma
@@ -61,21 +62,23 @@ await plasmaClient.init({
 
 ```
 
-### Görli Faucet
+### Robinet Görli {#görli-faucet}
 
-In order to make any transactions, you will also need some Ether in the test accounts that you will use while following the tutorial. In case you don’t have some ETH on Görli, you can use the faucet links given here — https://goerli-faucet.slock.it/.
+Afin d'effectuer des transactions, vous aurez également besoin d'un peu d'Ether dans les comptes de test que vous utiliserez en suivant le tutoriel. Si vous n'avez pas d'ETH sur Görli, vous pouvez utiliser les liens du robinet donnés ici — https://goerli-faucet.slock.it/.
 
-### Polygon Faucet
+### Robinet de Polygon {#polygon-faucet}
 
-Throughout this tutorial, we will be using the ERC20 token `TEST` on the Görli network as an example. This is a TEST token. In your DApp, you can replace it with any ERC20 token. To get some Test `TEST` tokens on Polygon Network, you can access the [Polygon Faucet](https://faucet.polygon.technology/).
+Tout au long de ce tutoriel, nous utiliserons le jeton ERC20 `TEST`sur le réseau Görli comme un exemple. Il s'agit d'un jeton de TEST. Dans votre DApp, vous pouvez le remplacer par n'importe quel jeton ERC20. Pour obtenir des `TEST`jetons de Test sur le Réseau Polygone, vous pouvez accéder au [Robinet Polygone](https://faucet.polygon.technology/).
 
-> Note: To use your own tokens for deposits and withdrawals, you'll have to get the token 'mapped'. Which essentially means making the contracts on main chain and side chain 'aware' of your custom token. Read more about the Mapping process [here](/docs/develop/ethereum-polygon/plasma/mapping-assets), or you can submit a mapping request [here](/docs/develop/ethereum-polygon/submit-mapping-request).
+:::note
 
-### Basic setup for the MetaMask Wallet (Optional)
+Pour utiliser vos propres jetons pour les dépôts et les retraits, vous devrez obtenir le jeton 'mapped', ce qui signifie essentiellement que les contrats sur la chaîne principale et le sidechain 'conscient' de votre jeton personnalisé.
 
-1. [Create a wallet](/docs/develop/metamask/hello): If you are new to wallets, then Setup a MetaMask Account.
-2. [Configure the Polygon testnet](/docs/develop/metamask/config-polygon-on-metamask): To easily visualise the flow of funds on Polygon, it is instructive if you configure the Polygon testnet on Metamask.
+:::
 
-   > Note that we are using MetaMask here solely for visualization purposes. There is no requirement to use MetaMask at all for using Polygon.
-3. [Create Multiple Accounts](/docs/develop/metamask/multiple-accounts): Before starting with the tutorial, go ahead and have 3 Ethereum test accounts ready.
-4. [Configure token on Polygon](/docs/develop/metamask/custom-tokens): In order to view the flow of funds easily on Polygon using Matic.js, you can configure tokens on Metamask. The `TEST` token, taken as an example for this tutorial, can be configured in MetaMask so as to easily visualise account balances. > Again note this is **optional**. You can very easily query the token balances and other variables using [web3](https://web3js.readthedocs.io/en/1.0/)
+### Configuration de base du Porte-monnaie Métamasque (Facultatif) {#basic-setup-for-the-metamask-wallet-optional}
+
+1. [Créez un portefeuille ](/docs/develop/metamask/hello): si vous êtes nouveau sur des portefeuilles, configurez un compte MetaMask.
+2. [Configurez le testnet Polygon](/docs/develop/metamask/config-polygon-on-metamask): pour visualiser facilement le flux de fonds sur Polygon, il est instructif si vous configurez le testnet Polygon sur Metamask. Notez que nous utilisons Métamasque ici uniquement à des fins de visualisation. Ce n'est pas nécessaire d'utiliser Métamasque pour utiliser Polygone.
+3. [Créer Plusieurs Comptes](/docs/develop/metamask/multiple-accounts): Avant de commencer avec le tutoriel, allez-y et préparez 3 comptes de test Ethereum.
+4. [Configurer le jeton sur Polygone](/docs/develop/metamask/custom-tokens): Afin de visualiser facilement le flux de fonds sur le Polygone en utilisant Matic.js, vous pouvez configurer les jetons sur Métamasque. Le jeton, pris comme exemple pour ce `TEST`tutoriel, peut être configuré dans MetaMask de manière à visualiser facilement les soldes de compte. Notez encore que c'est **facultatif**. Vous pouvez très facilement interroger les soldes de jetons et d'autres variables en utilisant [web3.js](https://web3js.readthedocs.io/en/1.0/)

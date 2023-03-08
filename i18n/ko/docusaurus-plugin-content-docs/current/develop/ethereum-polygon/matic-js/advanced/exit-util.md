@@ -2,15 +2,15 @@
 id: exit-util
 title: ExitUtil
 keywords:
-  - 'exit util, api type, read, write, polygon'
-description: 'matic.js는 내부적으로 증명 생성을 위해 ExitUtil을 사용합니다.'
+- 'exit util, api type, read, write, polygon'
+description: 'ExitUtil 클래스를 사용해 증명을 생성합니다.'
 ---
 
-`matic.js`는 내부적으로 증거 생성을 위해 `ExitUtil`을 사용합니다. 종료 유틸리티를 지원하는 다양한 방법이 있는 클래스입니다.
+증명 생성을 위해 `matic.js`는 내부적으로 `ExitUtil`을 사용합니다. 이는 종료 유틸리티를 지원하기 위한 다양한 메서드가 있는 클래스입니다.
 
-## buildPayloadForExit
+## buildPayloadForExit {#buildpayloadforexit}
 
-증명을 생성하는 데 사용할 수 있는 `buildPayloadForExit` 메소드를 노출합니다.
+증명 생성을 위해 사용될 수 있는 `buildPayloadForExit` 메서드를 제공합니다.
 
 ```
 import { ExitUtil, RootChain, use, Web3SideChainClient } from "@maticnetwork/maticjs";
@@ -55,9 +55,9 @@ const proof = await exitUtil.buildPayloadForExit(
 
 ```
 
-### 브리지 클라이언트를 사용하여 증명 생성하기
+### 브리지 클라이언트를 사용해 증명 생성하기 {#generating-proof-using-bridge-client}
 
-**POSClient**, **PlasmaClient**를 포함한 모든 브리지 클라이언트는 `exitUtil` 속성을 노출합니다.
+**POSClient**, **PlasmaClient**를 포함한 모든 브리지 클라이언트는 `exitUtil` 속성을 제공합니다.
 
 ```
 import { POSClient,use } from "@maticnetwork/maticjs"

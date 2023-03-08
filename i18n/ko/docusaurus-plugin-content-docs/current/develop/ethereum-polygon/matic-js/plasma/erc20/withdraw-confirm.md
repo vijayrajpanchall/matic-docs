@@ -1,18 +1,18 @@
 ---
 id: withdraw-confirm
-title: withdraw challenge
+title: 출금 챌린지
 keywords:
-  - 'plasma client, erc20, withdrawChallenge, polygon, sdk'
-description: 'maticjs로 시작하기'
+- 'plasma client, erc20, withdrawChallenge, polygon, sdk'
+description: '출금을 확인합니다.'
 ---
 
-`withdrawConfirm` 은 플라즈마 인출 프로세스의 두 번째 단계입니다.  이 단계에서는 소각 거래(첫 번째 트랜잭션)의 증명이 제출되고 동등한 가치의 erc721 토큰이 생성됩니다.
+`withdrawConfirm` 메서드는 플라스마 출금 프로세스의 두 번째 단계입니다. 이 단계에서는 소각 트랜잭션 증명(첫 번째 트랜잭션)이 제출되고 동일한 값의 ERC20 토큰이 생성됩니다.
 
-이 프로세스가 성공한 후 - 챌린지 기간이 시작되고 챌린지 기간이 완료되면 사용자는 출금된 수량을 루트 체인의 계정으로 되돌릴 수 있습니다.
+이 프로세스가 성공하면 챌린지 기간이 시작되고, 챌린지 기간이 만료되면 사용자는 출금된 금액을 루트 체인의 사용자 계정으로 돌려받을 수 있습니다.
 
-챌린지 기간은 메인넷의 경우 7일입니다.
+메인넷의 챌린지 기간은 7일입니다.
 
-**참고** - 인출을 시도하려면 withdrawStart 트랜잭션에 체크포인트가 있어야 합니다.
+**참고**- 출금 챌린지를 하려면 withdrawStart 트랜잭션을 체크포인트로 설정해야 합니다.
 
 ```
 const erc20Token = plasmaClient.erc20(<token address>, true);
@@ -25,4 +25,4 @@ const txReceipt = await result.getReceipt();
 
 ```
 
-챌린지 기간이 완료되면 인출 프로세스를 종료하고 인출된 금액을 반환하기 위해 `withdrawExit`를 호출할 수 있습니다.
+챌린지 기간이 만료되면 `withdrawExit`를 호출해 출금 프로세스를 종료하고 출금 금액을 돌려받을 수 있습니다.

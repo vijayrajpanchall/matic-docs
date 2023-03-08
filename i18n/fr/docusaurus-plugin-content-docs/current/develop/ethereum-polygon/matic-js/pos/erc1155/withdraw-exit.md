@@ -1,12 +1,12 @@
 ---
 id: withdraw-exit
-title: withdrawExit
+title: retirerSortir
 keywords:
-  - 'pos client, erc1155, withdrawExit, polygon, sdk'
-description: 'withdrawExit method can be used to exit the withdraw process by using the txHash from withdrawStart method.'
+- 'pos client, erc1155, withdrawExit, polygon, sdk'
+description:  'Supprimez le processus de retrait en utilisant le txHash de withdrawStart.'
 ---
 
-`withdrawExit` method can be used to exit the withdraw process by using the txHash from `withdrawStart` method.
+`withdrawExit`la méthode peut être utilisée pour supprimer le processus de retrait en utilisant le txHash de la méthode`withdrawStart`.
 
 ```
 const erc1155RootToken = posClient.erc1155(<root token address>, true);

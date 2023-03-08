@@ -1,12 +1,12 @@
 ---
 id: approve
-title: approve
+title: approve (Aprobar)
 keywords:
-  - 'plasma client, erc721, approve, polygon, sdk'
-description: 'Get started with maticjs'
+- 'plasma client, erc721, approve, polygon, sdk'
+description: 'Aprueba la cantidad requerida en el token primario'
 ---
 
-`approve` method can be used to approve required amount on root token.
+El método `approve` puede utilizarse para aprobar la cantidad requerida en el token primario.
 
 ```
 const erc721RootToken = plasmaClient.erc721(<root token address>,true);

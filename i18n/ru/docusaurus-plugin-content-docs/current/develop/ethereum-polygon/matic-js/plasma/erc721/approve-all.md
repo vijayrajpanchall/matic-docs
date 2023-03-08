@@ -2,11 +2,11 @@
 id: approve-all
 title: approveAll
 keywords:
-  - 'plasma client, erc721, approveAll, polygon, sdk'
-description: 'Get started with maticjs'
+- 'plasma client, erc721, approveAll, polygon, sdk'
+description: 'Утвердите все токены.'
 ---
 
-`approveAll` method can be used to approve all tokens.
+Метод `approveAll` можно использовать для утверждения всех токенов.
 
 ```
 const erc721RootToken = plasmaClient.erc721(<root token address>, true);

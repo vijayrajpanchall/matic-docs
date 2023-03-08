@@ -1,56 +1,81 @@
 ---
 id: chainstack
-title: Using Chainstack
+title: Déployez un contrat intelligent à l'aide de Chainstack et de Foundry
 sidebar_label: Using Chainstack
-description: Build your next blockchain app on Polygon.
+description:  Utilisez Chainstack et Foundry pour développer un contrat intelligent sur Polygon
 keywords:
   - docs
   - matic
-image: https://matic.network/banners/matic-network-16x9.png
+  - polygon
+  - build
+  - deploy smart contract
+  - chainstack
+  - foundry
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
-# Hello World Smart Contract on Polygon
+## Aperçu {#overview}
 
-This section guides you through deploying a Hello World contract using [Chainstack](https://chainstack.com/build-better-with-polygon/) and [Foundry](https://github.com/gakonst/foundry/) on the Mumbai testnet.
+Cette section vous guide en déployant un contrat Hello World à l'aide de [Chainstack](https://chainstack.com/build-better-with-polygon/) et de [Foundry](https://github.com/gakonst/foundry/) sur le testnet Polygon Mumbai.
 
-If you have any questions, reach out in the [Chainstack Discord](https://discord.com/invite/Cymtg2f7pX).
+Chainstack fournit une infrastructure pour les applications basées sur Ethereum et d'autres blockchains. Ils maintiennent des nœuds et garantissent leur connexion au réseau et offrent également une interface pour interagir avec les réseaux principaux et les testnets.
 
-## Deploy a Polygon Mumbai Node
+Foundry est une boîte à outils rapide pour le développement d'applications Ethereum écrite en Rust. Il fournit des tests, des interactions avec des contrats intelligents EVM, des transactions et des données de blockchain.
 
-You need a node to deploy a smart contract to the blockchain network, follow the steps to get your node:
+:::tip
 
-1. [Sign up with Chainstack](https://console.chainstack.com/user/account/create).
-1. [Deploy a Mumbai node](https://docs.chainstack.com/platform/join-a-public-network#join-a-polygon-pos-network).
-1. [Get the deployed node’s HTTPS endpoint](https://docs.chainstack.com/platform/view-node-access-and-credentials).
+Si vous avez des questions, contactez le serveur [<ins>Discord</ins>](https://discord.com/invite/Cymtg2f7pX) Chainstack.
 
-## Install Foundry
+:::
 
-Foundry is a development toolkit to work with smart contracts.
+## Ce que vous allez apprendre {#what-you-will-learn}
 
-1. [Install Rust](https://www.rust-lang.org/tools/install).
-1. [Install Foundry](https://github.com/gakonst/foundry/).
+Créez un contrat Hello World, en utilisant Chainstack pour déployer un nœud de Polygone et Foundry afin de déployer le contrat.
 
-## Initialize with Foundry
+## Ce que vous allez faire {#what-you-will-do}
 
-To create a boilerplate project, navigate to your working directory and run:
+1. Déployez un nœud de Polygone à l'aide de Chainstack
+2. Configurez Foundry
+3. Créez le contrat intelligent
+4. Déployez le contrat intelligent.
 
-``` sh
+## Déployez un nœud de Polygone Mumbai {#deploy-a-polygon-mumbai-node}
+
+Vous avez besoin d'un nœud pour déployer un contrat intelligent sur le réseau blockchain. Suivez les étapes ci-dessous pour mettre votre nœud en marche :
+
+**Étape 1 →** Inscrivez-vous avec [Chainstack](https://console.chainstack.com/user/account/create)
+
+![img](/img/chainstack/sign-up.png)
+
+**Étape 2 →** Suivez les instructions sur la façon de [déployer un nœud Mumbai](https://docs.chainstack.com/platform/join-a-public-network#join-a-polygon-pos-network)
+
+![img](/img/chainstack/join-network.png)
+
+**Étape 3 →** Obtenez le [point de terminaison HTTPS du nœud déployé](https://docs.chainstack.com/platform/view-node-access-and-credentials)
+
+## Installez Foundry {#install-foundry}
+
+Foundry est une boîte à outils de développement pour travailler avec des contrats intelligents. Pour commencer à travailler avec, vous devez d'abord installer le langage de codage Rust.
+
+1. [Installez Rust](https://www.rust-lang.org/tools/install).
+1. [Installez Foundry](https://github.com/gakonst/foundry/).
+
+## Initialisez avec Foundry {#initialize-with-foundry}
+
+Pour créer un projet standard, accédez à votre répertoire de travail et exécutez:
+
+```
 forge init PROJECT_NAME
+// PROJECT_NAME - name of project
 ```
 
-where
+## Financez Votre Compte {#fund-your-account}
 
-* PROJECT_NAME - name of project
+Vous aurez besoin d'un compte portefeuille pour déployer le contrat intelligent. Vous pouvez utiliser [Metamask](https://metamask.io/) pour cela. Vous devez également payer du gaz sur le réseau pour déployer le contrat. Copiez simplement votre adresse portefeuille et obtenez le jeton Mumbai MATIC [via le robinet](https://faucet.polygon.technology/).
 
-## Fund Your Account
+## Créez le contrat Hello World {#create-the-hello-world-contract}
 
-You need to pay gas on the network to deploy the contract.
-
-Get Mumbai MATIC [through the faucet](https://faucet.polygon.technology/).
-
-## Create the Hello World contract
-
-In the initialized Foundry project in `src/`, create `HelloWorld.sol`:
+Dans le projet Foundry initialisé dans `src/`, créez `HelloWorld.sol`:
 
 ```
 // SPDX-License-Identifier: None
@@ -88,32 +113,42 @@ contract HelloWorld {
 }
 ```
 
-## Deploy the Contract
+## Déployez le Contrat {#deploy-the-contract}
 
-At this point, you are ready to deploy your contract:
+À ce stade, vous êtes prêt à déployer votre contrat:
 
-* You have your own node on the Polygon Mumbai network through which you will deploy the contract.
-* You have Foundry that you will use to deploy the contract.
-* You have a funded account that will deploy the contract.
+* Vous disposez de votre propre nœud sur le réseau Polygon Mumbai à travers lequel vous déploierez le contrat.
+* Vous avez Foundry que vous utiliserez pour déployer le contrat.
+* Vous disposez d'un compte capitalisé qui déploiera le contrat.
 
-To deploy the contract, run:
+Pour déployer le contrat, exécutez:
 
-``` sh
+```bash
 forge create HelloWorld --constructor-args "Hello" --contracts CONTRACT_PATH --private-key PRIVATE_KEY --rpc-url HTTPS_ENDPOINT
 ```
 
-where
+Ici,
 
-* CONTRACT_PATH — path to your `HelloWorld.sol` file.
-* PRIVATE_KEY — the private key from your account.
-* HTTPS_ENDPOINT — [your node's endpoint](https://docs.chainstack.com/platform/view-node-access-and-credentials).
+* CONTRACT_PATH — chemin d'accès à votre `HelloWorld.sol`fichier.
+* PRIVATE_KEY — la clé privée de votre compte.
+* HTTPS_ENDPOINT — [le point de terminaison de votre nœud](https://docs.chainstack.com/platform/view-node-access-and-credentials).
 
-Example:
+Exemple:
 
-``` sh
+```sh
 forge create HelloWorld --constructor-args "Hello" --contracts /root/foundry/src/HelloWorld.sol --private-key d8936f6eae35c73a14ea7c1aabb8d068e16889a7f516c8abc482ba4e1489f4cd --rpc-url https://nd-123-456-789.p2pify.com/3c6e0b8a9c15224a8228b9a98ca1531d
 ```
 
-Congratulations! You have deployed your Hello World smart contract on Polygon!
+:::tip
 
-See also Chainstack docs for more [tutorials](https://docs.chainstack.com/tutorials/polygon/) and [tools](https://docs.chainstack.com/operations/polygon/tools).
+Vous pouvez toujours vérifier le déploiement du contrat sur [<ins>Mumbai Polygonscan</ins>](https://mumbai.polygonscan.com/) en utilisant l'identifiant nouvellement généré à partir de la dernière étape.
+
+:::
+
+## Testez le Contrat {#test-the-contract}
+
+Il existe une commande `forge test`au cas où vous auriez besoin de vérifier si le contrat fonctionne correctement. Foundry fournit de nombreuses [options](https://book.getfoundry.sh/reference/forge/forge-test) (drapeaux) pour des tests plus spécifiques. En savoir plus sur l'écriture de tests, les tests avancés et d'autres fonctionnalités dans [la documentation de Foundry](https://book.getfoundry.sh/forge/tests).
+
+**Félicitations! Vous avez déployé votre contrat intelligent Hello World sur Polygon.**
+
+Voir également les documents Chainstack pour plus de [<ins>tutoriels</ins>](https://docs.chainstack.com/tutorials/polygon/) et [<ins>outils</ins>](https://docs.chainstack.com/operations/polygon/tools)concernant polygone.

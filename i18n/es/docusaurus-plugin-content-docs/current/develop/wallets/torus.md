@@ -1,32 +1,35 @@
 ---
 id: torus
 title: Torus
-description: Build your next blockchain app on Polygon.
+description: Torus es un sistema de gestión de claves no custodiales para dApps
 keywords:
-  - docs
-  - matic
-image: https://matic.network/banners/matic-network-16x9.png
+  - wiki
+  - polygon
+  - torus
+  - wallet
+  - guide
+  - dApp
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
-Torus is a user-friendly, secure, and non-custodial key management system for DApps. We're focused on providing mainstream users a gateway to the decentralized ecosystem.
+Torus es un sistema de gestión de claves no custodiales para aplicaciones descentralizadas, seguro y fácil de usar. Nos centramos en proporcionar a los usuarios sin experiencia previa en el tema una puerta de enlace al ecosistema descentralizado.
 
-**Type**: Non-custodial/HD <br/> **Private Key Storage**: User’s local browser storage / Encrypted and stored on torus’ servers <br/> **Communication to Ethereum Ledger**: Infura <br/> **Private key encoding**: Mnemonic/Social-Auth-login <br/>
+**Tipo**: No <br/>**Almacenamiento de claves privada**: almacenamiento local de navegador / Cifrado y almacenado en servidores Torus<br/> **Comunicación con el libro mayor de Ethereum**: Infura <br/>
+**Codificación de claves privadas**:  /<br/>
 
-Depending on your applications needs Torus can be integrated via the Torus Wallet, or through interacting directly with the Torus Network via DirectAuth. For more, visit Torus documentation: https://docs.tor.us/getting-started
+Dependiendo de las necesidades de su aplicación, Torus se puede integrar a través de la billetera Torus, o interactuando directamente con la red Torus a través de CustomAuth. Para obtener más información, visita la [documentación de Torus](https://docs.tor.us/).
 
-## 1. Torus Wallet integration
+## Integración de billetera Torus {#torus-wallet-integration}
 
-Quick start Torus wallet: https://docs.tor.us/torus-wallet/quick-start
+Si tu aplicación ya es compatible con MetaMask o cualquier otro proveedor de Web3, la integración de la billetera Torus te dará un proveedor para que envolver la misma interfaz Web3. Puedes instalar a través de un paquete . Para obtener más formas e información en profundidad, visita la documentación oficial de Torus sobre [la integración de la billetera](https://docs.tor.us/wallet/get-started).
 
-If your application is already compatible with Metamask/other web3 providers, integrating the Torus Wallet would give you a provider to wrap the same web3 interface. You can install via a npm package or IPFS. or jsdelivr or unpkg. For more, please visit Torus documentation on wallet integration: https://docs.tor.us/getting-started#torus-wallet-integration
-
-**Install npm package**
+### Instalación {#installation}
 
 ```bash
-npm i @toruslabs/torus-embed
+npm i --save @toruslabs/torus-embed
 ```
 
-**Example**
+### Ejemplo {#example}
 
 ```js title="torus-example.js"
 import Torus from "@toruslabs/torus-embed";
@@ -35,6 +38,7 @@ import Web3 from "web3";
 const torus = new Torus({
   buttonPosition: "top-left" // default: bottom-left
 });
+
 await torus.init({
   buildEnv: "production", // default: production
   enableLogging: true, // default: false
@@ -45,10 +49,11 @@ await torus.init({
   },
   showTorusButton: false // default: true
 });
+
 await torus.login(); // await torus.ethereum.enable()
 const web3 = new Web3(torus.provider);
 ```
 
-## 2. DirectAuth integration
+## Integración de  {#customauth-integration}
 
-If you are looking to control your own UX, from login to every interaction, then DirectAuth is the integration for you. You can integrate via one of our SDKs depending on the platform/s you are building on. For more, please visit Torus direct auth integration: https://docs.tor.us/direct-auth/quick-start
+Si estás buscando controlar tu propia UX, desde el inicio de sesión hasta cada interacción, puedes utilizar  . Puedes integrarte a través de uno de sus SDKs dependiendo de la(s) plataforma(s) en la que estés construyendo. Para obtener más información, visita [la integración de  ](https://docs.tor.us/customauth/get-started).

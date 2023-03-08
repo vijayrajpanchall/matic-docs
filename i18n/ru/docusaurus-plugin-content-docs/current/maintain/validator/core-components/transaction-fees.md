@@ -1,7 +1,7 @@
 ---
 id: transaction-fees
-title: Transaction Fees
-description: "Distribution of fees among all validators on Heimdall."
+title: Комиссия за транзакции
+description: Распределение комиссий между всеми валидаторами в Heimdall
 keywords:
   - docs
   - polygon
@@ -10,9 +10,9 @@ keywords:
   - transaction
   - fees
 slug: transaction-fees
-image: https://matic.network/banners/matic-network-16x9.png
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
-Each [block producer](../../glossary#block-producer) on the [Bor](../../glossary#bor) layer is given a certain percentage of the transaction fees collected in each block.
+Каждый [блок-продюсер](/docs/maintain/glossary.md#block-producer) на уровне [Bor](/docs/maintain/glossary.md#bor) получает определенный процент от комиссии за транзакции, собранной в каждом блоке.
 
-The selection of producers for any given span is dependent on the validator’s ratio in the overall stake. The remaining transaction fees flow through the same funnel as the rewards which get shared among all validators working at the [Heimdall](../../glossary#heimdall) layer.
+Выбор продюсеров для каждого конкретного диапазона блоков зависит от доли валидатора в общей стейке. Оставшаяся комиссия за транзакции проходит через ту же воронку, что и награды, которые распределяются между всеми валидаторами, работающими на уровне [Heimdall](/docs/maintain/glossary.md#heimdall).

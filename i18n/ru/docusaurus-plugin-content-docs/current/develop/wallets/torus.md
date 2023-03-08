@@ -1,32 +1,35 @@
 ---
 id: torus
 title: Torus
-description: Build your next blockchain app on Polygon.
+description: Torus — это система управления ключами, не зависящими от хранения для dApps
 keywords:
-  - docs
-  - matic
-image: https://matic.network/banners/matic-network-16x9.png
+  - wiki
+  - polygon
+  - torus
+  - wallet
+  - guide
+  - dApp
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
-Torus is a user-friendly, secure, and non-custodial key management system for DApps. We're focused on providing mainstream users a gateway to the decentralized ecosystem.
+Torus — это удобная, безопасная и не связанная с хранением система управления ключами для децентрализованных приложений. Наша цель — дать массовым пользователям шлюз для работы с децентрализованной экосистемой.
 
-**Type**: Non-custodial/HD <br/> **Private Key Storage**: User’s local browser storage / Encrypted and stored on torus’ servers <br/> **Communication to Ethereum Ledger**: Infura <br/> **Private key encoding**: Mnemonic/Social-Auth-login <br/>
+**Тип**: Non-custodial/HD<br/> **Хранение приватных ключей**: локальное хранилище браузера/шифрование и сохранение на серверах Torus<br/> **Взаимодействие с журналом Ethereum**: Infura <br/>
+**encoding: приватного ключа**: Mnemonic / Social-Auth-login<br/>
 
-Depending on your applications needs Torus can be integrated via the Torus Wallet, or through interacting directly with the Torus Network via DirectAuth. For more, visit Torus documentation: https://docs.tor.us/getting-started
+В зависимости от ваших потребностей приложения Torus может быть интегрирован через кошелек Torus или напрямую взаимодействовать с сетью Torus через CustomAuth. Для получения дополнительной информации посетите [документацию Torus](https://docs.tor.us/).
 
-## 1. Torus Wallet integration
+## Интеграция кошелька Torus {#torus-wallet-integration}
 
-Quick start Torus wallet: https://docs.tor.us/torus-wallet/quick-start
+Если ваше приложение уже совместимо с MetaMask или любыми другими провайдерами Web3, интеграция кошелька Torus даст вам обернуть тот же интерфейс Web3. Можно установить через пакет npm. Чтобы получить дополнительные способы и подробную информацию, пожалуйста, посетите официальную документацию Torus по [интеграции кошелька](https://docs.tor.us/wallet/get-started).
 
-If your application is already compatible with Metamask/other web3 providers, integrating the Torus Wallet would give you a provider to wrap the same web3 interface. You can install via a npm package or IPFS. or jsdelivr or unpkg. For more, please visit Torus documentation on wallet integration: https://docs.tor.us/getting-started#torus-wallet-integration
-
-**Install npm package**
+### Установка {#installation}
 
 ```bash
-npm i @toruslabs/torus-embed
+npm i --save @toruslabs/torus-embed
 ```
 
-**Example**
+### Пример {#example}
 
 ```js title="torus-example.js"
 import Torus from "@toruslabs/torus-embed";
@@ -35,6 +38,7 @@ import Web3 from "web3";
 const torus = new Torus({
   buttonPosition: "top-left" // default: bottom-left
 });
+
 await torus.init({
   buildEnv: "production", // default: production
   enableLogging: true, // default: false
@@ -45,10 +49,11 @@ await torus.init({
   },
   showTorusButton: false // default: true
 });
+
 await torus.login(); // await torus.ethereum.enable()
 const web3 = new Web3(torus.provider);
 ```
 
-## 2. DirectAuth integration
+## Интеграция CustomAuth {#customauth-integration}
 
-If you are looking to control your own UX, from login to every interaction, then DirectAuth is the integration for you. You can integrate via one of our SDKs depending on the platform/s you are building on. For more, please visit Torus direct auth integration: https://docs.tor.us/direct-auth/quick-start
+Если вы хотите контролировать свой собственный UX, от входа до каждого взаимодействия, вы можете использовать CustomAuth. Вы можете интегрировать через один из их SDK в зависимости от platform(s) на которой вы создаете. Для получения дополнительной информации посетите [интеграцию Torus CustomAuth](https://docs.tor.us/customauth/get-started).

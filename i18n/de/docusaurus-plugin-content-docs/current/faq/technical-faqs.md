@@ -1,121 +1,127 @@
 ---
 id: technical-faqs
-title: Technical FAQs
-description: Build your next blockchain app on Polygon.
+title: Technische FAQ
+description: Erstelle deine nächste Blockchain-App auf Polygon.
 keywords:
   - docs
   - matic
-image: https://matic.network/banners/matic-network-16x9.png
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
-### 1. Are the private keys same for Heimdall and Bor keystore?
-Yes, the private key used for generating Validator keys and Bor Keystore is the same. The private key used in this instance is your Wallet's ETH address where your Polygon testnet tokens are stored.
+:::tip Immer auf dem Laufenden
 
-### 2. List of Common Commands
+Behalte mit den neuesten Node und validator aus dem Polygon Team und der Community fort, indem du [<ins>Polygon Benachrichtigungen</ins>](https://polygon.technology/notifications/) abonnierst.
 
-We currently have an easy to dive-in list for you for the Linux packages. We will keep updating this list regularly for more convenience.
+:::
 
-**For Linux packages**
+### 1. Sind die Private Keys für Heimdall- und Bor-Keystore gleich? {#1-are-the-private-keys-same-for-heimdall-and-bor-keystore}
+Ja, der Privat Key, der zur Generierung von Validator-Schlüsseln und dem Bor Keystore verwendet wird, ist der gleiche. Der Private Key, der in dieser Instanz verwendet wird, ist die ETH-Adresse deiner Wallet, in der deine Polygon-Testnet-Token gespeichert werden.
 
-#### A. Where to find heimdall genesis file
+### 2. Liste gemeinsamer Befehle {#2-list-of-common-commands}
+
+Wir stellen dir derzeit eine leicht verständliche Liste für die Linux-Pakete bereit. Wir werden diese Liste für mehr Komfort regelmäßig aktualisieren.
+
+**Für Linux-Pakete**
+
+#### A. Wo die Heimdall genesis-Datei zu finden ist {#a-where-to-find-heimdall-genesis-file}
 
 `$CONFIGPATH/heimdall/config/genesis.json`
 
-#### B. Where to find heimdall-config.toml
+#### B. Wo heimdall-config.toml zu finden ist {#b-where-to-find-heimdall-config-toml}
 
 `/etc/heimdall/config/heimdall-config.toml`
 
-#### C. Where to find config.toml
+#### C. Wo config.toml zu finden ist {#c-where-to-find-config-toml}
 
 `/etc/heimdall/config/config.toml`
 
-#### D. Where to find heimdall-seeds.txt
+#### D. Wo heimdall-seeds.txt zu finden ist {#d-where-to-find-heimdall-seeds-txt}
 
 `$CONFIGPATH/heimdall/heimdall-seeds.txt`
 
-#### E. Start Heimdall
+#### E. Heimdall starten {#e-start-heimdall}
 
 `$ sudo service heimdalld start`
 
-#### F. Start Heimdall rest-server
+#### F. Heimdall Rest-Server starten {#f-start-heimdall-rest-server}
 
 `$ sudo service heimdalld-rest-server start`
 
-#### G. Start Heimdall bridge-server
+#### G. Heimdall Bridge-Server starten {#g-start-heimdall-bridge-server}
 
 `$ sudo service heimdalld-bridge start`
 
-#### H. Heimdall logs
+#### H. Heimdall-Protokolle {#h-heimdall-logs}
 
 `/var/log/matic-logs/`
 
-#### I. Where to find Bor genesis file
+#### I. Wo die Bor genesis-Datei zu finden ist {#i-where-to-find-bor-genesis-file}
 
 `$CONFIGPATH/bor/genesis.json`
 
-#### J. Start Bor
+#### J. Bor starten {#j-start-bor}
 
 `sudo service bor start`
 
-#### K Check heimdall logs
+#### K Heimdall-Protokolle überprüfen {#k-check-heimdall-logs}
 
 `tail -f heimdalld.log`
 
-#### L. Check Heimdall rest-server
+#### L. Heimdall Rest-Server überprüfen {#l-check-heimdall-rest-server}
 
 `tail -f heimdalld-rest-server.log`
 
-#### M. Check Heimdall bridge logs
+#### M. Heimdall Bridge-Protokolle überprüfen {#m-check-heimdall-bridge-logs}
 
 `tail -f heimdalld-bridge.log`
 
-#### N. Check bor logs
+#### N. Bor-Protokolle überprüfen {#n-check-bor-logs}
 
 `tail -f bor.log`
 
-#### O. Kill Bor process
+#### O. Bor-Prozess abbrechen {#o-kill-bor-process}
 
-**For linux**:
+**Für Linux**:
 
-1. `ps -aux | grep bor`. Get the PID for Bor and then run the following command.
+1. `ps -aux | grep bor`. Rufe PID für Bor ab und führe dann den folgenden Befehl aus.
 2. `sudo kill -9 PID`
 
-**For Binaries**:
+**Für Binaries**:
 
-Go to `CS-2003/bor` and then run, `bash stop.sh`
+Gehe auf `CS-2003/bor` und führe dann `bash stop.sh` aus
 
-### 3. Error: Failed to unlock account (0x...) No key for given address or file
+### 3. Fehler: Konto konnte nicht entsperrt werden (0x...) Kein Key für die angegebene Adresse oder Datei vorhanden {#3-error-failed-to-unlock-account-0x-no-key-for-given-address-or-file}
 
-This error occurs because the path for the password.txt file is incorrect. You can follow the below steps to rectify this:
+Dieser Fehler tritt auf, weil der Pfad für die password.txt-Datei falsch ist. Du kannst die folgenden Schritte ausführen, um dies zu korrigieren:
 
-This error occurs because the path for the password.txt and Keystore file is incorrect. You can follow the below steps to rectify this:
+Dieser Fehler tritt auf, weil der Pfad für die password.txt- und die Keystore-Datei falsch ist. Du kannst die folgenden Schritte ausführen, um dies zu korrigieren:
 
-1. Copy the bor keystore file to
+1. Kopiere die Bor Keystore-Datei nach
 
     /etc/bor/dataDir/keystore
 
-2. And password.txt to
+2. Und password.txt nach
 
     /etc/bor/dataDir/
 
-3. Make sure you have added correct address in `/etc/bor/metadata`
+3. Gehe sicher, dass du die korrekte Adresse in `/etc/bor/metadata` hinzugefügt hast
 
-For Binaries:
+Für Binaries:
 
-1. Copy the Bor keystore file to:
+1. Kopiere die Bor Keystore-Datei nach:
 
-    `~/.bor/keystore/`
+`/var/lib/bor/keystore/`
 
-2. And password.txt to
+2. Und password.txt nach
 
-    `~/.bor/password.txt`
+`/var/lib/bor/password.txt`
 
 
-### 4. Error: Wrong Block.Header.AppHash. Expected xxxx
+### 4. Fehler: Wrong Block.Header.AppHash. Erwartet xxxx {#4-error-wrong-block-header-apphash-expected-xxxx}
 
-This error usually occurs when the Heimdall service is stuck on a block; there is no reversal method available on Heimdall.
+Dieser Fehler tritt in der Regel auf, wenn der Heimdall-Dienst auf einem Block festhängt und auf Heimdall keine Aufhebungsmethode verfügbar ist.
 
-To resolve this, you need to reset Heimdall completely:
+Um dies zu beheben, musst du Heimdall vollständig zurücksetzen:
 
 ```bash
     sudo service heimdalld stop
@@ -123,7 +129,7 @@ To resolve this, you need to reset Heimdall completely:
     heimdalld unsafe-reset-all
 ```
 
-After that, you should sync from the snapshot again:
+Danach solltest du ab dem Snapshot erneut synchronisieren:
 
 ```bash
     wget -c <Snapshot URL>
@@ -132,212 +138,213 @@ After that, you should sync from the snapshot again:
 
 ```
 
-Then, start the Heimdall services again.
+Starte dann die Heimdall-Dienste erneut.
 
 
-### 5. From where do I create the API key?
+### 5. Wo kann ich den API-Schlüssel erstellen? {#5-from-where-do-i-create-the-api-key}
 
-You can access this link: [https://infura.io/register](https://infura.io/register) . Make sure that once you have setup your account and project, you copy the API key for Ropsten and not Mainnet.
+Du kannst diesen Link abrufen: [https://infura.io/register](https://infura.io/register). Gehe sicher, dass du den API-Key für Ropsten und nicht für Mainnet kopierst, sobald du dein Konto und dein Projekt eingerichtet hast.
 
-Mainnet is selected by default.
+Mainnet wird standardmäßig ausgewählt.
 
-### 6. Heimdall isn't working. I'm getting a Panic error
+### 6. Heimdall funktioniert nicht. Ich erhalte einen Panic-Fehlermeldung {#6-heimdall-isn-t-working-i-m-getting-a-panic-error}
 
-**Actual Error**: My heimdalld isn’t working. In the log the first line is: panic: Unknown db_backend leveldb, expected either goleveldb or memdb or fsdb
+**Tatsächlicher Fehler**: Mein Heimdall funktioniert nicht. Im Protokoll lautet die erste Zeile: panic: Unknown db_backend leveldb, expected either goleveldb or memdb or fsdb
 
-Change the config to `goleveldb` in config.toml
-
-
-### 7. How do I delete remnants of Heimdall and Bor?
-
-If you want to delete remnants of Heimdall and Bor then you can run the following commands Bor:
-
-For Linux package:
-
-`$ sudo dpkg -i matic-bor`
-
-And delete Bor Directory:
-
-`$ sudo rm -rf /etc/bor`
-
-For Binaries:
-
-`$ sudo rm -rf /etc/bor`
-
-And
-
-`$ sudo rm /etc/heimdall`
+Ändere die Konfiguration in config.toml zu `goleveldb`
 
 
-### 8. How many validators can be active concurrently?
+### 7. Wie kann ich Reste von Heimdall und Bor löschen? {#7-how-do-i-delete-remnants-of-heimdall-and-bor}
 
-There will be upto 100 active validators at a time. We will bring in more participants if the limit is reached mid-way through the event as well. Note that active validators is mostly those whose uptime is high. Participants with high downtime will be forced out.
+Wenn du Reste von Heimdall und Bor löschen möchten, kannst du die folgenden Befehle ausführen Bor:
 
-### 9. How much should I stake?
+Für das Linux-Paket:
 
-"stake-amount" and "heimdall-fee-amount" - how much it should be?
+```$ sudo dpkg -i matic-bor```
 
-A minimum of 10 Matic tokens is required for the stake amount whereas heimdall fee should be greater than 10. For example, your stake amount is 400 then the heimdall fee should be 20. We suggest to keep the Heimdall fee as 20.
+Und Bor-Verzeichnis löschen:
 
-However, please note that the values entered in stake amount and heimdal-fee-amount should be entered in 18 decimals
+```$ sudo rm -rf /etc/bor```
 
-For example, 
+Für Binaries:
+
+```$ sudo rm -rf /etc/bor```
+
+Und
+
+```$ sudo rm /etc/heimdall```
+
+
+### 8. Wie viele Validatoren können gleichzeitig aktiv sein? {#8-how-many-validators-can-be-active-concurrently}
+
+Es wird bis zu 100 aktive Validator auf einmal geben. Wir werden mehr Teilnehmer einbringen, wenn das Limit auch in der Mitte des Events erreicht wird. Beachte, dass aktive Validatoren hauptsächlich diejenigen sind, deren Verfügbarkeit hoch ist. Teilnehmer mit hoher Ausfallzeit werden herausgedrängt.
+
+### 9. Wie viel sollte ich staken? {#9-how-much-should-i-stake}
+
+„stake-amount“ (dt. Staking-Betrag) und „heimdall-fee-amount“ (dt. Höhe der Heimdall-Gebühren) – Wie viel sollten sie betragen?
+
+Es sind mindestens 10 Matic-Token für den Staking-Betrag erforderlich, während die Heimdall-Gebühr mehr als 10 betragen sollte. Wenn dein Stake beispielsweise 400 beträgt, dann sollte die Heimdall-Gebühr 20 betragen. Wir empfehlen, die Heimdall-Gebühr bei 20 zu belassen.
+
+Bitte beachte jedoch, dass die im Staking-Betrag und Heimdall-Gebührenbetrag eingegebenen Werte in 18 Dezimalen eingegeben werden sollten
+
+Zum Beispiel:
 
     heimdallcli stake --staked-amount 400000000000000000000  --fee-amount 1000000000000000000 --validator 0xf8d1127780b89f167cb4578935e89b8ea1de774f
 
 
-### 10. I was selected to become a validator but my ETH address was incorrect. What do I do?
+### 10. Ich wurde ausgewählt, ein Validator zu werden, aber meine ETH-Adresse war falsch. Was kann ich tun? {#10-i-was-selected-to-become-a-validator-but-my-eth-address-was-incorrect-what-do-i-do}
 
-If you have access to the ETH address that you submitted earlier then you can transfer the Test tokens from that account to the current account. And then you can initiate your process of setting up your nodes.
+Wenn du Zugriff auf die ETH-Adresse hast, die du früher eingereicht hast, kannst du die Test-Token von diesem Konto auf das aktuelle Konto übertragen. Und dann kannst du den Einrichtungsablauf deiner Knoten initiieren.
 
-If you don't have access to that ETH address, we won't be transferring you tokens separately. You can  re-register in the form again with the correct ETH address.
+Wenn du keinen Zugriff auf diese ETH-Adresse hast, werden wir dir Token nicht separat übertragen. Du kannst  dich im Formular erneut mit der korrekten ETH-Adresse registrieren.
 
-### 11. I'm getting an error starting the bridge
+### 11. Ich erhalte eine Fehlermeldung, wenn ich die Bridge starte {#11-i-m-getting-an-error-starting-the-bridge}
 
-**Error**: Object "start" is unknown, try "bridge help". Is it still ok to ignore this?
+**Fehler**: Object "start" is unknown, try "bridge help". Kann ich dies auch ignorieren?
 
-Check "which bridge" - if it's `/usr/sbin/bridge` you're not running the right "bridge" program.
+Überprüfe „which bridge“ – Wenn es sich um `/usr/sbin/bridge` handelt, führst du nicht das richtige „Bridge“-Programm aus.
 
-Try `~/go/bin/bridge` instead `(or $GOBIN/bridge)`
+Versuche `~/go/bin/bridge` anstatt `(or $GOBIN/bridge)`
 
 
-### 12. I'm getting dpkg error
+### 12. Ich erhalte eine dpkg-Fehlermeldung {#12-i-m-getting-dpkg-error}
 
-**Error**: "dpkg: error processing archive matic-heimdall_1.0.0_amd64.deb (--install): trying to overwrite '/heimdalld-rest-server.service', which is also in package matic-node 1.0.0"
+**Fehler**: "dpkg: error processing archive matic-heimdall_1.0.0_amd64.deb (--install): trying to overwrite '/heimdalld-rest-server.service', which is also in package matic-node 1.0.0"
 
-This occurs mainly because of a previous installation of Matic on your machine. To resolve you can run:
+Dies geschieht hauptsächlich aufgrund einer vorherigen Installation von Matic auf deinem Computer. Um dies zu beheben, kannst du Folgendes ausführen:
 
 `sudo dpkg -r matic-node`
 
 
-### 13. I'm not clear on which Private Key should I add when I generate validator key
+### 13. Ich bin mir nicht im Klaren, welchen Private Key ich hinzufügen soll, wenn ich einen Validator-Key erstelle. {#13-i-m-not-clear-on-which-private-key-should-i-add-when-i-generate-validator-key}
 
-The Private key to be used is your Wallet's ETH address where your Polygon testnet Tokens are stored. You can complete the setup with one public-private key pair tied to the address submitted on the form.
-
-
-### 14. Is there a way to know if Heimdall is synced?
-
-You can run the following command to check it:
-
-`$ curl [http://localhost:26657/status](http://localhost:26657/status)`
-
-Check the value of catching_up. If it is false then the node is all synced up.
+Der Private Key, der verwendet werden soll, ist die ETH-Adresse deiner Wallet, in der deine Polygon-Testnet-Token gespeichert werden. Du kannst die Einrichtung mit einem Schlüsselpaar aus Public Key und Private Key abschließen, das an die im Formular eingereichte Adresse gebunden ist.
 
 
-### 15. What if someone become a Top 10 staker, how he will receive his MATIC reward at the end?
+### 14. Gibt es eine Möglichkeit, zu wissen, ob Heimdall synchronisiert wurde? {#14-is-there-a-way-to-know-if-heimdall-is-synced}
 
-Stage 1 rewards are not based on stake. Please refer to https://blog.matic.network/counter-stake-stage-1-stake-on-the-beach-full-details-matic-network/ for the reward details. Participants with high stake don't automatically qualify for a reward in this stage.
+Du kannst den folgenden Befehl ausführen, um dies zu überprüfen:
 
+```$ curl [http://localhost:26657/status](http://localhost:26657/status)```
 
-### 16. What should be my heimdall version?
-
-To check your Heimdall version you can simply run:
-
-`heimdalld version`
-
-The correct version of Heimdall for stage 1 should be `heimdalld version is beta-1.1-rc1-213-g2bfd1ac`
+Überprüfe den catching_up - Wert. Wenn er falsch ist, ist der Knoten vollständig synchronisiert.
 
 
-### 17. What values should I add in the stake amount and fee amount?
+### 15. Was ist, wenn jemand ein Top-10-Staker wird? Wie wird er letztendlich seine MATIC-Belohnung erhalten? {#15-what-if-someone-become-a-top-10-staker-how-he-will-receive-his-matic-reward-at-the-end}
 
-A minimum of 10 Matic tokens is required for the stake amount whereas heimdall fee should be greater than 10. For example, your stake amount is 400 then the heimdall fee should be 20. We suggest to keep the Heimdall fee as 20.
-
-However, please note that the values entered in stake amount and heimdal-fee-amount should be entered in 18 decimals
-
-For example, 
-
-    heimdallcli stake --staked-amount 400000000000000000000  --fee-amount 1000000000000000000 --validator 0xf8d1127780b89f167cb4578935e89b8ea1de774f
+Belohnungen der Stufe 1 sind nicht Staking-basiert. Bitte lies https://blog.matic.network/counter-stake-stage-1-stake-on-the-beach-full-details-matic-network/ bezüglich Prämiendetails. Teilnehmer mit einem hohen Stake qualifizieren sich in dieser Stufe nicht automatisch für eine Belohnung.
 
 
-### 18. Whats the difference between `~.heimsdall` and `/etc/heimsdall?`
+### 16. Welche Heimdall-Version sollte ich haben? {#16-what-should-be-my-heimdall-version}
 
-`~/.heimsdall` is the heimdall dir when you use the binary installation method. `/etc/heimdall` is for the Linux package installation method.
+Um deine Heimdall-Version zu überprüfen, kannst du einfach Folgendes ausführen:
+
+```heimdalld version```
+
+Die korrekte Version von Heimdall für Stufe 1 sollte `heimdalld version is beta-1.1-rc1-213-g2bfd1ac` sein
 
 
-### 19. When I make the stake transaction, I'm getting "Gas Exceeded" error
+### 17. Welche Werte sollte ich bei Staking-Betrag und Gebührenbetrag eingeben? {#17-what-values-should-i-add-in-the-stake-amount-and-fee-amount}
 
-This error may occur because of the stake or fee amount format. The values entered during the stake command need to have 18 decimals.
+Es sind mindestens 10 Matic-Token für den Staking-Betrag erforderlich, während die Heimdall-Gebühr mehr als 10 betragen sollte. Wenn dein Stake beispielsweise 400 beträgt, dann sollte die Heimdall-Gebühr 20 betragen. Wir empfehlen, die Heimdall-Gebühr bei 20 zu belassen.
 
-However, please note that the values entered in stake amount and heimdal-fee-amount should be entered in 18 decimals
+Bitte beachte jedoch, dass die im Staking-Betrag und Heimdall-Gebührenbetrag eingegebenen Werte in 18 Dezimalen eingegeben werden sollten
 
-For example, 
+Zum Beispiel:
 
     heimdallcli stake --staked-amount 400000000000000000000  --fee-amount 1000000000000000000 --validator 0xf8d1127780b89f167cb4578935e89b8ea1de774f
 
 
-### 20. When will I get a chance to become a Validator?
+### 18. Was ist der Unterschied zwischen `/var/lib/heimdall` und `/etc/heimdall?`
 
-We are progressively adding validators throughout the course of Stage 1 event. We will be releasing a list of new external validators gradually. This list will be announced on the Discord channel.
+`/var/lib/heimdall` ist die heimdall dir, wenn du die binäre Installationsmethode verwendest. `/etc/heimdall` ist für die Linux-Paketinstallation.
 
 
-### 21. Where can I find Heimdall account info location?
+### 19. Wenn ich die Staking-Transaktion durchführe, erhalte ich die Fehlermeldung „Gas Exceeded“ {#19-when-i-make-the-stake-transaction-i-m-getting-gas-exceeded-error}
 
-For binaries:
+Dieser Fehler kann aufgrund des Staking- oder des Gebührenbetragformates auftreten. Die Werte, die während des Staking-Befehls eingegeben werden, müssen 18 Dezimale aufweisen.
 
-    ~/.heimdalld/config folder
+Bitte beachte jedoch, dass die im Staking-Betrag und Heimdall-Gebührenbetrag eingegebenen Werte in 18 Dezimalen eingegeben werden sollten
 
-For Linux package:
+Zum Beispiel:
+
+    heimdallcli stake --staked-amount 400000000000000000000  --fee-amount 1000000000000000000 --validator 0xf8d1127780b89f167cb4578935e89b8ea1de774f
+
+
+### 20. Wann erhalte ich die Chance, ein Validator zu werden? {#20-when-will-i-get-a-chance-to-become-a-validator}
+
+Wir fügen Validatoren im Verlauf des Stufe-1-Events schrittweise hinzu. Wir werden schrittweise eine Liste neuer externer Validatoren veröffentlichen. Diese Liste wird im Discord-Kanal angekündigt.
+
+
+### 21. Wo kann ich eine Stelle für Infos zum Heimdall-Konto finden? {#21-where-can-i-find-heimdall-account-info-location}
+
+Für Binaries:
+
+    /var/lib/heimdalld/config folder
+
+Für Linux-Paket:
 
     /etc/heimdall/config
 
 
-### 22. Which file do I add the API key in?
+### 22. In welcher Datei füge ich den API-Schlüssel hinzu? {#22-which-file-do-i-add-the-api-key-in}
 
-Once you have created the API key you need to add the API key in `heimdall-config.toml` file.
-
-
-### 23. Which file do I add the persistent_peers?
-
-You can add the persistent_peers in the following file:
-
-    ~/.heimdalld/config/config.toml
+Sobald du den API-Key erstellt hast, musst du den API-Key der `heimdall-config.toml`-Datei hinzufügen.
 
 
-### 24. “Did you reset Tendermint without resetting your application's data?”
+### 23. Welcher Datei füge ich persistent_peers hinzu? {#23-which-file-do-i-add-the-persistent_peers}
 
-In such a case you can reset heimdall config data and try running the installation again.
+Du kannst die persistent_peers in der folgenden Datei hinzufügen:
+
+    /var/lib/heimdalld/config/config.toml
+
+
+### 24. „Hast du Tendermint zurückgesetzt, ohne die Daten deiner Anwendung zurückzusetzen?“ {#24-did-you-reset-tendermint-without-resetting-your-application-s-data}
+
+In einem solchen Fall kannst du Heimdall-Konfigurationsdaten zurücksetzen und die Installation erneut ausführen.
 
     $ heimdalld unsafe-reset-all
     $ rm -rf $HEIMDALLDIR/bridge
 
 
-### 25. Error: Unable to unmarshall config Error 1 error(s) decoding
+### 25. Fehler: Unable to unmarshall config Error 1 error(s) decoding {#25-error-unable-to-unmarshall-config-error-1-error-s-decoding}
 
-Error: `* '' has invalid keys: clerk_polling_interval, matic_token, span_polling_interval, stake_manager_contract, stakinginfo_contract`
+Fehler: `* '' has invalid keys: clerk_polling_interval, matic_token, span_polling_interval, stake_manager_contract, stakinginfo_contract`
 
-This occurs mostly because when there are typos, or some missing parts or an old config file which is still a remnant. You will need to clear all the remnants and then try setting it up again.
+Dies geschieht hauptsächlich dann, wenn es Tippfehler oder einige fehlende Teile oder eine alte Konfigurationsdatei gibt, die noch als Überreste vorliegen. Du musst alle Reste löschen und dann versuchen, es erneut einzurichten.
 
-### 26. To stop Heimdall and Bor services
+### 26. Heimdall- und Bor-Dienste stoppen {#26-to-stop-heimdall-and-bor-services}
 
-**For Linux packages**:
+**Für Linux-Pakete**:
 
-Stop Heimdall: `sudo service heimdalld stop`
+Heimdall stoppen: `sudo service heimdalld stop`
 
-Stop Bor: `sudo service bor stop` or
+Bor stoppen: `sudo service bor stop` oder
 
-1. `ps -aux | grep bor`. Get the PID for Bor and then run the following command.
+1. `ps -aux | grep bor`. Rufe PID für Bor ab und führe dann den folgenden Befehl aus.
 2. `sudo kill -9 PID`
 
-**For Binaries**:
+**Für Binaries**:
 
-Stop Heimdall: `pkill heimdalld`
+Heimdall stoppen: `pkill heimdalld`
 
-Stop Bridge: `pkill heimdalld-bridge`
+Bridge stoppen: `pkill heimdalld-bridge`
 
-Stop Bor: Go to CS-2001/bor and then run, `bash stop.sh`
+Bor stoppen: Gehe zu CS-2001/bor und führe dann `bash stop.sh` aus
 
-### 27. To remove Heimdall and Bor directories
+### 27. Heimdall- und Bor-Verzeichnisse entfernen {#27-to-remove-heimdall-and-bor-directories}
 
-**For Linux packages**: Delete Heimdall: `sudo rm -rf /etc/heimdall/*`
+**Für Linux-Pakete**:
+Heimdall löschen: `sudo rm -rf /etc/heimdall/*`
 
-Delete Bor: `sudo rm -rf /etc/bor/*`
+Bor löschen: `sudo rm -rf /etc/bor/*`
 
-**For Binaries**:
+**Für Binaries**:
 
-Delete Heimdall: `sudo rm -rf ~/.heimdalld/`
+Heimdall löschen: `sudo rm -rf /var/lib/heimdalld/`
 
-Delete Bor: `sudo rm -rf ~/.bor`
+Bor löschen: `sudo rm -rf /var/lib/bor`
 
-### 28. What to do when you get "Wrong Block.Header.AppHash." error
+### 28. Was ist zu tun, wenn du die Fehlermeldung „Wrong Block.Header.AppHash.“ erhältst? {#28-what-to-do-when-you-get-wrong-block-header-apphash-error}
 
-This error usually occurs due to Infura requests getting exhausted. When you setup a node on Polygon, you add an Infura Key to the Config file (Heimdall). By default you are allowed 100k Requests per day, if this limit is crossed, then you would face such problems. To resolve this you can create a new API key and add it to the `config.toml` file.
+Dieser Fehler tritt in der Regel aufgrund von überlasteten Infura-Anfragen auf. Wenn du einen Knoten auf Polygon einrichtest, fügst du der Konfigurationsdatei (Heimdall) einen Infura-Key hinzu. Standardmäßig sind dir Anfragen über 100K pro Tag gestattet. Wird dieses Limit überschritten, würden solche Probleme auftauchen. Um dies zu beheben, kannst du einen neuen API-Schlüssel erstellen und der Datei `config.toml` hinzufügen.

@@ -1,40 +1,42 @@
 ---
 id: how-state-sync-works
-title: How does State Sync work?
-description: Build your next blockchain app on Polygon.
+title: Как работает синхронизация состояний?
+description: "Отправка состояния из цепочки Ethereum в цепочку Bor."
 keywords:
   - docs
   - matic
+  - state sync
+  - working
 image: https://matic.network/banners/matic-network-16x9.png
 ---
 
-State management sends the state from the Ethereum chain to the Bor chain. It is called state-sync.
+# Как работает синхронизация состояний? {#how-does-state-sync-work}
 
-State transfer from Ethereum to Bor happens through system call.
+Управление состоянием отправляет состояние из цепочки Ethereum в цепочку Bor. Он называется **синхронизацией состояния**.
 
-For example, a user deposits USDC to the deposit manager on Ethereum, validators listen to those events and validates and store them in Heimdall state. Bor gets the latest state-sync records and updates the Bor state (mints equal amount of USDC on Bor) using a system call.
+Перевод состояния из Ethereum в Bor происходит через системный вызов. Предположим, пользователь вносит USDC в менеджер депозита в Ethereum. Валидаторы слушают, проверяют эти события и сохраняют их в состоянии Heimdall. Bor получает последние записи синхронизации состояния и обновляет состояние Bor (минтит равное количество USDC на Bor) с помощью системного вызова.
 
-**State sender**
+## Отправитель состояния {#state-sender}
 
-Source: [https://github.com/maticnetwork/contracts/blob/develop/contracts/root/stateSyncer/StateSender.sol](https://github.com/maticnetwork/contracts/blob/develop/contracts/root/stateSyncer/StateSender.sol)
+Источник: [https://github.com/maticnetwork/contracts/blob/develop/contracts/root/stateSyncer/StateSender.sol](https://github.com/maticnetwork/contracts/blob/develop/contracts/root/stateSyncer/StateSender.sol)
 
-To sync state, the contract calls following method **state sender contract** on Ethereum chain.
+Для синхронизации состояния контракт вызывает следующий метод **state sender contract** в цепочке Ethereum.
 
 ```jsx
 contract StateSender {
-    /**
-     * Emits `stateSynced` events to start sync process on Ethereum chain
-     * @param receiver    Target contract on Bor chain
-     * @param data        Data to send
-     */
-    function syncState (
-        address receiver, 
-        bytes calldata data
-    ) external;
+	/**
+	 * Emits `stateSynced` events to start sync process on Ethereum chain
+	 * @param receiver    Target contract on Bor chain
+	 * @param data        Data to send
+	 */
+	function syncState (
+		address receiver,
+		bytes calldata data
+	) external;
 }
 ```
 
-`receiver` contract must be present on the child chain, which receives state `data` once the process is complete. `syncState` emits `StateSynced` event on Ethereum, which is the following:
+Контракт `receiver` должен присутствовать в дочерней цепочке, которая получает состояние `data` после завершения процесса. `syncState` генерирует событие `StateSynced` на Ethereum, которое выглядит следующим образом:
 
 ```jsx
 /**
@@ -44,21 +46,21 @@ contract StateSender {
  * @param data                Data to send to Bor chain for Target contract address
  */
 event StateSynced (
-    uint256 indexed id, 
-    address indexed contractAddress, 
-    bytes data
+	uint256 indexed id,
+	address indexed contractAddress,
+	bytes data
 );
 ```
 
-Once the `StateSynced` event emitted on the `stateSender` contract on the Ethereum chain, Heimdall listens to those events and adds to the Heimdall state after 2/3+ validators agree on the.
+Как только событие `StateSynced` генерируется в контракте `stateSender` в цепочке Ethereum, Heimdall прослушивает эти события и добавляет в состояние Heimdall после получения подтверждения от 2/3+ валидаторов.
 
-After every sprint (currently 64 blocks on Bor), Bor fetches new state-sync record and updates the state using a `system` call. Here is the code for the same: [https://github.com/maticnetwork/bor/blob/6f0f08daecaebbff44cf18bee558fc3796d41832/consensus/bor/genesis_contracts_client.go#L51](https://github.com/maticnetwork/bor/blob/6f0f08daecaebbff44cf18bee558fc3796d41832/consensus/bor/genesis_contracts_client.go#L51)
+После каждого спринта (в настоящее время 64 блока на Bor) Bor извлекает новую запись синхронизации состояния и обновляет состояние с помощью `system` вызова. Пример кода: [https://github.com/maticnetwork/bor/blob/6f0f08daecaebbff44cf18bee558fc3796d41832/consensus/bor/genesis_contracts_client.go#L51](https://github.com/maticnetwork/bor/blob/6f0f08daecaebbff44cf18bee558fc3796d41832/consensus/bor/genesis_contracts_client.go#L51)
 
-During `commitState`, Bor executes `onStateReceive`, with `stateId` and `data` as args, on target contract.
+В течение `commitState` Bor выполняет `onStateReceive`, с `stateId` и `data` в качестве аргументов по целевому контракту.
 
-**State receiver interface on Bor**
+## Интерфейс получателя состояния в Bor {#state-receiver-interface-on-bor}
 
-`receiver` contract on Bor chain must implement following interface.
+`receiver` контракт в цепочке Bor должен реализовывать следующий интерфейс.
 
 ```jsx
 // IStateReceiver represents interface to receive state
@@ -67,22 +69,22 @@ interface IStateReceiver {
 }
 ```
 
-Only `0x0000000000000000000000000000000000001001` — `StateReceiver.sol`, must be allowed to call `onStateReceive` function on target contract.
+Только `0x0000000000000000000000000000000000001001` — `StateReceiver.sol` должно быть разрешено вызывать функцию `onStateReceive` в целевом контракте.
 
-## System call
+## Системный вызов {#system-call}
 
-Only system address, `2^160-2`, allows making a system call. Bor calls it internally with the system address as `msg.sender`. It changes the contract state and updates the state root for a particular block. Inspired from [https://github.com/ethereum/EIPs/blob/master/EIPS/eip-210.md](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-210.md) and [https://wiki.parity.io/Validator-Set#contracts](https://wiki.parity.io/Validator-Set#contracts)
+Только системный адрес `2^160-2` позволяет выполнять системный вызов. Bor вызывает его внутри системы с системным адресом `msg.sender`. Он изменяет состояние контракта и обновляет корень состояния для определенного блока. На основе [https://github.com/ethereum/EIPs/blob/master/EIPS/eip-210.md](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-210.md) и [https://wiki.parity.io/Validator-Set#contracts](https://wiki.parity.io/Validator-Set#contracts)
 
-System call is helpful to change state to contract without making any transaction.
+Системный вызов полезен для изменения состояния контракта без совершения какой-либо транзакции.
 
-### State-sync logs and Bor Block Receipt
+## Журналы синхронизации состояния и получение блока Bor {#state-sync-logs-and-bor-block-receipt}
 
-Events emitted by system calls are handled in a different way than normal logs. Here is code: [https://github.com/maticnetwork/bor/pull/90](https://github.com/maticnetwork/bor/pull/90)
+События, создаваемые системными вызовами, обрабатываются иначе, чем обычные журналы. Вот код: [https://github.com/maticnetwork/bor/pull/90](https://github.com/maticnetwork/bor/pull/90).
 
-Bor produces a new tx/receipt just for the client and includes all logs for state-sync in it. Tx hash is derived from block number and block hash (last block at that sprint):
+Bor производит новый tx/квитанция только для клиента, который включает все журналы для синхронизации состояний. Хэш Tx получается из номера блока и хэша блока (последний блок в этом спринте):
 
 ```jsx
 keccak256("matic-bor-receipt-" + block number + block hash)
 ```
 
-This doesn't change any consensus logic, only client changes. `eth_getBlockByNumber` , `eth_getTransactionReceipt`  and `eth_getLogs` include state-sync logs with derived. Note that the bloom filter on the block doesn't include inclusion for state-sync logs. It also doesn't include derived tx in `transactionRoot` or `receiptRoot`
+Это не изменяет никакой логики консенсуса, меняется только клиент. `eth_getBlockByNumber``eth_getTransactionReceipt`, и `eth_getLogs`включает журналы синхронизации состояний с производными. Обратите внимание, что фильтр Блума в блоке не включает в себя журналы синхронизации состояний. Он также не включает derived tx в `transactionRoot`или .`receiptRoot`

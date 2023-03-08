@@ -1,62 +1,58 @@
 ---
 id: network-agnostics
-title: Network Agnostic Transactions
+title: Netzwerkunabhängige Transaktionen
 sidebar_label: Network Agnostic Transactions
-description: Build your next blockchain app on Matic.
+description: "Netzwerkunabhängige Transaktionen in deine dApp integrieren."
 keywords:
   - docs
   - matic
 image: https://matic.network/banners/matic-network-16x9.png
 ---
 
-## Goal
+## Ziel {#goal}
 
-Execute transactions on Polygon chain, without changing provider on MetaMask (this tutorial caters to metamask's inpage provider, can be modified to execute transactions from any other provider)
+Transaktionen in der Polygon-Chain auszuführen, ohne den Anbieter auf Metamask zu ändern (dieser Leitfaden handelt vom Inpage-Anbieter von Metamask und kann geändert werden, um Transaktionen von jedem anderen Anbieter auszuführen)
 
-Under the hood, user signs on an intent to execute a transaction, which is relayed by a simple relayer to execute it on a contract deployed on Polygon chain.
+Im Hintergrund signiert der Benutzer die Absichtserklärung, eine Transaktion auszuführen, die von einem einfachen Relayer weitergeleitet wird, um sie auf einem Vertrag in der Polygon-Chain auszuführen.
 
----
 
-- 📺**Demo:** [https://www.youtube.com/watch?v=ETvnnZGQDDc&feature=youtu.be](https://www.youtube.com/watch?v=ETvnnZGQDDc&feature=youtu.be)
-- 📺**ETHOnline demo**: [https://youtu.be/5tKzMcflOcY?t=1431](https://youtu.be/5tKzMcflOcY?t=1431)
-- 👩🏻‍💻**Code**: [https://github.com/angelagilhotra/ETHOnline-Workshop/tree/master/2-network-agnostic-transfer](https://github.com/angelagilhotra/ETHOnline-Workshop/tree/master/2-network-agnostic-transfer)
-- 📄**Helper doc for ETHOnline:** [Build on Matic: [Helper Doc]](https://www.notion.so/Build-on-Matic-Helper-Doc-60650299256f4c1c9e90bae365cbd88e)
+## Was ermöglicht die Ausführung von Transaktionen? {#what-is-enabling-transaction-execution}
 
-## What is enabling transaction execution?
+Der Client, mit dem der Benutzer interagiert (Webbrowsesr, mobile Apps etc.), interagiert niemals mit der Blockchain, sondern mit einem einfachen Relayer-Server (oder einem Relayer-Netzwerk). Das funktioniert ähnlich wie ein GSN oder eine Meta-Transaktionslösung (siehe: [Meta-Transaktionen: Eine Einführung](https://www.notion.so/Meta-Transactions-An-Introduction-8f54cf75321e4ec3b6d755e18e406590)).
 
-The client that the user interacts with (web browser, mobile apps, etc) never interacts with the blockchain, instead it interacts with a simple relayer server (or a network of relayers), similar to the way GSN or any meta-transaction solution works ( see: [Meta Transactions: An Introduction](https://www.notion.so/Meta-Transactions-An-Introduction-8f54cf75321e4ec3b6d755e18e406590)).
+Für jede Aktion, die eine Blockchain-Interaktion erfordert,
 
-For any action that requires blockchain interaction,
+- fordert der Client eine EIP712-formatierte Signatur vom Benutzer an.
+- Die Signatur wird an einen einfachen Relayer gesendet (Sie sollte einen einfachen Auth/Spam-Schutz haben, falls sie für die Produktion verwendet wird. Alternativ kann der Mexa-SDK von Biconomy verwendet werden: [https://github.com/bcnmy/mexa-sdk](https://github.com/bcnmy/mexa-sdk))
+- Der Relayer interagiert mit der Blockchain, um die Unterschrift des Benutzers an den Vertrag zu übermitteln. Eine Funktion im Vertrag namens `executeMetaTransaction` verarbeitet die Signatur und führt die angeforderte Transaktion (über einen internen Aufruf) aus.
+- Der Relayer bezahlt für das Gas, wodurch die Transaktion effektiv kostenlos ist 🤑
 
-- Client requests an EIP712 formatted signature from the user
-- The signature is sent to a simple relayer server (should have a simple auth/spam protection if used for production, or biconomy's mexa sdk can be used: [https://github.com/bcnmy/mexa-sdk](https://github.com/bcnmy/mexa-sdk))
-- The relayer interacts with the blockchain to submit user's signature to the contract. A function on the contract called `executeMetaTransaction` processes the signature and executes the requested transaction (via an internal call).
-- The relayer pays for the gas making the transaction effectively free 🤑
+## Netzwerkunabhängige Transaktionen in deine dApp integrieren {#integrate-network-agnostic-transactions-in-your-dapp}
 
-## Integrate Network Agnostic Transactions in your dApp
+- Wähle aus einem benutzerdefinierten, einfachen Relayer-Knoten/Biconomy.
 
-- Choose between a custom simple relayer node/biconomy.
+  - Richte für Biconomy eine dApp über das Dashboard ein und speichere die API-ID und den API-Schlüssel, siehe: [Leitfaden](https://www.notion.so/Tutorial-Biconomy-7f578bfb4e7d4904b8c79522085ba568): Biconomy oder [https://docs.biconomy.io/](https://docs.biconomy.io/)
 
-  - For biconomy, setup a dapp from the dashboard and save the api-id and api-key, see: [Tutorial: Biconomy](https://www.notion.so/Tutorial-Biconomy-7f578bfb4e7d4904b8c79522085ba568) or [https://docs.biconomy.io/](https://docs.biconomy.io/)
+  **Schritte:**
 
-    **Steps:**
+    1. Registrieren wir unsere Verträge für das Biconomy-Dashboard
+       1. Lies die [offiziellen Dokumente von Biconomy](https://docs.biconomy.io/biconomy-dashboard).
+       2. Wähle während der Registrierung der dApp `Polygon Mumbai`
+    2. Kopiere die im Frontend zu verwendende `API key`
+    3. Füge die Funktion `executeMetaTransaction` in Manage-Api hinzu und stelle sicher, dass du Meta-tx aktivierst. (Sieh dir die „native-metatx“-Option an)
 
-    1. Let's Register our contracts to biconomy dashboard
-       1. Visit the [official documents of biconomy](https://docs.biconomy.io/biconomy-dashboard).
-       2. While registering the dapp, select `Polygon Mumbai`
-    2. Copy the`API key` to use in frontend
-    3. And Add function `executeMetaTransaction` in Manage-Api and make sure to enable meta-tx. (Check 'native-metatx' option)
+  - Wenn du deine eigene benutzerdefinierte API verwenden möchtest, die signierte Transaktionen auf der Blockchain sendet, kannst du den Servercode hier verweisen: [https://github.com/angelagilhotra/ETHOnline-Workshop/tree/master/2-network-agnostic-transfer](https://github.com/angelagilhotra/ETHOnline-Workshop/tree/master/2-network-agnostic-transfer)
 
-  - If you'd like to use your own custom API that sends signed transactions on the blockchain, you can refer to the server code here: [https://github.com/angelagilhotra/ETHOnline-Workshop/tree/master/2-network-agnostic-transfer](https://github.com/angelagilhotra/ETHOnline-Workshop/tree/master/2-network-agnostic-transfer)
-
-- Make sure that the contract you'd like to interact with inherits from `NativeMetaTransactions` - 👀 peep into `executeMetaTransaction` function in the contract.
+- Stelle sicher, dass der Vertrag, mit dem du interagieren möchtest, von `NativeMetaTransactions` geerbt wird - 👀 sieh dir die `executeMetaTransaction`-Funktion im Vertrag an.
 - Link: [https://github.com/maticnetwork/pos-portal/blob/34be03cfd227c25b49c5791ffba6a4ffc9b76036/flat/ChildERC20.sol#L1338](https://github.com/maticnetwork/pos-portal/blob/34be03cfd227c25b49c5791ffba6a4ffc9b76036/flat/ChildERC20.sol#L1338)
+
+
 
 ```jsx
 
 let data = await web3.eth.abi.encodeFunctionCall({
-    name: 'getNonce', 
-    type: 'function', 
+    name: 'getNonce',
+    type: 'function',
     inputs: [{
         name: "user",
         type: "address"
@@ -81,16 +77,16 @@ let data = await web3.eth.abi.encodeFunctionCall({
   const msgParams = [accounts[0], JSON.stringify(dataToSign)];
 
   let sig = await eth.request ({
-    method: 'eth_signTypedData_v3', 
+    method: 'eth_signTypedData_v3',
     params: msgParams
   });
 
   ```
 
 
-- Once you have a relayer and the contracts setup, what is required is for the client to be able to fetch an EIP712 formatted signature and simply call the API with the required parameters
+- Sobald du einen Relayer und die Verträge eingerichtet hast, muss der Client eine EIP712-formatierte Signatur abrufen und die API mit den erforderlichen Parametern aufrufen können
 
-    ref: [https://github.com/angelagilhotra/ETHOnline-Workshop/blob/6b615b8a4ef00553c17729c721572529303c8e1b/2-network-agnostic-transfer/sign.js#L47](https://github.com/angelagilhotra/ETHOnline-Workshop/blob/6b615b8a4ef00553c17729c721572529303c8e1b/2-network-agnostic-transfer/sign.js#L47)
+ref: http[s://github.com/angelagilhotra/ETHOnline-Workshop/blob/6b615b8a4ef00553c17729c721572529303c8e1b/2-network-agnostic-transfer/sign.js#L47](https://github.com/angelagilhotra/ETHOnline-Workshop/blob/6b615b8a4ef00553c17729c721572529303c8e1b/2-network-agnostic-transfer/sign.js#L47)
 
     ```jsx
 
@@ -125,7 +121,7 @@ let data = await web3.eth.abi.encodeFunctionCall({
       });
     ```
 
-    Calling the API, ref: [https://github.com/angelagilhotra/ETHOnline-Workshop/blob/6b615b8a4ef00553c17729c721572529303c8e1b/2-network-agnostic-transfer/sign.js#L110](https://github.com/angelagilhotra/ETHOnline-Workshop/blob/6b615b8a4ef00553c17729c721572529303c8e1b/2-network-agnostic-transfer/sign.js#L110)
+Aufruf der API, ref: [https://github.com/angelagilhotra/ETHOnline-Workshop/blob/6b615b8a4ef00553c17729c721572529303c8e1b/2-network-agnostic-transfer/sign.js#L110](https://github.com/angelagilhotra/ETHOnline-Workshop/blob/6b615b8a4ef00553c17729c721572529303c8e1b/2-network-agnostic-transfer/sign.js#L110)
 
     ```jsx
     const response = await request.post(
@@ -143,7 +139,7 @@ let data = await web3.eth.abi.encodeFunctionCall({
       )
     ```
 
-    If using Biconomy, the following should be called:
+    Wenn du Biconomy verwendest, sollte Folgendes aufgerufen werden:
 
     ```jsx
     const response = await request.post(
@@ -161,7 +157,7 @@ let data = await web3.eth.abi.encodeFunctionCall({
       )
     ```
 
-    where the `txObj` should look something like:
+    wo die `txObj` ungefähr so aussehen soll:
 
     ```json
     {
@@ -178,9 +174,9 @@ let data = await web3.eth.abi.encodeFunctionCall({
     }
     ```
 
-- If you use the custom API it executes the `executeMetaTransaction` function on the contract:
+- Wenn du die benutzerdefinierte API verwendest, führt sie die `executeMetaTransaction`-Funktion im Vertrag aus:
 
-    (ref: [https://github.com/angelagilhotra/ETHOnline-Workshop/blob/6b615b8a4ef00553c17729c721572529303c8e1b/2-network-agnostic-transfer/server/index.js#L40](https://github.com/angelagilhotra/ETHOnline-Workshop/blob/6b615b8a4ef00553c17729c721572529303c8e1b/2-network-agnostic-transfer/server/index.js#L40))
+(ref: http[s://github.com/angelagilhotra/ETHOnline-Workshop/blob/6b615b8a4ef00553c17729c721572529303c8e1b/2-network-agnostic-transfer/server/index.js#L40)](https://github.com/angelagilhotra/ETHOnline-Workshop/blob/6b615b8a4ef00553c17729c721572529303c8e1b/2-network-agnostic-transfer/server/index.js#L40)
 
     ```jsx
     try {
@@ -197,7 +193,7 @@ let data = await web3.eth.abi.encodeFunctionCall({
       }
     ```
 
-    is using biconomy, the client side call looks like:
+    verwendet Biconomy, der Aufruf der Client-Seite sieht wie folgt aus:
 
     ```jsx
     // client/src/App.js
@@ -212,7 +208,7 @@ let data = await web3.eth.abi.encodeFunctionCall({
         })
         .onEvent(biconomy.ERROR, (error, message) => {
           // Handle error while initializing mexa
-                console.error(error);
+    			console.error(error);
         });
 
     /**

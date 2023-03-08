@@ -1,30 +1,32 @@
 ---
 id: checkpoint-mechanism
-title: Checkpoint Mechanism
+title: Mécanisme de point de contrôle
 sidebar_label: Checkpoints
-description: "Checkpointing the system state to the Ethereum mainnet."
+description: Vérifier l'état du système vers le réseau principal Ethereum
 keywords:
   - docs
   - matic
   - polygon
   - checkpoint
+  - ethereum
+  - mainnet
 slug: checkpoint-mechanism
-image: https://matic.network/banners/matic-network-16x9.png
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
-:::info Polygon is not a Layer 1 platform
+:::info Polygon n'est pas une plate-forme de couche 1
 
-Polygon depends on the Ethereum Mainnet as its Layer 1 Settlement Layer. All staking mechanics need to be in sync with the contracts on the Ethereum mainnet.
+Polygon dépend du réseau principal Ethereum comme sa couche de règlement de couche 1. Tous les mécanismes de staking doivent être synchronisés avec les contrats du réseau principal d'Ethereum.
 
 :::
 
-[Proposers](../../glossary#proposer) for a checkpoint are initially selected via Tendermint’s weighted [round-robin algorithm](https://docs.tendermint.com/master/spec/consensus/proposer-selection.html). A further custom check is implemented based on the checkpoint submission success. This allows the Polygon system to decouple with Tendermint proposer selection and provides Polygon with the abilities like selecting a proposer only when the checkpoint transaction on the Ethereum mainnet succeeds or submitting a checkpoint transaction for the blocks belonging to previous failed checkpoints.
+[Les candidats](/docs/maintain/glossary.md#proposer) pour un point de contrôle sont initialement sélectionnés via [l'algorithme round-robin pondéré de Tendermint](https://docs.tendermint.com/master/spec/consensus/proposer-selection.html). Un autre contrôle personnalisé est effectué en fonction du succès de l'ajout du point de contrôle. Cela permet au système Polygon de se découpler de la sélection des proposants de Tendermint et offre à Polygon la possibilité de sélectionner un proposant en cas de réussite de la transaction de point de contrôle sur le réseau principal d'Ethereum uniquement, ou de proposer une transaction de point de contrôle pour les blocs appartenant aux points de contrôle précédents qui ont échoué.
 
-Successfully submitting a checkpoint on Tendermint is a 2-phase commit process:
+La réussite de la soumission d'un point de contrôle sur Tendermint est un processus de validation en deux phases :
 
-* A proposer, selected via the round-robin algorithm, sends a checkpoint with the proposer's address and the Merkle hash in the proposer field.
-* All other proposers validate the data in the proposer field before adding the Merkle hash in their state.
+* Un proposant, sélectionné par l'algorithme round-robin, envoie un point de contrôle avec l'adresse du proposant et le hachage de Merkle dans le champ de celui-ci.
+* Tous les autres proposants valident les données dans le champ du proposant avant d'ajouter le hachage de Merkle dans leur état.
 
-The next proposer then sends an acknowledgment transaction to prove that the previous [checkpoint transaction](../../glossary#checkpoint-transaction) has succeeded on the Ethereum mainnet. Every validator set change is relayed by the validator nodes on [Heimdall](../../glossary#heimdall) which is embedded onto the validator node. This allows Heimdall to remain in sync with the Polygon contract state on the Ethereum mainnet at all times.
+Le proposant suivant envoie alors une transaction d'accusé de réception pour confirmer que la [transaction de point de contrôle](/docs/maintain/glossary.md#checkpoint-transaction) précédente a réussi sur le réseau principal d'Ethereum. Chaque changement d'ensemble de validateurs est relayé par les nœuds de validation sur [Heimdall](/docs/maintain/glossary.md#heimdall), qui s'intègre au nœud de validation. Cela permet à Heimdall de rester à tout moment en phase avec l'état du contrat Polygon sur le réseau principal d'Ethereum.
 
-The Polygon contract deployed on the Ethereum mainnet is considered to be the ultimate source of truth, and therefore all validation is done via querying the Ethereum mainnet contract.
+Le contrat Polygon déployé sur le réseau principal d'Ethereum est considéré comme la source ultime de vérité et, par conséquent, toute validation est effectuée en interrogeant le contrat du réseau principal d'Ethereum.

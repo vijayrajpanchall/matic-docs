@@ -1,151 +1,160 @@
 ---
 id: bor
-title: Bor architecture
-description: Build your next blockchain app on Polygon.
+title: Architecture de Bor
+description: Le rôle Bor dans l'architecture Polygon
 keywords:
   - docs
   - matic
+  - Bor Architecture
+  - polygon
 image: https://matic.network/banners/matic-network-16x9.png
 ---
-
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-Polygon is a hybrid Plasma + Proof-of-Stake (PoS) platform. We use a dual-consensus architecture on the Polygon Network to optimise for speed and decentralisation. We consciously architected the system to support arbitrary state transitions on our sidechains, which are EVM-enabled.
+# Architecture de Bor {#bor-architecture}
 
-## Architecture
+Polygon est une plateforme plasma hybride **+ preuve de prise** (PoS). Nous utilisons une architecture à double consensus sur le Réseau de Polygon pour optimiser la vitesse et la décentralisation. Nous avons consciemment conçu le système pour supporter les transitions d'état arbitraires sur nos chaînes latérales, qui sont autorisées par EVM.
 
-<img src={useBaseUrl("img/Bor/matic_structure.png")} />
+## Architecture {#architecture}
 
-A blockchain is a set of network clients interacting and working together. The client is a piece of software capable of establishing a p2p communication channel with other clients, signing and broadcasting transactions, deploying and interacting with smart contracts, etc. The client is often referred to as a node.
+<img src={useBaseUrl("img/Bor/matic_structure.png")}/>
 
-For Polygon, The node is designed with a two layer implementation Heimdall(Validator Layer) and Bor(Block Producer Layer).
+Blockchain est un ensemble de réseau de clients interagissant et travaillant ensemble. Le client est un logiciel capable d'établir un canal de communication p2p avec d'autres clients, de signer et de diffuser des transactions, de déployer et d'interagir avec des contrats intelligents, etc. Le client est souvent désigné comme un nœud.
+
+Pour Polygon, le nœud est conçu avec une implémentation Heimdall (couche de validation) à deux couches et (Validator de producteurs Bloc).
 
 1. Heimdall
-    - Proof-of-Stake verification
-    - Checkpointing blocks on Ethereum main chain
-    - Validator and Rewards Management
-    - Ensuring Sync with Ethereum main chain
-    - Decentralised Bridge
+    - Vérification de la Preuve d'Enjeu
+    - Faire le point de contrôle des blocs sur la chaîne principale Ethereum.
+    - Gestion du Validateur et des Récompenses
+    - Assurer la Synchronisation avec la chaîne principale d'Ethereum
+    - Pont Décentralisé
 2. Bor
-    - Polygon Chain
-    - EVM Compatible VM
-    - Proposers and Producer set selection
+    - Chaîne de Polygon
+    - VM Compatible avec EVM
+    - Sélection Définie des Proposants et du Producteur
     - SystemCall
-    - Fee Model
+    - Frais du Modèle
 
-## Heimdall(Validator layer)
+## Heimdall (couche de validateur) {#heimdall-validator-layer}
 
-Heimdall (“the All-Protector) is the purveyor of all that happens in the Polygon Proof-of-Stake system – good or bad.
+Heimdall (le All-Protector) est le fournisseur de tout ce qui se passe dans le système Polygon Proof-of-Stake – bon ou mauvais.
 
-Heimdall is our Proof-of-Stake Verifier layer, which is responsible for checkpointing a representation of the Plasma blocks to the main chain in our architecture. We have implemented this by building on top of the Tendermint consensus engine with changes to the signature scheme and various data structures. For more information, please read [https://blog.matic.network/heimdall-and-bor-matic-validator-and-block-production-layers/](https://blog.matic.network/heimdall-and-bor-matic-validator-and-block-production-layers/).
+Heimdall est notre couche de Vérification de la Preuve d'Enjeu de Polygon, qui est responsable du point de contrôle d'une représentation des blocs de Plasma vers la chaîne principale dans notre architecture. Nous l'avons mis en œuvre en nous appuyant sur le moteur du consensus de Tendermint, en modifiant le schéma de signature et de diverses structures de données.
 
-## **Bor (Block Producer layer)**
+Pour plus d'informations, veuillez lire [https://blog.matic.network/heimdall-and-bor-matic-validator-and-block-production-layers/](https://blog.matic.network/heimdall-and-bor-matic-validator-and-block-production-layers/) .
 
-The Bor node implementation is basically the sidechain operator. The sidechain VM is EVM-compatible. Currently, it is a basic Geth implementation with custom changes done to the consensus algorithm. However, this will be built from the ground up to make it lightweight and focused.
+## Bor (couche de Producteur de Blocs) {#bor-block-producer-layer}
 
-Bor is our Block producer layer, which in sync with Heimdall selects the producers and verifiers for each span and sprint. Interaction for the users of Polygon take place on this sidechain, which is EVM compatible to avail the functionality and compatibility of Ethereum developer tooling and applications.
+La mise en oeuvre du noeud de Bor est fondamentalement l'opérateur de la chaîne latérale. La chaîne latérale VM est compatible avec l'EVM. Actuellement, il s'agit d'une mise en œuvre de base de Geth avec des modifications personnalisées faites à l'algorithme de consensus. Cependant, pour être léger et ciblé, ce sera construit à partir de zéro.
 
-### Polygon Chain
+Bor est notre couche producteur de Blocs, qui en synchronisation avec Heimdall sélectionne les producteurs et les vérificateurs pour chaque durée et sprint. L'interaction pour les utilisateurs de Polygon prend place sur cette chaîne latérale, qui est compatible avec EVM pour se servir de la fonctionnalité et de la compatibilité de l'outillage du développeur et des applications d'Ethereum.
 
-This chain is a separate blockchain that is attached to Ethereum using a two-way peg. The two-way peg enables interchangeability of assets between the Ethereum and Polygon.
+### Chaîne de Polygon {#polygon-chain}
 
-### EVM Compatible VM
+Cette chaîne est une blockchain séparée qui est attachée à l'Ethereum à l'aide d'une pince bidirectionnel. La pince bidirectionnelle permet l'interchangeabilité des actifs entre Ethereum et Polygon.
 
-The Ethereum Virtual Machine (EVM) is a powerful, sandboxed virtual stack embedded within each full Polygon node, responsible for executing contract bytecode. Contracts are typically written in higher level languages, like Solidity, then compiled to EVM bytecode.
+### VM Compatible avec EVM {#evm-compatible-vm}
 
-### Proposers and Producers Selection
+La Machine Virtuelle d'Ethereum (EVM) est une pile virtuelle puissante, et de Sandbox intégrée dans chaque noeud de Polygon complet, responsable pour exécuter un contrat de bytecode. Les contrats sont généralement écrits dans des langues de niveau supérieur, comme Solidity, puis compilés sur le code bytecode d'EVM.
 
-Block Producers for the Bor layer are a committee selected from the Validator pool on the basis of their stake, which happens at regular intervals and is shuffled periodically. These intervals are decided by the Validator's governance with regards to dynasty and network.
+### Sélection des Proposants et des Producteurs {#proposers-and-producers-selection}
 
-Ratio of Stake/Staking power specifies the probability to be selected as a member of the block producer committee.
+Les Producteurs de Bloc pour la couche de Bor sont un comité sélectionné parmi le Validateur du pool sur la base de leur stake, ce qui se produit à des intervalles réguliers et qui est mélangé périodiquement. Ces intervalles sont décidés par la gouvernance du Validateur par rapport à la dynastie et au réseau.
+
+Le ratio de la puissance de Stake/Staking spécifie la probabilité d'être sélectionné en tant que membre du comité de producteur de bloc.
 
 <img src={useBaseUrl("img/Bor/bor-span.png")} />
 
-#### Selection Process
+#### Processus de Sélection {#selection-process}
 
-- Let's suppose we have 3 validators in pool, and they are Alice, Bill and Clara.
-- Alice staked 100 Matic tokens whereas Bill and Clara staked 40 Matic tokens.
-- Validators are given slots according to the stake, as Alice has 100 Matic tokens staked, she will get slots proportionally. Alice will get 5 slots in total. Similarly, Bill and Clara get 2 slots in total.
-- All the validators are given these slots [ A, A, A, A, A, B, B, C, C ]
-- Using historical Ethereum block data as seed, we shuffle this array.
-- After shuffling the slots using the seed, say we get this array [ A, B, A, A, C, B, A, A, C]
-- Now depending on Producer count*(maintained by validator's governance)*, we pop validators from the top. For e.g. if we want to select 5 producers we get the producer set as [ A, B, A, A, C]
-- Hence the producer set for the next span is defined as [ A: 3, B:1, C:1 ].
-- Using this validator set and tendermint's proposer selection algorithm we choose a producer for every sprint on BOR.
+- Supposons que nous avons 3 validateurs dans le pool, et ils sont Alice, Bill et Clara.
+- Alice a fait un stake de 100 jetons Matic alors que Bill et Clara ont fait un stake de 40 jetons Matic.
+- Les Validateurs ont des périodes de temps selon le stake, puisque Alice a fait un stake de 100 jetons Matic, elle aura des périodes de temps de façon proportionnelle. Alice recevra 5 périodes de temps au total. De même, Bill et Clara obtiennent 2 périodes de temps au total.
+- Tous les validateurs reçoivent ces périodes de temps [A, A, A, A, A, B, B, C, C]
+- En utilisant les données de bloc Ethereum historiques comme une semence, nous mélangeons ce tableau.
+- Après avoir mélangé les périodes de temps à l'aide de la semence, mettons que nous obtenons ce tableau [A, B, A, A, C, B, A, A, C]
+- Maintenant, selon le nombre* de Producteur (maintenu par la gouvernance du validateur)*, nous faisons le point d'achats des validateurs du haut de la page. Pour par exemple si nous voulons sélectionner 5 producteurs, nous obtenons le producteur sous la forme de [A, B, A, A, C]
+- Ainsi, le producteur désigné pour la prochaine durée est définie comme: [A: 3, B:1, C:1].
+- En utilisant cette définition du validateur et cet algorithme de sélection du proposant tendermint, nous choisissons un producteur pour chaque sprint sur BOR.
 
-### SystemCall Interface
+### Interface de SystemCall {#systemcall-interface}
 
-System call is an internal operator address which is under EVM. This helps to maintain the state for Block Producers for every sprint. A System Call is triggered towards the end of a sprint and a request is made for the new list of Block Producers. Once the state is updated, changes are received after block generation on Bor to all the Validators.
+L'appel de système est une adresse d'opérateur interne qui est sous EVM. Cela aide à maintenir l'état pour un Bloc de Producteurs pour chaque sprint. Un Appel de Système est déclenché vers la fin d'un sprint et une demande est faite pour la nouvelle liste de Producteurs de Bloc. Une fois que l'état est mis à jour, les modifications sont reçues après la génération de bloc sur Bor pour tous les Validateurs.
 
-#### **Functions:**
+### fonctions {#functions}
 
-#### `proposeState`
+#### proposeState {#proposestate}
 
-- Call is only allowed to validators.
-- Inspect `stateId` if it is already proposed or committed.
-- Propose the `stateId` and update the flag to `true`.
+- L'Appel est autorisé uniquement aux validateurs.
+- Inspectez `stateId`si c'est déjà proposée ou éffectuée.
+- Proposez le `stateId` et mettez à jour le drapeau sur `true`.
 
-#### `commitState`
+#### commitState {#commitstate}
 
-- Call is only allowed to System.
-- Inspect `stateId` if it is already proposed or committed.
-- Notify `StateReceiver` Contract with new `stateId`.
-- Update the `state` flag to `true`, And `remove` the `proposedState`.
+- Un appel est uniquement autorisé au Système.
+- Inspectez `stateId`si c'est déjà proposée ou éffectuée.
+- Notifiez le `StateReceiver` Contrat avec le nouveau `stateId`.
+- Mettre à jour le `state`drapeau pour `true`, Et `remove` le `proposedState`.
 
-#### `proposeSpan`
+#### proposeSpan {#proposespan}
 
-- Call is only allowed to validators.
-- Check if the Span proposal is `pending`.
-- Update the Span Proposal to `true`
+- L'Appel est autorisé uniquement aux validateurs.
+- Vérifiez si la proposition de Durée est `pending`.
+- Mettre à jour la Proposition de Durée en `true`
 
-#### `proposeCommit`
+#### proposeCommit {#proposecommit}
 
-- Call is only allowed to System.
-- Set `initial validators` if current span is zero.
-- Check Conditions for `spanId` and `time_period` of Sprint and Span.
-- Update the new `span` and `time_period`.
-- Set `validators` and `blockProducers` for the `sprint`.
-- Update the flag for `spanProposal` to `true`.
+- Un appel est uniquement autorisé au Système.
+- Définissez `initial validators` si durée actuelle est zéro.
+- Vérifiez des Conditions pour `spanId` et `time_period` de Sprint et de Durée.
+- Mettre à jour le nouveau `span` et `time_period`.
+- Définir `validators` et `blockProducers` pour le `sprint`.
+- Mettre à jour le drapeau pour `spanProposal` sur `true`.
 
-### Bor Fee Model
+### Modèle des Frais de Bor {#bor-fee-model}
 
-For normal transaction, fees in Matic token gets collected and distributed to block producers, similar to Ethereum transactions.
+Pour une transaction normale, les frais dans le jeton Matic sont collectés et distribués vers les producteurs de bloc, de même pour les transactions Ethereum.
 
-Like other blockchains, Polygon has a native token called Matic(MATIC). MATIC is an ERC20 token used primarily for paying gas(transaction fees) on Polygon and staking.
+Comme les autres blockchains, Polygon a un jeton originaire appelé Matic (MATIC). Matic est un jeton ERC20 qui est utilisé principalement pour payer du gaz (frais de transaction) sur Polygon et le staking.
 
-- An important thing to note is that on the Polygon chain, the MATIC tokens works as an ERC20 token, but also as the native token - both at the same time. Therefore, this means that a user can pay gas with MATIC as well as send MATIC to other accounts.
+:::info
 
-For genesis-contracts, gasPrice and gasLimit works same as Ethereum, but during the execution it won't deduct the fees from sender's account.
+Une chose importante à remarquer est que sur la chaîne de Polygon, les jetons Matic fonctionnent comme un jeton ERC20, mais aussi comme un jeton originaire - tous les deux à la fois. Par conséquent, cela signifie qu'un utilisateur peut payer du gaz avec MATIC, et aussi envoyer MATIC à d'autres comptes.
 
-Genesis transactions from current validators are executed with `gasPrice = 0`.
+:::
 
-- Validators have to send following types of transaction like State proposals like deposits & Span proposals on Bor
+Pour les genesis-contracts, `gasPrice`et `gasLimit`fonctionne comme Ethereum, mais pendant l'exécution, il ne déduira pas les frais du compte d'expéditeur.
 
-## Technical Insight
+Les transactions de Genèse des validateurs actuels sont exécutées avec `gasPrice = 0`.
 
-#### Genesis Contracts
+Aussi, les validateurs doivent envoyer des types de transaction suivants comme les propositions d'État comme les dépôts et les propositions Span sur Bor.
 
-[BorValidatorSet(0x1000)](https://github.com/maticnetwork/genesis-contracts/blob/master/contracts/BorValidatorSet.template) ⇒ This contract manages validator set for each span and sprint.
+## Connaissance Technique  {#technical-insight}
 
-[BorStateReceiver(0x1001)](https://github.com/maticnetwork/genesis-contracts/blob/master/contracts/StateReceiver.sol) ⇒ This Contract manages the transfer of arbitrary contract data from Ethereum contracts to Polygon contracts
+### Contrats de Genèse {#genesis-contracts}
 
-MaticChildERC20(0x1010) ⇒ Child Contract for Main Chain tokens which allows to move assets from Ethereum to Polygon.
+[BorValidatorSet (0x1000)](https://github.com/maticnetwork/genesis-contracts/blob/master/contracts/BorValidatorSet.template) ⇒ Ce contrat validateur défini pour chaque durée et sprint.
+
+[BorStateReceiver (0x1001)](https://github.com/maticnetwork/genesis-contracts/blob/master/contracts/StateReceiver.sol) ⇒ Ce contrat gère le transfert des données de contrats arbitraires à partire des contrats d'Ethereum vers les contrats de Polygon
+
+MaticChildERC20 (0x1010) ⇒ Des Contrats Enfant pour les jetons de Chaîne Principale qui permet de déplacer des actifs d'Ethereum vers Polygon.
 
 ### [Bor.go](https://github.com/maticnetwork/bor/blob/master/consensus/bor/bor.go)
 
-Bor Protocol
+Protocole de Bor
 
-## Glossary
+## Lexique {#glossary}
 
-- StartEpoch - Checkpoint number post which a validator is activated and will participate in the consensus.
-- EndEpoch - Checkpoint number post which a validator is considered deactivated and won't participate in the consensus.
-- Sprint - Sprint is a continuous set of blocks created by a single validator.
-- Span -  Span is a big set of blocks with a fixed validator set but consisting of various sprints. For eg for a span of length 6400 blocks it will consist of 100 sprints of 64 blocks.
-- Dynasty: Time between the end of last auction and start time of next auction.
+- StartEpoch - Faites le point de contrôle du numéro de post avec un validateur qui est activé et qui participera au consensus.
+- EndEpoch - Faites le point de contrôle du numéro de post qu'un validateur est considéré comme désactivé et ne participera pas au consensus.
+- Sprint - Sprint est un ensemble continu de blocs créés par un validateur unique.
+- Durée - La durée est un grand ensemble de bloc avec un validateur fixé mais qui est composée de plusieurs sprints. Par exemple pour une durée de 6400 blocs de longueur, ce sera composé de 100 sprints de 64 blocs.
+- Dynastie: Temps entre la fin d'une dernière enchère et du début de la prochaine enchère.
 
-## Resources:
+## Ressources {#resources}
 
-- :ledger: [Bor](https://github.com/maticnetwork/bor)
-- :blue_book: [EVM](https://www.bitrates.com/guides/ethereum/what-is-the-unstoppable-world-computer)
-- :green_book: [How EVM Works?](https://medium.com/mycrypto/the-ethereum-virtual-machine-how-does-it-work-9abac2b7c9e)
-- :books: [Tendermint Proposer Selection](https://docs.tendermint.com/master/spec/reactors/consensus/proposer-selection.html)
+- [Bor](https://github.com/maticnetwork/bor)
+- [EVM](https://www.bitrates.com/guides/ethereum/what-is-the-unstoppable-world-computer)
+- [Comment fonctionne EVM?](https://medium.com/mycrypto/the-ethereum-virtual-machine-how-does-it-work-9abac2b7c9e)
+- [Sélection des Proposants Tendermint](https://docs.tendermint.com/master/spec/reactors/consensus/proposer-selection.html)

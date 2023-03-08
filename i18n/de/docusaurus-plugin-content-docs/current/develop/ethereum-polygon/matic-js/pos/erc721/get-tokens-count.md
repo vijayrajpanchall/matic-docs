@@ -2,11 +2,11 @@
 id: get-tokens-count
 title: getTokensCount
 keywords:
-  - 'pos client, erc721, getTokensCount, polygon, sdk'
-description: 'Get started with maticjs'
+- 'pos client, erc721, getTokensCount, polygon, sdk'
+description: 'Tokenanzahl für den angegebenen Benutzer erhalten.'
 ---
 
-`getTokensCount` method returns tokens count for specified user.
+Die `getTokensCount`-Methode liefert die Tokenanzahl des angegebenen Benutzers.
 
 ```
 const erc721Token = posClient.erc721(<token address>);

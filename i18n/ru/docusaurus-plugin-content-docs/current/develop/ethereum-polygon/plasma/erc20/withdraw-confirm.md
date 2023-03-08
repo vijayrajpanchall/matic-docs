@@ -1,20 +1,20 @@
 ---
 id: withdraw-confirm
-title: withdraw challenge
+title: запрос вывода
 keywords:
-  - 'plasma client, erc20, withdrawChallenge, polygon, sdk'
-description: 'Get started with maticjs'
+- 'plasma client, erc20, withdrawChallenge, polygon, sdk'
+description: 'Начните работать с maticjs'
 ---
 
-# withdrawConfirm
+# withdrawConfirm {#withdrawconfirm}
 
-`withdrawConfirm` method is the second step in plasma withdraw process. In this step - proof of your burn transaction (first transaction) is submitted and an erc721 token of equivalent value is created.
+Метод `withdrawConfirm` — второй шаг процесса вывода plasma. На этом этапе отправляется подтверждение вашей транзакции сжигания (первая транзакция) и создается токен erc721 эквивалентной ценности.
 
-After this process is successful - challenge period is started and upon completion of the the challenge period, user can get back the withdrawn amount to their account on the root chain.
+После успешного завершения этого процесса начинается период запроса, а после завершения периода запроса пользователь сможет получить обратно выведенное количество на свой аккаунт в корневой цепочке.
 
-The challenge period is 7 days for mainnet.
+Для mainnet период запроса составляет 7 дней.
 
-**Note**- withdrawStart transaction must be checkpointed in order to challenge the withdraw.
+**Примечание**: для запроса вывода транзакция withdrawStart должна иметь контрольные точки.
 
 ```
 const erc20Token = plasmaClient.erc20(<token address>, true);
@@ -27,4 +27,4 @@ const txReceipt = await result.getReceipt();
 
 ```
 
-Once challenge period is completed, `withdrawExit` can be called to exit the withdraw process and get back the withdrawn amount.
+После завершения периода запроса можно произвести вызов `withdrawExit` для выхода из процесса вывода и возвращения выведенной суммы.

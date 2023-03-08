@@ -1,14 +1,14 @@
 ---
 id: approve-all
-title: approveAll
+title: Alle freigeben
 keywords:
-  - 'pos client, erc1155, approve, polygon, sdk'
-description: 'Approve erc1155 token'
+- 'pos client, erc1155, approve, polygon, sdk'
+description: 'ERC1155 Token freigeben.'
 ---
 
-# approveAll
+# Alle freigeben {#approveall}
 
-`approveAll` method can be used to approve all tokens on root token.
+Mit der Methode `approveAll` können alle Token auf dem Root-Token freigegeben werden.
 
 ```
 const erc1155RootToken = posClient.erc1155(<root token address>,true);

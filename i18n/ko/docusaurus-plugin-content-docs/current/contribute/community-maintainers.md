@@ -1,8 +1,8 @@
 ---
 id: wiki-maintainers
-title: Wiki Maintainers
+title: 위키 관리자
 sidebar_label: Maintainers
-description: A list of Polygon Wiki maintainers
+description: Polygon 위키 관리자 목록
 keywords:
   - docs
   - matic
@@ -11,34 +11,28 @@ keywords:
   - docs
   - maintainers
   - contributors
-image: https://matic.network/banners/matic-network-16x9.png
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 slug: community-maintainers
 ---
 
-The following is a list of regular contributors to the Polygon Wiki that include their contact information.
+다음은 연락처 정보가 포함된 Polygon 위키의 정기 기여자 목록입니다.
 
-If one of these people ever contacts you directly, first check the contact information to see that it matches the origin of the message, and then feel free to get in touch with someone else on this list to verify the legitimacy of the original inquiry.
+이 사람들 중 한 명에게 직접 연락받은 경우, 먼저 연락처 정보를 확인해 메시지의 원문과 일치하는지 확인하세요. 그리고, 원문이 적합한 것인지 확인하려면, 언제든지 본 목록에 있는 다른 사람에게 연락하세요.
 
-:::warning Employee impersonation is a common type of scam
+:::warning 직원 사칭은 흔한 사기 유형입니다
 
-Always validate the person you are in contact with and see if their contact information matches the origin of the message. It is also a good idea to get in touch with someone else on this list to verify the legitimacy of the original inquiry.
+연락하는 사람의 연락처 정보가 메시지의 발신자와 일치하는지 항상 확인하세요. 본 목록에 있는 다른 사람에게 연락해 원문이 정당성을 확인하는 것도 좋은 생각입니다.
 
 :::
 
-## Nazim Faour
+## Arshuroshh Tripathi {#ashutosh-tripathi}
 
-- email: [nazim@polygon.technology](mailto:nazim@polygon.technology)
-- telegram: [@NazimFa](https://t.me/NazimFa)
-- github: [Nazeim](https://github.com/Nazeim)
+Github: [ashucoder9](https://github.com/ashucoder9)
 
-## Vinícius Gomes
+## Danny Salman {#danny-salman}
 
-- email: [vinicius@polygon.technology](mailto:vinicius@polygon.technology)
-- telegram: [@cerberushades86](https://t.me/cerberushades86)
-- github: [cerberushades](https://github.com/cerberushades)
+github: [dannys03](https://github.com/DannyS03)
 
-## Danny Salman
+## Vinícius Gomes {#vinícius-gomes}
 
-- email: [danny@polygon.technology](mailto:danny@polygon.technology)
-- telegram: [@dannysalman](https://t.me/dannysalman)
-- github: [dannys03](https://github.com/DannyS03)
+github: [cerberushades](https://github.com/cerberushades)

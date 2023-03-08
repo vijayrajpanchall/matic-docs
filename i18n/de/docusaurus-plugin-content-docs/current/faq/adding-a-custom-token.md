@@ -1,50 +1,64 @@
 ---
 id: adding-a-custom-token
-title: Adding a Custom Token
+title: Hinzufügen eines benutzerdefinierten Tokens
 sidebar_label: Adding a Custom Token
-description: Build your next blockchain app on Polygon.
+description: Erstelle deine nächste Blockchain-App auf Polygon.
 keywords:
   - docs
   - matic
-image: https://matic.network/banners/matic-network-16x9.png
+  - wiki
+  - polygon
+  - custom token
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
-
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-The **Add Custom Token** feature allows you to add any token explicitly and use it with the Polygon Wallet Suite. You just have to search for the token by its contract address, either root or child:
+Die Funktion **Benutzerdefinierten Token hinzufügen** ermöglicht es dir, jeden Token explizit hinzuzufügen und mit der Polygon Wallet Suite zu verwenden. Du musst den Token nur über dessen Vertragsadresse suchen, entweder Root oder Child-Adresse:
 
-* The **root** is the token contract on Ethereum
-* The **child** is the contract on Polygon
+* Die **Root** ist der Token-Vertrag auf Ethereum
+* Das **Child** ist der Vertrag auf Polygon
 
-### Pro tip: How do I find the token contract?
+### Wie finde ich den Token-Contract? {#how-do-i-find-the-token-contract}
 
-You can search for the token by its name on either [Coingecko](http://coingecko.com) or [Coinmarketcap](https://coinmarketcap.com/) where you will be able to see its address on the Ethereum chain (for ERC 20 tokens) and other supported subsequent chains like Polygon. The token address on other chains might not be updated but you can surely use the root address for all purposes.
+Du kannst den Token nach seinem Namen entweder auf [Coingecko](http://coingecko.com) oder auf [Coinmarketcap](https://coinmarketcap.com/) suchen, wo du die Adresse auf der Ethereum-Chain (bei ERC 20-Token) und anderen unterstützten nachgeordneten Chains wie Polygon sehen kannst. Die Token-Adresse auf anderen Chains wurde möglicherweise nicht aktualisiert, doch kannst du die Root für alle Zwecke verwenden.
 
-So when selecting a token, you will be able to search by:
-* token symbol
-* token name
-* contract
+Wenn du einen Token auswählst, kannst du nach folgenden Kriterien suchen:
+* Token-Symbol
+* Token-Name
+* Vertrag
 
-Here is how it works:
+So funktioniert es:
 
-<img src={useBaseUrl("img/wallet-bridge/001.png")} height="420px" />
+1. Füge deinen Token einfach deiner Liste hinzu, indem du die Vertragsadresse als benutzerdefinierten Token hinzufügst (wir unterstützen
 
-1. Easily add any token to your list by adding the contract address as a custom token (we support
+Vertragsadressen auf Polygon oder Ethereum):
 
-contract addresses on both Polygon or Ethereum):
+<div align="center">
+<img src={useBaseUrl("img/wallet-bridge/001.png")} width="500" height="420px"/>
+</div>
 
-<img src={useBaseUrl("img/wallet-bridge/002.png")} height="600px" />
+<div align="center">
+<img src={useBaseUrl("img/wallet-bridge/002.png")} width="500"  height="600px"/>
+</div>
 
-2. Once the token information is fetched, you will see a confirmation screen with all the token information. You can then add it as a custom token which will be stored locally in your system, We suggest you reverify the token contracts twice as there are a lot of clone or scam tokens:
+2. Sobald die Token-Informationen abgerufen wurden, siehst du einen Bestätigungsbildschirm mit allen Token-Informationen. Du kannst ihn dann als benutzerdefinierten Token hinzufügen, der lokal in deinem System gespeichert wird. Wir empfehlen dir, die Token-Verträge doppelt zu überprüfen, da es eine Menge geklonter oder betrügerischer Token gibt:
 
-<img src={useBaseUrl("img/wallet-bridge/003.png")} height="600px" />
+<div align="center">
+<img src={useBaseUrl("img/wallet-bridge/003.png")} width="500"  height="600px"/>
+</div>
 
-<img src={useBaseUrl("img/wallet-bridge/004.png")} height="600px" />
+<div align="center">
+<img src={useBaseUrl("img/wallet-bridge/004.png")} width="500"  height="600px"/>
+</div>
 
-3. Your added token is now shown when selecting a token:
+3. Dein hinzugefügter Token wird jetzt angezeigt, wenn du einen Token auswählst:
 
-<img src={useBaseUrl("img/wallet-bridge/005.png")} height="600px" />
+<div align="center">
+<img src={useBaseUrl("img/wallet-bridge/005.png")} width="500"  height="600px"/>
+</div>
 
-4. You can add a token directly from the tokens tab of the **Manage** screen:
+Du kannst einen Token auch direkt aus dem Tab Token im Bildschirm **verwalten:**
 
-<img src={useBaseUrl("img/wallet-bridge/006.png")} height="600px" />
+<div align="center">
+<img src={useBaseUrl("img/wallet-bridge/006.png")} width="500"  height="600px"/>
+</div>

@@ -2,20 +2,22 @@
 id: razor
 title: Razor
 sidebar_label: Razor
-description: Build your next blockchain app on Polygon.
+description: Razor Network — это децентрализованный оракул, предоставляющий данные смарт-контрактам, используя сеть стейкеров
 keywords:
-  - docs
-  - matic
-image: https://matic.network/banners/matic-network-16x9.png
+  - wiki
+  - polygon
+  - razor
+  - oracle
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
-Razor Network consists of validators who lock in their tokens as a “Stake” and provide data to the network. The honest validators are rewarded and those who report incoherently are penalised.
+**Razor Network** — это децентрализованный оракул, предоставляющий данные смарт-контрактам, используя сеть стейкеров. Сеть состоит из валидаторов, которые блокируют свои токены в качестве **стейка** и предоставляют данные в сеть. Честные валидаторы вознаграждены, а те, кто сообщают несогласованно, подвергаются наказанию.
 
-The core of Razor Network is a set of smart contracts, that can run on any Ethereum compatible blockchain. Razor relies on the underlying blockchain for providing certain properties such as censorship resistance, security from network partition attacks, etc.
+Сердцем Razor Network — это набор смарт-контрактов, которые могут работать в любом блокчейне, совместимом с Ethereum. Razor полагается на блокчейн для предоставления определенных свойств, таких как устойчивость к цензуре, защита от атак на разделы сети и т. д.
 
-### Usage
+## использование {#usage}
 
-This oracle network is currently running on Matic Mumbai testnet. To get started with connecting to the data feed, check out this **[Tutorial](https://docs.razor.network/)**
+Эта сеть оракула в настоящее время работает в тестовой сети Polygon Mumbai. Чтобы начать подключиться к ленте данных, ознакомьтесь с этим **[руководством](https://docs.razor.network/)**.
 
-- The Razor Network can be explored at razorscan [https://razorscan.io/](https://razorscan.io/) 
+Сеть бритвы может быть исследована с помощью [Razorscan](https://razorscan.io/).
 

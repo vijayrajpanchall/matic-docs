@@ -1,30 +1,49 @@
 ---
 id: getting-started
-title: Ethereum↔Polygon Bridge
+title: Ethereum↔мост Polygon
 sidebar_label: Overview
-description: Build your next blockchain app on Polygon.
+description: Двухсторонний канал транзакций между Polygon и Ethereum.
 keywords:
   - docs
-  - matic
-image: https://matic.network/banners/matic-network-16x9.png
+  - polygon
+  - polygon wiki
+  - crosschain bridge
+  - polygon
+  - ethereum
+  - fx portal
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
-Polygon brings you a trustless two-way transaction channel between Polygon and Ethereum by introducing the cross-chain bridge with Plasma and PoS security. With this users can transfer tokens across Polygon without incurring third-party risks and market liquidity limitations. **_The Plasma and PoS Bridge is available on both Mumbai as well as Mainnet._**
+import useBaseUrl from '@docusaurus/useBaseUrl';
 
-**Polygon bridge provides a scaling solution which is near-instant, low-cost, and quite flexible**. Polygon uses a dual-consensus architecture(Plasma + Proof-of-Stake (PoS) platform) to optimise for speed and decentralisation. We consciously architected the system to support arbitrary state transitions on our sidechains, which are EVM-enabled.
+Polygon предоставляет недоверительный двусторонний канал транзакций между Polygon и Ethereum за счет введения кроссчейн-моста с Plasma и протоколом безопасности PoS. Благодаря этому пользователи могут передавать токены в рамках Polygon, не подвергаясь рискам, связанным с третьими лицами, и ограничениям, обусловленным ликвидностью рынка. **Мост Plasma и PoS доступен как в Mumbai Testnet, так и в Polygon Mainnet**.
 
-**There is no change to the circulating supply of your token when it crosses the bridge**;
+**Мост Polygon обеспечивает механизм моста, который является близким, недорогой и довольно гибким**. Polygon использует архитектуру двойного консенсуса (Plasma + платформа доказательства владения (PoS))
+для оптимизации скорости и децентрализации. Мы сознательно разработали архитектуру системы таким образом, чтобы обеспечить поддержку произвольных переходов состояний в наших сайдчейнах с поддержкой EVM.
 
-- tokens that leave ethereum network are locked and the same number of tokens are minted on Polygon as a pegged token (1:1).
-- To move the tokens back to the ethereum network, tokens are burned on Polygon network and unlocked on ethereum network during the process.
+**При переходе моста количество ваших токенов в обороте не изменяется**;
 
-## PoS vs Plasma
+- Токены, покидающие сеть Ethereum, заблокированы, а одинаковое количество токенов засчитывается в Polygon в качестве привязанного токена (1:1).
+- Чтобы переместить токены обратно в сеть ethereum, токены сжигаются в сети Polygon и разблокируются в сети ethereum в ходе этого процесса.
 
-|                                        | PoS Bridge(Recommended)                                                                 | Plasma Bridge                                                                           |
-| -------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
-| **Short description**                  | DApp Developers looking for flexibility and faster withdrawals with POS system security | DApp Developers looking for increased security guarantees with Plasma exit mechanism\. |
-| **Structure**                          | Highly flexible                                                                         | Rigid, Less Flexible                                                                    |
-| **Deposit\(Ethereum → Polygon\)**    | 3-5 mins                                                                                | 3-5 mins                                                                                |
-| **Withdrawal\(Polygon → Ethereum\)** | 1 checkpoint = ~ 20 mins to 3 hours                                                     | Call to the process-exit procedure on Ethereum's contract.                              |
-| **Security**                           | Proof\-of\-Stake system, secured by a robust set of external validators\.            | Polygon’s Plasma contracts piggybacks on Ethereum’s security.                           |
-| **Support Standards**                  | ETH, ERC20, ERC721, ERC1155 and Others                                                  | Only ETH, ERC20, ERC721                                                                 |
+## PoS в сравнении с Plasma {#pos-vs-plasma}
+
+|                                      | Мост PoS (рекомендуется) | Мост Plasma |
+| ------------------------------------ | ---------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| **Краткое описание** | Разработчики DApp ищут гибкость и быстрый вывод средств с системой POS | Разработчики децентрализованных приложений, стремящиеся гарантировать повышенную безопасность в сочетании с механизмом выхода Plasma\. |
+| **Структура** | Высокая гибкость | Жесткость, меньшая гибкость |
+| **Внесение средств\(Ethereum → Polygon\)** | 22-30 минут | 22-30 минут |
+| **Вывод средств\(Polygon → Ethereum\)** | 1 checkpoint = ~ 30 минут до 6 часов | Вызвать процедуру вывода процессного в контракте Ethereum. |
+| **Безопасность** | Система Proof\-of\-Stake, обеспечиваемая робастным набором внешних валидаторов\. | Контракты Plasma в Polygon основываются на безопасности Ethereum. |
+| **Поддерживаемые стандарты** | ETH, ERC20, ERC721, ERC1155 и другие | Только ETH, ERC20, ERC721 |
+
+:::info
+
+[**FxPortal**](/develop/l1-l2-communication/fx-portal.md) — это другой тип моста, очень похожий на мост PoS. Они разделяют те же характеристики, что и PoS в таблице выше. Единственная разница заключается в том, что токены не должны быть отображены на мосту FxPortal перед переходом. Картинг происходит во время первой транзакции депозита, которая инициируется для заданного токена. Кроме того, любой может использовать FxPortal для создания собственных пользовательских туннелей/мостов на вершине моста Polygon. Настоятельно рекомендуется использовать FxPortal для любого случая использования мостов. Новые отображения токена в PoS и Plasma будут on после 31-го января 2023 года, чтобы процесс отображения был полностью децентрализован и гибкий.
+
+:::
+
+## Дополнительные ресурсы {#additional-resources}
+
+- [Введение в Blockchain Bridges](https://ethereum.org/en/bridges/)
+- [Что такое Cross-Chain Bridges](https://www.alchemy.com/overviews/cross-chain-bridges)

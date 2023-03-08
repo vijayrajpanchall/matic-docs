@@ -1,8 +1,8 @@
 ---
 id: liquid-delegation
-title: Liquid Delegation
+title: 유동 위임
 sidebar_label: Liquid Delegation
-description: "How Polygon uses liquid delegation to maintain the network."
+description: Polygon이 네트워크 관리를 위해 유동 위임을 사용하는 방식입니다.
 keywords:
   - docs
   - polygon
@@ -10,85 +10,67 @@ keywords:
   - delegation
   - liquid delegation
 slug: liquid-delegation
-image: https://matic.network/banners/matic-network-16x9.png
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
-In a traditional Proof of Stake mechanism, the blockchain keeps track of a set of validators, And anyone can join this rank or right to validate transactions by sending a special type of transaction which stake their coins(in Ethereum's case, ether) and locks up into a deposit. The process of creating and agreeing to new blocks is then done through a consensus algorithm by all current validators.
+Stake 메커니즘의 전통적인 증거에서 Blockchain은 일련의 검증자 트랙을 유지합니다. 누구나 동전을 스테이크하고 예금에 잠그고 있는 특수 유형의 트랜잭션 (Eythere 's case, ETH)를 보내서 이 랭크 또는 오른쪽에 가입할 수 있습니다. 그 후, 모든 액티브 유효성 검사자의 컨센서스 알고리즘을 통해 새로운 블록에 대한 생성 및 동의하는 프로세스가 수행됩니다.
 
-They lock up part of their stake for a certain amount of time (like a security deposit), and in return they get a chance proportional to that stake to select the next block
+그들은 일정 시간 (보안 예금 같은)에 대해 지분을 잠그고 대가로 다음 블록을 선택할 수 있는 해당 지분에 비례하여 기회를 얻습니다.
 
-Incentives for participants are Staking rewards — and the possibility of slashing — which encourages token holders and validators to secure PoS blockchain. Staking creates the “skin in the game” necessary for good behaviour such as running nodes in the network and discouraging bad behaviours like failing to remain online or double signing.
+스테이킹 보상은 참가자들에게 인센티브로 배포됩니다.
 
-### Delegation and need for it
+## 위임 {#delegation}
 
-Staking can be expensive and makes barrier of entry higher and in which case it promotes rich getting richer. We want everyone to participate in network security and get token appreciation. The only alternative is to participate in staking pool like mining pool in which you need to trust validators. That's why we think that keeping delegation in protocol is best way to go for new delegators. Since capital, rewards and slashing is protected and open via in-protocol mech.
+스테이크는 비용이 많이 들 수 있으며, 이는 부자가 점점 더 부유해지는 것을 선호하는 진입 장벽을 높입니다. 모두가 네트워크 보안에 참여하고 감사의 토큰을 받아야합니다. 유일한 다른 옵션은 유효성 검사자가 신뢰할 수 있어야 하는 광산 풀과 유사한 스테이킹 풀에 가입하는 것입니다. 우리는 프로토콜에 집착하는 것이 새로운 대표단을위한 최고의 행동 과정이라고 믿습니다. Pro 메커니즘에 의해 자본 및 보상이 열려 있기 때문에 Pro 메커니즘에 의해 보호됩니다.
 
-Delegator's can participate in validation without hosting a full node. But by staking with validators, they can earn reward and strengthen the network by paying a small commission fee(depends on Validator) to a validator of their choice.
+대표단은 전체 노드를 호스팅하지 않더라도 유효성 확인에 참여할 수 있습니다. 그러나 유효자가 스테이크를 통해 피실험자에게 작은 커미션을 지불함으로써 네트워크의 강도를 높이고 보상을 받을 수 있습니다.
 
-### Limitation of Traditional Delegator and Validator pov
+## 전통 대표자 및 유효성 검사기의 제한 {#limitation-of-traditional-delegator-and-validator}
 
-Capital lockup cost for both validators and delegators is high due to Proof of Stake protocol design.
+자본 락업 비용은 스테이크 증명 프로토콜 디자인 때문에 유효성 검사자와 위임자 모두에게 높습니다.
 
-Still we can bring more liquidity view mechanism like validator NFT[link to our blog] where any new party who wants to become a validator can buy validator NFT from a validator who wants to exit from system for some reason.
+여전히 유효자가 되고 싶은 새로운 당사자가 어떤 이유로 시스템에서 빠져나가려는 유효한 인증자로부터 NFT를 구입할 수 있는 유효성 검사자 NFT와 같은 더 많은 유동성 뷰 메커니즘을 가져올 수 있습니다.
 
-In case of delegators the amount locked is assumed to be in smaller chunks so we want that to be liquid so that participation is more active(i.e. if some delegator thinks that right now opportunities are great in defi but her capital is locked in staking pool even for withdrawal she needs to wait for 21 days)
+대표단의 경우 잠금된 금액이 작은 덩어리로 가정되어 참여가 더 활발하기 때문에 참여가 더 활발할 수 있도록 (즉, 일부 대표단이 지금 DeFi에서 기회가 훌륭하다고 생각하지만 자본이 인출을 위해 스테이킹 풀에 갇혀 있다고 생각한다면 여전히 21일을 기다려야 할 수 있습니다).
 
-> Locking up X ether in a deposit is not free; it entails a sacrifice of optionality for the ether holder. Right now, if I have 1000 ether, I can do whatever I want with it; if I lock it up in a deposit, then it's stuck there for months
+또한 보증금에 X ETH를 잠그면 무료가 아닙니다. Eth 홀더에 대한 선택성의 희생을 수반합니다. 지금, 1000 ETH를 가지고 있다면, 원하는 것을 할 수 있습니다. 예금에 잠그면 몇 [**달**](https://github.com/ethereum/wiki/wiki/Proof-of-Stake-FAQ#what-is-the-nothing-at-stake-problem-and-how-can-it-be-fixed) 동안 붙어 있습니다.
 
-> In order to prevent attacks like [nothing at stake](https://github.com/ethereum/wiki/wiki/Proof-of-Stake-FAQ#what-is-the-nothing-at-stake-problem-and-how-can-it-be-fixed) and punish validators for their bad participation.
+## In-Protocol vs Application Layer {#in-protocol-vs-application-layer}
 
-### In protocol vs application layer
+애플리케이션 레벨 스테이킹 청산은 신뢰 문제가 있습니다. 새로운 배우가 그것을 믿을 수 있다는 사실 때문에 의정서 레벨 스테이킹 청산은 훨씬 더 감사합니다 (이는 더 많은 자본을 끌어들이는 소규모 배우/대표단으로부터 더 많은 자본을 끌어들이는 것).
 
-> we have both option and why in-protocol is better
+## 위임에 대한 Polygon의 솔루션 {#polygon-s-solution-for-delegation}
 
-> Protocol level staking liquidation needs to have a significant stake(primarily validator's) illiquid
+대표단을 탐험하는 동안 대표단의 신뢰를 얻기 위해 대표단이 in-protocol 있어야 한다는 것을 깨달았습니다.
 
-> otherwise there is chance that it might suffer from tragedy of commons(let's say at max anyone owns 5% of pool then no one will take responsibility to run the node)
+우리는 유효성 검사자 자본 유동성과 NFT를 전송하고 더 많은 액체와 sikkka-Corus를 만들 수 있는 유사한 생각을 탐구할 수 있는 NFT를 만드는 생각과 비슷한 문제에 직면했습니다. 하나는 [멋진 디자인이](https://blog.chorus.one/delegation-vouchers/) 관심을 끌었습니다.
 
-Application level staking liquidation has trust problem, Protocol level staking liquidation is much more appreciated due to the fact that any new actor can trust it(which attracts more capital, even from smaller actors/delegators)
+만드는 것은 유효성 검사자 풀의 몫이라는 관점에서 생각하는 것이 기발합니다. Polygon의 스테이킹은 이더리움 스마트 계약에서 구현되기 때문에 이 아이디어는 DeFi 프로토콜에서 사용될 수 있도록 ERC20과 호환 가능하게 만드는 것 등 저희에게 훨씬 많은 옵션을 열어줍니다.
 
-### Polygon's Solution for Delegation
+현재 유효한 사람은 각각 자신의 VMatic (즉, 유효상대자의 Ashish에 대한 API)를 가지고 있습니다. 대표단은 여러 개의 유효한 레이터 점유율을 구입하고 특정 레이터의 성능이 좋지 않은 것에 대한 위험을 헤지 할 수 있습니다.
 
-While exploring delegation we realised that delegation needs to be in-protocol in order to have more trust from delegators.
+## 장점 {#advantages}
 
-We were facing similar issue to validators capital liquidity and thought of making it a NFT which can be transfers and exploring on similar thoughts like how it can be made more liquid and sikka-chorus.one 's   awesome design 🙏 [https://blog.chorus.one/delegation-vouchers/](https://blog.chorus.one/delegation-vouchers/)  came to attention.
+- 우리 디자인은 위임 구현에서 ERC20을 따르는 인터페이스를 따르므로 DeFi 애플리케이션을 쉽게 그 위에 구축할 수 있습니다.
+- 위임된 토큰은 대출 프로토콜에 사용할 수 있습니다.
+- 위임자는 Auger와 같은 예측 시장을 통해 위험을 헤지할 수 있습니다.
 
-Thinking in terms of making is share of validator pool is great idea and since Polygon's staking is implemented on ethereum smart contract it opens up a lot more options for us like making it ERC20 compatible so that it can be used in defi protocols.
+미래 전망:
 
-As of now each validator has their own VMatic(i.e. for validator Ashish there will be AMatic token)
+- 현재 ERC20은 다른 유효성 검사자 ERC20 / 공유 토큰과 함께 곰팡이 스럽지 않지만 나중에 많은 새로운 DeFi 응용 프로그램이 이를 기반으로 만들어 일부 시장을 만들 수 있다고 생각합니다.
+- [코러스.one의](http://chorus.one) 연구를 통해 자체 토큰을 사용하는 유효성 검사자와 같은 문제를 탐구합니다. (X개월 동안 자신의 지분을 잠그고 있는 유효자 보험과 같은 문제를 해결하는 것과 같은 문제를 해결하는 것)을 통해 문제를 피할 수 있습니다.
+- 거버넌스 결정에 참여하기 위해 대표자 투표 권리.
+- 위임 액체를 작성하는 동안 네트워크 보안을 보장하고자 합니다. 그래서 어떤 형태로든 사기 활동의 경우 슬래시 가능 자본이 잠겨 있습니다.
 
-because each validator has different performance(rewards/slashing and commission rate).
+위 디자인이 프로토콜 내에서 이용 가능하게 되면 유효성 검사자는 Polygon 스테이킹 UI에서는 제공되지 않는 계약을 통해 언제든지 비슷한 메커니즘과 스테이크를 직접 구현할 수 있습니다.
 
-Delegators can buy multiple validator share and hedge their risk towards slashing or poor performance of particular validator.
+## 미래 목표 {#future-goals}
 
-### Advantages
+코스모스 허브와 에버렛 B-수확 디자인을 통해 인체인 / 크로스 체인과 같은 것들.
 
-- Since our design follows ERC20 like interface in delegation implementation Defi applications can be build on top of it easily.
-- Delegated tokens can be used in lending protocols.
-- Delegators can hedge their risk via prediction markets like Auger.
+## 리소스 {#resources}
 
-Future scope:
-
-- Currently ERC20 are not fungible with other validators ERC20/Share tokens? but in future we think many new Defi applications can build upon it and make some markets for it or even some better products like
-- With [chorus.one](http://chorus.one) initiated research we are also exploring problems like validators shorting their own tokens and other problems.( shorting problems can be avoided via things like validator locking their own stake for x months and other things like validator insurance(on-chain) which will bring more trust for delegators).
-- Delegator voting rights in order to participate in governance decisions
-- While making delegation liquid we also want to make sure network security and that's why in some form slash-able capital is locked in case of fraud activity.
-
-More on technical design[link to technical spec] published on stack.matic or in separate blog.
-
-Given above design available in-protocol, validators can always implement their own similar mechanisms and stake via a contract which won't be available in Polygon staking UI.
-
-—
-
-linked directly to primary assets
-
-### Future Goals
-
-Things like interchain/cross-chain and all via cosmos hub and everett B-harvest design.
-
-### **:scroll:Resources**
-
-- [Vitalik's pos design](https://medium.com/@VitalikButerin/a-proof-of-stake-design-philosophy-506585978d51)
-- [Intro to Staking Derivatives](https://medium.com/lemniscap/an-intro-to-staking-derivatives-i-a43054efd51c)
-- [Staking Pools](https://slideslive.com/38920085/ethereum-20-trustless-staking-pools)
-- [Inflation in Proof of Stake](https://medium.com/figment-networks/mis-understanding-yield-and-inflation-in-proof-of-stake-networks-6fea7e7c0e41)
+- [비탈릭의 PoS 디자인](https://medium.com/@VitalikButerin/a-proof-of-stake-design-philosophy-506585978d51)
+- [스테이킹 파생 상품 소개](https://medium.com/lemniscap/an-intro-to-staking-derivatives-i-a43054efd51c)
+- [스테이킹 풀](https://slideslive.com/38920085/ethereum-20-trustless-staking-pools)
+- [스테이크 증명의 인플레이션](https://medium.com/figment-networks/mis-understanding-yield-and-inflation-in-proof-of-stake-networks-6fea7e7c0e41)

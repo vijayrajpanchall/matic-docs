@@ -1,67 +1,55 @@
 ---
 id: custom-tokens
-title: Config Custom Tokens
-description: Build your next blockchain app on Polygon.
+title: Configurez des jetons personnalisés
+description: Configurez des jetons personnalisés Metamask.
 keywords:
-  - docs
-  - matic
-image: https://matic.network/banners/matic-network-16x9.png
+  - wiki
+  - polygon
+  - custom token
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-This page demonstrates the process of configuring/adding custom tokens to Metamask. Specifically, we have demonstrated adding the example `TEST` ERC20 and ERC721 tokens to the Görli testnet as well as the Polygon testnet, Mumbai.
+Cette page montre le processus de configuration/ajout de jetons personnalisés à Metamask.
 
-You can use this process to add any custom ERC20 tokens to any network on Metamask.
+Vous pouvez utiliser le même processus pour ajouter tous les jetons personnalisés à n'importe quel réseau sur Metamask. Vous pouvez vous référer à [ce tableau](#tokens-and-contract-adresses) pour visualiser quelques exemples de jetons de test avec leurs adresses contractuelles respectives.
 
-**Adding the `TEST` token (ERC20) to your MetaMask account on the Görli Network**
+## Ajouter un jeton personnalisé à votre compte MetaMask {#adding-a-custom-token-to-your-metamask-account}
 
-To display `TEST` tokens on your account on the Görli Network, you can click on the Add Tokens option in Metamask. It will then navigate you to a screen. You then click on Custom Token tab and copy-paste the address below in the Token Address field.
+Premièrement, choisissez le réseau approprié pour le nouveau jeton sur l'écran d'accueil de votre Metamask. Ensuite, cliquez sur "Importer des jetons".
 
-The `TEST` token contract address on Görli is `0x3f152B63Ec5CA5831061B2DccFb29a874C317502`. Note that the `TEST` token is an example ERC20 token contract that is used throughout Polygon developer docs for illustration purposes.
+<div align="center">
+<img width="300" src={useBaseUrl("img/metamask/develop/add-test-token.png")} />
+</div>
 
-The other fields will auto-populate. Click on Save and then click on Add Tokens. The `TEST` token should now be displayed on your account on Metamask.
+<br></br>
 
-**Configuring `Matic TST` tokens to Metamask**
+Il vous naviguera ensuite vers un nouvel écran. Sur l'écran Importer des jetons, copiez-collez une adresse dans le champ Adresse jeton.
 
-You will also need to configure the `TST` tokens to Polygon’s Testnet for visualization if you are following the introductory Matic.js tutorial. **Switch the network on MetaMask to point to the Polygon testnet - https://rpc-mumbai.matic.today **. On Metamask, this will be shown as `Private Network` or whatever you have named it when adding the custom rpc eg. `mumbai`.
+:::info
+Pour illustrer ce processus, nous utilisons un jeton E**RC20-TESTV4 **sur le **réseau Goerli.** Trouvez d'autres jetons de test à partir d'autres réseaux [<ins>ici</ins>](#tokens-and-contract-adresses).
+:::
 
-The corresponding `TST` token address on Polygon testnet is `0x2d7882beDcbfDDce29Ba99965dd3cdF7fcB10A1e`. Note that this token contract address is different from that of Goerli - since this is the `TST` token on the Polygon Network. A detailed, screen-by-screen guide to add custom tokens is shown here:
+<div align="center">
+<img width="300" src={useBaseUrl("img/metamask/develop/token-contract-address.png")} />
+</div>
 
-You can open MetaMask and then click on the option for Add Token.
+Les autres champs se rempliront automatiquement. Cliquez sur Ajouter des jetons personnalisés et puis cliquez sur Importer des jetons. Le jeton `TEST` doit maintenant s'afficher sur votre compte sur Metamask.
 
-<img src={useBaseUrl("img/metamask/configure-custom-token-1.png")} />
+<div align="center">
+<img width="300" src={useBaseUrl("img/metamask/develop/added-token.png")} />
+</div>
 
-You will see a screen to either search from a list of already available tokens or add a custom token. Click on Custom Token.
+**Ajouter un jeton ERC1155 de test à votre compte Metamask**
 
-You will see a field to add the Token Address. Paste the token address in the form, and configure the token name as `TST`.
+Bien que le réseau de Polygon prenne en charge la norme ERC1155, [Metamask ne la prend pas encore en charge](https://metamask.zendesk.com/hc/en-us/articles/360058488651-Does-MetaMask-support-ERC-1155-). Cette mise à jour est attendue pour le quatrième trimestre de 2021.
 
-<img src={useBaseUrl("img/metamask/configure-custom-token-2.png")} />
+### Jetons et adresses de contrat {#tokens-and-contract-adresses}
 
-You can then click on Next.
-
-<img src={useBaseUrl("img/metamask/configure-custom-token-3.png")} />
-
-And then click on Add Tokens. You will be navigated back to the home screen and the new token will be displayed in the token list.
-
-**Adding the `ERC721-TESTV4` token (ERC721) to your MetaMask account on the Görli Network**
-
-To display `ERC721-TESTV4` tokens on your account on the Görli Network, you can click on the Add Tokens option in Metamask. It will then navigate you to a screen. You then click on Custom Token tab and copy-paste the address below in the Token Address field.
-
-The `ERC721-TESTV4` token contract address on Görli is `0xfA08B72137eF907dEB3F202a60EfBc610D2f224b`. Note that the `ERC721-TESTV4` token is an example ERC721 token contract.
-
-The token symbol is `ERC721-Testv4` and token of precision is `18`. Click on Add Tokens. The `ERC721-TESTV4` token should now be displayed on your account on Metamask.
-
-**Adding the `ERC721-TESTV4` token (ERC721) to your MetaMask account on the Mumbai Network**
-
-**Switch the network on MetaMask to point to the Polygon testnet - https://rpc-mumbai.matic.today **. On Metamask, this will be shown as `Private Network` or whatever you have named it when adding the custom rpc eg. `mumbai`.
-
-To display `ERC721-TESTV4` tokens on your account on the Mumbai Network, you can click on the Add Tokens option in Metamask. It will then navigate you to a screen. You then click on Custom Token tab and copy-paste the address below in the Token Address field.
-
-The `ERC721-TESTV4` token contract address on Mumbai is `0x33FC58F12A56280503b04AC7911D1EceEBcE179c`. Note that the `ERC721-TESTV4` token is an example ERC721 token contract.
-
-The token symbol is `ERC721-Testv4` and token of precision is `18`. Click on Add Tokens. The `ERC721-TESTV4` token should now be displayed on your account on Metamask.
-
-**Adding a test ERC1155 token to your MetaMask account**
-
-While the Polygon network supports ERC1155, [Metamask does not yet support the standard](https://metamask.zendesk.com/hc/en-us/articles/360058488651-Does-MetaMask-support-ERC-1155-). This update is expected in the fourth quarter of 2021.
+| jeton | Réseau | Adresse du Contrat  |
+|---------------|---------|----------------------------------------------|
+| ERC20-TESTV4 | Goerli | `0x3f152B63Ec5CA5831061B2DccFb29a874C317502` |
+| MATIC-TST | Mumbai | `0x2d7882beDcbfDDce29Ba99965dd3cdF7fcB10A1e` |
+| ERC721-TESTV4 | Goerli | `0xfA08B72137eF907dEB3F202a60EfBc610D2f224b` |
+| ERC721-TESTV4 | Mumbai | `0x33FC58F12A56280503b04AC7911D1EceEBcE179c` |

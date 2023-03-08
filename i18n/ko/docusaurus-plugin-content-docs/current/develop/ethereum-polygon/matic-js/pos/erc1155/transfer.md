@@ -2,11 +2,11 @@
 id: transfer
 title: transfer
 keywords:
-  - 'pos client, erc1155, transfer, polygon, sdk'
-description: '한 사용자에서 다른 사용자에게 토큰을 전송'
+- 'pos client, erc1155, transfer, polygon, sdk'
+description: '토큰을 한 사용자에서 다른 사용자에게로 이전합니다.'
 ---
 
-`transfer` 메소드는 한 사용자에서 다른 사용자에게 토큰을 전송하는 데 사용할 수 있습니다.
+`transfer` 메서드를 사용해 토큰을 한 사용자에게서 다른 사용자에게로 이전할 수 있습니다.
 
 ```
 const erc1155Token = posClient.erc1155(<token address>);

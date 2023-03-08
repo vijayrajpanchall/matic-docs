@@ -1,16 +1,21 @@
 ---
 id: gas
-title: What is Gas?
+title: Was ist Gas?
 sidebar_label: Gas
-description: "How much work a set of actions takes to perform in a blockchain."
+description: "Wie viel Arbeit die Durchführung einer Reihe von Aktionen in einer Blockchain erfordert."
 keywords:
   - docs
   - matic
-image: https://matic.network/banners/matic-network-16x9.png
+  - polygon
+  - gas
+  - transaction fees
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
-"Gas" is the name for a special unit used in smart contract enabled blockchain networks. It measures how much "work" an action or set of actions takes to perform: for example, to calculate one Keccak256 cryptographic hash it will take 30 gas each time a hash is calculated, plus a cost of 6 more gas for every 256 bits of data being hashed. Every operation that can be performed by a transaction or contract on the platform costs a certain number of gas, with operations that require more computational resources costing more gas than operations that require few computational resources.
+# Was ist Gas? {#what-is-gas}
 
-### **:scroll:Resources**
+„Gas“ ist der Name für eine spezielle Einheit, die in Smart Contract fähigen Blockchain-Netzwerken verwendet wird. Es misst, wie viel „Arbeit“ eine Aktion oder eine Reihe von Aktionen für die Durchführung benötigt: Für die Berechnung eines kryptografischen Keccak256-Hashes werden beispielsweise jedes Mal 30 Gas benötigt, wenn ein Hash berechnet wird, plus weitere 6 Gas für jede 256 Bit an Daten, die gehasht werden. Jede Operation, die durch eine Transaktion oder einen Vertrag auf der Plattform durchgeführt werden kann, kostet eine bestimmte Menge an Gas, mit Operationen, die mehr Rechenressourcen erfordern, die mehr Gas kosten, als Operationen, die weniger Rechenressourcen erfordern.
 
-:green_book: [What is meant by the term "Gas"?](https://ethereum.stackexchange.com/questions/3/what-is-meant-by-the-term-gas)
+### **Ressourcen**
+
+- [Was ist mit dem Begriff "Gas" gemeint?](https://ethereum.stackexchange.com/questions/3/what-is-meant-by-the-term-gas)

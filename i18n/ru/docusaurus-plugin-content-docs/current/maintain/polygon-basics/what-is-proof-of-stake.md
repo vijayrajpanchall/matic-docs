@@ -1,7 +1,7 @@
 ---
 id: what-is-proof-of-stake
-title: What is Proof of Stake?
-description: Learn what is Proof of Stake.
+title: Что такое Proof of Stake?
+description: Узнайте, что такое механизм консенсуса Proof of Stake
 keywords:
   - docs
   - matic
@@ -10,26 +10,28 @@ keywords:
   - delegate
   - validate
   - pos
-image: https://matic.network/banners/matic-network-16x9.png
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
-Proof of Stake (PoS) is a category of consensus algorithms for public blockchains that depend on a validator's economic [stake](../glossary#staking) in the network.
+# Что такое Proof of Stake? {#what-is-proof-of-stake}
 
-In proof of work (PoW) based public blockchains, the algorithm rewards participants who solve cryptographic puzzles to validate transactions and create new blocks. PoW blockchain examples: Bitcoin, current Ethereum.
+Proof of Stake (PoS, доказательство доли владения) — это категория алгоритмов консенсуса для публичных блокчейнов, которые зависят от экономического [стейка](/docs/maintain/glossary.md#staking) валидатора в сети.
 
-In PoS-based public blockchains, a set of validators take turns proposing and voting on the next block. The weight of each validator's vote depends on the size of its deposit — [stake](../glossary#staking). Significant advantages of PoS include security, reduced risk of centralization, and energy efficiency. PoS blockchain examples: Eth2, Polygon.
+В публичных блокчейнах на базе доказательства работы (Proof of Work или PoW) алгоритм вознаграждает участников, которые решают криптографические задачи для подтверждения транзакций и создания новых блоков. Примеры блокчейна PoW: Bitcoin, Ethereum (перед слиянием).
 
-In general, a PoS algorithm looks as follows. The blockchain keeps track of a set of validators, and anyone who holds the blockchain's base cryptocurrency (in Ethereum's case, ether) can become a validator by sending a special type of transaction that locks up their ether into a deposit. The process of creating and agreeing to new blocks is then done through a consensus algorithm that all current validators can participate in.
+В публичных блокчейнах на базе PoS набор валидаторов поочередно вносит предложения и голосует в следующем блоке. Голос каждого валидатора учитывается в зависимости от размера его депозита — [стейка](/docs/maintain/glossary.md#staking). Значительные преимущества PoS — это безопасность, снижение риска централизации и энергоэффективность. Примеры блокчейна PoS: Ethereum 2.0, Polygon.
 
-There are many kinds of consensus algorithms, and many ways to assign rewards to validators who participate in the consensus algorithm, so there are many "flavors" of proof of stake. From an algorithmic perspective, there are two major types: chain-based PoS and [BFT](https://en.wikipedia.org/wiki/Byzantine_fault_tolerance)-style PoS.
+В целом алгоритм PoS выглядит следующим образом. Блокчейн отслеживает набор валидаторов, и каждый, кто хранит базовую криптовалюту блокчейна (в случае Ethereum, ETH), может стать валидатором, отправив специальный тип транзакции, который блокирует свой ETH в депозит. Затем проводится процесс создания и согласования новых блоков с помощью консенсусного алгоритма, в котором могут участвовать все текущие валидаторы.
 
-In **chain-based proof of stake**, the algorithm pseudo-randomly selects a validator during each time slot (e.g. every period of 10 seconds might be a time slot), and assigns that validator the right to create a single block, and this block must point to some previous block (normally the block at the end of the previously longest chain), and so over time most blocks converge into a single constantly growing chain.
+Существует много видов алгоритмов консенсуса и много способов назначить вознаграждения валидаторам, которые участвуют в алгоритме консенсуса, отсюда множество нюансов доказательства доли владения. С алгоритмической точки зрения, существуют два основных типа: PoS на основе цепочки и [PoS](https://en.wikipedia.org/wiki/Byzantine_fault_tolerance).
 
-In **BFT-style proof of stake**, validators are **randomly** assigned the right to *propose* blocks, but *agreeing on which block is canonical* is done through a multi-round process where every validator sends a "vote" for some specific block during each round, and at the end of the process all (honest and online) validators permanently agree on whether or not any given block is part of the chain. Note that blocks may still be *chained together*; the key difference is that consensus on a block can come within one block, and does not depend on the length or size of the chain after it.
+В **PoS на базе длины и размера сети** алгоритм в псевдослучайном порядке выбирает валидатора в течение каждого временного интервала (например, каждый период 10 секунд может быть временным интервалом) и назначает этому валидатору право создать один блок, и этот блок должен указывать на какой-то предшествующий блок (как правило, блок в конце самой длинной предшествующей цепочки), и таким образом со временем большинство блоков объединяются в единую постоянно растущую цепочку.
 
-For more details, refer [https://github.com/ethereum/wiki/wiki/Proof-of-Stake-FAQ](https://github.com/ethereum/wiki/wiki/Proof-of-Stake-FAQ).
+В **Proof of of Stake, в стиле BFT**, валидаторы **случайным образом** назначаются для **предложения** блоков. Соглашение, по которому блок **канонический,** выполняется в рамках multi-round процесса, где каждый валидатор **отправляет** голосование за определенный блок в каждом раунде, и в конце процесса все (честные и онлайн) постоянно соглашаются на то, является ли какой-либо данный блок частью цепочки. Обратите внимание, что блоки все еще могут быть **chained вместе**. Ключевая разница заключается в том, что консенсус по блоку может прийти в пределах одного блока, и не зависит от длины или размера цепочки после него.
 
-See also:
+Более подробную информацию см. на [https://github.com/ethereum/wiki/Proof-of-Stake-FAQ](https://github.com/ethereum/wiki/wiki/Proof-of-Stake-FAQ).
 
-* [Delegator](../glossary#delegator)
-* [Validator](../glossary#validator)
+## См. также {#see-also}
+
+* [Делегат](/docs/maintain/glossary.md#delegator)
+* [Валидатор](/docs/maintain/glossary.md#validator)

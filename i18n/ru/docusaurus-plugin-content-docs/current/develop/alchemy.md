@@ -1,92 +1,135 @@
 ---
 id: alchemy
-title: Using Alchemy
+title: Развернуть смарт-контракт с помощью Alchemy
 sidebar_label: Using Alchemy
-description: Build your next blockchain app on Polygon.
+description: Руководство по развертыванию смарт-контрактов с использованием Alchemy
 keywords:
   - docs
   - matic
-image: https://matic.network/banners/matic-network-16x9.png
+  - polygon
+  - alchemy
+  - create smart contract
+  - deploy on polygon
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
-# 🌎 Hello World Smart Contract on Polygon
+## Обзор {#overview}
 
-_Estimated time to complete this guide: \~15 minutes_
+Данное руководство предназначено для разработчиков, которые либо недавно занимаются разработкой на блокчейне Ethereum, либо хотят понять основы развертывания смарт-контрактов и взаимодействия с ними. Он будет ходить через создание и развертывание смарт-контракта в тестовой сети Polygon Mumbai с использованием криптовалютного кошелька ([Metamask](https://metamask.io)), [Solidity](https://docs.soliditylang.org/en/v0.8.0/), [Hardhat](https://hardhat.org) и [Alchemy](https://alchemy.com/?a=polygon-docs).
 
-If you are new to blockchain development and don’t know where to start, or if you just want to understand how to deploy and interact with smart contracts, this guide is for you. We will walk through creating and deploying a simple smart contract on the Polygon Mumbai test network using a virtual wallet ([Metamask](https://metamask.io)), [Solidity](https://docs.soliditylang.org/en/v0.8.0/), [Hardhat](https://hardhat.org), and [Alchemy](https://alchemy.com/?a=polygon-docs) (don’t worry if you don’t understand what any of this means yet, we will explain it!).
+:::tip
 
-If you have questions at any point feel free to reach out in the [Alchemy Discord](https://discord.gg/gWuC7zB)!
+Если у вас есть вопросы или проблемы, пожалуйста, свяжитесь с командой Alchemy через их [<ins>официальный</ins>](https://discord.gg/gWuC7zB) сервер Discord.
 
-## Create and Deploy your Smart Contract using Hardhat
+:::
 
-### Step 1: Connect to the Polygon network
+## Что вы узнаете {#what-you-will-learn}
 
-There are many ways to make requests to the Polygon chain. For simplicity, we’ll use a free account on Alchemy, a blockchain developer platform and API that allows us to communicate with the Polygon chain without having to run our own nodes. The platform also has developer tools for monitoring and analytics that we’ll take advantage of in this tutorial to understand what’s going on under the hood in our smart contract deployment. If you don’t already have an Alchemy account, [you can sign up for free here](https://alchemy.com/?a=polygon-docs).
+Чтобы создать смарт-контракт в этом руководстве, вы узнаете, как с помощью платформы Alchemy решить следующие задачи:
+- Создать приложение смарт-контракта
+- Проверить баланс кошелька
+- Проверка вызовов контракта в blockchain
 
-### Step 2: Create your app (and API key)
+## Что вы сделаете {#what-you-will-do}
 
-Once you’ve created an Alchemy account, you can generate an API key by creating an app. This will allow us to make requests to the Polygon Mumbai test network. If you’re not familiar with testnets, check out [this guide](https://docs.alchemyapi.io/guides/choosing-a-network).
+Следуя данному руководству, вы сможете:
+1. Приступить к созданию приложения на Alchemy
+2. Создать адрес кошелька с Metamask
+3. Добавить баланс в кошелек (с помощью тестовых токенов)
+4. Использовать Hardhat и Ethers.js для компиляции и развертывания проекта
+5. Проверить статус контракта на платформе Alchemy
 
-Navigate to the “Create App” page in your Alchemy Dashboard by hovering over “Apps” in the nav bar and clicking “Create App”.
+## Создайте и запустите смарт-контракт {#create-and-deploy-your-smart-contract}
 
-Name your app “Hello World”, offer a short description, select “Staging” for the Environment (used for your app bookkeeping), click "Polygon" for the Chain, and choose “Polygon Mumbai” for your network.
+### Подключение к сети Polygon {#connect-to-the-polygon-network}
 
-Click “Create app” and that’s it! Your app should appear in the table below.
+Существует несколько способов отправки заявок в цепочку Polygon PoS. Вместо запуска собственного нода вы будете использовать бесплатный аккаунт на платформе разработчиков Alchemy и взаимодействовать с Alchemy Polygon PoS API для связи с цепочкой Polygon PoS. Платформа состоит из полного набора инструментов разработчика: это включает возможность контролировать запросы, аналитику данных, которая демонстрирует происходящее в капюшоне при развертывании смарт-контракта, расширенные API (Transact, NFTs и т.д.) и SDK ethers.js.
 
-### Step 3: Create an wallet address
+Если у вас еще нет аккаунта Alchemy, начните с входа на бесплатный аккаунт [здесь](https://www.alchemy.com/polygon/?a=polygon-docs). После создания аккаунта у вас есть возможность сразу же создать свое первое приложение до перехода в дашборд.
 
-Since Polygon is a Layer-2 scaling solution for Ethereum, we need to get an Ethereum wallet and add a custom Polygon URL to send and receive transactions on the Polygon network. For this tutorial, we’ll use Metamask, a virtual wallet in the browser used to manage your wallet address. If you want to understand more about how transactions on Ethereum work, check out [this page](https://ethereum.org/en/developers/docs/transactions/) from the Ethereum foundation.
+![img](/img/alchemy/alchemy-dashboard.png)
 
-To get your customer Polygon RPC URL from Alchemy, go to your "Hello World" app in your Alchemy dashboard and click "View Key" in the top right corner. Then go ahead and copy your Alchemy HTTP API key!
+### Создайте приложение (и ключ API) {#create-your-app-and-api-key}
 
-You can download and create a MetaMask account for free [here](https://metamask.io/download.html). Once you've created an account, follow these steps to set up the Polygon network on your wallet.
+После успешного создания аккаунта Alchemy вам необходимо будет сгенерировать ключ API, создавая приложение. Это подтверждает запросы, поступающие в тестовую сеть Polygon Mumbai. Если вы не знакомы с тестовыми сетями, ознакомьтесь с [этим руководством по тестовым сетям](https://docs.alchemyapi.io/guides/choosing-a-network).
 
-1. Select “Settings” from the drop down menu on the top right corner of your MetaMask wallet.
-2. Select “Networks” from the menu to the left.
-3. Connect your wallet to the Mumbai Testnet using the following parameters.
+Чтобы создать новый ключ API, перейдите на вкладку **Apps** в панели навигации панели мониторинга Alchemy, и выберите key, **Создать** приложения.
 
-    #### Network Name: Polygon Mumbai Testnet
+![img](/img/alchemy/create-app.png)
 
-    #### New RPC URL: https://polygon-mumbai.g.alchemy.com/v2/your-api-key
+Назовите новое приложение **Hello World**, предложите короткое описание, выберите **Polygon** для цепочки, и выберите **Polygon Mumbai** для вашей сети.
 
-    #### ChainID: 80001
+Наконец, нажмите кнопку **Создать** приложение. Ваше новое приложение должно появиться в таблице ниже.
 
-    #### Symbol: MATIC
+### Создать адрес кошелька {#create-a-wallet-address}
 
-    #### Block Explorer URL: https://mumbai.polygonscan.com/
+Polygon PoS — это решение для масштабирования слоя 2. Поэтому нам нужен кошелек Ethereum и добавить пользовательский URL-адрес Polygon, чтобы отправить и получать транзакции в testnet. Polygon Mumbai. Для этого урока мы будем использовать MetaMask, совместимый с браузером криптовалютный кошелек, используемый для управления адресом кошелька. Если вы хотите лучше разобраться в том, как работают транзакции на Ethereum, ознакомьтесь с [данным руководством по транзакциям](https://ethereum.org/en/developers/docs/transactions/), подготовленным Ethereum Foundation.
 
-### Step 4: Add Polygon Mumbai Test MATIC from a Faucet
+Чтобы получить свой пользовательский URL Polygon RPC из Alchemy, перейдите в приложение **Hello World** в вашей панели мониторинга Alchemy и нажмите **кнопку Просмотр Ключа** в правом верхнем углу. Затем скопируйте свой ключ Alchemy HTTP API.
 
-In order to deploy our smart contract to the test network, we’ll need some fake MATIC. To get MATIC, you can go to the [Polygon Mumbai Faucet](https://faucet.polygon.technology/), select "Mumbai", choose "MATIC Token", and enter your Polygon wallet address, then click “Submit.” It may take some time to receive your fake Eth due to network traffic. (At the time of writing this, it took around 30 minutes.) You should see Eth in your MetaMask account soon after!
+![img](/img/alchemy/view-key.png)
 
-### Step 5: Check your Balance
+Вы можете бесплатно загрузить и создать аккаунт Metamask [здесь](https://metamask.io/download.html). После того, как вы создали аккаунт, выполните следующие действия, чтобы настроить сеть Polygon PoS на вашем кошельке.
 
-To double check our balance is there, let’s make an [eth\_getBalance](https://docs.alchemy.com/alchemy/apis/polygon-api/eth_getbalance) request using [Alchemy’s composer tool](https://composer.alchemyapi.io/). Select "Polygon" as the chain, "Polygon Mumbai" as the network, "eth_getBalance" as the method, and input your address. This will return the amount of MATIC in our wallet. Check out [this video](https://youtu.be/r6sjRxBZJuU) for instructions on how to use the composer tool!
+1. **Выберите параметры** из раскрывающегося меню в правом верхнем углу вашего кошелька MetaMask.
+2. Выберите **Сети** в меню слева.
+3. Подключите ваш кошелек к Mumbai Testnet с помощью следующих параметров:
 
-After you input your MetaMask account address and click “Send Request”, you should see a response that looks like this:
+**Название сети:** Polygon Mumbai Testnet
 
-```
+**Новый URL-адрес RPC:** https://polygon-mumbai.g.alchemy.com/v2/your-api-key
+
+**ChainID:** 80001
+
+**Символ:** MATIC
+
+**Блок Explorer URL:** https://mumbai.polygonscan.com/
+
+
+### Add Polygon Mumbai Test MATIC {#add-polygon-mumbai-test-matic}
+
+Вам понадобится несколько токенов testnet, чтобы развернуть свой смарт-контракт в тестовой сети Mumbai. Чтобы получить токены testnet, перейдите в [кран Polygon](https://faucet.polygon.technology/) Mumbai, выберите **Mumbai**, выберите **MATIC Token** и введите адрес кошелька Polygon, затем нажмите **Отправить**. Благодаря сетевому трафику может занять некоторое время для получения токенов testnet.
+
+Вы также можете использовать [бесплатный кран](https://mumbaifaucet.com/?a=polygon-docs) Alchemy.
+
+![img](/img/alchemy/faucet.png)
+
+Вскоре после этого вы увидите токены тестовой сети в своем аккаунте MetaMask.
+
+### Проверьте баланс {#check-your-wallet-balance}
+
+Чтобы убедиться в наличии остатка, давайте отправим заявку [eth\_getBalance](https://docs.alchemy.com/reference/eth-getbalance-polygon), воспользовавшись [компоновщиком Alchemy](https://composer.alchemyapi.io/). Выберите **Polygon** в качестве цепочки, **Polygon Mumbai** в качестве сети, `eth_getBalance`как метод и введите ваш адрес. В результате будет возвращено количество токенов MATIC в нашем кошельке. Посмотрите [это видео](https://youtu.be/r6sjRxBZJuU), в котором приводятся инструкции по использованию компоновщика.
+
+![img](/img/alchemy/get-balance.png)
+
+После того, как вы введите адрес аккаунта MetaMask и нажмите **Отправить запрос**, необходимо увидеть ответ, который выглядит следующим образом:
+
+```json
 { "jsonrpc": "2.0", "id": 0, "result": "0xde0b6b3a7640000" }
 ```
 
-**NOTE:** This result is in wei not eth. Wei is used as the smallest denomination of ether. The conversion from wei to eth is: 1 eth = 10^18 wei. So if we convert 0xde0b6b3a7640000 to decimal we get 1\*10^18 which equals 1 eth, which can be mapped to 1 MATIC based on denomination.
+:::info
 
-### Step 6: Initialize our project
+Этот результат представлен в Wei, а не в ETH. Wei — это наименьшее наименование Ether. Конвертация из Wei в Ether: 1 Ether = 10^18 Wei. Таким образом, при преобразовании «0xde0b6b3a7640000» в десятичное число мы получаем 1\*10^18, что равно 1 ETH. Это можно сопоставить с 1 MATIC, если исходить из номинала.
 
-First, we’ll need to create a folder for our project. Navigate to your [command line](https://www.computerhope.com/jargon/c/commandi.htm) and type:
+:::
 
-```
+### Инициализация вашего проекта {#initialize-your-project}
+
+Во-первых, необходимо будет создать папку для нашего проекта. Перейдите в [командную строку](https://www.computerhope.com/jargon/c/commandi.htm) и введите:
+
+```bash
 mkdir hello-world
 cd hello-world
 ```
 
-Now that we’re inside our project folder, we’ll use `npm init` to initialize the project. If you don’t already have npm installed, follow [these instructions](https://docs.alchemyapi.io/alchemy/guides/alchemy-for-macs#1-install-nodejs-and-npm) (we’ll also need Node.js so download that too!).
+Теперь, находясь в папке проекта, используем `npm init`, чтобы инициализировать проект. Если у вас еще не установлен npm, следуйте [этим инструкциям](https://docs.alchemyapi.io/alchemy/guides/alchemy-for-macs#1-install-nodejs-and-npm) (нам также понадобится Node.js, так что загрузите его тоже).
 
 ```bash
 npm init # (or npm init --yes)
 ```
 
-It doesn’t really matter how you answer the installation questions, here is how we did it for reference:
+Неважно, как вы ответите на вопросы в ходе установки; ниже для справки приводятся наши ответы:
 
 ```
 package name: (hello-world)
@@ -114,31 +157,31 @@ About to write to /Users/.../.../.../hello-world/package.json:
 }
 ```
 
-Approve the package.json and we’re good to go!
+Утвердите package.json. Теперь можно начинать!
 
-### Step 7: Download [Hardhat](https://hardhat.org/getting-started/#overview)
+### Скачать [Hardhat](https://hardhat.org/getting-started/#overview)
 
-Hardhat is a development environment to compile, deploy, test, and debug your Ethereum software. It helps developers when building smart contracts and dApps locally before deploying to the live chain.
+Hardhat — это среда разработки для компилирования, развертывания, тестирования и отладки программного обеспечения Ethereum. Она помогает разрабатывать смарт-контракты и децентрализованные приложения локально перед их развертыванием в активной цепочке.
 
-Inside our `hello-world` project run:
+Внутри нашего `hello-world`проекта выполните:
 
-```
+```bash
 npm install --save-dev hardhat
 ```
 
-Check out this page for more details on [installation instructions](https://hardhat.org/getting-started/#overview).
+Ознакомьтесь с этой страницей, где представлены более подробные [инструкции по установке](https://hardhat.org/getting-started/#overview).
 
-### Step 8: Create Hardhat project
+### Создать проект {#create-hardhat-project}
 
-Inside our `hello-world` project folder, run:
+Внутри нашей папки проекта `hello-world` выполните команду:
 
-```
+```bash
 npx hardhat
 ```
 
-You should then see a welcome message and option to select what you want to do. Select “create an empty hardhat.config.js”:
+Чтобы выбрать то, что вы хотите сделать, необходимо увидеть сообщение и параметр. Выберите **создать пустой hardhat.config.js**:
 
-```
+```bash
 888    888                      888 888               888
 888    888                      888 888               888
 888    888                      888 888               888
@@ -156,30 +199,28 @@ Create a sample project
 Quit
 ```
 
-This will generate a `hardhat.config.js` file for us, which is where we’ll specify all of the set up for our project (on step 13).
+Это будет генерировать `hardhat.config.js`файл для нас, где мы будем указать весь набор для нашего проекта.
 
-### Step 9: Add project folders
+### Добавить папки {#add-project-folders}
 
-To keep our project organized we’ll create two new folders. Navigate to the root directory of your `hello-world` project in your command line and type:
+Чтобы наш проект был организован, мы создадим две новые папки. Перейдите в корневой каталог вашего проекта `hello-world` в командной строке и введите:
 
-```
+```bash
 mkdir contracts
 mkdir scripts
 ```
 
-* `contracts/` is where we’ll keep our hello world smart contract code file
-* `scripts/` is where we’ll keep scripts to deploy and interact with our contract
+* `contracts/` — в этой папке мы будем хранить файл с кодом смарт-контракта hello world
+* `scripts/` — в этой папке мы будем хранить скрипты для развертывания нашего контракта и взаимодействия с ним
 
-### Step 10: Write our contract
+### Написать контракт {#write-the-contract}
 
-You might be asking yourself, when the heck are we going to write code?? Well, here we are, on Step 10 😄
+Откройте проект **hello-world** в вашем любимом редакторе, например [VSCode](https://code.visualstudio.com). Умные контракты написаны на языке Solidity, который мы будем использовать для записи нашего `HelloWorld.sol`смарт-контракта. ‌
 
-Open up the hello-world project in your favorite editor (we like [VSCode](https://code.visualstudio.com)). Smart contracts are written in a language called Solidity which is what we will use to write our HelloWorld.sol smart contract.‌
+1. Перейдите в `contracts`папку и создайте новый файл, называемый`HelloWorld.sol`
+2. Ниже представлен образец смарт-контракта Hello World от [Ethereum Foundation](https://ethereum.org/en/), который мы будем использовать в этом руководстве. Скопируйте и вставьте приведенные ниже строки кода в ваш файл `HelloWorld.sol` и обязательно прочитайте комментарии, чтобы понять задачи, решаемые этим контрактом:
 
-1. Navigate to the “contracts” folder and create a new file called `HelloWorld.sol`
-2. Below is a sample Hello World smart contract from the [Ethereum Foundation](https://ethereum.org/en/) that we will be using for this tutorial. Copy and paste in the contents below into your `HelloWorld.sol file`, and be sure to read the comments to understand what this contract does:
-
-```
+```solidity
 // SPDX-License-Identifier: None
 
 // Specifies the version of Solidity, using semantic versioning.
@@ -215,61 +256,61 @@ contract HelloWorld {
 }
 ```
 
-This is a super simple smart contract that stores a message upon creation and can be updated by calling the `update` function.
+Это сверхпростой смарт-контракт, который сохраняет сообщение после создания и может быть обновлен путем вызова функции `update`.
 
-### Step 11: Connect MetaMask & Alchemy to your project
+### Подключение к MetaMask и Alchemy {#connect-with-metamask-alchemy}
 
-We’ve created a MetaMask wallet, Alchemy account, and written our smart contract, now it’s time to connect the three.
+Мы создали кошелек Metamask, аккаунт Alchemy и написали смарт-контракт. Теперь пришло время подключить три этих компонента.
 
-Every transaction sent from your virtual wallet requires a signature using your unique private key. To provide our program with this permission, we can safely store our private key (and Alchemy API key) in an environment file.
+Каждая транзакция, отправляемая из вашего виртуального кошелька, требует наличия подписи с использованием уникального приватного ключа. Чтобы предоставить нашей программе данное разрешение, мы можем безопасно сохранить приватный ключ (и ключ Alchemy API) в файле среды.
 
-> To learn more about sending transactions, check out [this tutorial](https://docs.alchemyapi.io/alchemy/tutorials/sending-transactions-using-web3-and-alchemy) on sending transactions using web3.
+Во-первых, установите пакет dotenv в каталог проекта:
 
-First, install the dotenv package in your project directory:
-
-```
+```bash
 npm install dotenv --save
 ```
 
-Then, create a `.env` file in the root directory of our project, and add your MetaMask private key and HTTP Alchemy API URL to it.
+Затем создайте файл `.env` в корневом каталоге проекта и добавьте в него свой приватный ключ Metamask и HTTP Alchemy API URL.
 
-Your environment file must be named `.env` or it won't be recognized as an environment file.
+:::warning Предупреждение
 
-Do not name it `process.env` or `.env-custom` or anything else.
+Ваш файл среды должен быть назван `.env`или он не будет признан как файл окружения. Не следует давать ему имя `process.env` или `.env-custom`, или какое-либо иное имя.
 
-WARNING: If you are using version control system like git to manage your project, please DO NOT track the .env file. Add .env to your .gitignore file so that you don't accidentally publish your secrets to the world
+Кроме того, если вы используете систему управления версиями, такую как git, для управления проектом, пожалуйста, **НЕ** отслеживайте `.env`файл. Добавьте `.env`в ваш `.gitignore`файл, чтобы избежать публикации секретных данных.
 
-* Follow [these instructions](https://metamask.zendesk.com/hc/en-us/articles/360015289632-How-to-Export-an-Account-Private-Key) to export your private key
-* To get your Alchemy HTTP API Key (RPC URL), go to your "Hello World" app in your Alchemy dashboard and click "View Key" in the top right corner. Then go ahead and copy your Alchemy HTTP API key!
+:::
 
-Your `.env` should look like this:
+* Следуйте [этим инструкциям](https://metamask.zendesk.com/hc/en-us/articles/360015289632-How-to-Export-an-Account-Private-Key), чтобы экспортировать свой приватный ключ
+* Чтобы получить ключ Alchemy HTTP API (URL-адрес RPC), перейдите в приложение **Hello World** на панели мониторинга вашего аккаунта и нажмите **кнопку Просмотр Ключа** в правом верхнем углу.
+
+Ваш файл `.env` должен выглядеть следующим образом:
 
 ```
 API_URL = "https://polygon-mumbai.g.alchemy.com/v2/your-api-key"
 PRIVATE_KEY = "your-metamask-private-key"
 ```
 
-To actually connect these to our code, we’ll reference these variables in our `hardhat.config.js` file on step 13.
+Чтобы фактически подключить их к нашему коду, мы будем ссылаться на эти переменные в нашем `hardhat.config.js`файле позже в этом учебнике.
 
-### Step 12: Install Ethers.js
+### Установите Ethers.js {#install-ethers-js}
 
-Ethers.js is a library that makes it easier to interact and make requests to Ethereum by wrapping [standard JSON-RPC methods](https://docs.alchemyapi.io/alchemy/documentation/alchemy-api-reference/json-rpc) with more user friendly methods.
+Ethers.js — это библиотека, которая упрощает взаимодействие и отправку заявок в Ethereum за счет упаковки [стандартных методов JSON-RPC](https://docs.alchemyapi.io/alchemy/documentation/alchemy-api-reference/json-rpc) с более удобными методами.
 
-Hardhat makes it super easy to integrate [Plugins](https://hardhat.org/plugins/) for additional tooling and extended functionality. We’ll be taking advantage of the [Ethers plugin](https://hardhat.org/plugins/nomiclabs-hardhat-ethers.html) for contract deployment ([Ethers.js](https://github.com/ethers-io/ethers.js/) has some super clean contract deployment methods).
+Hardhat облегчает интеграцию [плагинов](https://hardhat.org/plugins/) с целью обеспечения дополнительных инструментальных средств и расширения функциональных возможностей. Мы воспользуемся [плагином Ethers](https://hardhat.org/plugins/nomiclabs-hardhat-ethers.html) для развертывания контракта. [Ethers.js](https://github.com/ethers-io/ethers.js/) предусматривает полезные методы развертывания контракта.
 
-In your project directory type:
+В директории проекта введите следующее:
 
 ```bash
 npm install --save-dev @nomiclabs/hardhat-ethers "ethers@^5.0.0"
 ```
 
-We’ll also require ethers in our `hardhat.config.js` in the next step.
+Нам также потребуются эфиры в `hardhat.config.js` на следующем шаге.
 
-### Step 13: Update hardhat.config.js
+### Обновление hardhat.config.js {#update-hardhat-config-js}
 
-We’ve added several dependencies and plugins so far, now we need to update `hardhat.config.js` so that our project knows about all of them.
+Мы добавили несколько зависимостей и плагинов. Теперь нам необходимо обновить, `hardhat.config.js`чтобы наш проект распознал эти зависимости.
 
-Update your `hardhat.config.js` to look like this:
+Обновите скрипт `hardhat.config.js`, чтобы он приобрел следующий вид:
 
 ```javascript
 /**
@@ -294,23 +335,23 @@ module.exports = {
 }
 ```
 
-### Step 14: Compile our contract
+### Compile our Smart Contract {#compile-our-smart-contract}
 
-To make sure everything is working so far, let’s compile our contract. The `compile` task is one of the built-in hardhat tasks.
+Чтобы убедиться в работоспособности кода, давайте скомпилируем наш контракт. Задача `compile` является одной из встроенных задач hardhat.
 
-From the command line run:
+Из командной строки запустите команду:
 
 ```bash
 npx hardhat compile
 ```
 
-You might get a warning about `SPDX license identifier not provided in source file` , but no need to worry about that — hopefully everything else looks good! If not, you can always message in the [Alchemy discord](https://discord.gg/u72VCg3).
+Возможно, вам будет предложено `SPDX license identifier not provided in source file`предупредить, но приложение все равно будет работать нормально. В противном случае вы всегда можете отправить сообщение в [Discord Alchemy](https://discord.gg/u72VCg3).
 
-### Step 15: Write our deploy script
+### Напишите наш скрипт {#write-our-deploy-script}
 
-Now that our contract is written and our configuration file is good to go, it’s time to write our contract deploy script.
+Теперь, когда контракт написан, а файл конфигурации готов, пришло время написать скрипт развертывания контракта.
 
-Navigate to the `scripts/` folder and create a new file called `deploy.js` , adding the following contents to it:
+Перейдите в папку `scripts/` и создайте новый файл с именем `deploy.js`, добавив в него следующие строки:
 
 ```javascript
 async function main() {
@@ -329,44 +370,49 @@ main()
   });
 ```
 
-Hardhat does an amazing job of explaining what each of these lines of code does in their [Contracts tutorial](https://hardhat.org/tutorial/testing-contracts.html#writing-tests), we’ve adopted their explanations here.
+Мы заимствовали пояснения команды разработчиков Hardhat в отношении того, что делает каждая строка этого кода, из их [руководства по контрактам](https://hardhat.org/tutorial/testing-contracts.html#writing-tests).
 
 ```javascript
 const HelloWorld = await ethers.getContractFactory("HelloWorld");
 ```
 
-A `ContractFactory` in ethers.js is an abstraction used to deploy new smart contracts, so `HelloWorld` here is a [factory](https://en.wikipedia.org/wiki/Factory\_\(object-oriented\_programming\)) for instances of our hello world contract. When using the `hardhat-ethers` plugin `ContractFactory` and `Contract`, instances are connected to the first signer (owner) by default.
+`ContractFactory` в ethers.js — это абстракция, используемая для развертывания новых смарт-контрактов, поэтому `HelloWorld` здесь является [фабрикой классов](https://en.wikipedia.org/wiki/Factory\_\(object-oriented\_programming\)) для экземпляров нашего контракта hello world. При использовании `ContractFactory` и `Contract` в плагине `hardhat-ethers` экземпляры подключаются по умолчанию к первому подписавшему лицу (владельцу).
 
 ```javascript
 const hello_world = await HelloWorld.deploy();
 ```
 
-Calling `deploy()` on a `ContractFactory` will start the deployment, and return a `Promise` that resolves to a `Contract` object. This is the object that has a method for each of our smart contract functions.
+При вызове функции `deploy()` на `ContractFactory` начинается развертывание, при этом возвращается `Promise`, которое разрешается в объект `Contract`. Это объект, в котором имеется метод для каждой из функций нашего смарт-контракта.
 
-### Step 16: Deploy our contract
+### Развернуть наш смарт-контракт {#deploy-our-smart-contract}
 
-We’re finally ready to deploy our smart contract! Navigate to the command line and run:
+Перейдите в командную строку и запустите команду:
 
 ```bash
 npx hardhat run scripts/deploy.js --network polygon_mumbai
 ```
 
-You should then see something like:
+Вы должны увидеть что-то подобное:
 
 ```bash
 Contract deployed to address: 0x3d94af870ED272Cd5370e4135F9B2Bd0e311d65D
 ```
 
-**Please copy and paste this address to save it somewhere**, as we will be using this address for later tutorials, so you don't want to lose it.
+Если мы пойдем в [Polygon Mumbai explorer](https://mumbai.polygonscan.com/) и найдем наш адрес контракта, мы должны иметь возможность убедиться, что он был успешно развернут.
 
-If we go to the [Polygon Mumbai explorer](https://mumbai.polygonscan.com/) and search for our contract address we should able to see that it has been deployed successfully.
+`From`Адрес должен соответствовать вашему аккаунту MetaMask, а `To`адрес будет сказать **Contract Creation.** Но если мы нажмете в транзакцию, мы увидим наш адрес контракта в `To`поле.
 
-The `From` address should match your MetaMask account address and the To address will say “Contract Creation”. But if we click into the transaction, we’ll see our contract address in the `To` field:
+![img](/img/alchemy/polygon-scan.png)
 
-Congrats! You just deployed a smart contract to the Polygon chain 🎉
+### Проверьте контракт {#verify-the-contract}
 
-To understand what’s going on under the hood, let’s navigate to the Explorer tab in our [Alchemy dashboard](https://dashboard.alchemyapi.io/explorer). If you have multiple Alchemy apps make sure to filter by app and select “Hello World”.
+Alchemy предоставляет [исследователь,](https://dashboard.alchemyapi.io/explorer) где вы можете найти информацию о методах, развернутых вместе со смарт-контрактом, таких как время ответа, статус HTTP, коды ошибок. Это хорошая среда для проверки контракта и успешного прохождения транзакций.
 
-Here you’ll see a handful of JSON-RPC calls that Hardhat/Ethers made under the hood for us when we called the `.deploy()` function. Two important ones to call out here are [`eth_sendRawTransaction`](https://docs.alchemyapi.io/alchemy/documentation/alchemy-api-reference/json-rpc#eth\_sendrawtransaction), which is the request to actually write our contract onto the Polygon chain, and [`eth_getTransactionByHash`](https://docs.alchemyapi.io/alchemy/documentation/alchemy-api-reference/json-rpc#eth\_gettransactionbyhash) which is a request to read information about our transaction given the hash (a typical pattern when sending transactions).
+![img](/img/alchemy/calls.png)
 
-That’s all for this tutorial! Once you complete this tutorial, let us know how your experience was or if you have any feedback by tagging us on Twitter [@alchemyplatform](https://twitter.com/AlchemyPlatform)!
+**Поздравляем! Вы только что разместили смарт-контракт в сети Polygon Mumbai.**
+
+## Дополнительные ресурсы {#additional-resources}
+
+- [Как разработать смарт-контракт NFT](https://docs.alchemy.com/docs/how-to-develop-an-nft-smart-contract-erc721-with-alchemy) — Alchemy имеет письменный учебник с видео Youtube на эту тему. Это неделя 1 из его бесплатного 10 неделя **Road to Web3** dev series
+- [Polygon API Quickstart](https://docs.alchemy.com/reference/polygon-api-quickstart) — разработчик Alchemy предоставляет руководство по созданию и работе с Polygon

@@ -1,34 +1,34 @@
 ---
 id: get-started
-title: Get started
+title: Erste Schritte
 keywords:
   - maticjs
   - introduction
   - contract
   - polygon
   - sdk
-description: Get started with maticjs
+description: Erste Schritte mit Matic.js
 ---
 
-The `@matic.js` is a javascript library which helps in interacting with the various components of Matic Network.
+`@matic.js` ist eine JavaScript-Bibliothek für die Kommunikation mit verschiedenen Komponenten des Matic-Netzwerkes.
 
-In this Get Started tutorial - we will learn about how we can setup and interact with the POS bridge.
+Im Tutorial "Erste Schritte" erfährst du, wie man die POS-Bridge einrichtet und mit ihr kommunizieren kann.
 
-## Installation
+## Installation {#installation}
 
-**Install the maticjs package via npm:**
+**maticjs-Paket über npm installieren:**
 
 ```bash
 npm install @maticnetwork/maticjs
 ```
 
-**Install the web3js plugin**
+**web3js Plugin installieren**
 
 ```bash
 npm install @maticnetwork/maticjs-web3
 ```
 
-## Setup
+## Setup {#setup}
 
 ```javascript
 import { use } from '@maticnetwork/maticjs'
@@ -38,11 +38,11 @@ import { Web3ClientPlugin } from '@maticnetwork/maticjs-web3'
 use(Web3ClientPlugin)
 ```
 
-In the above code we are initiating maticjs with `web3js` but you can also similarly initiate with [ethers](/docs/develop/ethereum-polygon/matic-js/setup/ethers).
+Im obigen Code initiieren wir die maticjs mit `web3js`, aber du kannst diese auch mit [ethers](/docs/develop/ethereum-polygon/matic-js/setup/ethers) initiieren.
 
-## POS client
+## POS Client {#pos-client}
 
-`POSClient` helps us to interact with POS Bridge.
+`POSClient` hilft uns bei der Kommunikation mit der POS Bridge.
 
 ```
 import { POSClient,use } from "@maticnetwork/maticjs"
@@ -72,37 +72,37 @@ await posClient.init({
 
 ```
 
-After `POSClient` is initiated, we need to initiate the required token types like - `erc20`, `erc721` etc.
+Nachdem `POSClient` initiiert wurde, müssen wir die erforderlichen Token-Arten wie - `erc20`, `erc721` etc., initiieren.
 
-Let's initiate `erc20` -
+Initiieren wir nun `erc20` -
 
-### erc20
+### erc20 {#erc20}
 
-**create erc20 child token**
+**erc20 Child Token erstellen**
 
 ```
 const erc20ChildToken = posClient.erc20(<token address>);
 ```
 
-**create erc20 parent token**
+**erc20 Parent Token erstellen**
 
 ```
 const erc20ParentToken = posClient.erc20(<token address>, true);
 
 ```
 
-Once erc20 is initaited, you can call various methods that are available, like - `getBalance`, `approve`, `deposit` , `withdraw` etc.
+Sobald erc20 initiiert ist, kannst du verschiedene verfügbare Methoden wie - `getBalance`, `approve`, `deposit` , `withdraw` usw. aufrufen.
 
-Let's see some of the API examples -
+Hier sind einige Beispiele von API -
 
-#### get balance
+#### get balance {#get-balance}
 
 ```
 const balance = await erc20ChildToken.getBalance(<userAddress>)
 console.log('balance', balance)
 ```
 
-#### approve
+#### approve {#approve}
 
 ```
 // approve amount 10 on parent token
@@ -116,8 +116,8 @@ const txReceipt = await approveResult.getReceipt();
 ```
 
 
-As you can see, with its simple APIs maticjs makes it very easy to interact with maticjs bridge. **Let's get started with creating something awesome**
+Wie du sehen kannst, machen diese unkomplizierten APIs maticjs die Kommunikation mit der maticjs Bridge ganz einfach. **Jetzt starten wir etwas ganz besonderes**
 
-### Some important links
+### Einige wichtige Links {#some-important-links}
 
-- [Examples](https://github.com/maticnetwork/matic.js/tree/master/examples)
+- [Beispiele](https://github.com/maticnetwork/matic.js/tree/master/examples)

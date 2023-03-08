@@ -1,7 +1,7 @@
 ---
 id: validator-staking-operations
-title: Stake on Polygon
-description: "Learn how to stake as a validator on the Polygon Network."
+title: Стейкинг на Polygon
+description: Узнайте, как сделать ставку в качестве валидатора в Polygon Network
 keywords:
   - docs
   - matic
@@ -10,33 +10,29 @@ keywords:
   - claim
   - unstake
 slug: validator-staking-operations
-image: https://matic.network/banners/matic-network-16x9.png
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
-
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-## Prerequisites
+## Предварительные условия {#prerequisites}
 
-### Full node set up
+### Установка полного нода {#full-node-set-up}
 
-Your validator node fully set up and synced.
+Ваш узел валидатора полностью настроен и синхронизирован. См. также:
 
-See:
+* [Запустите узел валидатора](run-validator.md)
+* [Запуск ноды валидатора с помощью Ansible](run-validator-ansible.md)
+* [Запуск узла проверки с помощью двоичных файлов](run-validator-binaries.md)
 
-* [Run a Validator Node with Ansible](run-validator-ansible)
-* [Run a Validator Node from Binaries](run-validator-binaries)
+### Настройка аккаунта {#account-setup}
 
-### Account setup
-
-On your validator node, check that the account is set up.
-
-To check, run the following command **on the validator node**:
+На вашем вершине валидатора проверьте, что настроен аккаунт. Для этого выполните следующую команду **в узле проверки**:
 
 ```sh
     heimdalld show-account
 ```
 
-Your output should appear in the following format:
+В результате вы должны получить следующее:
 
 ```json
 {
@@ -45,21 +41,19 @@ Your output should appear in the following format:
 }
 ```
 
-This will display your address and public key for your validator node. **Note that this address must match with your signer address on Ethereum.**
+Будет отображен ваш адрес и открытый ключ для узла проверки. Обратите внимание, что **этот адрес должен соответствовать вашему адресу подписанта в Ethereum**.
 
-### Show private key
+### Отображение закрытого ключа {#show-private-key}
 
-This step is optional.
+Это необязательное действие.
 
-On your validator node, check that the private key is correct.
-
-To check, run the following command **on the validator node**:
+На вашем вершине валидатора проверьте, что приватный ключ был верен. Для этого выполните следующую команду **в узле проверки**:
 
 ```sh
 heimdalld show-privatekey
 ```
 
-The following output should appear:
+В результате вы должны получить следующее:
 
 ```json
 {
@@ -67,50 +61,44 @@ The following output should appear:
 }
 ```
 
-## Stake on Polygon
+## Стейкинг на Polygon {#stake-on-polygon}
 
-You can stake on Polygon using the [validator dashboard](https://staking.polygon.technology/validators/).
+Размещать средства в стейкинге на Polygon можно с помощью [дашборда валидатора](https://staking.polygon.technology/validators/).
 
-### Stake using the staking dashboard
+### Стейкинг с помощью дашборда стейкинга {#stake-using-the-staking-dashboard}
 
-1. Access the [validator dashboard](https://staking.polygon.technology/validators/).
-1. Log in with your wallet. MetaMask is the recommended wallet.
+1. Перейдите в [дашборд валидатора](https://staking.polygon.technology/validators/).
+2. Войдите в кошелек. MetaMask — это рекомендуемый кошелек. Вам необходимо убедиться, что вы авторизуетесь с помощью того же адреса, где присутствуют ваши токены MATIC.
+3. Нажмите **кнопку Стать валидатором**. Вам будет предложено настроить свой узел. Это обязательное действие. В противном случае при попытке разместить средства в стейкинге появится сообщение об ошибке.
+4. На следующем экране добавьте данные валидатора, размер комиссии и количество средств, размещаемых в стейкинге.
+5. Нажмите **Stake Now** (разместить в стейкинге).
 
-   You have to make sure that you login using the same address where your MATIC tokens are present.
+После завершения транзакции средства будут размещены в стейкинге, и вы сможете стать валидатором. Вас попросят подтвердить транзакцию три раза.
 
-1. Click **Become a Validator**
-
-   You will be asked to set up your node. If you haven't already set up your node by now, you will need to do so, else if you proceed ahead you will receive an error when you attempt to stake.
-
-1. On the next screen, add your validator details, the commission rate, and the staking amount.
-1. Click **Stake Now**.
-
-Once the transaction is completed you will have staked successfully to become a validator. You will be asked thrice to confirm the transaction.
-
-* Approve Transaction — this will approve your stake transaction.
-* Stake — This will confirm your stake transaction.
-* Save —ß This will save your validator details.
+* Approve Transaction (одобрить транзакцию) — одобрение транзакции стейкинга.
+* Stake (разместить в стейкинге) — подтверждение транзакции стейкинга.
+* Save (сохранить) — сохранение ваших данных валидатора.
 
 :::note
 
-For the changes to take effect on the [staking dashboard](https://staking.polygon.technology/account), it requires a minimum of 12 block confirmations.
+Чтобы изменения отразились на [дашборде стейкинга](https://staking.polygon.technology/account), требуется дождаться 12 подтверждений блоков.
 
 :::
 
-### Check the balance
+### Проверка остатка средств {#check-the-balance}
 
-To check the balance of your address:
+Чтобы проверить остаток средств на вашем адресе, выполните следующую команду:
 
 ```sh
 heimdallcli query auth account SIGNER_ADDRESS --chain-id CHAIN_ID
 ```
 
-where
+где
 
-* SIGNER_ADDRESS — your [signer address](../glossary#validator).
-* CHAIN_ID — the Polygon mainnet chain ID with the client prefix: `heimdall-137`.
+* SIGNER_ADDRESS — ваш [адрес подписанта](/docs/maintain/glossary.md#validator).
+* CHAIN_ID — идентификатор цепочки Polygon mainnet с клиентским префиксом: `heimdall-137`.
 
-The following output should appear:
+В результате вы должны получить следующее:
 
 ```json
 address: 0x6c468cf8c9879006e22ec4029696e005c2319c9d
@@ -122,29 +110,29 @@ accountnumber: 0
 sequence: 0
 ```
 
-### Claim rewards as a validator
+### Получение наград валидатора {#claim-rewards-as-a-validator}
 
-Once you are set up and staked as a validator, you will earn rewards for performing validator duties. When you perform validator duties dutifully, you get rewarded.
+Установив нод и разместив средства в стейкинге, вы начнете получать награды за выполнение обязанностей валидатора. Награды предоставляются за их добросовестное выполнение.
 
-To claim rewards you can go to your [validator dashboard](https://staking.polygon.technology/account).
+Чтобы получить награды, перейдите на [дашборд валидатора](https://staking.polygon.technology/account).
 
-You will see two buttons on your profile:
+В профиле вы увидите две кнопки:
 
-* Withdraw Reward
-* Restake Reward
+* Withdraw Reward (вывести награды)
+* Restake Reward (добавить награды в стейкинг)
 
-#### Withdraw Reward
+#### Withdraw Reward (вывести награды) {#withdraw-reward}
 
-As a validator, you earn rewards as long as you are performing your validator duties correctly.
+Как валидатор, вы получаете награды, если корректно выполняете свои обязанности.
 
-Clicking **Withdraw Reward** will get your rewards back to your wallet.
+После нажатия **Withdraw Reward** (вывести награды) награды поступят в ваш кошелек.
 
-The dashboard will update after 12 block confirmations.
+Дашборд обновится после 12 подтверждений блоков.
 
-#### Restake Reward
+#### Restake Reward (добавить награды в стейкинг) {#restake-reward}
 
-Restaking your rewards is an easy way to increase your stake as a validator.
+Добавление наград в стейкинг — это простой способ для валидатора увеличить свой стейк.
 
-Clicking **Restake Reward** will restake your reward and increase your stake.
+Нажав **Restake Reward** (добавить награды в стейкинг), вы добавите награды в стейкинг и увеличите свой стейк.
 
-The dashboard will update after 12 block confirmations.
+Дашборд обновится после 12 подтверждений блоков.

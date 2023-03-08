@@ -2,11 +2,11 @@
 id: is-approved
 title: isApproved
 keywords:
-  - 'pos client, erc721, isApproved, polygon, sdk'
-description: 'Get started with maticjs'
+- 'pos client, erc721, isApproved, polygon, sdk'
+description: 'Überprüfen, ob ein Token für eine angegebene TokenID genehmigt ist.'
 ---
 
-`isApproved` method checks if token is approved for specified tokenId. It returns boolean value.
+Die `isApproved`-Methode prüft, ob der Token für die angegebene TokenID genehmigt ist. Das Ergebnis ist der Boolesche Wert.
 
 ```
 const erc721Token = posClient.erc721(<token address>, true);

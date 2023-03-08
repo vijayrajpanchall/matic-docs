@@ -1,70 +1,68 @@
 ---
 id: move-stake
-title: Moving Stake
-description: Build your next blockchain app on Polygon.
+title: Déplacement de mise
+description: Déplacer votre participation sur le réseau polygon
 keywords:
   - docs
   - polygon
   - matic
   - stake
   - move stake
+  - validator
+  - delegator
 slug: move-stake
-image: https://matic.network/banners/matic-network-16x9.png
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
-
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-## Moving Stake from Foundation nodes to External Nodes
+## Déplacement de la mise des nœuds de la Fondation aux nœuds externes {#moving-stake-from-foundation-nodes-to-external-nodes}
 
-
-<video loop autoplay width="100%" height="100%" controls="true">
+<video loop autoplay width="100%" height="100%" controls="true" >
   <source type="video/mp4" src="/img/staking/MoveStakeDemo.mp4"></source>
   <source type="video/quicktime" src="/img/staking/MoveStakeDemo.mov"></source>
-  <p>Your browser does not support the video element.</p>
+  <p>Votre navigateur n'est pas compatible avec la vidéo.</p>
 </video>
 
-Delegators are now given an option to move their stake from the Foundation nodes to any External nodes of their choice by using the Move Stake functionality on the Staking UI
+Les délégants ont maintenant la possibilité de déplacer leur mise des nœuds de la Fondation vers les nœuds externes de leur choix en utilisant la fonctionnalité Déplacer la mise sur l'interface de staking
 
-Moving Stake from the foundation node to external node is a single transaction. So there are no delays or unbonding periods durind this event.
+Le déplacement de la mise du nœud de la Fondation à un nœud externe est une transaction unique. Il n'y a donc pas de délai ou de période d'unbonding pour cet événement.
 
-Please note that Moving Stake is only allowed from Foundation node to External nodes. If you want to move your stake from an External node to another External node, you will have to Unbond first and then Delegate on the new external node.
+Veuillez noter que le déplacement de la mise est uniquement autorisé du nœud de la Fondation aux nœuds externes. Si vous souhaitez déplacer votre mise d'un nœud externe à un autre nœud externe, vous devrez d'abord effectuer un unbonding, puis déléguer sur le nouveau nœud externe.
 
-Also, the Move Stake function is a temporary function developed by the Polygon team to ensure smooth transistioning of funds from the Foundation nodes to External. And will only stay active until the foundation nodes are turned off.
+De plus, la fonction Déplacer la mise est une fonction temporaire développée par l'équipe Polygon pour assurer un transfert en douceur des fonds des nœuds de la Fondation vers des nœuds externes. Elle ne restera active que jusqu'à ce que les nœuds de la Fondation soient désactivés.
 
-### How to Move Stake
+## Déplacer une mise {#how-to-move-stake}
 
-In order to Move stake, first you will need to login to the Staking UI: https://wallet.polygon.technology/staking using your Delegator Address.
+Pour déplacer le jeu, vous devrez d'abord vous connecter à [l'interface utilisateur Staking](https://wallet.polygon.technology/staking) à l'aide de votre adresse Delegator
 
-**Delegator Address** = The address that you have already used for Staking on the Foundation Nodes.
+**Adresse du délégué** : L'adresse que vous avez déjà utilisée pour participer aux nœuds de fondation.
 
-Once logged in your will see a list of Validators.
+Une fois connecté, vous verrez une liste de validateurs.
 
 <img src={useBaseUrl("img/staking/validator-list.png")} />
 
-Now go to your Delegator Profile by clicking on the "Show Delegator Details" button or the "**My Delegator Details**" option on the left hand side
+Allez maintenant sur votre profil de Délégation en cliquant sur le bouton **Afficher les détails** du délégué ou sur l'option **Mes détails** du délégateur sur la gauche.
 
 <img src={useBaseUrl("img/staking/show-delegator-details.png")} />
 
-Here you will find a new button called "**Move Stake**"
+Ici, vous trouverez un nouveau bouton appelé **Déplacer le Stake**.
 
 <img src={useBaseUrl("img/staking/move-stake-button.png")} />
 
-Clicking on that button would navigate you to a page with a list of validators that you can Delegate to. You can delegate to any Validator on this list.
+En cliquant sur ce bouton, vous accéderez à une page avec une liste de validateurs auxquels vous pouvez déléguer. Vous pouvez déléguer à n'importe quel validateur de cette liste.
 
 <img src={useBaseUrl("img/staking/move-stake-validator.png")} />
 
-Now after choosing your validator that you want to delegate to, click on the "**Delegate Here**" button.
-
-Clicking on that button would open up a pop up.
+Maintenant, après avoir choisi votre validateur auquel vous souhaitez déléguer, cliquez sur le bouton **Déléguer** Ici. En cliquant sur ce bouton, vous ouvrirez une fenêtre contextuelle.
 
 <img src={useBaseUrl("img/staking/stake-funds.png")} />
 
-Here you would see an Amount field which would automatically populate with entire amount for Delegation. You can also use a partial amount to delegate to a validator.
+Ici, vous verriez un champ **Montant** qui remplirait automatiquement avec le montant entier pour la délégation. Vous pouvez également utiliser un montant partiel pour déléguer à un validateur.
 
-**For example**, if you have delegated 100 Matic tokens to Foundation Node 1 and now you want to move your stake from the foundation node to an external node, you can delegate a partial amount to the external node of your choice, lets say 50 Matic tokens. The rest of the 50 Matic tokens will stay on Foundation node 1. You can then choose to either delegate the rest of the 50 tokens to another external node or the same external node.
+Par exemple, si vous avez délégué 100 jetons Matic au nœud 1 de la Fondation et que vous souhaitez maintenant déplacer votre mise du nœud de la Fondation vers un nœud externe, vous pouvez déléguer un montant partiel au nœud externe de votre choix, par exemple 50 jetons Matic. Le reste des 50 jetons Matic restera sur le nœud 1 de la Fondation. Vous pouvez alors choisir de déléguer le reste des 50 jetons à un autre nœud externe ou au même nœud externe.
 
-Once you have entered the amount you can then click on Stake Funds button. This will then ask for confirmation on your MetaMask to sign the address.
+Une fois que vous avez entré le montant, vous pouvez cliquer sur le bouton **Stake Funds**. Cela demandera ensuite une confirmation sur votre Metamask pour signer l'adresse.
 
-Once you have signed the transaction your stake would have successfully moved from the Foundation node to the External node. However, you will have to wait for 12 block confirmations for it reflect on the Staking UI. If your moved funds do not show up after 12 block confirmations, try refreshing the page once to see updated stakes.
+Une fois que vous aurez signé la transaction, votre mise réussira à passer du nœud de la Fondation au nœud externe. Cependant, vous devrez attendre 12 confirmations de bloc pour que cela soit visible sur l'interface utilisateur de staking. Si vos fonds déplacés ne s'affichent pas après 12 confirmations de bloc, essayez de rafraîchir la page une fois pour voir les mises actualisées.
 
-If you have any questions or any issues please submit a ticket [here](https://support.polygon.technology/support/home).
+Si vous avez des questions ou si vous rencontrez un problème, veuillez créer un ticket [ici](https://support.polygon.technology/support/home).

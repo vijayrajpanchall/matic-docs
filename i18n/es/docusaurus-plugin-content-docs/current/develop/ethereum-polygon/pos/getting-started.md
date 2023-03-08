@@ -1,68 +1,55 @@
 ---
 id: getting-started
-title: PoS Bridge
+title: Puente de PoS
 sidebar_label: Introduction
-description: Build your next blockchain app on Polygon.
+description: Más flexibilidad y retiros más rápidos con las PoS de Polygon.
 keywords:
   - docs
   - matic
+  - pos bridge
+  - deposit
+  - withdraw
+  - mapping
+  - state sync
 image: https://matic.network/banners/matic-network-16x9.png
 ---
 
-Please check the latest [Matic.js documentation on PoS](../matic-js/get-started.md) to get started.
+Para empezar, consulta la última [documentación de Matic.js sobre PoS](../matic-js/get-started.md).
 
-A bridge is basically a set of contracts that help in moving assets from the root chain to the child chain. There are primarily two bridges to move assets between Ethereum and Polygon. First one is the Plasma bridge and the second one is called the **PoS Bridge** or **Proof of Stake bridge**. **Plasma bridge** provides an increased security guarantee due to the Plasma exit mechanism.
+Básicamente, un puente es un conjunto de contratos que ayuda a mover activos desde la cadena primaria a la secundaria. Hay dos puentes principales para mover activos entre Ethereum y Polygon. El primero es el puente de Plasma y el segundo se llama **puente** o **puente de prueba de participación **. El **puente de Plasma** ofrece mayor garantía de seguridad debido al mecanismo de salida de Plasma.
 
-However, there are certain restrictions on the child token and there is a 7-day withdrawal period associated with all exits/withdraws from Polygon to Ethereum on the Plasma bridge.
+No obstante, hay ciertas restricciones en el token secundario y un período de retiro de 7 días asociado a todas las salidas o retiros de Polygon a Ethereum en el puente de Plasma.
 
-This is quite painful for those DApps/users who need some **flexibility** and **faster withdrawals**, and are happy with the level of security provided by the Polygon Proof-of-Stake bridge, secured by a robust set of external validators.
+Esto es poco conveniente para las Dapps o los usuarios que necesitan cierta **flexibilidad** y **retiros más rápidos**, y están conformes con el nivel de seguridad que ofrece el puente de pruebas de participación de Polygon, asegurado por un robusto conjunto de validadores externos.
 
-Proof of stake based assets provides PoS security and faster exit with one checkpoint interval.
+Los activos basados en la prueba de participación ofrecen la seguridad de la PoS y salida más rápida con un intervalo de punto de control.
 
-## Steps to use the PoS Bridge
+## Pasos para usar el puente de PoS {#steps-to-use-the-pos-bridge}
 
-Before we enter into this section of the docs, it may help to have a thorough understanding of these terms as you'll interact with them while trying to use the bridge. [Mapping](https://docs.polygon.technology/docs/develop/ethereum-polygon/submit-mapping-request/) and the [State Sync Mechanism](https://docs.polygon.technology/docs/pos/state-sync/state-sync/)
+Antes de entrar en esta sección de los documentos, puede ayudar a tener una comprensión profunda de algunos términos ya que usted interactúa con ellos mientras se trata de utilizar el puente: [Mapeo](https://docs.polygon.technology/docs/develop/ethereum-polygon/submit-mapping-request/) y el [Mecanismo de sincronización estatal](https://docs.polygon.technology/docs/pos/state-sync/state-sync/).
 
-Done with those links? Let's continue to a high level overview of the flow then.
+Luego, el primer paso para utilizar el puente PoS es mapear el **token raíz** y **el token infantil**. Significa que el contrato de token en la cadena de la raíz y el contrato de token en la cadena de niños deben mantener una conexión (llamada mapeo) para transferir activos entre ellos. Si estás interesado en enviar una solicitud de mapeo, por favor, haz eso utilizando [esta guía](/docs/develop/ethereum-polygon/submit-mapping-request/).
 
-- The first step to using the PoS bridge is mapping the **Root Token** and **Child Token**. Don't worry, this isn't anything complex. It just means that the token contract on the root chain and the token contract on the child chain have to maintain a connection (called mapping) to transfer assets between themselves. If you're interested in submitting a mapping request, please do that [here](https://docs.polygon.technology/docs/develop/ethereum-polygon/submit-mapping-request/).
+En un nivel inferior y con más detalles, esto es lo que sucede:
 
-At a lower level and with more detail, this is what happens
+### deposit (Depósito) {#deposit}
 
-### Deposit
+  1. El propietario del activo **(ERC-20/ERC-721/ERC-1155)** debe aprobar un contrato específico en el puente PoS para gastar la cantidad de tokens que se transferirán. Ese contrato específico se denomina **contrato de predicado** (implementado en la red de Ethereum) y **bloquea el monto de los tokens que se depositarán**.
+  2. Cuando se da la aprobación, se procede a **depositar el activo**. Una llamada de función debe realizarse en el `RootChainManager`contrato que a su vez activa el `ChildChainManager`contrato en la cadena .
+  3. Eso sucede mediante un mecanismo de sincronización del estado, que se explica en detalle [aquí](/docs/pos/state-sync/state-sync/).
+  4. La llamada `ChildChainManager`internamente la `deposit`función del contrato de token infantil y la cantidad correspondiente de tokens de activos se **acuñan a la cuenta del usuario.** Es importante observar que solo la función `ChildChainManager`puede `deposit`acceder al contrato de token infantil.
+  5. Cuando el usuario recibe los tokens, puede **transferirlos casi instantáneamente por la cadena de Polygon a tasas mínimas**.
 
-- The owner of the asset token approves the Predicate Contract to lock down the amount of tokens to be deposited. Once this approval transaction has confirmed, the owner of the asset token interacts with the **RootChainManager** contract to complete the deposit.
+### Retiros {#withdrawals}
 
-- Next up, the asset is deposited with the **State Sync Mechanism**. if you didn't get a run-through of what the State Sync Mechanism is, it's in its simplest form the native mechanism to send data from Ethereum Network to the Polygon Network. The inner workings of the mechanism itself comprises of a function call that is made of the **RootChainManager** which triggers the **ChildChainManager** contract.
+  1. Retirar los activos a Ethereum es un proceso de 2 pasos en el que el token de activos debe ser **quemado por primera vez en la cadena de Polygon** y luego la **prueba de esta transacción de quemado debe ser presentada** en la cadena de Ethereum.
+  2. Se necesitan de 20 minutos a 3 horas para qe la transacción de quemado llegue al punto de control en la cadena de Ethereum. Eso lo hacen los validadores de la prueba de participación.
+  3. Una vez que la transacción se haya añadido al punto de control, se puede presentar una prueba de la transacción de quemado en el `RootChainManager`contrato en Ethereum llamando a la `exit`función.
+  4. Esa llamada de función **verifica la inclusión del punto de control** y activa el contrato de predicado, que había bloqueado los tokens de activos cuando inicialmente se depositaron.
+  5. Como último paso, el **contrato de predicar libera los tokens** bloqueados y los reembolsa a la cuenta de usuarios en Ethereum.
 
-Want to see this in video format? Please check it out below
+:::tip
 
-<video loop autoplay width="70%" height="70%" controls="true">
-  <source type="video/mp4" src="/img/matic-to-eth/deposit-eth-matic.mp4"></source>
-  <p>Your browser does not support the video element.</p>
-</video>
+Cuando finaliza el mapeo, puedes usar el **SDK de matic.js** para interactuar con los contratos o puedes hacer lo mismo sin el SDK. Sin embargo, el SDK de matic.js tiene un diseño que facilita mucho la integración del mecanismo de transferencia de activos con cualquier aplicación.
 
-### Withdrawals
-
-- Withdrawing assets is a breeze with the PoS bridge. It's as simple as burning the asset tokens on the Polygon chain, collecting the transaction hash of this burn transaction, and submitting it to the **RootChainManager**. The **RootChainManager** then calls for the predicate contract to release the funds that were locked on the Ethereum chain.
-
-- Once the burn transaction is validated on the Polygon chain, it takes 30 minutes to 3 Hours for this burn transaction to be checkpointed. Checkpointing is the process of merging the Polygon transactions into the Ethereum blockchain.
-
-- Next up, the proof of this burn transaction is submitted to the **RootChainManager** by calling the exit function. This function call takes in the burnHash for verifying the checkpoint inclusion and only then triggers the Predicate Contract which unlocks and releases the funds that were deposited.
-
-Want to watch all of this in video form? Please check it out below
-
-- Once mapping is done, you can either use the **matic.js SDK** to interact with the contracts or you can do the same without the SDK. However, the matic.js SDK is designed in a very user friendly way to make the asset transfer mechanism very easy to integrate with any application.
-
-- **The complete cycle of transferring assets from Ethereum to Polygon and then back to Ethereum** will be explained through this tutorial. In short, the process can be summed up as mentioned below:
-
-  1. Owner of the asset **(ERC20/ERC721/ERC1155)** token has to approve a specific contract on the PoS bridge to spend the amount of tokens to be transferred. This specific contract is called the **Predicate Contract** (deployed on the Ethereum network) which actually **locks the amount of tokens to be deposited**.
-  2. Once the approval is given, the next step is to **deposit the asset**. A function call has to be made on the **RootChainManager** contract which in turn triggers the **ChildChainManager** contract on the Polygon chain.
-  3. This happens through a state sync mechanism which can be understood in detail from [here](https://docs.polygon.technology/docs/pos/state-sync/state-sync/).
-  4. The **ChildChainManager** internally calls the **deposit** function of the child token contract and the corresponding amount of asset tokens are **minted to the users account**. It is important to note that only the ChildChainManager can access the deposit function on the child token contract.
-  5. Once the user gets the tokens, they can be **transfered almost instantly with negligible fees on the Polygon chain**.
-  6. Withdrawing assets back to Ethereum is a 2 step process in which the asset tokens has to be **first burnt on the Polygon chain** and then the **proof of this burn transaction has to be submitted** on the Ethereum chain.
-  7. It takes about 20 mins to 3 hours for the burn transaction to be checkpointed into the Ethereum chain. This is done by the Proof of Stake validators.
-  8. Once the transaction has been added to the check point, a proof of the burn transaction can be submitted on the **RootChainManager** contract on Ethereum by calling the **exit** function.
-  9. This function call **verifies the checkpoint inclusion** and then triggers the Predicate contract which had locked the asset tokens when the assets were deposited initially.
-  10. As the final step, the **predicate contract releases the locked tokens** and refunds it to the Users account on Ethereum.
+:::

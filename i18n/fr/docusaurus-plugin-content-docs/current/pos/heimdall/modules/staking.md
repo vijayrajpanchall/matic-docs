@@ -1,50 +1,51 @@
 ---
 id: staking
 title: Staking
-description: Staking module manages validator related transactions and state for Heimdall. Note that a validator stakes their tokens on the Ethereum chain and becomes a validator. Respective validators send the transactions on Heimdall using necessary parameters to acknowledge the Ethereum stake change.
+description: Module qui gère les transactions liées aux validateurs et l'état
 keywords:
   - docs
   - matic
+  - staking
+  - heimdall
+  - validator
 image: https://matic.network/banners/matic-network-16x9.png
 ---
-
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-## Overview
+# Staking {#staking}
 
-Staking module manages validator related transactions and state for Heimdall. Note that a validator stakes their tokens on the Ethereum chain and becomes a validator. Respective validators send the transactions on Heimdall using necessary parameters to acknowledge the Ethereum stake change. Once the majority of the validators agree on the change on the stake, this module saves the validator information on Heimdall state.
+Le module de staking gestionne les transactions et l'état liés au validateur pour Heimdall. Notez qu'un validateur fait des stakes de leurs jetons sur la chaîne Ethereum et devient un validateur. Les validateurs respectifs envoient les transactions sur Heimdall en utilisant les paramètres nécessaires pour reconnaître la monnaie de change du stake Ethereum. Une fois que la majorité des validateurs s'accordent sur la monnaie de stake sur le stake, ce module sauvegarde les informations du validateur sur l'état de Heimdall.
 
-## Key management
+## Gestion clé {#key-management}
 
-For key management, please refer to [Validator key management](/docs/pos/heimdall/validator-key-management)
+Pour la gestion clé, veuillez vous référer à [la gestion clé du Validateur](/docs/pos/heimdall/validator-key-management)
 
-## Delegation
+## Délégation {#delegation}
 
-This module only manages validator staking on Heimdall. The delegation is only available on smart contracts on the Ethereum chain. To optimize the delegation rewards calculation on smart contracts, we are using validator shares (ERC20 per validator).
+Ce module gère uniquement le staking du validateur sur Heimdall. La délégation est uniquement disponible sur des contrats intelligents sur la chaîne Ethereum. Pour optimiser le calcul de récompenses de la délégation sur les contrats intelligents, nous utilisons des actions de validateur (ERC20 par validateur).
 
-More details here: [Delegation (Validator shares)](/docs/pos/contracts/delegation)
+Plus de détails ici: [Délégation (actions de Validateur)](/docs/pos/contracts/delegation)
 
-## Rewards
+## Récompenses {#rewards}
 
-All rewards are distributed on the Ethereum chain. The validators and delegators claim their rewards or re-stake by simply sending the transaction on `StakeManager.sol`
+Toutes les récompenses sont distribuées sur la chaîne d'Ethereum. Les validateurs et les délégateurs réclament leurs récompenses ou refait leur stake en envoyant simplement la transaction sur`StakeManager.sol`
 
-More details here: [Rewards](/docs/maintain/validator/rewards#what-is-the-incentive)
+Plus de détails ici: [Récompenses](/docs/maintain/validator/rewards.md#what-is-the-incentive)
 
-## Messages
-
+## Messages {#messages}
 
 <img src={useBaseUrl('img/staking/stake-management-flow.svg')} />
 
-### MsgValidatorJoin
+### MsgValidatorJoin {#msgvalidatorjoin}
 
-`MsgValidatorJoin` handles the staking when a new validator joins the system. Once validator calls `stake` or `stakeFor` in `StakingManager.sol` on Ethereum, and the new `Staked` event is emitted.
+`MsgValidatorJoin`gère le staking lorsqu'un nouveau validateur s'inscrit dans le système. Une fois que le validateur appelle `stake` ou `stakeFor` dans  `StakingManager.sol`sur Ethereum, et le nouveau      `Staked`événement est émis.
 
 Source: [https://github.com/maticnetwork/contracts/blob/develop/contracts/staking/StakingInfo.sol#L27-L34](https://github.com/maticnetwork/contracts/blob/develop/contracts/staking/StakingInfo.sol#L27-L34)
 
 ```jsx
 /**
- * Staked event - emitted whenever new validator 
- * 
+ * Staked event - emitted whenever new validator
+ *
  * @param signer           Signer address for the validator
  * @param validatorId      Validator id
  * @param activationEpoch  Activation epoch for validator
@@ -62,59 +63,59 @@ event Staked(
 );
 ```
 
- `activationEpoch` is the checkpoint count from where a validator will become active on Heimdall.
+`activationEpoch` est le comptage du point de contrôle d'où un validateur deviendra actif sur Heimdall.
 
-Stake call on smart contract fails if slots are unavailable. Validator slots are the way to restrict a number of validators in the system.  Slots are managed on Ethereum smart contracts.
+L'appel de stake sur un contrat intelligent échoue si les emplacements ne sont pas disponibles. Les emplacements de validateur sont le moyen de restreindre une certaine quantité de validateurs dans le système. Les emplacements sont gérés sur les contrats intelligents d'Ethereum.
 
-Here is `ValidatorJoin` message for Heimdall transaction:
+Voici le `ValidatorJoin`message pour la transaction de Heimdall:
 
 ```go
 type MsgValidatorJoin struct {
-    From         hmTypes.HeimdallAddress `json:"from"`
-    ID           hmTypes.ValidatorID     `json:"id"`
-    SignerPubKey hmTypes.PubKey          `json:"pub_key"`
-    TxHash       hmTypes.HeimdallHash    `json:"tx_hash"`
-    LogIndex     uint64                  `json:"log_index"`
+	From         hmTypes.HeimdallAddress `json:"from"`
+	ID           hmTypes.ValidatorID     `json:"id"`
+	SignerPubKey hmTypes.PubKey          `json:"pub_key"`
+	TxHash       hmTypes.HeimdallHash    `json:"tx_hash"`
+	LogIndex     uint64                  `json:"log_index"`
 }
 ```
 
-### MsgStakeUpdate
+### MsqStakeUpdate {#msgstakeupdate}
 
-`MsgStakeUpdate` handles the stake update when a validator the re-stakes or new delegation comes in. In either case, the new `StakeUpdate` event is emitted.
+`MsgStakeUpdate`gestionne la mise à jour du stake quand un validateur refait les stakes ou lorsqu'une nouvelle délégation entre en jeu. Dans les deux cas, le nouveau `StakeUpdate` événement est émis.
 
 ```jsx
 /**
- * Stake update event - emitted whenever stake gets updated 
- * 
+ * Stake update event - emitted whenever stake gets updated
+ *
  * @param validatorId      Validator id
  * @param newAmount        New staked amount
  */
 event StakeUpdate(
-    uint256 indexed validatorId, 
-    uint256 indexed newAmount
+	uint256 indexed validatorId,
+	uint256 indexed newAmount
 );
 ```
 
-Here is `MsgStakeUpdate` message for Heimdall transaction:
+Voici le `MsgStakeUpdate`message pour la transaction de Heimdall:
 
 ```go
 // MsgStakeUpdate represents stake update
 type MsgStakeUpdate struct {
-    From     hmTypes.HeimdallAddress `json:"from"`
-    ID       hmTypes.ValidatorID     `json:"id"`
-    TxHash   hmTypes.HeimdallHash    `json:"tx_hash"`
-    LogIndex uint64                  `json:"log_index"`
+	From     hmTypes.HeimdallAddress `json:"from"`
+	ID       hmTypes.ValidatorID     `json:"id"`
+	TxHash   hmTypes.HeimdallHash    `json:"tx_hash"`
+	LogIndex uint64                  `json:"log_index"`
 }
 ```
 
-### MsgValidatorExit
+### MsgValidatorExit {#msgvalidatorexit}
 
-`MsgValidatorExit` handles the validator exit process after a validator initiates the exit process on Ethereum. It emits `SignerUpdate` event.
+`MsgValidatorExit`gestionne le processus de sortie du validateur après qu'un validateur initie le traitement de sortie sur Ethereum. Il émet `SignerUpdate` un événement.
 
 ```jsx
 /**
  * Unstake init event - emitted whenever validator initiates the exit
- * 
+ *
  * @param user                Signer
  * @param validatorId         Validator id
  * @param deactivationEpoch   Deactivation epoch for validator
@@ -128,25 +129,25 @@ event UnstakeInit(
 );
 ```
 
-Here is `MsgValidatorExit` message for Heimdall transaction:
+Voici le `MsgValidatorExit`message pour la transaction de Heimdall:
 
 ```go
 type MsgValidatorExit struct {
-    From     hmTypes.HeimdallAddress `json:"from"`
-    ID       hmTypes.ValidatorID     `json:"id"`
-    TxHash   hmTypes.HeimdallHash    `json:"tx_hash"`
-    LogIndex uint64                  `json:"log_index"`
+	From     hmTypes.HeimdallAddress `json:"from"`
+	ID       hmTypes.ValidatorID     `json:"id"`
+	TxHash   hmTypes.HeimdallHash    `json:"tx_hash"`
+	LogIndex uint64                  `json:"log_index"`
 }
 ```
 
-### MsgSignerUpdate
+### MsgSignerUpdate {#msgsignerupdate}
 
-`MsgSignerUpdate` handles the signer update when a validator updates signer key on Ethereum. It emits `SignerUpdate` event.
+`MsgSignerUpdate`gestionne la mise à jour du signataire lorsqu'un validateur met à jour la clé du signataire sur Ethereum. Il émet `SignerUpdate` un événement.
 
 ```jsx
 /**
  * Signer change event - emitted whenever signer key changes
- * 
+ *
  * @param validatorId      Validator id
  * @param oldSigner        Current old signer
  * @param newSigner        New signer
@@ -160,32 +161,32 @@ event SignerChange(
 );
 ```
 
-Here is `MsgSignerUpdate` message for Heimdall transaction:
+Voici le `MsgSignerUpdate`message pour la transaction de Heimdall:
 
 ```go
 // MsgSignerUpdate signer update struct
 type MsgSignerUpdate struct {
-    From            hmTypes.HeimdallAddress `json:"from"`
-    ID              hmTypes.ValidatorID     `json:"id"`
-    NewSignerPubKey hmTypes.PubKey          `json:"pubKey"`
-    TxHash          hmTypes.HeimdallHash    `json:"tx_hash"`
-    LogIndex        uint64                  `json:"log_index"`
+	From            hmTypes.HeimdallAddress `json:"from"`
+	ID              hmTypes.ValidatorID     `json:"id"`
+	NewSignerPubKey hmTypes.PubKey          `json:"pubKey"`
+	TxHash          hmTypes.HeimdallHash    `json:"tx_hash"`
+	LogIndex        uint64                  `json:"log_index"`
 }
 ```
 
-## CLI commands
+## Les commandes de CLI {#cli-commands}
 
-### Validator details
+### Les détails du Validateur {#validator-details}
 
-**By signer address**
+**Par l'adresse du signataire**
 
 ```bash
 heimdallcli query staking validator-info \
-    --validator=<signer-address> \
-    --chain-id <chain-id>
+	--validator=<signer-address> \
+	--chain-id <chain-id>
 ```
 
-This command should display the following output:
+Cette commande devrait afficher le résultat suivant:
 
 ```json
 {
@@ -200,15 +201,15 @@ This command should display the following output:
 }
 ```
 
-**By validator address**
+**Par l'adresse du validateur**
 
 ```bash
 heimdallcli query staking validator-info \
-    --id=<validator-id> \
-    --chain-id=<chain-id>
+	--id=<validator-id> \
+	--chain-id=<chain-id>
 ```
 
-This command should display the following output:
+Cette commande devrait afficher le résultat suivant:
 
 ```json
 {
@@ -223,35 +224,35 @@ This command should display the following output:
 }
 ```
 
-### Validator join
+### Inscription du validateur {#validator-join}
 
-This command sends validator join command through CLI:
+Cette commande envoie la commande de l'inscription du validateur à travers CLI:
 
 ```bash
 heimdallcli tx staking validator-join \
-    --signer-pubkey <signer-public-key> \
-    --tx-hash <tx-hash>   \
-    --log-index <log-index> \ 
-    --chain-id <chain-id>
+	--signer-pubkey <signer-public-key> \
+	--tx-hash <tx-hash>   \
+	--log-index <log-index> \
+	--chain-id <chain-id>
 ```
 
-`tx-hash` value must be the same as Ethereum TX hash which emitted `Staked` event and `log-index` must be the same at which index the event is emitted.
+`tx-hash`la valeur doit être le même que l'identifiant de Ethereum TX qui a émis `Staked`l'événement et `log-index` doit être le même avec lequel l'événement d'index est émis.      
 
-## REST APIs
+## API de REST {#rest-apis}
 
-| Name                       | Method | Endpoint                        |
-| -------------------------- | ------ | ------------------------------- |
-| Get Heimdall validator set | GET    | /staking/validator-set          |
-| Get validator details      | GET    | /staking/validator/validator-id |
+| Nom | Méthode | Point de terminaison |
+|----------------------|------|------------------|
+| Obtenez l'ensemble de validateur d'Heimdall | GET | /staking/validator-set |
+| Obtenez les détails du validateur | GET | /staking/validator/validator-id |
 
 
-All query APIs will result in following format:
+Tous les API de requête présenteront dans le format suivant:
 
 ```json
 {
-    "height": "1",
-    "result": {
-        ...   
-    }
+	"height": "1",
+	"result": {
+		...	  
+	}
 }
 ```

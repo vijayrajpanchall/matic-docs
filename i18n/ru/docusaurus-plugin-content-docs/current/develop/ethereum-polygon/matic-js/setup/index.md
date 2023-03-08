@@ -1,20 +1,20 @@
 ---
 id: index
-title: 'Supported libraries'
+title: 'Поддерживаемые библиотеки '
 keywords:
-  - pos client
-  - erc20
-  - withdrawExit
-  - polygon
-  - sdk
-description: 'Get started with maticjs'
+    - pos client
+    - erc20
+    - withdrawExit
+    - polygon
+    - sdk
+description: 'Начните работать с maticjs'
 ---
 
-## Setup
+## Настройка {#setup}
 
-In order to support multiple web3 libraries - maticjs provides plugins.
+maticjs предоставляет плагины для поддержки множественных библиотек web3.
 
-Currently two libraries are supported -
+В настоящее время поддерживаются две библиотеки:
 
 1. Web3.js
 2. Ethers

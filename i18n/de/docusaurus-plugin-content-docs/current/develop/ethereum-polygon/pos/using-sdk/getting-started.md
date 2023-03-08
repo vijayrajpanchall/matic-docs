@@ -1,25 +1,29 @@
 ---
 id: getting-started
-title: Getting started with Polygon Edge
-sidebar_label: Instantiating Polygon Edge
-description: Build your next blockchain app on Polygon.
+title: Erste Schritte mit Matic.js
+sidebar_label: Instantiating Matic.js
+description: "Verwende Matic.js, um mit der Polygon PoS-Chain zu interagieren."
 keywords:
   - docs
   - matic
+  - polygon
+  - sdk
+  - matic.js
+  - pos
 image: https://matic.network/banners/matic-network-16x9.png
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-To get started, check the latest [Matic.js documentation](/docs/develop/ethereum-polygon/matic-js/get-started).
+Um loszulegen, lies die aktuelle [Matic.js-Dokumentation](/docs/develop/ethereum-polygon/matic-js/get-started).
 
-## Quick Summary
+## Zusammenfassung {#quick-summary}
 
-The matic.js SDK takes all the computing power of Polygon and places it right at your finger tip. With custom-made functions that allow for approval, deposit and withdrawals, all without doing too much footwork. Our reason for engineering this was to ensure you get instant value from our platform.
+Das matic.js SDK bringt dir die gesamte Rechenleistung von Polygon. Mit benutzerdefinierten Funktionen, die Genehmigungen, Einzahlungen und Auszahlungen ohne großen Aufwand ermöglichen. Wir haben es entwickelt, damit du den größtmöglichen Nutzen aus unserer Plattform ziehen kannst.
 
-## Installation
-The first step to using the awesome power of Polygon via our SDK is by doing an NPM install of it. Find [here](https://www.npmjs.com/package/@maticnetwork/maticjs).
+## Installation {#installation}
+Der erste Schritt, um Polygon über unser SDK bestmöglich zu nutzen, ist eine NPM-Installation. Diese findest du [hier](https://www.npmjs.com/package/@maticnetwork/maticjs).
 
 ```bash
 npm install @maticnetwork/maticjs
@@ -27,8 +31,8 @@ npm install @maticnetwork/maticjs-web3
 npm install @maticnetwork/maticjs-ethers
 ```
 
-## Usage
-To access the SDK, import it in your application using
+## Verwendung {#usage}
+Um auf das SDK zuzugreifen, importiere es in deine App mit
 ```js
 import { use } from '@maticnetwork/maticjs'
 import { Web3ClientPlugin } from '@maticnetwork/maticjs-web3'
@@ -38,9 +42,9 @@ import HDWalletProvider from "@truffle/hdwallet-provider"
 use(Web3ClientPlugin)
 ```
 
-The providers can be RPC urls or web3 based providers like MetaMask provider, HDWalletProvider etc. based on requirement.
+Die Anbieter können RPC oder web3-basierte Anbieter wie MetaMask Provider, HDWalletProvider etc. sein, basierend auf Anforderung.
 
-For more information, please have a look at the [Matic.js documentation on PoS](https://maticnetwork.github.io/matic.js/docs/pos/).
+Weitere Informationen findest du in der [Matic.js-Dokumentation über PoS](https://maticnetwork.github.io/matic.js/docs/pos/).
 
 ```js
 // for mumbai testnet

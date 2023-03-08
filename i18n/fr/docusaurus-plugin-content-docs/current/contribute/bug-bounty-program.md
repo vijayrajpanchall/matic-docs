@@ -1,51 +1,48 @@
 ---
 id: bug-bounty-program
-title: Bug Bounty Program
+title: Programme de prime aux bogues
 sidebar_label: Bug bounty program
-description: Know more about Polygon's Bug Bounty Program.
+description: En savoir plus sur la prime aux bogues de Polygon.
 keywords:
   - docs
   - matic
   - polygon
   - bug bounty
-image: https://matic.network/banners/matic-network-16x9.png
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 slug: bug-bountry-program
 ---
 
-Polygon is working with the community to find security vulnerabilities to keep the Polygon **Projects**, **Developers** and **Users** safe.
+Polygon travaille avec la communauté pour trouver des vulnérabilités en matière de sécurité afin de protéger les **projets**, les **développeurs** et les **utilisateurs** de Polygon.
 
-The bounty program is to ensure everyone has an opportunity to find bugs in the Polygon system, which will in turn help the team ensure the security of Polygon. Payouts will go up to $5,000 for critical issues.
+Le programme de primes vise à s'assurer que tout le monde a la possibilité de trouver des bogues dans le système Polygon, ce qui aidera ensuite l'équipe à assurer la sécurité de Polygon. Les sommes versées atteindront 5 000 $ pour les problèmes critiques.
 
-## Getting started
+## Pour commencer {#getting-started}
 
-If you are new to blockchains and/or to Polygon, see [Polygon Architecture](/docs/home/architecture/polygon-architecture).
+Si vous êtes nouveau sur les blockchains ou sur Polygon, voir l'[architecture de Polygon](/docs/home/architecture/polygon-architecture).
 
-Explore the [code on GitHub](https://github.com/maticnetwork). There are 3 main repositories for you to study:
+Explorer le [code sur GitHub](https://github.com/maticnetwork). Il y a trois référentiels principaux à étudier :
 
 * [Heimdall](https://github.com/maticnetwork/heimdall)
 * [Bor](https://github.com/maticnetwork/bor)
-* [Contracts](https://github.com/maticnetwork/contracts)
+* [Contrats](https://github.com/maticnetwork/contracts)
 
-## Setting up
+## Configuration {#setting-up}
 
-Set up a test network locally. See [Running a node on the local environment](https://github.com/maticnetwork/matic-cli)
+Configurer un réseau de test localement. Voir : [exécution d'un nœud sur l'environnement local](https://github.com/maticnetwork/matic-cli)
 
-The Polygon CLI repository is an easy way to setup and manage the entire Polygon stack, including **Heimdall**, **Bor**, and the **Staking & Plasma smart contracts** on a local environment. This would help in simulating tests and attacks locally.
+Le référentiel Polygon CLI est un moyen facile de configurer et de gérer l'ensemble de la pile Polygon, notamment **Heimdall**, **Bor**, et les **contrats intelligents d'enjeu et Plasma** dans un environnement local. Cela pourrait aider à simuler localement les tests et les attaques.
 
-If you want to run a full node on the Polygon Mainnet or Mumbai Testnet, you can follow the links below:
+Si vous souhaitez exécuter un nœud complet sur le Polygon Mainnet ou Mumbai Testnet, vous pouvez suivre le [Exécutez un guide de nœud](/docs/validate/validate/run-validator) validateur.
 
-* [Run a Validator Node with Ansible](/docs/maintain/validate/run-validator-ansible)
-* [Run a Validator Node from Binaries](/docs/maintain/validate/run-validator-binaries)
+## Obtenir des jetons pour les tests {#obtaining-tokens-for-testing}
 
-## Obtaining tokens for testing
+Pour obtenir des jetons, vous pouvez accéder au [robinet Polygon](https://faucet.polygon.technology/) et choisir le réseau Goerli pour obtenir des jetons.
 
-To get tokens, you can access the [Polygon faucet](https://faucet.polygon.technology/) and choose the Goerli network to get some tokens.
+## Vous avez des questions ? {#questions}
 
-## Questions?
-
-Check out the forum and join the discussion on Discord.
+Consultez le forum et participez aux discussions sur Discord.
 
 * [Forum](https://forum.polygon.technology)
 * [Discord](https://discord.com/invite/0xPolygon)
 
-See also the [Immunefi Bug Bounty Program](https://immunefi.com/bounty/polygon/).
+Voir aussi le [programme de prime aux bogues d'Immunefi](https://immunefi.com/bounty/polygon/)

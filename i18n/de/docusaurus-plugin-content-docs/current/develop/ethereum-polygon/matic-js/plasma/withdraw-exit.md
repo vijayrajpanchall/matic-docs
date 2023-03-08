@@ -1,12 +1,12 @@
 ---
 id: withdraw-exit
-title: withdraw exit
+title: Auszahlung beenden
 keywords:
-  - 'plasma client, withdrawExit, polygon, sdk'
-description: 'Get started with maticjs'
+- 'plasma client, withdrawExit, polygon, sdk'
+description: 'Auszahlungsvorgang beenden.'
 ---
 
-In plasma withdaw process can be exited by anyone using `withdrawExit` method. The exit process will work only after challenge period has been completed.
+Der Plasma-Auszahlungsvorgang kann von jedem beendet werden, der die `withdrawExit`-Methode nutzt. Der Exit-Prozess funktioniert erst nach dem Ende der Einspruchsfrist.
 
 ```
 const result = plasmaClient.withdrawExit(<token | tokens[]>);
@@ -17,4 +17,4 @@ const txReceipt = await result.getReceipt();
 
 ```
 
-You can also exit for multiple tokens by providing tokens list in array.
+Du kannst auch mehrere Token beenden, indem du die Tokenliste im Array bereitstellst.

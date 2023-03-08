@@ -1,45 +1,47 @@
 ---
 id: eth
-title: ETH 입출금 가이드
+title: ETH 입금 및 출금 가이드
 sidebar_label: ETH
-description: 폴리곤에서 다음 블록체인 앱을 설치합니다.
+description: "Polygon 네트워크에서 ETH 토큰을 입금하고 출금합니다."
 keywords:
   - docs
   - matic
+  - deposit
+  - withdraw
+  - transfer
+  - eth
 image: https://matic.network/banners/matic-network-16x9.png
 ---
 
-### 높은 수준의 작업흐름
+### 상위 수준 흐름 {#high-level-flow}
 
-#### **ETH 입금하기(1단계 프로세스)**
+#### **ETH 입금(1단계 프로세스)**
 
-**deposit** 함수는 토큰이 폴리곤 컨트랙트에 입금되고 폴리곤 네트워크에서 사용할 수 있는 곳에서 호출됩니다.
+**입금** 함수는 토큰이 Polygon 계약에 예치되고 Polygon 네트워크에서 사용 가능할 때 호출됩니다.
 
-#### **ETH 전송하기**
+#### **ETH 이전**
 
-폴리곤에 자금이 있으면 해당 자금을 사용하여 다른 사람에게 즉시 보낼 수 있습니다.
+Polygon에 자금이 있다면 즉시 다른 사람에게 보낼 수 있습니다.
 
-#### **ETH 출금하기 (3단계 프로세스)**
+#### **ETH 출금(3단계 프로세스)**
 
-1. 자금 인출은 폴리곤에서 시작됩니다. 30분의 체크포인트 간격(테스트넷의 경우 ~10분 대기)이 설정되어 있으며, 여기서 폴리곤 블록 레이어의 모든 블록은 마지막 체크포인트 이후로 검증됩니다.
-2. 체크포인트가 메인체인 ERC20 컨트랙트에 제출되면 동등한 가치의 NFT Exit(ERC721) 토큰이 생성됩니다.
-3. 인출된 자금은 프로세스 종료 절차를 사용하여 메인체인 컨트랙트에서 ERC20 계정으로 다시 청구할 수 있습니다.
+1. 자금 출금은 Polygon에서 시작됩니다. 30분(테스넷의 경우 약 10분 기다려 주십시오)의 검문구간이 설정되어 있는데, 이 경우 Polygon 블록 레이어의 모든 블록이 마지막 체크포인트 이후 검증됩니다.
+2. 검문소가 메인 체인 ERC20 계약에 제출되면 NFT 출구(ERC721) 토큰이 동등한 값으로 생성됩니다.
+3. 철회 된 기금은 Process-출구 절차를 사용하여 메인 체인 계약에서 ERC20 account로 다시 청구될 수 있습니다.
 
-## 세부정보 설정
+## 세부 사항 설정 {#setup-details}
 
----
+### 매틱 SDK 구성 {#configuring-matic-sdk}
 
-### Matic SDK 구성하기
-
-Matic SDK (**_3.0.0)_** 설치하기
+matic SDK(**_3.0.0_**) 설치하기( Matic SDK)
 
 ```bash
 npm i @maticnetwork/maticjs-plasma
 ```
 
-### util.js
+### util.js {#util-js}
 
-Maticjs 클라이언트 시작하기
+Maticjs 클라이언트 시작
 
 ```js
 // const use = require('@maticnetwork/maticjs').use
@@ -80,9 +82,9 @@ async function getPlasmaClient (network = 'testnet', version = 'mumbai') {
 }
 ```
 
-### process.env
+### process.env {#process-env}
 
-루트 디렉토리에 process.env라는 새 파일을 만듭니다.
+다음 컨텐츠와 함께 명명 `process.env`된 루트 디렉터리에 새로운 파일을 생성합니다.
 
 ```bash
 USER1_FROM =
@@ -92,15 +94,11 @@ ROOT_RPC =
 MATIC_RPC =
 ```
 
----
+## deposit {#deposit}
 
-## deposit.js
+**예금**: 계약을 `depositEther()`요청하여 예금을 할 수 `depositManagerContract`있습니다.
 
-**deposit**: 입금은 depositManagerContract 컨트랙트에서 **_depositEther_**를 호출하여 수행할 수 있습니다.
-
-> 토큰은 사전에 매핑되고 전송 승인을 받아야 합니다.
-
-이 호출을 수행하려면 **_depositEther_** 메소드를 사용하십시오.
+사전에 토큰을 매핑하고 전송에 대한 승인을 받아야 한다는 것에 유의하십시오.
 
 ```js
 const { getPOSClient, from } = require('../../utils');
@@ -122,11 +120,15 @@ execute().then(() => {
 })
 ```
 
-> 참고: 이더리움에서 폴리곤으로의 입금은 상태 동기화 메커니즘을 사용하여 발생하며 약 5-7분 정도 걸립니다. 이 시간 간격을 두고 기다린 후 web3.js/matic.js 라이브러리나 메타마스크를 이용하여 잔고를 확인하는 것을 권장합니다. 탐색기는 하위 체인에서 하나 이상의 자산 전송이 발생한 경우에만 잔고를 표시합니다. 이 [링크](/docs/develop/ethereum-polygon/plasma/deposit-withdraw-event-plasma)는 입금 이벤트를 추적하는 방법을 설명합니다.
+:::note
 
-## transfer.js
+이더리움에서 다각형 예시를 하는 경우 상태 동기화 메커니즘을 사용하여 약 22~30분을 차지합니다. 이 정도 간격의 시간을 기다린 후 web3.js/matic.js 라이브러리 또는 메타마스크를 사용해 잔액을 확인하는 것이 좋습니다. 하위 체인에서 1회 이상의 자산 이전이 발생한 경우에만 탐색기에 잔액이 표시됩니다. 이 [링크](/docs/develop/ethereum-polygon/plasma/deposit-withdraw-event-plasma)에서는 입금 이벤트 추적 방법을 설명합니다.
 
-폴리곤 네트워크의 이더는 랩이더WETH(ERC20 Token)입니다.
+:::
+
+## transfer {#transfer}
+
+Polygon 네트워크의 ETH는 WETH(ERC20 토큰)입니다.
 
 ```js
 const { getPlasmaClient, from, plasma, to } = require('../utils')
@@ -153,11 +155,11 @@ execute().then(() => {
 })
 ```
 
-## Withdraw
+## 출금 {#withdraw}
 
-### 1. 소각
+### 1. 소각 {#1-burn}
 
-사용자는 **_getERC20TokenContract_** 하위 토큰 컨트랙트의 **_withdraw_** 함수를 호출할 수 있습니다. 이 함수는 토큰을 소각할 것입니다. Polygon Plasma 클라이언트는 이 호출을 수행하기 위해 **_withdrawStart_** 메소드를 노출합니다.
+사용자는 `getERC20TokenContract`아동 토큰의 계약의 `withdraw`기능을 호출 할 수 있습니다. 이 함수를 사용하면 토큰이 소각됩니다. Polygon Plasma 클라이언트가 이 호출을 만드는 `withdrawStart`방법을 노출시킵니다.
 
 ```js
 const { getPlasmaClient, from, plasma } = require('../utils')
@@ -181,10 +183,9 @@ execute().then(() => {
   process.exit(0)
 ```
 
-### 2. confirm-withdraw.js
+### 2. confirm-withdraw.js {#2-confirm-withdraw-js}
 
-
-사용자는 **_erc20Predicate_** 컨트랙트의 **_startExitWithBurntTokens_** 함수를 호출할 수 있습니다. 이 함수는 토큰을 소각할 것입니다. Polygon Plasma 클라이언트는 이 호출을 수행하기 위해 **_withdrawConfirm_** 메소드를 노출합니다. 이 함수는 체크포인트가 메인 체인에 포함된 후에만 호출할 수 있습니다. 이 [가이드](/docs/develop/ethereum-polygon/plasma/deposit-withdraw-event-plasma#checkpoint-events)에 따라 체크포인트 포함을 추적할 수 있습니다.
+사용자는 계약 `startExitWithBurntTokens()`기능을 호출 할 수 `erc20Predicate`있습니다. Polygon Plasma 클라이언트는 이 호출을 만드는 `withdrawConfirm()`방법을 노출합니다. 이 함수는 메인 체인에 체크포인트가 포함된 후에만 호출할 수 있습니다. [가이드](/docs/develop/ethereum-polygon/plasma/deposit-withdraw-event-plasma.md#checkpoint-events)를 따라 체크포인트 포함 상태를 추적할 수 있습니다.
 
 
 ```js
@@ -205,9 +206,9 @@ execute().then(_ => {
 })
 ```
 
-### 3. Process Exit
+### 3. 프로세스 종료 {#3-process-exit}
 
-사용자는 **_withdrawManager_** 컨트랙트의 **_processExits_** 함수를 호출하고 소각 증명을 제출해야 합니다. 유효한 증명 토큰을 제출하면 사용자에게 전송됩니다. Polygon Plasma 클라이언트는 이 호출을 수행하기 위해 **_withdrawExit_** 메서드를 노출합니다.
+사용자는 `withdrawManager`계약의 `processExits()`기능을 호출하고 불의 증거를 제출해야 합니다. 유효한 증거를 제출하면 토큰을 사용자에게 전달합니다. Polygon Plasma 클라이언트가 이 호출을 만드는 `withdrawExit()`방법을 노출시킵니다.
 
 ```js
 const { getPlasmaClient, from, plasma } = require('../utils')
@@ -227,4 +228,8 @@ execute().then(_ => {
 })
 ```
 
-_참고: 폴리곤에서 이더리움 체인에 대해 5분 간격으로 발생하는 모든 트랜잭션을 나타내는 체크포인트가 메인체인 이더리움 컨트랙트에 제출됩니다._
+:::note
+
+각 5분마다 Eygon 체인에 Polygon에서 일어나는 모든 트랜잭션을 나타내는 체크포인트는 정기적으로 메인 체인 Egyum 계약에 제출됩니다.
+
+:::

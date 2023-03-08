@@ -2,11 +2,11 @@
 id: transfer
 title: transfer
 keywords:
-  - 'plasma client, erc721, transfer, polygon, sdk'
-description: 'maticjs으로 시작하기'
+- 'plasma client, erc721, transfer, polygon, sdk'
+description: '토큰을 한 사용자에게서 다른 사용자에게로 이전합니다.'
 ---
 
-`transfer` 메소드는 한 사용자에서 다른 사용자에게 토큰을 전송합니다.
+`transfer` 메서드를 사용하면 토큰을 한 사용자에게서 다른 사용자에게로 이전할 수 있습니다.
 
 ```
 const erc721Token = plasmaClient.erc721(<token address>);

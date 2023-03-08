@@ -2,11 +2,11 @@
 id: is-withdraw-exited-many
 title: isWithdrawExitedMany
 keywords:
-  - 'pos client, erc1155, isWithdrawExitedMany, polygon, sdk'
-description: 'isWithdrawExitedMany method check if withdraw has been exited for multiple tokens.'
+- 'pos client, erc1155, isWithdrawExitedMany, polygon, sdk'
+description: 'Проверяет, имел ли место выход из вывода в отношении множественных токенов.'
 ---
 
-`isWithdrawExitedMany` method check if withdraw has been exited for multiple tokens. It returns boolean value.
+Метод `isWithdrawExitedMany` проверяет, имел ли место выход из вывода в отношении множественных токенов. Он возвращает логическое значение.
 
 ```
 const erc1155Token = posClient.erc1155(<token address>);

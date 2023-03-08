@@ -1,28 +1,33 @@
 ---
 id: account_based_plasma
-title: Account based plasma
-description: Polygon Plasma follows a model similar to [Plasma MoreVP](https://ethresear.ch/t/more-viable-plasma/2160), but is an **account-based implementation** compared to other UTXO-based implementations. The sidechain is EVM-compatible. Using the MoreVP construction, we also eliminate the need for confirmation signatures.
+title: Plasma basé sur un compte
+description: Une implémentation de plasma basée sur un compte
 keywords:
   - docs
   - matic
+  - Account Based Plasma
+  - polygon
+  - implementation
 image: https://matic.network/banners/matic-network-16x9.png
 ---
 
-Polygon Plasma follows a model similar to [Plasma MoreVP](https://ethresear.ch/t/more-viable-plasma/2160), but is an **account-based implementation** compared to other UTXO-based implementations. The sidechain is EVM-compatible. Using the MoreVP construction, we also eliminate the need for confirmation signatures.
+# Plasma basé sur un compte {#account-based-plasma}
 
-## PoS layer and Checkpoints
+Le Plasma de Polygon suit un modèle similaire au [Plasma MoreVP](https://ethresear.ch/t/more-viable-plasma/2160), mais c'est une **mise en oeuvre basée sur un compte ** par rapport à d'autres implémentations basées sur UTXO. La chaîne latérale est compatible avec EVM. En utilisant la construction de MoreVP, nous éliminons également le besoin des signatures de confirmation.
 
-The Polygon Network uses a dual strategy of Proof of Stake at the checkpointing layer and Block Producers at the block producer layer to achieve faster blocktimes and achieves finality on the main chain using the checkpoints and fraud proofs.
+## La couche de Preuve de Participation et des Points de Contrôle {#pos-layer-and-checkpoints}
 
-On Polygon Network’s checkpointing layer, for every few blocks on the block layer of the Polygon Network, a (sufficiently bonded) validator will create a checkpoint on the main chain after validating all the blocks on the block layer and creating the Merkle tree of the block hashes since the last checkpoint.
+Le Réseau de Polygon utilise une double stratégie de la Preuve d'Enjeu sur la couche du Point de Contrôle et des Producteurs de Bloc se trouvant sur la couche de producteur de bloc, pour rattrapper des temps de bloc plus rapides, et il atteint la finalité de la chaîne principale à l'aide des points de contrôle et des preuves de fraude.
 
-Apart from providing finality on the mainchain, checkpoints play a role in withdrawals as they contain the proof-of-burn (withdrawal) of tokens in the event of user withdrawal. It enables the users to prove their remaining tokens on root contract using Patricia Merkle proof and header block proof. Note that to prove remaining tokens, the header block must be committed to the Root Chain through PoS (Stakeholders). The withdrawal process will incur Ethereum gas fees as usual. We leverage the checkpoints heavily for the exit games.
+Sur la couche du point de contrôle du Réseau de Polygon, pour les moindres blocs sur la couche de bloc du Réseau de Polygon, un validateur (suffisamment lié) créera un point de contrôle sur la chaîne principale après avoir validé tous les blocs sur la couche de bloc et créer l'arbre de Merkle des identifiants de bloc depuis le dernier point de contrôle.
 
-## UTXO-like event logs
+En plus de fournir la finalité sur la chaîne principale, les points de contrôle jouent un rôle dans les retraits car ils contiennent la preuve de brûlure (retrait) des jetons dans l'événement de retrait de l'utilisateur. Cela permet aux utilisateurs de prouver leurs jetons restants sur le contrat de root à l'aide de preuve de Patricia Merkle et de la preuve de bloc d'en-tête. Remarquez que pour prouver les jetons restants, le bloc d'en-tête doit être engagé dans la Chaîne de Root à travers la Preuve de Participation PoS (Parties prenantes). Le processus de retrait entraînera des frais de gaz Ethereum comme d'habitude. Nous exploitons les points de contrôle largement pour les jeux de sortie.
 
-For ERC20/ERC721 transfers, this is achieved by using a UTXO-like event log data structure. Below is a `LogTransfer` event for reference.
+## Les registres d'événement de type UTXO {#utxo-like-event-logs}
 
-```
+Pour les transferts ERC20/ERC721, cela est réalisé à l'aide d'une structure des données de registre d'événement de type UTXO. Ci-dessous est un `LogTransfer`événement pour référence.
+
+```jsx
 event LogTransfer(
     address indexed token,
     address indexed from,
@@ -33,57 +38,54 @@ event LogTransfer(
     uint256 output1, // new account balance of the sender
     uint256 output2 // new account balance of the receiver
 );
-
 ```
 
-So, basically every ERC20/ERC721 transfer emits this event and the previous balances of the sender and receiver (`input1` and `input2`) become the input (UTXO like) to the tx and the new balances become the outputs (`output1` and `output2`). The transfers are tracked by way of collating all the related `LogTransfer` events.
+Ainsi, fondamentalement chaque transfert ERC20/ERC721 émet cet événement et les balances précédentes de l'expéditeur et du récepteur (`input1` et `input2`) deviennent l'entrée (de type UTXO) du tx et les nouvelles balances deviennent les sorties (`output1` et `output2`). Les transferts sont suivis par le moyen de rassembler tous les `LogTransfer` événements liés.
 
-## Exit Games
+## Jeux de Sortie {#exit-games}
 
-Since the blocks are produced by a single block producer (or very few), it exposes a surface for fraud. We’ll briefly discuss the attack scenarios and then talk about how the plasma guarantees safeguard a user.
+Étant donné que les blocs sont produits par un seul producteur de blocs (ou très peu), il expose une surface pour la fraude Nous discuterons brièvement des scénarios d'attaque, puis nous parlerons de la façon dont le plasma garantit la sauvegarde d'un utilisateur.
 
-### Attack Vectors
+## Vecteurs d'Attaque {#attack-vectors}
 
-**A. Malicious operator** The following discusses the scenarios where operator could become malicious and try to cheat.
+### Opérateur malveillant {#malicious-operator}
+Les options suivantes discutent sur des scénarios dans lesquels l'opérateur pourrait devenir malveillant et essayer de tricher.
 
-1. Out-of-nowhere tokens / double spends / malformed receipts that fraudulently increases (for an operator controlled account) / decreases (for a user) the token balance.
-2. Data unavailabilityAfter a user sends a tx, let’s say the operator included the tx in the plasma block but made the chain data unavailable to the user. In that case, if a user starts an exit from an older tx, then they could be challenged on-chain by showcasing their most recent tx. It becomes easy to grief the user.
-3. Bad checkpointIn the worst case, an operator could perform A.1 and(or) A.2 and collude with the validators to commit those invalid state transitions to the root chain.
-4. Halting the side chainThe operator stops producing blocks and the chain comes to a halt. If a checkpoint has not been submitted for a specified duration, it would be possible to mark the side chain as halted on the root chain. After that no more checkpoints can be submitted.
+1. Des jetons hors de nulle part / des doubles dépenses / des reçus malformés qui augmentent frauduleusement (pour un compte contrôlé par un opérateur) / diminue (pour un utilisateur ) la balance du jeton.
+2. Indisponibilité des données après qu'un utilisateur a envoyé un tx, disons que l'opérateur a inclus le tx dans le plasma mais a rendu la chaîne des données indisponibles à l'utilisateur. Dans ce cas, si un utilisateur démarre une sortie d'un tx plus ancien, alors ils pourraient être défiés sur la chaîne en présentant son tx le plus récent. Cela devient facile d'attrister l'utilisateur
+3. Avec un mauvais point de contrôle dans le pire des cas, un opérateur pourrait exécuter A.1 et (ou) A.2 et comploter avec les validateurs pour valider ces transitions d'état invalides sur la chaîne root.
+4. En arrêtant le côté de la chaîne, L'opérateur cesse de produire des blocs et la chaîne parvient à s'arrêter. Si un point de contrôle n'a pas été soumis pour une durée spécifiée, il serait possible de marquer la chaîne latérale comme discontinue sur la chaîne de root. Après cela, plus de points de contrôle ne peuvent être soumis.
 
-For reasons listed above or otherwise, if the plasma chain has become rogue, the user’s need to start mass exiting and we aspire to provide exit constructions on the root chain that the users can leverage, if and when the time comes.
+Pour des raisons énumérées ci-dessus ou autrement, si la chaîne de plasma est devenue malveillante, les utilisateurs ont besoin de démarrer la sortie en masse et nous aspirons à fournir des constructions de sortie sur la chaîne de root que les utilisateurs peuvent exploiter, si et quand vient le moment.
 
-**B. Malicious user**
+### Utilisateur malveillant {#malicious-user}
 
-1. User starts exit from a committed tx but continues to spend tokens on the side chain. Similar to double spending but across 2 chains.
+1. L'utilisateur démarre la sortie d'un tx engagé mais continue de dépenser des jetons sur la chaîne latérale. Similaire à des dépenses doubles mais sur 2 chaînes.
 
-We are building upon the ideas of [MoreVp 7](https://ethresear.ch/t/more-viable-plasma/2160).In a nutshell, MoreVP introduces a new way to calculate exit priority, called the “youngest-input” priority. Instead of ordering exits by the age of the output, moreVP orders exits by the age of the youngest input. This has the effect that exits of outputs, even if they’re included in withheld blocks after “out of nowhere” transactions, will be correctly processed as long as they only stem from valid inputs. We define `getAge` which assigns an age to an included tx. This is as defined in [minimum viable plasma 1](https://ethresear.ch/t/minimal-viable-plasma/426).
+Nous nous appuyons sur les idées de [MoreVp 7 ](https://ethresear.ch/t/more-viable-plasma/2160). En résumé, MoreVP introduit une nouvelle façon de calculer la priorité de sortie, appelée la priorité « youngest-input ». Au lieu de commander des sorties par l'âge de la sortie, moreVP commande des sorties par l'âge de l'entrée la plus jeune. Cela a pour effet que les sorties des résultats, même si elles sont incluses dans des blocs retenus après des transactions « hors de nulle part », elles seront correctement traitées tant que celles-ci ne proviennent que des entrées valables. Nous définissons `getAge` ce qui attribue un âge à un tx inclus. Cela est comme défini dans [le plasma viable minimum 1](https://ethresear.ch/t/minimal-viable-plasma/426).
 
-```
+```jsx
 function getAge(receipt) {
   const { headerNumber, plasmaBlockNum, txindex, oindex } = receipt
   return f(headerNumber, plasmaBlockNum, txindex, oindex) // multiplied with their respective weights
 }
-
 ```
 
-Introducing some terminology before we continue discussing the exit scenarios.
+## Les Scénarios de Sortie {#exit-scenarios}
 
-### Terminology
+Introduisons une certaine terminologie avant de continuer à discuter des scénarios de sortie:
 
-- **Withdrawer**: A user who wants to the exit the plasma chain.
-- **Committed tx**: A tx that has been included in a Polygon chain block and has been checkpointed on the root chain.
-- **Spend tx**: A tx that changes the user’s token balance in response to an action signed by the user (does not include incoming token transfers). This maybe a user initiated transfer, burn tx etc
-- **Reference tx**: Txs just preceding the exit tx for that particular user and token. As defined in our account balance based UTXO scheme, the outputs to the reference tx become the inputs to the tx being exited from.
-- **MoreVP exit priority**: Age of the youngest input (among the reference txs) to a particular tx. It’ll most often be used for calculating the exit priority.
+- **Préleveur**: Un utilisateur qui veut la sortie de la chaîne de plasma.
+- **Tx engagé**: Un tx qui a été inclus dans un bloc de la chaîne de Polygon et a été mis en point de contrôle sur la chaîne de root.
+- **Dépenser tx**: Un tx qui modifie la balance du jeton de l'utilisateur en réponse d'une action signée par l'utilisateur (cela n'inclut pas les transferts de jeton entrants). Cela peut être un transfert initié de l'utilisateur, de brûlure de tx etc
+- **Référence de tx**: Les Txs juste avant la sortie de tx pour cet utilisateur et ce jeton en particulier. Comme défini dans notre schéma de UTXO basé sur une balance de compte, les sorties à la référence de tx deviennent les entrées vers le tx en train de sortir.
+- **La priorité de sortie de MoreVP**: L'âge de la plus jeune entrée (parmi les txs de référence) à un tx particulier. Ce sera le plus souvent utilisé pour calculer la priorité de sortie.
 
-### Exit Scenarios
+### Gravez des jetons {#burn-tokens}
 
-### A. Burn tokens
+Pour sortir la chaîne latérale, un utilisateur lancerait un *retrait des jetons de brûlure aka* de tx sur la chaîne de plasma. Ce tx émettra un `Withdraw` événement.
 
-To exit the sidechain, a user would launch a *withdraw aka burn tokens* tx on the plasma chain. This tx will emit a `Withdraw` event.
-
-```
+```jsx
 event Withdraw(
     address indexed token,
     address indexed from,
@@ -91,16 +93,15 @@ event Withdraw(
     uint256 input1,
     uint256 output1
 );
-
 ```
 
-Here `input1` denotes the user’s previous balance for the token in question and `output1` denotes the number of tokens left on the side chain. This construction is coherent with our account based *UTXO* scheme. A user will present the receipt of this withdraw tx to withdraw the tokens on the main chain. While referencing this receipt, the user also has to provide the following:
+Ici `input1` indique la balance précédente de l'utilisateur pour le jeton en question et  `output1` le nombre de jetons laissés sur la chaîne latérale. Cette construction est cohérente avec notre schéma *UTXO* basé sur le compte. Un utilisateur présentera le reçu de ce retrait de tx pour retirer les jetons sur la chaîne principale. Tout en faisant référence de ce reçu, l'utilisateur doit également fournir les éléments suivants:
 
-1. Merkle proof of the inclusion of a receipt in a side chain block (`receiptsRoot`)
-2. Merkle proof of the inclusion of a transaction in a side chain block (`transactionsRoot`)
-3. Proof of the inclusion of the side chain block header in the checkpoint on the root chain
+1. La preuve de Merkle de l'inclusion d'un reçu dans un bloc de chaîne latérale (`receiptsRoot`)
+2. La preuve de Merkle de l'inclusion d'une transaction dans un bloc de chaîne latérale (`transactionsRoot`)
+3. La preuve de l'inclusion de l'entête du bloc de la chaîne latérale dans le point de contrôle sur la chaîne de root
 
-```
+```jsx
 startExit(withdrawTx, proofOfInclusion /* of the withdrawTx in the checkpoint */) {
   Verify inclusion of withdrawTx in checkpoint using proofOfInclusion
   Verify msg.sender == ecrecover(withdrawTx)
@@ -110,18 +111,17 @@ startExit(withdrawTx, proofOfInclusion /* of the withdrawTx in the checkpoint */
   PlasmaExit exit = ({owner, age, amount, token})
   addExitToQueue(exit)
 }
-
 ```
 
-Whenever a user wishes to exit the plasma chain, they (or abstracted out by their client app i.e. wallet) should burn the tokens on the side chain, wait for it to get checkpointed and then start an exit from the checkpointed withdraw tx.
+Toutes les fois qu'un utilisateur souhaite sortir la chaîne de plasma, ils (ou abstrait de leur application client c'est-à-dire le portefeuille) devraient brûler les jetons sur la chaîne latérale , attendre que cela soit mis en point de contrôle et ensuite commencer une sortie du retrait tx mis en point de contrôle.
 
-### B. Exit from the last ERC20/721 transfers (MoreVP)
+### Quittez les derniers transferts ERC20/721 (MoreVP) {#exit-from-the-last-erc20-721-transfers-morevp}
 
-Consider the scenario, user made a ERC20 transfer on the side chain. The operator added a out-of-nowhere tx just before the user’s transfer and colluded with the validators to checkpoint this block. In this scenario and more generally, in the attack vectors A1 through A3 discussed above, the user may not have had the opportunity to burn their tokens before a malicious tx is included and hence would need to start an exit from the last checkpointed tx on the root chain - for this reason, in addition to the burn exit, we need to support exits from a variety of txs like ERC20/721 transfers among others. Building upon this attack vector and breaking down the 2 scenarios:
+Considérant le scénario, un utilisateur a fait un transfert ERC20 sur la chaîne latérale. L'opérateur a ajouté un tx hors de nulle part juste avant le transfert de l'utilisateur et a comploté avec les validateurs pour faire le point de contrôle de ce bloc. Dans ce scénario et plus généralement, dans les vecteurs d'attaque A1 jusqu'à A3 discutés ci-dessus, l'utilisateur peut n'avoir pas eu la possibilité de brûler leurs jetons avant qu'un tx malveillant ne soit inclus et par conséquent devrait avoir besoin de commencer une sortie de tx à partir du dernier point de contrôle sur la chaîne de root - pour cette raison, en plus de la sortie brûlée, nous devons supporter des sorties d'une variété de txs telles que les transferts ERC20/721 parmi d'autres. En s'appuyant sur ce vecteur d'attaque et en décomposant les 2 scénarios:
 
-**Outgoing transfer:** I transferred some tokens to a user, however I noticed that the operator included a malicious tx in the block/checkpoint before including my transfer tx. I need to start exiting the chain. I’ll start an exit from the transfer tx. As defined in MoreVP, I’ll need to provide a reference tx (*input UTXO*) that’ll define the exit priority of the exit. So, I’ll reference a tx that updated my token balance and just precedes the outgoing transfer tx.
+**Transfert de sortie:** J'ai transféré des jetons à un utilisateur, mais j'ai remarqué que l'opérateur a inclus un tx malveillant dans le bloc/point de contrôle avant d'inclure mon transfert tx. Je dois commencer à sortir la chaîne. Je commencerai une sortie du transfert tx. Comme défini dans MoreVP, je vais devoir fournir une référence tx (*UTXO d'entrée*) qui définira la priorité de la sortie. Donc, je vais référencer un tx qui a mis à jour ma balance de jeton et qui précède simplement le transfert de sortie tx.
 
-```
+```jsx
 startExit(referenceTx, proofOfInclusion, exitTx) {
   Verify inclusion of referenceTx in checkpoint using proofOfInclusion
   Verify token balance for the user after the input tx was executed >= tokens being transferred in the exitTx
@@ -135,7 +135,7 @@ startExit(referenceTx, proofOfInclusion, exitTx) {
 
 ```
 
-**Incoming transfer:** I noticed that the operator included a malicious tx in the block/checkpoint before including my incoming transfer tx.I’ll start an exit from the incoming transfer tx while referencing the counterparty’s balance - because here the *input UTXO* is the counterparty’s token balance.
+**Le transfert entrant:** J'ai remarqué que l'opérateur a inclus un tx malveillant dans le bloc/point de contrôle avant d'inclure mon transfert entrant de tx. Je vais commencer une sortie du transfert entrant de tx tout en faisant référence à la balance de la contrepartie parce qu'ici *un UTXO d'entrée * est la balance de jeton de la contrepartie.
 
 ```
 startExit(referenceTx, proofOfInclusion, exitTx) {
@@ -151,15 +151,15 @@ startExit(referenceTx, proofOfInclusion, exitTx) {
 
 ```
 
-### C. Exit from an in-flight transaction (MoreVP)
+### Quittez d'une transaction en vol (MoreVP) {#exit-from-an-in-flight-transaction-morevp}
 
-This scenario is to combat data unavailability scenario. Let’s say I made a tx but I do not know whether that tx has been included due to data unavailability. I can start an exit from this in-flight tx by referencing the last checkpointed tx. The user should be careful not to make any txs whenever they start a MoreVP style exit, otherwise they will be challenged.
+Ce scénario sert à combattre contre le scénario d'indisponibilité des données. Disons que j'ai fait un tx mais je ne sais pas si ce tx a été inclut en raison de l'indisponibilité des données. Je peux commencer une sortie de ce tx en vol en faisant référence au dernier tx mis en point de contrôle. L'utilisateur devrait faire attention de ne pas faire des txs à chaque fois qu'il commence une sortie de style MoreVP, sinon ils seront défiés.
 
-**Notes:** When exiting from a MoreVP style construction, a user can start an exit by providing reference txs, exit tx and placing a small `exit bond`. For any exit, if the exit is successfully challenged, the exit will be cancelled and exit bond will be seized.
+**Remarques:** Lors de la sortie d'une construction de style de MoreVP, un utilisateur peut démarrer une sortie en fournissant des txs de référence, la sortie de tx, et en plaçant un petit `exit bond`. Pour toute sortie, si la sortie est défiée avec succès, la sortie sera annulée et la liaison de sortie sera saisie.
 
-## Limitations
+## Limitations {#limitations}
 
-1. Large proof size: Merkle proof of the inclusion of the transaction and merkle proof of the inclusion of block (that contains that transaction) in the checkpoint.
-2. Mass exit: If the operator turns malicious, the users need to start mass exiting.
+1. La preuve de grande dimension: La preuve de Merkle de l'inclusion de transaction et la preuve de merkle de l'inclusion de bloc (qui contient cette transaction) dans le point de contrôle.
+2. La sortie de masse: Si l'opérateur devient malveillant, les utilisateurs doivent commencer la sortie de masse.
 
-The spec is in a nascent stage and we would appreciate any feedback that helps us improve it or redesign altogether if this construction is hopelessly broken. The implementation is work in progress in our [contracts 5](https://github.com/maticnetwork/contracts) repository.
+La spec est dans un stade naissant et nous apprécierions tout commentaire servant à l'améliorer ou à refaire complètement la conception si cette construction est désespérément détruite. La mise en œuvre est un travail en cours dans notre répertoire [de](https://github.com/maticnetwork/contracts) contrats.

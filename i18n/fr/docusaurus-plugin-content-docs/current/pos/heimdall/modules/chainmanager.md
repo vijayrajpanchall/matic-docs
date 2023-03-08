@@ -1,65 +1,68 @@
 ---
 id: chainmanager
-title: Chain Manager
-description: This module provides all necessary dependencies like `contract-addresses`, `bor_chain_id,` and `tx_confirmation_time`. Other parameters can be added to this later on.
+title: Gestionnaire de Chaîne
+description: Module qui fournit toutes les dépendances nécessaires
 keywords:
   - docs
   - matic
+  - chain manager
+  - module
+  - heimdall
 image: https://matic.network/banners/matic-network-16x9.png
 ---
 
-## Overview
+# Gestionnaire de Chaîne {#chain-manager}
 
-This document specifies an overview of the chain manager module of Heimdall
+Ce document spécifie un aperçu du module de gestionnaire de chaîne de Heimdall.
 
-This module provides all necessary dependencies like `contract-addresses`, `bor_chain_id,` and `tx_confirmation_time`. Other parameters can be added to this later on.
+Le module **de gestionnaire de chaîne** fournit toutes les dépendances nécessaires comme `contract-addresses`, `bor_chain_id,`et .`tx_confirmation_time` D'autres paramètres peuvent être ajoutés à cela plus tard.
 
-Params are updated through the `gov` module.
+Les params sont mis à jour via le `gov`module.
 
-## Types
+## Types {#types}
 
-Chainmanager structure on Heimdall looks like the following:
+La structure de Chainmanager sur Heimdall ressemble au suivant:
 
 ```go
 type ChainParams struct {
-    // BorChainID is valid bor chainId
-    BorChainID            string                  `json:"bor_chain_id" yaml:"bor_chain_id"`
+	// BorChainID is valid bor chainId
+	BorChainID            string                  `json:"bor_chain_id" yaml:"bor_chain_id"`
 
-    // MaticTokenAddress is valid matic token address
-    MaticTokenAddress     hmTypes.HeimdallAddress `json:"matic_token_address" yaml:"matic_token_address"`
+	// MaticTokenAddress is valid matic token address
+	MaticTokenAddress     hmTypes.HeimdallAddress `json:"matic_token_address" yaml:"matic_token_address"`
 
-    // StakingManagerAddress is valid contract address
-    StakingManagerAddress hmTypes.HeimdallAddress `json:"staking_manager_address" yaml:"staking_manager_address"`
+	// StakingManagerAddress is valid contract address
+	StakingManagerAddress hmTypes.HeimdallAddress `json:"staking_manager_address" yaml:"staking_manager_address"`
 
-    // RootChainAddress is valid contract address
-    RootChainAddress      hmTypes.HeimdallAddress `json:"root_chain_address" yaml:"root_chain_address"`
+	// RootChainAddress is valid contract address
+	RootChainAddress      hmTypes.HeimdallAddress `json:"root_chain_address" yaml:"root_chain_address"`
 
-    // StakingInfoAddress is valid contract address
-    StakingInfoAddress    hmTypes.HeimdallAddress `json:"staking_info_address" yaml:"staking_info_address"`
+	// StakingInfoAddress is valid contract address
+	StakingInfoAddress    hmTypes.HeimdallAddress `json:"staking_info_address" yaml:"staking_info_address"`
 
-    // StateSendedAddress is valid contract address
-    StateSenderAddress    hmTypes.HeimdallAddress `json:"state_sender_address" yaml:"state_sender_address"`
+	// StateSendedAddress is valid contract address
+	StateSenderAddress    hmTypes.HeimdallAddress `json:"state_sender_address" yaml:"state_sender_address"`
 
-    // Bor Chain Contracts
-    // StateReceiveAddress is valid contract address
-    StateReceiverAddress hmTypes.HeimdallAddress `json:"state_receiver_address" yaml:"state_receiver_address"`
+	// Bor Chain Contracts
+	// StateReceiveAddress is valid contract address
+	StateReceiverAddress hmTypes.HeimdallAddress `json:"state_receiver_address" yaml:"state_receiver_address"`
 
-    // ValidatorSetAddress is valid contract address
-    ValidatorSetAddress  hmTypes.HeimdallAddress `json:"validator_set_address" yaml:"validator_set_address"`
+	// ValidatorSetAddress is valid contract address
+	ValidatorSetAddress  hmTypes.HeimdallAddress `json:"validator_set_address" yaml:"validator_set_address"`
 }
 ```
 
-## CLI commands
+## Les Commandes CLI {#cli-commands}
 
-### params
+### Paramètres {#parameters}
 
-To print all params
+Pour imprimer tous les params;
 
 ```go
 heimdallcli query chainmanager params --trust-node
 ```
 
-### Expected Result
+### Résultat Attendu {#expected-result}
 
 ```yaml
 tx_confirmation_time: 12s
@@ -74,20 +77,19 @@ chain_params:
   validator_set_address: "0x0000000000000000000000000000000000000000"
 ```
 
-### REST APIs
+### API de REST {#rest-apis}
 
-| Name   | Method | URL                 |
-| ------ | ------ | ------------------- |
-| Params | GET    | chainmanager/params |
+| Nom | Méthode | URL |
+|----------------------|------|------------------|
+| Params | GET | chainmanager/params |
 
-
-All query APIs will result in the following format:
+Toutes les API de requête fourniront la réponse au format suivant:
 
 ```json
 {
-    "height": "1",
-    "result": {
-        ...   
-    }
+	"height": "1",
+	"result": {
+		...	  
+	}
 }
 ```

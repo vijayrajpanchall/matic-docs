@@ -1,23 +1,25 @@
 ---
 id: deposit-withdraw-event-pos
-title: Deposit and Checkpoint Event Tracking - PoS
+title: Отслеживание событий депозита и checkpoint — PoS
 sidebar_label: Deposit and Checkpoint Event Tracking
-description: Build your next blockchain app on Polygon.
+description: "Отслеживайте темпы и скорость транзакций в Polygon."
 keywords:
   - docs
   - matic
+  - deposit
+  - checkpoint
 image: https://matic.network/banners/matic-network-16x9.png
 ---
 
-## Quick Summary
+## Краткий обзор {#quick-summary}
 
-This section of the docs deal with tracking and monitoring the pace and speed of transactions done within the Polygon ecosystem. Depositing into the network (when done with the PoS bridge) typically takes an average of 5-7 minutes but we've seen instances where users seek to see real time progress reports. As a developer, you may also want to augment the  UX of your app with instant feedback to the user. In all these cases, look into this section, we have exactly what you need.
+Этот раздел документов посвящен отслеживанию и мониторингу темпов и скорости транзакций, совершенных в экосистеме Polygon. Пополнение в сеть (когда выполняется с мостом PoS) обычно занимает в среднем 22-30 минут, но мы видели случаи, когда пользователи стремятся видеть отчеты о прогрессе в реальном времени. Как разработчик вы также можете улучшить UX вашего приложения, мгновенно отправляя пользователю обратную связь. Во всех этих случаях этот раздел может быть полезен.
 
-## Deposit Events
+## События депозита {#deposit-events}
 
-When a token is deposited from Ethereum to Polygon, a process called state sync mechanism comes into play that eventually mints the tokens for the user on the Polygon chain. This process takes about ~5-7 minutes to happen and hence listening to the deposit event is very important to create a good user experience. This is an example script that can be used to track real time deposit events.
+Когда токен вносится в качестве депозита из Ethereum в Polygon, задействуется процесс, называемый механизмом синхронизации состояний, в результате которого минтятся токены для пользователя в Polygon chain. Этот процесс занимает около 22-30 минут, и поэтому прослушивание события депозита очень важно для создания хорошего пользовательского опыта. Вот образец скрипта, который можно использовать для отслеживания событий депозита в реальном времени.
 
-### Realtime deposit event tracking using a web socket connection
+### Отслеживание событий депозита в реальном времени с помощью подключения по web socket {#realtime-deposit-event-tracking-using-a-web-socket-connection}
 
 ```jsx
 const WebSocket = require("ws");
@@ -114,9 +116,9 @@ checkDepositStatus(
   });
 ```
 
-### Historical deposit completion check by querying the blockchain
+### Проверка завершения прошлых депозитных транзакций путем опрашивания блокчейна {#historical-deposit-completion-check-by-querying-the-blockchain}
 
-This script can be used to check if a particular deposit has been completed on the child chain or not. The main chain and the child chain keep incrementing the value of a global counter variable on both the chains. The [StateSender](https://github.com/maticnetwork/contracts/blob/develop/contracts/root/stateSyncer/StateSender.sol#L38) contract emits an event that has the counter value. The counter value on the child chain can be queried from the [StateReceiver](https://github.com/maticnetwork/genesis-contracts/blob/master/contracts/StateReceiver.sol#L12) contract. If the counter value on child chain is greater than or equal to the same on main chain, then the deposit can considered as completed successfully.
+Этот скрипт можно использовать для проверки того, было ли завершено внесение конкретного депозита на дочерней цепочке. Основная цепочка и дочерняя цепочка продолжают увеличивать значение глобальной переменной счетчика в обеих цепочках. Контракт [StateSender](https://github.com/maticnetwork/contracts/blob/develop/contracts/root/stateSyncer/StateSender.sol#L38) порождает событие, имеющее значение счетчика. Значение счетчика в дочерней цепочке можно запросить из контракта [StateReceiver](https://github.com/maticnetwork/genesis-contracts/blob/master/contracts/StateReceiver.sol#L12). Если значение счетчика в цепочке дочернего элемента превышает или равен такому же в основной цепочке, то депозит можно считать успешно завершенным.
 
 ```jsx
 let Web3 = require("web3");
@@ -174,11 +176,11 @@ depositCompleted(
   });
 ```
 
-## Checkpoint Events
+## События checkpoint {#checkpoint-events}
 
-### Real-time checkpoint status tracking
+### Отслеживание состояния checkpoint в реальном времени {#real-time-checkpoint-status-tracking}
 
-All transactions that occur on Polygon chain are check-pointed to the Ethereum chain in frequent intervals of time by the validators. This time is ~10 mins on Mumbai and ~30 mins on Polygon mainnet. The checkpoint occurs on a contract called the **RootChainContract** deployed on Ethereum chain. The following script can be used to listen to real-time checkpoint inclusion events.
+Все транзакции, которые происходят в цепочке Polygon, проверяются на цепочку Ethereum, с частыми интервалами времени валидаторами. Этот раз находится около 10 минут на Mumbai и около 30 минут на Polygon Mainnet. Checkpoint происходит по контракту, который называется `RootChainContract`дислоцированным в цепочке Ethereum. Приведенный ниже скрипт можно использовать для отслеживания событий включения checkpoint в реальном времени.
 
 ```js
 const Web3 = require("web3");
@@ -243,9 +245,9 @@ checkInclusion(
   });
 ```
 
-### Historical checkpoint inclusion check by querying the blockchain
+### Проверка прошлых включений checkpoint путем опрашивания блокчейна {#historical-checkpoint-inclusion-check-by-querying-the-blockchain}
 
-This can be checked using the following API. The block number of the burn transaction on the child chain has to be given as a param to this GET API.
+Такую проверку можно выполнить с помощью приведенного ниже API. Номер блока транзакции записи в цепочке дочернего элемента должен быть приведен в качестве параметра для этого GET API.
 
 ```js
 // Testnet

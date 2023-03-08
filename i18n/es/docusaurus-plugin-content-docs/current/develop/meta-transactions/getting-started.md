@@ -1,8 +1,8 @@
 ---
 id: meta-transactions
-title: Meta Transactions
+title: Metatransacciones
 sidebar_label: Overview
-description: Learn about meta transactions and how you can use them.
+description: Aprende sobre metatransacciones y cómo puedes usarlas.
 keywords:
   - docs
   - polygon
@@ -14,59 +14,99 @@ image: https://matic.network/banners/matic-network-16x9.png
 slug: meta-transactions
 ---
 
-Daily smart contract calls are at their highest, hitting around 2.5 to 3 million per day. DApps are starting to realize their utility but are becoming victims of their success or others’ success due to gas fees. Not to mention, the onboarding hurdles of users and the challenges of current UX are no easy fix.
+Las llamadas diarias a contratos inteligentes alcanzaron su récord: entre 2,5 y 3 millones al día.
+Las DApp están empezando a darse cuenta de su utilidad, pero se están volviendo víctimas de su éxito o el éxito de otros
+debido a las tarifas de gas, sin mencionar que los obstáculos de la incorporación de nuevos usuarios y los desafíos de la actual
+experiencia de usuario no son cosa sencilla.
 
-## Servicing Smart Contracts
+## Al servicio de los contratos inteligentes {#servicing-smart-contracts}
 
-By design, smart contracts are deterministic state machines that execute when transaction fees are paid to service the contract’s logic by using the network’s computational resources. This is accomplished by a gas-metered model on Ethereum (and Polygon).
+Por su diseño, los contratos inteligentes son máquinas de estado deterministas que se ejecutan cuando se pagan tarifas de transacción
+para servirle a la lógica del contrato usando los recursos informáticos de la red.
+Esto se hace mediante un modelo de medición de gas en Ethereum (y Polygon).
 
-## The Current State of Transacting
+## El estado actual de las transacciones {#the-current-state-of-transacting}
 
-There are limitations to this traditional transaction model on Ethereum (and other blockchains alike). A common limitation is a user not having the means to pay for gas. By default, the sender of the transaction acts as the payer, as these behaviors are coupled, so if a user attempts to create and send a transaction, they are responsible for the associated gas fees. Likewise, if a user builds, interacts with, or runs a dApp, the user is required to pay gas.
+Este modelo tradicional de transacciones en Ethereum (y otras blockchains similares) tiene sus limitaciones.
+Una limitación frecuente es que el usuario no tiene los medios para pagar el gas. Por defecto, el remitente de la
+transacción actúa como pagador, ya que estos comportamientos están vinculados. Entonces, si un usuario intenta crear y enviar
+una transacción, este será responsable de las tarifas de gas asociadas. Asimismo, si el usuario crea una DApp, interactúa
+con ella o la ejecuta, este tiene que pagar el gas.
 
-It is unrealistic to expect the average user to buy crypto and pay for gas to interact with an application. What can be done to address this is to decouple the sender of a transaction from acting as a payer, enabling the opportunity to scale transaction execution and initiate a seamless transacting experience.
+Es poco realista esperar que el usuario promedio compre criptomonedas y pague el gas para interactuar con una
+aplicación. Lo que se puede hacer para solucionar este asunto es desvincular al remitente de su papel
+de pagador, lo que permitiría escalar la ejecución de la transacción e iniciar una transacción sin interrupciones .
 
-Instead of direct transaction execution, a middleware would exist (via a third party) to handle the gas. This is where meta transactions come in.
+En lugar de una transacción directa, habría un middleware (mediante un tercero) para gestionar el gas.
+Aquí entran en el juego las metatransacciones.
 
-## What are Meta Transactions?
+## ¿Qué son las metatransacciones? {#what-are-meta-transactions}
 
-Meta transactions allow anyone to interact with the blockchain. They do not require users to have tokens to pay for the network’s services through transaction fees. This is done by decoupling the sender of a transaction and the payer of gas.
+Las metatransacciones permiten que cualquier persona interactúe con la cadena de bloques. Estas no exigen que los usuarios tengan
+tokens para pagar los servicios de la red mediante las tarifas por transacción. Esto se lleva a cabo desvinculando al
+remitente de la transacción del pagador del gas.
 
-A solution that can onboard new users and helps current ones.
+Esta solución puede atraer nuevos usuarios y ayuda a los existentes.
 
-The executor of a transaction acts as a sender. Rather than spending gas, they only create a transaction request by signing their intended action (the transaction parameters) with their private key. The meta transaction is a regular Ethereum transaction that includes additional parameters to craft the meta transaction.
+Quien ejecuta la transacción actúa como remitente. En lugar de gastar gas, este solo crea una
+solicitud de transacción firmando la acción prevista (los parámetros de la transacción) con su clave privada
+. La metatransacción es una transacción regular de Ethereum que incluye parámetros adicionales para crear
+la metatransacción.
 
-The signed transaction parameters are passed onto a secondary network, which acts as a relayer. While there are different schemes for this, relayers would generally choose which transactions are worth submitting by validating the transaction (e.g., being relevant to the dApp). Upon validation, the relayer will wrap the request (the signed message) into an actual transaction (which means paying the gas fee) and broadcast it to the network, where the contract unwraps the transaction by validating the original signature and executes it on behalf of the user.
+Los parámetros firmados de la transacción se pasan a una red secundaria, que actúa como transmisor.
+Si bien hay distintos esquemas para esto, los transmisores normalmente elegirán qué transacciones
+enviar al validar la transacción (por ejemplo, por ser relevante para la DApp). Tras la validación, el transmisor
+envuelve la solicitud (el mensaje firmado) en una transacción real (lo que implica el pago de la tarifa de gas)
+y la envía a la red, donde el contrato la desenvuelve validando la firma original
+y la ejecuta en nombre del usuario.
 
-:::note The words meta and batch may be analogous to some
+:::note Las palabras meta y lote pueden ser análogas para algunos
 
-To clarify: a meta transaction is different from a batch transaction, where a batch transaction is a transaction that can send multiple transactions at once and are then executed from a single sender (single nonce specified) in sequence.
+Aclaremos: las metatransacciones son diferentes de las transacciones en lote. Las últimas son
+operaciones que pueden enviar varias transacciones a la vez, que luego se ejecutan desde un único remitente
+(único nonce especificado) en secuencia.
 
 :::
 
-In summary, meta transactions are a design pattern where:
+En resumen, las metatransacciones son un patrón de diseño en el que:
 
-* A user (sender) signs a request with their private key and sends it to a relayer
-* The relayer wraps the request into a tx and sends it to a contract
-* The contract unwraps the tx and executes it
+* Un usuario (remitente) firma una solicitud con su clave privada y se la envía a un transmisor
+* El transmisor envuelve la solicitud en una transacción y se la envía a un contrato
+* El contrato desenvuelve la transacción y la ejecuta
 
-Native transactions imply that the “sender” is also the “payer”. When taking the “payer” away from the “sender”, the “sender” becomes more like an “intender” - the sender shows the intent of the transaction they would like executed on the blockchain by signing a message containing specific parameters related to their message, and not an entirely constructed transaction.
+Las transacciones nativas implican que el “remitente” también es el “pagador”. Al desvincular al “pagador” del
+“remitente”, el “remitente” se vuelve más un “aspirante”, es decir, quien muestra la intención de hacer la transacción
+en la cadena de bloques al firmar un mensaje que contiene parámetros específicos relacionados
+con el mensaje, y no una transacción totalmente construida.
 
-## Use Cases
+## Casos de uso {#use-cases}
 
-One can imagine the capabilities of meta transactions for scaling dApps and interactions with smart contracts. Not only can a user create a gasless transaction, but they can also do so many times, and with an automation tool, meta transactions can influence the next wave of applications for practical use cases. Meta transactions enable real utility in smart contract logic, which is often limited because of gas fees and the interactions required on-chain.
+Es fácil imaginarse las capacidades de las metatransacciones para escalar las DApp y las interacciones con los contratos inteligentes.
+Los usuarios pueden no solo crear transacciones sin gas, sino también hacerlo muchas veces y, con una herramienta de automatización,
+las metatransacciones pueden influir en la próxima ola de aplicaciones para casos de uso práctico. Las metatransacciones
+posibilitan una utilidad real en la lógica de los contratos inteligentes, que muchas veces se ve limitada debido a las tarifas de gas y las interacciones
+requeridas en la cadena.
 
-### Example with voting
+### Ejemplo con votación {#example-with-voting}
 
-A user wants to participate in on-chain governance, and they intend to vote for a particular outcome via a voting contract. The user would sign a message which states the user’s decision in a vote in this particular contract. Traditionally, they would need to pay a gas fee for interacting with the contract (and know how to interact with the contract), but instead, they can sign a meta transaction (off-chain) with the necessary information for their vote and pass it to a relayer which would execute the transaction on their behalf.
+Un usuario quiere participar en la gobernanza en la cadena y pretende votar por un resultado determinado por medio de un
+contrato de votación. El usuario firma un mensaje donde indica su decisión en un voto en este
+contrato en particular. Tradicionalmente, tendría que pagar una tarifa de gas por interactuar con el contrato (y saber cómo
+interactuar con el contrato), pero ahora puede firmar una metatransacción (fuera de la cadena) con la información necesaria
+sobre el voto y pasársela al transmisor, que ejecuta la transacción en su nombre.
 
-The signed message gets sent to a relayer (the signed tx params about the voting information). The relayer validates that this transaction is a priority vote, wraps the voting request into an actual transaction, pays the gas fees, and broadcasts it to the voting contract. Everything checks out on the voting contract’s end, and the vote executes on behalf of the user.
+El mensaje firmado se le envía a un transmisor (los parámetros de la transacción firmados sobre la información del voto). El transmisor
+confirma que esta transacción es un voto prioritario, envuelve la solicitud de votación en una transacción real,
+paga las tarifas de gas y la transmite al contrato de votación. Todo se verifica al final del contrato de votación,
+y el voto se ejecuta en nombre del usuario.
 
-## Try Them Out
+## Pruébalas {#try-them-out}
 
-Assuming your familiarity with the different approaches you can take to integrate meta transactions in your dApp, and depending on whether you're migrating to meta transactions or building fresh dApp on using it.
+Asumiendo que conoces los diferentes enfoques, puedes integrar las metatransacciones a tu
+DApp y dependiendo de si estás migrando a las metatransacciones o creando una DApp nueva.
 
-To integrate your dApp with Meta Transactions on Polygon, you can choose to go with one of the following relayers or spin up a custom solution:
+Para integrar tu DApp con las metatransacciones en Polygon, puedes optar por usar uno de los siguientes
+transmisores o crear una solución personalizada:
 
 * [Biconomy](https://docs.biconomy.io/products/enable-gasless-transactions)
 * [Gas Station Network (GSN)](https://docs.opengsn.org/#ethereum-gas-station-network-gsn)

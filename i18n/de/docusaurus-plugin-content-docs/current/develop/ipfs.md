@@ -1,24 +1,36 @@
 ---
 id: ipfs
 title: IPFS
-description: IPFS
+description: "IPFS – verteiltes System, um Daten zu speichern und darauf zuzugreifen."
 keywords:
   - IPFS
   - matic
-image: https://matic.network/banners/matic-network-16x9.png
+  - docs
+  - polygon
+  - storage
+  - blockchain
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
+### Kontext {#context}
 
-### Context
+Die Polygon-Blockchain reduziert die Transaktionskosten für die Datenspeicherung im Vergleich zum Ethereum-Mainnet. Doch selbst diese niedrigeren Kosten summieren sich schnell, wenn große Dateien gespeichert werden. Entwickler müssen außerdem Einschränkungen der Blockgröße und der Transaktionsgeschwindigkeit bei der Speicherung von Daten auf der Chain berücksichtigen. Eine Lösung, die all diese Bedenken berücksichtigt, ist IPFS, das InterPlanetary File System.
 
-Polygon blockchain can be used to store data. But is it really worth the cost? To put into perspective 1 byte of a data can cost you 50 gwei gas in matic token, or equal to about $0.0166 in today's market. It maybe small for just one byte of data but let's say you want to store a file with 1 GB data (10^6 bytes) it will cost you 6.4x10^11 gwei or 640 matic. Even matic consumes less gas then too its not easy task to store it in on-chain. The solution for this is IPFS, the InterPlanetary File System.&#x20;
+#### Was ist IPFS? {#what-is-ipfs}
 
-#### What is IPFS?&#x20;
+IPFS ist ein verteiltes System, um Dateien, Websites, Apps und Daten zu speichern und darauf zuzugreifen. IPFS nutzt Dezentralisierung, Inhaltsadressierung und ein robustes Peer-to-Peer-Netzwerk mit aktiven Teilnehmern, um es Benutzern zu ermöglichen, verifizierbare Daten zu speichern, anzufordern und zu übertragen.
 
-IPFS is a distributed system for storing and accessing files, websites, applications, and data. Using IPFS as a storage you don't need to store entire files to polygon blockchain you just need to store the hash of the IPFS to the polygon blockchain, thus make it much more cheaper then just storing the file. For more details refer [IPFS docs](https://docs.ipfs.io/). &#x20;
+Durch die Dezentralisierung kann man eine Datei von vielen Standorten herunterladen, die nicht von einer Organisation verwaltet werden, wodurch Resilienz und Schutz vor Zensur sichergestellt werden.
 
-### Example Projects
+Inhaltsadressierung nutzt Kryptographie, um einen eindeutig verifizierbaren Hash zu erstellen, der darauf basiert, was sich in einer Datei befindet, anstatt wo sie sich befindet. Der resultierende Inhaltskennzeichner (CID) stellt sicher, dass eine Datenmenge, unabhängig davon, wo sie gespeichert ist, identisch ist.
 
- 1)  Tutorial in scaffold-eth that demonstrates how to mint an NFT on Polygon with IPFS [link](https://github.com/scaffold-eth/scaffold-eth/tree/simple-nft-example)
+Schließlich ermöglicht eine ständig wachsende aktive Nutzercommunity Peer-to-Peer-Sharing von Inhalten. Entwickler hochladen und pin Inhalte auf IPFS, während Filecoin oder Crust Storage Provider helfen, eine dauerhafte Speicherung dieser Inhalte zu gewährleisten.
 
- 2) Building a full stack web3 app with Next.js, Polygon, Solidity, The Graph, IPFS, and Hardhat [link](https://dev.to/dabit3/the-complete-guide-to-full-stack-web3-development-4g74)
+
+Mit dem IPFS-basierten Speicher kannst du die CID für deinen Inhalt speichern, anstatt ganze Dateien auf die Polygon-Blockchain zu laden, was geringere Kosten, größere Dateigrößen und dauerhafte Speicherung zur Folge hat. Für weitere Details verweise [IPFS Docs](https://docs.ipfs.io/).
+
+### Beispielprojekte {#example-projects}
+
+1. Tutorial in scaffold-eth [zeigt,](https://github.com/scaffold-eth/scaffold-eth/tree/simple-nft-example) wie man eine NFT auf Polygon mit IPFS prägt.
+
+2. Erstelle eine vollständige Stack web3 App mit Next.js, Polygon, Solidity, The Graph, IPFS und Hardhat - [Link](https://dev.to/dabit3/the-complete-guide-to-full-stack-web3-development-4g74)

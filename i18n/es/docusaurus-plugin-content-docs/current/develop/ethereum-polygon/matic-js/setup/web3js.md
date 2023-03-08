@@ -1,31 +1,31 @@
 ---
 id: web3
-title: 'Web3js setup'
+title: 'Configuración de Web3js'
 keywords:
-  - pos client
-  - erc20
-  - withdrawExit
-  - polygon
-  - sdk
-description: 'Get started with maticjs'
+ - pos client
+ - erc20
+ - withdrawExit
+ - polygon
+ - sdk
+description: 'Instala y configura web3.js.'
 ---
 
-# Web3.js
+# Web3.js {#web3-js}
 
-[web3.js](https://web3js.readthedocs.io/) is a collection of libraries that allow you to interact with a local or remote ethereum node using HTTP, IPC or WebSocket.
+[web3.js](https://web3js.readthedocs.io/) es una colección de bibliotecas que permiten interactuar con un nodo local o remoto de Ethereum utilizando HTTP, IPC o WebSocket.
 
-## Setup web3.js
+## Configuración de web3.js {#setup-web3-js}
 
-web3.js support is available via seperate package as a plugin for matic.js.
+El soporte de web3.js está disponible mediante un paquete separado como complemento para matic.js.
 
-### Installation
+### Instalación {#installation}
 
 ```
 npm install @maticnetwork/maticjs-web3
 
 ```
 
-### setup
+### configuración {#setup}
 
 ```
 import { use } from '@maticnetwork/maticjs'
@@ -35,7 +35,7 @@ import { Web3ClientPlugin } from '@maticnetwork/maticjs-web3'
 use(Web3ClientPlugin)
 ```
 
-Let's see an example of creating `POSClient` using web3 -
+Veamos un ejemplo de creación de `POSClient` usando web3 -
 
 ```
 import { POSClient,use } from "@maticnetwork/maticjs"
@@ -65,6 +65,6 @@ await posClient.init({
 
 ```
 
-## Examples
+## Ejemplos {#examples}
 
-The examples for different cases are available in [web3 plugin repo](https://github.com/maticnetwork/maticjs-web3)
+Los ejemplos para diferentes casos están disponibles en [el repositorio del complemento web3](https://github.com/maticnetwork/maticjs-web3)

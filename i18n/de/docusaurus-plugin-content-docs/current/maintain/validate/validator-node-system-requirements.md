@@ -1,7 +1,7 @@
 ---
 id: validator-node-system-requirements
-title: Node System Requirements
-description: "System requirements to run a validator node."
+title: Systemanforderungen
+description: Systemanforderungen für den Ausführen eines a
 keywords:
   - docs
   - matic
@@ -9,46 +9,44 @@ keywords:
   - prerequisites
   - requirements
 slug: validator-node-system-requirements
-image: https://matic.network/banners/matic-network-16x9.png
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
-## Overview
+Die in diesem Abschnitt aufgeführten Systemanforderungen gelten sowohl für den [Sentry](/docs/maintain/glossary.md#sentry)-Knoten als auch für den [Prüfknoten](/docs/maintain/glossary.md#validator).
 
-The system requirements listed in this section are both for the [sentry](../glossary#sentry) node and the [validator](../glossary#validator) node.
+Die **minimalen** Systemanforderungen bedeuten, dass du die Knoten ausführen kannst. Diese Einstellung ist jedoch nicht zukunftssicher.
 
-The *minimum* system requirements mean you can run the nodes but the setup is not future-proof.
+Die **empfohlenen** Systemanforderungen bedeuten, dass die Knoten zukunftssicher sind. Es gibt jedoch keine Obergrenze für die Zukunftssicherheit deiner Knoten.
 
-The *recommended* system requirements mean the nodes are future-proof. There is, however, no upper limit to future-proofing your nodes.
+Du musst den Sentry-Knoten und den Prüfknoten immer auf getrennten Maschinen ausführen.
 
-You must always run the sentry node and the validator node on separate machines.
-
-## Minimum system requirements
+## Mindest-Systemanforderungen {#minimum-system-requirements}
 
 * RAM: 32 GB
-* CPU: 8-core
-* Storage: 2 TB SSD
+* CPU: 8-Core
+* Speicherung: 2,5 TB SSD
 
-:::note
+:::info
 
-For Amazon Web Services (AWS), the equivalent of the minimum requirements instances are **m5d.2xlarge** or **t3.2xlarge** with unlimited credits selected.
+Für Amazon Web Services (AWS) entsprechen die Mindestanforderungen den Instanzen **m5d.2xlarge** oder **t3.2xlarge** mit unbegrenzten Credits.
 
-For storage, make sure the 2 TB SSD storage is extendable.
+Für die Speicherung vergewissere dich, dass der 2.5 TB SSD Storage erweiterbar ist.
 
 :::
 
-## Recommended system requirements
+## Empfohlene Systemanforderungen {#recommended-system-requirements}
 
 * RAM: 64 GB
-* CPU: 16-core
-* Storage: 3-4 TB SSD
-* Bandwidth: 1 Gbit/s
+* CPU: 16-Core
+* Speicherung: 5 TB SSD
+* Bandbreite: 1 Gbit/s
 
-:::note
+:::info
 
-For Amazon Web Services (AWS), the equivalent of the recommended requirements instance is **m5d.4xlarge**.
+Für Amazon Web Services (AWS) ist das Äquivalent der empfohlenen Anforderungsinstanz **m5d.4xlarge**.
 
-For OVH, the equivalent of the recommended requirements instance is **infra-3**.
+Für OVH ist das Äquivalent der empfohlenen Anforderungsinstanz **infra-3**.
 
-For network, expect 3-5 TB of data transferred per month.
+Für das Netzwerk kannst du mit 3-5 TB übertragener Daten pro Monat rechnen.
 
 :::

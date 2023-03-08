@@ -1,20 +1,24 @@
 ---
 id: plugin
-title: Plugin
+title: Complemento
 keywords:
-  - 'plugin, api type, read, write, polygon'
-description: 'Using plugin you can inject your code into matic.js'
+- 'plugin, api type, read, write, polygon'
+description: 'Usa el complemento para inyectarle el código a Matic.js.'
 ---
 
-Using plugin you can inject your code into `matic.js`. It can be used to write common set of generic codes which can be provided to anyone using a package.
+Al usar el complemento puedes inyectar tu código en `matic.js`. Se puede usar para escribir un conjunto común de códigos genéricos que se le pueden proporcionar a cualquiera que use un paquete.
 
-:::info Plugin makes the `matic.js` light weight as it implements only important logical part. :::
+:::info
 
-In fact, the web3 library is supported using plugin which allows us to use our favourite library.
+El complemento hace que el `matic.js` sea ligero, ya que solo implementa la parte lógica importante.
 
-### Plugin development
+:::
 
-Plugin is a class which implements `IPlugin`.
+De hecho, la biblioteca web3 es admitida al usar un complemento que nos permite usar nuestra biblioteca favorita.
+
+### Desarrollo de complementos {#plugin-development}
+
+El complemento es una clase que implementa `IPlugin`.
 
 ```
 import { IPlugin } from "@maticnetwork/maticjs";
@@ -30,11 +34,11 @@ export class MyPlugin implements IPlugin {
 }
 ```
 
-As you can see - you just need to implement a `setup` method which will be called with default export of `matic.js`.
+Como puedes ver, solo necesitas implementar un método de `setup` que será llamado con la exportación por defecto de `matic.js`.
 
-### Use Plugin
+### Utilizar complemento {#use-plugin}
 
-`matic.js` expose `use` method for using a plugin.
+`matic.js` expone el método de `use`para utilizar un complemento.
 
 ```
 import { use } from '@maticnetwork/maticjs'
@@ -42,9 +46,9 @@ import { use } from '@maticnetwork/maticjs'
 use(MyPlugin)
 ```
 
-You can use multiple plugins and they will be called in the same order as they are declared.
+Puedes utilizar varios complementos y se llamarán en el mismo orden en que se declaren.
 
-**Some plugin repos are -**
+**Algunos repositorios de complementos son:**
 
 - [Matic web3.js](https://github.com/maticnetwork/maticjs-web3)
 - [Matic ethers](https://github.com/maticnetwork/maticjs-ethers)

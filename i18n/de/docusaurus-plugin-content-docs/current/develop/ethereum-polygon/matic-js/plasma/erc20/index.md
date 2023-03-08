@@ -2,21 +2,21 @@
 id: index
 title: PlasmaClient
 keywords:
-  - 'plasma client, erc20, contract, polygon, sdk'
-description: 'Get started with maticjs'
+- 'plasma client, erc20, contract, polygon, sdk'
+description: 'Bietet eine Methode zur Kommunikation mit einem ERC20-Token.'
 ---
 
-`plasmaClient` provides `erc20` method which helps you to interact with a erc20 token.
+`plasmaClient` ist eine `erc20`-Methode zum Datenaustausch mit einem ERC20-Token.
 
-## Child token
+## Child-Token {#child-token}
 
 ```
 const childERC20Token = plasmaClient.erc20(<child token address>);
 ```
 
-## Root token
+## Root-Token {#root-token}
 
-Root token can be initiated by providing second parameter value as `true`.
+Der Root-Token kann durch Angabe des zweiten Parameterwerts als `true`aktiviert werden.
 
 ```
 const parentERC20Token = plasmaClient.erc20(<root token address>, true);

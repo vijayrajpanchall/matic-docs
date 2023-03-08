@@ -2,15 +2,15 @@
 id: exit-util
 title: ExitUtil
 keywords:
-  - 'exit util, api type, read, write, polygon'
-description: 'matic.js internally use ExitUtil for generating proof'
+- 'exit util, api type, read, write, polygon'
+description: 'Генерировать доказательство с помощью класса ExitUtil.'
 ---
 
-`matic.js` internally use `ExitUtil` for generating proof. It is a class which has different methods for helping with exit utilities.
+`matic.js` на внутреннем уровне использует `ExitUtil` для генерации доказательства. Это класс, в котором имеются различные методы для оказания помощи в работе с утилитами выхода.
 
-## buildPayloadForExit
+## buildPayloadForExit {#buildpayloadforexit}
 
-It exposes `buildPayloadForExit` method which can be used to generate proof.
+Выявляет метод `buildPayloadForExit`, который можно использовать для генерации доказательства.
 
 ```
 import { ExitUtil, RootChain, use, Web3SideChainClient } from "@maticnetwork/maticjs";
@@ -55,9 +55,9 @@ const proof = await exitUtil.buildPayloadForExit(
 
 ```
 
-### Generating proof using bridge client
+### Генерация доказательства с помощью мостового клиента {#generating-proof-using-bridge-client}
 
-Every bridge client including **POSClient**, **PlasmaClient** exposes `exitUtil` property.
+Каждый мостовой клиент, включая **POSClient**, **PlasmaClient**, выявляет свойство `exitUtil`.
 
 ```
 import { POSClient,use } from "@maticnetwork/maticjs"

@@ -1,44 +1,44 @@
 ---
 id: installation
-title: Installation
+title: Instalación
 keywords:
-  - pos client
-  - erc20
-  - withdrawExit
-  - polygon
-  - sdk
-description: Get started with maticjs
+    - pos client
+    - erc20
+    - withdrawExit
+    - polygon
+    - sdk
+description: Instala las bibliotecas de Matic.js y Ethereum.
 ---
 
-maticjs has two parts -
+maticjs tiene dos partes:
 
-1. Main library
-2. Ethereum library
+1. Biblioteca principal
+2. Biblioteca de Ethereum
 
-### Main library
+### Biblioteca principal {#main-library}
 
-The Main library has the core logic and provides different APIs. The user interacts mostly with this library.
+La biblioteca principal tiene la lógica de núcleo y ofrece diferentes API. El usuario interactúa principalmente con esta biblioteca.
 
 ```
 npm i @maticnetwork/maticjs
 ```
 
-### Ethereum library
+### Biblioteca de Ethereum {#ethereum-library}
 
-Ethereum library allows us to use any favourite ether library. It is injected into maticjs using plugins.
+La biblioteca de Ethereum nos permite utilizar cualquier biblioteca de Etherfavorita. Se inyecta en maticjs mediante complementos.
 
-matic.js supports two popular library -
+matic.js es compatible con dos bibliotecas populares:
 
 1. [Web3.js](https://web3js.readthedocs.io/)
 2. [Ethers](https://docs.ethers.io/)
 
-#### Web3.js
+#### Web3.js {#web3-js}
 
 ```
 npm install @maticnetwork/maticjs-web3
 ```
 
-#### ethers
+#### Ethers {#ethers}
 
 ```
 npm install @maticnetwork/maticjs-ethers

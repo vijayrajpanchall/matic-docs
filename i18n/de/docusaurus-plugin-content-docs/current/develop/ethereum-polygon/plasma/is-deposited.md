@@ -1,14 +1,14 @@
 ---
 id: is-deposited
-title: isDeposited
+title: Wurde eingezahlt
 keywords:
-  - 'plasma client, erc20, withdrawExit, polygon, sdk'
-description: 'Get started with maticjs'
+- 'plasma client, erc20, withdrawExit, polygon, sdk'
+description: 'Erste Schritte mit Maticjs'
 ---
 
-# isDeposited
+# Wurde eingezahlt {#isdeposited}
 
-`isDeposited` method can be used to know if a deposit has been completed.
+Die `isDeposited`-Methode kann verwendet werden, um zu erfahren, ob eine Einzahlung abgeschlossen wurde.
 
 ```
 const isDeposited = await plasmaClient.isDeposited(<deposit tx hash>);

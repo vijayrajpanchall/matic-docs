@@ -1,7 +1,7 @@
 ---
 id: derivatives
-title: Derivatives
-description: "Delegation through validator shares."
+title: Dérivés
+description: Délégation par les actions validateurs
 keywords:
   - docs
   - polygon
@@ -10,39 +10,39 @@ keywords:
   - delegation
   - shares
 slug: derivatives
-image: https://matic.network/banners/matic-network-16x9.png
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
-Polygon supports [delegation](../../glossary#delegator) via validator shares. By using this design, it is easier to distribute rewards and slash with scale on the Ethereum mainnet contracts without much computation.
+Polygon prend en charge la [délégation](/docs/maintain/glossary#delegator) à partir des actions du validateur. En utilisant cette conception, il est plus simple de distribuer des récompenses et de couper à l'échelle sur les contrats du réseau principal d'Ethereum sans beaucoup de calcul.
 
-Delegators delegate by purchasing shares of a finite pool from validators. Each validator has their own validator share token.
+Les délégants délèguent en achetant des actions d'un pool fini auprès des validateurs. Chaque validateur a son propre jeton de partage de validateur.
 
-Let's call the fungible validator share tokens VATIC for Validator A. When a user delegates to Validator A, the user is issued VATIC based on the exchange rate of the MATIC-VATIC pair. As users accrue value, the exchange rate indicates that the user can withdraw more MATIC for each VATIC. When validators get slashed, users withdraw less MATIC for their VATIC.
+Nous appellerons les jetons fongibles d'actions du validateur VATIC pour le validateur A. Lorsqu'un utilisateur délègue au validateur A, l'utilisateur reçoit des VATIC basés sur le taux de change de la paire MATIC-VATIC. Au fur et à mesure que les utilisateurs gagnent de la valeur, le taux de change indique que l'utilisateur peut retirer plus de MATIC pour chaque VATIC. Lorsque les validateurs sont coupés, les utilisateurs retirent moins de MATIC pour leur VATIC.
 
-Note that MATIC is the staking token. A delegator needs to have MATIC tokens to participate in the delegation.
+Notez que MATIC est le jeton de staking. Un délégant doit avoir des jetons MATIC pour participer à la délégation.
 
-Initially, Delegator D buys tokens from the Validator A specific pool when the exchange rate is 1 MATIC per 1 VATIC.
+Initialement, le délégant D achète des jetons au pool spécifique du validateur A lorsque le taux de change est de 1 MATIC pour 1 VATIC.
 
-When a validator gets rewarded with more MATIC tokens, the new tokens are added to the pool.
+Lorsqu'un validateur reçoit plus de jetons MATIC, les nouveaux jetons sont ajoutés au pool.
 
-Let's say with the current pool of 100 MATIC tokens,  10 MATIC rewards are added to the pool. Since the total supply of VATIC tokens did not change due to rthe ewards, the exchange rate becomes 1 MATIC per 0.9 VATIC. Now, Delegator D gets more MATIC for the same amount if shares. Similar to slashing, if 10 MATIC gets slashed from the pool, the new exchange rate becomes 1 MATIC per 1.1 VATIC.
+Imaginons qu'avec le pool actuel de 100 jetons MATIC, 10 récompenses MATIC soient ajoutées au pool. Étant donné que la fourniture totale de jetons VATIC n'a pas changé en raison des récompenses, le taux de change devient 1 MATIC par 0,9 VATIC. Maintenant, le délégateur D obtient plus de MATIC pour le même montant si les actions sont nécessaires.
 
-## The flow in the contract
+## Le flux dans le contrat {#the-flow-in-the-contract}
 
-`buyVoucher`: This function is attributed when performing a delegation process towards a validator. The delegation `_amount` is first transferred to `stakeManager`, which on confirmation mints delegation shares via `Mint` using the current `exchangeRate`.
+`buyVoucher`: cette fonction est attribuée lors de l'exécution d'un processus de délégation vers un validateur. La délégation `_amount`est d'abord transférée à `stakeManager`, qui, lors de la confirmation, mine les parts de délégation via `Mint`en utilisant le `exchangeRate`actuel.
 
-The exchange rate is calculated as per the formula:
+Le taux de change est calculé selon la formule :
 
 `ExchangeRate = (totalDelegatedPower + delegatorRewardPool) / totalDelegatorShares`
 
-`sellVoucher`: This is function that is called when a delegator is unbonding from a validator. This function basically initiates the process of selling the vouchers bought during delegation. There is a withdrawal period that is taken into consideration before the delegators can `claim` their tokens.
+`sellVoucher`: cette fonction est utilisée lorsqu'un délégant effectue un unbonding d'un validateur. Cette fonction initie essentiellement le processus de vente des bons achetés lors de la délégation. Un délai de rétractation est pris en considération avant que les délégants puissent `claim`leurs jetons.
 
-`withdrawRewards`: As a delegator, you can claim your rewards by invoking the `withdrawRewards` function.
+`withdrawRewards`: en tant que délégant, vous pouvez demander vos récompenses en invoquant la fonction `withdrawRewards`.
 
-`reStake`: Restaking can work in two ways: a) delegator can buy more shares using `buyVoucher` or `reStake` rewards. You can restake by staking more tokens towarda a validator or you can restake your accumulated rewards as a delegator. Purpose of `reStaking` is that since delegator's validator has now more active stake, they will earn more rewards for that and so will the delegator.
+`reStake`: le restaking peut fonctionner de deux manières : a) le délégant peut acheter plus d'actions en utilisant des récompenses `buyVoucher`ou `reStake`. Vous pouvez remiser en misant plus de jetons vers un validateur ou vous pouvez remiser vos récompenses accumulées en tant que délégant. Le but de `reStaking`est de permettre au validateur, qui a maintenant une participation plus active, de gagner plus de récompenses à ce titre, tout comme le délégant.
 
-`unStakeClaimTokens`: Once the withdrawal period is over, the delegators who sold their shares can claim their MATIC tokens.
+`unStakeClaimTokens`: une fois le délai de rétractation écoulé, les délégants qui ont vendu leurs actions peuvent réclamer leurs jetons MATIC.
 
-`updateCommissionRate`: Updates the commission % for the validator. See also [Validator Commission Operations](../../validate/validator-commission-operations).
+`updateCommissionRate`: met à jour le % de commission pour le validateur. Voir aussi [Opérations liées aux commissions du validateur](/docs/maintain/validate/validator-commission-operations).
 
-`updateRewards`: When a validator gets rewards for submitting a [checkpoint](../../glossary#checkpoint-transaction), this function is called for disbursements of rewards between the validator and delegators.
+`updateRewards`: lorsqu'un validateur reçoit des récompenses pour l'ajout d'un [point de contrôle](/docs/maintain/glossary#checkpoint-transaction), cette fonction est appelée pour les déboursements de récompenses entre le validateur et les délégants.

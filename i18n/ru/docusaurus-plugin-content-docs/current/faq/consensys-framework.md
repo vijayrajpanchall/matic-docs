@@ -1,116 +1,121 @@
 ---
 id: consensys-framework
-title: Consensys Scaling Framework
-sidebar_label: Consensys Scaling Framework
-description: Build your next blockchain app on Polygon.
+title: Вопросы и ответы
+sidebar_label: Scaling Framework FAQ
+description: Создайте свое следующее блокчейн-приложение на Polygon.
 keywords:
   - docs
   - matic
-image: https://matic.network/banners/matic-network-16x9.png
+  - wiki
+  - polygon
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
-
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-This  framework is derived from  Consensys's [Four questions to Judge any scaling solution](https://consensys.net/?p=19015&preview=true&_thumbnail_id=19017)
+Этот фреймворк основан на [вопросах «Четыре Consensys» для решения любого масштабирования.](https://consensys.net/?p=19015&preview=true&_thumbnail_id=19017)
 
-## Who Operates It?
-Miner nodes on mainnet Ethereum move or “operate” the network forward by solving Proof of Work and creating new blocks. The L2 solution requires a similar “operator” role on its network, which is the miner-equivalent of Ethereum mainnet that can move the L2 network forward. There are a few differences, however. For example, along with processing and authorizing transactions like a miner, an L2 operator may also facilitate users entering and exiting the L2 layer itself.
+## Кто его использует? {#who-operates-it}
+Ноды майнеров в основной сети Ethereum «управляют» сетью и развивают ее, решая Proof-of-Work и создавая новые блоки. Решение L2 требует аналогичной роли «оператора» в своей сети, которая является майнерским эквивалентом основной сети Ethereum, и может развивать сеть L2. Тем не менее, есть несколько различий. Например, наряду с обработкой и авторизацией транзакций, как у майнера, оператор L2 может также облегчать пользователям вход и выход из самого уровня L2.
 
-### - Who or what is required to operate the Polygon Proof of Stake network?
+### — Кто или что требуется для работы сети Polygon Proof of Stake? {#who-or-what-is-required-to-operate-the-polygon-proof-of-stake-network}
 
-Polygon PoS commit chain relies on a set of validators to secure the network. The role of validators is to run a full node; produce blocks, validate and participate in consensus and commit checkpoints on the Ethereum main-chain. To become a validator, one needs to stake their MATIC tokens with staking management contracts residing on the Ethereum main chain.
+Цепочка подтверждений Polygon PoS опирается на набор валидаторов для защиты сети. Роль валидаторов заключается в запуске полной ноды, производстве блоков, их проверке и участии в консенсусе, а также фиксации чекпоинтов в основной сети Ethereum. Чтобы стать валидатором, нужно добавить токены MATIC в стейк с соответствии с контрактом на управление стейкингом, расположенном в основной сети Ethereum.
 
-For more details, please refer https://docs.polygon.technology/docs/validate/validator/introduction#overview
+Более подробную информацию можно получить в разделе [Валидатор](/maintain/validate/getting-started.md).
 
-### - How do they become operators in the Polygon PoS network? What rules do they abide by?
+### — Как они становятся операторами в сети Polygon PoS? Какие правила они соблюдают? {#how-do-they-become-operators-in-the-polygon-pos-network-what-rules-do-they-abide-by}
 
-To become a validator, one needs to stake their MATIC tokens with staking management contracts residing on the Ethereum mainchain.
+Чтобы стать валидатором, нужно добавить токены MATIC в стейк
+в соответствии с контрактом на управление стейкингом, расположенном в основной сети Ethereum.
 
-Rewards are distributed to all stakers proportional to their stake at every checkpoint with an exception being the proposer getting an additional bonus. User reward balance gets updated in the contract which is referred to while claiming rewards.
+Награды распределяются между всеми стейкерами пропорционально их стейку в каждом чекпоинте, за исключением того дополнительного бонуса, который получает автор предложения. Баланс вознаграждения пользователя обновляется в контракте, на который делается ссылка
+при получении вознаграждения.
 
-Stakes are at risk of getting slashed in case the validator node commits a malicious act like double signing, validator downtime which also affects the linked delegators at that checkpoint.
+Стейки могут подвергаться сокращению в случае, если нода валидатора используется для совершения
+недобросовестного действия, такого как двойное подписание или простой валидатора, что также влияет на связанные
+с нодой делегатами в этом чекпоинте.
 
-For more details please refer https://docs.polygon.technology/docs/validate/validator/introduction#end-to-end-flow-for-a-matic-validator and https://docs.polygon.technology/docs/validate/validator/responsibilities/#responsibilities-of-validator
-
-
-### - What trust assumptions must the Polygon PoS users make about the operator?
-
-Polygon PoS commit chain relies on a set of validators to secure the network. The role of validators is to run a full node; produce blocks, validate and participate in consensus and commit checkpoints on the main-chain. To become a validator, one needs to stake their MATIC tokens with staking management contracts residing on the main-chain. As long as ⅔ of the weighted stake of the validators is honest, the chain will progress accurately.
-
-### - What are the operators responsible for? What power do they have?
-
-The role of validators is to run a full node; produce blocks, validate and participate in consensus and commit checkpoints on the main-chain.
-
-The validators have the power to stop the progress of the chain, reorder blocks, etc. assuming ⅔ of the weighted stake validators are not honest. They do not have the power to change the state, user asset balances, etc.
-
-### - What are the motivations to become an operator of the Polygon PoS?
-
-Validators stake their MATIC tokens as collateral to work for the security of the network and in exchange for their service, earn rewards.
-
-Please refer https://docs.polygon.technology/docs/validate/economics#what-is-the-incentive for more details.
-
-## How’s the Data?
-By definition, a Layer 2 technology must create incremental data checkpoints on a Layer 1 (Ethereum mainnet). Our concern, then, is with the interstitial time between those periodic Layer 1 check-ins. Specifically, how is Layer 2 data generated, stored and stewarded while away from the safe harbor of Layer 1? We are most concerned with this because it is when the user is furthest from the trustless security of a public mainnet.
-
-### - What are the lock-up conditions for Polygon PoS?
-
-In most token design patterns, the token is minted on Ethereum and can be sent to Polygon PoS. To move such a token from Ethereum to Polygon PoS, the user needs to lock funds in a contract on Ethereum, and the corresponding tokens are then minted on Polygon PoS.
-
-This bridge relay mechanism is run by the Polygon PoS validators who need to ⅔ agree on the locked token event on Ethereum to mint the corresponding token amount on Polygon PoS.
-
-Withdrawing assets back to ethereum is a 2 step process in which the asset tokens have to be first burnt on the Polygon PoS commit chain and then the proof of this burn transaction has to be submitted on the Ethereum chain.
+Для получения дополнительной информации см. [Конечный поток в валидатор Polygon](/maintain/polygon-basics/who-is-validator.md#end-to-end-flow-for-a-polygon-validator) и [обязанности валидатора](/maintain/validate/validator-responsibilities.md).
 
 
-For more details, refer https://docs.polygon.technology/docs/develop/ethereum-polygon/pos/getting-started#steps-to-use-the-pos-bridge
+### — Какие предположения о доверии должны делать пользователи Polygon PoS к оператору? {#what-trust-assumptions-must-the-polygon-pos-users-make-about-the-operator}
 
-### - How soon are those funds available on the Polygon PoS?
+Цепочка подтверждений Polygon PoS опирается на набор валидаторов для защиты сети. Роль валидаторов заключается в запуске полной ноды, производстве блоков, их проверке и участии в консенсусе, а также фиксации чекпоинтов в основной сети Ethereum. Чтобы стать валидатором, нужно добавить токены MATIC в стейк с соответствии с контрактом на управление стейкингом, расположенном в основной сети Ethereum.
+Пока ⅔ взвешенной доли валидаторов честны, цепочка будет развиваться корректно.
 
-Around ~7-8 minutes. This is done via a message passing mechanism that is termed as `state sync`. More details can be found here: https://docs.polygon.technology/docs/pos/state-sync/state-sync/
+### — За что отвечают операторы? Какие у них права и возможности? {#what-are-the-operators-responsible-for-what-power-do-they-have}
 
-Does Polygon PoS provide support for users entering without a L1 lock-up (i.e. in the case of onboarding a user directly onto Polygon, then the user wishes to exit to Ethereum mainnet)?
+Роль валидаторов заключается в запуске полной ноды, производстве блоков, их проверке и участии в консенсусе, а также фиксации чекпоинтов в основной сети.
 
-Yes a special bridge mechanism is used to accomplish this. When the user wishes to exit to Ethereum, instead of the usual method of unlocking the tokens from a special contract, it is minted.
+Валидаторы имеют право останавливать развитие цепочки, переупорядочивать блоки и т. д., предполагая, что ⅔ взвешенной доли валидаторов нечестны. У них нет права изменять состояние, балансы пользовательских активов и т. д.
 
-You can read about them here: https://docs.polygon.technology/docs/develop/ethereum-polygon/pos/mintable-assets
+### — Каковы мотивы стать оператором Polygon PoS? {#what-are-the-motivations-to-become-an-operator-of-the-polygon-pos}
 
-### - How would a user dispute an invalid Polygon PoS transaction? Prove a valid Polygon PoS transaction?
+Валидаторы добавляют свои токены MATIC в стейкинг в качестве залогового обеспечения для укрепления безопасности сети и получают награды за свои услуги.
 
-There is currently no way on-chain to dispute an invalid Polygon PoS transaction. However, validators of the Polygon PoS chain submit periodic checkpoints to Ethereum - you can see more details here: https://docs.polygon.technology/docs/pos/heimdall/modules/checkpoint/ It is possible to verify a transaction on Polygon PoS chain on Ethereum by constructing a Merkle tree proof and verifying it against the periodic checkpoints that happen on Ethereum of the Polygon PoS transaction and receipt Merkle tree roots.
+Пожалуйста, обратитесь к [какому стимулу](/maintain/validator/rewards.md#what-is-the-incentive) для получения более подробной информации.
 
-Once a Polygon user wishes to exit, how soon are the locked-up Layer 1 funds (plus or minus any L2 gains or losses) available back on L1?
+## Что насчет данных? {#how-s-the-data}
+По определению, технология уровня 2 должна создавать дополнительные контрольные точки данных на уровне 1 (Ethereum mainnet). Таким образом, нас интересует промежуточное время между этими периодическими проверками уровня 1. В частности, как генерируются, хранятся и управляются данные уровня 2, когда они находятся за пределами безопасной среды уровня 1? Нас это больше всего беспокоит, потому что именно в этот момент пользователь наиболее удален от ненадежной безопасности публичной основной сети.
 
-Approximately ~1-3 hours depending on the frequency of the checkpoints (https://docs.polygon.technology/docs/pos/heimdall/modules/checkpoint/). The frequency is majorly a function of the cost that the validators are willing to spend on ETH gas fees to submit checkpoints.
+### — Каковы условия блокировки для Polygon PoS? {#what-are-the-lock-up-conditions-for-polygon-pos}
 
-### - Do you anticipate there being Liquidity Providers on Layer 1 willing to provide immediately redeemable L1 funds to existing Polygon PoS users?
+В большинстве шаблонов проектирования токенов токен минтится на Ethereum и может быть отправлен в Polygon PoS. Чтобы переместить такой токен из Ethereum в Polygon PoS, пользователю необходимо заблокировать средства в контракте на Ethereum, и затем соответствующие токены минтятся на Polygon PoS.
 
-There are already a few players such as https://connext.network/ (already live) and https://biconomy.io/ that are or will be providing this service. There are a various number of other players who are also going to go live pretty soon.
+Этот механизм ретрансляции моста управляется валидаторами Polygon PoS, ⅔ из которых необходимо согласовать событие блокировки токена в Ethereum, чтобы заминтить соответствующее количество токенов в Polygon PoS.
 
-## How’s the Stack?
-The comparison of stack is important to highlight what a Layer 2 has or has not changed from Ethereum mainnet.
-
-### - How much does the Polygon PoS stack share with the Ethereum mainnet stack?
-
-If you're an Ethereum Developer, you're already a Polygon PoS developer. All the tools you're familiar with are supported on Polygon PoS out of the box: Truffle, Remix, Web3js and many, many more.
-
-There is no major change in the EVM interface for Polygon PoS relative to Ethereum.
-
-### -  Where does the Polygon PoS differ from Ethereum mainnet stack and what risks / rewards does that introduce?
-
-No major changes.
-
-## Preparing for the Worst
-How does the Polygon PoS system prepare for:
-
-### -  A mass exit of users?
-
-As long as ⅔ of the validators are honest, funds on the chain are secure. In case this assumption is not valid, in such a scenario the chain can stop or reordering can happen. Social consensus will be needed to then restart the chain from an earlier state - including snapshots of the Polygon PoS state that are submitted via checkpoints that can be used to do this.
-
-### - Polygon participants attempting to game the Polygon consensus. For example, by forming a cartel?
-
-Social consensus will be needed to then restart the chain from an earlier state by removing those validators and restarting it with a fresh set of validators - including snapshots of the Polygon PoS state that are submitted via checkpoints that can be used to do this.
+Вывод активов обратно в Ethereum — это процесс из 2 шагов, в котором токены сначала сжигаются в цепочке коммитов Polygon PoS, а затем доказательство этой транзакции сжигания отправляется в сеть Ethereum.
 
 
-### - A bug or exploit discovered in a critical part of its system?
+Более подробную информацию см. в [разделе Шаги, чтобы использовать мост PoS](/develop/ethereum-polygon/pos/getting-started.md#steps-to-use-the-pos-bridge).
 
-Care has been taken to reuse battle-tested components in the build out of the system. However, if there is a bug or exploit in a critical part of the system, restoring the chain to an earlier state via social consensus is the main solution path.
+### — Как скоро эти средства будут доступны на Polygon PoS? {#how-soon-are-those-funds-available-on-the-polygon-pos}
 
+Примерно ~22-30 минут. Это делается с помощью механизма прохождения сообщения, который называется `state sync`. Более подробную информацию можно найти [здесь](/pos/state-sync/state-sync-mechamism.md).
+
+Обеспечивает ли Polygon PoS поддержку входа пользователей без блокировки L1 (т. е. если в случае регистрации пользователя непосредственно в Polygon пользователь желает выйти в Ethereum mainnet)?
+
+Да, для этого используется специальный механизм моста. Когда пользователь желает выйти в Ethereum, вместо обычного метода разблокировки токенов по специальному контракту происходит их минт.
+
+Вы можете прочитать о них [здесь](/develop/ethereum-polygon/mintable-assets.md).
+
+### — Как пользователь может оспорить недействительную транзакцию Polygon PoS? Подтвердить действительную транзакцию Polygon PoS? {#how-would-a-user-dispute-an-invalid-polygon-pos-transaction-prove-a-valid-polygon-pos-transaction}
+
+В настоящее время в сети нет способа оспорить недействительную транзакцию Polygon PoS. Однако валидаторы цепочки Polygon PoS отправляют периодические checkpoint в Ethereum - вы можете узнать больше [здесь](/pos/heimdall/modules/checkpoint.md). Проверка транзакции в цепочке Polygon PoS на Ethereum возможна, построив доказательство дерева Меркла и проверяя его на периодических checkpoints, которые происходят на Ethereum транзакции Polygon PoS и получения корней дерева Меркл.
+
+### - Как только пользователь Polygon желает выйти из сети, как скоро появится фонд Layer 1 (плюс или минус любые выигрыши или потери L2), который будет доступен обратно на L1? {#once-a-polygon-user-wishes-to-exit-how-soon-are-the-locked-up-layer-1-fund-plus-or-minus-any-l2-gains-or-losses-available-back-on-l1}
+
+Примерно ~1-3 часа в зависимости от частоты [checkpoint](/pos/heimdall/modules/checkpoint.md). Частота в основном зависит от стоимости, которую валидаторы готовы потратить на комиссию за газ ETH для отправки контрольных точек.
+
+### — Ожидаете ли вы, что на уровне 1 появятся поставщики ликвидности, готовые предоставить немедленно подлежащие погашению средства L1 существующим пользователям Polygon PoS? {#do-you-anticipate-there-being-liquidity-providers-on-layer-1-willing-to-provide-immediately-redeemable-l1-funds-to-existing-polygon-pos-users}
+
+Уже есть несколько игроков, таких как [Connect](https://connext.network/) и [Biconomy](https://biconomy.io/), которые предоставляют или будут предоставлять этот сервис. Есть множество других игроков, которые также скоро начнут работу.
+
+## Что насчет стека? {#how-s-the-stack}
+Сравнение стека важно, чтобы показать, изменился ли уровень 2 по сравнению с Ethereum mainnet.
+
+### — Что общего между стеком Polygon PoS и стеком Ethereum mainnet? {#how-much-does-the-polygon-pos-stack-share-with-the-ethereum-mainnet-stack}
+
+Если вы разработчик Ethereum, вы уже являетесь разработчиком Polygon PoS. Все знакомые вам инструменты поддерживаются в Polygon PoS из коробки: Truffle, Remix, Web3js и многие, многие другие.
+
+В интерфейсе EVM для Polygon PoS нет серьезных изменений по сравнению с Ethereum.
+
+### —  Чем Polygon PoS отличается от стека Ethereum mainnet и какие риски/вознаграждения это влечет за собой? {#where-does-the-polygon-pos-differ-from-ethereum-mainnet-stack-and-what-risks-rewards-does-that-introduce}
+
+Нет существенных различий.
+
+## Готовимся к худшему {#preparing-for-the-worst}
+Как система Polygon PoS готовится к:
+
+### —  Массовому уходу пользователей? {#a-mass-exit-of-users}
+
+До тех пор, пока ⅔ валидаторов честны, средства в цепочке находятся в безопасности. В случае, если это предположение неверно, цепочка может остановиться или может произойти переупорядочение. Потребуется общественный консенсус, чтобы перезапустить цепочку из более раннего состояния, включая моментальные снимки состояния Polygon PoS, которые отправляются через контрольные точки, позволяющие это.
+
+### — Участники Polygon пытаются обмануть консенсус Polygon. Например, путем создания картеля? {#polygon-participants-attempting-to-game-the-polygon-consensus-for-example-by-forming-a-cartel}
+
+Потребуется общественный консенсус, чтобы перезапустить цепочку из более раннего состояния, исключив этих валидаторов и перезапустив ее с новым набором валидаторов, включая моментальные снимки состояния Polygon PoS, которые отправляются через контрольные точки, позволяющие это.
+
+
+### — В критической части системы обнаружена ошибка или эксплойт? {#a-bug-or-exploit-discovered-in-a-critical-part-of-its-system}
+
+Были приняты меры по повторному использованию проверенных в боевых условиях компонентов при сборке системы. Однако, если в критической части системы есть ошибка или эксплойт, восстановление цепочки до более раннего состояния посредством общественного консенсуса является основным способом решения.

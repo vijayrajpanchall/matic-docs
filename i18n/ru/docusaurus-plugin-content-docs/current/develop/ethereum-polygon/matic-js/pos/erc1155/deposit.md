@@ -2,11 +2,11 @@
 id: deposit
 title: deposit
 keywords:
-  - 'pos client, erc1155, deposit, polygon, sdk'
-description: 'Deposit erc1155 token using matic.js'
+- 'pos client, erc1155, deposit, polygon, sdk'
+description: 'Внесите в качестве депозита токен ERC1155 с помощью matic.js'
 ---
 
-`deposit` method can be used to deposit required amount of a token from ethereum to polygon chain.
+Метод `deposit` можно использовать для внесения в качестве депозита требуемого количества токена из ethereum в polygon chain.
 
 ```
 const erc1155RootToken = posClient.erc1155(<root token address>, true);
@@ -24,4 +24,4 @@ const txReceipt = await result.getReceipt();
 
 ```
 
-Supplying **data** is optional.
+Предоставление **данных** является необязательным.

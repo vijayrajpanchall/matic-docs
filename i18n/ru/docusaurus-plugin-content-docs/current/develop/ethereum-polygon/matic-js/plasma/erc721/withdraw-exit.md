@@ -2,11 +2,11 @@
 id: withdraw-exit
 title: withdraw exit
 keywords:
-  - 'pos client, erc721, withdrawExit, polygon, sdk'
-description: 'Get started with maticjs'
+- 'pos client, erc721, withdrawExit, polygon, sdk'
+description: 'Выйти из процесса вывода.'
 ---
 
-`withdrawExit` method can be used to exit the withdraw process once challenge period has been completed.
+Метод `withdrawExit` можно использовать для выхода из процесса вывода после завершения периода запроса.
 
 ```
 const erc20RootToken = plasmaClient.erc721(<root token address>, true);

@@ -1,7 +1,7 @@
 ---
 id: filecoinhelpers
 title: Filecoin
-description: IPFS
+description: Aide au stockage par IPFS et Filecoin
 keywords:
   - Filecoin
   - nft.storage
@@ -9,21 +9,23 @@ keywords:
   - esturay
   - filecoin-polygon bridge
   - IPFS
+  - docs
+  - polygon
   - matic
-image: https://matic.network/banners/matic-network-16x9.png
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
-Filecoin is built on top of IPFS and supports storing data long-term via on-chain deals. Together, they help us break free from centralized services while conveniently allowing us to enjoy the same luxuries of speed and guaranteed storage that centralized services would bring.
+Filecoin est construit sur IPFS et prend en charge le stockage de données à long terme via des transactions sur la chaîne. Ensemble, ils nous aident à nous libérer des services centralisés tout en nous permettant de profiter des mêmes vitesses et du stockage garanti que les services centralisés pourraient apporter.
 
-## Storage Helpers (IPFS + Filecoin)
+## Aides au stockage (IPFS + Filecoin) {#storage-helpers-ipfs-filecoin}
 
-- [Estuary](https://estuary.tech): Pinning service that stores and retrieves data on both IPFS and Filecoin networks via simple API calls ([video](https://www.youtube.com/watch?v=AHAMHbpioGw))
+- [Estuaire](https://estuary.tech) : service d'épinglage qui stocke et récupère des données sur les réseaux IPFS et Filecoin via de simples appels API ([vidéo](https://www.youtube.com/watch?v=AHAMHbpioGw))
 
-- [NFT.storage](https://nft.storage): NFT storage service that stores and retrieves data relating to NFTs on IPFS and Filecoin ([video](https://youtu.be/Ckb4RRJo-W0))
+- [NFT.storage](https://nft.storage) : service de stockage NFT qui stocke et récupère des données relatives aux NFT sur IPFS et Filecoin ([vidéo](https://youtu.be/Ckb4RRJo-W0))
 
-- [Web3.storage](https://web3.storage): Data storage service that stores and retrieves data on IPFS and Filecoin ([video](https://youtu.be/lPEqg6oL3Nk))
+- [Web3.storage](https://web3.storage) : service de stockage de données qui stocke et récupère des données sur IPFS et Filecoin ([vidéo](https://youtu.be/lPEqg6oL3Nk))
 
-- [Textile Powergate](https://docs.textile.io/powergate/): Highly configurable wrapper for IPFS+Filecoin inside a Docker container, with bridges Polygon, and other smart contract networks
+- [Textile Powergate](https://docs.textile.io/powergate/) : enveloppe hautement configurable pour IPFS+Filecoin à l'intérieur d'un conteneur Docker, avec des ponts de Polygon et d'autres réseaux de contrats intelligents.
 
-- [Fleek Space Daemon and Space SDK](https://fleek.co/space-sdk/): For decentralized browser, mobile, or desktop development
+- [Fleek Space Daemon et Space SDK](https://fleek.co/space-sdk/) : pour le développement décentralisé de navigateurs, de portables ou de postes de travail
 

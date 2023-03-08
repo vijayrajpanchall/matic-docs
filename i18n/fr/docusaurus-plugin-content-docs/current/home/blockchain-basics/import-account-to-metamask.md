@@ -1,56 +1,57 @@
 ---
 id: import-account-to-metamask
-title: Importing an Account to Metamask
+title: Importer un compte dans Metamask
 sidebar_label: Importing an Account to Metamask
-description: "Using the seed phrase to import an account to Metamask."
+description: Utiliser la phrase de seed pour importer un compte vers Metamask
 keywords:
   - docs
   - matic
-image: https://matic.network/banners/matic-network-16x9.png
+  - polygon
+  - import wallet
+  - metamask
+  - tokens
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
-
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-You can always import your account to MetaMask if you're using any other web/mobile wallet. All you need to to make sure that you have a backup of your seedphrase.
+# Importer un compte dans Metamask {#importing-an-account-to-metamask}
 
-If you're using Matic Wallet then you can backup you seedphrase by going to the Settings and then clicking **Show Passphrase**.
+Vous pouvez toujours importer votre compte sur MetaMask si vous utilisez n'importe quel autre portefeuille Web / mobile. Tout ce dont vous avez besoin est de vous assurer que vous avez une sauvegarde de votre phrase de graines.
 
-If you don't have the seedphrase you will be unable to import your account to Metamask.
+## Installer Metamask {#installing-metamask}
 
-### Installing Metamask
-
-In order to import you account you first need to make sure that you install the MetaMask extension on your browser. To install MetaMask extension you use this link: https://metamask.io
+Pour importer votre compte, vous devez d'abord vous assurer d'installer l'extension MetaMask sur votre navigateur. Pour installer l'extension MetaMask, vous devriez utiliser ce lien: https://metamask.io
 
 <img src={useBaseUrl("img/home/metamask-link.png")} />
 
-Once you install it you will be asked to either **Import your Account** or **Create a New one**.
+Une fois que vous l'aurez installé, vous devrez soit **Importer votre compte**, soit en **Créer un nouveau**.
 
 <img src={useBaseUrl("img/home/options.png")} />
 
-Choose the option of, **Import Wallet**
+Choisissez l'option d'**Import Wallet**.
 
-### Importing your account to Metamask
+## Importer votre compte dans Metamask {#importing-your-account-to-metamask}
 
-Keep your seedphrase handy now.
+Gardez votre phrase de graines à portée de main maintenant.
 
-When you click on Import Wallet you will be navigated to a different screen which will ask you to enter your seedphrase. You will also be asked to set a password.
+Lorsque vous cliquez sur Importer un Wallet, vous serez navigué vers un écran différent qui vous demandera d'entrer votre phrase de graines. Il vous sera également demandé de définir un mot de passe.
 
 <img src={useBaseUrl("img/home/import-account-seed.png")} />
 
-Make sure that you are adding the seedphrase securely to Metamask. Once you add the seedphrase make sure that you also add a strong password.
+Assurez-vous d'ajouter la phrase de graines de manière sécurisée à Metamask. Une fois que vous avez ajouté la phrase de graines, assurez-vous d'ajouter également un mot de passe fort.
 
-Agree to the **Terms and Conditions** and then click on **Import**.
+Acceptez les **Conditions générales**, puis cliquez sur **Importer**.
 
-You are now set. You will have successfully imported your account to Metamask.
+Votre compte est désormais prêt. Vous avez importé avec succès votre compte dans Metamask.
 
 <img src={useBaseUrl("img/home/congratulations.png")} />
 
-By default, only ETH is listed in Metamask. If you already have Matic tokens then that too will be listed automatically. In order to view your other tokens, you can click on Add Tokens and search the token you want to be listed.
+Par défaut, seul ETH est listé dans Metamask. Si vous possédez déjà des jetons Matic, ils seront également listés automatiquement. Pour afficher vos autres jetons, vous pouvez cliquer sur "Ajouter des jetons" et rechercher le jeton que vous souhaitez être répertorié.
 
-Do keep extreme care of your seedphrase and keep backups, because unlike exchanges, you need to keep your seedphrase safe. If the seedphrase is lost, funds are not recoverable. Also do not ever share this seedphrase with anyone.
+Ne gardez pas des soins extrêmes de votre phrase de graines et conservez des sauvegardes, parce que, contrairement aux échanges, vous devez garder votre phrase de graines en sécurité. Si la phrase de démarrage est perdue, les fonds ne sont pas récupérables. Partagez également jamais cette phrase de graines avec n'importe qui.
 
-### Sending MATIC tokens from Binance and other exchanges to the MetaMask wallet
+## Envoi de jetons MATIC de Binance et d'autres plateformes d'échange vers le portefeuille Metamask. {#sending-matic-tokens-from-binance-and-other-exchanges-to-the-metamask-wallet}
 
-Most exchanges like Binance and others have an option to withdraw funds from your exchange account to your address on the Ethereum blockchain. Once you have setup an account in Metamask, you will see the address of your account.
+La plupart des plateformes d'échange, comme Binance et tant d'autres, offrent la possibilité de retirer des fonds de votre compte d'échange vers votre adresse sur la blockchain Ethereum. Une fois que vous avez configuré un compte dans Metamask, vous verrez l'adresse de votre compte.
 
-To send Matic tokens to Metamask, withdraw funds from your exchange account to the MetaMask address. After some time, the funds will get reflected in the MetaMask account.
+Pour envoyer des jetons Matic à Metamask, retirez des fonds de votre compte d'échange et envoyez-les à votre adresse Metamask. Après un certain temps, les fonds seront visibles dans le compte Metamask.

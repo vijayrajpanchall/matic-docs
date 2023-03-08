@@ -1,7 +1,7 @@
 ---
 id: heimdall-chain
-title: Heimdall Chain
-description: "Proof-of-stake verifier layer on the Polygon Network."
+title: Heimdall 체인
+description: Polygon 네트워크의 Proof-of-stake 검증 레이어
 keywords:
   - docs
   - polygon
@@ -10,32 +10,33 @@ keywords:
   - chain
   - verifier
   - layer
+  - proof of stake
 slug: heimdall-chain
-image: https://matic.network/banners/matic-network-16x9.png
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
-Heimdall is is the proof-of-stake verifier layer, which is responsible for [checkpointing](../../glossary#checkpoint-transaction) the representation of the Plasma blocks to the Ethereum mainnet. Heimdall is based on [Tendermint](https://tendermint.com/).
+Heimdall은 이더리움 메인넷에 Plasma 블록의 표현을 [체크킹하는](/docs/maintain/glossary.md#checkpoint-transaction) 책임이 있는 Proscription 검증층입니다. Heimdall은 [Tendermint](https://tendermint.com/)를 기반으로 합니다.
 
-The staking contract on the Ethereum mainnet works in conjunction with the Heimdall node to act as the trustless stake management mechanism for the PoS engine, including selecting the [validator](../../glossary#validator) set, updating validators, etc. Since staking is done in the contract on the Ethereum mainnet, Polygon does not rely only on validator honesty and instead inherits the Ethereum mainnet security.
+이더리움 메인넷의 스테이킹 계약은 Heimdall 노드와 협력하여 [유효성 검사자](/docs/maintain/glossary.md#validator) 세트 선정, 유효성 검사자 업데이트 등을 포함하여 PoS 엔진의 신뢰 없는 스테이크 관리 메카니즘 역할을 합니다. 스테이킹이 이더리움 메인넷의 계약에서 수행되기 때문에 Polygon은 유효성 검사자의 정직성에만 의존하지 않고 이더리움 메인넷의 보안을 이어받습니다.
 
-Heimdall layer handles the aggregation of blocks produced by [Bor](../../glossary#bor) into a Merkle tree and publishes the Merkle root periodically to the Ethereum mainnet. This periodic publishing is called *checkpointing*.
+Heimdall 층은 [Bor](/docs/maintain/glossary.md#bor)가 생성한 블록을 머클 트리에 한데 모아 이 머클 루트를 정기적으로 이더리움 메인넷에 게시합니다. 이러한 정기적 게시를 *체크포인팅*이라고 합니다.
 
-For every few blocks on Bor, a validator (on the Heimdall layer):
+Bor의 몇 개 블록마다 Heimdall 층의 유효성 검사자는 다음을 수행합니다.
 
-1. Validates all the blocks since the last checkpoint.
-2. Creates a Merkle tree of the block hashes.
-3. Publishes the Merkle root to the Ethereum mainnet.
+1. 마지막 체크포인트 이후 모든 블록의 유효성을 검사합니다.
+2. 블록 해시로 구성된 머클 트리를 생성합니다.
+3. 머클 루트를 이더리움 메인넷에 게시합니다.
 
-Checkpoints are important for two reasons:
+체크포인트는 다음의 두 가지 이유로 중요합니다.
 
-1. Providing finality on the root chain.
-2. Providing proof of burn in withdrawal of assets.
+1. 루트 체인에 완결성을 제공합니다.
+2. 자산 인출시 소각의 증거를 제공합니다.
 
-An overview of the process:
+프로세스 개요는 다음과 같습니다.
 
-* A subset of active validators from the pool is selected to act as [block producers](../../glossary#block-producer) for a [span](../../glossary#span). These block producers are responsible for creating blocks and broadcasting the created blocks on the the network.
-* A checkpoint includes the Merkle root hash of all blocks created during any given interval. All nodes validate the Merkle root hash and attach their signature to it.
-* A selected [proposer](../../glossary#proposer) from the validator set is responsible for collecting all signatures for a particular checkpoint and committing the checkpoint on the Ethereum mainnet.
-* The responsibility of creating blocks and proposing checkpoints is variably dependent on a validator’s stake ratio in the overall pool.
+* 풀에서 활성 상태의 유효성 검사자 하위 세트가 선정되어 특정 [범위](/docs/maintain/glossary.md#span)에 대해 [블록프로듀서](/docs/maintain/glossary.md#block-producer) 역할을 합니다. 이러한 블록프로듀서는 블록을 생성하고 생성한 블록을 네트워크에 브로드캐스트할 책임이 있습니다.
+* 체크포인트에는 특정 간격으로 생성된 모든 블록의 머클 루트 해시가 포함되어 있습니다. 모든 노드는 이 머클 루트 해시의 유효성을 검사한 후 서명을 첨부합니다.
+* 유효성 검사자 세트에서 선정된 [제안자](/docs/maintain/glossary.md#proposer)는 특정 체크포인트에 대한 모든 서명을 수집하고 이더리움 메인넷에 해당 체크포인트를 제공할 의무가 있습니다.
+* 블록을 생성하고 체크포인트를 제안하는 책임은 전체 풀에서 유효성 검사자의 스테이크가 차지하는 비율에 따라 가변적으로 결정됩니다.
 
-See also [Heimdall architecture](../../../pos/heimdall/overview).
+[Heimdall 아키텍쳐](/docs/pos/heimdall/overview)도 확인해 보세요.

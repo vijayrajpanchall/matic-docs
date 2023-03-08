@@ -2,11 +2,11 @@
 id: withdraw-exit
 title: withdraw exit
 keywords:
-  - 'plasma client, withdrawExit, polygon, sdk'
-description: 'Get started with maticjs'
+- 'plasma client, withdrawExit, polygon, sdk'
+description: 'Выйдите из процесса вывода.'
 ---
 
-In plasma withdaw process can be exited by anyone using `withdrawExit` method. The exit process will work only after challenge period has been completed.
+В plasma из процесса вывода может выйти кто угодно с помощью метода `withdrawExit`. Процесс выхода сработает только после завершения периода запроса.
 
 ```
 const result = plasmaClient.withdrawExit(<token | tokens[]>);
@@ -17,4 +17,4 @@ const txReceipt = await result.getReceipt();
 
 ```
 
-You can also exit for multiple tokens by providing tokens list in array.
+Также существует возможность выхода из нескольких токенов посредством предоставления списка токенов в массиве.

@@ -1,7 +1,7 @@
 ---
 id: responsibilities
-title: Responsibilities
-description: "The responsibilities of being a validator on the Polygon Network."
+title: Responsabilités
+description: Les responsabilités d'être un validateur sur le réseau Polygon
 keywords:
   - docs
   - matic
@@ -10,119 +10,123 @@ keywords:
   - validator
   - responsibilities
 slug: responsibilities
-image: https://matic.network/banners/matic-network-16x9.png
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
-## Overview
+:::tip Tenez-vous au courant
 
-Any [validator](/docs/maintain/glossary#validator) on the Polygon Network has the following responsibilities:
+Restez informés des dernières mises à jour de nœud et de validateurs de l'équipe Polygon et de la communauté en vous abonnant aux groupes de [notification Polygon](https://polygon.technology/notifications/).
 
-* Technical node operations done by the nodes.
-* Operations:
-  * Maintain high uptime.
-  * Check node-related services and processes daily.
-  * Run node monitoring.
-  * Keep ETH balance on the signer address.
-* Delegation:
-  * Be open to delegation.
-  * Communicate commission rates.
-* Communication:
-  * Communicate issues.
-  * Provide feedback and suggestions.
+:::
 
-## Responsibilities
+Un validateur de blockchain est quelqu'un qui est responsable de la validation des transactions au sein d'une blockchain. Sur le réseau Polygon, n'importe quel participant peut être qualifié pour devenir validateur de Polygon, en exécutant un **nœud validateur (Sentry + validateur)** pour gagner des récompenses et collecter des frais de transaction. Pour assurer la bonne participation des validateurs, ils verrouillent au moins 1 jeton MATIC en tant que mise dans l'écosystème.
 
-### Technical node operations
+:::info
 
-The following technical node operations are done automatically by the nodes:
+Actuellement, il existe une limite de 100 validateurs actifs à la fois. Pour une description détaillée sur ce qu'est un validateur, consultez [Validateur](/maintain/validator/architecture).
 
-* Block producer selection:
-  * Select a subset of validators for the block producer set for each [span](../glossary#span)
-  * For each span, select the block producer set again on [Heimdall](../glossary#heimdall) and transmit the selection information to [Bor](../glossary#bor) periodically.
-* Validating blocks on Bor:
-  * For a set of Bor sidechain blocks, each validator independently reads block data for these blocks and validates the data on Heimdall.
-* Checkpoint submission:
-  * A [proposer](../glossary#proposer) is chosen among the validators for each Heimdall block. The [checkpoint](../glossary#checkpoint-transaction) proposer creates the checkpoint of Bor block data, validates, and broadcasts the signed transaction for other validators to consent to.
-  * If more than 2/3 of the active validators reach consensus on the checkpoint, the checkpoint is submitted to the Ethereum mainnet.
-* Sync changes to Polygon staking contracts on Ethereum:
-  * Continuing from the checkpoint submission step, since this is an external network call, the checkpoint transaction on Ethereum may or may not be confirmed, or may be pending due to Ethereum congestion issues.
-  * In this case, there is an `ack/no-ack` process that is followed to ensure that the next checkpoint contains a snapshot of the previous Bor blocks as well. For example, if checkpoint 1 is for Bor blocks 1-256, and it failed for some reason, the next checkpoint 2 will be for Bor blocks 1-512. See also [Heimdall architecture: Checkpoint](../../pos/heimdall/checkpoint).
-* State sync from the Ethereum mainnet to the Bor sidechain:
-  * Contract state can be moved between Ethereum and Polygon, specifically through [Bor](../glossary#bor):
-  * A DApp contract on Ethereum calls a function on a special Polygon contract on Ethereum.
-  * The corresponding event is relayed to Heimdall and then Bor.
-  * A state-sync transaction gets called on a Polygon smart contract and the DApp can get the value on Bor via a function call on Bor itself.
-  * A similar mechanism is in place for sending state from Polygon to Ethereum. See also [State Sync Mechanism](../../pos/state-sync/state-sync).
+De plus, après que la [<ins>proposition de gouvernance PIP4</ins>](https://forum.polygon.technology/t/pip-4-validator-performance-management/9956) sera mise en œuvre au niveau des contrats, le montant minimum de mise en place augmentera à 10 000 MATIC.
 
-### Operations
+:::
 
-#### Maintain high uptime
+Tout [validateur](/maintain/glossary.md#validator) sur le réseau Polygon a les responsabilités suivantes :
 
-The node uptime on the Polygon Network is based on the number of [checkpoint transactions](../glossary#checkpoint-transaction) that the validator node has signed.
+* Opérations de nœuds techniques (effectuées automatiquement par les nœuds)
+* Opérations
+  * Maintenir une disponibilité élevée
+  * Vérifiez les services et les processus liés aux nœuds quotidiennement
+  * Exécuter la surveillance des nœuds
+  * Gardez le solde ETH (entre 0,5 et 1) sur l'adresse du signataire
+* Délégation
+  * Soyez ouvert à la délégation
+  * Communiquer les taux de commission
+* Communication
+  * Signaler un problème
+  * Fournir des commentaires et des suggestions
+* Gagnez des récompenses staking pour valider des blocs sur la blockchain
 
-Approximately every 34 minutes a proposer submits a checkpoint transaction to the Ethereum mainnet. The checkpoint transaction must be signed by every [validator](../glossary#validator) on the Polygon Network.
+## Opérations techniques des nœuds {#technical-node-operations}
 
-Failure to sign a checkpoint transction results in the decrease of your validator node performance.
+Les opérations des nœuds techniques suivantes sont **effectuées automatiquement par les nœuds :**
 
-The process of signing the checkpoint transactions is automated. To ensure your validator node is signing all valid checkpoint transactions, you must maintain and monitor your node health.
+* Sélection des producteurs de blocs :
+  * Sélectionner un sous-ensemble de validateurs pour le bloc producteur défini pour chaque [span](/docs/maintain/glossary.md#span)
+  * Pour chaque span, sélectionnez à nouveau le producteur de blocs défini sur [Heimdall](/maintain/glossary.md#heimdall) et transmettez périodiquement les informations de sélection à [Bor](/maintain/glossary.md#bor).
+* Validation des blocs sur Bor :
+  * Pour un ensemble de blocs de la chaîne latérale Bor, chaque validateur lit indépendamment les données des blocs pour le compte de ces blocs et valide les données sur Heimdall.
+* Ajout des points de contrôle :
+  * Un [proposant](/maintain/glossary.md#proposer) est choisi parmi les validateurs pour chaque bloc de Heimdall. Le proposant de [point de contrôle](/maintain/glossary.md#checkpoint-transaction) crée le point de contrôle des données de bloc Bor, valide et diffuse la transaction signée pour obtenir le consentement des autres validateurs.
+  * Si plus de deux ou trois des validateurs actifs parviennent à un consensus sur le point de contrôle, celui-ci est soumis au réseau principal d'Ethereum.
+* Synchroniser les modifications aux contrats de staking Polygon sur Ethereum :
+  * Suite à l'étape de l'ajout de point de contrôle, étant donné qu'il s'agit d'un appel réseau externe, la transaction de point de contrôle sur Ethereum peut être confirmée ou non, ou peut être mise en attente en raison de problèmes de congestion sur Ethereum.
+  * Dans ce cas, un `ack/no-ack`processus est suivi pour s'assurer que le prochain point de contrôle contient également un snapshot des blocs Bor précédents. Par exemple, si le point de contrôle 1 est pour les blocs Bor 1-256, et qu'il a échoué pour une raison quelconque, le prochain point de contrôle 2 sera pour les blocs Bor 1-512. Voir aussi [Architecture Heimdall : point de contrôle](/pos/heimdall/checkpoint).
+* Synchronisation de l'état du réseau principal d'Ethereum à la chaîne latérale Bor :
+  * L'état du contrat peut être déplacé entre Ethereum et Polygon, en particulier via [Bor](/maintain/glossary.md#bor) :
+  * Un contrat DApp sur Ethereum lance une fonction sur un contrat Polygon spécial sur Ethereum.
+  * L'événement correspondant est relayé à Heimdall puis à Bor.
+  * Une transaction de synchronisation d'état est lancée sur un contrat intelligent Polygon et le DApp peut obtenir la valeur sur Bor via une activation de fonction sur Bor lui-même.
+  * Un mécanisme similaire est en place pour envoyer l'état de Polygon à Ethereum. Voir aussi [Mécanisme de synchronisation d'état](/docs/pos/state-sync/state-sync).
 
-#### Check node services and processes daily
+## Opérations {#operations}
 
-You must check daily the services and processes associated with [Heimdall](../glossary#heimdall) and [Bor](../glossary#bor).
+### Maintenir une disponibilité élevée {#maintain-high-uptime}
 
-#### Run node monitoring
+Le temps de fonctionnement du nœud sur le réseau Polygon est basé sur le nombre de [transactions de points de contrôle](/docs/maintain/glossary.md#checkpoint-transaction) que le nœud de validation a signées.
 
-You must run either:
+Toutes les 34 minutes environ, un proposant soumet une transaction de point de contrôle au réseau principal d'Ethereum. La transaction au point de contrôle doit être signée par chaque [validateur](/maintain/glossary.md#validator) sur le réseau Polygon. **Le défaut de signer une transction de point de contrôle entraîne la diminution des performances de votre nœud validateur**.
 
-* Grafana Dashboards provided by Polygon. See GitHub repository: [Matic-Jagar setup](https://github.com/vitwit/matic-jagar).
-* Or your own monitoring tools for the [validator](../glossary#validator) and [sentry](../glossary#sentry) nodes.
+Le processus de signature des transactions de points de contrôle est automatisé. Pour vous assurer que votre nœud de validateur signe toutes les transactions de points de contrôle valides, vous devez maintenir et surveiller l'état de votre nœud.
 
-#### Keep an ETH balance
+### Vérifiez quotidiennement les services et les processus des nœuds {#check-node-services-and-processes-daily}
 
-You must maintain an adequate amount of ETH on your validator [signer address](../glossary#signer-address) on the Ethereum mainnet.
+Vous devez vérifier tous les jours les services et les processus associés à [Heimdall](/maintain/glossary.md#heimdall) et [Bor](/maintain/glossary.md#bor). Aussi, la taille des nœuds devrait être faite régulièrement pour réduire l'utilisation du disque.
 
-You need ETH to:
+### Exécuter la surveillance des nœuds {#run-node-monitoring}
 
-* Sign the proposed [checkpoint transactions](../glossary#checkpoint-transaction) on the Ethereum mainnet.
-* Propose and send checkpoint transactions on the Ethereum mainnet.
+Vous devez exécuter soit :
 
-Not maintaining an adequate amount of ETH on the signer address will result in:
+* Les tableaux de bord Grafana fournis par Polygon. Voir le dépôt GitHub: [Configuration Matic-Jagar](https://github.com/vitwit/matic-jagar)
+* Ou, utilisez vos propres outils de surveillance pour le [validateur](/maintain/glossary.md#validator) et les nœuds [sentinelles](/maintain/glossary.md#sentry)
+* Le point d'extrémité Ethereum utilisé sur les nœuds doit être surveillé pour s'assurer que le nœud se trouve dans les limites de la demande
 
-* Delays in the checkpoint submission. Note that transaction gas prices on the Ethereum network may fluctuate and spike.
-* Delays in the finality of transactions included in the checkpoints.
-* Delays in subsequent checkpoint transactions.
+### Conserver un solde ETH {#keep-an-eth-balance}
 
-### Delegation
+Vous devez maintenir un montant suffisant d'ETH (devrait être toujours autour de la valeur seuil c'est-à-dire 0,5 à 1) sur votre [adresse de signataire](/maintain/glossary.md#signer-address) validateur sur le réseau principal Ethereum.
 
-#### Be open for delegation
+Vous avez besoin d'ETH pour :
 
-All validators must be open for delegation from the community.
+* Signer les transactions de [point de contrôle](/maintain/glossary.md#checkpoint-transaction) proposées sur le réseau principal d'Ethereum.
+* Proposer et envoyer des transactions de points de contrôle sur le réseau principal d'Ethereum.
 
-Each validator has the choice of setting their own commission rate. There is no upper limit to the commission rate.
+Le fait de ne pas conserver une quantité suffisante d'ETH sur l'adresse du signataire aura les conséquence suivantes :
 
-#### Communicate commission rates
+* Retards dans l'ajout du point de contrôle. Notez que les prix du gaz de transaction sur le réseau Ethereum peuvent fluctuer et grimper.
+* Retards dans la finalité des transactions incluses dans les points de contrôle.
+* Retards dans les transactions de points de contrôle ultérieures.
 
-It is the moral duty of the validators to communicate the commission rates and the commission rate changes to the community.
+## Délégation {#delegation}
 
-The preferred platforms to communicate the commission rates are:
+### Soyez ouvert à la délégation {#be-open-for-delegation}
+
+Tous les validateurs doivent être ouverts pour la délégation de la communauté. Chaque validateur a le choix de fixer son propre taux de commission. Il n'y a pas de limite supérieure au taux de commission.
+
+### Communiquer les taux de commission {#communicate-commission-rates}
+
+Il est du devoir moral des validateurs de communiquer les taux de commission et les changements de taux de commission à la communauté. Les plateformes préférées pour communiquer les taux de commission sont :
 
 * [Discord](https://discord.com/invite/0xPolygon)
 * [Forum](https://forum.polygon.technology/)
 
-### Communication
+## Communication {#communication}
 
-#### Communicate issues
+### Signaler un problème {#communicate-issues}
 
-Communicating issues as early as possible ensures that the community and the Polygon team can rectify the problems as soon as possible.
-
-The preferred platforms to communicate the commission rates are:
+Communiquer les problèmes le plus tôt possible garantit que la communauté et l'équipe Polygon peuvent corriger les problèmes le plus tôt possible. Les plateformes préférées pour communiquer les taux de commission sont :
 
 * [Discord](https://discord.com/invite/0xPolygon)
 * [Forum](https://forum.polygon.technology/)
 * [GitHub](https://github.com/maticnetwork)
 
-#### Provide feedback and suggestions
+### Fournir des commentaires et des suggestions {#provide-feedback-and-suggestions}
 
-At Polygon, we value your feedback and suggestions on any aspect of the validator ecosystem.
-
-[Forum](https://forum.polygon.technology/) is the preferred platform to provide feedback and suggestions.
+Chez Polygon, nous apprécions vos commentaires et suggestions sur n'importe quel aspect de l'écosystème validateur. [Forum](https://forum.polygon.technology/) est la plateforme préférée pour laisser des commentaires et des suggestions.

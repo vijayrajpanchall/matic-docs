@@ -1,28 +1,33 @@
 ---
 id: antehandler
-title: Ante handler
-description: Ante handler checks and validates the transaction. After the verification, it checks the balance of the sender for enough fees and deduct fees in case of successful transaction inclusion.
+title: Gestionnaire d'Ante
+description: Ante Handler vérifie et valide la transaction
 keywords:
   - docs
   - matic
+  - polygon
+  - Ante Handler
+  - validate transactions
 image: https://matic.network/banners/matic-network-16x9.png
 ---
 
-Ante handler checks and validates the transaction. After the verification, it checks the balance of the sender for enough fees and deduct fees in case of successful transaction inclusion.
+# Gestionnaire d'Ante {#ante-handler}
 
-## Gas limit
+Le gestionnaire d'Ante vérifie et valide la transaction. Après la vérification, il s'assure que la balance de l'expéditeur ait suffisamment de frais et déduit les frais en cas d'inclusion de transaction réussie.
 
-Each block and transaction have a limit for gas usage. A block can contain multiple transactions. But, gas used by all transactions in a block must be less than block gas limit to avoid larger blocks.
+## Limite de gaz {#gas-limit}
+
+Chaque bloc et transaction a une limite de gaz pour l'usage. Un bloc peut contenir plusieurs transactions, mais le gaz utilisé par toutes les transactions dans un bloc doit être inférieur à la limite de gaz de bloc pour éviter les blocs plus grands.
 
 ```go
 block.GasLimit >= sum(tx1.GasUsed + tx2.GasUsed + ..... + txN.GasUsed)
 ```
 
-Note that each state manipulation on transaction costs gas, including signature verification for the transaction.
+Remarquez que chaque manipulation d'état de transaction coûte du gaz, y compris la vérification de signature pour la transaction.
 
-**Block gas limit**
+### Limite de gaz du bloc {#block-gas-limit}
 
-Max block gas limit and bytes per block is passed while setting up app's consensus params: [https://github.com/maticnetwork/heimdall/blob/develop/app/app.go#L464-L471](https://github.com/maticnetwork/heimdall/blob/develop/app/app.go#L464-L471)
+La limite maximum de gaz et d'octets par bloc est calculée tout en configurant les params de consensus de l'application: [https://github.com/maticnetwork/heimdall/blob/develop/app/app.go#L464-L471](https://github.com/maticnetwork/heimdall/blob/develop/app/app.go#L464-L471) 
 
 ```go
 maxGasPerBlock   int64 = 10000000 // 10 Million
@@ -30,21 +35,21 @@ maxBytesPerBlock int64 = 22020096 // 21 MB
 
 // pass consensus params
 ConsensusParams: &abci.ConsensusParams{
-    Block: &abci.BlockParams{
-        MaxBytes: maxBytesPerBlock,
-        MaxGas:   maxGasPerBlock,
-    },
-    ...
+	Block: &abci.BlockParams{
+		MaxBytes: maxBytesPerBlock,
+		MaxGas:   maxGasPerBlock,
+	},
+	...
 },
 ```
 
-**Transaction gas limit**
+### Limite de gaz de transaction {#transaction-gas-limit}
 
-The transaction gas limit is defined in params in `auth` module. It can be changed through the Heimdall `gov` module.
+La limite de gaz de transaction est définie en params dans le `auth`module. Il peut être modifié par le module de `gov` Heimdall.
 
-**Checkpoint TX gas limit**
+### Limite de gaz de transaction {#checkpoint-transaction-gas-limit}
 
-Since block contains multiple transactions and verifies this particular transaction on the Ethereum chain, Merkle proof is required. To avoid extra Merkle proof verification for checkpoint transaction, Heimdall only allows one transaction in the block if the transaction type is `MsgCheckpoint`
+Puisque le bloc contient plusieurs transactions et vérifie cette transaction particulière sur la chaîne Ethereum, une preuve de Merkle est nécessaire. Pour éviter de vérifier la preuve supplémentaire de Merkle pour la transaction de point de contrôle, Heimdall n'autorise qu'une seule transaction dans le bloc si le type de transaction est `MsgCheckpoint`
 
 ```go
 // fee wanted for checkpoint transaction
@@ -52,12 +57,12 @@ gasWantedPerCheckpoinTx sdk.Gas = 10000000 // 10 Million
 
 // checkpoint gas limit
 if stdTx.Msg.Type() == "checkpoint" && stdTx.Msg.Route() == "checkpoint" {
-    gasForTx = gasWantedPerCheckpoinTx
+	gasForTx = gasWantedPerCheckpoinTx
 }
 ```
 
-## Transaction verification and replay protection
+## Vérification de transaction et reprise de protection {#transaction-verification-and-replay-protection}
 
-Ante handler handles and verifies signature in incoming transaction: [https://github.com/maticnetwork/heimdall/blob/develop/auth/ante.go#L230-L266](https://github.com/maticnetwork/heimdall/blob/develop/auth/ante.go#L230-L266)
+Le gestionnaire d'Ante gère et vérifie la signature dans la transaction entrante: [https://github.com/maticnetwork/heimdall/blob/develop/auth/ante.go#L230-L266](https://github.com/maticnetwork/heimdall/blob/develop/auth/ante.go#L230-L266)    
 
-Each transaction must include `sequenceNumber` to avoid replay attacks. After each successful transaction inclusion, Ante handler increases the sequence number for the TX sender account to avoid duplication (replay) of the previous transactions.
+Chaque transaction doit inclure `sequenceNumber`pour éviter des reprises d'attaques. Après chaque inclusion de transaction réussie, le gestionnaire d'Ante augmente le numéro de séquence pour le compte d'expéditeur TX pour éviter la duplication (reprise) des transactions précédentes.

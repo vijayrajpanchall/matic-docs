@@ -2,13 +2,13 @@
 id: get-tokens-count
 title: getTokensCount
 keywords:
-  - 'plasma client, erc721, getTokensCount, polygon, sdk'
-description: 'Get started with maticjs'
+- 'plasma client, erc721, getTokensCount, polygon, sdk'
+description: 'Empieza con Matic.js'
 ---
 
-# getTokensCount
+# getTokensCount {#gettokenscount}
 
-`getTokensCount` method returns tokens count for specified user.
+El método `getTokensCount` muestra el conteo de tokens para el usuario especificado.
 
 ```
 const erc721Token = plasmaClient.erc721(<token address>);

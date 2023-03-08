@@ -1,109 +1,110 @@
 ---
 id: glossary
-title: Glossary
-description: "Key Polygon terms."
+title: Глоссарий
+description: Ключевые термины Polygon
 keywords:
   - docs
   - matic
   - polygon
   - glossary
+  - jargons
 slug: glossary
-image: https://matic.network/banners/matic-network-16x9.png
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
-## Block producer
+## Блок-продюсер {#block-producer}
 
-A block producer is an active [validator](#validator) selected to act as block producer for a [span](#span).
+Блок-продюсер — это активный [валидатор](#validator), который был выбран на роль блок-продюсера для определенного [диапазона блоков](#span).
 
-A block producer is responsible for creating blocks and broadcasting the created blocks to the network.
+Блок-продюсер отвечает за создание блоков и передачу созданных блоков в сеть.
 
-## Bor
+## Bor {#bor}
 
-A Bor node is a node producing blocks on the Polygon Network.
+Нод Bor — это нод для производства блоков в сети Polygon.
 
-Bor is based on [Go Ethereum](https://geth.ethereum.org/).
+Bor базируется на [Go Ethereum](https://geth.ethereum.org/).
 
-## Checkpoint transaction
+## Транзакция создания чекпоинта {#checkpoint-transaction}
 
-A checkpoint transaction is a transaction containing the Merkle root of blocks of the [Bor](#bor) layer between the checkpoint intervals.
+Транзакция создания чекпоинта содержит корень Меркла блоков уровня [Bor](#bor) между интервалами чекпоинтов.
 
-The transaction is committed to the Polygon staking contracts on the Ethereum mainnet by a [Heimdall](#heimdall) node.
+Транзакция фиксируется в контрактах стейкинга Polygon в Ethereum mainnet при помощи нода [Heimdall](#heimdall).
 
-See also:
+См. также:
 
-* [Heimdall architecture: Checkpoint](../pos/heimdall/checkpoint)
-* [Checkpoint Mechanism](validator/core-components/checkpoint-mechanism)
+* [Архитектура Heimdall: чекпоинт](/docs/pos/heimdall/checkpoint)
+* [Механизм чекпоинта](/docs/maintain/validator/core-components/checkpoint-mechanism)
 
-## Commission
+## Комиссия {#commission}
 
-A commission is the percentage of the rewards taken by [validators](#validator) from the [delegators](#delegator) who stake with the validators.
+Комиссия — это процент от наград, который получают [валидаторы](#validator) от [делегатов](#delegator), размещающих средства в стейкинге вместе с валидаторами.
 
-See also [Validator Commission Operations](/docs/maintain/validate/validator-commission-operations).
+См. также статью [Операции с комиссией валидатора](/docs/maintain/validate/validator-commission-operations).
 
-## Delegator
+## Делегат {#delegator}
 
-The delegator role stakes the MATIC tokens to secure the Polygon Network with existing [validators](#validator) without running the nodes themselves.
+Делегат размещает токены MATIC в стейкинге для обеспечения безопасности сети Polygon с помощью существующих [валидаторов](#validator), не запуская при этом сами ноды.
 
-See also [Who Is a Delegator](polygon-basics/who-is-delegator).
+См. также статью [Делегаты](/docs/maintain/polygon-basics/who-is-delegator).
 
-## Full node
+## Полный нод {#full-node}
 
-A full node is a fully synced [sentry node](#sentry) running both [Heimdall](#heimdall) and [Bor](#bor).
+Полный нод — это полностью синхронизированный [сентри-нод](#sentry), на котором запущены и [Heimdall](#heimdall), и [Bor](#bor).
 
-See also [Full Node Deployment](../operate/full-node-deployment).
+См. также статью [Развертывание полного нода](/docs/develop/network-details/full-node-deployment).
 
-## Heimdall
+## Heimdall {#heimdall}
 
-A Heimdall node is a node running in parallel to the Ethereum mainnet, monitoring the set of contracts deployed on the Ethereum mainnet, and committing the Polygon Network [checkpoints](#checkpoint-transaction) to the Ethereum mainnet.
+Нод Heimdall работает параллельно с Ethereum mainnet, отслеживает набор контрактов, развернутых в Ethereum mainnet, а также фиксирует [чекпоинты](#checkpoint-transaction) сети Polygon в Ethereum mainnet.
 
-Heimdall is based on [Tendermint](https://tendermint.com/).
+Heimdall основан на [Tendermint](https://tendermint.com/).
 
-## Owner address
+## Адрес владельца {#owner-address}
 
-An owner address is the address used to stake, restake, change the signer address, withdraw rewards and manage delegation related parameters on the Ethereum mainnet.
+Адрес владельца используется для стейкинга, добавления средств в стейкинг, изменения адреса подписанта, вывода наград и управления параметрами, связанными с делегированием, в Ethereum mainnet.
 
-While the [signer key](#signer-address) is kept on the node and is considered a *hot* wallet, the owner key must be kept very secure, used infrequently, and is considered a *cold* wallet.
+В то время как [ключ подписанта](#signer-address) хранится в ноде и считается **горячим** кошельком, ключ владельца, который должен быть защищен очень надежно и использоваться редко, рассматривается как **холодный** кошелек.
 
-See also [Key Management](validator/core-components/key-management).
+См. также статью [Управление ключами](validator/core-components/key-management.md).
 
-## Proposer
+## Автор предложения {#proposer}
 
-A proposer is the [validator](#validator) selected by the algorithm to propose a new block.
+Автор предложения — это [валидатор](#validator), который выбирается алгоритмом для предложения нового блока.
 
-A proposer is also responsible for collecting all signatures for a particular [checkpoint](#checkpoint-transaction) and committing the checkpoint to the Ethereum mainnet.
+Автор предложения также отвечает за сбор всех подписей для конкретного [чекпоинта](#checkpoint-transaction) и фиксацию чекпоинта в Ethereum mainnet.
 
-## Sentry
+## Сентри-нод {#sentry}
 
-A sentry node is a node running both the [Heimdall](#heimdall) node and the [Bor](#bor) node to download the data from other nodes on the network and to propagate the [validator](#validator) data on the network.
+Сентри-нод — это нод, на котором запущены ноды [Heimdall](#heimdall) и [Bor](#bor) для загрузки информации из других нодов в сеть и распространения данных [валидатора](#validator) в сети.
 
-A sentry node is open to all other sentry nodes on the network.
+Сентри-нод открыт для любого другого сентри-нода в сети.
 
-## Span
+## Диапазон блоков {#span}
 
-A logically defined set of blocks for which a set of validators is chosen from all the available [validators](#validator).
+Логически определенный набор блоков, для которых выбирается набор валидаторов из всех доступных [валидаторов](#validator).
 
-The selection of each span is decided by at least 2/3 of the validators in terms of the staking power.
+Решение о выборе каждого диапазона блоков принимается не менее чем 2/3 валидаторов с учетом мощности стейкинга.
 
-See also [Bor Consensus: Span](../pos/bor/consensus/#span).
+См. также статью [Консенсус Bor: диапазон блоков](/docs/pos/bor/consensus.md#span).
 
-## Staking
+## Стейкинг {#staking}
 
-Staking is the process of locking up tokens into a deposit to earn the right to validate and produce blocks on a blockchain. Typically staking is done in the native token for the network — for the MATIC token is locked up by validators/stakers in the Polygon Network. Other examples include ETH in ETH 2.0, ATOM in Cosmos, etc.
+Стейкинг — это процесс блокировки токенов на депозите для получения права подтверждать и производить блоки в блокчейне. Обычно стейкинг выполняется в нативном токена для сети — для токена MATIC заблокирован validators в сети Polygon. Другие примеры включают ETH в Ethereum (после слияния), ATOM в Cosmos, и т.д.
 
-See also [What Is Proof of Stake](polygon-basics/what-is-proof-of-stake).
+См. также [Что такое доказательство доли владения (Proof of Stake)?](polygon-basics/what-is-proof-of-stake.md)
 
-## Signer address
+## Адрес подписанта {#signer-address}
 
-A signer address is the address of an Ethereum account of the [Heimdall](#heimdall) validator node. The signer address signs and submits the [checkpoint transactions](#checkpoint-transaction).
+Адрес подписанта — это адрес аккаунта Ethereum узла проверки [Heimdall](#heimdall). Адрес подписанта подписывает и отправляет [транзакции создания чекпоинта](#checkpoint-transaction).
 
-While the signer key is kept on the node and is considered a *hot* wallet, the [owner key](#owner-address) must be kept very secure, used infrequently, and is considered a *cold* wallet.
+В то время как ключ подписанта хранится в ноде и считается **горячим** кошельком, [ключ владельца](#owner-address), который должен быть защищен очень надежно и использоваться редко, рассматривается как **холодный** кошелек.
 
-See also [Key Management](validator/core-components/key-management).
+См. также статью [Управление ключами](validator/core-components/key-management.md).
 
-## Validator
+## Валидатор {#validator}
 
-The validator role stakes the MATIC tokens and is running both the [Heimdall](#heimdall) node and the [Bor](/docs/maintain/glossary#bor) node to commit the network checkpoints to the Ethereum mainnet and to produce blocks on the network.
+Валидаторы [ставят свои токены MATIC](/docs/maintain/validate/validator-staking-operations) через Validators контракты, развернутые в Ethereum, и используют узел [Heimdall](#heimdall), и [Bor](#bor), чтобы зафиксировать контрольные пункты в сети в Ethereum, а также создать блоки в сети.
 
-A validator node is only open to its [sentry](#sentry) node and closed to the rest of the network.
+Узел проверки открыт только для своего [сентри-нода](#sentry) и закрыт для остальной сети.
 
-See also [Who Is a Validator](polygon-basics/who-is-validator).
+Также см. статью [Валидаторы](polygon-basics/who-is-validator.md).

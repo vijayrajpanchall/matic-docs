@@ -1,20 +1,20 @@
 ---
 id: withdraw-confirm
-title: withdraw challenge
+title: Auszahlung beeinspruchen
 keywords:
-  - 'plasma client, erc20, withdrawChallenge, polygon, sdk'
-description: 'Get started with maticjs'
+- 'plasma client, erc20, withdrawChallenge, polygon, sdk'
+description: 'Erste Schritte mit Maticjs'
 ---
 
-# withdrawConfirm
+# Auszahlung bestätigen {#withdrawconfirm}
 
-`withdrawConfirm` method is the second step in plasma withdraw process. In this step - proof of your burn transaction (first transaction) is submitted and an erc721 token of equivalent value is created.
+Die `withdrawConfirm`-Methode ist der zweite Schritt des Plasma-Auszahlungsvorgangs. In diesem Schritt wird der Nachweis der Burn-Transaktion (erste Transaktion) übermittelt und ein erc721-Token mit dem entsprechenden Wert erstellt.
 
-After this process is successful - challenge period is started and upon completion of the the challenge period, user can get back the withdrawn amount to their account on the root chain.
+Nachdem dieser Vorgang abgeschlossen ist, beginnt der Beeinspruchungszeitraum. Nach Ende des Beeinspruchungszeitraums kann sich der Benutzer den ausgezahlten Betrag auf sein Konto in der Root-Chain auszahlen lassen.
 
-The challenge period is 7 days for mainnet.
+Die Beeinspruchungsfrist für Mainnet beträgt 7 Tage.
 
-**Note**- withdrawStart transaction must be checkpointed in order to challenge the withdraw.
+**Beachten Sie,**- dass die withdrawStart-Transaktion einen Checkpoint passieren muss, damit die Auszahlung beeinsprucht werden kann.
 
 ```
 const erc20Token = plasmaClient.erc20(<token address>, true);
@@ -27,4 +27,4 @@ const txReceipt = await result.getReceipt();
 
 ```
 
-Once challenge period is completed, `withdrawExit` can be called to exit the withdraw process and get back the withdrawn amount.
+Nach Ende der Beeinspruchungsfrist kann `withdrawExit` aufgerufen werden, um den Auszahlungsvorgang zu beenden und den ausgezahlten Betrag zurückzubekommen.

@@ -1,216 +1,46 @@
 ---
 id: full-node-binaries
-title: Full Node Binaries
-description: Build your next blockchain app on Polygon.
+title: Ejecución de nodos completos con binarios
+description: Despliega un nodo Polygon completo utilizando binarios
 keywords:
   - docs
   - matic
-image: https://matic.network/banners/matic-network-16x9.png
+  - polygon
+  - node
+  - binaries
+  - deploy
+  - run full node
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-<Tabs
-  defaultValue="mainnet"
-  values={[
-    { label: 'Polygon-Mainnet', value: 'mainnet', },
- { label: 'Mumbai-Testnet', value: 'mumbai', },
- ]
-}>
+Este tutorial te guía a través de iniciar y ejecutar un nodo completo utilizando binarios. Para los requisitos del sistema, consulta la guía [de requisitos técnicos](technical-requirements.md) mínimos.
 
-<TabItem value="mumbai">
+:::tip
 
-This section guides you through starting and running a full node on a binary.
+Los pasos en esta guía incluyen el tiempo de espera para que los servicios de Heimdall y Bor se sincronicen por completo. Este proceso demora varios días.
 
-For the system requirements, see [Minimum Technical Requirements](http://localhost:3000/docs/operate/technical-requirements).
+Como alternativa, puedes utilizar una instantánea mantenida, que reducirá el tiempo de sincronización a unas horas. Para obtener instrucciones detalladas, consulta [<ins>Instrucciones de instantánea para Heimdall y Bor</ins>](/docs/develop/network-details/snapshot-instructions-heimdall-bor).
 
-:::note
-
-Steps in this guide involve waiting for the Heimdall and Bor services to fully sync. This process takes several days to complete.
-
-Alternatively, you can use a maintained snapshot, which will reduce the sync time to a few hours. For detailed instructions, see [Snapshot Instructions for Heimdall and Bor](https://forum.matic.network/t/snapshot-instructions-for-heimdall-and-bor/2278).
-
-For snapshot download links, see [Polygon Chains Snapshots](https://snapshots.matic.today/).
+Para los enlaces de descarga de instantáneas, consulta la página [<ins>de instantáneas de las cadenas de</ins>](https://snapshots.polygon.technology/) Polygon.
 
 :::
 
+## Descripción general {#overview}
 
-## Prerequisites
-
-
-- One machine is needed.
-- `build-essential` installed on the Full Node machine.
-- To install:
-- `sudo apt-get install build-essential`
-- Go 1.17 installed on both the Full Node machine.<!-- ### To install
-
-```bash wget https://gist.githubusercontent.com/ssandeep/a6c7197811c83c71e5fead841bab396c/raw/go-install.sh
-```
-
-```bash
-go-install.sh
-```
-
-```bash
-sudo ln -nfs ~/.go/bin/go /usr/bin/go
-``` -->
-
-<!-- RabbitMQ installed on both the Full Node machines. See Downloading and Installing RabbitMQ. -->
-
-
-## Overview
-
-- Have the one machine prepared.
-- Install the Heimdall and Bor binaries on the Full Node machine.
-- Set up the Heimdall and Bor services on the Full Node machines.
-- Configure the Full node.
-- Start the Full node.
-- Check node health with the community.
+- Preparar la máquina
+- Instala los binarios de Heimdall y Bor en la máquina completa del nodo
+- Configura los servicios de Heimdall y Bor en la máquina completa del nodo
+- Configura la máquina completa del nodo
+- Inicia la máquina completa del nodo
+- Comprueba la salud de los nodos con la comunidad
 
 :::note
-You have to follow the exact outlined sequence of actions, otherwise you will run into issues.
-:::
 
-
-### Install build essentials
-
-```bash
-sudo apt-get install build-essential
-```
-
-### **Install GO**
-
-```bash
-wget https://gist.githubusercontent.com/ssandeep/a6c7197811c83c71e5fead841bab396c/raw/go-install.sh
-bash go-install.sh
-sudo ln -nfs ~/.go/bin/go /usr/bin/go
-```
-
-> Note: Go version 1.17 is recommended
-
-### RabbitMq
-
-RabbitMQ is a message-queueing software also known as a message broker or queue manager. Simply said; it is software where queues are defined, to which applications connect in order to transfer a message or messages.
-
-A helper service called `bridge` which is embedded into heimdall codebase requires `rabbit-mq` to queue transactions to multiple networks. Installing it should be pretty straightforward.
-
-**Checkout the download instructions here: [https://www.rabbitmq.com/download.html](https://www.rabbitmq.com/download.html)**
-
-```bash
-rabbitmq-server
-```
-
-## Install Binaries
-
-### Heimdall
-
-Next, install the latest version of Heimdall and services. Make sure you git checkout the correct [released version](https://github.com/maticnetwork/heimdall/releases)
-
-```bash
-cd ~/
-git clone https://github.com/maticnetwork/heimdall
-cd heimdall
-
-# Checkout to a proper version
-# For eg: git checkout v0.2.1-mumbai
-git checkout <TAG OR BRANCH>
-make install
-```
-
-That will install the `heimdalld` and `heimdallcli` binaries. Verify that everything is OK:
-
-```bash
-heimdalld version --long
-```
-
-### Bor
-
-Next, install the latest version of Bor. Make sure you git checkout the correct [released version](https://github.com/maticnetwork/bor/releases)
-
-```bash
-cd ~/
-git clone https://github.com/maticnetwork/bor
-cd bor
-
-# Checkout to a proper version
-
-# For eg: git checkout v0.2.16
-
-git checkout <TAG OR BRANCH>
-make bor-all
-sudo ln -nfs ~/bor/build/bin/bor /usr/bin/bor
-sudo ln -nfs ~/bor/build/bin/bootnode /usr/bin/bootnode
-```
-
-That will install the `bor` binary and `bootnode` binary:
-
-```bash
-bor version
-```
-
-## Setup node files
-
-### Fetch launch repo
-
-```bash
-cd ~/
-git clone https://github.com/maticnetwork/launch
-```
-
-### Setup launch directory
-
-To setup network directory, network name and type of node are required.
-
-Available networks: `mainnet-v1` and `testnet-v4`
-
-Node types: `sentry` and `validator`
-
-```bash
-cd ~/
-mkdir -p node
-cp -rf launch/<network-name>/sentry/<node-type>/* ~/node
-
-# To setup sentry node for mumbai (testnet-v4) testnet
-# cp -rf launch/testnet-v4/sentry/sentry/* ~/node
-```
-
-### Setup network directories
-
-**Heimdall data setup**
-
-```bash
-cd ~/node/heimdall
-bash setup.sh
-```
-
-**Bor data setup**
-
-```bash
-cd ~/node/bor
-bash setup.sh
-```
-
-## Setup service files
-
-Download service.sh file
-
-```bash
-cd ~/node
-wget https://raw.githubusercontent.com/maticnetwork/launch/master/<network-name>/service.sh
-# To setup sentry node for mumbai (testnet-v4) testnet
-# wget https://raw.githubusercontent.com/maticnetwork/launch/master/testnet-v4/service.sh
-```
-
-Generate the metadata file
-```bash
-sudo mkdir -p /etc/matic
-sudo chmod -R 777 /etc/matic/
-touch /etc/matic/metadata
-```
-
-Generate services files and copy them into system directory
+Debes seguir la secuencia exacta de acciones descrita en lo contrario, te encontrarás con problemas.
 
 ```bash
 cd ~/node
@@ -352,39 +182,40 @@ RabbitMQ installed on both the Full Node machines. See Downloading and Installin
 You have to follow the exact outlined sequence of actions, otherwise you will run into issues.
 :::
 
-### Install build essentials
+### Instalar`build-essential`
 
-***This is required for your full node***
+Esto es **necesario** para tu nodo completo. Para instalar, ejecuta el siguiente comando:
 
 ```bash
+sudo apt-get update
 sudo apt-get install build-essential
 ```
 
-### Install GO
+### Instala GO {#install-go}
 
-***This is required for your full node***
+Esto también es **necesario** para ejecutar tu nodo completo. Se recomienda instalar  **o** superior.
 
 ```bash
-wget https://gist.githubusercontent.com/ssandeep/a6c7197811c83c71e5fead841bab396c/raw/go-install.sh
+wget https://raw.githubusercontent.com/maticnetwork/node-ansible/master/go-install.sh
 bash go-install.sh
 sudo ln -nfs ~/.go/bin/go /usr/bin/go
 ```
 
-> Note: Go version 1.17 is recommended
+## Instala los binarios {#install-binaries}
 
-## Install Binaries
+El nodo Polygon consta de 2 capas: Heimdall y Bor. Heimdall es una bifurcación que supervisa los contratos en paralelo con la red Ethereum. Bor es básicamente un bik Geth que genera bloques destrozados por los nodos Heimdall.
 
-### Heimdall
+Ambos binarios deben instalarse y ejecutarse en el orden correcto para funcionar correctamente.
 
-***This is required for your full node***
+### Heimdall {#heimdall}
 
-Next, install the latest version of Heimdall and services. Make sure you checkout the correct [released version](https://github.com/maticnetwork/heimdall/releases) on Git. Note that the latest version, [Heimdall v.0.2.9](https://github.com/maticnetwork/heimdall/releases/tag/v0.2.9), contains a few enhancements such as:
-1. Restricting data size in state sync txs to:
-    * **30Kb** when represented in **bytes**
-    * **60Kb** when represented as **string**.
-2. Increasing the **delay time** between the contract events of different validators to ensure that the mempool doesn't get filled very quickly in case of a burst of events which can hamper the progress of the chain.
+Instala la última versión de Heimdall y servicios relacionados. Asegúrate de realizar el pago a la [versión](https://github.com/maticnetwork/heimdall/releases) de lanzamiento correcta. Observa que la última versión, [Heimdall v.0.3.0](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.0), contiene mejoras tales como:
+1. Restricción del tamaño de datos en txs de sincronización de estado a:
+    * **30 Kb** cuando se representa en **bytes**
+    * **60Kb** cuando se representa como **cadena**
+2. Aumentar el **tiempo de retraso** entre los eventos del contrato de diferentes validadores para garantizar que el mempool no se llene muy rápidamente en caso de una ráfaga de eventos que pueda obstaculizar el progreso de la cadena.
 
-The following example shows how the data size is restricted:
+El siguiente ejemplo muestra cómo se restringe el tamaño de los datos:
 
 ```
 Data - "abcd1234"
@@ -393,30 +224,29 @@ Hex Byte representation - [171 205 18 52]
 Length in byte format - 4
 ```
 
-Run the command:
+Para instalar **Heimdall**, ejecuta los siguientes comandos:
 
 ```bash
 cd ~/
 git clone https://github.com/maticnetwork/heimdall
 cd heimdall
 
-# Checkout to a proper version
-# For eg: git checkout v0.2.9-mainnet
+# Checkout to a proper version, for example
+git checkout v0.3.0
 git checkout <TAG OR BRANCH>
 make install
+source ~/.profile
 ```
 
-That will install the `heimdalld` and `heimdallcli` binaries. Verify that everything is OK:
+Eso instalará los binarios `heimdallcli` y `heimdalld`. Verifica la instalación consultando la versión Heimdall en tu máquina:
 
 ```bash
 heimdalld version --long
 ```
 
-### Bor
+### Bor {#bor}
 
-***This is required for your full node***
-
-Next, install the latest version of Bor. Make sure you checkout the correct [released version](https://github.com/maticnetwork/bor/releases) via Git
+Instala la última versión de Bor. Asegúrate de hacer la compra a la [versión correcta lanzada](https://github.com/maticnetwork/bor/releases).
 
 ```bash
 cd ~/
@@ -424,82 +254,81 @@ git clone https://github.com/maticnetwork/bor
 cd bor
 
 # Checkout to a proper version
-
-# For eg: git checkout 0.2.16
-
+# For e.g: git checkout 0.3.3
 git checkout <TAG OR BRANCH>
-make bor-all
+make bor
 sudo ln -nfs ~/bor/build/bin/bor /usr/bin/bor
 sudo ln -nfs ~/bor/build/bin/bootnode /usr/bin/bootnode
 ```
 
-That will install the `bor` binary and `bootnode` binary:
+Eso instalará los binarios `bootnode` y `bor`. Verifica la instalación consultando la versión de Bor en tu máquina:
 
 ```bash
 bor version
 ```
 
-## Setup node files
+## Configura los archivos del nodo {#configure-node-files}
 
-### Fetch launch repo
+### Trae el repositorio de inicio {#fetch-launch-repo}
 
 ```bash
 cd ~/
 git clone https://github.com/maticnetwork/launch
 ```
 
-### Setup launch directory
+### Configura el directorio de inicio {#configure-launch-directory}
 
-To setup network directory, network name and type of node are required.
+Es necesario configurar el directorio de la red, el nombre de la red y el tipo de nodo.
 
-Available networks: `mainnet-v1`
+**Redes disponibles**`mainnet-v1`:`testnet-v4`
 
-Node types: `sentry` and `validator`
+**Tipo de nodo**:`sentry`
+
+:::tip
+
+Para la configuración de  y , utiliza `<network-name>`. Útil `mainnet-v1`para  y `testnet-v4`para  .
+:::
 
 ```bash
 cd ~/
 mkdir -p node
 cp -rf launch/<network-name>/sentry/<node-type>/* ~/node
-
-# To setup sentry node for Polygon mainnet
-# cp -rf launch/mainnet-v1/sentry/sentry/* ~/node
 ```
 
-### Setup network directories
+### Configura los directorios de la red {#configure-network-directories}
 
-**Heimdall data setup**
+**Configuración de los datos de Heimdall**
 
 ```bash
 cd ~/node/heimdall
 bash setup.sh
 ```
 
-**Bor data setup**
+**Configuración de los datos de Bor**
 
 ```bash
 cd ~/node/bor
 bash setup.sh
 ```
 
-## Setup service files
+## Configura los archivos de servicio {#configure-service-files}
 
-Download service.sh file
+Descargar `service.sh`archivo utilizando el adecuado.`<network-name>` Útil `mainnet-v1`para  y `testnet-v4`para  .
 
 ```bash
 cd ~/node
 wget https://raw.githubusercontent.com/maticnetwork/launch/master/<network-name>/service.sh
-# To setup sentry node for mainnet (mainnet-v1)
-# wget https://raw.githubusercontent.com/maticnetwork/launch/master/mainnet-v1/service.sh
 ```
 
-Generate the metadata file
+Genera el archivo **de** metadatos:
+
 ```bash
 sudo mkdir -p /etc/matic
 sudo chmod -R 777 /etc/matic/
 touch /etc/matic/metadata
 ```
 
-Generate services files and copy them into system directory
+Genera `.service`archivos y cópialos en el directorio del sistema:
 
 ```bash
 cd ~/node
@@ -508,81 +337,98 @@ sudo cp *.service /etc/systemd/system/
 ```
 
 
+## Configuración de archivos de configuración {#setup-config-files}
 
-## Setup config files
+- Inicia sesión en la máquina remota o máquina virtual (VM)
+- Tienes que ingresar algunos datos en el archivo `config.toml`. Para abrir y editar el `config.toml`archivo, ejecuta el siguiente comando:`vi ~/.heimdalld/config/config.toml`
 
-- Login to the remote machine / VM
-- You will need to add a few details in the `config.toml` file. To open the `config.toml` file run the following command `vi ~/.heimdalld/config/config.toml`
+En el archivo de configuración, deberás cambiar y `Moniker`añadir `seeds`información:
 
-    Now in the config file you will have to change `Moniker` and add `seeds` information
+    ```bash
+    moniker=<enter unique identifier>
+    # For example, moniker=my-sentry-node
 
-    ```jsx
-    moniker=<enter unique identifier> For example, moniker=my-sentry-node
-    ```
-
-    ```jsx
+    # Mainnet:
     seeds="f4f605d60b8ffaaf15240564e58a81103510631c@159.203.9.164:26656,4fb1bc820088764a564d4f66bba1963d47d82329@44.232.55.71:26656"
+
+    # Testnet:
+    seeds="4cd60c1d76e44b05f7dfd8bab3f447b119e87042@54.147.31.250:26656,b18bbe1f3d8576f4b73d9b18976e71c65e839149@34.226.134.117:26656"
     ```
 
-    - Change the value of **Pex** to `true`
-    - Change the value of **Prometheus** to `true`
-    - Set the `max_open_connections` value to `100`
+    - Cambia el valor de **Pex** a `true`
+    - Cambia el valor de **Prometheus** a `true`
+    - Configura el valor `max_open_connections` en `100`
 
-    Make sure you keep the proper formatting when you make the changes above.
+Asegúrate de **mantener el formato adecuado cuando** hagas los cambios anteriores.
 
-- Next you need to make changes in the `start.sh` file for Bor. Add the following flag in `vi ~/node/bor/start.sh` to the `bor` start params:
+- Configura lo siguiente en `~/.heimdalld/config/heimdall-config.toml`:
+
+    ```jsx
+    eth_rpc_url=<insert Infura or any full node RPC URL to Goerli>
+    ```
+
+- Abra el `start.sh`archivo para Bor utilizando este comando:`vi ~/node/bor/start.sh` Añade las siguientes banderas para iniciar los params:
+
+  ```bash
+  # Mainnet:
+  --bootnodes "enode://0cb82b395094ee4a2915e9714894627de9ed8498fb881cec6db7c65e8b9a5bd7f2f25cc84e71e89d0947e51c76e85d0847de848c7782b13c0255247a6758178c@44.232.55.71:30303,enode://88116f4295f5a31538ae409e4d44ad40d22e44ee9342869e7d68bdec55b0f83c1530355ce8b41fbec0928a7d75a5745d528450d30aec92066ab6ba1ee351d710@159.203.9.164:30303"
+
+  # Testnet:
+  --bootnodes "enode://320553cda00dfc003f499a3ce9598029f364fbb3ed1222fdc20a94d97dcc4d8ba0cd0bfa996579dcc6d17a534741fb0a5da303a90579431259150de66b597251@54.147.31.250:30303"
+  ```
+
+- Para habilitar el modo **Archivo,** puedes añadir las siguientes banderas en el `start.sh`archivo:
+
+  ```jsx
+  --gcmode 'archive' \
+  --ws --ws.port 8546 --ws.addr 0.0.0.0 --ws.origins '*' \
+  ```
+
+## Inicia los servicios {#start-services}
+
+Ejecuta el nodo Heimdall completo con estos comandos en tu Nodo Sentry :
 
 ```bash
---bootnodes "enode://0cb82b395094ee4a2915e9714894627de9ed8498fb881cec6db7c65e8b9a5bd7f2f25cc84e71e89d0947e51c76e85d0847de848c7782b13c0255247a6758178c@44.232.55.71:30303,enode://88116f4295f5a31538ae409e4d44ad40d22e44ee9342869e7d68bdec55b0f83c1530355ce8b41fbec0928a7d75a5745d528450d30aec92066ab6ba1ee351d710@159.203.9.164:30303"
-```
-
-To enable Archive mode you can add the following flags in the `start.sh` file
-
-```jsx
---gcmode 'archive' \
---ws --ws.port 8546 --ws.addr 0.0.0.0 --ws.origins '*' \
-```
-
-## Start services
-
-Run these commands on your Sentry Node:
-
-**To Start Heimdall Service**
-
-```jsx
 sudo service heimdalld start
-```
-
-**To start Heimdall Rest-server**
-
-```jsx
 sudo service heimdalld-rest-server start
 ```
 
-You check logs for Heimdall and rest-server here:
+Ahora, debes asegurarte de que **Heimdall se sincronice** completamente, y entonces solo inicia Bor. Si inicias Bor sin que Heimdall se haya sincronizado completamente, tendrás problemas con frecuencia.
 
-- Heimdall - `journalctl -u heimdalld.service -f`
-- Heimdall Rest Server - `journalctl -u heimdalld-rest-server.service -f`
+**Para comprobar si Heimdall está sincronizado**
+  1. En la máquina remota o VM, ejecuta `curl localhost:26657/status`
+  2. En la respuesta, el valor de `catching_up` debe ser `false`
 
-Now you need to make sure that **Heimdall is synced** completely and only then Start Bor. If you start Bor without Heimdall syncing completely, you will run into issues frequently.
+Una vez que Heimdall se sincroniza, ejecuta el siguiente comando:
 
-- To check if Heimdall is synced
-    - On the remote machine/VM, run `curl localhost:26657/status`
-    - In the output, `catching_up` value should be `false`
-
-Now once Heimdall is synced, run
-
-```jsx
+```bash
 sudo service bor start
 ```
 
-You can check Bor logs here:
+## Registros {#logs}
 
-- Bor - `journalctl -u bor.service -f`
+Los registros pueden ser gestionados por la herramienta `journalctl`. Aquí hay un tutorial para uso avanzado: [Cómo utilizar Journalctl para ver y manipular los registros de Systemd](https://www.digitalocean.com/community/tutorials/how-to-use-journalctl-to-view-and-manipulate-systemd-logs).
 
+**Revisa los registros del nodo de Heimdall**
 
+```bash
+journalctl -u heimdalld.service -f
+```
 
+**Comprueba los registros del servidor de **
 
-</TabItem>
+```bash
+journalctl -u heimdalld-rest-server.service -f
+```
 
-</Tabs>
+**Comprueba los registros del servidor de Bor**
+
+```bash
+journalctl -u bor.service -f
+```
+
+## Configuración de puertos y firewall {#ports-and-firewall-setup}
+
+Ábrele los puertos 22, 26656 y 30303 al mundo (0.0.0.0/0) en el cortafuegos del nodo centinela.
+
+Puedes usar una VPN para restringir el acceso del puerto 22, según tus requisitos y pautas de seguridad.

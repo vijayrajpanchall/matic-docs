@@ -2,13 +2,13 @@
 id: approve-all-for-mintable
 title: approveAllForMintable
 keywords:
-  - 'pos client, erc115, approve, polygon, sdk'
-description: 'Approve erc115 token'
+- 'pos client, erc115, approve, polygon, sdk'
+description: 'Aprueba los tokens acuñables ERC-1155.'
 ---
 
-# approveAllForMintable
+# approveAllForMintable {#approveallformintable}
 
-`approveAllForMintable` method can be used to approve all mintable tokens on root token.
+El método `approveAllForMintable` se puede utilizar para autorizar todos los tokens acuñables en el token primario.
 
 ```
 const erc115RootToken = posClient.erc115(<root token address>,true);

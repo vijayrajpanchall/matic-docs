@@ -1,23 +1,25 @@
 ---
 id: deposit-withdraw-event-pos
-title: Deposit and Checkpoint Event Tracking - PoS
+title: Seguimiento de eventos de depósito y punto de control - PoS
 sidebar_label: Deposit and Checkpoint Event Tracking
-description: Build your next blockchain app on Polygon.
+description: "Rastrea el ritmo y la velocidad de las transacciones en Polygon."
 keywords:
   - docs
   - matic
+  - deposit
+  - checkpoint
 image: https://matic.network/banners/matic-network-16x9.png
 ---
 
-## Quick Summary
+## Resumen {#quick-summary}
 
-This section of the docs deal with tracking and monitoring the pace and speed of transactions done within the Polygon ecosystem. Depositing into the network (when done with the PoS bridge) typically takes an average of 5-7 minutes but we've seen instances where users seek to see real time progress reports. As a developer, you may also want to augment the  UX of your app with instant feedback to the user. In all these cases, look into this section, we have exactly what you need.
+Esta sección de los documentos se ocupa de hacer un seguimiento y monitorear el ritmo y la velocidad de las transacciones realizadas en el ecosistema de Polygon. El depósito en la red (cuando se hace con el puente PoS) generalmente toma un promedio de 22 a 30 minutos, pero hemos visto casos en los que los usuarios buscan ver informes de progreso en tiempo real. Como desarrollador, quizás también quieras mejorar la experiencia de los usuarios en tu aplicación brindándoles información instantánea. En todos estos casos, esta sección puede ser útil.
 
-## Deposit Events
+## Eventos de depósito {#deposit-events}
 
-When a token is deposited from Ethereum to Polygon, a process called state sync mechanism comes into play that eventually mints the tokens for the user on the Polygon chain. This process takes about ~5-7 minutes to happen and hence listening to the deposit event is very important to create a good user experience. This is an example script that can be used to track real time deposit events.
+Cuando se deposita un token desde Ethereum a Polygon, entra en escena un proceso llamado mecanismo de sincronización de estado que finalmente acuña los tokens para el usuario en la cadena de Polygon. Este proceso tarda aproximadamente 22-30 minutos en suceder, y por lo tanto, escuchar el evento de depósito es muy importante para crear una buena experiencia de usuario. Esta es una secuencia de comandos de ejemplo que se puede utilizar para hacerle seguimiento a los eventos de depósito en tiempo real.
 
-### Realtime deposit event tracking using a web socket connection
+### Seguimiento de eventos de depósito en tiempo real mediante una conexión de websocket {#realtime-deposit-event-tracking-using-a-web-socket-connection}
 
 ```jsx
 const WebSocket = require("ws");
@@ -114,9 +116,9 @@ checkDepositStatus(
   });
 ```
 
-### Historical deposit completion check by querying the blockchain
+### Revisión histórica de finalización de depósitos mediante consultas a la cadena de bloques {#historical-deposit-completion-check-by-querying-the-blockchain}
 
-This script can be used to check if a particular deposit has been completed on the child chain or not. The main chain and the child chain keep incrementing the value of a global counter variable on both the chains. The [StateSender](https://github.com/maticnetwork/contracts/blob/develop/contracts/root/stateSyncer/StateSender.sol#L38) contract emits an event that has the counter value. The counter value on the child chain can be queried from the [StateReceiver](https://github.com/maticnetwork/genesis-contracts/blob/master/contracts/StateReceiver.sol#L12) contract. If the counter value on child chain is greater than or equal to the same on main chain, then the deposit can considered as completed successfully.
+Esta secuencia de comandos sirve para comprobar si un depósito determinado se completó en la cadena secundaria. La cadena principal y la cadena secundaria siguen incrementando el valor de una variable contadora global en ambas cadenas. El contrato -[StateSender](https://github.com/maticnetwork/contracts/blob/develop/contracts/root/stateSyncer/StateSender.sol#L38) emite un evento que tiene el valor del contador. El valor del contador en la cadena secundaria puede ser consultado desde el contrato [StateReceiver](https://github.com/maticnetwork/genesis-contracts/blob/master/contracts/StateReceiver.sol#L12). Si el valor de contador en la cadena infantil es mayor o igual que el en la cadena principal, el depósito se puede considerar como se completa con éxito.
 
 ```jsx
 let Web3 = require("web3");
@@ -174,11 +176,11 @@ depositCompleted(
   });
 ```
 
-## Checkpoint Events
+## Eventos de punto de control {#checkpoint-events}
 
-### Real-time checkpoint status tracking
+### Seguimiento del estado del punto de control en tiempo real {#real-time-checkpoint-status-tracking}
 
-All transactions that occur on Polygon chain are check-pointed to the Ethereum chain in frequent intervals of time by the validators. This time is ~10 mins on Mumbai and ~30 mins on Polygon mainnet. The checkpoint occurs on a contract called the **RootChainContract** deployed on Ethereum chain. The following script can be used to listen to real-time checkpoint inclusion events.
+Todas las transacciones que se producen en la cadena de Polygon se controlan en la cadena Ethereum a intervalos frecuentes de tiempo por los validadores. Esta vez se encuentra a unos 10 minutos en Mumbai y alrededor de 30 minutos en Polygon Mainnet. El punto de control se produce en un contrato llamado el `RootChainContract`desplegado en la cadena Ethereum. La siguiente secuencia de comandos se puede utilizar para escuchar los eventos de inclusión en el punto de control en tiempo real.
 
 ```js
 const Web3 = require("web3");
@@ -243,9 +245,9 @@ checkInclusion(
   });
 ```
 
-### Historical checkpoint inclusion check by querying the blockchain
+### Comprobación de inclusión histórica en el punto de control mediante consultas a la cadena de bloques {#historical-checkpoint-inclusion-check-by-querying-the-blockchain}
 
-This can be checked using the following API. The block number of the burn transaction on the child chain has to be given as a param to this GET API.
+Eso se puede comprobar mediante la siguiente API. El número de bloque de la transacción de quemado en la cadena infantil se debe dar como un parámetro a esta API .
 
 ```js
 // Testnet

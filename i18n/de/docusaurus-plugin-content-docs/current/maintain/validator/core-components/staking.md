@@ -2,45 +2,48 @@
 id: staking
 title: Staking
 sidebar_label: Staking
-description: "Stake, unstake, and restake as a validator."
+description: Stake, Unstake und Restake als Prüfer
 keywords:
   - docs
   - matic
   - polygon
   - staking
+  - unstake
+  - restake
+  - validator
 slug: staking
-image: https://matic.network/banners/matic-network-16x9.png
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
-For Polygon Network, any participant can be qualified to become a Polygon's validator by running a full node to earn rewards and collect transaction fees. To ensure the good participation by validators, they lock up some of their MATIC tokens as a stake in the ecosystem.
+Für das Polygon-Netzwerk kann sich jeder Teilnehmer qualifizieren, indem er einen vollständigen Knotenpunkt betreibt, um Belohnungen zu verdienen und Transaktionsgebühren zu erhalten. Um die gute Teilnahme durch Validatoren zu gewährleisten, sperren sie einige ihrer MATIC-Token als Einsatz am Ökosystem.
 
-Validators in Polygon Network are selected via an on-chain auction process which happens at regular intervals.
+Die Validatoren im Polygonen-Netzwerk werden in regelmäßigen Abständen im Rahmen eines On-Chain-Auktionsverfahrens ausgewählt.
 
-A validator has two addresses an owner address and a signer address. The staking is done with the owner address.
+Ein Validator hat zwei Adressen eine Eigentümeradresse und eine Signieradresse. Das Staking wird mit der Eigentümeradresse durchgeführt.
 
-See also [Key Management](key-management).
+Siehe auch [Schlüsselmanagement](key-management.md).
 
-## Stake
+## Stake {#stake}
 
 :::note
 
-Currently there is limited space to accept new validators.
+Derzeit gibt es nur einen begrenzten Platz, um neue Validatoren zu akzeptieren.
 
-A new validator can only join the active set when a currently active validator unbonds.
+Ein neuer Validator kann sich dem aktiven Set nur anschließen, wenn ein gegenwärtig aktiver Validator sich entbindet.
 
 :::
 
-To join the validator set, you must stake your MATIC tokens. See [Validator Staking Operations](../../validate/validator-staking-operations).
+Um dem Validator-Set beizutreten, müssen Sie Ihre MATIC-Token einsetzen. Weiteres unter [Operationen des Validator-Staking](/docs/maintain/validate/validator-staking-operations)
 
-## Unstake
+## Entfernen {#unstake}
 
-Unstaking allows the validator to be out of active pool of validators.
+Das Entfernen ermöglicht es dem Validator sich aus dem aktiven Pool von Validatoren zu entfernen.
 
-To ensure good participation, the validator stake is locked for 80 checkpoints.
+Um eine gute Teilnahme zu gewährleisten, ist der validator für 80 Checkpoints gesperrt.
 
-## Restake
+## Wiederverwenden {#restake}
 
-Validators can add more MATIC tokens to their stake:
+Validatoren können ihrem Einsatz weitere MATIC-Token hinzufügen:
 
-* To earn more rewards.
-* To maintain the position in the validator set.
+* Um mehr Belohnungen zu verdienen.
+* Um die Position im Validator-Set zu erhalten.

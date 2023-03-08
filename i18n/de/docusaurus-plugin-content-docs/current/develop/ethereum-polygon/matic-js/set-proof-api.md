@@ -1,18 +1,18 @@
 ---
 id: set-proof-api
-title: Set ProofApi
+title: ProofApi einstellen
 keywords:
-  - setProofApi
-  - polygon
-  - sdk
-description: Config proof api
+    - setProofApi
+    - polygon
+    - sdk
+description: Proof Api konfigurieren
 ---
 
-You will see some of the APIs with **faster** suffix, which makes the process faster. It does so by using proof generation api in the backend which can be hosted by anyone.
+Einige der Funktionen in matic.js werden mit dem Begriff schneller erstickt. Wie der Name schon sagt, generieren sie Ergebnisse schneller im Vergleich zu ihren nicht schnelleren Gegenstücken. Sie nutzen die Proof Generation API als Backend, das von jedem gehostet werden kann.
 
-Polygon has hosted the proof generation api which can be used by anyone. The API url is - [https://apis.matic.network/](https://apis.matic.network/)
+[https://apis/matic.network](https://apis/matic.network) ist eine öffentlich verfügbare Proof Generation API, die von Polygon gehostet wird.
 
-The `setProofApi` can be used to set the proof api url.
+Die `setProofApi`Methode kann helfen, die URL der Proof Generation API auf die matic.js Instanz zu setzen.
 
 ```
 import { setProofApi } from '@maticnetwork/maticjs'
@@ -20,13 +20,11 @@ import { setProofApi } from '@maticnetwork/maticjs'
 setProofApi("https://apis.matic.network/");
 ```
 
-👉 We recommend to host the proof API by yourself which will give you better performance. The default api provided by Polygon might have performance issue as it is being used by multiple people.
+Die Nutzung eines selbst gehosteten Proof Generation API-Services bietet eine bessere Leistung im Vergleich zu einem öffentlich gehosteten Anbieter.
 
-Here is proof api repo link - [https://github.com/maticnetwork/proof-generation-api](https://github.com/maticnetwork/proof-generation-api)
+Bitte folge den Installationsanweisungen in der Datei README.md von https://github.com/maticnetwork/proof-generation-api zur Verfügung gestellt, um den Service selbst zu hosten
 
-After you have deployed the api, you can set the api url in matic.js by using `setProofApi`.
-
-e.g - if you have deployed the proof api and the base url is - `https://abc.com/`, then you need to set base url in `setProofApi`
+z.B. - Wenn du die Proof API eingesetzt hast und die Basis-URL ist - `https://abc.com/`, dann musst du die Basis-URL in `setProofApi` einrichten.
 
 ```
 import { setProofApi } from '@maticnetwork/maticjs'
@@ -34,5 +32,6 @@ import { setProofApi } from '@maticnetwork/maticjs'
 setProofApi("https://abc.com/");
 ```
 
-
-We recommend using faster API's, because some API's particularly where proof is being generated does a lot of RPC calls and it might be very slow with public RPC's. >
+:::tip
+Wir empfehlen, schnellere APIs zu verwenden, da einige API's, insbesondere dort, wo ein Beweis generiert wird, eine Menge RPC tätigen und es mit öffentlichen RPCs sehr langsam sein könnte.
+:::

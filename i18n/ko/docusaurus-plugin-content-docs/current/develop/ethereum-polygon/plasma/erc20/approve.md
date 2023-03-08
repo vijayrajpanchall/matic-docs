@@ -1,16 +1,16 @@
 ---
 id: approve
-title: approve
+title: 승인
 keywords:
-  - 'pos client, erc20, approve, polygon, sdk'
-description: 'maticjs으로 시작하기'
+- 'pos client, erc20, approve, polygon, sdk'
+description: 'Maticjs를 시작합니다'
 ---
 
-# approve
+# 승인 {#approve}
 
-`approve` 메소드는 루트 토큰에 필요한 금액을 승인하는 데 사용할 수 있습니다.
+`approve` 메서드를 사용해 루트 토큰에서 필요한 금액을 승인할 수 있습니다.
 
-폴리곤 체인에 금액을 입금하려면 승인이 필요합니다.
+Polygon 체인에서 금액을 입금하려면 승인이 필요합니다.
 
 ```
 const erc20RootToken = plasmaClient.erc20(<root token address>, true);

@@ -1,30 +1,33 @@
 ---
 id: erc20
-title: ERC20 입출금 가이드
+title: ERC20 입금 및 출금 가이드
 sidebar_label: ERC20
-description: 폴리곤에서 다음 블록체인 앱을 설치합니다.
+description: "ERC20 계약에서 사용 가능한 함수"
 keywords:
   - docs
   - matic
+  - erc20
+  - deposit
+  - withdraw
 image: https://matic.network/banners/matic-network-16x9.png
 ---
 
-## 높은 수준의 작업흐름
+## 상위 수준 흐름 {#high-level-flow}
 
-ERC20 입금하기
+ERC20 입금하기 -
 
-1. 예치해야 하는 토큰을 사용하기 위해 **_ERC20Predicate_** 컨트랙트를 **_승인합니다_**.
-2. **_RootChainManager_**에 **_depositFor_**를 호출합니다.
+1. **_ERC20Predicate_** 계약을 **_승인_**해 입금할 토큰을 지출하세요.
+2. **_RootChainManager에서_** **_depositFor를_** 호출하세요.
 
 ERC20 출금하기 -
 
-1. 폴리곤 체인에서 토큰을 **_소각합니다_**.
-2. **_RootChainManager_**에서 **_exit_** 함수를 호출하여 소각 트랜잭션의 증명을 제출하십시오. 이 호출은 소각 트랜잭션이 포함된 블록에 대한 **_체크포인트가 제출된 후_**에 만들 수 있습니다.
+1. Polygon 체인에서 토큰을 **_소각_**하세요.
+2. **_RootChainManager에서_** **_종료_** 함수를 호출해 소각 트랜잭션 증명을 제출하세요. 이 호출은 소각 트랜잭션이 포함된 블록의 **_체크포인트가 제출된 후_**에 할 수 있습니다.
 
-## 단계 세부정보
----
+## 세부 사항 설정 {#setup-details}
 
-### 컨트랙트 인스턴스화하기
+### 계약 인스턴스화하기 {#instantiate-the-contracts}
+
 ```js
 const mainWeb3 = new Web3(mainProvider)
 const maticWeb3 = new Web3(maticProvider)
@@ -33,17 +36,17 @@ const rootChainManagerContract = new mainWeb3.eth.Contract(rootChainManagerABI, 
 const childTokenContract = new maticWeb3(childTokenABI, childTokenAddress)
 ```
 
-### 승인하기
-**_ERC20Predicate_**가 토큰 컨트랙트의 **_approve_**함수를 호출함으로써 토큰을 사용하도록 승인합니다. 이 함수는 두 개의 인수와 금액을 사용합니다. **_spender_**는 사용자의 토큰 사용 승인을 받고 있는 주소입니다. **_amount_**는 사용할 수 있는 토큰의 수량입니다. 1회 승인 시 입금액과 동일한 금액을 유지하거나 여러 번 승인하지 않도록 더 큰 숫자를 전달하십시오.
+### 승인 {#approve}
+토큰 계약의 **_승인_** 함수를 호출해 토큰을 지출하기 위한 **_ERC20Predicate_**를 승인하세요. 이 함수는 spender와 amount 두 인수를 사용합니다. **_spender_**는 사용자의 토큰을 지출하기 위한 승인을 받는 주소이며, **_amount_**는 지출할 수 있는 토큰 금액입니다. 1회 승인을 위해 입금액과 동일한 금액을 유지하거나 여러 번 승인되지 않도록 더 큰 금액을 전달하세요.
 ```js
 await rootTokenContract.methods
   .approve(erc20Predicate, amount)
   .send({ from: userAddress })
 ```
 
-### 입금하기
-이 호출을 하기 전에 토큰을 매핑해야 하고 금액을 입금 승인을 받아야 합니다.  
-**_RootChainManager_** 컨트랙트의 **_depositEtherFor_** 함수를 호출합니다. 이 함수는 3개의 인수 user, rootToken 및 depositData를 갖고 있습니다. **_user_**는 폴리곤 체인에 입금을 받을 사용자의 주소입니다.  **_rootToken_** 은 메인 체인의 토큰 주소입니다. **_depositData_** 는 abi로 인코딩된 수량입니다.
+### 입금 {#deposit}
+호출하기 전에 토큰을 매핑하고 입금 금액이 승인되어야 합니다.  
+계약의 `depositFor()`함수를 `RootChainManager`호출하십시오. 이 함수는 3개의 `userAddress``rootToken``depositData`인자를 사용합니다. 그리고 Polygon 체인에서 예치를 받을 사용자의 `userAddress`주소입니다. 주요 체인에서 토큰의 `rootToken`주소입니다. ABI를 인코딩한 금액은 ABI를 인코딩한 `depositData`금액입니다.
 ```js
 const depositData = mainWeb3.eth.abi.encodeParameter('uint256', amount)
 await rootChainManagerContract.methods
@@ -51,8 +54,8 @@ await rootChainManagerContract.methods
   .send({ from: userAddress })
 ```
 
-### 소각하기
-토큰은 하위 토큰 계약에서 **_withdraw_** 함수를 호출하여 폴리곤 체인에서 소각될 수 있습니다. 이 함수는 소각할 토큰 수를 나타내는 **_amount_** 단일 인수를 사용합니다. 이 소각의 증명은 종료 단계에서 제출되어야 합니다. 따라서 트랜잭션 해시를 저장합니다.
+### 소각 {#burn}
+하위 토큰 계약에서 **_출금_** 함수를 호출해 Polygon 체인에서 토큰을 소각할 수 있습니다. 이 함수는 소각될 토큰 수를 나타내는 단일 인수 **_amount_**를 사용합니다. 소각 증명은 종료 단계에서 제출되어야 하므로 트랙잭션 해시를 저장하세요.
 ```js
 const burnTx = await childTokenContract.methods
   .withdraw(amount)
@@ -60,27 +63,28 @@ const burnTx = await childTokenContract.methods
 const burnTxHash = burnTx.transactionHash
 ```
 
-### 종료하기
-**_RootChainManager_** 컨트랙트의 exit 함수는 **_EtherPredicate_**에서 토큰을 잠금 해제하고 다시 받기 위해 호출되어야 합니다. 이 함수는 레코딩 트랜잭션을 증명하는 단일 바이트 인수를 사용합니다. 이 함수를 호출하기 전에 제출될 소각 트랜잭션을 포함하는 체크포인트를 기다리십시오. 증명은 다음 필드를 RLP 인코딩하여 생성됩니다.
+### 종료 {#exit}
+`RootChainManager`계약의 출구 함수는 토큰을 잠금을 해제하고 수신하도록 요청해야 합니다.`ERC20Predicate` 이 함수는 소각 트랜잭션을 증명하는 단일 바이트 인수를 사용합니다. 이 함수를 호출하기 전에 화상 트랜잭션을 포함하는 검문소를 기다립니다. Pro는 다음 필드를 인코딩하는 RLP에 의해 생성됩니다.
 
 1. headerNumber - 소각 트랜잭션을 포함하는 체크포인트 헤더 블록 번호
-2. blockProof – (하위체인의) 블록 헤더가 제출된 머클 루트의 잎이라는 증명
-3. blockNumber - 하위 체인의 소각 트랜잭션을 포함하는 블록 번호
-4. blockTime - 트랜잭션 블록 시간 소각하기
+2. blockProof - (하위 체인의) 블록 헤더가 제출된 머클 루트의 리프임을 증명
+3. blockNumber - 하위 체인에서 소각 트랜잭션을 포함하는 블록 번호
+4. blockTime - 소각 트랜잭션 블록 시간
 5. txRoot - 블록의 트랜잭션 루트
-6. receiveRoot - 블록의 영수 루트
-7. receipt - 소각 트랜잭션의 영수증
-8. ReceiptProof - 소각 영수증의 머클 증명
+6. receiptRoot - 블록의 영수증 루트
+7. receipt - 소각 트랜잭션 영수증
+8. receiptProof - 소각 영수증의 머클 증명
 9. branchMask - 머클 패트리샤 트리에서 수신 경로를 나타내는 32비트
-10. receiveLogIndex - 영수증에서 읽을 로그 인덱스
+10. receiptLogIndex - 영수증에서 읽을 수 있는 로그 색인
 
-증명을 수동으로 생성하는 것은 까다로울 수 있으므로 Polygon Edge를 사용하는 것이 좋습니다. 트랜잭션을 수동으로 보내려면, 옵션 개체에서 **_encodeAbi_**를 **_true_**로 전달하여 raw calldata를 얻을 수 있습니다.
+증명을 수동으로 생성하는 것은 까다로울 수 있으므로 Polygon 엣지를 사용하는 것을 권장합니다. 트랜잭션을 수동으로 보내려면 옵션 객체에서 **_encodeAbi_**를 **_true_**로 전달하여 원시 호출 테이터를 가져올 수 있습니다.
+
 ```js
 const exitCalldata = await maticPOSClient
   .exitERC20(burnTxHash, { from, encodeAbi: true })
 ```
 
-이 호출 데이터를 **_RootChainManager_**로 보냅니다.
+이 호출 데이터를 **_RootChainManager_**로 보내세요.
 ```js
 await mainWeb3.eth.sendTransaction({
   from: userAddress,

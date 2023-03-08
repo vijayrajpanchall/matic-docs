@@ -1,70 +1,68 @@
 ---
 id: move-stake
-title: Moving Stake
-description: Build your next blockchain app on Polygon.
+title: 스테이크 이동
+description: Polygon 네트워크에서 지분을 이동하기
 keywords:
   - docs
   - polygon
   - matic
   - stake
   - move stake
+  - validator
+  - delegator
 slug: move-stake
-image: https://matic.network/banners/matic-network-16x9.png
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
-
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-## Moving Stake from Foundation nodes to External Nodes
+## 파운데이션 노드에서 외부 노드로 스테이크 이동 {#moving-stake-from-foundation-nodes-to-external-nodes}
 
-
-<video loop autoplay width="100%" height="100%" controls="true">
+<video loop autoplay width="100%" height="100%" controls="true" >
   <source type="video/mp4" src="/img/staking/MoveStakeDemo.mp4"></source>
   <source type="video/quicktime" src="/img/staking/MoveStakeDemo.mov"></source>
-  <p>Your browser does not support the video element.</p>
+  <p>브라우저에서 비디오 요소를 지원하지 않습니다.</p>
 </video>
 
-Delegators are now given an option to move their stake from the Foundation nodes to any External nodes of their choice by using the Move Stake functionality on the Staking UI
+이제 유효성 검사자들에게 스테이킹 UI에서 스테이크 이동 기능을 사용하여 자신의 스테이크를 파운데이션 노드에서 원하는 외부 노드로 이동할 수 있는 옵션이 제공됩니다.
 
-Moving Stake from the foundation node to external node is a single transaction. So there are no delays or unbonding periods durind this event.
+파운데이션 노드에서 외부 노드로 스테이크를 이동하는 것은 단일 트랜잭션입니다. 따라서 이 이벤트 중에 지연되거나 언본딩되는 기간이 없습니다.
 
-Please note that Moving Stake is only allowed from Foundation node to External nodes. If you want to move your stake from an External node to another External node, you will have to Unbond first and then Delegate on the new external node.
+스테이크 이동은 파운데이션 노드에서 외부 노드로만 허용됩니다. 외부 노드에서 다른 외부 노드로 스테이크를 이동하려면 먼저 연결을 해제한 다음 새 외부 노드에서 위임해야 합니다.
 
-Also, the Move Stake function is a temporary function developed by the Polygon team to ensure smooth transistioning of funds from the Foundation nodes to External. And will only stay active until the foundation nodes are turned off.
+또한 스테이크 이동 기능은 Polygon 팀이 파운데이션 노드에서 외부로 자금을 원활하게 전환하기 위해 개발한 임시 기능입니다. 그리고 파운데이션 노드가 꺼질 때까지만 활성 상태를 유지합니다.
 
-### How to Move Stake
+## 스테이크 이동 방법 {#how-to-move-stake}
 
-In order to Move stake, first you will need to login to the Staking UI: https://wallet.polygon.technology/staking using your Delegator Address.
+지분을 이동하기 위해서는 먼저 대표자 주소를 사용하여 [스테이킹](https://wallet.polygon.technology/staking) UI에 로그인해야 합니다.
 
-**Delegator Address** = The address that you have already used for Staking on the Foundation Nodes.
+**대표자 주소** : 재단 Nodes에서 스테이킹에 이미 사용한 주소.
 
-Once logged in your will see a list of Validators.
+일단 로그인하면 검사기 목록을 볼 수 있습니다.
 
 <img src={useBaseUrl("img/staking/validator-list.png")} />
 
-Now go to your Delegator Profile by clicking on the "Show Delegator Details" button or the "**My Delegator Details**" option on the left hand side
+이제 **쇼 대표자 세부** 버튼 또는 왼쪽에 있는 **내** 대표자 세부 정보 옵션을 클릭하여 대표자 프로필에 이동합니다.
 
 <img src={useBaseUrl("img/staking/show-delegator-details.png")} />
 
-Here you will find a new button called "**Move Stake**"
+여기에서 **Move** Stake라는 새로운 버튼을 찾을 수 있습니다.
 
 <img src={useBaseUrl("img/staking/move-stake-button.png")} />
 
-Clicking on that button would navigate you to a page with a list of validators that you can Delegate to. You can delegate to any Validator on this list.
+해당 버튼을 클릭하면 위임할 수 있는 유효성 검사자 목록이 있는 페이지로 이동합니다. 이 목록에 있는 모든 유효성 검사자에게 위임할 수 있습니다.
 
 <img src={useBaseUrl("img/staking/move-stake-validator.png")} />
 
-Now after choosing your validator that you want to delegate to, click on the "**Delegate Here**" button.
-
-Clicking on that button would open up a pop up.
+이제 위임하고 싶은 유효자를 선택한 후 **여기를 누르면 대표단을** 클릭하십시오. 이 버튼을 클릭하면 팝업 창이 열립니다.
 
 <img src={useBaseUrl("img/staking/stake-funds.png")} />
 
-Here you would see an Amount field which would automatically populate with entire amount for Delegation. You can also use a partial amount to delegate to a validator.
+여기에서 해당 필드 **필드를** 볼 수 있습니다. 일부 금액을 사용하여 유효성 검사자에게 위임할 수도 있습니다.
 
-**For example**, if you have delegated 100 Matic tokens to Foundation Node 1 and now you want to move your stake from the foundation node to an external node, you can delegate a partial amount to the external node of your choice, lets say 50 Matic tokens. The rest of the 50 Matic tokens will stay on Foundation node 1. You can then choose to either delegate the rest of the 50 tokens to another external node or the same external node.
+예를 들면, 100개의 매틱 토큰을 파운데이션 노드 1에 위임하고 이제 스테이크를 파운데이션 노드에서 외부 노드로 옮기고자 하면 외부 노드를 선택하여 일부 금액 (예를 들어 50개의 매틱 토큰)을 위임할 수 있습니다. 나머지 50개의 매틱 토큰은 파운데이션 노드 1에 남습니다. 그런 다음 나머지 50개의 토큰을 다른 외부 노드 또는 동일한 외부 노드에 위임하도록 선택할 수 있습니다.
 
-Once you have entered the amount you can then click on Stake Funds button. This will then ask for confirmation on your MetaMask to sign the address.
+일단 해당 금액에 입력되면 **스테이크 펀드** 버튼을 클릭하십시오. 그러면 메타 마스크에 주소 서명에 대한 확인을 요청합니다.
 
-Once you have signed the transaction your stake would have successfully moved from the Foundation node to the External node. However, you will have to wait for 12 block confirmations for it reflect on the Staking UI. If your moved funds do not show up after 12 block confirmations, try refreshing the page once to see updated stakes.
+트랜잭션에 서명하면 지분이 파운데이션 노드에서 외부 노드로 성공적으로 이동됩니다. 그러나 스테이킹 UI에 반영되기 위해서는 12블록 확인을 기다려야 합니다. 12블록 확인 후에도 이동한 자금이 나타나지 않으면 페이지를 한 번 새로 고쳐 업데이트된 스테이크를 확인하세요.
 
-If you have any questions or any issues please submit a ticket [here](https://support.polygon.technology/support/home).
+문의 사항이 있거나 문제가 있으면 [여기](https://support.polygon.technology/support/home)로 티켓을 제출하시면 됩니다.

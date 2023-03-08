@@ -1,94 +1,110 @@
 ---
 id: getting-started
-title: Wallets
+title: Кошельки
 sidebar_label: Getting Started
-description: Build your next blockchain app on Polygon.
+description: Получите список поддерживаемых кошельков и управляйте стратегией ключей.
 keywords:
-  - docs
-  - matic
-image: https://matic.network/banners/matic-network-16x9.png
+  - wiki
+  - polygon
+  - wallet
+  - integrate
+  - guide
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
-Wallets that support Polygon allow for key management, access to accounts controlled by private keys, and interfaces that allow users to perform chain actions and sign transactions. The following page serves as a wallet index for wallets compatible with Polygon. Please note that this is not an exhaustive index.
+:::tip Оставайтесь в курсе
 
-:::caution Third-party wallets
-
-These third-party wallets have integrated Polygon and support a variety of features. **You should use your own due diligence in researching and using them**. The official Polygon Support cannot provide support for issues with these wallets or other non-native wallets.
+Следите за последними обновлениями Wallet Suite от команды и сообщества Polygon, подписавшись на наши [<ins>уведомления</ins>](https://polygon.technology/notifications/).
 
 :::
 
-:::info Centralized Exchanges (CEXs)
+Поддерживающие Polygon кошельки предоставляют возможность управления ключами, доступ к счетам, контролируемый приватными ключами и интерфейсы, позволяющие пользователям выполнять действия с цепочками и подписывать транзакции.
+На следующей странице приведен указатель кошельков, совместимых с Polygon. Обратите внимание,
+что этот указатель не является исчерпывающим.
 
-For a list of CEXs that support Polygon, visit a third-party tracking website such as [**CoinMarketCap**](https://coinmarketcap.com/currencies/polygon/markets).
+:::caution Сторонние кошельки
 
-:::
-
-## Native Wallets
-
-[Polygon Support](https://support.polygon.technology/support/home) can provide assistance to users and address issues related to the following wallets:
-
-| Wallet                                                           | Custody       | Account Type | Multi-Sig | dApp Browser | Platform |
-| ---------------------------------------------------------------- | ------------- | ------------ | --------- | ------------ | -------- |
-| [PoS Wallet](https://wallet.polygon.technology/login/)           | non-custodial | EOA          | no        | no           | browser  |
-| [Hermez Wallet](https://wallet.hermez.io/login)                  | non-custodial | EOA          | no        | no           | browser  |
-| [Avail Apps](https://devnet-avail.polygon.technology/) (testnet) | non-custodial | EOA          | yes       | no           | browser  |
-
-
-## Partner Wallets
-
-The following wallets are solutions that Polygon Technology has partnered with:
-
-| Wallet                                                     | Custody       | Account Type   | Multi-Sig | NFT       | dApp Browser | Bridge Support | Fiat On-Ramp | Platforms                 |
-| ---------------------------------------------------------- | ------------- | -------------- | --------- | --------- | ------------ | -------------- | ------------ | ------------------------- |
-| [1inch](https://1inch.io/wallet/)                          | non-custodial | EOA            | no        | interface | yes          | yes            | no           | mobile                    |
-| [Alpha Wallet](https://alphawallet.com/)*                  | non-custodial | EOA            | no        | interface | yes          | yes            | yes          | mobile, api/sdk           |
-| [Atomic Wallet](https://atomicwallet.io/)*                 | non-custodial | EOA            | no        | no        | no           | no             | yes          | mobile, desktop, api/sdk  |
-| [Ambire](https://www.ambire.com/)                          | non-custodial | smart contract | no        | interface | no           | yes            | yes          | browser                   |
-| [BitKeep](https://bitkeep.com/)                            | non-custodial | EOA            | no        | interface | no           | yes            | yes          | mobile                    |
-| [Bitski](https://www.bitski.com/)                          | custodial     | EOA            | no        | interface |              | yes            | no           | browser, api/sdk          |
-| [Coin98](https://coin98.com/wallet)                        | non-custodial | EOA            | no        | interface | yes          | yes            | yes          | mobile, browser, api/sdk  |
-| [Coinbase](https://www.coinbase.com/wallet)                | hybrid        | EOA            | no        | interface | yes          | yes            | yes          | mobile, browser, api/sdk  |
-| [CypherD](https://cypherd.io/)                             | non-custodial | EOA            | no        | no        | yes          |                |              | mobile                    |
-| [D'Cent](https://dcentwallet.com/)*                        | hybrid        | EOA            | no        | interface | yes          | yes            | no           | mobile                    |
-| [Exodus](https://www.exodus.com/)*                         | non-custodial | EOA            | no        | no        | no           |                | yes          | mobile, desktop           |
-| [Gnosis Safe](https://gnosis-safe.io/)*                    | non-custodial | smart contract | yes       | interface | yes          | no             | no           | mobile, browser, api/sdk  |
-| [Guarda](https://guarda.com/)                              | non-custodial | EOA            | no        | no        | no           | yes            | yes          | mobile, browser, desktop  |
-| [Huobi](https://www.itoken.com/en)                         | non-custodial | EOA            | no        | no        | no           | yes            | no           | mobile                    |
-| [Ledger](https://www.ledger.com/)*                         | non-custodial | EOA            | no        | interface | no           | no             | no           | hardware, mobile, desktop |
-| [Loopring](https://loopring.io/#/)                         | non-custodial | smart contract | no        | no        | no           |                |              | mobile, api/sdk           |
-| [Magic](https://fortmatic.com/)*                           | custodial     | EOA            | no        | no        | no           |                |              | mobile, browser, api/sdk  |
-| [MathWallet](https://mathwallet.org/en-us/)*               | custodial     | EOA            | no        | no        | no           | yes            | yes          | mobile, browser, api/sdk  |
-| [MetaMask](https://metamask.io/)*                          | non-custodial | EOA            | no        | interface | yes          | no             | no           | mobile, browser, api/sdk  |
-| [Multis](https://multis.co/)*                              | non-custodial | EOA            | no        | no        | no           |                |              | mobile, desktop           |
-| [MyEtherWallet](https://www.myetherwallet.com/)*           | non-custodial | EOA            | no        | interface | no           |                |              | mobile                    |
-| [Opera Crypto Browser](https://www.opera.com/crypto/next)* | non-custodial | EOA            | no        | support   | yes          |                |              | mobile, browser           |
-| [Pillar](https://www.pillar.fi/)                           | non-custodial | EOA            | no        | interface | no           |                |              | mobile                    |
-| [Rainbow](https://rainbow.me/)                             | non-custodial | EOA            | no        | interface | yes          |                |              | mobile, api/sdk           |
-| [SafePal](https://safepal.io/)*                            | non-custodial | EOA            | no        | no        | yes          |                |              | hardware, mobile, api/sdk |
-| [Sequence](https://sequence.app/auth)                      | non-custodial | smart contract | no        | interface | no           |                |              | browser, api/sdk          |
-| [SimpleHold](https://simplehold.io/)                       | non-custodial | EOA            | no        | no        | no           |                |              | mobile, api/sdk           |
-| [SteakWallet](https://steakwallet.fi/)                     | non-custodial | EOA            | no        | interface | no           |                |              | mobile, api/sdk           |
-| [TokenPocket](https://www.tokenpocket.pro/en)              | non-custodial | EOA            | no        | support   | yes          | yes            | no           | mobile, browser, api/sdk  |
-| [Torus](https://toruswallet.io/)                           | non-custodial | EOA            | no        | support   | no           | no             | no           | browser, api/sdk          |
-| [Trezor](https://trezor.io/)*                              | non-custodial | EOA            | no        | support   | no           |                |              | hardware, mobile          |
-| [Trust Wallet](https://trustwallet.com/)*                  | non-custodial | EOA            | no        | support   | yes          |                |              | mobile                    |
-| [Unstoppable](https://unstoppable.money/)                  | non-custodial | EOA            | no        | no        | yes          |                |              | mobile, api/sdk           |
-| [Venly](https://www.venly.io/)                             | hybrid        | smart contract | no        | interface | no           |                |              | browser, api/sdk          |
-| [Wirex](https://wirexapp.com/en/wirex-wallet)*             | non-custodial | EOA            | no        | no        | no           |                |              | mobile                    |
-| [XDeFi](https://www.xdefi.io/)                             | non-custodial | EOA            | no        | interface | no           | no             | no           | browser                   |
-| [Zerion](https://zerion.io/)                               | non-custodial | EOA            | no        | no        | yes          |                |              | mobile, browser           |
-
-:::caution *Non-native wallet support
-
-Wallets denoted with * in the table above are not natively supported with the wallet software and require manual steps to add the Polygon network.
+Эти сторонние кошельки интегрированы с Polygon и поддерживают разнообразные функции.
+**Перед использованием необходимо выполнить собственную due diligence**. Официальная служба поддержки Polygon
+Поддержка не может оказывать помощь в решении проблем с этими кошельками или другими кошельками, не связанными с нативным.
 
 :::
 
-## Key Management Strategy
+:::info Централизованные биржи (CEX)
 
-The following basic steps allow for the integration a client-side application with Polygon:
+Список CEX, которые поддерживают Polygon, можно найти на стороннем сайте отслеживания, например
+[<ins>**CoinMarketCap**</ins>](https://coinmarketcap.com/currencies/polygon/markets).
 
-1. **Set up Web3**: [web3.js](https://web3js.readthedocs.io/) is a javascript library that allows a client-side application to talk to the blockchain. We configure web3 to communicate via a developer-based wallet like MetaMask. Use the [web3.js docs](https://web3js.readthedocs.io/en/v1.2.2/getting-started.html#adding-web3-js) to learn about adding `web3.js` to your project.
-2. **Set up an Account**: You will be able to send transactions (specifically ones that alter the state of the blockchain).
-3. **Instantiate Contracts**: Once a web3 object in place, we next instantiate our deployed contract, with which we interact.
-4. **Call functions**: Fetch data via functions in the contract - through our contract object.
+:::
+
+## Нативные кошельки {#native-wallets}
+
+[Поддержка Polygon](https://support.polygon.technology/support/home) может оказывать помощь пользователям и решать вопросы, связанные со следующими кошельками:
+
+| Кошелек | Кастодиальность | Тип аккаунта | Multi-Sig | Браузер децентрализованных приложений | Платформа |
+|----------------------------------------------------------------------|---------------|--------------|-----------|--------------|----------|
+| [PoS Wallet](https://wallet.polygon.technology/login/) | некастодиальный | EOA | нет | нет | браузер |
+| [Hermez Wallet](https://wallet.hermez.io/login) | некастодиальный | EOA | нет | нет | браузер |
+| [Avail Apps](https://devnet-avail.polygon.technology/) | некастодиальный | EOA | да | нет | браузер |
+
+
+## Кошельки партнеров {#partner-wallets}
+
+Следующие кошельки основаны на решениях партнеров Polygon Technology:
+
+| Кошелек | Кастодиальность | Тип аккаунта | Multi-Sig | NFT | Браузер децентрализованных приложений | Поддержка моста | Fiat On-Ramp | Платформы |
+|---	|---	|---	|---	|---	|---	|---	|---	|---	|
+| [1inch](https://1inch.io/wallet/) | некастодиальный | EOA | нет | интерфейс | да | да | да | мобильный |
+| [Alpha Wallet](https://alphawallet.com/) | некастодиальный | EOA | нет | интерфейс | да | да | да | мобильный, api/sdk |
+| [Atomic Wallet](https://atomicwallet.io/)* | некастодиальный | EOA | нет | нет | нет | нет | да | мобильный, настольный, api/sdk |
+| [Ambire](https://www.ambire.com/) | некастодиальный | смарт-контракт | нет | интерфейс | нет | да | да | браузер |
+| [BitKeep](https://bitkeep.com/) | некастодиальный | EOA | нет | интерфейс | да | да | Да | mobile, расширение |
+| [Bitski](https://www.bitski.com/) | кастодиальный | EOA | нет | интерфейс | нет | да | нет | браузер, api/sdk |
+| [Coin98](https://coin98.com/wallet) | некастодиальный | EOA | нет | интерфейс | да | да | да | мобильный, браузер, api/sdk |
+| [Coinbase](https://www.coinbase.com/wallet) | гибридный | EOA | нет | интерфейс | да | да | да | мобильный, браузер, api/sdk |
+| [CypherD](https://cypherd.io/) | некастодиальный | EOA | нет | да | да | да | да | мобильный |
+| [D'Cent](https://dcentwallet.com/) | Гибридная модель безопасности | EOA | нет | интерфейс | да | да | нет | мобильный |
+| [Exodus](https://www.exodus.com/) | некастодиальный | EOA | нет | да | нет | нет | да | мобильный, настольный |
+| [Gnosis Safe](https://gnosis-safe.io/) | некастодиальный | смарт-контракт | да | интерфейс | нет | нет | нет | mobile, browser, desktop, api/sdk |
+| [Guarda](https://guarda.com/) | некастодиальный | EOA | нет | нет | нет | да | да | мобильный, браузер, настольный |
+| [Huobi](https://www.itoken.com/en) | некастодиальный | EOA | нет | да | да | да | нет | мобильный |
+| [Ledger](https://www.ledger.com/) | некастодиальный | EOA | нет | интерфейс | нет | нет | Да | аппаратный, мобильный, настольный |
+| [Loopring](https://loopring.io/#/) | некастодиальный | смарт-контракт | нет | нет | нет | нет | нет | мобильный, api/sdk |
+| [Magic](https://fortmatic.com/)* | кастодиальный | EOA | нет | нет | нет |   |   | мобильный, браузер, api/sdk |
+| [MathWallet](https://mathwallet.org/en-us/) | кастодиальный | EOA | нет | нет | нет | да | да | мобильный, браузер, api/sdk |
+| [MetaMask](https://metamask.io/)* | некастодиальный | EOA | нет | интерфейс | да | нет | нет | мобильный, браузер, api/sdk |
+| [Multis](https://multis.co/)* | некастодиальный | EOA | нет | нет | нет |   | да | мобильный, настольный |
+| [MyEtherWallet](https://www.myetherwallet.com/)* | некастодиальный | EOA | нет | интерфейс | нет |   | да | мобильный |
+| [Omni](https://omni.app/) | некастодиальный | EOA | нет | интерфейс | нет | да |   | мобильный, api/sdk |
+| [Opera Crypto Browser](https://www.opera.com/crypto/next)* | некастодиальный | EOA | нет | поддержка | да |   |   | мобильный, браузер |
+| [Pillar](https://www.pillar.fi/) | некастодиальный | EOA | нет | интерфейс | нет |   | да | мобильный |
+| [Rainbow](https://rainbow.me/) | некастодиальный | EOA | нет | интерфейс | да |   | нет | мобильный, api/sdk |
+| [SafePal](https://safepal.io/) | некастодиальный | EOA | нет | нет | да | Да |   | аппаратный, мобильный, api/sdk |
+| [Sequence](https://sequence.app/auth) | некастодиальный | смарт-контракт | нет | интерфейс | нет |   |   | браузер, api/sdk |
+| [SimpleHold](https://simplehold.io/) | некастодиальный | EOA | да | нет | нет |   | да | мобильный, api/sdk |
+| [TokenPocket](https://www.tokenpocket.pro/en) | некастодиальный | EOA | нет | поддержка | да | да | да | мобильный, браузер, api/sdk |
+| [Torus](https://toruswallet.io/) | некастодиальный | EOA | Да | поддержка | нет | нет | нет | браузер, api/sdk |
+| Trezor | некастодиальный | EOA | нет | поддержка | нет |   |   | аппаратный, мобильный |
+| [Trust Wallet](https://trustwallet.com/) | некастодиальный | EOA | нет | поддержка | да |   | да | мобильный |
+| [Unstoppable](https://unstoppable.money/) | некастодиальный | EOA | нет | да | да |   | нет | мобильный, api/sdk |
+| [Venly](https://www.venly.io/) | гибридный | смарт-контракт | нет | интерфейс | нет |   |   | браузер, api/sdk |
+| [Wirex](https://wirexapp.com/en/wirex-wallet)* | некастодиальный | EOA | да | нет | нет |   |   | мобильный |
+| [XDeFi](https://www.xdefi.io/) | некастодиальный | EOA | нет | интерфейс | нет | нет | нет | браузер |
+| [Zerion](https://zerion.io/) | некастодиальный | EOA | нет | да | да | Да |   | мобильный, браузер |
+
+:::caution Поддержка Non-native кошелька
+
+Кошельки, обозначенные в таблице выше символом *, не имеют нативной поддержки в программном обеспечении кошелька
+и требуют определенных ручных шагов для добавления сети Polygon.
+
+:::
+
+## Стратегия управления ключами {#key-management-strategy}
+
+Следующие основные шаги позволяют интегрировать приложение на стороне клиента с Polygon:
+
+1. **Настройка Web3**: [web3.js](https://web3js.readthedocs.io/) — библиотека javascript, которая
+позволяет клиентскому приложению взаимодействовать с блокчейном. Мы настраиваем web3.js для общения через кошелек разработчика, например, MetaMask. Используйте [документацию web3.js](https://web3js.readthedocs.io/en/v1.2.2/getting-started.html#adding-web3-js), чтобы узнать о добавлении `web3.js` в ваш проект.
+2. **Настройка аккаунта**: Вы сможете отправлять транзакции (в частности, те, которые изменяют состояние блокчейна).
+3. **Instantiate Contracts**: После того, как объект web3 будет place, мы затем instantiate наш контракт развертываем. с которым мы взаимодействуем.
+4. **Функции вызова**: Данные Fetch через функции в контракте через наш объект контракта.

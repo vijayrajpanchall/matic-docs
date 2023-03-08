@@ -2,11 +2,11 @@
 id: get-balance
 title: getBalance
 keywords:
-  - 'pos client, erc1155, getBalance, polygon, sdk'
-description: 'Get balance of erc1155 token using matic.js'
+- 'pos client, erc1155, getBalance, polygon, sdk'
+description: 'Получите данные об остатке токена ERC1155 с помощью matic.js.'
 ---
 
-`getBalance` method can be used to get the balance of user for a token. It is available on both child and parent token.
+Метод `getBalance` можно использовать для получения данных об остатке токена у пользователя. Он доступен как для дочернего, так и для родительского токенов.
 
 ```
 const erc1155Token = posClient.erc1155(<token address>);

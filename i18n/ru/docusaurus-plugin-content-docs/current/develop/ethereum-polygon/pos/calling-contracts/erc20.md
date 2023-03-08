@@ -1,30 +1,33 @@
 ---
 id: erc20
-title: ERC20 Deposit and Withdraw Guide
+title: Руководство по депозиту и выводу ERC20
 sidebar_label: ERC20
-description: Build your next blockchain app on Polygon.
+description: "Доступные функции для контрактов ERC20."
 keywords:
   - docs
   - matic
+  - erc20
+  - deposit
+  - withdraw
 image: https://matic.network/banners/matic-network-16x9.png
 ---
 
-## High Level Flow
+## Поток высокого уровня {#high-level-flow}
 
-Depositing ERC20 -
+Депозит ERC20 -
 
-1. **_Approve_** **_ERC20Predicate_** contract to spend the tokens that have to be deposited.
-2. Make **_depositFor_** call on **_RootChainManager_**.
+1. **_Утвердите контракт_** **_ERC20Predicate_** для получения возможности тратить вносимые на депозит токены.
+2. Выполните вызов **_depositFor_** в **_RootChainManager_**.
 
-Withdrawing ERC20 -
+Вывод ERC20 -
 
-1. **_Burn_** tokens on Polygon chain.
-2. Call **_exit_** function on **_RootChainManager_** to submit proof of burn transaction. This call can be made **_after checkpoint_** is submitted for the block containing burn transaction.
+1. **_Сожгите_** токены в Polygon chain.
+2. Вызовите функцию **_exit_** в **_RootChainManager_** для отправки подтверждения транзакции сжигания. Этот вызов можно сделать **_после отправки checkpoint_** для блока, содержащего транзакцию сжигания.
 
-## Step Details
----
+## Настройка деталей {#setup-details}
 
-### Instantiate the contracts
+### Создание экземпляров контрактов {#instantiate-the-contracts}
+
 ```js
 const mainWeb3 = new Web3(mainProvider)
 const maticWeb3 = new Web3(maticProvider)
@@ -33,17 +36,17 @@ const rootChainManagerContract = new mainWeb3.eth.Contract(rootChainManagerABI, 
 const childTokenContract = new maticWeb3(childTokenABI, childTokenAddress)
 ```
 
-### Approve
-Approve **_ERC20Predicate_** to spend tokens by calling the **_approve_** function of token contract. This function takes two arguments spender and amount. **_spender_** is the address that is being approval to spend user's tokens. **_amount_** is the amount of tokens that can be spent. Keep amount equal to deposit amount for one time approval or pass a bigger number to avoid approving multiple times.
+### Утвердить {#approve}
+Утвердите **_ERC20Predicate_** для расходования токенов, вызвав функцию **_approve_** контракта токена. Эта функция принимает два аргумента — spender и amount. **_spender_** — это адрес, которому разрешено тратить токены пользователя. **_amount_** — это количество токенов, которые можно потратить. Значение amount должно быть равно количеству вносимых на депозит токенов для разового разрешения или большему числу, что позволит избежать многократного одобрения.
 ```js
 await rootTokenContract.methods
   .approve(erc20Predicate, amount)
   .send({ from: userAddress })
 ```
 
-### Deposit
-Note that token needs to be mapped and amount has to be approved for deposit before making this call.  
-Call the **_depositFor_** function of **_RootChainManager_** contract. This function takes 3 arguments user, rootToken and depositData. **_user_** is the address of user that will receive the deposit on Polygon chain. **_rootToken_** is the address of token on main chain. **_depositData_** is abi encoded amount.
+### Депозит {#deposit}
+Обратите внимание, что токен необходимо сопоставить, и сумму необходимо одобрить для депозита, прежде чем выполнять этот вызов.  
+Вызвать `depositFor()`функцию `RootChainManager`контракта. Эта функция принимает 3 аргумента: , а `depositData`. — это адрес пользователя, который получит депозит в цепочке `rootToken`Polygon. `userAddress`— адрес токена в главной цепочке. `depositData`— это `userAddress``rootToken`сумма, закодированная ABI.
 ```js
 const depositData = mainWeb3.eth.abi.encodeParameter('uint256', amount)
 await rootChainManagerContract.methods
@@ -51,8 +54,8 @@ await rootChainManagerContract.methods
   .send({ from: userAddress })
 ```
 
-### Burn
-Tokens can be burned on Polygon chain by calling the **_withdraw_** function on child token contract. This function takes a single argument, **_amount_** indicating the number of tokens to be burned. Proof of this burn needs to be submitted in the exit step. So store the transaction hash.
+### Сжигание {#burn}
+Токены можно сжигать в Polygon chain посредством вызова функции **_withdraw_** для контракта дочернего токена. Эта функция принимает единственный аргумент **_amount_**, указывающий на количество токенов для сжигания. Подтверждение этого сжигания необходимо отправить на этапе выхода. В связи с этим необходимо сохранить хэш транзакции.
 ```js
 const burnTx = await childTokenContract.methods
   .withdraw(amount)
@@ -60,27 +63,28 @@ const burnTx = await childTokenContract.methods
 const burnTxHash = burnTx.transactionHash
 ```
 
-### Exit
-Exit function on **_RootChainManager_** contract has to be called to unlock and receive the tokens back from **_ERC20Predicate_**. This function takes a single bytes argument that proves the burn transaction. Wait for the checkpoint containing burn transaction to be submitted before calling this function. The Proof is generated by RLP ecoding following fields -
+### Выход {#exit}
+Функция выхода в `RootChainManager`контракте должна быть вызвана для разблокировки и получения токенов обратно.`ERC20Predicate` Эта функция принимает однобайтовый аргумент, являющийся доказательством транзакции сжигания. Подождите checkpoint, содержащий транзакцию записанного, перед вызовом этой функции. Доказательство генерируется с помощью кодирования RLP, следующего поля -
 
-1. headerNumber - Checkpoint header block number containing the burn tx
-2. blockProof - Proof that the block header (in the child chain) is a leaf in the submitted merkle root
-3. blockNumber - Block number containing the burn tx on child chain
-4. blockTime - Burn tx block time
-5. txRoot - Transactions root of block
-6. receiptRoot - Receipts root of block
-7. receipt - Receipt of the burn transaction
-8. receiptProof - Merkle proof of the burn receipt
-9. branchMask - 32 bits denoting the path of receipt in merkle patricia tree
-10. receiptLogIndex - Log Index to read from the receipt
+1. headerNumber - номер блока заголовка Checkpoint, содержащий tx сжигания
+2. blockProof - доказательство того, что заголовок блока (в дочерней цепочке) является листом отправленного корня дерева Меркла
+3. blockNumber - номер блока, содержащего tx сжигания в дочерней цепочке
+4. blockTime - время блокировки tx сжигания
+5. txRoot - корень блока транзакции
+6. receiptRoot - получение корня блока
+7. receipt - получение транзакции сжигания
+8. receiptProof - доказательство получения сжигания с помощью дерева Меркла
+9. branchMask - 32 бита, означающие путь получения в дереве Меркла Патрисии
+10. receiptLogIndex - указатель журнала для чтения квитанции о получении
 
-Generating proof manually can be tricky so it is advisable to use Polygon Edge. If you want to send the transaction manually, you can pass **_encodeAbi_** as **_true_** in the options object to get raw calldata.
+Генерировать доказательство вручную может быть непросто, и поэтому рекомендуется использовать Polygon Edge. Если вы хотите отправить транзакцию вручную, вы можете передать **_encodeAbi_** как **_true_** в объекте опций для получения необработанных данных calldata.
+
 ```js
 const exitCalldata = await maticPOSClient
   .exitERC20(burnTxHash, { from, encodeAbi: true })
 ```
 
-Send this calldata to **_RootChainManager_**.
+Отправьте эти данные calldata в **_RootChainManager_**.
 ```js
 await mainWeb3.eth.sendTransaction({
   from: userAddress,

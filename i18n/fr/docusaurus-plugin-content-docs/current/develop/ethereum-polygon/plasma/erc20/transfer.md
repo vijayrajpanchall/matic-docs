@@ -1,14 +1,14 @@
 ---
 id: transfer
-title: transfer
+title: transférer
 keywords:
-  - 'plasma client, erc20, transfer, polygon, sdk'
-description: 'Transfer erc20 plasma tokens'
+- 'plasma client, erc20, transfer, polygon, sdk'
+description: 'Transférer les jetons plasma erc20'
 ---
 
-# Transfer
+# Transférer {#transfer}
 
-`transfer` method can be used to transfer amount from one address to another address.
+`transfer`méthode peut être utilisée pour transférer un montant d'une adresse à une autre.
 
 ```
 const erc20Token = plasmaClient.erc20(<token address>);
@@ -21,9 +21,9 @@ const txReceipt = await result.getReceipt();
 
 ```
 
-## Transfer MATIC token
+## Transférez les jetons MATIC {#transfer-matic-token}
 
-MATIC is native token on polygon. So we support transfer of matic tokens without any token address.
+MATIC est un jeton originaire  de polygone. Nous prenons en charge donc le transfert de jetons matic sans adresse de jeton.
 
 ```
 // initialize token with null means use MATIC tokens

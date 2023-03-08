@@ -1,12 +1,12 @@
 ---
 id: get-balance
-title: getBalance
+title: obtenirSolde
 keywords:
-  - 'pos client, erc1155, getBalance, polygon, sdk'
-description: 'Get balance of erc1155 token using matic.js'
+- 'pos client, erc1155, getBalance, polygon, sdk'
+description: 'Obtenez le solde de jeton ERC1155 en utilisant matic.js.'
 ---
 
-`getBalance` method can be used to get the balance of user for a token. It is available on both child and parent token.
+`getBalance` la méthode peut être utilisée pour obtenir le solde d'utilisateur pour un jeton. C'est disponible à la fois sur le jeton enfant et le jeton parent.
 
 ```
 const erc1155Token = posClient.erc1155(<token address>);

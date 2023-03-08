@@ -1,57 +1,56 @@
 ---
 id: proposers-producers-selection
-title: Proposers & Producers Selection
+title: Выбор авторов предложения и продюсеров
 sidebar_label: Proposers & Producers
-description: "Proposer & block producer selection on Polygon."
+description: Выбор продюсера предложения и блока в Polygon
 keywords:
   - docs
   - polygon
   - matic
   - proposers
-  - producers
+  - block producers
   - selection
 slug: proposers-producers-selection
-image: https://matic.network/banners/matic-network-16x9.png
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
-
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-Block Producers for the BOR layer, are a committee selected from the Validators pool on the basis of their stake which happens at regular intervals. These intervals are decided by the Validator's governance with regards to dynasty and network.
+Блок-продюсеры для уровня Bor — это комитет, выбираемый из пула валидаторов на основе их стейка через регулярные промежутки времени. Эти промежутки времени определяются управлением валидатора в отношении династии и сети.
 
-The ratio of [stake](../../glossary#staking) specifies the probability to be selected as a member of [block producers](../../glossary#block-producer) committee.
+Вероятность стать членом комитета [блок-продюсеров](/docs/maintain/glossary.md#block-producer) определяется долей [стейка](/docs/maintain/glossary.md#staking).
 
-## Selection process
+## Процесс выбора {#selection-process}
 
-Let's suppose we have 3 validators in pool — Alice, Bill, and Clara:
+Предположим, в пуле три валидатора: Элис, Билл и Клара.
 
-* Alice is staking 100 MATIC tokens.
-* Bill is staking 40 MATIC tokens.
-* Clara is staking 40 MATIC tokens.
+* Элис размещает в стейкинге 100 токенов MATIC.
+* Билл размещает в стейкинге 40 токенов MATIC.
+* Клара размещает в стейкинге 40 токенов MATIC.
 
-Validators are given slots according to the stake.
+В зависимости от размера стейка валидаторы получают слоты.
 
-Because Alice has 100 MATIC tokens staked, and the per slot cost is 10 MATIC tokens as maintained by validator's governance, Alice gets 5 slots in total. Similarly, Bill and Clara get 2 slots in total.
+Поскольку Элис разместила в стейкинге 100 токенов MATIC, а стоимость одного слота составляет 10 токенов MATIC в соответствии с управлением валидатора, Элис получает пять слотов. Аналогичным образом Билл и Клара получают в общей сложности по два слота.
 
-The Alice, Bill and Clara validators are given the following slots:
+Валидаторы Элис, Билл и Клара получают следующие слоты:
 
-* [ A, A, A, A, A, B, B, C, C ]
+* [A, A, A, A, A, B, B, C, C]
 
-Polygon then shuffles the array of the Alice, Bill and Clara slots by using the Ethereum block hashes as seed.
+Затем Polygon перемешивает массив слотов Элис, Билла и Клары, используя хэши блоков Ethereum в качестве начального значения.
 
-The result of the shuffle is the following array of slots:
+В результате перемешивания формируется следующий массив слотов:
 
-* [ A, B, A, A, C, B, A, A, C]
+* [A, B, A, A, C, B, A, A, C]
 
-Now depending on the total block producer count as maintained by validator's governance, Polygon uses the validators from the top — for example. for a set of 5 producers the array of slots is [ A, B, A, A, C].
+Теперь в зависимости от общего количества блок-продюсеров, поддерживаемого управлением валидатора, Polygon использует валидаторов с начала. Например, для набора из пяти продюсеров массив слотов будет таким: [A, B, A, A, C].
 
-The producer set for the next span is defined as [ A: 3, B:1, C:1 ].
+Набор продюсеров для следующего диапазона блоков определяется как [A:3, B:1, C:1].
 
-Using the resulting validator set and Tendermint's [proposer selection algorithm](https://docs.tendermint.com/master/spec/consensus/proposer-selection.html), Polygon selects a producer for every sprint on Bor.
+Используя полученный набор валидаторов и [алгоритм выбора продюсера](https://docs.tendermint.com/master/spec/consensus/proposer-selection.html) Tendermint, Polygon выбирает продюсера для каждого спринта на уровне Bor.
 
 <img src={useBaseUrl("img/validators/producer-proposer.png")} />
 
-Legend:
+**Легенда:**
 
-* Dynasty: Time between the end of the last auction and start time of the next auction.
-* Sprint: Time interval for which the block producers committee is selected.
-* Span: Number of blocks produced by a single producer.
+* Династия: время между концом последнего аукциона и началом следующего.
+* Спринт: интервал времени, на который выбирается комитет блок-продюсеров.
+* Диапазон блоков: количество блоков, созданных одним продюсером.

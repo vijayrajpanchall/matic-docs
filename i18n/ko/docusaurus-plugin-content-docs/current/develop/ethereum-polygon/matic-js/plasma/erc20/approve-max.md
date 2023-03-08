@@ -2,11 +2,11 @@
 id: approve-max
 title: approveMax
 keywords:
-  - 'plasma client, erc20, approveMax, polygon, sdk'
-description: 'maticjs로 시작하기'
+- 'plasma client, erc20, approveMax, polygon, sdk'
+description: '루트 토큰의 최대 금액을 승인합니다.'
 ---
 
-`approveMax` 메소드는 루트 토큰의 최대 수량을 승인하는 데 사용할 수 있습니다.
+`approveMax` 메서드를 사용해 루트 토큰의 최대 금액을 승인할 수 있습니다.
 
 ```
 const erc20RootToken = plasmaClient.erc20(<root token address>, true);

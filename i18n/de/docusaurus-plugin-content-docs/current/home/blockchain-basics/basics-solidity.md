@@ -1,43 +1,52 @@
 ---
 id: solidity
-title: What is Solidity?
+title: Was ist Solidity?
 sidebar_label: Solidity
-description: "An object-oriented language for implementing smart contracts."
+description: "Eine objektorientierte Sprache für die Umsetzung von intelligenten Verträgen."
 keywords:
   - docs
   - matic
-image: https://matic.network/banners/matic-network-16x9.png
+  - polygon
+  - solidity
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
-## Solidity<img src = 'https://solidity.readthedocs.io/en/v0.6.11/_images/logo.svg' width='50' />
-Solidity is an object oriented, high-level programming language for implementing smart contracts. It allows to write programs, which governs the behavior of accounts within blockchain network. It is statically typed, supports contract inheritance and has many built-in Contract Libraries. Solidity is similar to programming languages like  C++, Python and JavaScript.
+# Was ist Solidität {#what-is-solidity}
 
-It comprised of:
-- variables
-- operators
-- loops
-- conditionals
-- modifiers
-- functions
-- objects and types
-- events
-- interfaces
-- and handles money transactions!
+Solidity ist eine objektorientierte, hochrangige Programmiersprache für die Implementierung von Smart Contracts. Es ermöglicht das Schreiben von Programmen, die das Verhalten von Accounts im Blockchain-Netzwerk regeln. Es wird statisch eingegeben, unterstützt die Vererbung von Verträgen und verfügt über viele integrierte Contract Libraries. Solidity ist ähnlich zu Programmiersprachen wie C++, Python und JavaScript.
 
-Before jumping to coding with Solidity it is important to familiarize oneself with blockchain's mental models - these are essential because of the contrasting difference in a blockchain application architecture and a common web application architecture. Where we want to go is Web 3.0, where servers and databases are as decentralized as the clients. In other words, clients can also act as servers or databases or both (aka, peer-to-peer). With many-to-many relationships at all levels of the stack, there are no concentrations of control and a single point of failure. The network is maximally distributed.
+Es besteht aus:
+- Variablen
+- Betreiber
+- Loops
+- Bedingungen
+- Modifikatoren
+- Funktionen
+- Objekte
+- Ereignisse
+- Schnittstellen
+- und behandelt die monetären Transaktionen.
 
-Essentially the following points need to be kept in mind always:
+Bevor man mit Solidity kodiert, ist es wichtig, sich mit den mentalen Modellen der Blockchain vertraut zu machen - diese sind aufgrund des kontrastreichen Unterschieds in einer Blockchain-Anwendungsarchitektur und einer gemeinsamen Web-Anwendungsstruktur wichtig. Wo wir hinwollen ist das Web 3.0, wo Server und Datenbanken so dezentralisiert sind wie die Clients. Mit anderen Worten, Clients können auch als Server oder Datenbanken oder beide (Peer-to-Peer) fungieren. Mit vielen zu vielen Beziehungen auf allen Ebenen des Stacks gibt es keine Konzentration der Kontrolle und einen einzigen Ausfallpunkt. Das Netzwerk wird maximal verteilt.
 
-- Memory is limited - each memory element requires all nodes on the blockchain to confirm and store that element
-- Computation complexity is limited
-- Reading data is free
-- Each write operation has a cost associated with it - you pay it with ether. The cost is measured in gas.
+Im Wesentlichen müssen die folgenden Punkte immer im Auge behalten werden:
 
-#### Tools for Working With Solidity
-- Truffle: DApp development framework
-- Remix:  Web IDE for Solidity
-- Web3
-- Metamask
-### **:scroll:Resources**
+- Der Speicher ist begrenzt - jedes Speicherelement erfordert alle Knoten auf der Blockchain, um dieses Element zu bestätigen und zu speichern
+- Berechnungskomplexität ist begrenzt
+- Das Lesen von Daten ist kostenlos
+- Jeder Schreibvorgang hat Kosten, die damit verbunden sind - Sie zahlen es mit Ether. Die Kosten werden in Gas gemessen.
 
-:books: [Solidity Docs](https://solidity.readthedocs.io/)
+### Werkzeuge für die Arbeit mit Solidity {#tools-for-working-with-solidity}
+- [Hardhat](https://hardhat.org): dApp Entwicklungsframework
+- [Truffle](https://trufflesuite.com/): dApp Entwicklungsframework
+- [Alchemy SDK](https://docs.alchemy.com/reference/alchemy-sdk-quickstart): Web3 SDK für die Bereitstellung / das Lesen von Smart Contracts
+- [Remix](https://remix-project.org/): Web IDE für Solidität
+- [Metamask](https://metamask.io/): Beliebteste Crypto Wallet
+
+### Ressourcen {#resources}
+
+- [Solidity Docs](https://solidity.readthedocs.io/): Offizielle Solidity Docs
+- [Solidität By Beispiel](https://solidity-by-example.org/): Benutze kurze Snippets, um zu lernen, Solidity zu schreiben.
+- [Web3 University](https://web3.university): Community-driven Hub für die smarte Vertragsentwicklung
+- [Alchemy University](https://university.alchemy.com/): 10-wöchige Kurse auf Web3 / Smart Contract dev.
+

@@ -1,50 +1,51 @@
 ---
 id: staking
-title: Staking
-description: Staking module manages validator related transactions and state for Heimdall. Note that a validator stakes their tokens on the Ethereum chain and becomes a validator. Respective validators send the transactions on Heimdall using necessary parameters to acknowledge the Ethereum stake change.
+title: 스테이킹
+description: 유효성 검사 관련 트랜잭션 및 상태를 관리하는 모듈
 keywords:
   - docs
   - matic
+  - staking
+  - heimdall
+  - validator
 image: https://matic.network/banners/matic-network-16x9.png
 ---
-
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-## Overview
+# 스테이킹 {#staking}
 
-Staking module manages validator related transactions and state for Heimdall. Note that a validator stakes their tokens on the Ethereum chain and becomes a validator. Respective validators send the transactions on Heimdall using necessary parameters to acknowledge the Ethereum stake change. Once the majority of the validators agree on the change on the stake, this module saves the validator information on Heimdall state.
+스테이킹 모듈은 Heimdall의 유효성 검사자 관련 트랜잭션 및 상태를 관리합니다. 유효성 검사자는 이더리움 체인에 토큰을 스테이킹하고 유효성 검사자가 됩니다. 각 유효성 검사자는 이더리움 스테이크 변경을 승인하는 데 필요한 파라미터를 사용하여 Heimdall에서 트랜잭션을 보냅니다. 유효성 검사자의 대다수가 스테이크 변경에 동의하면 이 모듈은 Heimdall 상태에 유효성 검사자 정보를 저장합니다.
 
-## Key management
+## 키 관리 {#key-management}
 
-For key management, please refer to [Validator key management](/docs/pos/heimdall/validator-key-management)
+키 관리에 대한 내용은 [유효성 검사자 키 관리](/docs/pos/heimdall/validator-key-management)를 참조하십시오.
 
-## Delegation
+## 위임 {#delegation}
 
-This module only manages validator staking on Heimdall. The delegation is only available on smart contracts on the Ethereum chain. To optimize the delegation rewards calculation on smart contracts, we are using validator shares (ERC20 per validator).
+이 모듈은 Heimdall에서 유효성 검사자의 스테이킹만 관리합니다. 위임은 이더리움 체인의 스마트 계약에서만 가능합니다. 스마트 계약에서 위임 보상 계산을 최적화하기 위해 Polygon은 유효성 검사자 지분(유효성 검사자당 ERC20)을 사용하고 있습니다.
 
-More details here: [Delegation (Validator shares)](/docs/pos/contracts/delegation)
+자세한 내용은 [위임(유효성 검사자 지분)](/docs/pos/contracts/delegation)을 참조하십시오.
 
-## Rewards
+## 보상 {#rewards}
 
-All rewards are distributed on the Ethereum chain. The validators and delegators claim their rewards or re-stake by simply sending the transaction on `StakeManager.sol`
+모든 보상은 이더리움 체인에서 분배됩니다. 유효성 검사자와 위임자는 간단히 `StakeManager.sol`에서 트랜잭션을 보내 보상을 청구하거나 재스테이킹을 수행합니다.
 
-More details here: [Rewards](/docs/maintain/validator/rewards#what-is-the-incentive)
+자세한 내용은 [보상](/docs/maintain/validator/rewards.md#what-is-the-incentive)을 참조하십시오.
 
-## Messages
-
+## 메시지 {#messages}
 
 <img src={useBaseUrl('img/staking/stake-management-flow.svg')} />
 
-### MsgValidatorJoin
+### MsgValidatorJoin {#msgvalidatorjoin}
 
-`MsgValidatorJoin` handles the staking when a new validator joins the system. Once validator calls `stake` or `stakeFor` in `StakingManager.sol` on Ethereum, and the new `Staked` event is emitted.
+`MsgValidatorJoin`은 새로운 유효성 검사자가 시스템에 합류할 때 스테이킹을 관장합니다. 유효성 검사자가 이더리움의 `StakingManager.sol`에서 `stake` 또는 `stakeFor`를 호출하면 새로운 `Staked` 이벤트가 발생합니다.
 
-Source: [https://github.com/maticnetwork/contracts/blob/develop/contracts/staking/StakingInfo.sol#L27-L34](https://github.com/maticnetwork/contracts/blob/develop/contracts/staking/StakingInfo.sol#L27-L34)
+출처: [https://github.com/maticnetwork/contracts/blob/develop/contracts/staking/StakingInfo.sol#L27-L34](https://github.com/maticnetwork/contracts/blob/develop/contracts/staking/StakingInfo.sol#L27-L34)
 
 ```jsx
 /**
- * Staked event - emitted whenever new validator 
- * 
+ * Staked event - emitted whenever new validator
+ *
  * @param signer           Signer address for the validator
  * @param validatorId      Validator id
  * @param activationEpoch  Activation epoch for validator
@@ -62,59 +63,59 @@ event Staked(
 );
 ```
 
- `activationEpoch` is the checkpoint count from where a validator will become active on Heimdall.
+`activationEpoch`는 Heimdall에서 유효성 검사자가 활성화되는 체크포인트 수입니다.
 
-Stake call on smart contract fails if slots are unavailable. Validator slots are the way to restrict a number of validators in the system.  Slots are managed on Ethereum smart contracts.
+슬롯을 사용할 수 없으면 스마트 계약에서 스테이크 호출을 수행할 수 없습니다. 시스템에서 유효성 검사자의 수를 제한하는 방법이 유효성 검사자 슬롯입니다.  슬롯은 이더리움 스마트 계약에서 관리됩니다.
 
-Here is `ValidatorJoin` message for Heimdall transaction:
+다음은 Heimdall 트랜잭션을 위한 `ValidatorJoin` 메시지입니다.
 
 ```go
 type MsgValidatorJoin struct {
-    From         hmTypes.HeimdallAddress `json:"from"`
-    ID           hmTypes.ValidatorID     `json:"id"`
-    SignerPubKey hmTypes.PubKey          `json:"pub_key"`
-    TxHash       hmTypes.HeimdallHash    `json:"tx_hash"`
-    LogIndex     uint64                  `json:"log_index"`
+	From         hmTypes.HeimdallAddress `json:"from"`
+	ID           hmTypes.ValidatorID     `json:"id"`
+	SignerPubKey hmTypes.PubKey          `json:"pub_key"`
+	TxHash       hmTypes.HeimdallHash    `json:"tx_hash"`
+	LogIndex     uint64                  `json:"log_index"`
 }
 ```
 
-### MsgStakeUpdate
+### MsgStakeUpdate {#msgstakeupdate}
 
-`MsgStakeUpdate` handles the stake update when a validator the re-stakes or new delegation comes in. In either case, the new `StakeUpdate` event is emitted.
+`MsgStakeUpdate`는 유효성 검사자가 다시 스테이킹을 하거나 새로운 위임이 발생할 때 스테이크 업데이트를 처리합니다. 두 경우 모두 새로운 `StakeUpdate` 이벤트가 발생합니다.
 
 ```jsx
 /**
- * Stake update event - emitted whenever stake gets updated 
- * 
+ * Stake update event - emitted whenever stake gets updated
+ *
  * @param validatorId      Validator id
  * @param newAmount        New staked amount
  */
 event StakeUpdate(
-    uint256 indexed validatorId, 
-    uint256 indexed newAmount
+	uint256 indexed validatorId,
+	uint256 indexed newAmount
 );
 ```
 
-Here is `MsgStakeUpdate` message for Heimdall transaction:
+다음은 Heimdall 트랜잭션을 위한 `MsgStakeUpdate` 메시지입니다.
 
 ```go
 // MsgStakeUpdate represents stake update
 type MsgStakeUpdate struct {
-    From     hmTypes.HeimdallAddress `json:"from"`
-    ID       hmTypes.ValidatorID     `json:"id"`
-    TxHash   hmTypes.HeimdallHash    `json:"tx_hash"`
-    LogIndex uint64                  `json:"log_index"`
+	From     hmTypes.HeimdallAddress `json:"from"`
+	ID       hmTypes.ValidatorID     `json:"id"`
+	TxHash   hmTypes.HeimdallHash    `json:"tx_hash"`
+	LogIndex uint64                  `json:"log_index"`
 }
 ```
 
-### MsgValidatorExit
+### MsgValidatorExit {#msgvalidatorexit}
 
-`MsgValidatorExit` handles the validator exit process after a validator initiates the exit process on Ethereum. It emits `SignerUpdate` event.
+`MsgValidatorExit`는 유효성 검사자가 이더리움에서 종료 프로세스를 시작한 후 유효성 검사자의 종료 프로세스를 처리합니다. `SignerUpdate` 이벤트가 발생합니다.
 
 ```jsx
 /**
  * Unstake init event - emitted whenever validator initiates the exit
- * 
+ *
  * @param user                Signer
  * @param validatorId         Validator id
  * @param deactivationEpoch   Deactivation epoch for validator
@@ -128,25 +129,25 @@ event UnstakeInit(
 );
 ```
 
-Here is `MsgValidatorExit` message for Heimdall transaction:
+다음은 Heimdall 트랜잭션을 위한 `MsgValidatorExit` 메시지입니다.
 
 ```go
 type MsgValidatorExit struct {
-    From     hmTypes.HeimdallAddress `json:"from"`
-    ID       hmTypes.ValidatorID     `json:"id"`
-    TxHash   hmTypes.HeimdallHash    `json:"tx_hash"`
-    LogIndex uint64                  `json:"log_index"`
+	From     hmTypes.HeimdallAddress `json:"from"`
+	ID       hmTypes.ValidatorID     `json:"id"`
+	TxHash   hmTypes.HeimdallHash    `json:"tx_hash"`
+	LogIndex uint64                  `json:"log_index"`
 }
 ```
 
-### MsgSignerUpdate
+### MsgSignerUpdate {#msgsignerupdate}
 
-`MsgSignerUpdate` handles the signer update when a validator updates signer key on Ethereum. It emits `SignerUpdate` event.
+`MsgSignerUpdate`는 유효성 검사자가 이더리움에서 서명자 키를 업데이트할 때 서명자 업데이트를 관장합니다. `SignerUpdate` 이벤트가 발생합니다.
 
 ```jsx
 /**
  * Signer change event - emitted whenever signer key changes
- * 
+ *
  * @param validatorId      Validator id
  * @param oldSigner        Current old signer
  * @param newSigner        New signer
@@ -160,32 +161,32 @@ event SignerChange(
 );
 ```
 
-Here is `MsgSignerUpdate` message for Heimdall transaction:
+다음은 Heimdall 트랜잭션을 위한 `MsgSignerUpdate` 메시지입니다.
 
 ```go
 // MsgSignerUpdate signer update struct
 type MsgSignerUpdate struct {
-    From            hmTypes.HeimdallAddress `json:"from"`
-    ID              hmTypes.ValidatorID     `json:"id"`
-    NewSignerPubKey hmTypes.PubKey          `json:"pubKey"`
-    TxHash          hmTypes.HeimdallHash    `json:"tx_hash"`
-    LogIndex        uint64                  `json:"log_index"`
+	From            hmTypes.HeimdallAddress `json:"from"`
+	ID              hmTypes.ValidatorID     `json:"id"`
+	NewSignerPubKey hmTypes.PubKey          `json:"pubKey"`
+	TxHash          hmTypes.HeimdallHash    `json:"tx_hash"`
+	LogIndex        uint64                  `json:"log_index"`
 }
 ```
 
-## CLI commands
+## CLI 명령 {#cli-commands}
 
-### Validator details
+### 유효성 검사자 세부 정보 {#validator-details}
 
-**By signer address**
+**서명자 주소별**
 
 ```bash
 heimdallcli query staking validator-info \
-    --validator=<signer-address> \
-    --chain-id <chain-id>
+	--validator=<signer-address> \
+	--chain-id <chain-id>
 ```
 
-This command should display the following output:
+이 명령은 다음 출력을 표시합니다.
 
 ```json
 {
@@ -200,15 +201,15 @@ This command should display the following output:
 }
 ```
 
-**By validator address**
+**유효성 검사자 주소별**
 
 ```bash
 heimdallcli query staking validator-info \
-    --id=<validator-id> \
-    --chain-id=<chain-id>
+	--id=<validator-id> \
+	--chain-id=<chain-id>
 ```
 
-This command should display the following output:
+이 명령은 다음 출력을 표시합니다.
 
 ```json
 {
@@ -223,35 +224,35 @@ This command should display the following output:
 }
 ```
 
-### Validator join
+### 유효성 검사자 합류 {#validator-join}
 
-This command sends validator join command through CLI:
+이 명령은 CLI를 통해 유효성 검사자 합류 명령을 보냅니다.
 
 ```bash
 heimdallcli tx staking validator-join \
-    --signer-pubkey <signer-public-key> \
-    --tx-hash <tx-hash>   \
-    --log-index <log-index> \ 
-    --chain-id <chain-id>
+	--signer-pubkey <signer-public-key> \
+	--tx-hash <tx-hash>   \
+	--log-index <log-index> \
+	--chain-id <chain-id>
 ```
 
-`tx-hash` value must be the same as Ethereum TX hash which emitted `Staked` event and `log-index` must be the same at which index the event is emitted.
+`tx-hash` 값은 `Staked` 이벤트를 발생시킨 이더리움 TX 해시와 동일해야 하며 `log-index`는 이벤트가 발생하는 인덱스와 동일해야 합니다.
 
-## REST APIs
+## 기타 API {#rest-apis}
 
-| Name                       | Method | Endpoint                        |
-| -------------------------- | ------ | ------------------------------- |
-| Get Heimdall validator set | GET    | /staking/validator-set          |
-| Get validator details      | GET    | /staking/validator/validator-id |
+| 이름 | 메서드 | 엔드포인트 |
+|----------------------|------|------------------|
+| Heimdall 유효성 검사자 세트 가져오기 | GET | /staking/validator-set |
+| 유효성 검사자 세부 정보 가져오기 | GET | /staking/validator/validator-id |
 
 
-All query APIs will result in following format:
+모든 쿼리 API는 다음 형식으로 생성됩니다.
 
 ```json
 {
-    "height": "1",
-    "result": {
-        ...   
-    }
+	"height": "1",
+	"result": {
+		...	  
+	}
 }
 ```

@@ -1,31 +1,33 @@
 ---
 id: multiple-accounts
-title: Create & Import Accounts
-description: Build your next blockchain app on Polygon.
+title: Создание и импорт счетов
+description: Создание и импорт нескольких счетов
 keywords:
-  - docs
-  - matic
-image: https://matic.network/banners/matic-network-16x9.png
+  - wiki
+  - polygon
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
-
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-In case you are new to Ethereum and Metamask, here is a guide on how to create multiple accounts and import them:
+Если вы незнакомы с Ethereum и Metamask, это руководство научит вас создавать несколько счетов и импортировать их:
 
-## Create Account
+## Создание счета {#create-account}
 
-To create multiple accounts, you click on Profile icon on MetaMask and then click on Create Account<br/><br/>
+Для создания нескольких счетов нажмите на иконку профиля в Metamask, а затем нажмите «Create Account» (Создать счет)<br/><br/>
 
 <img src={useBaseUrl("img/metamask/create-accounts.png")} /><br/><br/>
 
-You can then add an account name and click on Create.<br/><br/>
+Затем вы можете добавить имя счета и нажать «Create» (Создать).<br/><br/>
 
 <img src={useBaseUrl("img/metamask/create-new-account.png")} />
 
-You can create more accounts this way. When you create multiple accounts, your addresses will be different at your end.
+Так вы можете создать больше счетов. При создании нескольких счетов адреса на вашей стороне будут отличаться.
 
-## Import Account
+:::tip Импорт счета
+Процесс импорта в MetaMask аналогичен созданию нового аккаунта. Вам просто нужно скопировать **ключ Private** (подробнее [<ins>об этом здесь),</ins>](https://metamask.zendesk.com/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key#:~:text=On%20the%20account%20page%2C%20click,click%20%E2%80%9CConfirm%E2%80%9D%20to%20proceed.) из вашего локального аккаунта. Затем вставьте его в предоставленное окно и выберите Импорт.
 
-* Open your wallet browser extension from your browser
-* Select **Settings > Import Account**
-* Copy the **Private key**(You can find this in the Account Details) from your local account, paste it into the window provided, and select Import
+<div align="center">
+<img width="300" src={useBaseUrl("img/metamask/develop/import-account.png")} />
+</div>
+
+:::

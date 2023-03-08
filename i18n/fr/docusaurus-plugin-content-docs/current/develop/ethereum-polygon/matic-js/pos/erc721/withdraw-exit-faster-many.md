@@ -2,15 +2,16 @@
 id: withdraw-exit-faster-many
 title: withdrawExitFasterMany
 keywords:
-  - 'pos client, erc721, withdrawExitFasterMany, polygon, sdk'
-description: 'Get started with maticjs'
+- 'pos client, erc721, withdrawExitFasterMany, polygon, sdk'
+description: 'Quittez le processus de retrait en utilisant le txHash de « withdrawStartMany ».'
 ---
 
-`withdrawExitFasterMany` method can be used to exit the withdraw process by using the txHash from `withdrawStartMany` method.
+`withdrawExitFasterMany` La méthode peut être utilisée pour quitter le processus de retrait en utilisant le txHash de la `withdrawStartMany`méthode.
 
- class="highlight mb-20px mt-20px"> It is fast because it generates proof in backend. You need to configure [setProofAPI](/docs/develop/ethereum-polygon/matic-js/set-proof-api). >
 
-**Note**- withdrawStart transaction must be checkpointed in order to exit the withdraw.
+C'est rapide, car cela génère la preuve en arrière-plan. Vous devez configurer [setProofAPI](/docs/develop/ethereum-polygon/matic-js/set-proof-api).
+
+**Remarque**- la transaction withdrawStart doit être contrôlée afin de sortir du retrait.
 
 ```
 const erc721RootToken = posClient.erc721(<root token address>, true);

@@ -1,12 +1,12 @@
 ---
 id: withdraw-exit
-title: withdrawExit
+title: retirerSortir
 keywords:
-  - 'pos client, erc721, withdrawExit, polygon, sdk'
-description: 'Get started with maticjs'
+- 'pos client, erc721, withdrawExit, polygon, sdk'
+description: 'Quittez le processus de retrait en utilisant le txHash de « withdrawStart ».'
 ---
 
-`withdrawExit` method can be used to exit the withdraw process by using the txHash from `withdrawStart` method.
+`withdrawExit`La méthode peut être utilisée pour quitter le processus de retrait en utilisant le txHash de la `withdrawStart`méthode.
 
 ```
 const erc721RootToken = posClient.erc721(<root token address>, true);
@@ -20,4 +20,5 @@ const txReceipt = await result.getReceipt();
 ```
 
 
-This method does multiple RPC calls to generate the proof and process exit. So it is recommended to use withdrawExitFaster method. >
+Cette méthode effectue plusieurs appels RPC pour générer la preuve et traiter la sortie. C'est donc recommandé d'utiliser la méthode withdrawExitFaster.
+>

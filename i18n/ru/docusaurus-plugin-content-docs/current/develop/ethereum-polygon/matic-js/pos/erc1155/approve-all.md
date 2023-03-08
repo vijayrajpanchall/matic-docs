@@ -2,13 +2,13 @@
 id: approve-all
 title: approveAll
 keywords:
-  - 'pos client, erc1155, approve, polygon, sdk'
-description: 'Approve erc1155 token'
+- 'pos client, erc1155, approve, polygon, sdk'
+description: 'Утвердите токены ERC1155.'
 ---
 
-# approveAll
+# approveAll {#approveall}
 
-`approveAll` method can be used to approve all tokens on root token.
+Метод `approveAll` можно использовать для утверждения всех токенов на корневом токене.
 
 ```
 const erc1155RootToken = posClient.erc1155(<root token address>,true);

@@ -1,64 +1,68 @@
 ---
 id: encoder
 title: Encoder (Pulp)
-description: Heimdall needs to verify the transactions of Heimdall on the Ethereum chain. For that it uses RLP encoding to produce special transactions, like checkpoint.
+description: RLP-Codierung zur Erzeugung spezieller Transaktionen wie Checkpoint
 keywords:
   - docs
   - matic
+  - rlp encoding
+  - checkpoint
+  - encoder
+  - polygon
 image: https://matic.network/banners/matic-network-16x9.png
 ---
 
-## Pulp
+# Encoder (Pulp) {#encoder-pulp}
 
-Source: [https://github.com/maticnetwork/heimdall/blob/master/auth/types/pulp.go](https://github.com/maticnetwork/heimdall/blob/master/auth/types/pulp.go)
+Heimdall muss die Transaktionen von Heimdall in der Ethereum Chain verifizieren. Dazu verwendet es RLP-Kodierung, um spezielle Transaktionen wie Checkpoint zu erzeugen.
 
-Heimdall needs to verify the transactions of Heimdall on the Ethereum chain. For that it uses RLP encoding to produce special transactions, like checkpoint.
+Diese spezielle Transaktion verwendet die Kodierung durch `pulp` (RLP-basiert) anstelle der Standard-Aminokodierung.
 
-This special transaction uses `pulp` (RLP based) encoding instead of default amino encoding.
+Pulp verwendet einen präfixbasierten einfachen Kodierungsmechanismus, um die Schnittstellendekodierung zu lösen. Methode `GetPulpHash` überprüfen.
 
-Pulp uses a prefix-based simple encoding mechanism to solve interface decoding. Check `GetPulpHash` method.
+Quelle: [https://github.com/maticnetwork/heimdall/blob/master/auth/types/pulp.go](https://github.com/maticnetwork/heimdall/blob/master/auth/types/pulp.go)
 
 ```go
 const (
-    // PulpHashLength pulp hash length
-    PulpHashLength int = 4
+	// PulpHashLength pulp hash length
+	PulpHashLength int = 4
 )
 
 // GetPulpHash returns string hash
 func GetPulpHash(name string) []byte {
-    return crypto.Keccak256([]byte(name))[:PulpHashLength]
+	return crypto.Keccak256([]byte(name))[:PulpHashLength]
 }
 ```
 
-The below returns prefix-bytes for a given `msg`.  Here is an example on how to register an object for pulp encoding.
+Die folgende Funktion liefert Präfix-Bytes für eine gegebene `msg`.  Hier ist ein Beispiel darüber, wie du ein Objekt für die Pulp Codierung registrierst:
 
 ```go
 RegisterConcrete(name, obj) {
-    rtype := reflect.TypeOf(obj)
-    // set record for name => type of the object
-    p.typeInfos[hex.EncodeToString(GetPulpHash(name))] = rtype
+	rtype := reflect.TypeOf(obj)
+	// set record for name => type of the object
+	p.typeInfos[hex.EncodeToString(GetPulpHash(name))] = rtype
 }
 
 // register "A"
 pulp.RegisterConcrete("A", A{})
 ```
 
-Encoding is just RLP encoding and prepending hash of `GetPulpHash` of the `name`
+Encoding ist nur RLP-Codierung und vorherzusagen Hash `GetPulpHash`von der :`name`
 
 ```go
 // EncodeToBytes encodes msg to bytes
 txBytes, err := rlp.EncodeToBytes(obj)
 if err != nil {
-    return nil, err
+	return nil, err
 }
 
 result := append(GetPulpHash("A"), txBytes[:]...), nil
 ```
 
-Decoding works like following:
+Decoding arbeitet wie folgt:
 
 ```go
-// retrieve type of objet based on prefix 
+// retrieve type of objet based on prefix
 rtype := typeInfos[hex.EncodeToString(incomingData[:PulpHashLength])]
 
 // create new object
@@ -66,14 +70,16 @@ newMsg := reflect.New(rtype).Interface()
 
 // decode without prefix and inject into newly created object
 if err := rlp.DecodeBytes(incomingData[PulpHashLength:], newMsg); err != nil {
-    return nil, err
+	return nil, err
 }
 
 // result => newMsg
 ```
 
-For more Information:
+:::info Für mehr Informationen
 
-The Cosmos SDK utilizes two binary wire encoding protocols, [Amino](https://github.com/tendermint/go-amino/) and [Protocol Buffers](https://developers.google.com/protocol-buffers), where Amino is an object encoding specification. It is a subset of Proto3 with an extension for interface support. See the [Proto3 spec](https://developers.google.com/protocol-buffers/docs/proto3) for more information on Proto3, which Amino is largely compatible with (but not with Proto2).
+Das Cosmos SDK verwendet zwei Binärdraht-Kodierungsprotokolle, [Amino](https://github.com/tendermint/go-amino/) und [Protokollpuffer](https://developers.google.com/protocol-buffers), wobei Amino eine Objektkodierungsspezifikation ist. Es handelt sich um eine Untermenge von Proto3 mit einer Erweiterung für die Unterstützung von Schnittstellen. Weitere Informationen zu den [Spezifikationen von Proto3](https://developers.google.com/protocol-buffers/docs/proto3), mit denen Amino weitgehend kompatibel ist (aber nicht mit Proto2), finden Sie in den Spezifikationen für Proto3.
 
-More here: [https://docs.cosmos.network/master/core/encoding.html](https://docs.cosmos.network/master/core/encoding.html)
+Mehr hier: [https://docs.cosmos.network/master/core/encoding.html](https://docs.cosmos.network/master/core/encoding.html)
+
+:::

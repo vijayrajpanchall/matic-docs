@@ -1,7 +1,7 @@
 ---
 id: validator-staking-operations
-title: Stake on Polygon
-description: "Learn how to stake as a validator on the Polygon Network."
+title: Einsatz auf Polygon
+description: Erfahre wie du als Prüfer auf dem Polygon Network stake kannst
 keywords:
   - docs
   - matic
@@ -10,33 +10,29 @@ keywords:
   - claim
   - unstake
 slug: validator-staking-operations
-image: https://matic.network/banners/matic-network-16x9.png
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
-
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-## Prerequisites
+## Voraussetzungen {#prerequisites}
 
-### Full node set up
+### Vollständiger Knoten einrichten {#full-node-set-up}
 
-Your validator node fully set up and synced.
+Dein validator ist vollständig eingerichtet und synchronisiert. Siehe auch:
 
-See:
+* [Führe einen Validator aus](run-validator.md)
+* [Einen Validator-Knoten mit Ansible ausführen](run-validator-ansible.md)
+* [Einen Validator-Knoten von Binaries ausführen](run-validator-binaries.md)
 
-* [Run a Validator Node with Ansible](run-validator-ansible)
-* [Run a Validator Node from Binaries](run-validator-binaries)
+### Kontoeinrichtung {#account-setup}
 
-### Account setup
-
-On your validator node, check that the account is set up.
-
-To check, run the following command **on the validator node**:
+Überprüfe auf deinem Prüfknoten ob das Konto eingerichtet ist. Um die Überprüfung zu gewährleisten, führen Sie den folgenden Befehl **auf dem Validatorknoten** aus:
 
 ```sh
     heimdalld show-account
 ```
 
-Your output should appear in the following format:
+Ihre Ausgabe sollte in dem folgenden Format erscheinen:
 
 ```json
 {
@@ -45,21 +41,19 @@ Your output should appear in the following format:
 }
 ```
 
-This will display your address and public key for your validator node. **Note that this address must match with your signer address on Ethereum.**
+Dadurch wird Ihre Adresse und der öffentliche Schlüssel für Ihren Validatorknoten angezeigt. Beachten Sie, dass **diese Adresse mit deiner Signer-Adresse auf Ethereum übereinstimmen muss**.
 
-### Show private key
+### Privatschlüssel anzeigen {#show-private-key}
 
-This step is optional.
+Dieser Schritt ist optional.
 
-On your validator node, check that the private key is correct.
-
-To check, run the following command **on the validator node**:
+Überprüfe auf deinem Prüfknoten ob der Private Key korrekt ist. Um die Überprüfung zu gewährleisten, führen Sie den folgenden Befehl **auf dem Validatorknoten** aus:
 
 ```sh
 heimdalld show-privatekey
 ```
 
-The following output should appear:
+Die folgende Ausgabe sollte erscheinen:
 
 ```json
 {
@@ -67,50 +61,44 @@ The following output should appear:
 }
 ```
 
-## Stake on Polygon
+## Einsatz auf Polygon {#stake-on-polygon}
 
-You can stake on Polygon using the [validator dashboard](https://staking.polygon.technology/validators/).
+Sie können Polygon mit dem [Validator Dashboard](https://staking.polygon.technology/validators/) einsetzen.
 
-### Stake using the staking dashboard
+### Einsatz mit dem Staking-Dashboard {#stake-using-the-staking-dashboard}
 
-1. Access the [validator dashboard](https://staking.polygon.technology/validators/).
-1. Log in with your wallet. MetaMask is the recommended wallet.
+1. Zugriff auf das [Validator-Dashboard](https://staking.polygon.technology/validators/).
+2. Melden Sie sich mit Ihrem Wallet an. MetaMask ist die empfohlene Wallet. Du musst sicherstellen, dass du dich mit der gleichen Adresse anmeldest, in der deine MATIC-Token vorhanden sind.
+3. Klicken Sie auf **Prüfer werden**. Du wirst gebeten, deinen Knoten einzurichten. Wenn Sie Ihren Knotenpunkt noch nicht eingerichtet haben, müssen Sie dies nachholen, sonst erhalten Sie eine Fehlermeldung, wenn Sie versuchen, den Einsatz zu tätigen.
+4. Geben Sie auf dem nächsten Bildschirm Ihre Validatorenangaben, den Provisionssatz und den Einsatzbetrag ein.
+5. Klicken Sie auf **Jetzt Einsatz tätigen**,
 
-   You have to make sure that you login using the same address where your MATIC tokens are present.
+Sobald die Transaktion abgeschlossen ist, haben Sie einen erfolgreichen Einsatz geleistet, um ein Validator zu werden. Sie werden dreimal aufgefordert, die Transaktion zu bestätigen.
 
-1. Click **Become a Validator**
-
-   You will be asked to set up your node. If you haven't already set up your node by now, you will need to do so, else if you proceed ahead you will receive an error when you attempt to stake.
-
-1. On the next screen, add your validator details, the commission rate, and the staking amount.
-1. Click **Stake Now**.
-
-Once the transaction is completed you will have staked successfully to become a validator. You will be asked thrice to confirm the transaction.
-
-* Approve Transaction — this will approve your stake transaction.
-* Stake — This will confirm your stake transaction.
-* Save —ß This will save your validator details.
+* Transaktion genehmigen  dies– wird Ihre Transaktion genehmigen.
+* Einsatz – Hiermit wird Ihre Einsatztransaktion bestätigt.
+* Speichern –ß Damit werden Ihre Validatorenangaben gespeichert.
 
 :::note
 
-For the changes to take effect on the [staking dashboard](https://staking.polygon.technology/account), it requires a minimum of 12 block confirmations.
+Damit die Änderungen auf dem [Staking-Dashboard](https://staking.polygon.technology/account) wirksam werden, benötigt es mindestens 12 Blockbestätigungen.
 
 :::
 
-### Check the balance
+### Überprüfen Sie das Guthaben {#check-the-balance}
 
-To check the balance of your address:
+Zur Überprüfung des Guthabens Ihrer Adresse:
 
 ```sh
 heimdallcli query auth account SIGNER_ADDRESS --chain-id CHAIN_ID
 ```
 
-where
+wo
 
-* SIGNER_ADDRESS — your [signer address](../glossary#validator).
-* CHAIN_ID — the Polygon mainnet chain ID with the client prefix: `heimdall-137`.
+* SIGNER_ADDRESS – Ihre [Signieradresse](/docs/maintain/glossary.md#validator).
+* CHAIN_ID – die Polygon-Hauptnetzwerk-Ketten-ID mit dem Client-Präfix: `heimdall-137`
 
-The following output should appear:
+Die folgende Ausgabe sollte erscheinen:
 
 ```json
 address: 0x6c468cf8c9879006e22ec4029696e005c2319c9d
@@ -122,29 +110,29 @@ accountnumber: 0
 sequence: 0
 ```
 
-### Claim rewards as a validator
+### Anspruch auf Belohnungen als Validator {#claim-rewards-as-a-validator}
 
-Once you are set up and staked as a validator, you will earn rewards for performing validator duties. When you perform validator duties dutifully, you get rewarded.
+Sobald Sie als Validator eingerichtet und eingesetzt sind, erhalten Sie Belohnungen für die Erfüllung von Validatoraufgaben. Wenn Sie Ihre Aufgaben als Validator pflichtbewusst erfüllen, erhalten Sie eine Belohnung.
 
-To claim rewards you can go to your [validator dashboard](https://staking.polygon.technology/account).
+Um Belohnungen zu erhalten, können Sie auf Ihr [Validator-Dashboard](https://staking.polygon.technology/account) gehen.
 
-You will see two buttons on your profile:
+Sie werden zwei Tasten auf Ihrem Profil sehen:
 
-* Withdraw Reward
-* Restake Reward
+* Belohnung zurückziehen
+* Belohnung wiederverwenden
 
-#### Withdraw Reward
+#### Belohnung zurückziehen {#withdraw-reward}
 
-As a validator, you earn rewards as long as you are performing your validator duties correctly.
+Als Validator erhalten Sie Belohnungen, solange Sie Ihre Validatoraufgaben ordnungsgemäß erfüllen.
 
-Clicking **Withdraw Reward** will get your rewards back to your wallet.
+Wenn Sie auf **Belohnung** zurückzahlen klicken, erhalten Sie Ihre Belohnungen auf Ihr Wallet zurück.
 
-The dashboard will update after 12 block confirmations.
+Das Dashboard wird nach 12 Blockbestätigungen aktualisiert.
 
-#### Restake Reward
+#### Belohnung wiederverwenden {#restake-reward}
 
-Restaking your rewards is an easy way to increase your stake as a validator.
+Die Wiederherstellung Ihrer Belohnungen ist eine einfache Möglichkeit, Ihren Einsatz als Validator zu erhöhen.
 
-Clicking **Restake Reward** will restake your reward and increase your stake.
+Wenn Sie auf **Belohnungen wiederverwenden**klicken, wird Ihre Belohnung wiederverwendet und Ihr Einsatz erhöht.
 
-The dashboard will update after 12 block confirmations.
+Das Dashboard wird nach 12 Blockbestätigungen aktualisiert.

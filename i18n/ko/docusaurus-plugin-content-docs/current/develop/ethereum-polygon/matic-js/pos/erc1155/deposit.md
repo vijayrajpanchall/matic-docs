@@ -2,14 +2,14 @@
 id: deposit
 title: deposit
 keywords:
-  - 'pos client, erc1155, deposit, polygon, sdk'
-description: 'matic.js를 이용하여 erc1155토큰 입금'
+- 'pos client, erc1155, deposit, polygon, sdk'
+description: 'Matic.js를 사용해 ERC1155 토큰을 입금합니다.'
 ---
 
-`deposit` 메소드는 이더리움에서 폴리곤 체인에 필요한 수량의 토큰을 입금하는 데 사용할 수 있습니다.
+`deposit` 메서드를 사용해 이더리움에서 Polygon 체인으로 필요한 금액의 토큰을 입금할 수 있습니다.
 
 ```
-onst erc1155RootToken = posClient.erc1155(<root token address>, true);
+const erc1155RootToken = posClient.erc1155(<root token address>, true);
 
 const result = await erc1155RootToken.deposit({
     amount: 1,

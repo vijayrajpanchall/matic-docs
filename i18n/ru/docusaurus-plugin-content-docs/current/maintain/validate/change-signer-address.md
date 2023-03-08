@@ -1,37 +1,39 @@
 ---
 id: change-signer-address
-title: Change Your Signer Address
-description: "Change the signer address of your validator."
+title: Изменение адреса подписанта
+description: Изменить адрес подписанта вашего валидатора
 keywords:
   - docs
   - matic
   - polygon
-  - signer
+  - signer address
+  - change
+  - validator
 slug: change-signer-address
-image: https://matic.network/banners/matic-network-16x9.png
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
-
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-For information on what a [signer address](../glossary#signer-address) is, see [Key Management](../validator/core-components/key-management).
+Чтобы узнать, что такое [адрес подписанта](/docs/maintain/glossary.md#signer-address), см. статью
+[Управление ключами](/docs/maintain/validator/core-components/key-management).
 
-## Prerequisites
+## Предварительные условия {#prerequisites}
 
-Make sure your new validator node is fully synced and is running with the new signer address.
+Убедитесь, что ваш новый узел проверки полностью синхронизирован и работает с новым адресом подписанта.
 
-## Change the signer address
+## Изменение адреса подписанта {#change-the-signer-address}
 
-This guide refers to your current validator node as Node 1 and your new validator node as Node 2.
+В данном руководстве текущий узел проверки называется нодом 1, а новый узел проверки — нодом 2.
 
-1. Log in to the [staking dasboard](https://staking.polygon.technology/) with the Node 1 address.
-1. On your profile, click **Edit Profile**.
-1. In the *Signer's address* field, provide the Node 2 address.
-1. In the *Signer's public key* field, provide the Node 2 public key.
+1. Войдите в [дашборд стейкинга](https://staking.polygon.technology/) при помощи адреса нода 1.
+2. В профиле нажмите **Edit profile** (изменить профиль).
+3. В поле **Signer's address** (адрес подписанта) укажите адрес нода 2.
+4. В поле **Signer's public key** (открытый ключ подписанта) укажите открытый ключ нода 2.
 
-   To get the public key, run the following command on the validator node:
+   Чтобы получить открытый ключ, выполните следующую команду в узле проверки:
 
    ```sh
    heimdalld show-account
    ```
 
-Clicking **Save** will save your new details for your node. This essentially means that Node 1 will be your address that controls the stake, where the rewards will be sent to, etc. And Node 2 will now be performing activities like signing blocks, signing checkpoints, etc.
+Нажмите **Save** (сохранить), чтобы сохранить новые данные для нода. По сути, это означает, что нод 1 будет вашим адресом, контролирующим стейк, куда будут отправляться награды, и т. д. Нод 2 теперь будет выполнять такие операции, как подписание блоков, подписание чекпоинтов и т. д.

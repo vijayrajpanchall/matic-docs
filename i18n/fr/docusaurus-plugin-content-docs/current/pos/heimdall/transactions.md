@@ -1,30 +1,34 @@
 ---
 id: transactions
 title: Transactions
-description: When users want to interact with an application and make state changes (e.g. sending coins), they create transactions. Each of a transaction's `message` must be signed using the private key associated with the appropriate account before the transaction is broadcasted to the network.
+description: Quelles sont les transactions et quand elles sont utilisées
 keywords:
   - docs
   - matic
+  - polygon
+  - Transactions
 image: https://matic.network/banners/matic-network-16x9.png
 ---
 
-Transactions are comprised of metadata held in [contexts](https://docs.cosmos.network/master/core/context.html) and [messages](https://docs.cosmos.network/master/building-modules/messages-and-queries.html) that trigger state changes within a module, through the module's [Handler](https://docs.cosmos.network/master/building-modules/handler.html).
+# Transactions {#transactions}
 
-When users want to interact with an application and make state changes (e.g. sending coins), they create transactions. Each of a transaction's `message` must be signed using the private key associated with the appropriate account before the transaction is broadcasted to the network. A transaction must then be included in a block, validated, and then approved by the network through the consensus process. To read more about the lifecycle of a transaction, click [here](https://docs.cosmos.network/master/basics/tx-lifecycle.html).
+Les transactions sont composées de métadonnées conservées dans [des contextes](https://docs.cosmos.network/main/core/context.html) et des [messages](https://docs.cosmos.network/main/building-modules/messages-and-queries.html) qui déclenchent des changements d'état dans un module, via le gestionnaire du module.
 
-## **Type Definition**
+Lorsque les utilisateurs veulent interagir avec une application et faire des changements d'état (par exemple envoyer des pièces), ils créent des transactions. Chacune des transactions `message` doit être signée en utilisant la clé privée associée au compte approprié compte avant que la transaction soit diffusée sur le réseau. Une transaction doit alors être incluse dans un bloc, validée, et ensuite être approuvée par le réseau à travers le processus de consensus. Pour lire plus sur le cycle de vie d'une transaction, cliquez [ ici](https://docs.cosmos.network/main/basics/tx-lifecycle.html).
 
-Transaction objects are SDK types that implement the `Tx` interface
+## Définition de Type {#type-definition}
+
+Les objets de transaction sont des types SDK qui implémentent `Tx`l'interface.
 
 ```go
 type Tx interface {
-    // Gets all the transaction's messages.
-    GetMsgs() []Msg
+	// Gets all the transaction's messages.
+	GetMsgs() []Msg
 
-    // ValidateBasic does a simple and lightweight validation check that doesn't
-    // require access to any other information.
-    ValidateBasic() Error
+	// ValidateBasic does a simple and lightweight validation check that doesn't
+	// require access to any other information.
+	ValidateBasic() Error
 }
 ```
 
-More details on Transactions: [https://docs.cosmos.network/master/core/transactions.html](https://docs.cosmos.network/master/core/transactions.html)
+Plus de détails sur les Transactions: [https://docs.cosmos.network/main/core/transactions.html](https://docs.cosmos.network/main/core/transactions.html)

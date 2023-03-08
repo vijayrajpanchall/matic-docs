@@ -2,11 +2,11 @@
 id: is-withdraw-exited
 title: isWithdrawExited
 keywords:
-  - 'pos client, erc1155, isWithdrawExited, polygon, sdk'
-description: 'isWithdrawExited method check if a withdraw has been exited'
+- 'pos client, erc1155, isWithdrawExited, polygon, sdk'
+description: 'Überprüft, ob eine Auszahlung beendet wurde.'
 ---
 
-`isWithdrawExited` method check if a withdraw has been exited. It returns boolean value.
+Die `isWithdrawExited`-Methode prüft, ob eine Auszahlung beendet wurde. Das Ergebnis ist der Boolesche Wert.
 
 ```
 const erc1155Token = posClient.erc1155(<token address>);

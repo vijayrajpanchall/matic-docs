@@ -1,7 +1,7 @@
 ---
 id: validator-index
-title: Validator Index
-description: A collection of instructions on how to run and operate validator nodes on the Polygon Network.
+title: Indice du validateur
+description: Une collection d'instructions sur la façon d'exécuter et de faire fonctionner des nœuds validateurs sur le réseau Polygon
 keywords:
   - docs
   - polygon
@@ -9,87 +9,88 @@ keywords:
   - validator
   - maintain
   - architecture
+  - Validator Index
 slug: validator-index
-image: https://matic.network/banners/matic-network-16x9.png
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
-Validators are the key actor in maintaining the Polygon network. Validators run a full node and secure the network by staking MATIC to produce blocks, validate and participate in PoS consensus.
+:::tip Tenez-vous au courant
+
+Restez informés des dernières mises à jour de nœud et de validateurs de l'équipe Polygon et de la communauté en vous abonnant aux [notifications Polygon](https://polygon.technology/notifications/).
+
+:::
+
+Les validateurs sont les acteurs clés de la maintenance du réseau Polygon. Les validateurs exécutent un nœud complet et sécurisent le réseau en misant des MATIC pour produire des blocs, valider et participer au consensus PoS.
 
 :::info
 
-There is limited space for accepting new validators. New validators can only join the active set when a currently active validator unbonds.
+L'espace est limité pour accepter de nouveaux validateurs. Les nouveaux validateurs ne peuvent rejoindre l'ensemble actif que lorsqu'un validateur actuellement actif se désengage.
 
-A new auction process for validator replacement will be rolled out.
-
-:::
-
-## Overview
-
-Polygon consists of the three following layers:
-
-* Ethereum layer — a set of contracts on the Ethereum mainnet.
-* Heimdall layer — a set of proof-of-stake Heimdall nodes running in parallel to the Ethereum mainnet, monitoring the set of staking contracts deployed on the Ethereum mainnet, and committing the Polygon Network checkpoints to the Ethereum mainnet. Heimdall is based on Tendermint.
-* Bor layer — a set of block-producing Bor nodes shuffled by Heimdall nodes. Bor is based on Go Ethereum.
-
-To be a validator on the Polygon Network, you must run:
-
-* Sentry node — a separate machine running a Heimdall node and a Bor node. A sentry node is open to all nodes on the Polygon Network.
-* Validator node — a separate machine running a Heimdall node and a Bor node. A validator node receives the data from and the sends the data to the sentry node.
-* Stake the MATIC tokens in the staking contracts deployed on the Ethereum mainnet.
-
-## Components
-
-### Heimdall
-
-Heimdall does the following:
-
-* Monitors the staking contracts on the Ethereum mainnet.
-* Verifies all state transitions on the Bor chain.
-* Commits the Bor chain state checkpoints to the Ethereum mainnet.
-
-Heimdall is based on Tendermint.
-
-:::note
-
-See also:
-
-* GitHub repository: [Heimdall](https://github.com/maticnetwork/heimdall)
-* GitHub repository: [Staking contracts](https://github.com/maticnetwork/contracts/tree/master/contracts/staking)
-* Blog post: [Heimdall and Bor](https://blog.polygon.technology/heimdall-and-bor/)
+Un nouveau processus d'enchères pour le remplacement des validateurs est introduit.
 
 :::
 
-### Bor
+## Aperçu {#overview}
 
-Bor does the following:
+Polygon est composé des trois couches suivantes :
 
-* Produces blocks on the Polygon Network.
+* Couche Ethereum — un ensemble de contrats sur le réseau principal d'Ethereum.
+* Couche Heimdall — ensemble de nœuds Heimdall de preuve d'enjeu en parallèle du réseau principal d'Ethereum, surveillant l'ensemble des contrats de staking déployés sur le réseau principal d'Ethereum et engageant les points de contrôle du réseau Polygon sur le réseau principal d'Ethereum. Heimdall est basé sur Tendermint.
+* La couche de Bor — un ensemble de bloc produisant des nœuds de Bor mélangés par les nœuds de Heimdall. Bor est basé sur Go Ethereum.
 
-Bor is based on Go Ethereum.
+Pour être un validateur sur le réseau Polygon, vous devez exécuter :
 
-Bor is the Block producer node and layer for the Polygon Network. Blocks produced on Bor are validated by Heimdall nodes.
+* Nœud sentinelle — une machine distincte exécutant un nœud Heimdall et un nœud Bor. Un nœud sentinelle ouvert à tous les nœuds du réseau Polygon.
+* Nœud de validation — une machine distincte exécutant un nœud Heimdall et un nœud Bor. Un nœud de validation est uniquement ouvert à son nœud sentinelle et fermé au reste du réseau.
+* Miser les jetons MATIC dans les contrats de staking déployés sur le réseau principal d'Ethereum.
 
-:::note
+## Composants {#components}
 
-See also:
+### Heimdall {#heimdall}
 
-* GitHub repository: [Bor](https://github.com/maticnetwork/bor)
-* Blog post: [Heimdall and Bor](https://blog.polygon.technology/heimdall-and-bor/)
+Heimdall effectue les opérations suivantes :
+
+* Surveille les contrats de staking sur le réseau principal d'Ethereum.
+* Vérifie toutes les transitions d'état sur la chaîne Bor.
+* Valide les points de contrôle de l'état de la chaîne Bor sur le réseau principal d'Ethereum.
+
+Heimdall est basé sur Tendermint.
+
+:::info Voir aussi
+
+* Référentiel GitHub : [Heimdall](https://github.com/maticnetwork/heimdall)
+* Référentiel GitHub : [contrats de staking](https://github.com/maticnetwork/contracts/tree/master/contracts/staking)
+* Post de blog : [Heimdall et Bor](https://blog.polygon.technology/heimdall-and-bor/)
 
 :::
 
-This section guides you through the following topics:
+### Bor {#bor}
 
-* [Validator responsibilities](validator-responsibilities.md)
-* Joining the network as a validator:
-  * [Start and run the nodes with Ansible](run-validator-ansible.md)
-  * [Start and run the nodes with binaries](run-validator-binaries.md)
-  * [Stake as a validator](validator-staking-operations.md)
-* Maintaining your validator nodes:
-  * [Change the signer address](change-signer-address.md)
-  * [Change the commission](validator-commission-operations.md)
+Heimdall effectue les opérations suivantes :
 
-Community assistance:
+* Produit des blocs sur les réseaux Polygon.
+
+Bor est le nœud et la couche du producteur de blocs pour le réseau Polygon. Il est basé sur Go Ethereum. Les blocs produits sur Bor sont validés par les nœuds Heimdall.
+
+:::info Voir aussi
+
+* Référentiel GitHub : [Bor](https://github.com/maticnetwork/bor)
+* Post de blog : [Heimdall et Bor](https://blog.polygon.technology/heimdall-and-bor/)
+
+:::
+
+Cette section vous guide à travers les sujets suivants :
+
+* [Responsabilités du validateur](validator-responsibilities.md)
+* Rejoindre le réseau en tant que validateur :
+  * [Démarrer et exécuter les nœuds avec Ansible](run-validator-ansible.md)
+  * [Démarrer et exécuter les nœuds avec des binaires](run-validator-binaries.md)
+  * [Miser en tant que validateur](validator-staking-operations.md)
+* Maintien de vos nœuds de validation :
+  * [Modifier l'adresse du signataire](change-signer-address.md)
+  * [Changer la commission](validator-commission-operations.md)
+
+Assistance de la communauté :
 
 * [Discord](https://discord.com/invite/0xPolygon)
 * [Forum](https://forum.polygon.technology/)

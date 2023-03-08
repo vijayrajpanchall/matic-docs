@@ -1,7 +1,7 @@
 ---
 id: validator-node-system-requirements
-title: Node System Requirements
-description: "System requirements to run a validator node."
+title: 시스템 요구 사항
+description: 유효성 검사 노드를 실행하는 시스템 요구 사항
 keywords:
   - docs
   - matic
@@ -9,46 +9,44 @@ keywords:
   - prerequisites
   - requirements
 slug: validator-node-system-requirements
-image: https://matic.network/banners/matic-network-16x9.png
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
-## Overview
+이 섹션에 나열된 시스템 요구 사항은 [센트리](/docs/maintain/glossary.md#sentry) 노드와 [유효성 검사](/docs/maintain/glossary.md#validator) 노드 모두에 대한 것입니다.
 
-The system requirements listed in this section are both for the [sentry](../glossary#sentry) node and the [validator](../glossary#validator) node.
+**최소** 시스템 요구 사항은 노드를 실행할 수는 있지만, 미래의 설정까지 보장하지는 않습니다.
 
-The *minimum* system requirements mean you can run the nodes but the setup is not future-proof.
+**권장** 시스템 요구 사항은 노드가 미래에도 실행될 수 있는 수준입니다. 그러나 향후  언제까지 노드 실행을 보장할 수는 없습니다.
 
-The *recommended* system requirements mean the nodes are future-proof. There is, however, no upper limit to future-proofing your nodes.
+항상 별도의 시스템에서 센트리 노드와 유효성 검사 노드를 실행해야 합니다.
 
-You must always run the sentry node and the validator node on separate machines.
+## 최소 시스템 요구 사항 {#minimum-system-requirements}
 
-## Minimum system requirements
+* RAM: 32GB
+* CPU: 8코어
+* Storage: 2.5 TB SSD
 
-* RAM: 32 GB
-* CPU: 8-core
-* Storage: 2 TB SSD
+:::info
 
-:::note
+AWS(Amazon Web Services)의 경우 최소 요구 사항 인스턴스와 동등한 것은 무제한 크레딧이 선택된 **m5d.2xlarge** 또는 **t3.2xlarge**입니다.
 
-For Amazon Web Services (AWS), the equivalent of the minimum requirements instances are **m5d.2xlarge** or **t3.2xlarge** with unlimited credits selected.
-
-For storage, make sure the 2 TB SSD storage is extendable.
+저장을 위해 2.5TB SSD 저장이 확장될 수 있는지 확인하십시오.
 
 :::
 
-## Recommended system requirements
+## 권장 시스템 요구 사항 {#recommended-system-requirements}
 
-* RAM: 64 GB
-* CPU: 16-core
-* Storage: 3-4 TB SSD
-* Bandwidth: 1 Gbit/s
+* RAM: 64GB
+* CPU: 16코어
+* Storage: 5 TB SSD
+* 광대역: 1Gbit/s
 
-:::note
+:::info
 
-For Amazon Web Services (AWS), the equivalent of the recommended requirements instance is **m5d.4xlarge**.
+AWS(Amazon Web Services)의 경우 권장 요구 사항 인스턴스와 동등한 것은 **m5d.4xlarge**입니다.
 
-For OVH, the equivalent of the recommended requirements instance is **infra-3**.
+OVH의 경우 권장 요구 사항 인스턴스와 동등한 것은 **infra-3**입니다.
 
-For network, expect 3-5 TB of data transferred per month.
+네트워크의 경우 한 달에 3-5TB의 데이터가 전송될 것으로 예상됩니다.
 
 :::

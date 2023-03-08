@@ -1,46 +1,63 @@
 ---
 id: submit-mapping-request
-title: Mapping Request
-description: Build your next blockchain app on Polygon.
+title: Токены для картографирования
+description:  Руководство по тому, как сопоставить токены между Ethereum и Polygon цепочками с помощью PoS Bridge
 keywords:
   - docs
-  - matic
-image: https://matic.network/banners/matic-network-16x9.png
+  - polygon wiki
+  - token mapping
+  - pos bridge
+  - polygon
+  - goerli
+  - ethereum
+  - testnet
+  - mainnet
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-Mapping is necessary in order to transfer your assets to and from the Ethereum and Polygon. We offer two bridges to do the same. More details on the bridge can be understood from [here](/docs/develop/ethereum-polygon/getting-started).
+Картография необходима для перевода ваших активов в Ethereum и Polygon PoS. Мы предлагаем два моста для выполнения этой задачи. Более подробную информацию о мосту можно понять [здесь](/develop/ethereum-polygon/getting-started.md).
 
-### Steps to submit a mapping request
+:::tip
 
-The mapping request has to be submitted on [https://mapper.polygon.technology/](https://mapper.polygon.technology/). You can then click on the "Map New Token" button on the top right corner to create a new mapping request.
+Мост Polygon PoS доступен как для Polygon Mainnet, так и для Mumbai Testnet.
+
+:::
+
+## Шаги по отправке запроса на сопоставление {#steps-to-submit-a-mapping-request}
+
+Чтобы сопоставить токены между Ethereum и Polygon PoS, можно использовать [Mapper](https://mapper.polygon.technology/). Откройте ссылку и нажмите на кнопку **«Создать** токена» в правом верхнем углу для запуска нового запроса на отображение.
 
 <img src={useBaseUrl("img/token-mapping/mapping-tool.png")} />
 
+**Шаг 1 →** Выберите сеть, на которой вы хотите сопоставить свой ток. Вы можете выбрать **Goerli-Mumbai** для Testnet, а **Ethereum-Polygon PoS** для Mainnet.
 
-- The type of [bridge](/docs/develop/ethereum-polygon/getting-started) has to be selected from the **"Choose map type"** dropdown.
-- The type of your token can be selected by switching among the three tabs marked as "ERC20", "ERC721" and "ERC1155". For mapping any other token standard, you can reach out to the Polygon team on [Discord](https://discord.com/invite/XvpHAxZ) or create a ticket [here](https://support.polygon.technology/support/home) and keep "Token Mapping" in the ticket title.
-- **"Choose network"** will let you select the network on which you need the mapping to be done. For mainnet mappings you can choose **Ethereum - Polygon Mainnet**  and for testnet mappings you can choose **Goerli Testnet - Mumbai**.
-- Enter your Ethereum/Goerli token address in the  **"Ethereum token address"** field. Ensure that your token contract code is verified on the [Ethereum](https://etherscan.io/)/[Goerli](https://goerli.etherscan.io/) blockchain explorers.
-- In case you need a standard ERC20/ERC721/ERC1155 child token, you may leave the **"Polygon token address"** field empty. But, if you need a custom child token ( standard ERC functions + custom functions ), you can follow this [guide](/docs/develop/ethereum-polygon/pos/mapping-assets) to create a custom child token. Once you deploy your custom child token, you can mention the contract address in the **"Polygon token address"** field. Please ensure that you verify your child token contract code too on [Polygon](https://polygonscan.com/)/[Mumbai](https://mumbai.polygonscan.com/) explorer.
-- If your root token is verified, the **name**, **symbol** and **decimals** fields will be automatically filled for you and these fields cannot be edited.
-- You may choose either **"Polygon Mintable"** or a **"Non Polygon Mintable"** token from the drop down. More details on the Polygon Mintable tokens can be found [here](/docs/develop/ethereum-polygon/mintable-assets).
-- It is mandatory to mention your email for communication.
+**Шаг 2 →** Выберите тип токена, который вы are **ERC20**, **ERC721** или **ERC1155**.
 
-In  case of a custom child mapping, there is a checklist that you need to finish before you submit the mapping request. Tokens that already exist on Ethereum and have to be moved on to the Polygon chain can be called as "Non Polygon-Mintable" tokens and the tokens which are going to be minted on Polygon first and then moved to Ethereum can be called as "Polygon Mintable" tokens. Lets look at the check list for both these types
+**Шаг 3 →** Введите адрес токена **Ethereum/Goerli** в поле **Address Token** Ethereum. Убедитесь, что код контракта токена был проверен в the **Ethereum/Goerli**.
 
-### Mapping checklist
+**Шаг 4 →** После добавления **адреса токена Ethereum**, соответствующие поля viz. **Имя токена, символ токена и десятичный токен** будут автоматически заполняться с данными контракта.
 
-**Non Polygon-Mintable**
+**Шаг 5 →** Теперь нажмите на кнопку **Begin Mapping**, чтобы инициировать процесс отображения. Поскольку это предполагает транзакцию Ethereum, вам нужно подключить свой кошелек, чтобы продолжить.
 
-1. The deposit and withdraw functions are present on the child token contract. (Reference Template contract - [ERC20](https://github.com/maticnetwork/pos-portal/blob/master/flat/ChildERC20.sol#L1492-#L1508), [ERC721](https://github.com/maticnetwork/pos-portal/blob/master/flat/ChildERC721.sol#L2157-#L2238), [ERC1155](https://github.com/maticnetwork/pos-portal/blob/master/flat/ChildERC1155.sol#L1784-#L1818))
-2. Only the ChildChainManagerProxy address has the right to call the deposit function. (ChildChainManagerProxy - on [Mumbai](https://mumbai.polygonscan.com/address/0xb5505a6d998549090530911180f38aC5130101c6/transactions) , on [Polygon Mainnet](https://polygonscan.com/address/0xA6FA4fB5f76172d178d61B04b0ecd319C5d1C0aa/) )
-3. Mint function is an internal function ( This gets called by deposit function internally )
+**Шаг 6 →** Вам будет показан модальный обзор с информацией о токене и расчетными комиссиями за газ для завершения картирования. Проверьте данные и инициируйте транзакцию отображения, выбрав кнопку **«Комиссия за вознаграждение за газ** оплату».
 
-**Polygon Mintable ( guide -** [https://docs.polygon.technology/docs/develop/ethereum-polygon/mintable-assets](https://docs.polygon.technology/docs/develop/ethereum-polygon/mintable-assets) )
+После подтверждения транзакции с вашего кошелька, вам придется дождаться завершения транзакции в Ethereum. После завершения транзакции вам будет показан модальный код успеха с вашим адресом токена в сети Polygon PoS. Вы можете продолжить проверку отображения, проверяя адрес дочернего токена в [Polygonscan](https://polygonscan.com/).
 
-1. The deposit and withdraw function is present in the child token contract. (Reference Template contract - [ERC20](https://github.com/maticnetwork/pos-portal/blob/master/flat/ChildMintableERC20.sol#L1492-#L1519), [ERC721](https://github.com/maticnetwork/pos-portal/blob/master/flat/ChildMintableERC721.sol#L2160-#L2275), [ERC1155](https://github.com/maticnetwork/pos-portal/blob/master/flat/ChildMintableERC1155.sol#L1784-#L1851))
-2. Only the ChildChainManagerProxy address has the right to call the deposit function. (ChildChainManagerProxy - on [Mumbai](https://mumbai.polygonscan.com/address/0xb5505a6d998549090530911180f38aC5130101c6/transactions) , on [Polygon Mainnet](https://polygonscan.com/address/0xA6FA4fB5f76172d178d61B04b0ecd319C5d1C0aa/) )
-3. The root chain contract is a standard [ERC20](https://github.com/maticnetwork/pos-portal/blob/master/flat/DummyMintableERC20.sol#L1481)/[ERC721](https://github.com/maticnetwork/pos-portal/blob/master/flat/DummyMintableERC721.sol#L2169)/[ERC1155](https://github.com/maticnetwork/pos-portal/blob/master/flat/DummyMintableERC1155.sol#L1785)
-4.  The mint function on the root contract can only be called by the corresponding token, PredicateProxyAddress (PredicateProxy addresses for each token type can be found [here](/docs/develop/ethereum-polygon/mintable-assets#contract-to-be-deployed-on-ethereum).
+Чтобы успешно отображать Mainnet, вы можете указать данные токена [здесь,](https://github.com/maticnetwork/polygon-token-list/issues/new/choose) которые будут добавлены в [**список токена Polygon**](https://api-polygon-tokens.polygon.technology/tokenlists/polygonTokens.tokenlist.json).
+
+:::tip
+
+В случае [<ins>пользовательского отображения токенов</ins>](/develop/l1-l2-communication/fx-portal.md#do-i-need-a-custom-fxtunnel-implementation-) вы можете посетить нашу документацию [**<ins>FxPortal</ins>**](/develop/l1-l2-communication/fx-portal.md) и использовать информацию, предоставленную для создания вашей пользовательской реализации FX для картографирования токенов.
+
+:::
+
+## Видео-гид {#video-guide}
+
+Вот быстрый видеоурок о том, как сопоставить токены между **Ethereum Goerli ↔ Polygon Mumbai Testnet**:
+
+<video autoplay width="100%" height="100%" controls="true" >
+  <source type="video/mp4" src="/img/token-mapping/token-mapper.mp4"></source>
+  <p>Ваш браузер не поддерживает этот видеоэлемент.</p>
+</video>

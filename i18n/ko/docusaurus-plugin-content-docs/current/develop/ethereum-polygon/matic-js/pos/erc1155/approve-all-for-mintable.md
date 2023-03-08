@@ -2,18 +2,18 @@
 id: approve-all-for-mintable
 title: approveAllForMintable
 keywords:
-  - 'pos client, erc1155, approve, polygon, sdk'
-description: 'erc1155 토큰 승인'
+- 'pos client, erc115, approve, polygon, sdk'
+description: 'ERC1155 발행 가능 토큰을 승인합니다.'
 ---
 
-# approveAllForMintable
+# approveAllForMintable {#approveallformintable}
 
-`approveAllForMintable` 메소드는 루트 토큰의 모든 발행 가능 토큰을 승인하는 데 사용할 수 있습니다.
+`approveAllForMintable` 메서드를 사용해 루트 토큰에서 발행 가능한 토큰을 모두 승인할 수 있습니다.
 
 ```
-const erc1155RootToken = posClient.erc1155(<root token address>,true);
+const erc115RootToken = posClient.erc115(<root token address>,true);
 
-const approveResult = await erc1155RootToken.approveAllForMintable();
+const approveResult = await erc115RootToken.approveAllForMintable();
 
 const txHash = await approveResult.getTransactionHash();
 

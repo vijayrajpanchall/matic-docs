@@ -1,109 +1,110 @@
 ---
 id: glossary
-title: Glossary
-description: "Key Polygon terms."
+title: Lexique
+description: Termes clés Polygon
 keywords:
   - docs
   - matic
   - polygon
   - glossary
+  - jargons
 slug: glossary
-image: https://matic.network/banners/matic-network-16x9.png
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
-## Block producer
+## Producteur de blocs {#block-producer}
 
-A block producer is an active [validator](#validator) selected to act as block producer for a [span](#span).
+Un producteur de blocs est un [validateur](#validator) actif sélectionné pour agir en tant que producteur de blocs pour un [span](#span).
 
-A block producer is responsible for creating blocks and broadcasting the created blocks to the network.
+Un producteur de blocs est responsable de la création des blocs et de la diffusion des blocs créés sur le réseau.
 
-## Bor
+## Bor {#bor}
 
-A Bor node is a node producing blocks on the Polygon Network.
+Un nœud Bor est un nœud produisant des blocs sur le réseau Polygon.
 
-Bor is based on [Go Ethereum](https://geth.ethereum.org/).
+Bor est basé sur [Go Ethereum](https://geth.ethereum.org/).
 
-## Checkpoint transaction
+## Transaction de point de contrôle {#checkpoint-transaction}
 
-A checkpoint transaction is a transaction containing the Merkle root of blocks of the [Bor](#bor) layer between the checkpoint intervals.
+Une transaction de point de contrôle est une transaction contenant la racine Merkle des blocs de la couche [Bor](#bor) entre les intervalles de point de contrôle.
 
-The transaction is committed to the Polygon staking contracts on the Ethereum mainnet by a [Heimdall](#heimdall) node.
+La transaction est engagée pour les contrats de staking Polygon sur le réseau principal d'Ethereum par un nœud [Heimdall](#heimdall).
 
-See also:
+Voir aussi :
 
-* [Heimdall architecture: Checkpoint](../pos/heimdall/checkpoint)
-* [Checkpoint Mechanism](validator/core-components/checkpoint-mechanism)
+* [Architecture Heimdall : point de contrôle](/docs/pos/heimdall/checkpoint)
+* [Mécanisme des points de contrôle](/docs/maintain/validator/core-components/checkpoint-mechanism)
 
-## Commission
+## Commission {#commission}
 
-A commission is the percentage of the rewards taken by [validators](#validator) from the [delegators](#delegator) who stake with the validators.
+Une commission est le pourcentage des récompenses perçues par les [validateurs](#validator) auprès des [délégants](#delegator) qui misent avec les validateurs.
 
-See also [Validator Commission Operations](/docs/maintain/validate/validator-commission-operations).
+Voir aussi [Opérations liées aux commissions de validateur](/docs/maintain/validate/validator-commission-operations).
 
-## Delegator
+## Délégant {#delegator}
 
-The delegator role stakes the MATIC tokens to secure the Polygon Network with existing [validators](#validator) without running the nodes themselves.
+Le rôle de délégant met en jeu les jetons MATIC pour sécuriser le réseau Polygon avec des [validateurs](#validator) existants sans exécuter les nœuds eux-mêmes.
 
-See also [Who Is a Delegator](polygon-basics/who-is-delegator).
+Voir aussi [Qu'est-ce qu'un Délégant](/docs/maintain/polygon-basics/who-is-delegator).
 
-## Full node
+## Nœud complet {#full-node}
 
-A full node is a fully synced [sentry node](#sentry) running both [Heimdall](#heimdall) and [Bor](#bor).
+Un nœud complet est un [nœud sentinelle](#sentry) entièrement synchronisé exécutant à la fois [Heimdall](#heimdall) et [Bor](#bor).
 
-See also [Full Node Deployment](../operate/full-node-deployment).
+Voir aussi [Déploiement de nœud complet](/docs/develop/network-details/full-node-deployment).
 
-## Heimdall
+## Heimdall {#heimdall}
 
-A Heimdall node is a node running in parallel to the Ethereum mainnet, monitoring the set of contracts deployed on the Ethereum mainnet, and committing the Polygon Network [checkpoints](#checkpoint-transaction) to the Ethereum mainnet.
+Un nœud Heimdall est un nœud s'exécutant en parallèle au réseau principal d'Ethereum, surveillant l'ensemble des contrats déployés sur le réseau principal d'Ethereum et engageant les [points de contrôle](#checkpoint-transaction) du réseau Polygon sur le réseau principal d'Ethereum.
 
-Heimdall is based on [Tendermint](https://tendermint.com/).
+Heimdall est basé sur [Tendermint](https://tendermint.com/).
 
-## Owner address
+## Adresse propriétaire {#owner-address}
 
-An owner address is the address used to stake, restake, change the signer address, withdraw rewards and manage delegation related parameters on the Ethereum mainnet.
+Une adresse propriétaire est l'adresse utilisée pour implanter, réinitialiser et modifier l'adresse du signataire, retirer des récompenses et gérer les paramètres liés à la délégation sur le réseau principal d'Ethereum.
 
-While the [signer key](#signer-address) is kept on the node and is considered a *hot* wallet, the owner key must be kept very secure, used infrequently, and is considered a *cold* wallet.
+Si la [clé du signataire](#signer-address) est conservée sur le nœud et est considérée comme un portefeuille **de stockage à chaud**, la clé du propriétaire doit être conservée de manière très sécurisée, elle doit être peu utilisée et elle est considérée comme un portefeuille **de stockage à froid**.
 
-See also [Key Management](validator/core-components/key-management).
+Voir aussi [Gestion des clés](validator/core-components/key-management.md).
 
-## Proposer
+## Proposant {#proposer}
 
-A proposer is the [validator](#validator) selected by the algorithm to propose a new block.
+Un proposant est le [validateur](#validator) sélectionné par l'algorithme pour proposer un nouveau bloc.
 
-A proposer is also responsible for collecting all signatures for a particular [checkpoint](#checkpoint-transaction) and committing the checkpoint to the Ethereum mainnet.
+Un proposant est également responsable de la collecte de toutes les signatures pour un [point de contrôle](#checkpoint-transaction) particulier et de l'engagement du point de contrôle sur le réseau principal d'Ethereum.
 
-## Sentry
+## Sentinelle {#sentry}
 
-A sentry node is a node running both the [Heimdall](#heimdall) node and the [Bor](#bor) node to download the data from other nodes on the network and to propagate the [validator](#validator) data on the network.
+Un nœud sentinelle est un nœud exécutant à la fois le nœud [Heimdall](#heimdall) et le nœud [Bor](#bor) pour télécharger les données à partir d'autres nœuds sur le réseau et pour propager les données [du validateur](#validator) sur le réseau.
 
-A sentry node is open to all other sentry nodes on the network.
+Un nœud sentinelle est ouvert à tous les autres nœuds de sentinelle du réseau.
 
-## Span
+## Span {#span}
 
-A logically defined set of blocks for which a set of validators is chosen from all the available [validators](#validator).
+Un ensemble de blocs logiquement définis pour lequel un ensemble de validateurs est choisi parmi tous les [validateurs](#validator) disponibles.
 
-The selection of each span is decided by at least 2/3 of the validators in terms of the staking power.
+La sélection de chaque span est décidée par au moins deux ou trois des validateurs en termes de puissance de staking.
 
-See also [Bor Consensus: Span](../pos/bor/consensus/#span).
+Voir aussi [Consensus Bor : Span](/docs/pos/bor/consensus.md#span).
 
-## Staking
+## Staking {#staking}
 
-Staking is the process of locking up tokens into a deposit to earn the right to validate and produce blocks on a blockchain. Typically staking is done in the native token for the network — for the MATIC token is locked up by validators/stakers in the Polygon Network. Other examples include ETH in ETH 2.0, ATOM in Cosmos, etc.
+Le staking est le processus de verrouillage des jetons dans un dépôt pour gagner le droit de valider et de produire des blocs sur une blockchain. Généralement, le staking se fait dans le jeton native pour le réseau — pour le jeton MATIC est verrouillé par des validateurs / des stakers dans le réseau Polygon. D'autres exemples incluent ETH dans Ethereum (post-fusion), ATOM dans Cosmos, etc.
 
-See also [What Is Proof of Stake](polygon-basics/what-is-proof-of-stake).
+Voir aussi [Qu'est-ce Que La Preuve De Participation](polygon-basics/what-is-proof-of-stake.md)?
 
-## Signer address
+## Adresse du signataire {#signer-address}
 
-A signer address is the address of an Ethereum account of the [Heimdall](#heimdall) validator node. The signer address signs and submits the [checkpoint transactions](#checkpoint-transaction).
+Une adresse de signataire est l'adresse d'un compte Ethereum du nœud de validation [Heimdall](#heimdall). L'adresse du signataire signe et soumet les [transactions aux points de contrôle](#checkpoint-transaction).
 
-While the signer key is kept on the node and is considered a *hot* wallet, the [owner key](#owner-address) must be kept very secure, used infrequently, and is considered a *cold* wallet.
+Si la clé du signataire est conservée sur le nœud et est considérée comme un portefeuille **de stockage à **chaud, la [clé du propriétaire](#owner-address) doit être conservée de manière très sécurisée, elle doit être peu utilisée et elle est considérée comme un portefeuille **de stockage à froid**.
 
-See also [Key Management](validator/core-components/key-management).
+Voir aussi [Gestion des clés](validator/core-components/key-management.md).
 
-## Validator
+## Validateur {#validator}
 
-The validator role stakes the MATIC tokens and is running both the [Heimdall](#heimdall) node and the [Bor](/docs/maintain/glossary#bor) node to commit the network checkpoints to the Ethereum mainnet and to produce blocks on the network.
+Les validateurs mettent en [valeur leurs jetons MATIC](/docs/maintain/validate/validator-staking-operations) via des contrats d'empilage déployés sur le réseau principal Ethereum et exécutent à la fois le nœud [Heimdall](#heimdall) et le nœud [Bor](#bor) pour valider les points de contrôle réseau sur le réseau principal Ethereum et pour produire des blocs sur le réseau.
 
-A validator node is only open to its [sentry](#sentry) node and closed to the rest of the network.
+Un nœud de validation est uniquement ouvert à son nœud [sentinelle](#sentry) et fermé au reste du réseau.
 
-See also [Who Is a Validator](polygon-basics/who-is-validator).
+Voir aussi [Qu'est-ce qu'un validateur ?](polygon-basics/who-is-validator.md).

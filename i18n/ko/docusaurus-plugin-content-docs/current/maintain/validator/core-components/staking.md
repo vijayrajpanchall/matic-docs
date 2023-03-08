@@ -1,46 +1,49 @@
 ---
 id: staking
-title: Staking
+title: 스테이킹
 sidebar_label: Staking
-description: "Stake, unstake, and restake as a validator."
+description: 유효한 레이터로 스테이크, 스테이크, 스테이크 및 레스테이크
 keywords:
   - docs
   - matic
   - polygon
   - staking
+  - unstake
+  - restake
+  - validator
 slug: staking
-image: https://matic.network/banners/matic-network-16x9.png
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
-For Polygon Network, any participant can be qualified to become a Polygon's validator by running a full node to earn rewards and collect transaction fees. To ensure the good participation by validators, they lock up some of their MATIC tokens as a stake in the ecosystem.
+Polygon 네트워크에서는 참여자 누구나 전체 노드를 실행하여 보상을 얻고 트랜잭션 수수료를 징수하면 Polygon의 유효성 검사자가 될 수 있습니다. 유효성 검사자들은 적극적인 참여를 보장하기 위해 자신의 일부 매틱 토큰을 이 생태계의 스테이크로 락업합니다.
 
-Validators in Polygon Network are selected via an on-chain auction process which happens at regular intervals.
+Polygon 네트워크의 유효성 검사자는 정기적으로 개최되는 온체인 경매 프로세스를 통해 선정됩니다.
 
-A validator has two addresses an owner address and a signer address. The staking is done with the owner address.
+유효성 검사자는 소유자 주소와 서명자 주소라는 두 가지 주소를 갖고 있습니다. 스테이킹은 소유자 주소를 이용해 수행합니다.
 
-See also [Key Management](key-management).
+[키 관리](key-management.md)도 참조해 주세요.
 
-## Stake
+## 스테이크 {#stake}
 
 :::note
 
-Currently there is limited space to accept new validators.
+현재는 새로운 유효성 검사자를 수용할 공간이 제한되어 있습니다.
 
-A new validator can only join the active set when a currently active validator unbonds.
+새로운 유효성 검사자는 현재 활성 상태인 유효성 검사자가 언본딩할 때만 활성 세트에 참여할 수 있습니다.
 
 :::
 
-To join the validator set, you must stake your MATIC tokens. See [Validator Staking Operations](../../validate/validator-staking-operations).
+유효성 검사자 세트에 참여하기 위해서는 매틱 토큰을 스테이크하셔야 합니다. [유효성 검사자 스테이킹 작업](/docs/maintain/validate/validator-staking-operations)을 참조해 주세요.
 
-## Unstake
+## 스테이크 해제 {#unstake}
 
-Unstaking allows the validator to be out of active pool of validators.
+스테이크를 해제하면 유효성 검사자가 활성 상태의 유효성 검사자 풀에서 나올 수 있습니다.
 
-To ensure good participation, the validator stake is locked for 80 checkpoints.
+적극적인 참여를 보장하기 위해 유효성 검사자 스테이크는 80개 체크포인트만큼 락업 상태를 유지합니다.
 
-## Restake
+## 재스테이크 {#restake}
 
-Validators can add more MATIC tokens to their stake:
+유효성 검사자는 다음과 같은 목적으로 자신의 스테이크에 매틱 토큰을 더 많이 추가할 수 있습니다.
 
-* To earn more rewards.
-* To maintain the position in the validator set.
+* 보상을 더 많이 얻기 위해
+* 유효성 검사자 세트에서 지위를 유지하기 위해

@@ -1,32 +1,35 @@
 ---
 id: torus
 title: Torus
-description: Build your next blockchain app on Polygon.
+description: Torus ist ein nicht verwahrtes non-custodial für dApps
 keywords:
-  - docs
-  - matic
-image: https://matic.network/banners/matic-network-16x9.png
+  - wiki
+  - polygon
+  - torus
+  - wallet
+  - guide
+  - dApp
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
-Torus is a user-friendly, secure, and non-custodial key management system for DApps. We're focused on providing mainstream users a gateway to the decentralized ecosystem.
+Torus ist ein benutzerfreundliches, sicheres und nicht verwahrtes non-custodial für dezentrale Apps. Unser Ziel ist es, regulären Kunden ein Gateway zum dezentralen Ökosystem anzubieten.
 
-**Type**: Non-custodial/HD <br/> **Private Key Storage**: User’s local browser storage / Encrypted and stored on torus’ servers <br/> **Communication to Ethereum Ledger**: Infura <br/> **Private key encoding**: Mnemonic/Social-Auth-login <br/>
+**Typ**: Nicht custodial / HD<br/> **Private Key Storage**: lokale browser des Benutzers / Verschlüsselt und auf User’s gespeichert<br/> **Kommunikation mit Ethereum Ledger**: Infura <br/>
+**Private Key Encoding**: Mnemonic / Social-Auth-login<br/>
 
-Depending on your applications needs Torus can be integrated via the Torus Wallet, or through interacting directly with the Torus Network via DirectAuth. For more, visit Torus documentation: https://docs.tor.us/getting-started
+Je nach Ihren Anwendungsbedürfnissen kann Torus über das Torus Wallet integriert werden oder durch direkte Interaktion mit dem Torus Network über CustomAuth. Für weitere Informationen besuchen Sie die [Torus-Dokumentation](https://docs.tor.us/).
 
-## 1. Torus Wallet integration
+## Torus Wallet Integration {#torus-wallet-integration}
 
-Quick start Torus wallet: https://docs.tor.us/torus-wallet/quick-start
+Wenn deine Anwendung bereits mit MetaMask oder anderen Web3-Anbietern kompatibel ist, würde dir die Integration der Torus Wallet einen Anbieter geben, um die gleiche Web3-Schnittstelle zu wickeln. Du kannst über ein npm Paket installieren. Für weitere Wege und ausführliche Informationen besuchen Sie bitte die offizielle Torus-Dokumentation zur [Wallet-Integration](https://docs.tor.us/wallet/get-started).
 
-If your application is already compatible with Metamask/other web3 providers, integrating the Torus Wallet would give you a provider to wrap the same web3 interface. You can install via a npm package or IPFS. or jsdelivr or unpkg. For more, please visit Torus documentation on wallet integration: https://docs.tor.us/getting-started#torus-wallet-integration
-
-**Install npm package**
+### Installation {#installation}
 
 ```bash
-npm i @toruslabs/torus-embed
+npm i --save @toruslabs/torus-embed
 ```
 
-**Example**
+### Beispiel {#example}
 
 ```js title="torus-example.js"
 import Torus from "@toruslabs/torus-embed";
@@ -35,6 +38,7 @@ import Web3 from "web3";
 const torus = new Torus({
   buttonPosition: "top-left" // default: bottom-left
 });
+
 await torus.init({
   buildEnv: "production", // default: production
   enableLogging: true, // default: false
@@ -45,10 +49,11 @@ await torus.init({
   },
   showTorusButton: false // default: true
 });
+
 await torus.login(); // await torus.ethereum.enable()
 const web3 = new Web3(torus.provider);
 ```
 
-## 2. DirectAuth integration
+## CustomAuth Integration {#customauth-integration}
 
-If you are looking to control your own UX, from login to every interaction, then DirectAuth is the integration for you. You can integrate via one of our SDKs depending on the platform/s you are building on. For more, please visit Torus direct auth integration: https://docs.tor.us/direct-auth/quick-start
+Wenn du deine eigene UX kontrollieren möchtest, von der Anmeldung zu jeder Interaktion, dann kannst du use Du kannst über einen ihrer SDKs integrieren, abhängig von der Plattform, auf der du dich aufbaust. Für weitere Informationen besuchen Sie bitte [die Torus CustomAuth](https://docs.tor.us/customauth/get-started)

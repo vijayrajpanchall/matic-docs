@@ -1,7 +1,7 @@
 ---
 id: heimdall-chain
 title: Heimdall Chain
-description: "Proof-of-stake verifier layer on the Polygon Network."
+description: Proof-of-Stake Verifier Layer auf dem Polygon Network
 keywords:
   - docs
   - polygon
@@ -10,32 +10,33 @@ keywords:
   - chain
   - verifier
   - layer
+  - proof of stake
 slug: heimdall-chain
-image: https://matic.network/banners/matic-network-16x9.png
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
-Heimdall is is the proof-of-stake verifier layer, which is responsible for [checkpointing](../../glossary#checkpoint-transaction) the representation of the Plasma blocks to the Ethereum mainnet. Heimdall is based on [Tendermint](https://tendermint.com/).
+Heimdall ist die Proof-of-Stake Verifier-Schicht, die für die [Überprüfung](/docs/maintain/glossary.md#checkpoint-transaction) der Darstellung der Plasma-Blöcke auf das Ethereum mainnet zuständig ist. Heimdall basiert auf [Tendermint](https://tendermint.com/).
 
-The staking contract on the Ethereum mainnet works in conjunction with the Heimdall node to act as the trustless stake management mechanism for the PoS engine, including selecting the [validator](../../glossary#validator) set, updating validators, etc. Since staking is done in the contract on the Ethereum mainnet, Polygon does not rely only on validator honesty and instead inherits the Ethereum mainnet security.
+Der Staking-Vertrag im Ethereum Mainnet arbeitet mit dem Heimdall-Knoten zusammen, um als vertrauenswürdiger Stake-Management-Mechanismus für die PoS-Engine zu fungieren, einschließlich der Auswahl des [Validator](/docs/maintain/glossary.md#validator)-Sets, der Aktualisierung der Validatoren usw. Da der Einsatz im Vertrag auf dem Ethereum Mainnet erfolgt, verlässt sich Polygon nicht nur auf die Ehrlichkeit der Validatoren und übernimmt stattdessen die Sicherheit des Ethereum Mainnet.
 
-Heimdall layer handles the aggregation of blocks produced by [Bor](../../glossary#bor) into a Merkle tree and publishes the Merkle root periodically to the Ethereum mainnet. This periodic publishing is called *checkpointing*.
+Der Heimdall-Layer sorgt für die Aggregation der von [Bor](/docs/maintain/glossary.md#bor) erzeugten Blöcke zu einem Merkle-Tree und veröffentlicht die Merkle-Root regelmäßig im Ethereum Mainnet. Diese regelmäßige Veröffentlichung wird *Checkpointing* genannt.
 
-For every few blocks on Bor, a validator (on the Heimdall layer):
+Für alle paar Blöcke auf Bor wird ein Validator (auf dem Heimdall-Layer):
 
-1. Validates all the blocks since the last checkpoint.
-2. Creates a Merkle tree of the block hashes.
-3. Publishes the Merkle root to the Ethereum mainnet.
+1. Überprüft alle Blöcke seit dem letzten Checkpoint.
+2. Erstellt einen Merkle des Block-Hashes.
+3. Veröffentlicht den Merkle-Root im Ethereum Mainnet.
 
-Checkpoints are important for two reasons:
+Checkpoints sind aus zwei Gründen wichtig:
 
-1. Providing finality on the root chain.
-2. Providing proof of burn in withdrawal of assets.
+1. Bereitstellung von Finalität auf der Root Chain.
+2. Gewährleistung des Proof-of-Burn bei der Abhebung von Assets.
 
-An overview of the process:
+Eine Übersicht des Prozesses:
 
-* A subset of active validators from the pool is selected to act as [block producers](../../glossary#block-producer) for a [span](../../glossary#span). These block producers are responsible for creating blocks and broadcasting the created blocks on the the network.
-* A checkpoint includes the Merkle root hash of all blocks created during any given interval. All nodes validate the Merkle root hash and attach their signature to it.
-* A selected [proposer](../../glossary#proposer) from the validator set is responsible for collecting all signatures for a particular checkpoint and committing the checkpoint on the Ethereum mainnet.
-* The responsibility of creating blocks and proposing checkpoints is variably dependent on a validator’s stake ratio in the overall pool.
+* Eine Untermenge von aktiven Validatoren aus dem Pool wird ausgewählt, um für eine [Spanne](/docs/maintain/glossary.md#span) als [Blockproduzenten](/docs/maintain/glossary.md#block-producer) zu fungieren. Diese Blockproduzenten sind für die Erstellung von Blöcken und die Verbreitung der erstellten Blöcke im Netz verantwortlich.
+* Ein Checkpoint enthält die Merkle-Root-Hash aller Blöcke, die während eines bestimmten Intervalls erstellt wurden. Alle Knoten prüfen dieselbe Merkle-Root-Hash und fügen ihr ihre Signatur hinzu.
+* Ein ausgewählter [Proposer](/docs/maintain/glossary.md#proposer) aus der Validatoren-Gruppe ist dafür verantwortlich, alle Signaturen für einen bestimmten Checkpoint zu sammeln und in das Ehtereum Mainnet zu übertragen.
+* Die Zuständigkeit für die Erstellung von Blöcken und das Vorschlagen von Checkpoints hängt von dem Stake eines Validators am Gesamtpool ab.
 
-See also [Heimdall architecture](../../../pos/heimdall/overview).
+Siehe auch [Heimdall-Architektur](/docs/pos/heimdall/overview).

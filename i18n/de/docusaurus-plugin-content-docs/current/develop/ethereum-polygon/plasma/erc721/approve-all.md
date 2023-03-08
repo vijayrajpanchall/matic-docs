@@ -1,14 +1,14 @@
 ---
 id: approve-all
-title: approveAll
+title: Alle freigeben
 keywords:
-  - 'plasma client, erc721, approveAll, polygon, sdk'
-description: 'Get started with maticjs'
+- 'plasma client, erc721, approveAll, polygon, sdk'
+description: 'Erste Schritte mit Maticjs'
 ---
 
-# approve
+# Freigeben {#approve}
 
-`approveAll` method can be used to approve all tokens.
+Die `approveAll`-Methode kann angewandt werden, um alle Token freizugeben.
 
 ```
 const erc721RootToken = plasmaClient.erc721(<root token address>, true);

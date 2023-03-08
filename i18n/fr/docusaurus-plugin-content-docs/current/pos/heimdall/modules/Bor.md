@@ -1,116 +1,120 @@
 ---
 id: bor
 title: Bor
-description: Bor module handles span management on Heimdall. Given Bor chain's current block number `n`, current span `span`, if `span.StartBlock <= n < span.EndBlock` , new span is proposed on Heimdall by any validator.
+description: Module qui gère la gestion de portée sur Heimdall
 keywords:
   - docs
   - matic
+  - bor module
+  - heimdall
 image: https://matic.network/banners/matic-network-16x9.png
 ---
 
-## Overview
+# Module Bor {#bor-module}
 
-Bor module handles span management on Heimdall. Given Bor chain's current block number `n`, current span `span`, if `span.StartBlock <= n < span.EndBlock`, new span is proposed on Heimdall by any validator.
+Le module de Bor s'occupe de la gestion de la durée sur Heimdall. Vu le numéro de bloc actuel de la chaîne de Bor `n`, la durée actuelle `span`, si `span.StartBlock <= n < span.EndBlock`, une nouvelle durée est proposée sur Heimdall par n'importe quel validateur.
 
-## Messages
+## Messages {#messages}
 
-### MsgProposeSpan
+### MsgProposeSpan {#msgproposespan}
 
-Source:  [https://github.com/maticnetwork/heimdall/blob/develop/bor/handler.go#L27](https://github.com/maticnetwork/heimdall/blob/develop/bor/handler.go#L27)
+`MsgProposeSpan`définit le comité des validateurs pour un certain `span`et stocke une nouvelle portée dans l'état Heimdall.
 
-`MsgProposeSpan` sets the validators’ committee for a given `span` and stores a new span into Heimdall state. Here is how this transaction chooses producers out of all validators:
+Source: [https://github.com/maticnetwork/heimdall/blob/develop/bor/handler.go#L27](https://github.com/maticnetwork/heimdall/blob/develop/bor/handler.go#L27)
 
 ```go
 // MsgProposeSpan creates msg propose span
 type MsgProposeSpan struct {
-    ID         uint64                  `json:"span_id"`
-    Proposer   hmTypes.HeimdallAddress `json:"proposer"`
-    StartBlock uint64                  `json:"start_block"`
-    EndBlock   uint64                  `json:"end_block"`
-    ChainID    string                  `json:"bor_chain_id"`
+	ID         uint64                  `json:"span_id"`
+	Proposer   hmTypes.HeimdallAddress `json:"proposer"`
+	StartBlock uint64                  `json:"start_block"`
+	EndBlock   uint64                  `json:"end_block"`
+	ChainID    string                  `json:"bor_chain_id"`
 }
 ```
 
-1. It creates multiple slots based on validators' power. Example: A with power 10 will have 10 slots, B with power 20 with have 20 slots.
-2. With all slots, `shuffle` function shuffles them using `seed` and selects first `producerCount` producers.  `bor` module on Heimdall uses ETH 2.0 shuffle algorithm to choose producers out of all validators. Each span `n` uses block hash of Ethereum (ETH 1.0) block `n`  as `seed`. Note that slots based selection allows validators to get selected based on their power. The higher power validator will have a higher probability to get selected. Source: [https://github.com/maticnetwork/heimdall/blob/develop/bor/selection.go](https://github.com/maticnetwork/heimdall/blob/develop/bor/selection.go)
+Voici comment cette transaction choisit les producteurs parmi tous les validateurs:
+
+1. Il crée plusieurs fentes en fonction de la puissance des validateurs. Exemple: A avec la puissance 10 aura 10 fentes, B avec la puissance 20 aura 20 fentes.
+2. Grâce aux fentes, `shuffle`la fonctionnalité les traite en utilisant `seed` et sélectionne les premiers `producerCount`producteurs. `bor`Le module  sur Heimdall utilise l'algorithme de traitement ETH 2.0 pour choisir les producteurs de tous les validateurs. Chaque durée `n` utilise l'identifiant du bloc d'Ethereum (ETH 1.0) `n` en tant que `seed`. Veuillez noter que la sélection basée sur les fentes permet aux validateurs d'être sélectionnés en fonction de leur puissance. Le validateur disposant de la plus grande puissance aura une probabilité plus élevée d'être sélectionné. Source: [https://github.com/maticnetwork/heimdall/blob/develop/bor/selection.go](https://github.com/maticnetwork/heimdall/blob/develop/bor/selection.go)
 
 ```go
 // SelectNextProducers selects producers for the next span by converting power to slots
 // spanEligibleVals - all validators eligible for next span
 func SelectNextProducers(blkHash common.Hash, spanEligibleVals []hmTypes.Validator, producerCount uint64) (selectedIDs []uint64, err error) {
-    if len(spanEligibleVals) <= int(producerCount) {
-        for _, val := range spanEligibleVals {
-            selectedIDs = append(selectedIDs, uint64(val.ID))
-        }
-        return
-    }
+	if len(spanEligibleVals) <= int(producerCount) {
+		for _, val := range spanEligibleVals {
+			selectedIDs = append(selectedIDs, uint64(val.ID))
+		}
+		return
+	}
 
-    // extract seed from hash
-    seed := helper.ToBytes32(blkHash.Bytes()[:32])
-    validatorIndices := convertToSlots(spanEligibleVals)
-    selectedIDs, err = ShuffleList(validatorIndices, seed)
-    if err != nil {
-        return
-    }
-    return selectedIDs[:producerCount], nil
+	// extract seed from hash
+	seed := helper.ToBytes32(blkHash.Bytes()[:32])
+	validatorIndices := convertToSlots(spanEligibleVals)
+	selectedIDs, err = ShuffleList(validatorIndices, seed)
+	if err != nil {
+		return
+	}
+	return selectedIDs[:producerCount], nil
 }
 
 // converts validator power to slots
 func convertToSlots(vals []hmTypes.Validator) (validatorIndices []uint64) {
-    for _, val := range vals {
-        for val.VotingPower >= types.SlotCost {
-            validatorIndices = append(validatorIndices, uint64(val.ID))
-            val.VotingPower = val.VotingPower - types.SlotCost
-        }
-    }
-    return validatorIndices
+	for _, val := range vals {
+		for val.VotingPower >= types.SlotCost {
+			validatorIndices = append(validatorIndices, uint64(val.ID))
+			val.VotingPower = val.VotingPower - types.SlotCost
+		}
+	}
+	return validatorIndices
 }
 ```
 
-## Types
+## Types {#types}
 
-Here are the span details that Heimdall uses:
+Voici les détails de la durée que Heimdall utilise:
 
 ```go
 // Span structure
 type Span struct {
-    ID                uint64       `json:"span_id" yaml:"span_id"`
-    StartBlock        uint64       `json:"start_block" yaml:"start_block"`
-    EndBlock          uint64       `json:"end_block" yaml:"end_block"`
-    ValidatorSet      ValidatorSet `json:"validator_set" yaml:"validator_set"`
-    SelectedProducers []Validator  `json:"selected_producers" yaml:"selected_producers"`
-    ChainID           string       `json:"bor_chain_id" yaml:"bor_chain_id"`
+	ID                uint64       `json:"span_id" yaml:"span_id"`
+	StartBlock        uint64       `json:"start_block" yaml:"start_block"`
+	EndBlock          uint64       `json:"end_block" yaml:"end_block"`
+	ValidatorSet      ValidatorSet `json:"validator_set" yaml:"validator_set"`
+	SelectedProducers []Validator  `json:"selected_producers" yaml:"selected_producers"`
+	ChainID           string       `json:"bor_chain_id" yaml:"bor_chain_id"`
 }
 ```
 
-## **Parameters**
+## Paramètres {#parameters}
 
-The Bor module contains the following parameters:
+Le module de Bor contient les paramètres suivants:
 
-| Key            | Type   | Default value        |
-| -------------- | ------ | -------------------- |
-| SprintDuration | uint64 | 64                   |
-| SpanDuration   | uint64 | 100 * SprintDuration |
-| ProducerCount  | uint64 | 4                    |
+| Clé | Type | Valeur par défaut |
+|----------------------|------|------------------|
+| SprintDuration | uint64 | 64 |
+| SpanDuration | uint64 | 100 * SprintDuration |
+| ProducerCount | uint64 | 4 |
 
 
-## CLI commands
+## Commandes CLI {#cli-commands}
 
-### Span propose tx
+### Proposition de tx sur la durée {#span-propose-tx}
 
 ```bash
 heimdallcli tx bor propose-span \
-    --start-block <start-block> \
-    --chain-id <heimdall-chain-id>
+	--start-block <start-block> \
+	--chain-id <heimdall-chain-id>
 ```
 
-### Query current span
+### Durée de requête actuelle {#query-current-span}
 
 ```bash
 heimdallcli query bor span latest-span --chain-id <heimdall-chain-id>
 ```
 
-Expected output:
+Sortie attendue:
 
 ```go
 {
@@ -157,23 +161,23 @@ Expected output:
 }
 ```
 
-### Query span by id
+### Durée de la requête par indentifiant {#query-span-by-id}
 
 ```bash
 heimdallcli query bor span --span-id <span-id> --chain-id <heimdall-chain-id>
 ```
 
-It prints the result in same format as above.
+Il imprime le résultat dans le même format ci-dessus.
 
-### Params
+### Paramètres {#parameters-1}
 
-To print all params
+Pour imprimer tous les params;
 
 ```go
 heimdalldcli query bor params
 ```
 
-**Expected Result:**
+Résultat Attendu:
 
 ```go
 sprint_duration: 64
@@ -181,10 +185,10 @@ span_duration: 6400
 producer_count: 4
 ```
 
-## REST APIs
+## API de REST {#rest-apis}
 
-| Name            | Method | Endpoint              |
-| --------------- | ------ | --------------------- |
-| Span details    | GET    | /bor/span/<span-id\> |
-| Get latest span | GET    | /bor/latest-span      |
-| Get params      | GET    | /bor/params           |
+| Nom | Méthode | Point de terminaison |
+|----------------------|------|------------------|
+| Détails de la durée | GET | /bor/span/<span-id\> |
+| Obtenir la dernière durée | GET | /bor/latest-span |
+| Obtenir les params | GET | /bor/params |

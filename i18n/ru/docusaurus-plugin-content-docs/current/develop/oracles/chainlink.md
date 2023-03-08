@@ -2,38 +2,39 @@
 id: chainlink
 title: Chainlink
 sidebar_label: Chainlink
-description: Build your next blockchain app on Polygon.
+description: Chainlink — это децентрализованная сеть оракула блокчейна, построенная на Ethereum.
 keywords:
-  - docs
-  - matic
+  - wiki
+  - polygon
   - chainlink
   - oracle
-image: https://matic.network/banners/matic-network-16x9.png
+  - decentralized
+  - data
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-Chainlink enables your contracts to access to *any* external data source, through a decentralized oracle network. Whether your contract requires sports results, the latest weather, or any other publicly available data, Chainlink provides the tools required for your contract to consume it.
+**Chainlink** позволяет вашим контрактам **получить доступ к любому внешнему источнику данных** через децентрализованную сеть oracle. Если вашему контракту нужно получить результаты спортивных событий, информацию о погоде или другие общедоступные данные, Chainlink предоставит вашему контракту необходимые для этого инструменты.
 
-# Decentralized Data
+## Децентрализованные данные {#decentralized-data}
 
-One of Chainlinks most powerful features, is already decentralized, aggregated, and ready to be digested on-chain data on most of the most popular cryptocurrenies. These are known as [Chainlink Data Feeds](https://docs.chain.link/docs/using-chainlink-reference-contracts).
+Одна из самых мощных функций Chainlink уже decentralized, aggregated, и готова быть digested данными в цепочке по большинству популярных криптовалют. Они известны как [**Feeds данных Chainlink**](https://docs.chain.link/docs/using-chainlink-reference-contracts).
 
-Here is a working example of a contract that pulls the latest price of MATIC in USD on the Mumbai Testnet.
+Вот работающий пример контракта, извлекающего последнюю цену MATIC в долларах США в тестовой сети Mumbai.
 
-All you need to do, is swap out the address [with any address of a data feed](https://docs.chain.link/docs/matic-addresses#config) that you wish, and you can start digesting price information.
+Все, что вам нужно сделать, это вывести адрес [с любого адреса ленты](https://docs.chain.link/docs/matic-addresses#config) данных, который вы хотите, и вы можете начать swap информации о цене.
+
 ```
-
 pragma solidity ^0.6.7;
 
 import "@chainlink/contracts/src/v0.6/interfaces/AggregatorV3Interface.sol";
 
 contract PriceConsumerV3 {
-
     AggregatorV3Interface internal priceFeed;
 
     /**
-     * Network: Mumbai Testnet 
+     * Network: Mumbai Testnet
      * Aggregator: MATIC/USD
      * Address: 0xd0D5e3DB44DE05E9F294BB0a3bEEaF030DE24Ada
      */
@@ -46,7 +47,7 @@ contract PriceConsumerV3 {
      */
     function getLatestPrice() public view returns (int) {
         (
-            uint80 roundID, 
+            uint80 roundID,
             int price,
             uint startedAt,
             uint timeStamp,
@@ -57,36 +58,42 @@ contract PriceConsumerV3 {
 }
 ```
 
-# Request and Receive Cycle
+## Цикл запроса и получения {#request-and-receive-cycle}
 
-Chainlink's Request and Receive cycle enables your smart contracts to make a request to any external API and consume the response. To implement it, your contract needs to define two functions:
+Цикл запроса и получения в Chainlink позволяет вашим смарт-контрактам выполнять запросы к любым внешним API и получать ответы. Для реализации этой возможности в вашем контракте необходимо определить две функции:
 
-1. One to request the data
-2. Another to receive the response.
+1. Один для **запроса данных**, и
+2. Еще один получит **ответ**.
 
-To request data, your contract builds a request object which it provides to an oracle. Once the oracle has reached out to the API and parsed the response, it will attempt to send the data back to your contract using the callback function defined in your smart contract.
+Чтобы запросить данные, ваш контракт создает `request`объект, который он предоставляет оракулу. Когда оракул обратится к API и обработает ответ, он попытается отправить данные обратно в контракт, используя функцию обратного вызова, определенную в вашем смарт-контракте.
 
-# Uses
+## Использование {#uses}
 
-1. Chainlink Data Feeds
-   1. These are decentralized data reference points already aggregated on-chain, and the quickest, easiest, and cheapest way to get data from the real world. Currently supports some of the most popular cryptocurrency and fiat pairs.
-2. Chainlink VRF
-   1. Get provably random numbers, where the random number is cryptographically guaranteed to be random.
-3. Chainlink API Calls
-   1. How to configure your smart contract to work with traditional APIs, and customize to get any data, send any requests over the internet, and more.
+1. **Feeds данных Chainlink**
 
-For working with Data Feeds, use the [Polygon Data Feeds](https://docs.chain.link/docs/matic-addresses) from the Chainlink documenation.
+Это децентрализованные контрольные точки данных, уже агрегированные в цепочке, и самый быстрый, самый простой и самый дешевый способ получить данные из реального мира. В настоящее время поддерживаются многие самые популярные пары криптовалют и фиатных валют.
 
-For working with Chainlink VRF, use the [Polygon VRF](https://docs.chain.link/docs/vrf-contracts) addresses from the [Chainlink documentation](https://docs.chain.link/docs/get-a-random-number).
-# Code Example
+Для работы с лентами данных используйте [**каналы данных Polygon из**](https://docs.chain.link/data-feeds/price-feeds/addresses/?network=polygon) документации Chainlink.
 
-To interact with external APIs, your smart contract should inherit from <a href="https://github.com/smartcontractkit/chainlink/blob/develop/evm-contracts/src/v0.6/ChainlinkClient.sol" target="_blank">`ChainlinkClient`</a>, which is a contract designed to make processing requests easy. It exposes a struct called `Chainlink.Request`, which your contract should use to build the API request.
+2. **Функция проверки Chainlink**
 
-The request should define the oracle address, the job id, the fee, adapter parameters, and the callback function signature. In this example, the request is built in the `requestEthereumPrice` function.
+Получить доказанно случайные числа, где случайный номер гарантированно быть случайным.
 
-`fulfill` is defined as the callback function.
+Для работы с Chainlink VRF, используйте [**адреса Polygon**](https://docs.chain.link/vrf/v2/subscription/supported-networks) VRF из [документации](https://docs.chain.link/vrf/v2/subscription/examples/get-a-random-number) Chainlink.
 
-```javascript
+3. **Chainlink API вызывает**
+
+Как настроить свой смарт-контракт для работы с традиционными API и настроить для получения любых данных, отправить любые запросы через интернет и многое другое.
+
+## Пример кода {#code-example}
+
+Чтобы взаимодействовать с внешними API, ваш смарт-контракт должен наследовать из контракта [`ChainlinkClient.sol`](https://github.com/smartcontractkit/chainlink/blob/develop/contracts/src/v0.6/ChainlinkClient.sol), разработанного для обеспечения удобства обработки запросов. Он открывает структуру `Chainlink.Request`, которую ваш контракт должен использовать для построения запроса API.
+
+Запрос должен определить адрес оракула, идентификатор задания, гонорар, параметры адаптера и подпись функции обратного вызова. В этом примере запрос построен в функции `requestEthereumPrice`.
+
+`fulfill` определяется как функция обратного вызова.
+
+```
 pragma solidity ^0.6.0;
 
 import "@chainlink/contracts/src/v0.6/ChainlinkClient.sol";
@@ -117,12 +124,12 @@ contract APIConsumer is ChainlinkClient {
      * Create a Chainlink request to retrieve API response, find the target price
      * data, then multiply by 100 (to remove decimal places from price).
      */
-    function requestBTCCNYPrice() public returns (bytes32 requestId) 
+    function requestBTCCNYPrice() public returns (bytes32 requestId)
     {
         Chainlink.Request memory request = buildChainlinkRequest(jobId, address(this), this.fulfill.selector);
 
         // Set the URL to perform the GET request on
-        // NOTE: If this oracle gets more than 5 requests from this job at a time, it will not return. 
+        // NOTE: If this oracle gets more than 5 requests from this job at a time, it will not return.
         request.add("get", "https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=BTC&to_currency=CNY&apikey=demo");
 
        // Set the path to find the desired data in the API response, where the response format is:
@@ -153,7 +160,7 @@ contract APIConsumer is ChainlinkClient {
 
     /**
      * Receive the response in the form of uint256
-     */ 
+     */
     function fulfill(bytes32 _requestId, uint256 _price) public recordChainlinkFulfillment(_requestId)
     {
         price = _price;
@@ -161,31 +168,31 @@ contract APIConsumer is ChainlinkClient {
 }
 ```
 
-# Mainnet Polygon LINK token
+## Токен Mainnet Polygon LINK {#mainnet-polygon-link-token}
 
-To get mainnet Polygon LINK token from the Ethereum mainnet, you must follow a 2 step process.
+Чтобы получить токен Polygon LINK из Ethereum Mainnet, необходимо следовать 2-ступенчатому процессу.
 
-1. Bridge your LINK using the Plasma or [PoS bridge](https://wallet.polygon.technology/bridge).
-2. Swap the LINK for the ERC677 version via the [Pegswap, deployed by the Chainlink](https://pegswap.chain.link/).
+1. Создайте мост для LINK, используя мост Plasma или [мост PoS](https://wallet.polygon.technology/bridge).
+2. Выполните своп LINK на версию ERC677 с помощью [Pegswap, развернутого Chainlink](https://pegswap.chain.link/).
 
-The Polygon bridge brings over an ERC20 version of LINK, and LINK is an ERC677, so we just have to update it with this swap.
-# Addresses
+Мост Polygon передает версию ERC20 LINK, а LINK использует версию ERC677, так что нам нужно просто выполнить обновление, используя этот своп.
 
-There are currently only a few operational Chainlink oracles on the Polygon Mumbai Testnet. You can always run one yourself too, and list it on the Chainlink Marketplace.
+## Адреса {#addresses}
 
-* Oracle: <a href="https://mumbai.polygonscan.com/address/0x58bbdbfb6fca3129b91f0dbe372098123b38b5e9/transactions" target="_blank">`0xb33D8A4e62236eA91F3a8fD7ab15A95B9B7eEc7D`</a>
-* LINK: <a href="https://mumbai.polygonscan.com/address/0x70d1F773A9f81C852087B77F6Ae6d3032B02D2AB/transactions" target="_blank">`0x326C977E6efc84E512bB9C30f76E30c160eD06FB`</a>
+В настоящее время в тестовой сети Polygon Mumbai имеется всего несколько работающих оракулов Chainlink. Однако вы всегда можете запустить собственный оракул и добавить его на маркетплейс Chainlink Marketplace.
 
+* Оракул: [`0xb33D8A4e62236eA91F3a8fD7ab15A95B9B7eEc7D`](https://mumbai.polygonscan.com/address/0x58bbdbfb6fca3129b91f0dbe372098123b38b5e9/transactions)
+* LINK: [`0x326C977E6efc84E512bB9C30f76E30c160eD06FB`](https://mumbai.polygonscan.com/address/0x70d1F773A9f81C852087B77F6Ae6d3032B02D2AB/transactions)
 
-To obtain LINK on Mumbai Testnet, head to the <a href="https://faucet.polygon.technology/" target="_blank">faucet here</a>.
+Чтобы получить LINK в Mumbai Testnet, перейдите в [кран Polygon](https://faucet.polygon.technology/).
 
-# Which APIs are Supported?
+## Поддерживаемые API {#supported-apis}
 
-Chainlink's Request and Receive cycle is flexible enough to call any public API, so long as the request parameters are correct and the response format is known. For example, if the response object from a URL we want to fetch from is formatted like this: `{"USD":243.33}`, the path is simple: `"USD"`.
+Цикл запроса и получения Chainlink обладает достаточной гибкостью для вызова любых публичных API, если параметры запроса верны, а формат ответа известен. Например, если объект ответа из URL, откуда мы хотим выполнить доставку, имеет следующий формат: `{"USD":243.33}`, путь будет выглядеть просто: `"USD"`.
 
-If an API responds with a complex JSON object, the "path" parameter would need to specify where to retrieve the desired data, using a dot delimited string for nested objects. For example, take the following response:
+Если API отвечает со сложным объектом JSON, параметру **path** необходимо будет указать где получить нужные данные, используя строку, выделенную точкой, для вложенных объектов. Например, рассмотрим следующий ответ:
 
-```JSON
+```json
 {
    "Prices":{
         "USD":243.33
@@ -193,39 +200,37 @@ If an API responds with a complex JSON object, the "path" parameter would need t
 }
 ```
 
-This would require the following path: `"Prices.USD"`. If there are spaces in the stings, or the strings are quite long, we can use the syntax shown in the example above, where we pass them all as a string array.
+Для него потребуется следующий путь: `"Prices.USD"`. Если в строках есть пробелы, или строки достаточно длинны, мы можем использовать синтакси, приведенный в приведенном выше примере и передать все их в качестве массива строки.
 
-```
+```json
 string[] memory path = new string[](2);
 path[0] = "Prices";
 path[1] = "USD";
 request.addStringArray("path", path);
 ```
 
-# What Are Job IDs For?
+## Для чего нужны идентификаторы заданий? {#what-are-job-ids-for}
 
-You may have noticed that example uses a `jobId` parameter when building the request. Jobs are comprised of a sequence of instructions that an oracle is configured to run. In the [code example](#code-example) above, the contract makes a request to the oracle with the job ID: `da20aae0e4c843f6949e5cb3f7cfe8c4`. This particular job is configured to do the following:
+Возможно, вы заметили, что наш [пример](#code-example) использует `jobId`параметр при создании запроса. Задания состоят из последовательностей инструкций, на выполнение которых настроен оракул. В приведенном выше [примере кода](#code-example) контракт направляет запрос оракулу с идентификатором задания: `da20aae0e4c843f6949e5cb3f7cfe8c4`. Это конкретное задание настроено для выполнения следующих функций:
 
-* Make a GET request
-* Parse the JSON response
-* Multiply the value by *x*
-* Convert the value to `uint`
-* Submit to the chain
+* Выполнение запроса GET
+* Синтаксическая обработка ответа JSON
+* Умножение значения на *x*
+* Конвертация значения в `uint`
+* Отправка в цепочку
 
-This is why our contract adds in the URL, the path of where to find the desired data in the JSON response, and the times amount to the request; using the `request.add` statements. These instructions are facilitated by what's known as Adapters, in the oracle.
+Именно поэтому наш контракт добавляет в запрос URL-адрес пути, по которому можно найти желаемые данные в ответе JSON и параметры времени и количества, используя выражения `request.add`. Для выполнения этих инструкций оракул использует компоненты, называемые адаптерами.
 
-**Every request to an oracle must include a specific job ID.**
+**Каждый запрос к оракулу должен включать конкретный идентификатор задания.**
 
-Here is the list of jobs that the Polygon oracle is configured to run.
+Вот список заданий, на выполнение которых настроен оракул Polygon.
 
-| Name      | Return Type | ID                                 | Adapters                                                                                      |
-| --------- | ----------- | ---------------------------------- | --------------------------------------------------------------------------------------------- |
-| HTTP GET  | `uint256`   | `da20aae0e4c843f6949e5cb3f7cfe8c4` | `httpget`<br/>`jsonparse`<br/>`multiply`<br/>`ethuint256`<br/>`ethtx` |
-| HTTP GET  | `int256`    | `e0c76e45462f4e429ba32c114bfbf5ac` | `httpget`<br/>`jsonparse`<br/>`multiply`<br/>`ethint256`<br/>`ethtx`  |
-| HTTP GET  | `bool`      | `999539ec63414233bdc989d8a8ff10aa` | `httpget`<br/>`jsonparse`<br/>`ethbool`<br/>`ethtx`                         |
-| HTTP GET  | `bytes32`   | `a82495a8fd5b4cb492b17dc0cc31a4fe` | `httpget`<br/>`jsonparse`<br/>`ethbytes32`<br/>`ethtx`                      |
-| HTTP POST | `bytes32`   | `a82495a8fd5b4cb492b17dc0cc31a4fe` | `httppost`<br/>`jsonparse`<br/>`ethbytes32`<br/>`ethtx`                     |
+| Название | Тип возврата | Идентификатор | Адаптеры |
+|-----|--------|------|-------|
+| HTTP GET | `uint256` | `da20aae0e4c843f6949e5cb3f7cfe8c4` | `httpget`<br/>`jsonparse`<br/>`multiply`<br/>`ethuint256`<br/>`ethtx` |
+| HTTP GET | `int256` | `e0c76e45462f4e429ba32c114bfbf5ac ` | `httpget`<br/>`jsonparse`<br/>`multiply`<br/>`ethint256`<br/>`ethtx` |
+| HTTP GET | `bool` | `999539ec63414233bdc989d8a8ff10aa ` | `httpget`<br/>`jsonparse`<br/>`ethbool`<br/>`ethtx` |
+| HTTP GET | `bytes32` | `a82495a8fd5b4cb492b17dc0cc31a4fe ` | `httpget`<br/>`jsonparse`<br/>`ethbytes32`<br/>`ethtx` |
+| HTTP POST | `bytes32` | `a82495a8fd5b4cb492b17dc0cc31a4fe ` | `httppost`<br/>`jsonparse`<br/>`ethbytes32`<br/>`ethtx` |
 
-Read more about job specifications [here](https://docs.chain.link/docs/job-specifications).
-
-The complete Chainlink API reference can be found [here](https://docs.chain.link/docs/chainlink-framework).
+Полную справку по Chainlink API можно найти [здесь](https://docs.chain.link/any-api/api-reference).

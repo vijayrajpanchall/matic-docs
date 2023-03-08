@@ -2,11 +2,11 @@
 id: approve
 title: approve
 keywords:
-  - 'plasma client, erc721, approve, polygon, sdk'
-description: 'maticjs으로 시작하기'
+- 'plasma client, erc721, approve, polygon, sdk'
+description: '루트 토큰에서 필요한 금액을 승인합니다.'
 ---
 
-`approve` 메소드는 루트 토큰에 필요한 수량을 승인하는 데 사용할 수 있습니다.
+`approve` 메서드를 사용해 루트 토큰에서 필요한 금액을 승인할 수 있습니다.
 
 ```
 const erc721RootToken = plasmaClient.erc721(<root token address>,true);

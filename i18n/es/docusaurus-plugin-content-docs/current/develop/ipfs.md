@@ -1,24 +1,36 @@
 ---
 id: ipfs
 title: IPFS
-description: IPFS
+description: "IPFS: sistema distribuido para almacenar datos y acceder a ellos."
 keywords:
   - IPFS
   - matic
-image: https://matic.network/banners/matic-network-16x9.png
+  - docs
+  - polygon
+  - storage
+  - blockchain
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
+### Contexto {#context}
 
-### Context
+La cadena de bloques de Polygon reduce los costos de transacción para almacenar datos frente a la red principal de Ethereum. Sin embargo, aunque sean bajos, los costos se incrementan rápidamente al almacenar archivos de gran tamaño. Los desarrolladores también deben considerar las restricciones en el tamaño de los bloques y las limitaciones de velocidad de las transacciones cuando almacenan datos en la cadena. Una solución que aborda todas estas preocupaciones es el IPFS, el sistema de archivos interplanetario.
 
-Polygon blockchain can be used to store data. But is it really worth the cost? To put into perspective 1 byte of a data can cost you 50 gwei gas in matic token, or equal to about $0.0166 in today's market. It maybe small for just one byte of data but let's say you want to store a file with 1 GB data (10^6 bytes) it will cost you 6.4x10^11 gwei or 640 matic. Even matic consumes less gas then too its not easy task to store it in on-chain. The solution for this is IPFS, the InterPlanetary File System.&#x20;
+#### ¿Qué es IPFS? {#what-is-ipfs}
 
-#### What is IPFS?&#x20;
+El IPFS es un sistema distribuido para almacenar archivos, sitios web, aplicaciones y datos, y acceder a ellos. El IPFS emplea la descentralización, el direccionamiento de contenido y una red robusta de pares con participantes activos para permitirles a los usuarios almacenar, solicitar y transferir datos verificables entre sí.
 
-IPFS is a distributed system for storing and accessing files, websites, applications, and data. Using IPFS as a storage you don't need to store entire files to polygon blockchain you just need to store the hash of the IPFS to the polygon blockchain, thus make it much more cheaper then just storing the file. For more details refer [IPFS docs](https://docs.ipfs.io/). &#x20;
+La descentralización posibilita descargar un archivo desde muchas ubicaciones que no son administradas por una organización, lo que proporciona resiliencia y resistencia a la censura inmediatas.
 
-### Example Projects
+El direccionamiento de contenido utiliza la criptografía para crear un hash verificable único, basado en lo que hay en el archivo, y no en dónde se encuentra. El identificador de contenido (CID) resultante garantiza que un fragmento de datos sea idéntico, independientemente de dónde se almacene.
 
- 1)  Tutorial in scaffold-eth that demonstrates how to mint an NFT on Polygon with IPFS [link](https://github.com/scaffold-eth/scaffold-eth/tree/simple-nft-example)
+Por último, la creciente comunidad activa de usuarios hace posible ese intercambio de contenido entre pares. Los desarrolladores suben y anclan el contenido a IPFS mientras que los proveedores de almacenamiento de Filecoin o Crust ayudan a garantizar el almacenamiento persistente de ese contenido.
 
- 2) Building a full stack web3 app with Next.js, Polygon, Solidity, The Graph, IPFS, and Hardhat [link](https://dev.to/dabit3/the-complete-guide-to-full-stack-web3-development-4g74)
+
+Con el almacenamiento basado en el IPFS, solo tienes que almacenar el CID de tu contenido, en lugar de cargar archivos completos en la cadena de bloques de Polygon, lo que permite reducir costos, cargar archivos de mayor tamaño y un almacenamiento persistente comprobado. Para obtener más detalles, consulte [los documentos de IPFS](https://docs.ipfs.io/).
+
+### Proyectos de ejemplo {#example-projects}
+
+1. Tutorial en el eth de andamios que demuestra cómo acuñar un NFT en Polygon con IPFS - [enlace](https://github.com/scaffold-eth/scaffold-eth/tree/simple-nft-example)
+
+2. Construir una aplicación completa de la pila web3 con Next.js, Polygon, Solidez, El gráfico, IPFS y Hardhat - [enlace](https://dev.to/dabit3/the-complete-guide-to-full-stack-web3-development-4g74)

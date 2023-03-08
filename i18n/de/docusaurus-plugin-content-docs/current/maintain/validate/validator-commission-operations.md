@@ -1,39 +1,38 @@
 ---
 id: validator-commission-operations
-title: Commission Operations
-description: "Set up and change your validator commission."
+title: Maßnahmen der Provision
+description: Richte deine validator ein und ändere
 keywords:
   - docs
   - matic
   - polygon
   - validator
-  - commission
+  - commission operations
 slug: validator-commission-operations
-image: https://matic.network/banners/matic-network-16x9.png
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
-
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-You can set up and change your [commission](../glossary#commission) as a validator.
+Sie können Ihre [Provision](/docs/maintain/glossary.md#commission) als Validator einrichten und ändern.
 
-A validator is entitled to charge any commission rate. The minimum commission would be 0% and the maximum commission would be 100% of the rewards earned.
+Ein Validator ist berechtigt, einen Provisionssatz in Rechnung zu stellen. Die minimale Provision würde 0 % und die maximale Provision 100 % der zu verdienenden Belohnungen betragen.
 
-You are allowed to change the commission rates as many times as you would like.
+Es ist Ihnen erlaubt, die Provisionssätze so oft zu ändern, wie Sie möchten.
 
-As a validator, it is one of your responsibilities to inform the community on commission changes. See [Validator Responsibilities](../validator/responsibilities).
+Als Validator gehört es zu Ihren Aufgaben, die Community über Provisionsänderungen zu informieren. Weitere Einzelheiten dazu unter [Verantwortung des Validators](/docs/maintain/validator/responsibilities).
 
-## Set up your commission rate as a validator
+## Einrichten Ihres Provisionssatzes als Validator {#set-up-your-commission-rate-as-a-validator}
 
-You set up the commission rate as part of your initial validator staking process. See [Validator Staking Operations](validator-staking-operations).
+Sie richten die Provisionssatz im Rahmen Ihres ursprünglichen Validators ein. Weiteres unter [Operationen des Validator-Staking](validator-staking-operations.md)
 
-## Change your commission rate
+## Ändern Sie Ihre Provisionssatz {#change-your-commission-rate}
 
-You can change your commission rate.
+Sie können Ihre Provisionssatz ändern.
 
-1. With your owner address, login to the [staking dashboard](https://staking.polygon.technology/).
-1. On your profile, click **Edit Profile**.
-1. In the *Commission* field, provide your new commission rate.
+1. Loggen Sie sich mit Ihrer Eigentümeradresse in das [Staking-Dashboard](https://staking.polygon.technology/) ein.
+1. Klicken Sie auf Ihrem Profil auf **Profile bearbeiten**.
+1. Geben Sie im Bereich der **Provision** Ihren neuen Provisionssatz ein.
 
-Once you have confirmed and signed the transaction your commission rate will be set.
+Sobald Sie die Transaktion bestätigt und signiert haben, wird Ihr Provisionssatz eingestellt.
 
-Once the commission is updated, there is a cool down period of 80 checkpoints.
+Nach der Aktualisierung der Kommission gibt es eine Wartezeit von 80 Checkpoints.

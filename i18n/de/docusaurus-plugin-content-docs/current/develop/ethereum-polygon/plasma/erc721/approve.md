@@ -1,14 +1,14 @@
 ---
 id: approve
-title: approve
+title: Freigeben
 keywords:
-  - 'plasma client, erc721, approve, polygon, sdk'
-description: 'Get started with maticjs'
+- 'plasma client, erc721, approve, polygon, sdk'
+description: 'Erste Schritte mit Maticjs'
 ---
 
-# approve
+# Freigeben {#approve}
 
-`approve` method can be used to approve required amount on root token.
+Die `approve`-Methode kann angewandt werden, um den erforderlichen Betrag des Root-Tokens freizugeben.
 
 ```
 const erc721RootToken = plasmaClient.erc721(<root token address>,true);

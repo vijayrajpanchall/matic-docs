@@ -1,31 +1,31 @@
 ---
 id: ethers
-title: 'Ethers setup'
+title: 'Configuración de Ethers'
 keywords:
   - pos client
   - erc20
   - withdrawExit
   - polygon
   - sdk
-description: 'Get started with maticjs'
+description: 'Instala y configura ethers.js'
 ---
 
-# Ether.js
+# Ether.js {#ether-js}
 
-The [ethers.js](https://docs.ethers.io/) library aims to be a complete and compact library for interacting with the Ethereum Blockchain and its ecosystem.
+La biblioteca [ethers.js](https://docs.ethers.io/) busca ser una biblioteca completa y compacta para interactuar con la cadena de bloques de Ethereum y su ecosistema.
 
-## Setup ether.js
+## Configuración de ether.js {#setup-ether-js}
 
-ether.js support is available via seperate package as a plugin for matic.js.
+El soporte de ether.js está disponible por medio de un paquete separado como complemento para matic.js.
 
-### Installation
+### Instalación {#installation}
 
 ```
 npm install @maticnetwork/maticjs-ethers
 
 ```
 
-### setup
+### Configuración {#setup}
 
 ```
 import { use } from '@maticnetwork/maticjs'
@@ -35,7 +35,7 @@ import { Web3ClientPlugin } from '@maticnetwork/maticjs-ethers'
 use(Web3ClientPlugin)
 ```
 
-Let's see one example of creating `POSClient` using ethers -
+Veamos un ejemplo de creación de `POSClient` utilizando ethers:
 
 ```
 import { POSClient,use } from "@maticnetwork/maticjs"
@@ -69,6 +69,6 @@ await posClient.init({
 
 ```
 
-## Examples
+## Ejemplos {#examples}
 
-The examples for different cases are available on [ethers plugin repo](https://github.com/maticnetwork/maticjs-ethers).
+Los ejemplos para diferentes casos están disponibles en el [repositorio de complementos de ethers](https://github.com/maticnetwork/maticjs-ethers).

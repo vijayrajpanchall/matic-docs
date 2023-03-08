@@ -1,12 +1,12 @@
 ---
 id: deposit
-title: deposit
+title: 입금
 keywords:
-  - 'pos client, erc20, approveMax, polygon, sdk'
-description: 'maticjs로 시작하기'
+- 'pos client, erc20, approveMax, polygon, sdk'
+description: ' 루트 토큰에서 하위 토큰으로 필요한 금액을 입금합니다.'
 ---
 
-`deposit` 메소드는 루트 토큰에서 child 토큰으로 필요한 수량을 입금하는 데 사용할 수 있습니다.
+`deposit` 메서드를 사용해 루트 토큰에서 하위 토큰으로 필요한 금액을 입금할 수 있습니다.
 
 ```
 const erc20RootToken = plasmaClient.erc20(<root token address>,true);

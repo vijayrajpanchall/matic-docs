@@ -1,34 +1,34 @@
 ---
 id: index
-title: POSClient
+title: POSClient (Cliente de pruebas de participación)
 keywords:
-  - 'pos client, erc1155, contract, polygon, sdk'
-description: 'Interact with erc1155 token using matic.js'
+- 'pos client, erc1155, contract, polygon, sdk'
+description: 'Interactúa con el token ERC-1155 con el uso de matic.js.'
 ---
 
-# ERC1155
+# ERC-1155 {#erc1155}
 
-`POSClient` provides `erc1155` method which helps you to interact with a erc1155 token.
+`POSClient`proporciona el método `erc1155` que te ayuda a interactuar con un token ERC-1155.
 
-The method returns instance of **ERC1155** class which contains different methods.
+El método devuelve la instancia de **ERC-115** que contiene diferentes métodos.
 
 ```
 const erc721token = posClient.erc1155(<token address>, <isRoot>);
 ```
 
-Passing second arguments for `isRoot` is optional.
+Pasar los segundos argumentos para `isRoot` es opcional.
 
-## Child token
+## Token secundario {#child-token}
 
-Token on polygon can be initiated by using this syntax -
+El token en Polygon se puede iniciar usando esta sintaxis:
 
 ```
 const childERC20Token = posClient.erc1155(<child token address>);
 ```
 
-## Parent token
+## Token primario {#parent-token}
 
-Token on ethereum can be initiated by providing second parameter value as `true`.
+Los token de Ethereum se pueden iniciar pasando `true` como valor del segundo parámetro.
 
 ```
 const parentERC20Token = posClient.erc1155(<parent token address>, true);

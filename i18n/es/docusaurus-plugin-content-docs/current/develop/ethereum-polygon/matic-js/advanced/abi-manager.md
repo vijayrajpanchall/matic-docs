@@ -2,17 +2,17 @@
 id: abi-manager
 title: ABIManager
 keywords:
-  - 'abi manager, api type, read, write, polygon'
-description: 'matic.js internally use ABIManager for handling abi management for you'
+- 'abi manager, api type, read, write, polygon'
+description: "Administrador de la interfaz binaria de aplicación (ABI) interna de matic.js"
 ---
 
-`matic.js` internally uses `ABIManager` for handling ABI management, configuration for you. All of the ABI and config are taken from [static repo](https://github.com/maticnetwork/static).
+`matic.js`internamente usa `ABIManager` para manejar la configuración del ABIManager (administrador de la ABI). Toda la ABI y la configuración se toman del [repositorio estático](https://github.com/maticnetwork/static).
 
-## Change ABI
+## Cambio de la ABI {#change-abi}
 
-Sometimes you are required to change the ABI, particularly when you are developing a contract. You can do so by using `ABIManager`.
+A veces se necesita cambiar la ABI, especialmente cuando se está desarrollando un contrato. Para ello, puedes utilizar `ABIManager`
 
-**Syntax**
+**Sintaxis**
 
 ```
 import { ABIManager } from '@maticnetwork/maticjs'
@@ -30,9 +30,9 @@ manager.setABI(<contract name>,<bridge type>, <abi value>);
 manager.getABI(<contract name>,<bridge type>);
 ```
 
-The network name, contract name, bridge name etc can be taken from our [official static repo](https://github.com/maticnetwork/static/tree/master/network).
+El nombre de la red, el nombre del contrato, el nombre del puente, etc., se pueden tomar de nuestro [repositorio estático oficial](https://github.com/maticnetwork/static/tree/master/network).
 
-**Example**
+**Ejemplo**
 
 ```
 import { ABIManager } from '@maticnetwork/maticjs'

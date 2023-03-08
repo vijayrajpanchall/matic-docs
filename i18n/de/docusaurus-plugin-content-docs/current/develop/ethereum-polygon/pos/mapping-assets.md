@@ -1,50 +1,55 @@
 ---
 id: mapping-assets
-title: Mapping Assets using POS
-description: Build your next blockchain app on Polygon.
+title: Mapping von Assets mit POS
+description: "Mapping von Assets von Polygon zu Ethereum."
 keywords:
   - docs
   - matic
+  - mapping
 image: https://matic.network/banners/matic-network-16x9.png
 ---
 
-### Introduction
+### Einführung {#introduction}
 
-Mapping is necessary in order to transfer your assets to and from the Ethereum and Polygon.
+Mapping ist erforderlich, um deine Assets an und von Ethereum und Polygon zu übertragen.
 
-- **The Root chain** :: refers to either Goerli or Ethereum Mainnet
-- **The Child chain** :: refers to either Polygon Mumbai or Polygon Mainnet
+- **Die Root-Chain** bezieht sich entweder auf Goerli oder Ethereum Mainnet
+- **Die Child-Chain** bezieht sich entweder auf Polygon Mumbai oder Polygon Mainnet
 
-If you already have your token contract deployed on the Root chain and want to move it to Child chain, then you should follow this walkthrough, but if you intend to deploy your contract on Polygon Mainnet first, mint the tokens on the Child chain first and then move them back to the Root chain. You should then follow this [guide](https://docs.polygon.technology/docs/develop/ethereum-polygon/mintable-assets).
+Wenn du bereits deinen Token-Vertrag in der Root-Chain bereitgestellt haben und ihn in die Child-Chain verschieben möchten, solltest du diese Schritte befolgen. Falls du jedoch den Vertrag zuerst bei Polygon Mainnet bereitstellen möchtest, solltest du die Token in der Child-Chain zunächst minten und sie dann wieder in die Root-Chain verschieben. Befolge danach diese [Anleitung](https://docs.polygon.technology/docs/develop/ethereum-polygon/mintable-assets).
 
-## Standard Child Token
+## Standard-Child-Token {#standard-child-token}
 
-If you just need a standard ERC20/ERC721/ERC1155 contract, then you can go ahead and submit a mapping request at https://mapper.polygon.technology/ and we will auto deploy the standard child token contract for you.
+Wenn du nur einen Standard-ERC20/ERC721/ERC1155 benötigst, kannst du eine Mapping-Anfrage unter https://mapper.polygon.technology/ stellen und wir werden den ERC20/ERC721/ERC1155 automatisch bereitstellen.
 
-Standard Child Token contract will look like these:-
+Der Standard-Child-Token-Vertrag wird so aussehen:-
 1. [ERC20](https://github.com/maticnetwork/pos-portal/blob/master/flat/ChildERC20.sol#L1492-#L1508)
 2. [ERC721](https://github.com/maticnetwork/pos-portal/blob/master/flat/ChildERC721.sol#L2157-#L2238)
 3. [ERC1155](https://github.com/maticnetwork/pos-portal/blob/master/flat/ChildERC1155.sol#L1784-#L1818)
 
-Please visit this [link](/docs/develop/ethereum-polygon/submit-mapping-request) to understand how to create a new mapping request.
+Zum Verständnis, wie man eine neue Mapping-Anfrage erstellt, siehe den [Link](/docs/develop/ethereum-polygon/submit-mapping-request).
 
-## Custom Child Token
+## Benutzerdefiniertes Child-Token  {#custom-child-token}
 
-If you need a custom child token contract which has additional functions to the standard functions, **then you will have to deploy your token contracts on the Child chain** and submit a mapping request [here](https://mapper.polygon.technology/) and include the address of your deployed child token contract. Let's describe an example of creating a custom child token contract.
+Wenn du einen benutzerdefinierten Child-Token-Vertrag benötigst, der neben den Standardfunktionen weitere Funktionen bietet, **musst du deine Token-Verträge auf der Child-Chain bereitstellen** und [hier](https://mapper.polygon.technology/) eine Mapping-Anfrage mit der Adresse deines bereitgestellten Child-Token-Vertrags übermitteln. Sehen wir uns ein Beispiel für die Erstellung eines benutzerdefinierten Child-Token-Vertrags an.
 
-**Your custom child contract should follow certain guidelines before you deploy it on the child chain.**
+**Dein benutzerdefinierter Child-Vertrag sollte bestimmten Richtlinien einhalten, bevor du ihn auf der Child-Chain bereitstellst.**
 
-`deposit` method should be present in your custom child contract. This function is called by the `ChildChainManagerProxy` contract whenever a deposit is initiated from the root chain. This deposit function internally mints the token on the child chain.
+`deposit`Die Methode sollte in deinem benutzerdefinierten Child-Vertrag enthalten sein. Diese Funktion wird vom `ChildChainManagerProxy`-Vertrag aufgerufen, wenn eine Einzahlung aus der Root-Chain initiiert wird. Diese Einzahlungsfunktion mintet das Token intern auf die Child-Chain.
 
-`withdraw` method should be present in your custom child contract. It can be called to burn your tokens on the child chain. Burning is the first step of your withdrawal process. This withdraw function will internally burn the token on the child chain.
+`withdraw`Die Methode sollte in deinem benutzerdefinierten Child-Vertrag enthalten sein. Es kann aufgerufen werden, um deine Token auf die Child-Chain zu brennen. Der Burn ist der erste Schritt deines Auszahlungsvorgangs. Diese Auszahlungsfunktion wird das Token intern auf die Child-Chain brennen.
 
-These rules need to followed to maintain proper balance of assets between two chains.
+Diese Regeln müssen eingehalten werden, um die richtige Balance der Vermögenswerte zwischen zwei Chain zu erhalten.
 
-> Note: No token minting in constructor of child token contract.
+:::note
 
-#### Implementation
+Kein token im Konstruktor des Child-Token-Vertrags ab.
 
-Now that we covered _why_ we need to implement `deposit` & `withdraw` methods in child token contract, we can now proceed for implementing it.
+:::
+
+#### Implementierung {#implementation}
+
+Da wir nun geklärt haben, _warum_ wir die `deposit`- und `withdraw`-Methoden im Child-Token-Vertrag implementieren müssen, können wir mit der Implementierung fortfahren.
 
 ```js title="ChildERC20.sol"
 pragma solidity 0.6.6;
@@ -84,7 +89,7 @@ contract ChildERC20 is ERC20,
 }
 ```
 
-One thing you might notice in the code sample above is that the `deposit` function can be called by anyone, which is not allowed. In order to prevent this, we're going to make sure it can only be called by `ChildChainManagerProxy`. (ChildChainManagerProxy - on [Mumbai](https://mumbai.polygonscan.com/address/0xb5505a6d998549090530911180f38aC5130101c6/transactions) , on [Polygon Mainnet](https://polygonscan.com/address/0xA6FA4fB5f76172d178d61B04b0ecd319C5d1C0aa/) )
+Du siehst im oben stehenden Codebeispiel, dass die `deposit`-Funktion von jedem aufgerufen werden kann, was nicht erlaubt ist. Um das zu verhindern, legen wir fest, dass sie nur von `ChildChainManagerProxy` aufgerufen werden kann. (ChildChainManagerProxy - auf [Mumbai](https://mumbai.polygonscan.com/address/0xb5505a6d998549090530911180f38aC5130101c6/transactions) , am [Polygon-Mainnet](https://polygonscan.com/address/0xA6FA4fB5f76172d178d61B04b0ecd319C5d1C0aa/))
 
 ```js title="ChildERC20.sol"
 pragma solidity 0.6.6;
@@ -114,7 +119,7 @@ contract ChildERC20 is ERC20,
     }
 
     // being proxified smart contract, most probably childChainManagerProxy contract's address
-    // is not going to change ever, but still, lets keep it 
+    // is not going to change ever, but still, lets keep it
     function updateChildChainManager(address newChildChainManagerProxy) external {
         require(newChildChainManagerProxy != address(0), "Bad ChildChainManagerProxy address");
         require(msg.sender == deployer, "You're not allowed");
@@ -144,15 +149,15 @@ contract ChildERC20 is ERC20,
 }
 ```
 
-This updated implementation can be used for mapping.
+Diese aktualisierte Implementierung kann für das Mapping verwendet werden.
 
-Steps :
+Schritte:
 
-1. Deploy root token on root chain i.e. {Goerli, Ethereum Mainnet}
-2. Ensure your child token has the `deposit` & `withdraw` functions.
-3. Deploy the child token on child chain i.e. {Polygon Mumbai, Polygon Mainnet}
-4. Submit a mapping request, to be resolved by team.
+1. Bereitstellung von Root-Token auf der Root-Chain, z. B. {Goerli, Ethereum Mainnet}
+2. Stelle sicher, dass dein Child-Token die Funktionen `deposit` und `withdraw` aufweist.
+3. Stelle das Child-Token auf der Child-Chain bereit, z. B. {Polygon Mumbai, Polygon Mainnet}
+4. Sende eine Mapping-Anfrage, die vom Team bearbeitet werden soll.
 
-### Request Submission
+### Einreichung anfordern {#request-submission}
 
-Please go use [this link](/docs/develop/ethereum-polygon/submit-mapping-request) to submit a mapping request.
+Bitte öffne [diesen Link](/docs/develop/ethereum-polygon/submit-mapping-request), um eine Mapping-Anfrage zu senden.

@@ -1,8 +1,8 @@
 ---
 id: what-is-avail
-title: Avail by Polygon
-sidebar_label: Introduction to Avail
-description: Learn about Polygon's data availability chain
+title: Avail от Polygon
+sidebar_label: Introduction
+description: Узнайте о цепочке доступности данных Polygon
 keywords:
   - docs
   - polygon
@@ -10,128 +10,85 @@ keywords:
   - availability
   - scale
   - rollup
-image: https://matic.network/banners/matic-network-16x9.png
+image: https://wiki.polygon.technology/img/thumbnail/polygon-avail.png
 slug: what-is-avail
 ---
 
-<!-- Page is WIP -->
+# Polygon Avail {#polygon-avail}
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-Avail is a blockchain that is laser-focused on data availability: ordering and recording blockchain transactions, and making it possible to prove that block data is available without downloading the whole block. This allows it to scale in ways that monolithic blockchains cannot.
+Avail — это блокчейн, ориентированный на доступность данных: упорядочение и запись транзакций блокчейна, а также возможность доказать, что данные блока доступны без загрузки всего блока. Это позволяет ему масштабировать таким образом, чтобы монолитные блокчейны не могут.
 
-:::note A Robust General-Purpose Scalable Data Availability Layer
+:::info Надежный универсальный и масштабируемый уровень доступности данных
 
-* Enables Layer-2 solutions to offer increased scalability throughput by leveraging Avail to build Validiums with off-chain data availability.
+* Позволяет решать Layer-2 предлагать увеличенную масштабируемость путем использования Avail для построения Validiums с доступностью данных вне цепочки.
 
-* Enables standalone chains or sidechains with arbitrary execution environments to bootstrap validator security without needing to create and manage their own validator set by guaranteeing transaction data availability.
-
-:::
-
-## Current Availability and Scaling Challenges
-
-<Tabs
-  defaultValue="da"
-  values={[
-    { label: 'Data Availability', value: 'da', },
- { label: 'Rollup Scaling', value: 'scaling', },
- ]
-}>
-<TabItem value="da">
-
-### What is the data availability problem?
-
-Peers in a blockchain network need a way to ensure that all the data of a newly proposed block is 
-readily available. If the data is not available, the block might contain malicious transactions 
-which are being hidden by the block producer. Even if the block contains non-malicious transactions, 
-hiding them might compromise the security of the system.
-
-### Avail's approach to data availability
-
-#### High Guarantee
-
-Avail provides a provable, high-level of guarantee that data is
-available. Light clients can independendly verify availability in a
-constant number of queries, without downloading the entire block.
-
-#### Minimum Trust
-
-No need to be a validator or host a full node. Even with a light
-client, get verifiable availability.
-
-#### Easy to Use
-
-Built using modified Substrate, the solution focuses on ease of use, whether you host an application or
-operate an off-chain scaling solution.
-
-#### Perfect for Off-Chain Scaling
-
-Unlock the full scaling potential of your off-chain scaling solution by keeping the data with us and
-still avoiding the DA problem on L1.
-
-#### Execution Agnostic
-
-Chains that use Avail can implement any type of execution environment
-irrespective of the application logic. Transactions from any
-environment are supported: EVM, Wasm, or even new VMs that have not
-been built yet. Avail is perfect for experimenting with new execution
-layers.
-
-#### Bootstrapping Security
-
-Avail enables new chains to be created without needing to spin up a
-new validator set, and leverage Avail's instead. Avail takes care of
-transaction sequencing, consensus, and availability in exchange for
-simple transaction fees (gas).
-
-#### Fast provable finality using NPoS
-
-Fast provable finality via Nominated Proof of Stake. Backed by KZG
-commitments and erasure coding.
-
-</TabItem>
-<TabItem value="scaling">
-
-Start by checking out this [blog post](https://blog.polygon.technology/polygon-research-ethereum-scaling-with-rollups-8a2c221bf644/) on scaling
-Ethereum with Rollups.
-
-## Avail-Powered Validiums
-
-Due to the architecture of monolithic blockchains 
-(such as Ethereum in its current state), operating the blockchain is 
-expensive, resulting in high transaction fees. Rollups attempt to extract 
-the burden of execution by running transactions off-chain and then posting
-the execution results and the [usually compressed] transaction data.
-
-Validiums are the next step: instead of posting the transaction data,
-it is kept available off-chain, where a proof/attestation is only
-posted to the base layer. This is by far the most cost-effective solution 
-because both execution and data availability are kept off-chain while still
-allowing for final verification and settlement on the layer 1 chain.
-
-Avail is a blockchain optimized for data availability. Any rollup that
-wishes to become a validium can switch to post transaction data to
-Avail instead of the layer 1 and deploy a verification contract that, in
-addition to verifying the correct execution, also verifies data
-availability.
-
-:::note Attestation
-
-The Avail team will make this data availability verification simple on
-Ethereum by building an attestation bridge to post data availability
-attestations directly to Ethereum. This will make the verification
-contract's job a simple one, since the DA attestations will already be
-on-chain. This bridge is currently in design; please reach out to the
-Avail team for more information or to join our early access program.
+* Позволяет автономно создавать цепочки или сайдчейны с произвольной окружностью выполнения для безопасности валидатора bootstrap, не требуя создания и управления собственным валидатором, гарантируя доступность данных транзакции.
 
 :::
 
-</TabItem>
-</Tabs>
+## Текущие проблемы обеспечения доступности и масштабирования {#current-availability-and-scaling-challenges}
 
-## See also
+### В чем заключается проблема обеспечения доступности данных? {#what-is-the-data-availability-problem}
 
-* [Introducing Avail by Polygon — a Robust General-Purpose Scalable Data Availability Layer](https://polygontech.medium.com/introducing-avail-by-polygon-a-robust-general-purpose-scalable-data-availability-layer-98bc9814c048)
-* [The Data Availability Problem](https://blog.polygon.technology/the-data-availability-problem-6b74b619ffcc/)
+Одноранговым узлам в блокчейн-сети требуется способ обеспечения постоянной доступности всех данных вновь предложенного
+блока. Если данные недоступны, блок может содержать вредоносные транзакции,
+которые скрываются продюсером блока. Даже если блок содержит невредоносные транзакции,
+их скрытие может поставить под угрозу безопасность системы.
+
+### Подход Avail к обеспечению доступности данных {#avail-s-approach-to-data-availability}
+
+#### Высокий уровень гарантии {#high-guarantee}
+
+Avail обеспечивает надежную, высокий уровень гарантии, что данные доступны. Клиенты Light могут самостоятельно проверить наличие в постоянном количестве запросов, не загружая весь блок.
+
+#### Минимальное доверие {#minimum-trust}
+
+Необязательно быть валидатором или поддерживать полный нод. Даже с легким клиентом получить проверяемый доступ.
+
+#### Простота использования {#easy-to-use}
+
+Это решение, построенное на основе модифицированного фреймворка Substrate, нацелено на обеспечение простоты использования как в случае размещения приложения, так и в случае
+задействования безблокчейнового решения для масштабирования.
+
+#### Идеальное решение для безблокчейнового масштабирования {#perfect-for-off-chain-scaling}
+
+Полностью раскройте потенциал масштабирования вашего безблокчейнового решения для масштабирования за счет хранения данных на наших ресурсах,
+избегая при этом проблемы доступности данных на первом уровне.
+
+#### Независимость от среды исполнения {#execution-agnostic}
+
+Цепочки, использующие Avail, могут реализовать любой тип среды исполнения, независимо от логики приложения. Поддерживаются транзакции из любой среды: EVM, Wasm или даже новые VM, которые еще не были построены. Avail идеально подходит для экспериментов с новыми слоями исполнения.
+
+#### Безопасность самозагрузки {#bootstrapping-security}
+
+Avail позволяет создавать новые цепочки без необходимости вставлять новый набор валидаторов и использовать вместо него. Avail отвечает за секвенирование транзакций, консенсус и наличие в обмен на простые комиссии транзакции (газ).
+
+#### Быстрая доказуемая окончательность с помощью NPoS {#fast-provable-finality-using-npos}
+
+Быстрая доказуемая окончательность посредством номинированного доказательства доли владения (Nominated Proof of Stake). Поддерживается KZG-
+обязательствами и кодированием со стиранием.
+
+Начните с того, чтобы проверить этот [пост блога](https://blog.polygon.technology/polygon-research-ethereum-scaling-with-rollups-8a2c221bf644/) на масштабировании Ethereum с Rollup.
+
+## Решения Validium на основе Avail {#avail-powered-validiums}
+
+Благодаря архитектуре монолитных блокчейнов (таких как Ethereum в текущем состоянии) функционирование блокчейна дорого, что приводит к высоким комиссиям за транзакции. Rollups пытается извлечь бремя выполнения путем запуска транзакций вне цепочки, а затем выводить результаты выполнения и [обычно сжатые] данные транзакции.
+
+Validiums являются следующим шагом: вместо того, чтобы отправлять данные транзакции, он хранится в наличии вне цепочки, где доказательство/аттестование отправляется только в базовый слой. Это совершенно очевидно, что это наиболее экономически эффективное решение, поскольку как исполнение, так и наличие данных сохраняются вне цепочки, но все еще позволяют окончательной верификации и расчету в цепочке слоя 1.
+
+Avail — это блокчейн, оптимизированный для обеспечения доступности данных. Любой перевернутый, который желает стать validium может перейти на данные транзакции в Avail вместо уровня 1, а также развернуть контракт проверки, который, помимо проверки правильного исполнения, также проверяет наличие данных.
+
+:::note Аттестация
+
+Команда Avail сделает эту проверку доступности данных простым в Ethereum, построив мост attestation чтобы отправить аттестации доступности данных непосредственно в Ethereum. Это сделает работу контракта на проверку простой, поскольку attestations на DA уже будут в цепочке. Этот мост в настоящее время находится в разработке. Пожалуйста, свяжитесь с командой Avail для получения дополнительной информации или для присоединения к нашей программе раннего доступа.
+
+:::
+
+## См. также {#see-also}
+
+* [Ознакомление с Avail от Polygon — надежным универсальным и масштабируемым уровнем доступности данных](https://polygontech.medium.com/introducing-avail-by-polygon-a-robust-general-purpose-scalable-data-availability-layer-98bc9814c048)
+* [Проблема доступности данных](https://blog.polygon.technology/the-data-availability-problem-6b74b619ffcc/)

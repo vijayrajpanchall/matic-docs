@@ -1,23 +1,38 @@
 ---
 id: blockchain-types
-title: Types of Blockchain
-description: "Major types of blockchain networks."
+title: Types de réseaux Blockchain
+description: Principaux types de réseaux blockchain
 keywords:
   - docs
   - matic
-image: https://matic.network/banners/matic-network-16x9.png
+  - types
+  - blockchain
+  - polygon
+  - networks
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
-Following are the major types of blockchain networks:
+# Types de réseaux Blockchain {#types-of-blockchain-networks}
 
-1. **Public Blockchain Network** <br></br> Anyone can read or write a transaction to the network, or participate in the consensus process. They are considered to be "permissionless". Every transaction is on the public network with privacy of encrypted data, which helps user's remain pseudonymous.
+Voici les principaux types de réseaux de blockchain :
 
-2. **Private Blockchain Network** <br></br> Private Blockchain are run and controlled by a single organisation that determines who can read, write and participate in consensus process. Since they are 100% centralised, private blockchain is useful for sandbox environments and not for Production.
+## Réseau Public Blockchain {#public-blockchain-network}
 
-3. **Semi-private Blockchain Network** <br></br> This network is run by a single company that grants access to any user who satisfies a pre-established criteria. Although it's not truly decentralised, this solution is appealing to business-to-business use cases and government applications.
+Tout le monde peut lire ou écrire une transaction sur le réseau, ou participer au processus de consensus. Elles sont considérées comme « sans permission ». Chaque transaction se fait sur le réseau public avec la confidentialité des données chiffrées, ce qui permet à l'utilisateur de préserver son anonymat.
 
-4. **Consortium Blockchain Network** <br></br> In a consortium blockchain, the consensus process in handled by a group of people. The right to read and write maybe public or restricted to a participant. Consortium blockchains are considered to be "permissioned blockchains" and best suited for organisations and enterprises.
+## Réseau Privé Blockchain {#private-blockchain-network}
 
-### **:scroll:Resources**
+La blockchain privée est exécutée et contrôlée par une seule organisation qui détermine qui peut lire, écrire et participer au processus de consensus. Étant donné qu'ils sont centralisés à 100 %, la blockchain privée est utile pour les environnements de sandbox et non pour la production.
 
-:page_facing_up: [Public vs Private Blockchain: A comprehensive comparison](https://www.blockchain-council.org/blockchain/public-vs-private-blockchain-a-comprehensive-comparison/)<br></br> :book: [On Public and Private Blockchain, Vitalik Buterin](https://blog.ethereum.org/2015/08/07/on-public-and-private-blockchains/)
+## Réseau semi-privé {#semi-private-blockchain-network}
+
+Ce réseau est géré par une seule entreprise qui accorde l'accès à tout utilisateur répondant à des critères préétablis. Bien que ce n'est pas vraiment décentralisé, cette solution est intéressante pour les cas d'utilisation business-to-business et les applications gouvernementales.
+
+## Consortium Blockchain Network {#consortium-blockchain-network}
+
+Dans un consortium, le processus de consensus est géré par un groupe de personnes. Le droit de lire et d'écrire peut être public ou limité à un participant. Les blockchains du consortium sont considérés comme étant des "blockchains permissions" et les mieux adaptés aux organisations et aux entreprises.
+
+### Ressources {#resources}
+
+- [Blockchain public vs privé: une comparaison complète](https://www.blockchain-council.org/blockchain/public-vs-private-blockchain-a-comprehensive-comparison/)
+- [Sur la Blockchain publique et privée, par Vitalik Buterin](https://blog.ethereum.org/2015/08/07/on-public-and-private-blockchains/)

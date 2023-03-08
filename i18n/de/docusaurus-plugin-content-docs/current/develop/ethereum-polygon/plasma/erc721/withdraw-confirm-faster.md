@@ -1,21 +1,21 @@
 ---
 id: withdraw-confirm-faster
-title: withdrawChallengeFaster
+title: WithdrawChallengeFaster
 keywords:
-  - 'plasma client, erc721, withdrawChallengeFaster, polygon, sdk'
-description: 'Get started with maticjs'
+- 'plasma client, erc721, withdrawChallengeFaster, polygon, sdk'
+description: 'Erste Schritte mit Maticjs'
 ---
 
-# withdrawConfirmFaster
+# WithdrawConfirmFaster {#withdrawconfirmfaster}
 
-`withdrawConfirmFaster` method is the second step in plasma withdraw process. In this step, proof of your burn transaction (first transaction) is submitted and an erc721 token of equivalent value is created.
+Die `withdrawConfirmFaster`-Methode ist der zweite Schritt des Plasma-Auszahlungsvorgangs. In diesem Schritt wird der Nachweis der Löschtransaktion (erste Transaktion) übermittelt und ein erc721-Token mit dem entsprechenden Wert erstellt.
 
-After this process is successful, challenge period is started and upon completion of the the challenge period, user can get back the withdrawn amount in their account on root chain.
+Nachdem dieser Vorgang erfolgreich abgeschlossen ist, beginnt die Einspruchsfrist. Nach Ende der Einspruchsfrist wird dem Benutzer der ausgezahlte Betrag auf seinem Konto in der Root-Chain gutgeschrieben.
 
-The challenge period is 7 days for mainnet.
+Die Einspruchsfrist für Mainnet beträgt 7 Tage.
 
 <div class="highlight mb-20px mt-20px">
-It is fast because it generates proof in backend. You need to configure [setProofAPI](/docs/develop/ethereum-polygon/matic-js/set-proof-api).
+Das geht schnell, da der Nachweis im Backend generiert wird. Sie müssen [setProofAPI](/docs/develop/ethereum-polygon/matic-js/set-proof-api) konfigurieren.
 </div>
 
 ```

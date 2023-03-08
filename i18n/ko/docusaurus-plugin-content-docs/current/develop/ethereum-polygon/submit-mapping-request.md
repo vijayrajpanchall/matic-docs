@@ -1,45 +1,63 @@
 ---
 id: submit-mapping-request
-title: 매핑 요청
-description: 폴리곤에서 다음 블록체인 앱을 설치합니다.
+title: 매핑 토큰
+description:  PoS 브리지를 사용하여 이더리움과 Polygon 체인(Eygon)을 매핑하는 방법에 대한 가이드
 keywords:
   - docs
-  - matic
-image: https://matic.network/banners/matic-network-16x9.png
+  - polygon wiki
+  - token mapping
+  - pos bridge
+  - polygon
+  - goerli
+  - ethereum
+  - testnet
+  - mainnet
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
+
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-이더리움과 폴리곤 간에 자산을 전송하려면 매핑이 필요합니다. 우리는 동일한 작업을 수행하기 위해 두 개의 브리지를 제공합니다. 브리지에 대한 자세한 내용은 [여기](/docs/develop/ethereum-polygon/getting-started)에서 이해할 수 있습니다.
+자산을 이더리움 및 Polygon PoS로 이전하기 위해 매핑이 필요합니다. Polygon은 이를 위해 두 개의 브리지를 제공합니다. 다리에 대한 자세한 내용은 [여기에서](/develop/ethereum-polygon/getting-started.md) 이해할 수 있습니다.
 
-### 매핑 요청을 제출하는 단계
+:::tip
 
-매핑 요청은 [https://mapper.polygon.technology/](https://mapper.polygon.technology/)에서 제출해야 합니다. 그런 다음 오른쪽 상단 모서리에 있는 "Map New Token" 버튼을 클릭하여 새 매핑 요청을 만들 수 있습니다.
+Polygon PoS 브리지는 Polygon 메인넷과 Mumbai 테스트넷을 모두 사용할 수 있습니다.
+
+:::
+
+## 매핑 요청을 제출하는 단계 {#steps-to-submit-a-mapping-request}
+
+이더리움과 Polygon Pox 사이에 토큰을 매핑하려면 Polygon [Token](https://mapper.polygon.technology/) Mapper를 사용할 수 있습니다. 링크를 열고 오른쪽 상단에 **맵 New Token** 버튼을 클릭하여 새로운 매핑 요청을 시작합니다.
 
 <img src={useBaseUrl("img/token-mapping/mapping-tool.png")} />
 
+**1단계 →** 토큰을 매핑하려는 네트워크를 선택하십시오. 테스트넷을 위해 **Goerli-Mumbai와** 메인넷의 **Eygamy가** Polygon PoS를 선택할 수 있습니다.
 
-- [브리지](/docs/develop/ethereum-polygon/getting-started)의 유형은 **"Choose map type"** 드롭다운에서 선택해야 합니다.
-- 토큰 유형은 "ERC20", "ERC721" 및 "ERC1155"로 표시된 세 개의 탭 중에서 전환하여 선택할 수 있습니다. 다른 토큰 표준을 매핑하려면 [Discord](https://discord.com/invite/XvpHAxZ)의 폴리곤 팀에 연락하거나 [여기](https://support.polygon.technology/support/home)에서 티켓을 만들고 티켓 제목에 "Token Mapping"을 유지하세요.
-- **"Choose network"**을 통해 매핑을 수행해야 하는 네트워크를 선택할 수 있습니다. 메인넷 매핑의 경우 **이더리움 – 폴리곤 메인넷**을 선택하고 테스트넷 매핑의 경우 **Goerli Testnet - Mumbai**를 선택할 수 있습니다.
-- **"Ethereum 토큰 주소"** 필드에 Ethereum/Goerli 토큰 주소를 입력합니다. 토큰 컨트랙트 코드가 [Ethereum](https://etherscan.io/)/[Goerli](https://goerli.etherscan.io/) 블록체인 탐색기에서 검증되었는지 확인하십시오.
-- 표준 ERC20/ERC721/ERC1155 하위 토큰이 필요한 경우 **"Polygon Token Address"** 필드를 비워 둘 수 있습니다. 그러나 사용자 지정 하위 토큰( 표준 ERC 기능 + 사용자 지정 기능 )이 필요한 경우 이 [가이드](/docs/develop/ethereum-polygon/pos/mapping-assets)에 따라 사용자 지정 하위 토큰을 만들 수 있습니다. 사용자 지정 하위 토큰을 배포한 후에는 **"Polygon Token Address"** 필드에 컨트랙트 주소를 언급할 수 있습니다. [Polygon](https://polygonscan.com/)/[Mumbai](https://mumbai.polygonscan.com/) 탐색기에서도 하위 토큰 컨트랙트 코드를 확인하십시오.
-- 루트 토큰이 확인되면 **이름**, **기호** 및 **십진수** 필드가 자동으로 채워지며 이러한 필드는 편집할 수 없습니다.
-- 드롭다운에서 **"Polygon Mintable"** 또는 **"Non Polygon Mintable"** 토큰을 선택할 수 있습니다. Polygon Mintable 토큰에 대한 자세한 내용은 [여기](/docs/develop/ethereum-polygon/mintable-assets)에서 확인할 수 있습니다.
-- 커뮤니케이션을 위해 이메일을 언급하는 것은 필수입니다.
+**2단계 →** 매핑 - **ERC20**, **ERC721** 또는 **ERC1155를** 매핑하는 토큰의 유형을 선택하십시오.
 
-사용자 지정 하위 매핑의 경우 매핑 요청을 제출하기 전에 완료해야 하는 체크리스트가 있습니다. 이더리움에 이미 존재하고 폴리곤 체인으로 이동해야 하는 토큰은 "Non Polygon-Mintable" 토큰이라고 할 수 있고, 폴리곤에서 먼저 발행된 다음 이더리움으로 이동할 토큰을 "Polygon Mintable" 토큰이라고 할 수 있습니다. 이 두 가지 유형에 대한 체크리스트를 살펴보겠습니다.
+**3단계 →** **이더리움 토큰 주소를 이더리움 토큰 주소****** 필드에 입력하십시오. **이더리움 / Goerli** blockchain 탐험기에서 토큰을 확인했는지 확인하십시오.
 
-### 매핑 체크리스트
+**4단계 →** **이더리움 토큰 주소를** 추가하면 해당 필드 viz. **Token 이름, Token 기호, Token Decimal을** 추가하면 계약 세부 정보가 자동으로 채워집니다.
 
-**Non Polygon-Mintable**
+**5→** 지금 을 클릭하면 **시작 매핑** 프로세스를 시작하십시오. 이더리움 트랜잭션을 포함하면 지갑을 연결하여 진행할 지갑을 연결할 필요가 있습니다.
 
-1. 입출금 함수는 하위 토큰 컨트랙트에 있습니다. (참조 템플릿 컨트랙트 -  [ERC20](https://github.com/maticnetwork/pos-portal/blob/master/flat/ChildERC20.sol#L1492-#L1508), [ERC721](https://github.com/maticnetwork/pos-portal/blob/master/flat/ChildERC721.sol#L2157-#L2238), [ERC1155](https://github.com/maticnetwork/pos-portal/blob/master/flat/ChildERC1155.sol#L1784-#L1818))
-2. ChildChainManagerProxy 주소만 입금 함수를 호출할 수 있는 권한이 있습니다. (ChildChainManagerProxy - on [Mumbai](https://mumbai.polygonscan.com/address/0xb5505a6d998549090530911180f38aC5130101c6/transactions) , on [Polygon Mainnet](https://polygonscan.com/address/0xA6FA4fB5f76172d178d61B04b0ecd319C5d1C0aa/) )
-3. Mint 함수는 내부 함수입니다 ( 이것은 내부적으로 입금 함수에 의해 호출됩니다)
+**6단계 →** Xtoken 정보와 예상 가스 수수료로 리뷰 모뎀을 사용하여 매핑을 완료하십시오. 세부 사항을 확인하고 **Pay Gas Fee 를 맵** 버튼을 선택함으로써 매핑 트랜잭션을 시작하십시오.
 
-**Polygon Mintable ( 가이드 -** [https://docs.polygon.technology/docs/develop/ethereum-polygon/mintable-assets](https://docs.polygon.technology/docs/develop/ethereum-polygon/mintable-assets) )
+지갑에서 트랜잭션을 확인한 후, 이더리움에서 트랜잭션을 확인한 후 트랜잭션을 기다려야 합니다. 거래가 완료되면 Polygon PoS 네트워크에서 어린이 토큰 주소와 함께 성공 모뎀을 표시합니다. Polygonscan에서 생성된 아동 토큰 주소를 확인하여 맵을 계속 확인할 수 [있습니다](https://polygonscan.com/).
 
-1. 입출금 함수는 하위 토큰 컨트랙트에 있습니다. (참조 템플릿 컨트랙트 - [ERC20](https://github.com/maticnetwork/pos-portal/blob/master/flat/ChildMintableERC20.sol#L1492-#L1519), [ERC721](https://github.com/maticnetwork/pos-portal/blob/master/flat/ChildMintableERC721.sol#L2160-#L2275), [ERC1155](https://github.com/maticnetwork/pos-portal/blob/master/flat/ChildMintableERC1155.sol#L1784-#L1851))
-2. ChildChainManagerProxy 주소만 입금 함수를 호출할 수 있는 권한이 있습니다. (ChildChainManagerProxy - on [Mumbai](https://mumbai.polygonscan.com/address/0xb5505a6d998549090530911180f38aC5130101c6/transactions) , on [Polygon Mainnet](https://polygonscan.com/address/0xA6FA4fB5f76172d178d61B04b0ecd319C5d1C0aa/) )
-3. 루트체인 컨트랙트는 표준 [ERC20](https://github.com/maticnetwork/pos-portal/blob/master/flat/DummyMintableERC20.sol#L1481)/[ERC721](https://github.com/maticnetwork/pos-portal/blob/master/flat/DummyMintableERC721.sol#L2169)/[ERC1155](https://github.com/maticnetwork/pos-portal/blob/master/flat/DummyMintableERC1155.sol#L1785)입니다.
-4.  루트 컨트랙트의 민트 함수는 해당 토큰인 PredicateProxyAddress에서만 호출할 수 있습니다(각 토큰 유형에 대한 PredicateProxy 주소는 [여기](/docs/develop/ethereum-polygon/mintable-assets#contract-to-be-deployed-on-ethereum)에서 찾을 수 있습니다.)
+성공적인 메인넷 매핑의 [경우](https://github.com/maticnetwork/polygon-token-list/issues/new/choose) Polygon [**목록에**](https://api-polygon-tokens.polygon.technology/tokenlists/polygonTokens.tokenlist.json) 추가될 토큰 세부 정보를 제공할 수 있습니다.
+
+:::tip
+
+[<ins>사용자 정의 토큰</ins>](/develop/l1-l2-communication/fx-portal.md#do-i-need-a-custom-fxtunnel-implementation-) 매핑의 경우 [**<ins>FxPortal</ins>**](/develop/l1-l2-communication/fx-portal.md) 문서를 방문하고 사용자 정의 FX 구현을 생성하여 토큰을 매핑하는 정보를 사용할 수 있습니다.
+
+:::
+
+## 비디오 가이드 {#video-guide}
+
+**다음은 이더리움 Goerli 파운드가 Polygon Mumbai 테스트넷** 사이에 토큰을 매핑하는 방법에 대한 빠른 비디오 자습서입니다.
+
+<video autoplay width="100%" height="100%" controls="true" >
+  <source type="video/mp4" src="/img/token-mapping/token-mapper.mp4"></source>
+  <p>사용하는 브라우저가 비디오 요소를 지원하지 않습니다.</p>
+</video>

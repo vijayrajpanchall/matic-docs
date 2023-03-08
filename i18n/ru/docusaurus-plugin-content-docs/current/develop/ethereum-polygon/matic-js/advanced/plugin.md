@@ -1,20 +1,24 @@
 ---
 id: plugin
-title: Plugin
+title: Плагин
 keywords:
-  - 'plugin, api type, read, write, polygon'
-description: 'Using plugin you can inject your code into matic.js'
+- 'plugin, api type, read, write, polygon'
+description: 'Используйте плагин для внедрения кода в Matic.js.'
 ---
 
-Using plugin you can inject your code into `matic.js`. It can be used to write common set of generic codes which can be provided to anyone using a package.
+С помощью плагина можно внедрить свой код в `matic.js`. Его можно использовать для написания общего набора обобщенного кода, который может быть предоставлен любому лицу с помощью пакета.
 
-:::info Plugin makes the `matic.js` light weight as it implements only important logical part. :::
+:::info
 
-In fact, the web3 library is supported using plugin which allows us to use our favourite library.
+Плагин упрощает `matic.js`, поскольку реализует только важную логическую часть.
 
-### Plugin development
+:::
 
-Plugin is a class which implements `IPlugin`.
+По сути дела, библиотека web3 поддерживается с помощью плагина, который позволяет нам использовать любимую библиотеку.
+
+### Разработка плагинов {#plugin-development}
+
+Плагин — это класс, который реализует `IPlugin`.
 
 ```
 import { IPlugin } from "@maticnetwork/maticjs";
@@ -30,11 +34,11 @@ export class MyPlugin implements IPlugin {
 }
 ```
 
-As you can see - you just need to implement a `setup` method which will be called with default export of `matic.js`.
+Как видите, вам необходимо просто реализовать метод `setup`, который будет вызываться с экспортом `matic.js` по умолчанию.
 
-### Use Plugin
+### Использование плагина {#use-plugin}
 
-`matic.js` expose `use` method for using a plugin.
+`matic.js` выявляет метод `use` для использования плагина.
 
 ```
 import { use } from '@maticnetwork/maticjs'
@@ -42,9 +46,9 @@ import { use } from '@maticnetwork/maticjs'
 use(MyPlugin)
 ```
 
-You can use multiple plugins and they will be called in the same order as they are declared.
+Вы можете использовать несколько плагинов, при этом они будут вызываться в том же порядке, в котором они объявлены.
 
-**Some plugin repos are -**
+**Примеры репозитариев плагинов:**
 
 - [Matic web3.js](https://github.com/maticnetwork/maticjs-web3)
 - [Matic ethers](https://github.com/maticnetwork/maticjs-ethers)

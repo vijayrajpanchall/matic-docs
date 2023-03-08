@@ -2,11 +2,11 @@
 id: get-token-id-at-index-for-user
 title: getTokenIdAtIndexForUser
 keywords:
-  - 'plasma client, erc721, getTokenIdAtIndexForUser, polygon, sdk'
-description: 'Get started with maticjs'
+- 'plasma client, erc721, getTokenIdAtIndexForUser, polygon, sdk'
+description: 'Retourne l''identifiant du jeton sur indice fourni pour l''utilisateur.'
 ---
 
-`getTokenIdAtIndexForUser` method returns token id on supplied index for user.
+`getTokenIdAtIndexForUser` la méthode retourne l'identifiant du jeton sur l'indice fourni pour l'utilisateur.
 
 ```
 const erc721Token = plasmaClient.erc721(<token address>);

@@ -1,47 +1,47 @@
 ---
 id: general-faq
-title: General FAQ
-description: Common questions on the Polygon network.
+title: Общие часто задаваемые вопросы
+description: Общие вопросы по сети Polygon.
 keywords:
   - docs
   - matic
   - polygon
   - faq
-image: https://matic.network/banners/matic-network-16x9.png
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
-## What is Polygon Network?
+## Что такое сеть Polygon? {#what-is-polygon-network}
 
-Polygon Network is a Layer 2 scaling solution that achieves scale by utilizing sidechains for off-chain computation, while ensuring asset security and decentralization through Proof-of-Stake (PoS) validators.
+Сеть Polygon — это решение для масштабирования уровня 2, которое обеспечивает масштабирование за счет использования сайдчейнов для вычислений вне цепочки, обеспечивая при этом безопасность активов и децентрализацию с помощью валидаторов Proof-of-Stake (PoS).
 
-See also [What Is Polygon](/docs/home/polygon-basics/what-is-polygon).
+См. также [Что такое Polygon](/docs/home/polygon-basics/what-is-polygon).
 
-## What is Proof of Stake (PoS)?
+## Что такое доказательство доли владения (Proof of Stake, PoS)? {#what-is-proof-of-stake-pos}
 
-Proof-of-Stake is a system in which the blockchain network aims to achieve distributed consensus. Anyone with sufficient amount of tokens can lock up their cryptocurrencies and the economic incentive lies in the shared value of the decentralized network. The individuals staking their cryptocurrencies validate transactions by voting on the same while consensus is achieved when a transaction or a set of transactions in a block or a set of blocks in a checkpoint receives enough votes. The threshold uses the weight in terms of stake that comes with every vote. For instance, in Polygon, consensus is achieved for committing checkpoints of Polygon blocks to the Ethereum network, when at least ⅔ +1  of the total staking power vote for this.
+Proof-of-Stake — это система, в которой сеть блокчейнов направлена на достижение распределенного консенсуса. Любой, у кого есть достаточное количество токенов, может заблокировать свои криптовалюты, а экономический стимул заключается в общей ценности децентрализованной сети. Люди, размещающие свои криптовалюты в стейк, подтверждают транзакции, голосуя за них, в то время как консенсус достигается, когда транзакция или набор транзакций в блоке или набор блоков в контрольной точке получает достаточное количество голосов. Порог использует вес с точки зрения стейка, которым обеспечен каждый голос. Например, в Polygon консенсус достигается для фиксации чекпоинтов блоков Polygon в сети Ethereum, когда за это проголосовало не менее ⅔ +1 от общего объема стейкинга.
 
-See also [What Is Proof of Stake](/docs/home/polygon-basics/what-is-proof-of-stake).
+См. также [Что такое доказательство доли владения (Proof of Stake)?](/docs/home/polygon-basics/what-is-proof-of-stake)
 
-## What role does Proof-of-Stake play in the Polygon architecture?
+## Какую роль Proof-of-Stake играет в архитектуре Polygon? {#what-role-does-proof-of-stake-play-in-the-polygon-architecture}
 
-The Proof-of-Stake layer in the Polygon architecture serves the following 2 purposes:
+Уровень Proof-of-Stake в архитектуре Polygon служит двум целям:
 
-* Acts as an incentivization layer for maintaining liveness of the Plasma chain, chiefly mitigating the thorny issue of data unavailability.
-* Implement the Proof-of-Stake security guarantees for state transitions not covered by Plasma.
+* Действует как уровень стимулирования для поддержания жизнеспособности цепочки Plasma, в основном смягчая острую проблему недоступности данных.
+* Реализует гарантии безопасности Proof-of-Stake для переходов состояний, не предусмотренных Plasma.
 
-## How is Polygon PoS different from other similar systems?
+## Чем Polygon PoS отличается от других подобных систем? {#how-is-polygon-pos-different-from-other-similar-systems}
 
-It is different in the sense that it serves a dual purpose — providing data availability guarantees for the Plasma chain covering state transitions via Plasma Predicates, as well as Proof-of-Stake validation for generic smart contracts in the EVM.
+Отличие заключается в том, что он служит двойной цели — обеспечивает гарантии доступности данных для цепочки Plasma, охватывающей переходы состояний через предикаты Plasma, а также проверку Proof-of-Stake для общих смарт-контрактов в EVM.
 
-The Polygon architecture also separates the process of block production and validation into 2 distinct layers. Validators as block producers create blocks as the name suggests on the Polygon chain for quicker (< 2 secs) partial confirmations while the final confirmation is attained once the checkpoint is committed on the main-chain with a certain interval, period of which may vary depending upon multiple factors like Ethereum congestion or number of Polygon transactions. In ideal conditions, it shall be around 15 min to 1 hour.
+Архитектура Polygon также разделяет процесс создания и проверки блоков на 2 отдельных уровня. Валидаторы как производители блоков создают блоки, как следует из названия, в цепочке Polygon для более быстрых (< 2 секунд) частичных подтверждений. Окончательное подтверждение достигается после фиксации чекпоинта в основной цепочке с определенным интервалом, период которого может варьироваться в зависимости от множества факторов, таких как перегрузка Ethereum или количество транзакций Polygon. В идеальных условиях это должно быть от 15 минут до 1 часа.
 
-A checkpoint is basically the Merkle root of all blocks produced in between intervals. Validators play multiple roles, creating blocks at the block producer layer, participating in the consensus by signing all checkpoints and committing the checkpoint when acting as proposer. The probability of a validator becoming the block producer or proposer is based on their stake ratio in the overall pool.
+Чекпоинт — это, по сути, корень дерева Меркла всех блоков, созданных между интервалами. Валидаторы играют несколько ролей, создавая блоки на уровне продюсера блоков, участвуя в консенсусе, подписывая все чекпоинты и фиксируя чекпоинт, выступая в качестве автора предложения. Вероятность того, что валидатор станет блок-продюсером или автором предложения, зависит от доли их стейка в общем пуле.
 
-## Encouraging the proposer to include all signatures
+## Поощрение автора предложения за включение всех подписей {#encouraging-the-proposer-to-include-all-signatures}
 
-To avail the proposer bonus completely, the proposer would need to include all signatures in the checkpoint. Because the protocol desires 2/3+1 weight of the total stake, the checkpoint will be accepted even with 80% votes. However, in this case, proposer gets only 80% of the calculated bonus.
+Чтобы полностью воспользоваться бонусом автора предложения, предлагающему необходимо включить все подписи в чекпоинт. Поскольку протокол требует согласия участников, на которых приходится ⅔ +1 голос от общего стейка, чекпоинт будет принят даже при получении 80% голосов. Однако в этом случае автор предложения получает только 80% от рассчитанного бонуса.
 
-## How can I raise a support ticket or contribute to Polygon documentation?
-If you think something needs to be fixed on our documentation or you even want to add new information here, you can [raise an issue on the Github repository](https://github.com/maticnetwork/matic.js/issues). The [Readme file](https://github.com/maticnetwork/matic-docs/blob/master/README.md) on the repository also gives you a few suggestions on how to contribute to our documentation.
+## Как я могу подать заявку в службу поддержки или внести свой вклад в документацию Polygon? {#how-can-i-raise-a-support-ticket-or-contribute-to-polygon-documentation}
+Если вы считаете, что в нашей документации нужно что-то исправить или если вы хотите добавить новую информацию, вы можете [создать тикет в репозитории Github](https://github.com/maticnetwork/matic.js/issues). В [файле Readme](https://github.com/maticnetwork/matic-docs/blob/master/README.md) в репозитории также можно найти несколько советов о том, как внести свой вклад в нашу документацию.
 
-If you still need help, you can always contact **our support team**.
+Если вам все еще нужна помощь, вы всегда можете обратиться в **нашу службу поддержки**.

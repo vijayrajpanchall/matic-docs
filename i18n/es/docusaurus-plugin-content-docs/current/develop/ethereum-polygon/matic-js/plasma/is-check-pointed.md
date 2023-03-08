@@ -2,11 +2,11 @@
 id: is-check-pointed
 title: isCheckPointed
 keywords:
-  - 'plasma client, erc20, withdrawExit, polygon, sdk'
-description: 'Get started with maticjs'
+- 'plasma client, erc20, withdrawExit, polygon, sdk'
+description: 'Comprueba si una transacción ha sido verificada en el punto de control.'
 ---
 
-`isCheckPointed` method can be used to know if a transaction has been checkpointed.
+El método `isCheckPointed` puede utilizarse para saber si una transacción ha sido verificada en el punto de control.
 
 ```
 const isCheckPointed = await plasmaClient.isCheckPointed(<tx hash>);

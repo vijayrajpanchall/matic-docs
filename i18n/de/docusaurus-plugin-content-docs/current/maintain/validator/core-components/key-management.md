@@ -1,7 +1,7 @@
 ---
 id: key-management
-title: Key Management
-description: "Signer and owner keys management."
+title: Key-Management
+description: Signer- und owner
 keywords:
   - docs
   - polygon
@@ -9,37 +9,38 @@ keywords:
   - key
   - key management
   - signer
+  - owner
 slug: key-management
-image: https://matic.network/banners/matic-network-16x9.png
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
-Each validator uses two keys to manage validator related activities on Polygon:
+Jeder Validator verwendet zwei Schlüssel, um validatorbezogene Aktivitäten auf Polygon zu verwalten:
 
-* Signer key
-* Owner key
+* Signierschlüssel
+* Eigentümerschlüssel
 
-## Signer key
+## Signierschlüssel {#signer-key}
 
-The signer key is the address used to sign Heimdall blocks, checkpoints, and other signing related activities.
+Der Signierschlüssel ist die Adresse, die zum Signieren von Heimdall-Blöcken, Checkpoints und anderen signierbezogenen Aktivitäten verwendet wird.
 
-The signer address's private key must be located on the machine running the validator node for signing purposes.
+Der private Schlüssel der Signieradresse muss sich auf dem Rechner befinden, auf dem der Validierungsknoten zum Zwecke des Signierens läuft.
 
-The signer key cannot manage staking, rewards, or delegations.
+Der Signierschlüssel kann Staking, Belohnungen oder Delegationen nicht verwalten.
 
-The validator must keep ETH on the signer address on the Ethereum mainnet to send [checkpoints](../../glossary#checkpoint-transaction).
+Der Validator muss ETH auf der Signieradresse im Ethereum Mainnet behalten, um [Checkpoints](/docs/maintain/glossary.md#checkpoint-transaction) zu senden.
 
-## Owner key
+## Eigentümerschlüssel {#owner-key}
 
-The owner key is the address used to stake, restake, change the signer key, withdraw rewards and manage delegation related parameters on the Ethereum mainnet. The private key for the owner key must be secure at all costs.
+Der Eigentümerschlüssel ist die Adresse, die zum Stoppen, Wiedereinspielen, Ändern des Signierschlüssels, Auszahlungen abzunehmen und delegation Parameter im Ethereum Mainnet verwaltet. Der private Schlüssel für den Eigentümerschlüssel muss auf jeden Fall sicher sein.
 
-All transactions through the owner key are performed on the Ethereum mainnet.
+Alle Transaktionen über den Eigentümerschlüssel werden im Ethereum Mainnet durchgeführt.
 
-The signer key is kept on the node and is generally considered a *hot* wallet, whereas the owner key is supposed to kept very secure, is used infrequently, and is generally considered a *cold* wallet. The staked funds are controlled by the owner key.
+Der Signierschlüssel wird am Knoten gehalten und wird im Allgemeinen als **Hot** Wallet betrachtet, während der Eigentümerschlüssel sehr sicher gehalten wird, selten verwendet wird und im Allgemeinen als **Cold** Wallet gilt. Das eingesetzte Geld wird durch den Eigentümerschlüssel kontrolliert.
 
-This separation of responsibilities between the signer and the owner keys is done to ensure an efficient tradeoff between security and ease of use.
+Diese Trennung der Zuständigkeiten zwischen dem Signierer und dem Eigentümer der Schlüssel erfolgt, um einen effizienten Kompromiss zwischen Sicherheit und Benutzerfreundlichkeit zu gewährleisten.
 
-Both keys are Ethereum compatible addresses and work in the exactl the same manner.
+Beide Schlüssel sind Ethereum-kompatible Adressen und arbeiten auf die gleiche Weise.
 
-## Signer change
+## Signiererwechsel {#signer-change}
 
-See [Change Your Signer Address](../../validate/change-signer-address).
+Siehe [Ändern Ihrer Signieradresse](/docs/maintain/validate/change-signer-address).

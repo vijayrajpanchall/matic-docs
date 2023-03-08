@@ -1,14 +1,14 @@
 ---
 id: withdraw-start
-title: withdraw start
+title: withdraw start (Inicio del retiro)
 keywords:
-  - 'plasma client, erc20, approveMax, polygon, sdk'
-description: 'Get started with maticjs'
+- 'plasma client, erc20, approveMax, polygon, sdk'
+description: 'Empieza con Matic.js'
 ---
 
-# withdrawStart
+# withdrawStart (Inicio del retiro) {#withdrawstart}
 
-`withdrawStart` method can be used to initiate the withdraw process which will burn the specified amount on child token.
+El método `withdrawStart` se puede utilizar para iniciar el proceso de retiro, que quemará el monto especificado en el token secundario.
 
 ```
 const erc20ChildToken = plasmaClient.erc20(<child token address>);
@@ -22,4 +22,4 @@ const txReceipt = await result.getReceipt();
 
 ```
 
-store the txHash which will be used to challenge the withdraw process.
+Almacena el hash de la transacción que se utilizará para hacer reclamos con respecto al proceso de retiro.

@@ -1,49 +1,54 @@
 ---
 id: setup-bor
-title: Setup Bor
-description: Build your next blockchain app on Polygon.
+title: Einrichthung von Bor
+description: Bor Knoten einrichten
 keywords:
   - docs
   - matic
-image: https://matic.network/banners/matic-network-16x9.png
+  - polygon
+  - setup bor
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
-### Setup Bor
+# Einrichthung von Bor {#setup-bor}
 
-Use the `master` or `develop` branch, which contains the latest stable release.
+Verwenden Sie die `master`- oder `develop`-Verzweigung mit der neuesten stabilen Version.
 
+```bash
     $ mkdir -p $GOPATH/src/github.com/maticnetwork
     $ cd $GOPATH/src/github.com/maticnetwork
     $ git clone https://github.com/maticnetwork/bor
     $ cd bor
     $ make bor-all
+```
 
-Now, you have bor installed on your local system and the binary is available in the path `./build/bin/bor`
+Nun hast du Bor auf deinem lokalen System installiert und die Binärdatei ist im Pfad `./build/bin/bor`verfügbar.
 
-**Connecting to console (optional)**
+### Verbindung mit der Konsole (optional) {#connecting-to-console-optional}
 
-This is an optional step. You need not connect to a console. You can do so only if you are interested in other details.
+Dies ist ein optionaler Schritt. Sie müssen keine Verbindung zu einer Konsole herstellen. Sie können dies nur tun, wenn Sie an anderen Details interessiert sind.
 
-Just like Geth you can connect to bor console to execute various types of queries! From your `dataDir` run the following command.
+Genau wie Geth, kannst du dich mit der bor-Konsole verbinden, um verschiedene Arten von Abfragen auszuführen. `dataDir`Führe von deinem aus den folgenden Befehl aus:
 
-**Genesis contracts**
-
+```bash
     $ cd ~/matic/tesnets
     $ git submodule init
     $ git submodule update
-    
+
     $ cd ~/matic/tesnets/genesis-contracts
     $ npm install
-    
+
     $ git submodule init
     $ git submodule update
     $ cd ~/matic/tesnets/genesis-contracts/matic-contracts
     $ npm install
     $ node scripts/process-templates.js --bor-chain-id 15001
     $ npm run truffle:compile
+```
 
-Once templates are processed, we need to set validators in `tesnets/genesis-contracts/validators.js` file. This file should look like this:
+Sobald die Vorlagen verarbeitet werden, müssen wir die Prüfer in der `tesnets/genesis-contracts/validators.js`-Datei festlegen. Diese Datei sollte wie folgt aussehen:
 
+```json
     const validators = [
       {
         address: "0x6c468CF8c9879006E22EC4029696E005C2319C9D",
@@ -51,70 +56,80 @@ Once templates are processed, we need to set validators in `tesnets/genesis-cont
         balance: 1000 // without 10^18
       }
     ]
+```
 
-Generate Bor validator set using `validators.js` file:
+Bor-Prüfset mit `validators.js`-Datei generieren:
 
+```bash
     $ cd ~/matic/testnets/genesis-contracts
     $ node generate-borvalidatorset.js --bor-chain-id 15001 --heimdall-chain-id heimdall-P5rXwg
+```
 
-This command will generate `genesis-contracts/contracts/BorValidatorSet.sol`.
+Dieser Befehl wird `genesis-contracts/contracts/BorValidatorSet.sol` generieren.
 
-Generate genesis.json, once `BorValidatorSet.sol` is generated: 
+genesis.json generieren, sobald `BorValidatorSet.sol` generiert wird:
 
+```bash
     $ cd ~/matic/testnets/genesis-contracts
     $ node generate-genesis.js --bor-chain-id 15001 --heimdall-chain-id heimdall-P5rXwg
+```
 
-This will generate `genesis-contracts/genesis.json`
+Dies wird `genesis-contracts/genesis.json`generieren.
 
-**Start bor**
+## Bor starten {#start-bor}
 
-Once genesis file is generated at `~/matic/tesnets/genesis-contracts/genesis.json`
+Sobald die Genesis-Datei generiert `~/matic/tesnets/genesis-contracts/genesis.json`wird, bereiten Sie den Bor-Knoten zu:
 
-Prepare bor node:
-
+```bash
     $ cd ~/matic/testnets/bor-devnet
     $ bash setup.sh
+```
 
-Start bor using following command:
+Starte Bor mit dem folgenden Befehl:
 
+```bash
     $ cd ~/matic/testnets/bor-devnet
     $ bash start.sh 1
+```
 
-You will Bor running at 8545.
+Bor startet mit dem Laufen auf Port 8545.
 
-If you want to clean Bor and start again:
+Wenn Sie Bor löschen und erneut starten wollen:
 
+```bash
     $ bash clean.sh
     $ bash setup.sh
     $ bash start.sh 1
+```
 
-### To test Bor and Heimdall
+## Test Bor und Heimdall {#test-bor-and-heimdall}
 
-To test both Bor and Heimdall, you need run Bor and Heimdall, Heimdall's rest-server and Bridge all in parallel.
+Um sowohl Bor als auch Heimdall zu testen, musst du Bor und Heimdall, den Rest-Server von Heimdall und Bridge parallel ausführen.
 
-### [Optional] Run heimdall rest-server behind nginx proxy for front-end
+### Führe Heimdall rest-Server aus (optional) {#run-heimdall-rest-server-optional}
 
-Follow this [https://kirillplatonov.com/2017/11/12/simple_reverse_proxy_on_mac_with_nginx/](https://kirillplatonov.com/2017/11/12/simple_reverse_proxy_on_mac_with_nginx/) instructions to run nginx on local machine (mac osx).
+Befolge dieser [Anleitung](https://kirillplatonov.com/2017/11/12/simple_reverse_proxy_on_mac_with_nginx/) und führe nginx auf deinem lokalen Rechner (Mac OSX) aus.
 
-Add following content into `/usr/local/etc/nginx/nginx.conf` and restart nginx:
+Füge unten Inhalte in `/usr/local/etc/nginx/nginx.conf`und starte nginx neu:
 
+```conf
     worker_processes  1;
-    
+
     events {
         worker_connections 1024;
     }
-    
+
     http {
         server {
             listen 80;
             server_name localhost;
-    
+
             location / {
               add_header 'Access-Control-Allow-Origin' * always;
               add_header 'Access-Control-Allow-Credentials' 'true';
               add_header 'Access-Control-Allow-Headers' 'Authorization,Accept,Origin,DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Content-Range,Range';
               add_header 'Access-Control-Allow-Methods' 'GET,POST,OPTIONS,PUT,DELETE,PATCH';
-    
+
               if ($request_method = 'OPTIONS') {
                 add_header 'Access-Control-Allow-Origin' * always;
                 add_header 'Access-Control-Allow-Credentials' 'true';
@@ -125,7 +140,7 @@ Add following content into `/usr/local/etc/nginx/nginx.conf` and restart nginx:
                 add_header 'Content-Length' 0;
                 return 204;
               }
-    
+
               proxy_redirect off;
               proxy_set_header host $host;
               proxy_set_header X-real-ip $remote_addr;
@@ -134,7 +149,10 @@ Add following content into `/usr/local/etc/nginx/nginx.conf` and restart nginx:
             }
         }
     }
+```
 
-Reload nginx using new config changes:
+nginx unter Verwendung neuer Konfigurationsänderungen erneut laden:
 
+```bash
     sudo nginx -s reload
+```

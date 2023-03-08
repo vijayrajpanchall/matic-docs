@@ -1,80 +1,83 @@
 ---
 id: nftstorage
-title: Mint NFTs
-description: Mint with NFT.storage and Polygon
+title: Минтинг NFT
+description: Минтинг с NFT.storage и Polygon.
 keywords:
   - nft.storage
   - filecoin
   - matic
-image: https://matic.network/banners/matic-network-16x9.png
+  - polygon
+  - docs
+  - mint nfts
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
-This tutorial will teach you to mint an NFT using the Polygon blockchain and IPFS/Filecoin storage via NFT.Storage. Polygon, a Layer 2 scaling solution for Ethereum, is often chosen by developers for its speed and lower transaction costs while maintaining full compatibility with Ethereum's EVM. The tutorial will walk you through the creation and deployment of a standardized smart contract, storing metadata and assets on IPFS and Filecoin via the NFT.Storage API and minting the NFT to your own wallet on Polygon.
+Это руководство рассказывает, как выполнять минтинг NFT с использованием блокчейна Polygon и хранилища IPFS/Filecoin через NFT.Storage. Разработчики часто выбирают Polygon, решение масштабирования уровня 2 для Ethereum, за его скорость и более низкую стоимость транзакций при сохранении полной совместимости с Ethereum EVM. Это руководство содержит пошаговое описание процессов создания и развертывания стандартизированного смарт-контракта, сохранения метаданных и активов в IPFS и Filecoin через NFT.Storage API и минтинга NFT в собственный кошелек в Polygon.
 
-## Introduction
+## Введение {#introduction}
 
-In this tutorial we will aim to fulfill three characteristics with our minting process:
+В этом руководстве мы рассмотрим достижение трех характеристик процесса минтинга:
 
-1. *Scalability* of the minting process in terms of cost and throughput. If the use case aims to rapidly create NFTs, the underlying technology needs to handle all minting requests and the minting should be cheap.
-2. *Durability* of the NFT, as assets can be long-lived and therefore need to remain usable during their full lifetime.
-3. *Immutability* of the NFT and the asset it represents to prevent unwanted changes and malicious actors from changing the digital asset the NFT represents.
+1. *Масштабируемость* процесса минтинга с точки зрения стоимости и пропускной способности. Если цель сценария заключается в быстром создании NFT, соответствующая технология должна обрабатывать все запросы минтинга, и минтинг должен быть дешевым.
+2. *Долговечность* NFT, поскольку активы могут быть долгосрочными, и поэтому необходимо обеспечить возможность их использования в течение всего времени существования.
+3. *Неизменяемость* NFT и представляемого им актива для предотвращения нежелательных изменений и действий злоумышленников по изменению цифрового актива, который представляет NFT.
 
-[Polygon](https://polygon.technology) addresses the *scalability* characteristic with their protocol and framework. They are also compatible with Ethereum and its virtual machine, enabling developers to move their code freely between the two blockchains. Likewise, [NFT.Storage](https://nft.storage) guarantees *durability* with the power of the underlying [Filecoin](https://filecoin.io) network and *immutability* by using IPFS' [content addressing](https://nftschool.dev/concepts/content-addressing/).
+[Polygon](https://polygon.technology) обеспечивает требуемые характеристики *масштабируемости* благодаря своему протоколу и инфраструктуре. Также он обладает совместимостью с Ethereum и его виртуальной машиной, что позволяет разработчикам свободно перемещать код между двумя блокчейнами. Аналогичным образом [NFT.Storage](https://nft.storage) гарантирует *долговечность* благодаря возможностям базовой сети [Filecoin](https://filecoin.io) и *неизменяемость* благодаря использованию [адресации контента IPFS](https://nftschool.dev/concepts/content-addressing/).
 
-In this tutorial you will get an overview of the NFT minting process, learn how to store a digital asset with NFT.Storage and use this digital asset to mint your NFT on Polygon.
+В этом руководстве вы найдете обзор процесса минтинга NFT и научитесь сохранять цифровые активы с NFT.Storage и использовать эти цифровые активы для минтинга ваших NFT в Polygon.
 
-## Prerequisites
+## Предварительные условия {#prerequisites}
 
-General knowledge about NFTs will give you background and context. [NFT School covers NFT basics](https://nftschool.dev/concepts/non-fungible-tokens/), advanced topics and has more tutorials.
+Общие знания об NFT дадут вам базовую информацию и контекст. [Школа NFT охватывает основы NFT ](https://nftschool.dev/concepts/non-fungible-tokens/)и более сложные темы, а также содержит больше руководств.
 
-To test and run the code found in this tutorial, you will need a working [Node.js installation](https://nodejs.org/en/download/package-manager/).
+Чтобы протестировать и запустить код из этого руководства, вам потребуется рабочая [установка Node.js](https://nodejs.org/en/download/package-manager/).
 
-You'll also need a Polygon wallet on the Mumbai testnet with a small amount of the MATIC token. Follow the instructions below to get started:
+Также вам потребуется кошелек Polygon в тестовой сети Mumbai с небольшим количеством токена MATIC. Чтобы начать, следуйте инструкциям ниже:
 
-1. **Download and install [Metamask](https://metamask.io/)**. MetaMask is a crypto wallet and gateway to blockchain apps. It's very easy to use and simplifies a lot of steps, e.g., setting up a Polygon wallet.
-2. **Connect MetaMask to Polygon's [Mumbai testnet](https://docs.polygon.technology/docs/develop/metamask/overview)** and select it in the dropdown menu. We will use Polygon's testnet to mint our NFT as it's free of charge.
-3. **Receive MATIC token** to your wallet by using the [faucet](https://faucet.polygon.technology/). Select the Mumbai testnet and paste your wallet address from MetaMask into the form. To mint an NFT, we need to pay a small amount of MATIC, which is a fee charged by miners for operations to add new transactions to the blockchain, e.g., minting an NFT or creating a new smart contract.
-4. **Copy your private key** from MetaMask by clicking on the three dots in the top right corner and selecting 'Account details'. On the bottom you can find a button to export your private key. Click it and enter your password when prompted. You can copy and paste the private key in a text file for now. We will use it later in the tutorial when interacting with the blockchain.
+1. **Загрузите и установите [Metamask](https://metamask.io/)**. Metamask — это криптокошелек и шлюз для приложений блокчейна. Его очень просто использовать, и он упрощает большинство шагов, таких как настройку кошелька Polygon.
+2. **Подключите Metamask к [тестовой сети Polygon Mumbai](https://docs.polygon.technology/docs/develop/metamask/overview)** и выберите ее в выпадающем меню. Мы будем использовать для минтинга NFT тестовую сеть Polygon, потому что она бесплатная.
+3. **Получите токен MATIC** в свой кошелек, используя [faucet](https://faucet.polygon.technology/). Выберите тестовую сеть Mumbai и вставьте в форму адрес кошелька Metamask. Для минтинга NFT нам нужно заплатить майнерам небольшое количество MATIC за операции по добавлению новых транзакций в блокчейн, таких как минтинг NFT или создание нового смарт-контракта.
+4. **Скопируйте свой приватный ключ** из Metamask. Для этого нажмите на три точки в правом верхнем углу и выберите пункт «Реквизиты счета». Внизу вы увидите кнопку для экспорта вашего приватного ключа. Нажмите на нее и введите пароль, когда система запросит. Пока вы можете скопировать приватный ключ в текстовый файл. Мы используем его в руководстве позднее, когда будем осуществлять взаимодействие с блокчейном.
 
-Lastly, you will need a text or code editor. For more convenience, choose an editor with language support for both JavaScript and Solidity. A good option is [Visual Studio Code](https://code.visualstudio.com) with the [solidity](https://marketplace.visualstudio.com/items?itemName=JuanBlanco.solidity) extension enabled.
+Наконец, вам потребуется текстовый редактор или редактор кода. Для дополнительного удобства лучше выбрать редактор с поддержкой языков JavaScript и Solidity. Хорошим выбором будет [Visual Studio Code](https://code.visualstudio.com) с включенным расширением [solidity](https://marketplace.visualstudio.com/items?itemName=JuanBlanco.solidity).
 
-## Preparation
+## Подготовка {#preparation}
 
-### Get an API key for NFT.storage
+### Получение ключа API для NFT.storage {#get-an-api-key-for-nft-storage}
 
-In order to use NFT.Storage you need an API key. First, [head over to NFT.Storage to log in with your email address](https://nft.storage/login/). You will receive an email with a magic link that signs you in -- no password needed. After you successfully logged in, go to API Keys via the navigation bar. You will find a button to create a **New Key**. When prompted for an API key name, you can freely choose one or use “polygon + NFT.Storage”. You can copy the content of the key column now or reference back to NFT.Storage later in the tutorial.
+Для использования NFT.Storage требуется ключ API. Во-первых, [перейдите в NFT.Storage и войдите с помощью своего адреса электронной почты](https://nft.storage/login/). Вы получите электронное письмо с волшебной ссылкой для входа без пароля. После успешного входа перейдите в раздел ключей API через панель навигации. Вы найдете кнопку для создания **нового ключа**. Когда вам предложат ввести имя ключа API, вы можете выбрать произвольное имя или использовать имя «polygon + NFT.Storage». Вы можете скопировать содержимое столбца ключей сейчас или воспользоваться ссылкой на NFT.Storage на следующих страницах этого руководства.
 
-### Set up your workspace
+### Настройте свое рабочее пространство {#set-up-your-workspace}
 
-Create a new empty folder that we can use as our workspace for this tutorial. Feel free to choose any name and location on your file system. Open up a terminal and navigate to the newly created folder.
+Создайте новую пустую папку, которую мы сможем использовать в качестве рабочего пространства для этого руководства. Вы можете свободно выбрать любое имя и расположение в файловой системе. Откройте терминал и перейдите в новую созданную папку.
 
-Next, we will install the following Node.js dependencies:
+Далее мы установим следующие зависимости Node.js:
 
-- **Hardhat and Hardhat-Ethers**, a development environment for Ethereum (and Ethereum compatible blockchains like Polygon).
-- **OpenZeppelin**, a collection of smart contracts featuring standardized NFT base contracts.
-- **NFT.Storage**, a library to connect to the NFT.Storage API.
-- **Dotenv**, a library to handle environment files for configuration (e.g., injecting private keys into the script).
+- **Hardhat и Hardhat-Ethers**, среда разработки для Ethereum (и Ethereum-совместимых блокчейнов, таких как Polygon).
+- **OpenZeppelin**, коллекция смарт-контрактов, включающая стандартизированные базовые контракты NFT.
+- **NFT.Storage**, библиотека для подключения к NFT.Storage API.
+- **Dotenv**, библиотека для работы с файлами среды для конфигурации (например, вставки приватных ключей в скрипт).
 
-Use the following command to install all dependencies at once:
+Используйте следующую команду, чтобы установить все зависимости одновременно:
 
 ```bash
 npm install hardhat @openzeppelin/contracts nft.storage dotenv @nomiclabs/hardhat-ethers
 ```
 
-Hardhat needs to be initialized in the current folder. In order to start the initialization, execute:
+Hardhat необходимо инициализировать в текущей папке. Для запуска инициализации запустите:
 
 ```bash
 npx hardhat
 ```
 
-When prompted, choose `Create an empty hardhat.config.js`. Your console output should look like this:
+При предложении выберите **Создать пустой hardhat.config.js**. Вывод консоли должен выглядеть следующим образом:
 
 ```bash
 ✔ What do you want to do? · Create an empty hardhat.config.js
 ✨ Config file created ✨
 ```
 
-We will do some modifications to the hardhat configuration file `hardhat.config.js` to support the Polygon Mumbai test network. Open the `hardhat.config.js` that was created in the last step. Please note that we are loading your Polygon wallet private key from an environment file and that this environment file must be kept safe. You can even use other rpc [link](https://docs.polygon.technology/docs/operate/network), as per requirement.
+Мы внесем некоторые изменения в файл конфигурации hardhat `hardhat.config.js` для поддержки тестовой сети Polygon Mumbai. Откройте `hardhat.config.js`, созданный на последнем шаге. Обратите внимание, что мы загружаем приватный ключ вашего кошелька Polygon из файла среды, и этот файл среды следует хранить в безопасном месте. Вы даже можете использовать другую [ссылку](https://docs.polygon.technology/docs/develop/network-details/network) rpc в соответствии с требованиями.
 
 ```js
 /**
@@ -105,36 +108,36 @@ module.exports = {
 }
 ```
 
-Create a new file called `.env` which will hold your API key for NFT.Storage and your Polygon wallet. The content of the `.env` file should look like the listing below:
+Создайте новый файл, `.env`который будет содержать ключ API для NFT.Storage и приватный ключ кошелька Polygon. Содержание `.env`файла должно выглядеть следующим образом:
 
 ```bash
 PRIVATE_KEY="Your Private Key"
 NFT_STORAGE_API_KEY="Your Api Key"
 ```
 
-Replace the placeholders with the API key you created during preparation and your Polygon wallet private key.
+Замените подстановочные символы ключом API, который вы создали на этапе подготовки, и приватным ключом вашего кошелька Polygon.
 
-To keep our project organized, we'll create three new folders:
+Чтобы продолжить организацию нашего проекта, мы создадим три новых папки:
 
-1. `contracts`, for the Polygon contracts written in Solidity.
-2. `assets`, containing the digital asset we will mint as an NFT.
-3. `scripts`, as helpers to drive the preparation and minting process.
+1. `contracts`, для контрактов Polygon, написанных на Solidity.
+2. `assets`, содержащую цифровой актив, для которого мы будем выполнять минтинг как NFT.
+3. `scripts`, обеспечивающую подготовку и процесс минтинга.
 
-Execute the following command:
+Выполните следующую команду:
 
 ```bash
 mkdir contracts assets scripts
 ```
 
-Lastly, we will add an image to the `assets` folder. This image will be our artwork that we will upload to NFT.Storage and mint on Polygon. We will name it `ExampleNFT.png` for now. If you do not have some nice art ready, you can [download a simple pattern](https://ipfs.io/ipfs/bafkreiawxb4aji744637trok275odl33ioiijsvvahnat2kw5va3at45mu).
+Наконец, мы добавим изображение в папку `assets`. Это изображение будет нашей художественной работой, которую мы выгрузим в NFT.Storage и используем для минта на Polygon. Пока мы назовем его `MyExampleNFT.png`. Если у вас нет красивого изображения, вы можете [загрузить простой узор](https://ipfs.io/ipfs/bafkreiawxb4aji744637trok275odl33ioiijsvvahnat2kw5va3at45mu).
 
-## Minting your NFT
+## Минтинг вашего NFT {#minting-your-nft}
 
-### Storing asset data with NFT.Storage
+### Сохранение данных актива с NFT.Storage {#storing-asset-data-with-nft-storage}
 
-We will use NFT.Storage to store our digital asset and its metadata. NFT.Storage guarantees immutability and durability by uploading your digital asset to Filecoin and IPFS automatically. IPFS and Filecoin operate on content identifiers (CID) for immutable referencing. IPFS will provide fast retrieval with its geo-replicated caching and Filecoin guarantees durability with incentivized storage providers.
+Мы будем использовать NFT.Storage для хранения нашего цифрового актива и его метаданных. NFT.Storage гарантирует неизменяемость и долговечность, автоматически выгружая ваш цифровой актив в Filecoin и IPFS. IPFS и Filecoin используют идентификаторы (CID) для создания неизменяемых ссылок. IPFS обеспечивает быстрое извлечение благодаря кэшированию с георепликацией, а Filecoin гарантирует долговечность благодаря стимулированию поставщиков услуг хранения.
 
-Create a script called `store-asset.mjs` below the `scripts` directory. The contents are listed below:
+Создайте скрипт с именем `store-asset.mjs` ниже в каталоге `scripts`. Содержимое приведено ниже:
 
 ```js
 import { NFTStorage, File } from "nft.storage"
@@ -166,25 +169,25 @@ storeAsset()
    });
 ```
 
-The main part of the script is the `storeAsset` function. It creates a new client connecting to NFT.Storage using the API key you created earlier. Next we introduce the metadata consisting of name, description, and the image. Note that we are reading the NFT asset directly from the file system from the `assets` directory. At the end of the function we will print the metadata URL as we will use it later when creating the NFT on Polygon.
+Основная часть скрипта состоит из функции `storeAsset`. При этом создается новый клиент, использующий для подключения к NFT.Storage ранее созданный вами ключ API. Далее мы вводим метаданные, включающие имя, описание и изображение. Обратите внимание, что мы считываем актив NFT напрямую из файловой системы из каталога `assets`. В конце функции мы печатаем URL метаданных, поскольку мы будем использовать его позднее при создании NFT в Polygon.
 
-After setting up the script, you can execute it by running:
+После настройки скрипта вы сможете выполнить его, запустив следующую команду:
 
 ```bash
 node scripts/store-asset.mjs
 ```
 
-Your output should look like the listing below, where `HASH` is the CID to the art you just stored.
+Вывод должен выглядеть, как показано ниже, где `HASH` — CID для сохраненного изображения.
 
 ```bash
 Metadata stored on Filecoin/IPFS at URL: ipfs://HASH/metadata.json
 ```
 
-### Creating your NFT on Polygon
+### Создание вашего NFT в Polygon {#creating-your-nft-on-polygon}
 
-#### Create the smart contract for minting
+#### Создание смарт-контракта для минтинга {#create-the-smart-contract-for-minting}
 
-First, we will create a smart contract that will be used to mint the NFT. Since Polygon is compatible with Ethereum, we will write the smart contract in [Solidity](https://soliditylang.org). Create a new file for our NFT smart contract called `ExampleNFT.sol` inside the `contracts` directory. You can copy the code of the listing below:
+Вначале мы создадим смарт-контракт, который будет использоваться для минтинга NFT. Поскольку Polygon совместим с Ethereum, мы напишем смарт-контракт на [Solidity](https://soliditylang.org). Создайте новый файл для нашего смарт-контракта NFT с именем `ExampleNFT.sol` в каталоге `contracts`. Вы можете скопировать код, приведенный ниже:
 
 ```solidity
 // Contract based on https://docs.openzeppelin.com/contracts/4.x/erc721
@@ -217,33 +220,33 @@ contract ExampleNFT is ERC721URIStorage, Ownable {
 }
 ```
 
-To be a valid NFT, your smart contract must implement all the methods of the [ERC-721 standard](https://ethereum.org/en/developers/docs/standards/tokens/erc-721/). We use the implementation of the [OpenZeppelin](https://openzeppelin.com) library, which already provides a set of basic functionalities and adheres to the standard.
+Для действительности в качестве NFT ваш смарт-контракт должен реализовывать все методы [стандарта ERC-721](https://ethereum.org/en/developers/docs/standards/tokens/erc-721/). Мы будем использовать реализацию библиотеки [OpenZeppelin](https://openzeppelin.com), которая уже обеспечивает набор базовых функций и соответствует стандарту.
 
-At the top of our smart contract, we import three OpenZeppelin smart contract classes:
+В верхней части нашего смарт-контракта мы импортируем три класса смарт-контрактов OpenZeppelin:
 
-`\@openzeppelin/contracts/token/ERC721/ERC721.sol` contains the implementation of the basic methods of the ERC-721 standard, which our NFT smart contract will inherit. We use the `ERC721URIStorage,` which is an extension to store not just the assets but also metadata as a JSON file off-chain. Like the contract, this JSON file needs to adhere to ERC-721.
+1. `\@openzeppelin/contracts/token/ERC721/ERC721.sol` содержит реализацию базовых методов стандарта ERC-721, которые будет наследовать наш смарт-контракт NFT. Мы будем использовать расширение `ERC721URIStorage,` для хранения не только активов, но и метаданных в файле JSON вне цепочки. Как и контракт, этот файл JSON должен соответствовать стандарту ERC-721.
 
-`\@openzeppelin/contracts/utils/Counters.sol` provides counters that can only be incremented or decremented by one. Our smart contract uses a counter to keep track of the total number of NFTs minted and to set the unique ID on our new NFT.
+2. `\@openzeppelin/contracts/utils/Counters.sol` предоставляет счетчики, поддерживающие увеличение или уменьшение отсчета на единицу. Наш смарт-контракт использует счетчик для отслеживания общего количества созданных посредством минтинга NFT и для установки уникального идентификатора для новых NFT.
 
-`\@openzeppelin/contracts/access/Ownable.sol` sets up access control on our smart contract, so only the owner of the smart contract (you) can mint NFTs.
+3. `\@openzeppelin/contracts/access/Ownable.sol` настраивает контроль доступа к нашему смарт-контракту так, что минтинг NFT может выполнять только владелец смарт-контракта (вы).
 
-After our import statements, we have our custom NFT smart contract, which contains a counter, a constructor, and a method to actually mint the NFT. Most of the hard work is done by the base contract inherited from OpenZeppelin, which implements most of the methods we require to create an NFT adhering to the ERC-721 standard.
+После команд импорта идет наш пользовательский смарт-контракт NFT, который содержит счетчик, конструктор и метод для фактического минтинга NFT. Основная работа выполняется базовым контрактом, унаследованным от OpenZeppelin, который реализует большинство необходимых нам методов для создания NFT в соответствии со стандартом ERC-721.
 
-The counter keeps track of the total number of NFTs minted, which is used in the minting method as a unique identifier for the NFT.
+Счетчик отслеживает общее количество созданных посредством минтинга NFT, используя его в методе минтинга в качестве уникального идентификатора NFT.
 
-In the constructor, we pass in two string arguments for the name of the smart contract and the symbol (represented in wallets). You can change them to whatever you like.
+Мы передаем в конструкторе два аргумента строки для имени смарт-контракта и символ (представлен в кошельках). Вы можете изменить их любым желаемым образом.
 
-Finally, we have our method `mintNFT` that allows us to actually mint the NFT. The method is set to `onlyOwner` to make sure it can only be executed by the owner of the smart contract.
+Наконец, у нас имеется метод `mintNFT`, позволяющий фактически выполнять минтинг NFT. Этот метод установлен на `onlyOwner`, чтобы его мог выполнять только владелец смарт-контракта.
 
-`address recipient` specifies the address that will receive the NFT at first
+`address recipient`указывает адрес, который получит NFT вначале.
 
-`string memory tokenURI` is a URL that should resolve to a JSON document that describes the NFT's metadata. In our case it's already stored on NFT.Storage. We can use the returned IPFS link to the metadata JSON file during the execution of the method.
+`string memory tokenURI` — это URL-адрес, который должен указывать на документ JSON, описывающий метаданные NFT. В нашем случае он уже хранится в NFT.Storage. Мы можем использовать возвращаемую ссылку IPFS на файл метаданных в формате JSON во время исполнения метода.
 
-Inside the method, we increment the counter to receive a new unique identifier for our NFT. Then we call the methods provided by the base contract from OpenZeppelin to mint the NFT to the recipient with the newly created identifier and setting the URI of the metadata. The method returns the unique identifier after execution.
+Внутри метода мы увеличиваем счетчик для получения нового уникального идентификатора для нашего NFT. Затем мы вызываем методы, предоставляемые базовым контрактом от OpenZeppelin, для минтинга NFT для получателя с новым созданным идентификатором и для установки URI метаданных. Этот метод возвращает уникальный идентификатор после исполнения.
 
-#### Deploy the smart contract to Polygon
+#### Развертывание смарт-контракта в Polygon {#deploy-the-smart-contract-to-polygon}
 
-Now, it's time to deploy our smart contract to Polygon. Create a new file called `deploy-contract.mjs` within the `scripts` directory. Copy the contents of the listing below into that file and save it.
+Пришло время для развертывания нашего смарт-контракта в Polygon. Создайте новый файл с именем `deploy-contract.mjs` в каталоге `scripts`. Скопируйте содержимое приведенной ниже записи в этот файл и сохраните его.
 
 ```js
 async function deployContract() {
@@ -265,23 +268,25 @@ deployContract()
  });
 ```
 
-Deploying the contract is done with the helper functions provided by the hardhat library. First, we get the smart contract we created in the previous step with the provided factory. Then we deploy it by calling the respective method and wait for the deployment to be completed. There are a few more lines below the described code to get the correct address in the testnet environment. Save the `mjs` file Execute the script with the following command:
+Развертывание контракта производится с использованием функций помощника, предоставляемых библиотекой hardhat. Вначале мы получим смарт-контракт, созданный на предыдущем шаге с помощью указанной фабрики. Затем мы выполним развертывание, вызвав соответствующий метод, и подождем завершения развертывания. Ниже приведено еще несколько строк кода для получения правильного адреса в среде тестовой сети. Сохранить `mjs`файл.
+
+Выполните скрипт следующей командой:
 
 ```bash
 npx hardhat run scripts/deploy-contract.mjs --network PolygonMumbai
 ```
 
-If everything is correct, you will see the following output:
+Если все правильно, вы увидите следующий выход:
 
 ```bash
 Contract deployed to address: 0x{YOUR_CONTRACT_ADDRESS}
 ```
 
-Note that you will need the printed contract address in the minting step. You can copy and paste it into a separate text file and save it for later. This is necessary so the minting script can call the minting method of that specific contract.
+Обратите внимание, что на шаге минтинга вам потребуется напечатанный адрес контракта. Вы можете скопировать и вставить его в отдельный текстовый файл и сохранить для последующего использования. Это необходимо для того, чтобы скрипт минтинга мог вызывать метод минтинга этого конкретного контракта.
 
-#### Minting the NFT on Polygon
+#### Минтинг NFT в Polygon {#minting-the-nft-on-polygon}
 
-Minting the NFT is now merely calling the contract we just deployed to Polygon. Create a new file called `mint-nft.mjs` inside the `scripts` directory and copy this code from the listing below:
+Минтинг NFT теперь заключается просто в вызове контракта, который мы только что развернули в Polygon. Создайте новый файл с именем `mint-nft.mjs` в каталоге `scripts` и скопируйте в него код, приведенный ниже:
 
 ```bash
 const CONTRACT_ADDRESS = "0x00"
@@ -302,25 +307,28 @@ mintNFT(CONTRACT_ADDRESS, META_DATA_URL)
    });
 ```
 
-Edit the first two lines to insert your **contract address** from the earlier deployment and the **metadata URL** that was returned when storing the asset with NFT.Storage. The rest of the script sets up the call to your smart contract with you as the to-be owner of the NFT and the pointer to the metadata stored on IPFS.
+Отредактируйте первые две строки, чтобы вставить ваш **адрес контракта** из совершенного ранее развертывания и **URL-адрес метаданных**, который был возвращен при сохранении актива в NFT.Storage. Остальная часть скрипта настраивает вызов вашего смарт-контракта так, что вы остаетесь владельцем NFT и указателя на метаданные, сохраненные с IPFS.
 
-Next, run the script:
+Затем запустите скрипт:
 
 ```bash
-npx hardhat run scripts/mint-nft.mjs \--network PolygonMumbai
+npx hardhat run scripts/mint-nft.mjs --network PolygonMumbai
 ```
 
-You can expect to see the following output:
-```bash NFT minted to: 0x{YOUR_WALLET_ADDRESS} ````
+Вы можете ожидать следующий вывод:
 
-Looking for the sample code from this tutorial? You can find it in the polygon-nft.storage-demo [link](https://github.com/itsPiyushMaheshwari/Polygon-nft.storage-demo) Github repo.
+```bash
+NFT minted to: 0x<YOUR_WALLET_ADDRESS>
+```
 
-## Conclusion
+Ищете образец кода из этого руководства? Вы можете найти его по [ссылке](https://github.com/itsPiyushMaheshwari/Polygon-nft.storage-demo) polygon-nft.storage-demo в репозитории Github.
 
-In this tutorial, we learned how to mint a NFT end-to-end with Polygon and NFT.Storage. This technology combination results in proper decentralization and guarantees *scalability*, *durability*, and *immutability*.
+## Заключение {#conclusion}
 
-We deployed a custom smart contract to mint our NFT specific to our needs. For this tutorial, we used a simple example based on the ERC-721 standard. However, you can also define complex logic that governs your NFT life cycle. For more complex use cases, the successor standard [ERC-1155](https://ethereum.org/en/developers/docs/standards/tokens/erc-1155/) is a good place to start. OpenZeppelin, the library we use in our tutorial offers a [contracts wizard](https://docs.openzeppelin.com/contracts/4.x/wizard) that helps create NFT contracts.
+В этом руководстве мы научились полностью выполнять процедуру минтинга NFT с помощью Polygon и NFT.Storage. Это сочетание технологий обеспечивает надлежащую децентрализацию и гарантирует *масштабируемость*, *долговечность* и *неизменяемость*.
 
-Successful minting can be seen as the start of the valuable phase of the NFT. The NFT can then be used to prove ownership and can be transferred to other users. Reasons to transfer a NFT might include a successful sale on one of the NFT marketplaces like [OpenSea](https://opensea.io), or a different type of event such as acquiring an item in a NFT based game. Exploring the rich possibilities for NFTs is definitely an exciting next step.
+Мы развернули пользовательский смарт-контракт для минтинга нашего NFT в соответствии с нашими потребностями. Для этого руководства мы использовали простой пример на базе стандарта ERC-721. Однако вы также можете определить сложную логику, которая регулирует ваш жизненный цикл NFT. Для более сложных сценариев стоит начать со стандарта-преемника [ERC-1155](https://ethereum.org/en/developers/docs/standards/tokens/erc-1155/). Библиотека OpenZeppelin, которую мы используем в нашем руководстве, предлагает [мастер контрактов](https://docs.openzeppelin.com/contracts/4.x/wizard), помогающий создавать контракты NFT.
 
-If you\'d like help building your NFT project with NFT.storage, we encourage you to join the `#nft-storage` channel on [Discord](https://discord.gg/Z4H6tdECb9) and [Slack](https://filecoinproject.slack.com/archives/C021JJRH26B).
+Успешный минтинг можно рассматривать как начало этапа полезного использования NFT. Затем NFT можно использовать для подтверждения владения и передавать другим пользователям. Причиной для трансфера NFT может быть успешная продажа на одном из маркетплейсов NFT, таких как [OpenSea](https://opensea.io), или другое событие, такое как приобретение предмета в игре на базе NFT. Изучение богатых возможностей NFT определенно является полезным следующим шагом.
+
+Если вам нужна помощь в создании вашего проекта NFT с помощью NFT.storage, мы рекомендуем вам присоединиться к `#nft-storage`каналу в D[iscord ](https://discord.gg/Z4H6tdECb9)и S[lack.](https://filecoinproject.slack.com/archives/C021JJRH26B)

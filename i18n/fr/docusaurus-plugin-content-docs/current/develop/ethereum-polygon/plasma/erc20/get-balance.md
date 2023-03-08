@@ -1,14 +1,14 @@
 ---
 id: get-balance
-title: getBalance
+title: obtenirSolde
 keywords:
-  - 'pos client, erc20, getBalance, polygon, sdk'
-description: 'Get started with maticjs'
+- 'pos client, erc20, getBalance, polygon, sdk'
+description: 'Commencez à utiliser maticjs'
 ---
 
-# getBalance
+# obtenirSolde {#getbalance}
 
-`getBalance` method can be used to get the balance of user. It is available on both child and parent token.
+`getBalance`méthode peut être utilisée pour obtenir le solde de l'utilisateur. C'est disponible à la fois sur le jeton enfant et le jeton parent.
 
 ```
 const erc20Token = plasmaClient.erc20(<token address>);

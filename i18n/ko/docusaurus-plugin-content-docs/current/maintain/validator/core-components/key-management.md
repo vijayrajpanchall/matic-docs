@@ -1,7 +1,7 @@
 ---
 id: key-management
-title: Key Management
-description: "Signer and owner keys management."
+title: 키 관리
+description: 서명자 및 소유자 키 관리
 keywords:
   - docs
   - polygon
@@ -9,37 +9,38 @@ keywords:
   - key
   - key management
   - signer
+  - owner
 slug: key-management
-image: https://matic.network/banners/matic-network-16x9.png
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
-Each validator uses two keys to manage validator related activities on Polygon:
+Polygon에서 각 유효성 검사자는 다음의 두 가지 키를 사용하여 유효성 검사자 관련 활동을 관리합니다.
 
-* Signer key
-* Owner key
+* 서명자 키
+* 소유자 키
 
-## Signer key
+## 서명자 키 {#signer-key}
 
-The signer key is the address used to sign Heimdall blocks, checkpoints, and other signing related activities.
+서명자 키는 Heimdall 블록, 체크포인트 및 기타 서명 관련 활동에 사용하는 주소입니다.
 
-The signer address's private key must be located on the machine running the validator node for signing purposes.
+서명자 주소의 개인 키는 서명을 목적으로 유효성 검사 노드를 실행하는 시스템에 위치해야 합니다.
 
-The signer key cannot manage staking, rewards, or delegations.
+서명자 키는 스테이킹, 보상 또는 위임을 관리할 수 없습니다.
 
-The validator must keep ETH on the signer address on the Ethereum mainnet to send [checkpoints](../../glossary#checkpoint-transaction).
+유효성 검사자는 [체크포인트](/docs/maintain/glossary.md#checkpoint-transaction)를 보내기 위해 이더리움 메인넷의 서명자 주소에 반드시 ETH를 보관하고 있어야 합니다.
 
-## Owner key
+## 소유자 키 {#owner-key}
 
-The owner key is the address used to stake, restake, change the signer key, withdraw rewards and manage delegation related parameters on the Ethereum mainnet. The private key for the owner key must be secure at all costs.
+소유자 키는 서명자 키를 스테이크, 리스테이크 또는 변경하고, 보상을 인출하며, 이더리움 메인넷에서 위임 관련 매개변수를 관리하는데 사용하는 주소입니다. 소유자 키를 위한 개인 키는 어떤 방법으로든 반드시 안전하게 보호해야 합니다.
 
-All transactions through the owner key are performed on the Ethereum mainnet.
+소유자 키를 통한 모든 트랜잭션은 이더리움 메인넷에서 수행됩니다.
 
-The signer key is kept on the node and is generally considered a *hot* wallet, whereas the owner key is supposed to kept very secure, is used infrequently, and is generally considered a *cold* wallet. The staked funds are controlled by the owner key.
+서명자 키는 노드에 보관되고 보통 **핫** 지갑으로 간주되는 데 반해, 소유자 키는 매우 안전하게 보관되어야 하며 드물게 사용되므로 보통 **콜드** 지갑으로 간주됩니다. 스테이크된 자금은 소유자 키가 제어합니다.
 
-This separation of responsibilities between the signer and the owner keys is done to ensure an efficient tradeoff between security and ease of use.
+서명자 키와 소유자 키의 책임을 이렇게 나누는 이유는 보안과 사용 편의성 간에 효율적인 균형을 이루기 위해서입니다.
 
-Both keys are Ethereum compatible addresses and work in the exactl the same manner.
+두 가지 키 모두 이더리움과 호환 가능한 주소이며 정확히 동일한 방식으로 작동합니다.
 
-## Signer change
+## 서명자 변경 {#signer-change}
 
-See [Change Your Signer Address](../../validate/change-signer-address).
+[서명자 주소 변경](/docs/maintain/validate/change-signer-address)을 참조하세요.

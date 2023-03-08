@@ -1,40 +1,41 @@
 ---
 id: bandstandarddataset
-title: Band Standard Dataset
-description: Build your next blockchain app on Polygon.
+title: Bande  de Jeu de données Standard
+sidebar_label: Standard Dataset
+description: Band Stardard Dataset offre des informations sur les prix en temps réel pour plus de 196 symboles s'étendant sur les actifs cryptographiques, les devises et les matières premières
 keywords:
-  - docs
-  - matic
-  - band
-  - oracle
-image: https://matic.network/banners/matic-network-16x9.png
+  - wiki
+  - polygon
+  - oracles
+  - bandchain
+  - web apis
+  - standard dataset
+  - band protocol
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
-
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-## Introduction
+Les développeurs construisant sur Polygon peuvent désormais exploiter l'infrastructure oracle décentralisée du Band Protocol. Avec l'oracle du protocole de bande, ils ont désormais accès à diverses données de prix crypto-monnaie pour s'intégrer à leurs applications.
 
-Developers building on Polygon can now leverage Band's decentralized oracle infrastructure. With Band's oracle, they now have access to various cryptocurrency price data to integrate into their applications.
+## Jetons Supportés {#supported-tokens}
 
-## Supported Tokens
+Actuellement, la liste des symboles pris en charge se trouve à l'adresse suivante[ : ata.bandprotocol.com](http://data.bandprotcool.com) À l'avenir, cette liste continuera à s'étandre en fonction des besoins des développeurs et des réactions de la communauté.
 
-Currently, the list of supported symbols can be found at [data.bandprotocol.com](http://data.bandprotcool.com). Going forward, this list will continue to expand based on developer needs and community feedback.
+## Prix des Paires {#price-pairs}
 
-### Price Pairs
+Les méthodes suivantes peuvent fonctionner avec n'importe quelle combinaison de paires de jetons base/citation, autant que les symboles de base et de citation soient pris en charge par l'ensemble de données.
 
-The following methods can work with any combination of base/quote token pair, as long as the base and quote symbols are supported by the dataset.
+### Demande de Prix {#querying-prices}
 
-## Querying Prices
+Actuellement, il existe deux méthodes pour les développeurs pour interroger les prix à partir de l'oracle du Band Protocol: grâce au contrat `StdReference`intelligent de Band sur Polygon et à leur bibliothèque d'aide [`bandchain.js`](https://www.npmjs.com/package/%40bandprotocol%2Fbandchain.js)JavaScript.
 
-Currently, there are two methods for developers to query prices from Band's oracle: through Band's `StdReference` smart contract on Polygon and through their [`bandchain.js`](https://www.npmjs.com/package/%40bandprotocol%2Fbandchain.js) JavaScript helper library.
+### Contrat Intelligent Solidity {#solidity-smart-contract}
 
-### Solidity Smart Contract
+Pour rechercher les prix à partir de l'oracle du protocole de bande, un contrat intelligent devrait référencer le contrat de `StdReference`bande, en particulier les méthodes et les définitions `getReferenceData``getReferenceDatabulk`nécessaires.
 
-To query prices from Band's oracle, a smart contract should reference Band's StdReference contract, specifically the `getReferenceData` and `getReferenceDatabulk` methods.
+`getReferenceData`prend deux chaînes comme les entrées, le `base`et le `quote`symbole, respectivement. Il interroge ensuite le `StdReference`contrat pour connaître les derniers taux pour ces deux jetons, et renvoie une `ReferenceData`structure , illustrée ci-dessous.
 
-`getReferenceData` takes two strings as the inputs, the base and quote symbol, respectively. It then queries the `StdReference` contract for the latest rates for those two tokens, and returns a `ReferenceData` struct, shown below.
-
-```solidity
+```
 struct ReferenceData {
     uint256 rate; // base/quote exchange rate, multiplied by 1e18.
     uint256 lastUpdatedBase; // UNIX epoch of the last time when base price gets updated.
@@ -42,37 +43,30 @@ struct ReferenceData {
 }
 ```
 
-`getReferenceDataBulk` instead takes two lists, one of the `base` tokens, and one of the `quotes`. It then proceeds to similarly queries the price for each base/quote pair at each index, and returns an array of `ReferenceData` structs.
+`getReferenceDataBulk`prend plutôt deux listes, l'une des `base` jetons, et l'autre  des `quotes`. Il procède ensuite à effectuer une requête similaire le prix de chaque paire base/devis à chaque index, et renvoie un tableau de `ReferenceData`structions.
 
-For example, if we call `getReferenceDataBulk` with `['BTC','BTC','ETH']` and `['USD','ETH','BNB']`, the returned `ReferenceData` array will contain information regarding the pairs:
+Par exemple, si nous appelons `getReferenceDataBulk`avec `['BTC','BTC','ETH']` et `['USD','ETH','BNB']`, le tableau  retourné `ReferenceData`contiendra des informations concernant les paires:
 
 - `BTC/USD`
 - `BTC/ETH`
 - `ETH/BNB`
 
+## Les Adresses du Contrat {#contract-addresses}
 
-#### Contract Addresses
-
-| Blockchain     |               Contract Address               |
-| -------------- |:--------------------------------------------:|
+| Blockchain | Adresse du Contrat  |
+| -------------------- | :------------------------------------------: |
 | Polygon (Test) | `0x56e2898e0ceff0d1222827759b56b28ad812f92f` |
 
+## BandChain.JS {#bandchain-js}
 
-#### Example Usage
-
-This [contract](https://gist.github.com/tansawit/a66d460d4e896aa94a0790df299251db) demonstrates an example of using Band's `StdReference` contract and the `getReferenceData` function.
-
-
-### BandChain.JS
-
-Band's node helper library [`bandchain.js`](https://www.npmjs.com/package/@bandprotocol/bandchain.js) also supports a similar `getReferenceData` function. This function takes one argument, a list of token pairs to query the result of. It then returns a list of corresponding rate values.
+La bibliothèque d'aide aux nœuds de Band prend [`bandchain.js`](https://www.npmjs.com/package/@bandprotocol/bandchain.js) également en charge une `getReferenceData`fonction similaire. Cette fonction prend un argument, une liste de paires de jetons pour interroger le résultat. Il renvoie ensuite une liste de valeurs de taux correspondantes.
 
 
-#### Example Usage
+### Exemple d'Utilisation {#example-usage}
 
-The code below shows an example usage of the function
+Le code ci-dessous affiche un exemple d'utilisation de la fonction:
 
-```javascript=
+```javascript
 const { Client } = require('@bandprotocol/bandchain.js');
 
 // BandChain's REST Endpoint
@@ -92,31 +86,35 @@ async function exampleGetReferenceData() {
 
 ```
 
-The corresponding result will then be similar to
+Le résultat correspondant sera alors similaire à :
 
 ```bash
 $ node index.js
-[ 
-    { 
+[
+    {
         pair: 'BTC/ETH',
         rate: 30.998744363906173,
         updatedAt: { base: 1615866954, quote: 1615866954 },
-        requestID: { base: 2206590, quote: 2206590 } 
+        requestID: { base: 2206590, quote: 2206590 }
     },
-    { 
+    {
         pair: 'BAND/EUR',
         rate: 10.566138918332376,
         updatedAt: { base: 1615866845, quote: 1615866911 },
-        requestID: { base: 2206539, quote: 2206572 } 
+        requestID: { base: 2206539, quote: 2206572 }
     }
 ]
 ```
 
-For each pair, the following information will be returned:
+Pour chaque paire, les informations suivantes seront retournées:
 
-- `pair`: The base/quote symbol pair string
-- `rate`: The resulting rate of the given pair
-- `updated`: The timestamp at which the base and quote symbols was last updated on BandChain. For `USD`, this will be the current timestamp
-- `rawRate`: This object consists of two parts.
-  - `value` is the `BigInt` value of the actual rate, multiplied by `10^decimals`
-  - `decimals` is then the exponent by which `rate` was multiplied by to get `rawRate`
+- `pair`: La chaîne de caractères de la paire de symboles de la base/citation
+- `rate`: Le taux résultant de la paire donnée
+- `updated`: L'horodateur auquel les symboles de base et de cotation ont été mis à jour pour la dernière fois sur BandChain. `USD`Car ce sera le timestamp. actuel.
+- `rawRate`: Cet objet est composé de deux parties.
+  - `value` est la `BigInt`valeur du taux réel, multipliée par`10^decimals`
+  - `decimals`est alors l'exposant par lequel `rate` a été multiplié pour obtenir `rawRate`
+
+## Exemple d'Utilisation {#example-usage-1}
+
+Ce [contrat](https://gist.github.com/tansawit/a66d460d4e896aa94a0790df299251db) démontre un exemple d'utilisation du `StdReference`contrat de Band et de la `getReferenceData`fonction.

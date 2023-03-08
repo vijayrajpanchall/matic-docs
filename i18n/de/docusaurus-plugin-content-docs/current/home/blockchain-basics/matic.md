@@ -1,25 +1,39 @@
 ---
 id: polygon
-title: What is Polygon?
+title: Was ist Polygon?
 sidebar_label: Polygon
-description: "Polygon main features and solutions."
+description: "Polygon Hauptmerkmale und Lösungen."
 keywords:
   - docs
   - matic
-image: https://matic.network/banners/matic-network-16x9.png
+  - polygon
+  - what is polygon
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
-Polygon is a scaling solution for public blockchains. Polygon supports all the existing Ethereum tooling along with faster and cheaper transactions.
+# Was ist Polygon? {#what-is-polygon}
 
-Polygon strives to solve the scalability and usability issues while not compromising on decentralization, security and leveraging the existing developer community and ecosystem. Polygon is an ​off/side chain scaling solution for existing platforms to provide scalability and superior user experience to DApps/user functionalities.
+Polygon ist eine Skalierungslösung für öffentliche Blockchains, speziell für Ethereum. Polygon unterstützt alle vorhandenen Ethereum Tools zusammen mit schnelleren und billigeren Transaktionen.
 
-### Key Features & Highlights
-- **Scalability** Fast, low-cost and secure transactions on Polygon sidechains with finality achieved on mainchain and Ethereum as the first compatible Layer 1 basechain
-- **High Throughput** Achieved up to 10,000 TPS on a single sidechain on internal testnet; Multiple chains to be added for horizontal scaling
-- **User Experience** Smooth UX and developer abstraction from mainchain to Polygon chain; native mobile apps and SDK with WalletConnect support
-- **Security** Polygon chain operators are themselves stakers in the PoS system
-- **Public Sidechains** Polygon sidechains are public in nature (vs. individual DApp chains), permissionless and capable of supporting multiple protocols
+Polygon ist bestrebt, die Skalierbarkeit- und Benutzerfreundlichkeitsprobleme zu lösen, während es nicht Dezentralisierung, Sicherheit und Nutzung der vorhandenen Entwicklergemeinschaft und des Ökosystems einschränkt. Polygon ist eine ​off/side Chain-Scaling-Lösung für bestehende Plattformen, die Skalierbarkeit und überlegene Benutzererfahrung für DApps/Benutzerfunktionen bietet.
 
-### **:scroll:Resources**
+## Wichtige Funktionen & Highlights {#key-features-highlights}
 
-:blue_book:[What is Polygon?](https://medium.com/matic-network/what-is-matic-network-466a2c493ae1)
+### Skalierbarkeit {#scalability}
+Schnelle, kostengünstige und sichere Transaktionen auf Polygon Sidechains mit Finalität auf der Main Chain und Ethereum als erster kompatibler Layer 1 Basechain
+
+### Hoher Durchsatz {#high-throughput}
+Erreicht bis zu 10.000 TPS auf einer einzigen Sidechain auf internem Testnetz; Mehrere Chains werden für horizontale Skalierung hinzugefügt
+
+### User Experience {#user-experience}
+Smooth UX und Entwicklerabstraktion von Mainchain zu Polygon-Chain; native mobile Apps und SDK mit WalletConnect
+
+### Sicherheit {#security}
+Polygon-Chain-Betreiber sind selbst Staker im PoS-System
+
+### Public Sidechains {#public-sidechains}
+Polygon-Sidechains sind öffentlich (im Vergleich zu einzelnen DApp-Chains), genehmigungslos und in der Lage mehrere Protokolle zu unterstützen
+
+### Ressourcen {#resources}
+
+* [Was ist Polygon?](https://medium.com/matic-network/what-is-matic-network-466a2c493ae1)

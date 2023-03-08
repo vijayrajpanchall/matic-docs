@@ -1,64 +1,68 @@
 ---
 id: encoder
-title: Encoder (Pulp)
-description: Heimdall needs to verify the transactions of Heimdall on the Ethereum chain. For that it uses RLP encoding to produce special transactions, like checkpoint.
+title: 인코더 (Pulp)
+description: 검문소와 같이 특별 거래를 생성하기 위해 RLP 인코딩을 통해
 keywords:
   - docs
   - matic
+  - rlp encoding
+  - checkpoint
+  - encoder
+  - polygon
 image: https://matic.network/banners/matic-network-16x9.png
 ---
 
-## Pulp
+# 인코더 (Pulp) {#encoder-pulp}
 
-Source: [https://github.com/maticnetwork/heimdall/blob/master/auth/types/pulp.go](https://github.com/maticnetwork/heimdall/blob/master/auth/types/pulp.go)
+Heimdall은 이더리움 체인에서 Heimdall 트랜잭션을 검증해야 합니다. 이를 위해 RLP 인코딩을 사용하여 체크포인트와 같은 특수 트랜잭션을 생성합니다.
 
-Heimdall needs to verify the transactions of Heimdall on the Ethereum chain. For that it uses RLP encoding to produce special transactions, like checkpoint.
+이 특수 트랜잭션은 디폴트인 amino 인코딩 대신 `pulp` (RLP 기반) 인코딩을 사용합니다.
 
-This special transaction uses `pulp` (RLP based) encoding instead of default amino encoding.
+Pulp는 접두어 기반의 간단한 인코딩 메커니즘을 사용해 인터페이스 디코딩을 해결합니다. `GetPulpHash` 메서드 확인
 
-Pulp uses a prefix-based simple encoding mechanism to solve interface decoding. Check `GetPulpHash` method.
+출처: [https://github.com/maticnetwork/heimdall/blob/master/auth/types/pulp.go](https://github.com/maticnetwork/heimdall/blob/master/auth/types/pulp.go)
 
 ```go
 const (
-    // PulpHashLength pulp hash length
-    PulpHashLength int = 4
+	// PulpHashLength pulp hash length
+	PulpHashLength int = 4
 )
 
 // GetPulpHash returns string hash
 func GetPulpHash(name string) []byte {
-    return crypto.Keccak256([]byte(name))[:PulpHashLength]
+	return crypto.Keccak256([]byte(name))[:PulpHashLength]
 }
 ```
 
-The below returns prefix-bytes for a given `msg`.  Here is an example on how to register an object for pulp encoding.
+아래와 같이 해당 `msg`의 접두어 바이트를 반환합니다.  다음은 purp 인코딩을 위해 객체를 등록하는 방법에 대한 예입니다.
 
 ```go
 RegisterConcrete(name, obj) {
-    rtype := reflect.TypeOf(obj)
-    // set record for name => type of the object
-    p.typeInfos[hex.EncodeToString(GetPulpHash(name))] = rtype
+	rtype := reflect.TypeOf(obj)
+	// set record for name => type of the object
+	p.typeInfos[hex.EncodeToString(GetPulpHash(name))] = rtype
 }
 
 // register "A"
 pulp.RegisterConcrete("A", A{})
 ```
 
-Encoding is just RLP encoding and prepending hash of `GetPulpHash` of the `name`
+Encoding은 RLP 인코딩을 하고 다음 해시 `GetPulpHash`을 준비합니다.`name`
 
 ```go
 // EncodeToBytes encodes msg to bytes
 txBytes, err := rlp.EncodeToBytes(obj)
 if err != nil {
-    return nil, err
+	return nil, err
 }
 
 result := append(GetPulpHash("A"), txBytes[:]...), nil
 ```
 
-Decoding works like following:
+다음과 같이 디코딩 작업:
 
 ```go
-// retrieve type of objet based on prefix 
+// retrieve type of objet based on prefix
 rtype := typeInfos[hex.EncodeToString(incomingData[:PulpHashLength])]
 
 // create new object
@@ -66,14 +70,16 @@ newMsg := reflect.New(rtype).Interface()
 
 // decode without prefix and inject into newly created object
 if err := rlp.DecodeBytes(incomingData[PulpHashLength:], newMsg); err != nil {
-    return nil, err
+	return nil, err
 }
 
 // result => newMsg
 ```
 
-For more Information:
+:::info 더 자세한 정보
 
-The Cosmos SDK utilizes two binary wire encoding protocols, [Amino](https://github.com/tendermint/go-amino/) and [Protocol Buffers](https://developers.google.com/protocol-buffers), where Amino is an object encoding specification. It is a subset of Proto3 with an extension for interface support. See the [Proto3 spec](https://developers.google.com/protocol-buffers/docs/proto3) for more information on Proto3, which Amino is largely compatible with (but not with Proto2).
+Cosmos SDK는 [Amino](https://github.com/tendermint/go-amino/)와 [프로토콜 버퍼](https://developers.google.com/protocol-buffers) 두 개의 바이너리 와이어 인코딩 프로토콜을 사용하며, Amino는 객체 인코딩 사양입니다. 인터페이스를 지원할 수 있도록 확장된 Proto3의 하위 집합입니다. Proto3에 대한 자세한 정보는 [Proto3 스펙](https://developers.google.com/protocol-buffers/docs/proto3)을 참조하세요. Amino는 Proto3와 대부분 호환됩니다 (Proto 2와는 호환 안됨).
 
-More here: [https://docs.cosmos.network/master/core/encoding.html](https://docs.cosmos.network/master/core/encoding.html)
+추가 정보: [https://docs.cosmos.network/master/core/encoding.html](https://docs.cosmos.network/master/core/encoding.html)
+
+:::

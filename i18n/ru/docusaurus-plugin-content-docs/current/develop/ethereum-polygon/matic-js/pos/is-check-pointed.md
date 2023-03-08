@@ -2,11 +2,11 @@
 id: is-check-pointed
 title: isCheckPointed
 keywords:
-  - 'pos client, isCheckPointed, polygon, sdk'
-description: 'isCheckPointed method can be used to know if a transaction has been checkpointed.'
+- 'pos client, isCheckPointed, polygon, sdk'
+description: 'Проверьте, установлены ли для транзакции контрольные точки.'
 ---
 
-`isCheckPointed` method can be used to know if a transaction has been checkpointed.
+Метод `isCheckPointed` можно использовать, чтобы узнать о наличии контрольных точек транзакции.
 
 ```
 const isCheckPointed = await posClient.isCheckPointed(<tx hash>);

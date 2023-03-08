@@ -1,7 +1,7 @@
 ---
 id: proposer-bonus
-title: Proposer Bonus
-description: "Additional incentive of being a validator."
+title: Bonus du proposant
+description: Incitation supplémentaire d'être un validateur
 keywords:
   - docs
   - polygon
@@ -11,9 +11,11 @@ keywords:
   - bonus
   - incentive
 slug: proposer-bonus
-image: https://matic.network/banners/matic-network-16x9.png
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
-In Polygon, there is an additional element of committing periodic [checkpoints](../../glossary#checkpoint-transaction) to the Ethereum mainnet. This is a major part of the validator responsibilities and they are incentivized to perform this activity. This constitutes a cost to the validator which is unique to a Layer 2 solution such as Polygon. We strive to accommodate this cost in the validator staking reward payout mechanism as a bonus to be paid to the [proposer](../../glossary#proposer), who is responsible for committing the checkpoint. Rewards minus the bonus is to be shared among all stakers; proposer and [signers](../../glossary#signer-address), proportionally.
+# Bonus du proposant {#proposer-bonus}
 
-To avail the bonus completely, the proposer must include all signatures in the checkpoint. Because the protocol desires ⅔ +1 weight of the total stake, the checkpoint is accepted even with 80% votes. However, in this case, the proposer gets only 80% of the calculated bonus.
+Dans Polygon, un autre facteur vient s'ajouter : l'engagement de [points de contrôle](/docs/maintain/glossary.md#checkpoint-transaction) périodiques sur le réseau principal Ethereum. Il s'agit d'une partie importante des responsabilités des validateurs, qui sont incités à effectuer cette activité. Cela constitue un coût pour le validateur qui est unique pour une solution de couche 2 telle que Polygon. Nous nous efforçons de prendre en compte ce coût dans le mécanisme de paiement de la récompense de staking du validateur, sous la forme d'un bonus à verser au [proposant](/docs/maintain/glossary.md#proposer) chargé de valider le point de contrôle. La récompense après déduction du bonus doit être partagée entre tous les acteurs, les proposants et [les signataires](/docs/maintain/glossary.md#signer-address), de manière proportionnelle.
+
+Pour bénéficier pleinement du bonus, le proposant doit inclure toutes les signatures dans le point de contrôle. Le protocole souhaitant une pondération de ⅔ +1 du total du stake, le point de contrôle est accepté même avec 80 % de votes. Toutefois, dans ce cas, le proposant ne reçoit que 80 % du bonus calculé.

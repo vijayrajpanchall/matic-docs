@@ -2,11 +2,11 @@
 id: safe-deposit
 title: safeDeposit
 keywords:
-  - 'plasma client, erc721, deplasmait, polygon, sdk'
-description: 'Get started with maticjs'
+- 'plasma client, erc721, deplasmait, polygon, sdk'
+description: 'Einen Token von Ethereum auf Polygon Chain einzahlen.'
 ---
 
-`safeDeposit` method can be used to deposit a token from ethereum to polygon chain.
+Die `safeDeposit`-Methode kann genutzt werden, um einen Token von Ethereum in die Polygon-Chain einzuzahlen.
 
 ```
 const erc721RootToken = plasmaClient.erc721(<root token address>, true);

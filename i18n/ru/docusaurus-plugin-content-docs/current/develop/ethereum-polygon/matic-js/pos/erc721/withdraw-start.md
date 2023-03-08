@@ -2,11 +2,11 @@
 id: withdraw-start
 title: withdrawStart
 keywords:
-  - 'pos client, erc721, withdrawStart, polygon, sdk'
-description: 'Get started with maticjs'
+- 'pos client, erc721, withdrawStart, polygon, sdk'
+description: 'Инициируйте процесс вывода.'
 ---
 
-`withdrawStart` method can be used to initiate the withdraw process which will burn the specified token on polygon chain.
+Метод `withdrawStart` можно использовать для инициации процесса вывода, который сжигает указанный токен в polygon chain.
 
 ```
 const erc721Token = posClient.erc721(<child token address>);

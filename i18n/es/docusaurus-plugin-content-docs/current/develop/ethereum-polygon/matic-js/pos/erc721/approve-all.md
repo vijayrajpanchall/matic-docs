@@ -1,12 +1,12 @@
 ---
 id: approve-all
-title: approveAll
+title: approveAll (Aprobar todo)
 keywords:
-  - 'pos client, erc721, approveAll, polygon, sdk'
-description: 'Get started with maticjs'
+- 'pos client, erc721, approveAll, polygon, sdk'
+description: 'Aprueba todos los tokens.'
 ---
 
-`approveAll` method can be used to approve all tokens.
+El método `approveAll` se puede utilizar para aprobar todos los tokens.
 
 ```
 const erc721RootToken = posClient.erc721(<root token address>, true);

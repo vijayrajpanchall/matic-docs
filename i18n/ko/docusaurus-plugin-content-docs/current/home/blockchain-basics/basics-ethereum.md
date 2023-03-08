@@ -1,24 +1,31 @@
 ---
 id: ethereum
-title: What is Ethereum?
+title: 이더리움은 무엇인가요?
 sidebar_label: Ethereum
-description: A programmable blockchain that allows building dapps.
+description: dapp를 빌딩할 수 있게 해주는 프로그램 가능 블록체인.
 keywords:
   - docs
   - matic
-image: https://matic.network/banners/matic-network-16x9.png
+  - polygon
+  - what is ethereum
+  - ethereum
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
-Ethereum is the foundation for a new era of the internet:
+# 이더리움은 무엇인가요? {#what-is-ethereum}
 
-- An internet where money and payments are built in.
-- An internet where users can own their data, and your apps don’t spy and steal from you.
-- An internet where everyone has access to an open financial system.
-- An internet built on neutral, open-access infrastructure, controlled by no company or person.
+이더리움은 새로운 시대의 인터넷을 위한 기초입니다.
 
-But unlike other blockchains, Ethereum can do much more. Ethereum is programmable, which means that developers can use it to build new kinds of applications.
+- 금전과 결제가 내장된 인터넷.
+- 사용자가 자신의 데이터를 소유할 수 있고 자신의 앱이 자신의 것을 감시하거나 훔치지 않는 인터넷.
+- 모든 사람이 공개 금융 시스템에 액세스하는 인터넷.
+- 회사나 사람이 통제하지 않는 중립적인 개방형 액세스 인프라에 기초한 인터넷.
 
-These decentralized applications (or “dapps”) gain the benefits of cryptocurrency and blockchain technology. They can be trustworthy, meaning that once they are “uploaded” to Ethereum, they will always run as programmed. They can control digital assets in order to create new kinds of financial applications. They can be decentralized, meaning that no single entity or person controls them.
-### **:scroll:Resources**
+그러나 다른 블록체인과 달리 이더리움은 더 많은 것을 할 수 있습니다. 이더리움 프로그램은 프로그래밍할 수 있으며, 이는 개발자가 새로운 종류의 애플리케이션을 구축하기 위해 사용할 수 있다는 뜻입니다.
 
-:book: [What is Ethereum?](https://ethereum.org/what-is-ethereum/) <br/> :books: [Ethereum](https://ethereum.org/)
+이러한 분산 애플리케이션(또는 'dapp')은 암호화폐 및 블록체인의 이점을 얻습니다. 이는 신뢰할 수 있는 것입니다. 즉, 일단 이더리움에 '업로드'되면 항상 프로그래밍된 대로 실행됩니다. 이는 새로운 종류의 금융 애플리케이션을 만들기 위해 디지털 자산을 제어할 수 있습니다. 분산형이 될 수 있습니다. 즉, 단일 개체나 사람이 제어하지 않습니다.
+
+### **리소스**
+
+- [이더리움은 무엇입니까?](https://ethereum.org/what-is-ethereum/)<br/>
+- [이더리움](https://ethereum.org/)

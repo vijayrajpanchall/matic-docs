@@ -1,23 +1,25 @@
 ---
 id: deposit-withdraw-event-pos
-title: 입금 및 체크포인트 이벤트 추적 - PoS
-sidebar_label: 입금 및 체크포인트 이벤트 추적
-description: 폴리곤에서 다음 블록체인 앱을 설치합니다.
+title: 입금과 체크포인트 이벤트 추적 - PoS
+sidebar_label: Deposit and Checkpoint Event Tracking
+description: "Polygon 트랜잭션의 진행과 속도를 추적하세요."
 keywords:
   - docs
   - matic
+  - deposit
+  - checkpoint
 image: https://matic.network/banners/matic-network-16x9.png
 ---
 
-## 빠른 요약
+## 요약 {#quick-summary}
 
-문서의 이 섹션에서는 폴리곤 생태계 내에서 수행되는 트랜잭션의 간격과 속도를 추적하고 모니터링하는 방법을 다룹니다. 네트워크로 입금(PoS 브리지로 완료한 경우)하는 것은 일반적으로 평균 5-7분이 소요되지만, 사용자가 실시간 진행 보고서를 확인하려는 경우를 보아 왔습니다. 개발자로서, 당신은 사용자에게 즉각적인 피드백을 제공하여 앱의 UX를 보강할 수도 있습니다. . 이 모든 경우에 이 섹션을 살펴보십시오. 우리는 당신이 필요로 하는 것을 정확히 갖고 있습니다.
+doc의 이 섹션은 Polygon 생태계에서 수행되는 거래의 속도와 속도를 추적하고 모니터링하는 것을 다룹니다. 네트워크에 입장하는 (PoS 브리지에서 수행 할 때)는 일반적으로 평균 22-30분을 소요하지만, 사용자가 실시간 진행 보고서를 볼 수 있는 인스턴스를 발견했습니다. 또한 개발자는 사용자에게 즉각적인 피드백을 제공하도록 앱 UX를 보강해야 할 수도 있습니다. 이 모든 경우에는이 섹션이 유용 할 수 있습니다.
 
-## 입금 이벤트
+## 입금 이벤트 {#deposit-events}
 
-토큰이 이더리움에서 폴리곤으로 입금되면 상태 동기화 메커니즘이라는 프로세스가 작동하여 결국 폴리곤 체인에서 사용자를 위한 토큰을 발행합니다. 이 프로세스는 발생하는 데 약 5-7분이 걸리므로 좋은 사용자 경험을 만들기 위해 입금 이벤트에 주위를 기울이는 것은 매우 중요합니다. 다음은 실시간 입금 이벤트를 추적하는 데 사용할 수 있는 예제 스크립트입니다.
+이더리움에서 Polygon으로 토큰이 입금될 때 상태 동기화 메커니즘이라고 불리는 프로세스가 실행되어 결국 Polygon 체인에서 사용자의 토큰을 발행하게 됩니다. 이 프로세스는 약 22-30분이 소요되므로 예금 이벤트를 듣는 것이 매우 중요합니다. 다음은 실시간 입금 이벤트를 추적하는 데 사용할 수 있는 스크립트 예시입니다.
 
-### 웹 소켓 연결을 통한 실시간 입금 이벤트 추적
+### 웹 소켓 연결을 사용한 실시간 입금 이벤트 추적 {#realtime-deposit-event-tracking-using-a-web-socket-connection}
 
 ```jsx
 const WebSocket = require("ws");
@@ -114,9 +116,9 @@ checkDepositStatus(
   });
 ```
 
-### 블록체인을 쿼리함으로써 입금완료 이력 체크
+### 블록체인 쿼리를 통한 입금 완료 내역 확인 {#historical-deposit-completion-check-by-querying-the-blockchain}
 
-이 스크립트는 하위 체인에서 특정 입금이 완료되었는지 여부를 확인하는 데 사용할 수 있습니다. 메인 체인과 하위 체인은 두 체인의 전역 카운터 변수 값을 계속 증가시킵니다. [StateSender](https://github.com/maticnetwork/contracts/blob/develop/contracts/root/stateSyncer/StateSender.sol#L38) 컨트랙트는 카운터 값이 있는 이벤트를 내보냅니다. 하위 체인의 카운터 값은  [StateReceiver](https://github.com/maticnetwork/genesis-contracts/blob/master/contracts/StateReceiver.sol#L12) 컨트랙트에서 쿼리할 수 있습니다. 하위 체인의 카운터 값이 메인 체인과 같거나 크면 입금이 성공적으로 완료된 것으로 간주할 수 있습니다.
+다음 스크립트를 사용해 특정 입금이 하위 체인에서 완료되었는지 여부를 확인할 수 있습니다. 메인 체인과 하위 체인 모두에서 글로벌 카운터 변수 값이 계속 증가합니다. [StateSender](https://github.com/maticnetwork/contracts/blob/develop/contracts/root/stateSyncer/StateSender.sol#L38) 계약은 카운터 값을 가지는 이벤트를 발생시킵니다. 아동 체인의 카운터 값은 [스테이트 리시버](https://github.com/maticnetwork/genesis-contracts/blob/master/contracts/StateReceiver.sol#L12) 계약에서 질의될 수 있습니다. Chain 카운터 값이 메인체인에서 동일하거나 같거나 크다면 보증금을 성공적으로 완료한 것으로 간주 될 수 있습니다.
 
 ```jsx
 let Web3 = require("web3");
@@ -174,11 +176,11 @@ depositCompleted(
   });
 ```
 
-## 체크포인트 이벤트
+## 체크포인트 이벤트 {#checkpoint-events}
 
-### 실시간 체크포인트 상태 추적
+### 실시간 체크포인트 상태 추적 {#real-time-checkpoint-status-tracking}
 
-폴리곤 체인에서 발생하는 모든 트랜잭션은 유효성 검사기에 의해 빈번한 시간 간격으로 이더리움 체인에 체크 포인트됩니다. 이 시간은 뭄바이에서 ~10분, 폴리곤 메인넷에서 ~30분입니다. 체크포인트는 이더리움 체인에 배포된 **RootChainContract**이라는 컨트랙트에서 발생합니다. 다음 스크립트를 사용하여 실시간 체크포인트 포함 이벤트를 수신할 수 있습니다.
+Polygon 체인에서 발생하는 모든 거래는 유효성 검사자가 자주 시간 간격으로 이더리움 체인을 확인합니다. 이번에는 Mumbai에서 약 10분이고 Polygon Mainnet에서 약 30분입니다. 검문소는 이더리움 체인에 `RootChainContract`배포된 계약서에 나와 있습니다. 다음 스크립트를 사용해 실시간 체크포인트 포함 이벤트를 수신 대기할 수 있습니다.
 
 ```js
 const Web3 = require("web3");
@@ -243,9 +245,9 @@ checkInclusion(
   });
 ```
 
-### 블록체인 쿼리를 통한 이력 체크포인트 포함 확인
+### 블록체인을 쿼리해 과거 체크포인트 포함 내역 확인 {#historical-checkpoint-inclusion-check-by-querying-the-blockchain}
 
-이는 다음 API를 사용하여 확인할 수 있습니다. 하위 체인에 있는 소각 트랜잭션의 블록 번호는 이 GET API에 매개변수로 주어져야 합니다.
+다음 API를 사용해 확인할 수 있습니다. 어린이 체인의 번 트랜잭션 블록 번호는 이 GET API의 파라미터로 주어져야 합니다.
 
 ```js
 // Testnet

@@ -1,46 +1,50 @@
 ---
 id: governance
-title: Governance
+title: 거버넌스
 sidebar_label: Governance
-description: Heimdall governance works exactly the same as Cosmos-sdk `x/gov` module. [https://docs.cosmos.network/master/modules/gov/](https://docs.cosmos.network/master/modules/gov/). In this system, holders of the native staking token of the chain can vote on proposals on a 1 token - 1 vote basis.
+description: 1개의 토큰을 가진 시스템 - 1 투표 기준으로 시스템
 keywords:
   - docs
   - matic
+  - one token
+  - one vote
+  - governance
+  - heimdall
 image: https://matic.network/banners/matic-network-16x9.png
 ---
 
-## Overview
+# 거버넌스 {#governance}
 
-Heimdall governance works exactly the same as Cosmos-sdk `x/gov` module. [https://docs.cosmos.network/master/modules/gov/](https://docs.cosmos.network/master/modules/gov/)
+Heimdall 거버넌스는 [`x/gov`코스모-sdk](https://docs.cosmos.network/master/modules/gov/) 모듈과 정확히 동일합니다.
 
-In this system, holders of the native staking token of the chain can vote on proposals on a `1 token = 1 vote` basis. Next is a list of features the module currently supports:
+이 시스템에서 체인의 네이티브 스테이킹 토큰 보유자는 `1 token = 1 vote` 기준으로 제안에 투표할 수 있습니다. 현재 지원하는 모듈의 특징 목록은 다음과 같습니다.
 
-- **Proposal submission:** Validators can submit proposals with a deposit. Once the minimum deposit is reached, proposal enters voting period. Valdiators that deposited on proposals can recover their deposits once the proposal is rejected or accepted.
-- **Vote:** Validators can vote on proposals that reached MinDeposit
+- **제안 제출:** 유효성 검사자는 보증금과 함께 제안을 제출할 수 있습니다. 최소 보증금이 채워지면 제안에 대한 투표 기간이 시작됩니다. 제안을 위해 보증금을 낸 유효성 검사자는 제안이 거부되거나 받아들여지면 보증금을 회수할 수 있습니다.
+- **투표:** 유효성 검사기는 MinDeposit에 도착한 제안에 투표할 수 있습니다.
 
-There are deposit period and voting period as params in `gov` module. Minimum deposit has be achieved before deposit period ends, otherwise proposal will be automatically rejected.
+보증금 기간과 투표 기간은 `gov` 모듈의 파라미터입니다. 예금 기간이 끝나기 전에 최소 예금을 달성해야 합니다. 그렇지 않으면 제안서가 자동으로 거부됩니다.
 
-Once minimum deposits reached within deposit period, voting period starts. In voting period, all validators should vote their choices for the proposal. After voting period ends, `gov/Endblocker.go` executes `tally`  function and accepts or rejects proposal based on `tally_params` — `quorum`, `threshold` and `veto`.
+보증금 기간 내에 최소 보증금에 도달하면 투표 기간이 시작됩니다. 투표 기간 동안 모든 유효성 검사자는 제안에 대해 선택을 하고 투표에 참여해야 합니다. 투표 기간이 끝나면 `gov/Endblocker.go`는 `tally` 기능을 실행하고 `tally_params` —,`quorum`  `threshold`및 에`veto` 기반하여 제안을 받아들이거나 거부합니다.
 
-Source: [https://github.com/maticnetwork/heimdall/blob/develop/gov/endblocker.go](https://github.com/maticnetwork/heimdall/blob/develop/gov/endblocker.go)
+출처: [https://github.com/maticnetwork/heimdall/blob/develop/gov/endblocker.go](https://github.com/maticnetwork/heimdall/blob/develop/gov/endblocker.go)
 
-There are different types of proposals that can be implemented in Heimdall but as of now, it supports only one proposal:
+Heimdall에서 구현할 수 있는 다양한 유형의 제안이 있습니다. 현재 **파라암 변경** 제안만 지원합니다.
 
-- Param change proposal
+### 파라미터 변경 제안 {#param-change-proposal}
 
-### **Param change proposal**
+이 유형의 제안서를 사용하면 유효자가 `module`Heimdall의 어떤 경우에도 `params`변경할 수 있습니다.
 
-Using this type of proposal, validators can change any `params` in any `module` of Heimdall. Example: change minimum `tx_fees` for the transaction in `auth` module. When the proposal gets accepted, it automatically changes the `params` in Heimdall state. No extra TX is needed.
+예: `auth` 모듈에서 트랜잭션을 위한 최소 `tx_fees`를 변경합니다. 제안이 받아들여지면 Heimdall 상태에서 `params`가 자동으로 변경됩니다. 추가 트랜잭션이 필요 없습니다.
 
-## CLI commands
+## CLI 명령 {#cli-commands}
 
-### Query gov params
+### 거버넌스 파라미터 쿼리 {#query-gov-params}
 
 ```go
 heimdallcli query gov params --trust-node
 ```
 
-This shows all params for governance module.
+거버넌스 모듈에 대한 모든 파라미터를 보여줍니다.
 
 ```go
 voting_params:
@@ -57,17 +61,17 @@ deposit_parmas:
   max_deposit_period: 48h0m0s
 ```
 
-### Submit proposal
+### 제안 제출 {#submit-proposal}
 
 ```bash
 heimdallcli tx gov submit-proposal \
-    --validator-id 1 param-change proposal.json \
-    --chain-id <heimdall-chain-id>
+	--validator-id 1 param-change proposal.json \
+	--chain-id <heimdall-chain-id>
 ```
 
-`proposal.json` is a file which includes proposal in json format.
+`proposal.json`은 json 형식으로 제안을 포함하는 파일입니다.
 
-```go
+```json
 {
   "title": "Auth Param Change",
   "description": "Update max tx gas",
@@ -87,34 +91,34 @@ heimdallcli tx gov submit-proposal \
 }
 ```
 
-### Query proposal
+### 제안 쿼리 {#query-proposal}
 
-To query all proposals
+모든 제안을 질의하려면 :
 
 ```go
 heimdallcli query gov proposals --trust-node
 ```
 
-To query particular proposal
+특정 제안을 질의하려면 :
 
 ```go
 heimdallcli query gov proposals 1 --trust-node
 ```
 
-### Vote on proposal
+### 제안에 투표하기 {#vote-on-proposal}
 
-To vote on a particular proposal
+특정 제안에 대해 투표하려면 :
 
 ```bash
 heimdallcli tx gov vote 1 "Yes" --validator-id 1  --chain-id <heimdal-chain-id>
 ```
 
-Proposal will be automatically tallied after voting period.
+투표 기간 후 제안은 자동으로 집계됩니다.
 
-## REST APIs
+## 기타 API {#rest-apis}
 
-| Name                           | Method | Endpoint                           |
-| ------------------------------ | ------ | ---------------------------------- |
-| Get all proposals              | GET    | /gov/proposals                     |
-| Get proposal details           | GET    | /gov/proposals/`proposal-id`       |
-| Get all votes for the proposal | GET    | /gov/proposals/`proposal-id`/votes |
+| 이름 | 메서드 | 엔드포인트 |
+|----------------------|------|------------------|
+| 모든 제안 가져오기 | GET | /gov/proposals |
+| 제안 세부 정보 가져오기 | GET | /gov/proposals/`proposal-id` |
+| 제안에 대한 모든 투표 가져오기 | GET | /gov/proposals/`proposal-id`/votes |

@@ -1,21 +1,21 @@
 ---
 id: deposit-withdraw-event-plasma
-title: Deposit and Checkpoint Event Tracking - Plasma
+title: Nachverfolgung des Einzahlungs- und Checkpoint-Ereignisses - Plasma
 sidebar_label: Deposit and Checkpoint Event Tracking
-description: Build your next blockchain app on Polygon.
+description:  "Verfolge Einzahlung- und Checkpoint-Ereignisse in Echtzeit."
 keywords:
   - docs
   - matic
 image: https://matic.network/banners/matic-network-16x9.png
 ---
 
-Please check the latest [Matic.js documentation on Plasma](https://maticnetwork.github.io/matic.js/docs/plasma/) to get started.
+Bitte lies die neueste [Matic.js-Dokumentation über Plasma](https://maticnetwork.github.io/matic.js/docs/plasma/), um loszulegen.
 
-## Deposit Events
+## Einzahlungsereignisse {#deposit-events}
 
-When a token is deposited from Ethereum to Polygon, a process called state sync mechanism comes into play that eventually mints the tokens for the user on the Polygon chain. This process takes about ~5-7 minutes to happen and hence listening to the deposit event is very important to create a good user experience. This is an example script that can be used to track real time deposit events.
+Wenn ein Token von Ethereum zu Polygon eingezahlt wird, kommt eine Verfahren namens State-Sync-Mechanismus ins Spiel, das die Token für den Benutzer auf der Polygon-Kette schließlich mintet. Dieser Prozess dauert etwa 22-30 Minuten und daher ist das Hören auf das deposit sehr wichtig, um eine gute Benutzererfahrung zu schaffen. Dies ist ein Beispiel-Skript, mit dem du die Einzahlungsereignisse in Echtzeit nachverfolgen kannst.
 
-### Realtime deposit event tracking using a web socket connection
+### Nachverfolgen eines Einzahlungsereignisses in Echtzeit mit Hilfe einer Websocket {#realtime-deposit-event-tracking-using-a-web-socket-connection}
 
 ```jsx
 const WebSocket = require("ws");
@@ -74,9 +74,9 @@ checkDepositStatus(
   });
 ```
 
-### Historical deposit completion check by querying the blockchain.
+### Überprüfen der Historie des Einzahlungsabschlusses durch Abfragen der Blockchain {#historical-deposit-completion-check-by-querying-the-blockchain}
 
-This script can be used to check if a particular deposit has been completed on the child chain or not. The main chain and the child chain keep incrementing the value of a global counter variable on both the chains. The [StateSender](https://github.com/maticnetwork/contracts/blob/develop/contracts/root/stateSyncer/StateSender.sol#L38) contract emits an event that has the counter value. The counter value on the child chain can be queried from the [StateReceiver](https://github.com/maticnetwork/genesis-contracts/blob/master/contracts/StateReceiver.sol#L12) contract. If the counter value on child chain is greater than or equal to the same on main chain, then the deposit can considered as completed successfully.
+Dieses Skript kann verwendet werden, um zu überprüfen, ob eine bestimmte Einzahlung auf der Child Chain abgeschlossen wurde oder nicht. Die Hauptkette und die Child-Chain erhöhen den Wert einer globalen Zählervariable auf beiden Ketten. Der Contract [StateSender](https://github.com/maticnetwork/contracts/blob/develop/contracts/root/stateSyncer/StateSender.sol#L38) sendet ein Ereignis, das den Zählerwert hat. Der Zählerwert auf der Childchain kann vom Contract [StateReceiver](https://github.com/maticnetwork/genesis-contracts/blob/master/contracts/StateReceiver.sol#L12) abgefragt werden. Wenn der Zählerwert auf der Child-Chain größer oder gleich dem auf der Hauptkette ist, kann die Einzahlung als erfolgreich abgeschlossen betrachtet werden.
 
 ```js
 let Web3 = require("web3");
@@ -134,11 +134,11 @@ depositCompleted(
   });
 ```
 
-## Checkpoint Events
+## Checkpoint-Ereignisse {#checkpoint-events}
 
-### Real-time checkpoint status tracking
+### Tracking des Checkpoint-Zustandes in Echtzeit {#real-time-checkpoint-status-tracking}
 
-All transactions that occur on Polygon chain are check-pointed to the Ethereum chain in frequent intervals of time by the validators. This time is ~10 mins on Mumbai and ~30 mins on Polygon mainnet. The checkpoint occurs on a contract called the RootChain contract deployed on Ethereum chain. The following script can be used to listen to Real-time checkpoint inclusion events.
+Alle Transaktionen, die auf Polygon Chain auftreten, werden von den Prüfern in häufigen Zeitintervallen auf die Ethereum-Chain überprüft. Diesmal ist es etwa 10 Minuten auf Mumbai und 30 Minuten auf Polygon mainnet. Der Checkpoint tritt auf einem Contract auf - dem RootChain-Contract, der auf der Ethereum-Chain eingesetzt wird. Das folgende Skript kann verwendet werden, um die Checkpoint-Einbindung in Echtzeit zu hören.
 
 ```jsx
 const Web3 = require("web3");
@@ -201,9 +201,9 @@ checkInclusion(
   });
 ```
 
-### Historical checkpoint inclusion check by querying the blockchain.
+### Überprüfen der Historie der Checkpoint-Einbindung durch Abfragen der Blockchain {#historical-checkpoint-inclusion-check-by-querying-the-blockchain}
 
-This can be checked using the following API. The block number of the burn transaction on the child chain has to be given as a param to this GET API.
+Dies kann mit der folgenden API überprüft werden. Die Blocknummer der Burn-Transaktion auf der Child-Chain muss als Parameter für diese GET API angegeben werden.
 
 ```
 // Testnet

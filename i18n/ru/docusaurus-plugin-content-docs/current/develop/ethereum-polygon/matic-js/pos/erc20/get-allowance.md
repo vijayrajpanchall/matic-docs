@@ -2,15 +2,15 @@
 id: get-allowance
 title: getAllowance
 keywords:
-  - pos client
-  - erc20
-  - getAllowance
-  - polygon
-  - sdk
-description: getAllowance method can be used to get the approved amount for the user.
+    - pos client
+    - erc20
+    - getAllowance
+    - polygon
+    - sdk
+description: "Получите данные об утвержденном количестве для пользователя."
 ---
 
-`getAllowance` method can be used to get the approved amount for the user.
+Метод `getAllowance` можно использовать для получения данных об утвержденном количестве для пользователя.
 
 ```
 const erc20Token = posClient.erc20(<token address>, true);
@@ -18,13 +18,13 @@ const erc20Token = posClient.erc20(<token address>, true);
 const balance = await erc20Token.getAllowance(<userAddress>);
 ```
 
-## spenderAddress
+## spenderAddress {#spenderaddress}
 
-The address on which approval is given is called `spenderAddress`. It is a third-party user or a smart contract which can transfer your token on your behalf.
+Адрес, на котором происходит утверждение, называется `spenderAddress`. Это сторонний пользователь или смарт-контракт, который может выполнить трансфер вашего токена от вашего имени.
 
-By default spenderAddress value is erc20 predicate address.
+По умолчанию значением spenderAddress является адрес predicate стандарта erc20.
 
-You can specify spender address value manually.
+Указать адрес исполнителя трансфера можно вручную.
 
 ```
 const erc20Token = posClient.erc20(<token address>, true);

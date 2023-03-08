@@ -1,57 +1,55 @@
 ---
 id: checkpoint
-title: Checkpoint
-description: checkpoint module manages checkpoint related functionalities for Heimdall. It needs Bor chain when a new checkpoint is proposed on Heimdall to verify checkpoint root hash.
+title: Point de Contrôle
+description: Module qui gère les fonctionnalités liées aux points de contrôle
 keywords:
   - docs
   - matic
+  - checkpoint
+  - heimdall
 image: https://matic.network/banners/matic-network-16x9.png
 ---
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-## Overview
+# Point de Contrôle {#checkpoint}
 
-`checkpoint` module manages checkpoint related functionalities for Heimdall. It needs Bor chain when a new checkpoint is proposed on Heimdall to verify checkpoint root hash.
+`checkpoint` module gère les fonctionnalités liées au point de contrôle pour Heimdall. Il a besoin de la chaîne de Bor quand un nouveau point de contrôle est proposé sur Heimdall pour vérifier l'identifiant de root du point de contrôle.
 
-All related to checkpoint data is explained in details here:
+Toutes les données liées aux points de contrôle sont expliquées dans les détails [ici](/docs/pos/heimdall/checkpoint).
 
-[Checkpoint](/docs/pos/heimdall/checkpoint)
+## Le cycle de vie du Point de Contrôle {#checkpoint-life-cycle}
 
-## Checkpoint life-cycle
+Heimdall utilise le même algorithme de sélection de leader que Tendermint pour sélectionner le prochain proposant. Tout en soumettant des points de contrôle sur la chaîne Ethereum, cela peut échouer pour plusieurs raisons telles que la limite de gaz, le trafic sur Ethereum et les frais de gaz élevés. C'est pourquoi le processus du point de contrôle de plusieurs étapes est requis.
 
-The following flow chart represents the life cycle of the checkpoint. Heimdall uses the same leader selection algorithm as Tendermint to select the next proposer.
-
-**While submitting checkpoints on the Ethereum chain, it may fail due to multiple reasons like gas limit, traffic on Ethereum, high gas fees. That's why the multi-stage checkpoint process is required.**
-
-Since each checkpoint has validator as proposer. If checkpoint on Ethereum chain fails or succeeds, `ack` and `no-ack` transaction would change the proposer on Heimdall for next checkpoint.
+Chaque point de contrôle a validateur comme proposant. Si le point de contrôle sur la chaîne Ethereum échoue ou réussit, et `ack`que la `no-ack`transaction modifierait le proposant sur Heimdall pour le prochain point de contrôle. Le diagramme de flux suivant représente le cycle de vie du point de contrôle:
 
 <img src={useBaseUrl("img/checkpoint/checkpoint-flowchart.svg")} />
 
-## Messages
+## Messages {#messages}
 
 <img src={useBaseUrl("img/checkpoint/checkpoint-module-flow.svg")} />
 
-### MsgCheckpoint
+### MsgCheckpoint {#msgcheckpoint}
 
-`MsgCheckpoint` handles checkpoint verification on Heimdall. **Only this message uses RLP encoding to since it needs to be verified on Ethereum chain.**
+`MsgCheckpoint` gère la vérification du point de contrôle sur Heimdall. Seul ce message utilise l'encodage RLP car il doit être vérifié sur la chaîne Ethereum.
 
 ```go
 // MsgCheckpoint represents checkpoint transaction
 type MsgCheckpoint struct {
-    Proposer        types.HeimdallAddress `json:"proposer"`
-    StartBlock      uint64                `json:"startBlock"`
-    EndBlock        uint64                `json:"endBlock"`
-    RootHash        types.HeimdallHash    `json:"rootHash"`
-    AccountRootHash types.HeimdallHash    `json:"accountRootHash"`
+	Proposer        types.HeimdallAddress `json:"proposer"`
+	StartBlock      uint64                `json:"startBlock"`
+	EndBlock        uint64                `json:"endBlock"`
+	RootHash        types.HeimdallHash    `json:"rootHash"`
+	AccountRootHash types.HeimdallHash    `json:"accountRootHash"`
 }
 ```
 
-Once this transaction gets processed on Heimdall, the `proposer` takes `votes` and `sigs` from Tendermint for this transaction and sends checkpoint on the Ethereum chain.
+Une fois que la transaction est traitée sur Heimdall, le `proposer` prend `votes` et `sigs` de Tendermint pour cette transaction et envoie le point de contrôle sur la chaîne Ethereum.
 
-Since block contains multiple transactions and verifies this particular transaction on the Ethereum chain, Merkle proof is required. To avoid extra Merkle proof verification on Ethereum, Heimdall only allows one transaction in the block if the transaction type is `MsgCheckpoint`
+Puisque le bloc contient plusieurs transactions et vérifie cette transaction particulière sur la chaîne Ethereum, une preuve de Merkle est nécessaire. Pour éviter la vérification de preuve de Merkle supplémentaire sur Ethereum, Heimdall ne permet qu'une transaction dans le bloc si le type de transaction est  `MsgCheckpoint`
 
-To allow this mechanism, Heimdall sets `MsgCheckpoint` transaction as high gas consumed transaction. Check [https://github.com/maticnetwork/heimdall/blob/develop/auth/ante.go#L104-L106](https://github.com/maticnetwork/heimdall/blob/develop/auth/ante.go#L104-L106)
+Pour permettre ce mécanisme, Heimdall définit `MsgCheckpoint` la transaction comme une transaction à consommation de gaz élevé. Vérifiez [https://github.com/maticnetwork/heimdall/blob/develop/auth/ante.go#L104-L106](https://github.com/maticnetwork/heimdall/blob/develop/auth/ante.go#L104-L106)
 
 ```go
 // fee wanted for checkpoint transaction
@@ -59,27 +57,27 @@ gasWantedPerCheckpoinTx sdk.Gas = 10000000
 
 // checkpoint gas limit
 if stdTx.Msg.Type() == "checkpoint" && stdTx.Msg.Route() == "checkpoint" {
-    gasForTx = gasWantedPerCheckpoinTx
+	gasForTx = gasWantedPerCheckpoinTx
 }
 ```
 
-This transaction will store proposed checkpoint on `checkpointBuffer` state instead of actual checkpoint list state.
+Cette transaction stockera le point de contrôle proposé sur `checkpointBuffer` l'état au lieu de l'état de la liste du point de contrôle actuel.
 
-### MsgCheckpointAck
+### MsgCheckpointAck {#msgcheckpointack}
 
-`MsgCheckpointAck` handles successful checkpoint submission. Here `HeaderBlock` is a checkpoint counter.
+`MsgCheckpointAck` gère une soumission du point de contrôle réussi. `HeaderBlock`Voici un compteur de points de contrôle ;
 
 ```go
 // MsgCheckpointAck represents checkpoint ack transaction if checkpoint is successful
 type MsgCheckpointAck struct {
-    From        types.HeimdallAddress `json:"from"`
-    HeaderBlock uint64                `json:"headerBlock"`
-    TxHash      types.HeimdallHash    `json:"tx_hash"`
-    LogIndex    uint64                `json:"log_index"`
+	From        types.HeimdallAddress `json:"from"`
+	HeaderBlock uint64                `json:"headerBlock"`
+	TxHash      types.HeimdallHash    `json:"tx_hash"`
+	LogIndex    uint64                `json:"log_index"`
 }
 ```
 
-For valid `TxHash` and `LogIndex` for the submitted checkpoint, this transaction verifies the following event and validates checkpoint in `checkpointBuffer` state: [https://github.com/maticnetwork/contracts/blob/develop/contracts/root/RootChainStorage.sol#L7-L14](https://github.com/maticnetwork/contracts/blob/develop/contracts/root/RootChainStorage.sol#L7-L14)
+Pour ce qui est validé `TxHash` et `LogIndex` pour le point de contrôle soumis, cette transaction vérifie l'événement suivant et valide le point de contrôle dans `checkpointBuffer` l'état: [https://github.com/maticnetwork/contracts/blob/develop/contracts/root/RootChainStorage.sol#L7-L14](https://github.com/maticnetwork/contracts/blob/develop/contracts/root/RootChainStorage.sol#L7-L14)
 
 ```jsx
 event NewHeaderBlock(
@@ -92,104 +90,104 @@ event NewHeaderBlock(
 );
 ```
 
-On successful event verification, it updates the actual count of checkpoint, also known as `ackCount` and clears the `checkpointBuffer`
+Lors de la vérification réussie d'événements, il met à jour le nombre réel de checkpoint, également connu sous le nom `ackCount`de .`checkpointBuffer`
 
-### MsgCheckpointNoAck
+### MsgCheckpointNoAck {#msgcheckpointnoack}
 
-`MsgCheckpointNoAck` handles un-successful checkpoints or offline proposers. This transaction is only valid after `CheckpointBufferTime` has passed from the following events:
+`MsgCheckpointNoAck` gère des points de contrôle infructueux ou des proposants hors ligne. Cette transaction est valide seulement après que `CheckpointBufferTime` a passé des événements suivants:
 
-- Last successful `ack` transaction
-- Last successful `no-ack` transaction
+- La dernière `ack` transaction réussie
+- La dernière `no-ack` transaction réussie
 
 ```go
 // MsgCheckpointNoAck represents checkpoint no-ack transaction
 type MsgCheckpointNoAck struct {
-    From types.HeimdallAddress `json:"from"`
+	From types.HeimdallAddress `json:"from"`
 }
 ```
 
-This transaction gives the timeout period for the current proposer to send checkpoint/ack before Heimdall chooses a new `proposer` for the next checkpoint.
+Cette transaction fournit la période de délai pour que le proposant actuel envoie le point de contrôle/ack avant que Heimdall choisit un nouveau `proposer` pour le prochain point de contrôle.
 
-## **Parameters**
+## Paramètres {#parameters}
 
-The checkpoint module contains the following parameters:
+Le point de contrôle du module contient les paramètres suivants:
 
-| Key                  | Type   | Default value      |
-| -------------------- | ------ | ------------------ |
-| CheckpointBufferTime | uint64 | 1000 * time.Second |
+| Clé | Type | Valeur par défaut |
+|----------------------|------|------------------|
+| CheckpointBufferTime | uint64 | 1000 * temps.Seconde |
 
 
-## CLI commands
+## Les commandes de CLI {#cli-commands}
 
-### Params
+### Params {#params}
 
-To print all params
+Pour imprimer tous les params:
 
 ```go
 heimdallcli query checkpoint params --trust-node
 ```
 
-**Expected Result:**
+Résultat Attendu:
 
 ```yaml
 checkpoint_buffer_time: 16m40s
 ```
 
-### Send checkpoint
+### Envoyez le point de contrôle {#send-checkpoint}
 
-Following command sends checkpoint transaction on Heimdall:
+La commande suivante envoie la transaction du point de contrôle sur Heimdall:
 
 ```yaml
 heimdallcli tx checkpoint send-checkpoint \
-    --start-block=<start-block> \
-    --end-block=<end-block> \
-    --root-hash=<root-hash> \
-    --account-root-hash=<account-root-hash> \
-    --chain-id=<chain-id>
+	--start-block=<start-block> \
+	--end-block=<end-block> \
+	--root-hash=<root-hash> \
+	--account-root-hash=<account-root-hash> \
+	--chain-id=<chain-id>
 ```
 
-### Send ack
+### Envoyer`ack`
 
-Following command sends ack transaction on Heimdall if checkpoint is successful on Ethereum:
+La commande suivante envoie la transaction de ack sur Heimdall si le point de contrôle est réussi sur Ethereum:
 
 ```yaml
 heimdallcli tx checkpoint send-ack \
-    --tx-hash=<checkpoint-tx-hash>
-    --log-index=<checkpoint-event-log-index>
-    --header=<checkpoint-index> \
+	--tx-hash=<checkpoint-tx-hash>
+	--log-index=<checkpoint-event-log-index>
+	--header=<checkpoint-index> \
   --chain-id=<chain-id>
 ```
 
-### Send no-ack
+### Envoyer`no-ack`
 
-Following command send no-ack transaction on Heimdall:
+La commande suivante envoie la transaction de no-ack sur Heimdall:
 
 ```yaml
 heimdallcli tx checkpoint send-noack --chain-id <chain-id>
 ```
 
-## REST APIs
+## API de REST {#rest-apis}
 
-| Name                                                                          | Method | Endpoint                                   |
-| ----------------------------------------------------------------------------- | ------ | ------------------------------------------ |
-| Get current checkpoint buffer state                                           | GET    | /checkpoint/buffer                         |
-| Get checkpoint counts                                                         | GET    | /checkpoint/count                          |
-| Get checkpoint details by block index                                         | GET    | /checkpoint/headers/<header-block-index\> |
-| Get latest checkpoint                                                         | GET    | /checkpoint/latest-checkpoint              |
-| Get last no-ack details                                                       | GET    | /checkpoint/last-no-ack                    |
-| Checkpoint details for given start and end block                              | GET    | /checkpoint/<start\>/<end\>              |
-| Checkpoint by number                                                          | GET    | /checkpoint/<checkpoint-number\>          |
-| All checkpoints                                                               | GET    | /checkpoint/list                           |
-| Get ack count, buffer, validator set, validator count and last-no-ack details | GET    | /overview                                  |
+| Nom | Méthode | Point de terminaison |
+|----------------------|------|------------------|
+| Obtenez un état de protection du point de contrôle actuel | GET | /checkpoint/buffer |
+| Obtenez les comptages du point de contrôle | GET | /checkpoint/count |
+| Obtenez des détails du point de contrôle par une indice de bloc | GET | /checkpoint/headers/<header-block-index\> |
+| Obtenez le dernier point de contrôle | GET | /checkpoint/latest-checkpoint |
+| Obtenez les derniers détails de no-ack | GET | /checkpoint/last-no-ack |
+| Les détails du point de contrôle pour le démarrage et la clôture d'un bloc | GET | /pointdecontrôle/<start\>/<end\> |
+| Le point de contrôle par nombre | GET | /pointdecontrôle/<checkpoint-number\> |
+| Tous les points de contrôle | GET | /pointdecontrôle/liste |
+| Obtenez le nombre de ack, de protection, de l'ensemble de validateur, le nombre de validateur et les détails du dernier-no-ack | GET | /aperçu |
 
 
-All query APIs will result in following format:
+Toutes les API de requête fourniront des résultats dans le format suivant:
 
 ```json
 {
-    "height": "1",
-    "result": {
-        ...   
-    }
+	"height": "1",
+	"result": {
+		...	  
+	}
 }
 ```

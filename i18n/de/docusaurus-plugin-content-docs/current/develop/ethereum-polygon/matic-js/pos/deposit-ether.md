@@ -2,11 +2,11 @@
 id: deposit-ether
 title: deposit ether
 keywords:
-  - 'pos client, depositEther, polygon, sdk'
-description: 'depositEther method can be used to deposit required amount of ether from ethereum to polygon.'
+- 'pos client, depositEther, polygon, sdk'
+description: 'Erforderliche Menge an ether von Ethereum auf Polygon einzahlen.'
 ---
 
-`depositEther` method can be used to deposit required amount of **ether** from ethereum to polygon.
+`depositEther` Methode kann verwendet werden, um die erforderliche Menge an **ether** von Ethereum auf Polygon einzuzahlen.
 
 ```
 const result = await posClient.depositEther(<amount>, <userAddress>);

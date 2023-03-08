@@ -1,7 +1,7 @@
 ---
 id: what-is-proof-of-stake
-title: What is Proof of Stake?
-description: Learn what is Proof of Stake.
+title: Was ist Proof of Stake?
+description: Erfahre was ist Proof of Stake Consensus Mechanismus
 keywords:
   - docs
   - matic
@@ -10,26 +10,28 @@ keywords:
   - delegate
   - validate
   - pos
-image: https://matic.network/banners/matic-network-16x9.png
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
-Proof of Stake (PoS) is a category of consensus algorithms for public blockchains that depend on a validator's economic [stake](../glossary#staking) in the network.
+# Was ist Proof of Stake? {#what-is-proof-of-stake}
 
-In proof of work (PoW) based public blockchains, the algorithm rewards participants who solve cryptographic puzzles to validate transactions and create new blocks. PoW blockchain examples: Bitcoin, current Ethereum.
+Proof of Stake (PoS) ist eine Kategorie von Konsensalgorithmen für öffentliche Blockchains, die von der wirtschaftlichen [Beteiligung](/docs/maintain/glossary.md#staking) eines Validators an dem Netzwerk abhängen.
 
-In PoS-based public blockchains, a set of validators take turns proposing and voting on the next block. The weight of each validator's vote depends on the size of its deposit — [stake](../glossary#staking). Significant advantages of PoS include security, reduced risk of centralization, and energy efficiency. PoS blockchain examples: Eth2, Polygon.
+In öffentlichen Blockchains, die auf Proof of Work (PoW) basieren, belohnt der Algorithmus Teilnehmer, die kryptografische Rätsel lösen, um Transaktionen zu validieren und neue Blöcke zu erstellen. PoW Blockchain Beispiele: Bitcoin, Ethereum (vor dem Merge).
 
-In general, a PoS algorithm looks as follows. The blockchain keeps track of a set of validators, and anyone who holds the blockchain's base cryptocurrency (in Ethereum's case, ether) can become a validator by sending a special type of transaction that locks up their ether into a deposit. The process of creating and agreeing to new blocks is then done through a consensus algorithm that all current validators can participate in.
+Bei PoS-basierten öffentlichen Blockchains schlägt eine Gruppe von Validatoren abwechselnd den nächsten Block vor und stimmt darüber ab. Das Gewicht der Stimme eines jeden Validators hängt von der Höhe seiner Einlage ab – [Stake](/docs/maintain/glossary.md#staking). Zu den wesentlichen Vorteilen von PoS gehören Sicherheit, geringeres Risiko der Zentralisierung und Energieeffizienz. PoS blockchain Beispiele: Ethereum 2.0, Polygon.
 
-There are many kinds of consensus algorithms, and many ways to assign rewards to validators who participate in the consensus algorithm, so there are many "flavors" of proof of stake. From an algorithmic perspective, there are two major types: chain-based PoS and [BFT](https://en.wikipedia.org/wiki/Byzantine_fault_tolerance)-style PoS.
+Im Allgemeinen sieht ein PoS-Algorithmus wie folgt aus. Die Blockchain verfolgt einen Überblick über einen Satz von Prüfern, und jeder, der die Basis-Kryptowährung der Blockchain hält (im Fall von Ethereum) kann ein Prüfer werden, indem eine spezielle Art von Transaktion sendet, die ihre ETH in eine Einzahlung einschließt. Der Prozess der Erstellung und Genehmigung neuer Blöcke erfolgt dann über einen Konsensalgorithmus, an dem alle aktuellen Validatoren teilnehmen können.
 
-In **chain-based proof of stake**, the algorithm pseudo-randomly selects a validator during each time slot (e.g. every period of 10 seconds might be a time slot), and assigns that validator the right to create a single block, and this block must point to some previous block (normally the block at the end of the previously longest chain), and so over time most blocks converge into a single constantly growing chain.
+Es gibt viele Arten von Konsensalgorithmen und viele Möglichkeiten, den Validatoren, die am Konsensalgorithmus teilnehmen, Prämien zukommen zu lassen. Dadurch gibt es viele Varianten des Proof of Stake. Aus algorithmischer Sicht gibt es zwei große Arten: chain-based PoS und [BFT-Style PoS](https://en.wikipedia.org/wiki/Byzantine_fault_tolerance).
 
-In **BFT-style proof of stake**, validators are **randomly** assigned the right to *propose* blocks, but *agreeing on which block is canonical* is done through a multi-round process where every validator sends a "vote" for some specific block during each round, and at the end of the process all (honest and online) validators permanently agree on whether or not any given block is part of the chain. Note that blocks may still be *chained together*; the key difference is that consensus on a block can come within one block, and does not depend on the length or size of the chain after it.
+Beim **Chain-basierten Proof of Stake** wählt der Algorithmus in jedem Zeitfensters (z. B. alle von 10 Sekunden könnte ein Zeitfenster sein) pseudo-zufällig einen Validator aus und weist diesem Validator das Recht zu, einen einzelnen Block zu erstellen. Dieser Block muss auf einen vorherigen Block zeigen (normalerweise der Block am Ende der zuvor längsten Chain), sodass die meisten Blöcke mit der Zeit zu einer einzigen, stetig wachsenden Chain konvergieren.
 
-For more details, refer [https://github.com/ethereum/wiki/wiki/Proof-of-Stake-FAQ](https://github.com/ethereum/wiki/wiki/Proof-of-Stake-FAQ).
+In **BFT-style Proof of Stake** werden Prüfer **zufällig** das Recht zugewiesen, Blöcke **vorzuschlagen.** Einigung, auf welchem Block **kanonisch** ist, wird durch einen multi-round durchgeführt, bei dem jeder Prüfer während jeder Runde eine **Vote** für einen bestimmten Block sendet, und am Ende des Prozesses stimmen alle (ehrlich und online) Prüfer dauerhaft zu, ob ein bestimmter Block Teil der Chain ist oder nicht. Beachten Sie, dass Blöcke noch **zusammen verkettet** werden können. Der wesentliche Unterschied ist, dass der Konsens über einen Block in einem Block kommen kann und nicht von der Länge oder Größe der Chain abhängt.
 
-See also:
+Weitere Details findest du unter [https://github.com/ethereum/wiki/wiki/Proof-of-Stake-FAQ](https://github.com/ethereum/wiki/wiki/Proof-of-Stake-FAQ).
 
-* [Delegator](../glossary#delegator)
-* [Validator](../glossary#validator)
+## Siehe auch {#see-also}
+
+* [Delegator](/docs/maintain/glossary.md#delegator)
+* [Validator](/docs/maintain/glossary.md#validator)

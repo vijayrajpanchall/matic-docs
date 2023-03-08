@@ -2,11 +2,11 @@
 id: withdraw-start-many
 title: withdrawStartMany
 keywords:
-  - 'pos client, erc721, withdrawStartMany, polygon, sdk'
-description: 'Get started with maticjs'
+- 'pos client, erc721, withdrawStartMany, polygon, sdk'
+description: 'Inicia el proceso de retiro.'
 ---
 
-`withdrawStartMany` method can be used to initiate the withdraw process which will burn the multiple token on polygon chain.
+El método `withdrawStartMany` se puede utilizar para iniciar el proceso de retiro que quemará los múltiples tokens en la cadena de Polygon.
 
 ```
 const erc721Token = posClient.erc721(<child token address>);

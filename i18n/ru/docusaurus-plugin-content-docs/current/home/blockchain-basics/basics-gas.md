@@ -1,16 +1,21 @@
 ---
 id: gas
-title: What is Gas?
+title: Что такое газ?
 sidebar_label: Gas
-description: "How much work a set of actions takes to perform in a blockchain."
+description: "Объем работы, которого требует набор действий для выполнения в блокчейне."
 keywords:
   - docs
   - matic
-image: https://matic.network/banners/matic-network-16x9.png
+  - polygon
+  - gas
+  - transaction fees
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
-"Gas" is the name for a special unit used in smart contract enabled blockchain networks. It measures how much "work" an action or set of actions takes to perform: for example, to calculate one Keccak256 cryptographic hash it will take 30 gas each time a hash is calculated, plus a cost of 6 more gas for every 256 bits of data being hashed. Every operation that can be performed by a transaction or contract on the platform costs a certain number of gas, with operations that require more computational resources costing more gas than operations that require few computational resources.
+# Что такое газ? {#what-is-gas}
 
-### **:scroll:Resources**
+«Газ» — это название единицы измерения, используемой в блокчейнах с поддержкой смарт-контракта. Он измеряет количество работы, которое требуется для выполнения действия или набора действий: например, чтобы рассчитать один криптографический хэш Keccak256 при каждом расчете хэша стоимость составляет 30 газ, плюс еще 6 газ за хэширование каждых 256 бит данных. Каждая операция, которая может быть выполнена транзакцией или контрактом на платформе, стоит определенное количество газа, при этом операции, требующие большего количества вычислительных ресурсов, требуют больше газа, чем операции, требующие меньшего количества вычислительных ресурсов.
 
-:green_book: [What is meant by the term "Gas"?](https://ethereum.stackexchange.com/questions/3/what-is-meant-by-the-term-gas)
+### **Ресурсы**
+
+- [Что означает термин "газ"?](https://ethereum.stackexchange.com/questions/3/what-is-meant-by-the-term-gas)

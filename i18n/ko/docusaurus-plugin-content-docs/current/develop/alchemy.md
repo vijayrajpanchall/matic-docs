@@ -1,92 +1,135 @@
 ---
 id: alchemy
-title: Alchemy 이용하기
-sidebar_label: Alchemy 이용하기
-description: 폴리곤에서 다음 블록체인 앱을 만듭니다.
+title: Alchemy를 사용하여 스마트 계약 배포하기
+sidebar_label: Using Alchemy
+description: Alchemy를 사용하여 스마트 계약을 배포하기 위한 가이드
 keywords:
   - docs
   - matic
-image: https://matic.network/banners/matic-network-16x9.png
+  - polygon
+  - alchemy
+  - create smart contract
+  - deploy on polygon
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
-# 🌎 Hello World Smart Contract on Polygon
+## 개요 {#overview}
 
-_이 가이드를 완료하는데 예상되는 시간: ~15분_
+이 튜토리얼은 이더리움 블록체인 개발에 입문했거나 스마트 계약 배포 및 상호작용의 기초에 대해 알아보고자 하는 개발자를 위한 것입니다. Polygon Mumbai 테스트 네트워크에 스마트 계약을 생성하여 배포하면 암호 화폐 지갑(메타마스크), [Solidity](https://docs.soliditylang.org/en/v0.8.0/), [Hardhat](https://hardhat.org) 및 Alchemy를 사용하여 [사용자가](https://metamask.io) 걸을 수 [있습니다](https://alchemy.com/?a=polygon-docs).
 
-블록체인 개발이 처음이고 어디서부터 시작해야 할지 모르거나 스마트 컨트랙트를 배포하고 상호 작용하는 방법을 이해하려는 경우 이 가이드가 적합합니다. 가상지갑([메타마스크](https://metamask.io)), [Solidity](https://docs.soliditylang.org/en/v0.8.0/), [Hardhat](https://hardhat.org),및 [Alchemy](https://alchemy.com/?a=polygon-docs) (아직 이것이 무엇을 의미하는지 이해하지 못하더라도 걱정하지 마십시오. 설명하겠습니다!)를 사용하여 폴리곤 뭄바이 테스트 네트워크에서 간단한 스마트 컨트랙트를 만들고 배포하는 과정을 살펴보겠습니다.
+:::tip
 
-질문이 있으시면 언제든지[ Alchemy Discord](https://discord.gg/gWuC7zB)에 문의하십시오!
+질문이나 우려 사항이 있는 경우 [<ins>공식 디스코드</ins>](https://discord.gg/gWuC7zB) 서버를 통해 Alchemy 팀에 문의하십시오.
 
-## Hardhat을 이용하여 스마트 컨트랙트를 생성하고 배포하기
+:::
 
-### Step 1: 폴리곤 네트워크에 연결하기
+## 학습할 내용 {#what-you-will-learn}
 
-폴리곤 체인에 요청하는 방법에는 여러 가지가 있습니다. 단순화를 위해 자체 노드를 실행할 필요 없이 폴리곤 체인과 통신할 수 있는 블록체인 개발자 플랫폼 및 API인 Alchemy의 무료 계정을 사용할 것입니다. 플랫폼에는 모니터링 및 분석을 위한 개발자 도구도 있습니다. 이 도구는 스마트 컨트랙트 배포의 내부에서 무슨 일이 일어나고 있는지 이해하기 위해 이 튜토리얼에서 활용할 것입니다. 아직 Alchemy 계정이 없다면, [여기에서 무료로 가입할 수 있습니다](https://alchemy.com/?a=polygon-docs).
+이 튜토리얼의 스마트 계약을 생성하기 위해 Alchemy 플랫폼을 사용하여 다음을 수행하는 방법을 배웁니다.
+- 스마트 계약 애플리케이션 만들기
+- 지갑의 밸런스를 확인하십시오.
+- blockchain 탐험가에서 계약 호출을 확인하십시오.
 
-### Step 2: 앱 생성하기 (및 API키)
+## 실습할 내용 {#what-you-will-do}
 
-Alchemy 계정을 생성한 후에는 앱을 생성하여 API 키를 생성할 수 있습니다. 이를 통해 폴리곤 Mumbai 테스트 네트워크에 요청할 수 있습니다. 테스트넷에 익숙하지 않다면 [이 가이드](https://docs.alchemyapi.io/guides/choosing-a-network)를 확인하십시오.
+튜토리얼을 따라 다음을 실습합니다.
+1. Alchemy에서 앱 생성 시작
+2. 메타마스크로 지갑 주소 생성
+3. 지갑에 잔액 추가 (테스트 토큰을 사용)
+4. Hardhat 및 Ethers.js를 사용하여 프로젝트 컴파일 및 배포
+5. Alchemy의 플랫폼에서 계약 상태를 확인하십시오.
 
-탐색 바의 "Apps" 위에 마우스를 놓고 "앱 만들기(Create App)"를 클릭하여 Alchemy 대시보드의 "Create App" 페이지로 이동합니다.
+## 스마트 계약 작성 및 배포하기 {#create-and-deploy-your-smart-contract}
 
-앱 이름을 "Hello World"로 지정하고 간단한 설명을 제공하고 환경(앱 장부에 사용됨)에 대해 "Staging"을 선택하고, 체인으로 "Polygon"을 클릭하고 네트워크로 "Polygon Mumbai"를 선택합니다.
+### Polygon 네트워크에 연결 {#connect-to-the-polygon-network}
 
-"Create app"를 클릭하면 끝입니다! 앱이 아래 표에 나타나야 합니다.
+Polygon PoS 체인에 요청을 보내는 방법에는 여러 가지가 있습니다. 자체 노드를 실행하는 대신, Alchemy 개발자 플랫폼의 무료 계정을 사용하고 Alchemy Polygon PoS API와 상호작용하여 Polygon PoS 체인과 통신합니다. 이 플랫폼은 전체 개발자 툴링 스위트로 구성되어 있습니다. 여기에는 요청을 모니터링 할 수 있는 능력, 스마트 계약 배포시 HDAI에서 발생하는 것을 보여주는 데이터 분석, 향상된 API(Transact, NFTs 등) 및 Ethers.js SDK를 포함하는 것이 포함됩니다.
 
-### Step 3: 지갑주소 생성하기
+이미 Alchemy 계정이 없다면 [무료](https://www.alchemy.com/polygon/?a=polygon-docs) 계정에 등록하여 시작합니다. 계정을 생성한 후 대시보드로 이동하기 전에 첫 앱을 즉시 생성할 수 있습니다.
 
-폴리곤은 이더리움을 위한 Layer-2 스케일링 솔루션이기 때문에 이더리움 지갑을 얻고 폴리곤 네트워크에서 트랜잭션을 송수신하기 위해 사용자 지정 폴리곤 URL을 추가해야 합니다. 이 자습서에서는 지갑 주소를 관리하는 데 사용되는 브라우저의 가상 지갑인 메타마스크를 사용합니다. 이더리움의 트랜잭션이 어떻게 작동하는지 더 알고 싶다면 이더리움 재단의 [이 페이지](https://ethereum.org/en/developers/docs/transactions/)를 확인하세요.
+![img](/img/alchemy/alchemy-dashboard.png)
 
-Alchemy에서 고객 폴리곤 RPC URL을 가져오려면 Alchemy 대시보드에서 "Hello World" 앱으로 이동하고 오른쪽 상단 모서리에 있는 "View Key"를 클릭합니다. 그런 다음 Alchemy HTTP API 키를 복사하십시오!
+### App (및 API 키) 만들기 {#create-your-app-and-api-key}
 
-[여기](https://metamask.io/download.html)에서 무료로 메타마스크 계정을 다운로드하고 만들 수 있습니다. 계정을 생성했으면 다음 단계에 따라 지갑에 폴리곤 네트워크를 설정하십시오.
+Alchemy 계정을 성공적으로 작성한 후, 앱을 생성하여 API 키를 생성할 필요가 있습니다. 이 설정은 Polygon Mumbai 테스트넷에 대한 요청을 인증합니다. 테스트넷에 익숙하지 않다면, [테스트넷 가이드](https://docs.alchemyapi.io/guides/choosing-a-network)를 확인하세요.
 
-1. 메타마스크 지갑의 오른쪽 상단에 있는 드롭다운 메뉴에서 "Settings"을 선택합니다.
-2. 왼쪽 메뉴에서 “Networks”를 선택합니다.
-3. 다음 매개변수를 사용하여 지갑을 뭄바이 테스트넷에 연결합니다.
+새로운 API 키를 생성하고, Alchemy 대시보드 탐색 바에서 **앱** 탭을 탐색하고 **Create App** 하위 탭을 선택하십시오.
 
-    #### 네트워크 이름: 폴리곤 뭄바이 테스트넷
+![img](/img/alchemy/create-app.png)
 
-    #### 새로운 RPC URL: https://polygon-mumbai.g.alchemy.com/v2/your-api-key
+새로운 앱 **헬로** World를 지명하고, 체인의 짧은 설명을 제공하고, **Polygon** **Mumbai를** 선택한 다음 네트워크에 대해 선택하십시오.
 
-    #### ChainID: 80001
+마지막으로, **Creative** 앱을 클릭하십시오. 새로운 앱은 아래 테이블에 나타나야합니다.
 
-    #### 심볼: MATIC
+### 지갑 주소 만들기 {#create-a-wallet-address}
 
-    #### 블록 탐색기 URL: https://mumbai.polygonscan.com/
+Polygon PoS는 이더리움의 레이어 2의 스케일링 솔루션입니다. 따라서 Eygon 지갑을 필요로하고 Polygon Mumbai 테스트넷에서 트랜잭션을 보내고 수신하기 위해 사용자 지정 Polygon URL을 추가합니다. 이 튜토리얼에서 사용하면 브라우저 호환 가능한 암호 화폐 지갑 지갑 메타마스크를 사용할 수 있습니다. 이더리움 트랜잭션의 작동 방식을 자세히 알아보려면, 이더리움 재단에서 제공하는 [트랜잭션 가이드](https://ethereum.org/en/developers/docs/transactions/)를 확인하세요.
 
-### Step 4: Faucet에서 폴리곤 뭄바이 테스트 MATIC 추가하기
+Alchemy에서 사용자 정의 Polygon URL을 얻으려면 Alchemy 대시보드 에서 **Hello World** 앱에 가서 오른쪽 상단 모서리에 **View 키를** 클릭하십시오. 그런 다음 Alchemy HTTP API 키를 복사합니다.
 
-스마트 컨트랙트를 테스트 네트워크에 배포하려면 가짜 MATIC이 필요합니다. MATIC을 얻으려면 [폴리곤 뭄바이 Faucet](https://faucet.polygon.technology/)으로 이동하여 "Mumbai"를 선택하고 "MATIC 토큰"을 선택하고 폴리곤 지갑 주소를 입력한 다음 "Submet”을 클릭합니다. 네트워크 트래픽으로 인해 가짜 ETH를 수신하는 데 시간이 걸릴 수 있습니다. (이 글을 쓰는 시점에는 약 30분 정도 소요되었습니다.) 잠시 후 메타마스크 계정에 ETH가 보일 것입니다!
+![img](/img/alchemy/view-key.png)
 
-### Step 5: 잔고 확인하기
+메타마스크 계정은 [여기](https://metamask.io/download.html)에서 무료로 다운로드 및 생성할 수 있습니다. 일단 계정을 만들었으면 Polygon PoS 네트워크를 지갑에 설정하기 위해 이러한 단계를 따르십시오.
 
-잔고가 있는지 재확인하기 위해 [Alchemy의 구성 도구](https://composer.alchemyapi.io/)를 사용하여 [eth\_getBalance](https://docs.alchemy.com/alchemy/apis/polygon-api/eth_getbalance) 요청을 만들어 보겠습니다. "Polygon"을 체인으로, "Polygon Mumbai"를 네트워크로, "eth_getBalance"를 방법으로 선택하고 주소를 입력합니다. 이것은 지갑에 있는 MATIC의 양을 반환할 것입니다. 구성 도구 사용 방법에 대한 지침은 [이 비디오](https://youtu.be/r6sjRxBZJuU)를 확인하십시오!
+1. 메타마스크 지갑의 상단 모서리에 있는 드롭 다운 메뉴에서 **설정을** 선택하십시오.
+2. 메뉴에서 **네트워크를** 왼쪽으로 선택하십시오.
+3. 다음 파라미터를 사용하여 Mumbai Testnet에 지갑을 연결합니다.
 
-메타마스크 계정 주소를 입력하고 "Send Request"를 클릭하면 다음과 같은 응답이 표시됩니다:
+**네트워크 이름:** Polygon Mumbai 테스트넷
 
-```
+**새로운 RPC URL:** https://polygon-mumbai.g.alchemy.com/v2/your-api-key
+
+**체인ID:** 8001년 1001
+
+**상징:** 매틱
+
+**블록 탐색기 URL:** https://mumbai.polygonscan.com/
+
+
+### Polygon Mumbai 테스트 MATIC 추가 {#add-polygon-mumbai-test-matic}
+
+Mumbai 테스넷에 스마트 계약을 배포하기 위해 몇 가지 테스넷 토큰이 필요합니다. 테스트넷 토큰을 얻기 위해 [Polygon Mumbai](https://faucet.polygon.technology/) Faucet에 가서 **Mumbai를** 선택하고 **MatIC** Token을 선택하고 Polygon 지갑 주소를 입력하면 **Submit을** 클릭하십시오. 네트워크 트래픽으로 인해 테스트넷 토큰을 받을 시간이 걸릴 수 있습니다.
+
+Alchemy의 [무료 Mumbai](https://mumbaifaucet.com/?a=polygon-docs) faucet을 사용할 수도 있습니다.
+
+![img](/img/alchemy/faucet.png)
+
+곧 메타마스크 계정에서 테스트넷 토큰을 확인할 수 있습니다.
+
+### 지갑 밸런스를 확인하십시오. {#check-your-wallet-balance}
+
+잔액을 다시 확인하기 위해 [Alchemy 작성 도구](https://composer.alchemyapi.io/)를 사용하여 [eth\_getBalance](https://docs.alchemy.com/reference/eth-getbalance-polygon) 요청을 생성해 봅시다. **Polygon** **Mumbai를** `eth_getBalance`네트워크로 선택한 대신 Pygon Mumbai를 이 방법으로 선택하고 주소를 입력하십시오. 이렇게 하면 지갑에 매틱 금액이 반환됩니다. 작성 도구를 사용하는 방법에 대한 안내는 이 [비디오](https://youtu.be/r6sjRxBZJuU)를 확인하세요.
+
+![img](/img/alchemy/get-balance.png)
+
+메타마스크 계정 주소를 입력하고 **요청서를** 클릭하면 다음과 같은 응답을 볼 수 있습니다.
+
+```json
 { "jsonrpc": "2.0", "id": 0, "result": "0xde0b6b3a7640000" }
 ```
 
-**참고**: 이 결과는 eth가 아닌 wei입니다. Wei는 이더리움의 최소 단위로 사용됩니다. wei에서 eth로의 변환은 1 ETH = 10^18 wei입니다. 따라서 0xde0b6b3a7640000을 10진수로 변환하면 1 ETH와 동일한 1*10^18을 얻게 되며, 이는 액면에 따라 1 MATIC에 매핑될 수 있습니다.
+:::info
 
-### Step 6: 프로젝트 초기화하기
+이 결과는 ETH 값이 아닌 Wei 값입니다. Wei는 Ether의 가장 작은 부정제입니다. Wei에서 이더로의 전환 비율은 1이더 = 10^18Wei입니다. 즉 '0xde0b6b3a7640000'을 십진법으로 전환하면 1\*10^18의 값을 얻게 되는데 이것이 1ETH입니다. 최소 단위에 따라 1매틱으로 매핑될 수 있습니다.
 
-먼저 프로젝트를 위한 폴더를 만들어야 합니다. [명령줄](https://www.computerhope.com/jargon/c/commandi.htm)로 이동하여 다음을 입력합니다:
+:::
 
-```
+### 프로젝트 초기화 {#initialize-your-project}
+
+우선 프로젝트를 위한 폴더를 생성해야 합니다. [명령줄](https://www.computerhope.com/jargon/c/commandi.htm)로 이동하여 다음을 입력합니다.
+
+```bash
 mkdir hello-world
 cd hello-world
 ```
 
-이제 프로젝트 폴러 안에 있으므로 `npm init` 를 사용하여 프로젝트를 초기화합니다. 아직 npm 이 설치되어 있지 않다면 [이 지침](https://docs.alchemyapi.io/alchemy/guides/alchemy-for-macs#1-install-nodejs-and-npm)을 따르십시오(Node.js도 필요하므로 다운로드하십시오!).
+이제 프로젝트 폴더 내에 있으므로 `npm init`을 사용하여 프로젝트를 초기화합니다. 아직 npm을 설치하지 않았다면 [안내](https://docs.alchemyapi.io/alchemy/guides/alchemy-for-macs#1-install-nodejs-and-npm)를 따라 설치합니다. Node.js도 필요하니 다운로드하세요!
 
 ```bash
 npm init # (or npm init --yes)
 ```
 
-설치 질문에 답하는 방법은 중요하지 않습니다. 다음은 참조용으로 수행한 방법입니다:
+설치 질문에 어떻게 답변하는지는 중요하지 않습니다. 아래의 답변을 참고하세요.
 
 ```
 package name: (hello-world)
@@ -114,31 +157,31 @@ About to write to /Users/.../.../.../hello-world/package.json:
 }
 ```
 
-package.json을 승인하고 시작합니다!
+package.json을 승인하면 준비가 완료됩니다!
 
-### Step 7: [Hardhat](https://hardhat.org/getting-started/#overview) 다운로드하기
+### [Hardhat](https://hardhat.org/getting-started/#overview) 다운로드
 
-Hardhat은 이더리움 소프트웨어를 컴파일, 배포, 테스트 및 디버그하기 위한 개발 환경입니다. 라이브 체인에 배포하기 전에 로컬에서 스마트 컨트랙트 및 dApp을 구축할 때 개발자를 돕습니다.
+Hardhat은 이더리움 소프트웨어를 컴파일, 배포, 테스트 및 디버그하는 개발 환경입니다. 개발자가 라이브 체인에 배포하기 전에 스마트 계약 및 dApp을 로컬로 빌드할 때 도움이 됩니다.
 
-`hello-world` 프로젝트 실행 내부에:
+프로젝트 `hello-world`내부, 실행 :
 
-```
+```bash
 npm install --save-dev hardhat
 ```
 
-[설치 지침](https://hardhat.org/getting-started/#overview)에 대한 자세한 내용은 이 페이지를 확인하십시오.
+자세한 [설치 안내](https://hardhat.org/getting-started/#overview) 페이지를 확인하세요.
 
-### Step 8: Hardhat 프로젝트 만들기
+### Hardhat 프로젝트 만들기 {#create-hardhat-project}
 
-Inside our `hello-world` 프로젝트 폴더내부에, 다음을 실행합니다:
+`hello-world` 프로젝트 폴더에서 다음을 실행합니다.
 
-```
+```bash
 npx hardhat
 ```
 
-그러면 환영 메시지와 원하는 작업을 선택할 수 있는 옵션이 표시됩니다. “create an empty hardhat.config.js”를 선택하십시오:
+원하는 것을 선택할 수 있는 환영 메시지와 옵션을 참조하십시오. **빈 하드hat.config.js를 선택하십시오.**
 
-```
+```bash
 888    888                      888 888               888
 888    888                      888 888               888
 888    888                      888 888               888
@@ -156,30 +199,28 @@ Create a sample project
 Quit
 ```
 
-이것은 우리를 위해 `hardhat.config.js` 파일을 생성할 것며, 여기에서 프로젝트에 대한 모든 설정을 특정할 것입니다(step 13에서).
+`hardhat.config.js`이것은 우리 프로젝트에 대한 설정을 모두 지정할 수있는 곳입니다.
 
-### Step 9: 프로젝트 폴더 추가하기
+### 프로젝트 폴더 추가 {#add-project-folders}
 
-프로젝트를 체계적으로 유지하기 위해 두 개의 새 폴더를 만듭니다. 명령줄에서 `hello-world` 프로젝트의 루트 디렉터리로 이동하고 다음을 입력합니다:
+프로젝트를 조직하려면 두 개의 새로운 폴더를 생성할 것입니다. 명령줄에서 `hello-world` 프로젝트의 루트 디렉터리로 이동하여 다음을 입력합니다.
 
-```
+```bash
 mkdir contracts
 mkdir scripts
 ```
 
-* `contracts/` 는 hello world 스마트 컨트랙트 코드 파일을 보관할 곳입니다.
-* `scripts/` 는 배포하고 컨트랙트와 상호 작용할 스크립트를 보관하는 곳입니다.
+* `contracts/`는 hello world 스마트 계약 코드 파일을 보관하는 곳입니다.
+* `scripts/`는 계약 배포 및 상호작용을 위해 스크립트를 보관하는 곳입니다.
 
-### Step 10: 컨트랙트 작성하기
+### 계약 작성 {#write-the-contract}
 
-여러분은 스스로에게 물어 볼지도 모릅니다. 도대체 언제 코드를 작성하는거지?? 자, 여기 Step 10이 있습니다.😄
+[VSCode와](https://code.visualstudio.com) 같은 좋아하는 에디터에서 **헬로세계** 프로젝트를 엽니다. 스마트 계약은 우리가 `HelloWorld.sol`스마트 계약을 작성하는 데 사용할 Solidity라는 언어로 작성됩니다.‌
 
-여러분이 선호하는 편집기에서 hello-world프로젝트를 엽니다.(우리는 [VSCode](https://code.visualstudio.com)를 선호합니다). 스마트 컨트랙트는 HelloWorld.sol 스마트 컨트랙트를 작성하는데 사용할 Solidity라는 언어로 작성됩니다.
+1. `contracts`폴더에 탐색하고 새로운 파일을 만듭니다.`HelloWorld.sol`
+2. 아래는 이 튜토리얼에서 사용하게 될 [이더리움 재단](https://ethereum.org/en/)의 Hello World 스마트 계약 예시입니다. 아래 내용을 `HelloWorld.sol` 파일로 복사하고 붙여 넣은 후 설명을 읽고 어떤 계약인지 확인하세요.
 
-1. "contracts" 폴더로 이동하여 `HelloWorld.sol`이라는 새 파일을 만듭니다.
-2. 아래는 이 튜토리얼에서 사용할 [이더리움 재단](https://ethereum.org/en/)의 샘플 Hello World 스마트 컨트랙트입니다. 아래 내용을 복사하여 `HelloWorld.sol file`에 붙여넣고 주석을 읽고 이 컨트랙트가 무엇을 하는지 이해해야 합니다:
-
-```
+```solidity
 // SPDX-License-Identifier: None
 
 // Specifies the version of Solidity, using semantic versioning.
@@ -215,61 +256,61 @@ contract HelloWorld {
 }
 ```
 
-이것은 생성 시 메시지를 저장하고 `update` 함수를 호출하여 업데이트할 수 있는 매우 간단한 스마트 컨트랙트입니다.
+생성과 동시에 메시지를 저장하고 `update` 함수를 호출하여 업데이트할 수 있는 매우 간단한 스마트 계약입니다.
 
-### Step 11: 메타마스크와 Alchemy를 프로젝트에 연결하기
+### 메타마스크와 Alchemy와 연결하십시오. {#connect-with-metamask-alchemy}
 
-Metamask 지갑, Alchemy 계정을 생성하고 스마트 컨트랙트를 작성했습니다. 이제 3개를 연결할 차례입니다.
+메타마스크 지갑과 Alchemy 계정을 생성하고 스마트 계약을 작성했으니 이제 이 세 가지를 연결할 차레입니다.
 
-가상 지갑에서 전송되는 모든 트랜잭션에는 고유한 프라이빗 키를 사용하는 서명이 필요합니다. 프로그램에 이 권한을 제공하기 위해 프라이빗 키(및 Alchemy API 키)를 환경 파일에 안전하게 저장할 수 있습니다.
+가상 지갑에서 전송된 모든 트랜잭션은 고유한 비공개 키를 사용한 서명이 필요합니다. 프로그램에 이 권한을 부여하기 위해 비공개 키(및 Alchemy API 키)를 환경 파일에 안전하게 저장할 수 있습니다.
 
-> 트랜잭션 전송에 대해 자세히 알아보려면 web3를 사용하여 트랜잭션 전송에 대한 [이 자습서](https://docs.alchemyapi.io/alchemy/tutorials/sending-transactions-using-web3-and-alchemy)를 확인하십시오.
+먼저 프로젝트 디렉터리에 dotenv 패키지를 설치합니다.
 
-먼저 프로젝트 디렉터리에 dotenv 패키지를 설치합니다:
-
-```
+```bash
 npm install dotenv --save
 ```
 
-그런 다음 프로젝트의 루트 디렉토리에 `.env` 파일을 만들고 여기에 메타마스크 프라이빗 키와 HTTP Alchemy API URL을 추가합니다.
+그런 다음 프로젝트의 루트 디렉터리에 `.env` 파일을 생성하고 메타마스크 비공개 키와 HTTP Alchemy API URL을 추가합니다.
 
-환경 파일의 이름은 `.env`여야 합니다. 그렇지 않으면 환경 파일로 인식되지 않습니다.
+:::warning 경고
 
-이름을 `process.env` 또는 `.env-custom` 등으로 지정하지 마십시오.
+환경 파일이 지정되어야 `.env`하거나 환경 파일로 인식되지 않습니다. `process.env` 또는 `.env-custom` 등의 이름을 지정하지 마세요.
 
-경고: git과 같은 버전 제어 시스템을 사용하여 프로젝트를 관리하는 경우 .env 파일을 추적하지 마십시오. .gitignore 파일에 .env를 추가하여 실수로 비밀을 세상에 공개하지 않도록 합니다.
+또한 Git과 같은 **버전** 제어 시스템을 사용하여 프로젝트를 관리할 수 있다면 파일을 `.env`추적합니다. 이제 `.gitignore`파일에 `.env`추가해서 비밀 데이터를 게시하는 것을 피하십시오.
 
-* 프라이빗 키를 내보내려면 [이 지침](https://metamask.zendesk.com/hc/en-us/articles/360015289632-How-to-Export-an-Account-Private-Key)들을 따르세요.
-* Alchemy HTTP API 키(RPC URL)를 얻으려면 Alchemy 대시보드에서 "Hello World" 앱으로 이동하고 오른쪽 상단 모서리에 있는 "View Key"를 클릭합니다. 그런 다음 Alchemy HTTP API 키를 복사하십시오!
+:::
 
-`.env`는 다음과 같아야 합니다:
+* 이 [안내](https://metamask.zendesk.com/hc/en-us/articles/360015289632-How-to-Export-an-Account-Private-Key)를 따라 비공개 키를 내보냅니다.
+* Alchemy HTTP API 키(RPC URL)를 받으려면 계정의 대시보드 에서 **Hello World** 앱을 탐색하고 오른쪽 상단 모서리에 **View 키를** 클릭하세요.
+
+`.env` 파일은 다음과 같이 표시됩니다.
 
 ```
 API_URL = "https://polygon-mumbai.g.alchemy.com/v2/your-api-key"
 PRIVATE_KEY = "your-metamask-private-key"
 ```
 
-이를 실제로 코드에 연결하기 위해 Step 13의 `hardhat.config.js` 파일에서 이러한 변수를 참조합니다.
+실제로 이 변수를 코드에 연결하기 위해 나중에 이 튜토리얼에서 `hardhat.config.js`파일에 있는 이러한 변수를 참조합니다.
 
-### Step 12: Ethers.js 설치하기
+### Ethers.j 설치 {#install-ethers-js}
 
-Ethers.js는 [표준 JSON-RPC 메소드](https://docs.alchemyapi.io/alchemy/documentation/alchemy-api-reference/json-rpc)를 보다 사용자 친화적인 방법으로 래핑하여 이더리움과 더 쉽게 상호 작용하고 요청을 할 수 있도록 하는 라이브러리입니다.
+Ethers.js는 [표준 JSON-RPC 메서드](https://docs.alchemyapi.io/alchemy/documentation/alchemy-api-reference/json-rpc)를 더욱 사용자 친화적인 메서드로 래핑하여 이더리움과의 상호작용과 요청을 더욱 쉽게 할 수 있는 라이브러리입니다.
 
-Hardhat을 사용하면 추가 도구 및 확장된 기능을 위해 [플러그인](https://hardhat.org/plugins/)들을 매우 쉽게 통합할 수 있습니다. 우리는 컨트랙트 배포를 위해 [Ethers 플러그인](https://hardhat.org/plugins/nomiclabs-hardhat-ethers.html)을 활용할 것입니다([Ethers.js](https://github.com/ethers-io/ethers.js/)에는 아주 깔끔한 컨트랙트 배포 방법이 있습니다).
+Hardhat을 사용하면 [플러그인](https://hardhat.org/plugins/)을 쉽게 통합하여 추가 도구 및 확장 기능을 사용할 수 있습니다. 계약 배포를 위해 [이더 플러그인](https://hardhat.org/plugins/nomiclabs-hardhat-ethers.html)을 활용할 것입니다. [Ethers.js](https://github.com/ethers-io/ethers.js/)는 유용한 계약 배포 메서드를 제공합니다.
 
-프로젝트 디렉토리에 다음을 입력합니다:
+프로젝트 디렉터리에서 type:
 
 ```bash
 npm install --save-dev @nomiclabs/hardhat-ethers "ethers@^5.0.0"
 ```
 
-다음 단계에서 `hardhat.config.js` 에 ethers도 필요합니다.
+또한 다음 단계의 `hardhat.config.js`에 이더가 필요할 것입니다.
 
-### Step 13: hardhat.config.js 업데이트하기
+### hardhat.config 업데이트 {#update-hardhat-config-js}
 
-지금까지 여러 종속성과 플러그인을 추가했습니다. 이제 `hardhat.config.js`를 업데이트하여 프로젝트에서 모든 것을 알 수 있도록 해야 합니다.
+지금까지 몇 가지 의존성과 플러그인을 추가했습니다. 이제 우리는 프로젝트가 이러한 부작용을 인식하도록 `hardhat.config.js`업데이트해야 합니다.
 
-`hardhat.config.js`를 다음과 같이 업데이트하십시오:
+다음과 같이 표시되도록 `hardhat.config.js`를 업데이트합니다.
 
 ```javascript
 /**
@@ -294,23 +335,23 @@ module.exports = {
 }
 ```
 
-### Step 14: 컨트랙트 컴파일하기
+### 스마트 계약 컴파일하기 {#compile-our-smart-contract}
 
-지금까지 모든 것이 제대로 작동하는지 확인하기 위해 컨트랙트를 컴파일해 보겠습니다. `compile` 작업은 내장된 hardhat 작업 중 하나입니다.
+지금까지의 작업이 모두 제대로 작동하는지 확인하기 위해 계약을 컴파일해 봅니다. `compile` 작업은 hardhat 기본 작업 중 하나입니다.
 
-명령줄에서 다음을 실행합니다:
+명령줄에서 다음을 실행합니다.
 
 ```bash
 npx hardhat compile
 ```
 
-`SPDX license identifier not provided in source file` 에 대한 경고가 표시될 수 있지만, 걱정할 필요가 없습니다 – 바라건대 다른 모든 것이 좋아 보입니다! 그렇지 않은 경우 항상 [Alchemy discord](https://discord.gg/u72VCg3)에서 메시지를 보낼 수 있습니다.
+당신은 그에 `SPDX license identifier not provided in source file`대한 경고를 받을 수 있지만 응용 프로그램은 여전히 잘 작동할 수 있습니다. 그렇지 않으면 언제든지 [Alchemy discord](https://discord.gg/u72VCg3)에 문의할 수 있습니다.
 
-### Step 15: 배포 스크립트 작성하기
+### 배포 스크립트를 작성 {#write-our-deploy-script}
 
-이제 컨트랙트가 작성되고 구성 파일을 사용할 수 있으므로 컨트랙트 배포 스크립트를 작성할 차례입니다.
+계약을 작성하고 구성 파일도 준비했으므로, 이제 계약 배포 스크립트를 작성할 차례입니다.
 
-`scripts/` 폴더로 이동하여 `deploy.js` 라는 새 파일을 만들고 여기에 다음 내용을 추가합니다:
+`scripts/` 폴더로 이동하여 `deploy.js`라는 새 파일을 생성한 후 다음 내용을 파일에 추가합니다.
 
 ```javascript
 async function main() {
@@ -329,44 +370,49 @@ main()
   });
 ```
 
-Hardhat은 [Contracts tutorial](https://hardhat.org/tutorial/testing-contracts.html#writing-tests)에서 이러한 각 코드 라인이 수행하는 작업을 설명하는 놀라운 일을 했으며, 여기에서 그들의 설명을 적용했습니다.
+다음 각 코드 줄의 역할에 대한 설명은 Hardhat 팀의 [계약 튜토리얼](https://hardhat.org/tutorial/testing-contracts.html#writing-tests)에서 가져왔습니다.
 
 ```javascript
 const HelloWorld = await ethers.getContractFactory("HelloWorld");
 ```
 
-ethers.js의 `ContractFactory`는 새로운 스마트 컨트랙트를 배포하는 데 사용되는 추상화이므로 여기 `HelloWorld`는 Hello World 컨트랙트의 인스턴스를 위한 [팩토리](https://en.wikipedia.org/wiki/Factory\_\(object-oriented\_programming\))입니다. `hardhat-ethers` 플러그인 `ContractFactory` 및 `Contract`를 사용할 때 인스턴스는 기본적으로 첫 번째 서명자(소유자)에 연결됩니다.
+Ethers.js의 `ContractFactory`는 새 스마트 계약을 배포하는 데 사용되는 추상화이므로, 여기의 `HelloWorld`는 hello world 계약 인스턴스의 [팩토리](https://en.wikipedia.org/wiki/Factory\_\(object-oriented\_programming\))입니다. `hardhat-ethers` 플러그인 `ContractFactory` 및 `Contract`를 사용할 때, 인스턴스는 기본적으로 처음 서명한 사람(소유자)에게 연결됩니다.
 
 ```javascript
 const hello_world = await HelloWorld.deploy();
 ```
 
-`ContractFactory`에서 `deploy()`를 호출하면 배포가 시작되고 `Contract` 개체로 확인되는 `Promise`가 반환됩니다. 이것은 각 스마트 컨트랙트 기능에 대한 메소드가 있는 개체입니다.
+`ContractFactory`에서 `deploy()`를 호출하면 배포가 시작되고 `Contract` 객체로 확인되는 `Promise`를 반환합니다. 이는 각 스마트 계약 함수에 대한 메서드를 가진 객체입니다.
 
-### Step 16: 컨트랙트 배포하기
+### 스마트 계약 배포하기 {#deploy-our-smart-contract}
 
-마침내 스마트 컨트랙트를 배포할 준비가 되었습니다! 명령줄로 이동하여 다음을 실행합니다:
+명령줄로 이동하여 다음을 실행합니다.
 
 ```bash
 npx hardhat run scripts/deploy.js --network polygon_mumbai
 ```
 
-그러면 다음과 같은 내용이 표시됩니다:
+이런 것을 보시려면
 
 ```bash
 Contract deployed to address: 0x3d94af870ED272Cd5370e4135F9B2Bd0e311d65D
 ```
 
-**이 주소를 복사하여 붙여넣어 어딘가에 저장하십시오**. 이후 자습서에서 이 주소를 사용하므로 잃어버리지 않도록 하십시오.
+Polygon [Mumbai 탐험가에](https://mumbai.polygonscan.com/) 가서 계약 주소를 검색하면 우리는 그것이 성공적으로 배포되었는지 확인할 수 있습니다.
 
-[Polygon Mumbai explorer](https://mumbai.polygonscan.com/) 로 이동하여 컨트랙트 주소를 검색하면 성공적으로 배포되었음을 확인할 수 있습니다.
+`From`주소는 메타마스크 계정 주소와 일치해야 하며 `To`주소는 **계약** 제작이라고 말할 수 있습니다. 그러나 트랜잭션을 클릭하면 해당 분야에서 계약 주소를 확인할 수 `To`있습니다.
 
-`From` 주소는 메타마스크 계정 주소와 일치해야 하며 To 주소는 "Contract Creation"이라고 표시됩니다. 그러나 트랜잭션을 클릭하면 `To` 필드에 컨트랙트 주소가 표시됩니다:
+![img](/img/alchemy/polygon-scan.png)
 
-축하합니다! 폴리곤 체인에 스마트 컨트랙트를 배포했습니다 🎉
+### 계약 검증하기 {#verify-the-contract}
 
-내부에서 무슨 일이 일어나고 있는지 이해하기 위해 [Alchemy 대시보드](https://dashboard.alchemyapi.io/explorer)의 Explorer 탭으로 이동해 보겠습니다. Alchemy 앱이 여러 개인 경우 앱별로 필터링하고 "Hello World"를 선택해야 합니다.
+Alchemy는 응답 시간, HTTP 지위, 다른 사람의 오류 코드와 같은 스마트 계약과 함께 배포된 방법에 대한 정보를 찾을 수 있는 [탐험가를](https://dashboard.alchemyapi.io/explorer) 제공합니다. 이 우수한 환경에서 계약을 검증하고 트랜잭션이 성공했는지 확인할 수 있습니다.
 
-여기에서 우리가 `.deploy()` 함수를 호출할 때 Hardhat/Ethers가 내부적으로 만든 소수의 JSON-RPC 호출을 볼 수 있습니다. 여기서 호출해야 할 두 가지 중요한 것은 [`eth_sendRawTransaction`](https://docs.alchemyapi.io/alchemy/documentation/alchemy-api-reference/json-rpc#eth\_sendrawtransaction)입니다. 이는 실제로 컨트랙트를 폴리곤 체인에 작성하라는 요청이고, [`eth_getTransactionByHash`](https://docs.alchemyapi.io/alchemy/documentation/alchemy-api-reference/json-rpc#eth\_gettransactionbyhash)는 해시(트랜잭션을 보낼 때의 일반적인 패턴)가 주어진 경우 트랜잭션에 대한 정보를 읽어달라는 요청입니다.
+![img](/img/alchemy/calls.png)
 
-이것이 이 자습서의 전부입니다! 이 자습서를 완료한 후 Twitter [@alchemyplatform](https://twitter.com/AlchemyPlatform)에 태그를 지정하여 귀하의 경험이 어땠는지 또는 피드백이 있는지 알려주십시오!
+**축하합니다! Polygon Mumbai 네트워크에 스마트 계약을 배포했습니다.**
+
+## 추가 리소스 {#additional-resources}
+
+- [NFT 스마트 계약을 개발하는 방법](https://docs.alchemy.com/docs/how-to-develop-an-nft-smart-contract-erc721-with-alchemy) - Alchemy는 이 주제에 대해 YouTube 비디오와 함께 서면 자습서를 가지고 있습니다. 이것은 **웹3** dev 시리즈의 무료 10주간의 Road 1주째입니다.
+- [Polygon API 퀵스타트](https://docs.alchemy.com/reference/polygon-api-quickstart) - Alchemy의 개발자 docs 가이드 Polygon을 통해 점점 더 많은 ky를 개발하고 실행하는 가이드

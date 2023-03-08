@@ -2,17 +2,17 @@
 id: withdraw-exit-faster-many
 title: withdrawExitFasterMany
 keywords:
-  - 'plasma client, erc721, withdrawExitFasterMany, polygon, sdk'
-description: 'Get started with maticjs'
+- 'plasma client, erc721, withdrawExitFasterMany, polygon, sdk'
+description: 'Commencez à utiliser maticjs'
 ---
 
-# withdrawExitFasterMany
+# withdrawExitFasterMany {#withdrawexitfastermany}
 
-`withdrawExitFasterMany` method can be used to approve all tokens.
+`withdrawExitFasterMany`méthode peut être utilisée pour approuver tous les jetons.
 
-It is fast because it generates proof in backend. The backend can be configured with dedicated private rpc.
+C'est rapide car cela génère la preuve en arrière plan. L'arrière-plan peut être configuré avec un rpc (appels de procédure à distance) privé dédié.
 
-**Note**- withdrawStart transaction must be checkpointed in order to exit the withdraw.
+**Remarque**- la transaction withdrawStart doit être contrôlée afin de supprimer le retrait.
 
 ```
 const erc721RootToken = plasmaClient.erc721(<root token address>, true);

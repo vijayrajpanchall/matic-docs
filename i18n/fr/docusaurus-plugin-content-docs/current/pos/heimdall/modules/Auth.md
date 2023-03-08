@@ -1,57 +1,57 @@
 ---
 id: auth
 title: Auth
-description: The auth module is responsible for specifying the base transaction and account types for an application. It contains the ante handler, where all basic transaction validity checks (signatures, nonces, auxiliary fields) are performed, and exposes the account keeper, which allows other modules to read, write, and modify accounts.
+description: Module pour spécifier les transactions de base et les types de compte
 keywords:
   - docs
   - matic
+  - auth module
+  - transaction
+  - account types
 image: https://matic.network/banners/matic-network-16x9.png
 ---
+# Module Auth {#auth-module}
 
-## Overview
+Ce document décrit le `auth`module de Heimdall.
 
-This document specifies the `auth` module of Heimdall.
+Le `auth` module est responsable pour la spécification de la base de transaction et les types de comptes pour une application. Il contient le gestionnaire d'ante, dans lequel toutes les vérifications de validité de la base des transactions (les signatures, les numéros utilisés une fois [nonces], les champs auxiliaires) sont effectuées, et cela expose le gardien du compte, ce qui permet à d'autres modules de lire, écrire et modifier les comptes.
 
-The `auth` module is responsible for specifying the base transaction and account types for an application. It contains the ante handler, where all basic transaction validity checks (signatures, nonces, auxiliary fields) are performed, and exposes the account keeper, which allows other modules to read, write, and modify accounts.
+## Gaz et Frais {#gas-and-fees}
 
-## Gas and Fees
+Les frais servent deux objectifs pour un opérateur du réseau.
 
-Fees serve two purposes for an operator of the network.
+Les frais limitent la croissance de l'état stocké par chaque nœud complet et permettent une censure pour une raison générale des transactions de faible valeur économique. Les frais sont mieux adaptés comme un mécanisme anti-spam dans lequel les validateurs sont désintéressés par l'utilisation du réseau et les identités des utilisateurs.
 
-Fees limit the growth of the state stored by every full node and allow for general purpose censorship of transactions of little economic value. Fees are best suited as an anti-spam mechanism where validators are disinterested in the use of the network and identities of users.
+Étant donné que Heimdall ne prend pas en charge le contrat ou le code personnalisé pour aucune transaction, il utilise des transactions à coûts fixes. Pour les transactions à coût fixe, le validateur peut recharger son compte sur la chaîne Ethereum et obtenir des jetons sur Heimdall en utilisant le module de [recharge](Topup.md).
 
-**Since Heimdall doesn't support custom contract or code for any transaction, it uses fixed cost transactions.**
+## Types {#types}
 
-For fixed cost transactions, the validator can top up their accounts on the Ethereum chain and get tokens on Heimdall using the [Topup](topup) module.
+Outre les comptes (spécifiés dans l'État), les types exposés par le module auth sont **StdSignature****,** la combinaison d'une clé publique facultative et d'une signature cryptographique comme un tableau d'octets, **StdTx**, une struct qui implémente `sdk.Tx`l'interface avec StdSignature et S**tdSignDoc,** une structure de prévention de replay-prevention pour S**tdTx **que les expéditeurs de transaction doivent signer over.
 
-## Types
+### StdSignature {#stdsignature}
 
-Besides accounts (specified in State), the types exposed by the auth module are StdSignature, the combination of an optional public key and a cryptographic signature as a byte array, StdTx, a struct that implements the `sdk.Tx` interface using `StdSignature`, `StdSignDoc`, a replay-prevention structure for `StdTx` which transaction senders must sign over.
-
-### StdSignature
-
-A `StdSignature` is the types of a byte array.
+Un `StdSignature` correspond aux types de tableau d'octet.
 
 ```go
 // StdSignature represents a sig
 type StdSignature []byte
 ```
 
-### **StdTx**
+### StdTx {#stdtx}
 
-A `StdTx` is a struct that implements the `sdk.Tx` interface, and is likely to be generic enough to serve the purposes of many types of transactions.
+Un `StdTx` est une structure qui met en oeuvre l'interface `sdk.Tx`, et qui est susceptible d'être suffisamment générique pour servir les objectifs de nombreux types de transactions.
 
 ```go
 type StdTx struct {
-        Msg       sdk.Msg      `json:"msg" yaml:"msg"`
-        Signature StdSignature `json:"signature" yaml:"signature"`
-        Memo      string       `json:"memo" yaml:"memo"`
+		Msg       sdk.Msg      `json:"msg" yaml:"msg"`
+		Signature StdSignature `json:"signature" yaml:"signature"`
+		Memo      string       `json:"memo" yaml:"memo"`
 }
 ```
 
-### **StdSignDoc**
+### StdSignDoc {#stdsigndoc}
 
-A `StdSignDoc` is a replay-prevention structure to be signed over, which ensures that any submitted transaction (which is simply a signature over a particular byte string) will only be executable once on a Heimdall.
+Un `StdSignDoc` est une structure de prévention de reprise à signer, qui s'assure que toute transaction soumise (étant une simple signature sur une chaîne d'octet particulière) ne sera exécutable qu'une seule fois sur Heimdall.
 
 ```go
 // StdSignDoc is replay-prevention structure.
@@ -60,73 +60,73 @@ A `StdSignDoc` is a replay-prevention structure to be signed over, which ensur
 // and the Sequence numbers for each signature (prevent
 // inchain replay and enforce tx ordering per account).
 type StdSignDoc struct {
-    ChainID       string          `json:"chain_id" yaml:"chain_id"`
-    AccountNumber uint64          `json:"account_number" yaml:"account_number"`
-    Sequence      uint64          `json:"sequence" yaml:"sequence"`
-    Msg           json.RawMessage `json:"msg" yaml:"msg"`
-    Memo          string          `json:"memo" yaml:"memo"`
+	ChainID       string          `json:"chain_id" yaml:"chain_id"`
+	AccountNumber uint64          `json:"account_number" yaml:"account_number"`
+	Sequence      uint64          `json:"sequence" yaml:"sequence"`
+	Msg           json.RawMessage `json:"msg" yaml:"msg"`
+	Memo          string          `json:"memo" yaml:"memo"`
 }
 ```
 
-### Account
+### Compte {#account}
 
-It manages addresses, coins and nonce for transactions. It also signs and validates transactions.
+Il gère les adresses, les pièces et les numéros utilisés une fois (nonce) pour les transactions. Il signe et valide aussi les transactions.
 
 Source: [https://github.com/maticnetwork/heimdall/blob/master/auth/types/account.go#L32-L54](https://github.com/maticnetwork/heimdall/blob/master/auth/types/account.go#L32-L54)
 
 ```go
 type BaseAccount struct {
-        Address types.HeimdallAddress `json:"address" yaml:"address"`
-        Coins types.Coins `json:"coins" yaml:"coins"`
-        PubKey crypto.PubKey `json:"public_key" yaml:"public_key"`
-        AccountNumber uint64 `json:"account_number" yaml:"account_number"`
-        Sequence uint64 `json:"sequence" yaml:"sequence"`
+		Address types.HeimdallAddress `json:"address" yaml:"address"`
+		Coins types.Coins `json:"coins" yaml:"coins"`
+		PubKey crypto.PubKey `json:"public_key" yaml:"public_key"`
+		AccountNumber uint64 `json:"account_number" yaml:"account_number"`
+		Sequence uint64 `json:"sequence" yaml:"sequence"`
 }
 ```
 
-## **Parameters**
+## Paramètres {#parameters}
 
-The auth module contains the following parameters:
+Le module d'authentification contient les paramètres suivants:
 
-| Key                    | Type   | Default value      |
-| ---------------------- | ------ | ------------------ |
-| MaxMemoCharacters      | uint64 | 256                |
-| TxSigLimit             | uint64 | 7                  |
-| TxSizeCostPerByte      | uint64 | 10                 |
-| SigVerifyCostED25519   | uint64 | 590                |
-| SigVerifyCostSecp256k1 | uint64 | 1000               |
-| DefaultMaxTxGas        | uint64 | 1000000            |
-| DefaultTxFees          | string | "1000000000000000" |
+| Clé | Type | Valeur par défaut |
+|----------------------|------|------------------|
+| MaxMemoCharacters | uint64 | 256 |
+| TxSigLimit | uint64 | 7 |
+| TxSizeCostPerByte | uint64 | 10 |
+| SigVerifyCostED25519 | uint64 | 590 |
+| SigVerifyCostSecp256k1 | uint64 | 1000 |
+| DefaultMaxTxGas | uint64 | 1 000 000 |
+| DefaultTxFees | chaîne de caractères | « 1000000000000000 » |
 
 
-## CLI Commands
+## Les Commandes CLI {#cli-commands}
 
-### **Show account**
+### Affichez le compte {#show-account}
 
-To print account related data into Heimdall
+Pour imprimer des données liées au compte dans Heimdall;
 
 ```bash
 heimdalld show-account
 ```
 
-**Expected Result:**
+Résultat Attendu:
 
 ```json
 {
-    "address": "0x68243159a498cf20d945cf3E4250918278BA538E",
-    "pub_key": "0x040a9f6879c7cdab7ecc67e157cda15e8b2ddbde107a04bc22d02f50032e393f6360a05e85c7c1ecd201ad30dfb886af12dd02b47e4463f6f0f6f94159dc9f10b8"
+	"address": "0x68243159a498cf20d945cf3E4250918278BA538E",
+	"pub_key": "0x040a9f6879c7cdab7ecc67e157cda15e8b2ddbde107a04bc22d02f50032e393f6360a05e85c7c1ecd201ad30dfb886af12dd02b47e4463f6f0f6f94159dc9f10b8"
 }
 ```
 
-### **Account and coin details**
+### Détails du compte et des pièces {#account-and-coin-details}
 
-To display account details, coins, sequence and account number:
+Pour afficher les détails du compte, les pièces, la séquence et le numéro de compte ;
 
 ```bash
 heimdallcli query auth account 0x68243159a498cf20d945cf3E4250918278BA538E --trust-node
 ```
 
-**Expected Result**:
+Résultat Attendu:
 
 ```json
 address: 0x68243159a498cf20d945cf3e4250918278ba538e
@@ -139,15 +139,15 @@ accountnumber: 0
 sequence: 0
 ```
 
-### Params
+### Paramètres {#parameters-1}
 
-To print all params
+Pour imprimer tous les params;
 
 ```go
 heimdallcli query auth params
 ```
 
-**Expected Result:**
+Résultat Attendu:
 
 ```go
 max_memo_characters: 256
@@ -159,10 +159,10 @@ max_tx_gas: 1000000
 tx_fees: "1000000000000000"
 ```
 
-## REST APIs
+## API de REST {#rest-apis}
 
-| Name                     | Endpoint                          | Description                                |
-| ------------------------ | --------------------------------- | ------------------------------------------ |
-| Account details          | /auth/accounts/{address}          | Returns all details for an address         |
-| Account sequence details | /auth/accounts/{address}/sequence | Returns only necessary details for signing |
-| Auth params              | /auth/params                      | Returns all params auth module uses        |
+| Nom | Point de terminaison | Description |
+|----------------------|--------|------------------|
+| Détails du compte | /auth/accounts/{addresse} | Retourne tous les détails pour une adresse |
+| Détails de la séquence du compte | /auth/accounts/{addresse}/sequence | Retourne uniquement les détails nécessaires pour la signature |
+| Params d'authentification | /auth/params | Retourne toutes les utilisations de module d'authentification de params |

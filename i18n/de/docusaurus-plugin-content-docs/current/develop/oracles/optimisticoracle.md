@@ -1,216 +1,220 @@
 ---
 id: optimisticoracle
-title: UMA's Optimistic Oracle
+title: Optimistisches Oracle von UMA
 sidebar_label: UMA
-description: Making use of optimistic settlements for an efficent Oracle solution.
-keywords:
-  - docs
+description: UMA Optimistic Oracle ermöglicht es Verträgen, schnell jede Art von Daten anzufordern und zu empfangen.
+keywords:   
+  - wiki
+  - polygon
   - oracle
   - UMA
-image: https://matic.network/banners/matic-network-16x9.png
+  - Optimistic Oracle
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
-## Getting started
-UMA's oracle system is comprised of two core components:
+UMA Optimistic Oracle ermöglicht es Verträgen, schnell jede Art von Daten anzufordern und zu empfangen. Das oracle von UMA besteht aus zwei Kernkomponenten:
 
-1. Optimistic Oracle
+1. Optimistisches Oracle
+2. Datenverifizierungsmechanismus (DVM)
 
-2. Data Verification Mechanism (DVM)
+## Optimistisches Oracle {#optimistic-oracle}
 
-## Optimistic Oracle
+UMA **Optimistic Oracle** ermöglicht es Verträgen, schnell Preisinformationen anzufordern und zu erhalten. Das Optimistic Oracle fungiert als ein generalisiertes Eskalationsspiel zwischen Verträgen, die eine Preisanfrage einleiten, und dem Streitbeilegungssystem der UMA, das als Data Verification Mechanism (DVM) bekannt ist.
 
-UMA's Optimistic Oracle allows contracts to quickly request and receive price information. The Optimistic Oracle acts as a generalized escalation game between contracts that initiate a price request and UMA's dispute resolution system known as the Data Verification Mechanism (DVM). Prices proposed by the Optimistic Oracle will not be sent to the DVM unless it is disputed. This enables contracts to obtain price information within any pre-defined length of time without the need to have the price of an asset written on-chain.
+Die Preise, die das optimistische Oracle vorschlägt, werden nicht an den DVM gesendet, sofern dagegen nicht Einspruch erhoben wird. Dies ermöglicht es Verträgen, Preisinformationen innerhalb einer beliebigen vorgegebenen Dauer zu erhalten, ohne den Preis eines Assets auf der Chain zu schreiben.
 
-## Data Verification Mechanism (DVM)
+## Datenverifizierungsmechanismus (DVM) {#data-verification-mechanism-dvm}
 
-If a dispute is raised, a request is sent to the DVM. All contracts built on UMA use the DVM as a backstop to resolve disputes. Disputes sent to the DVM will be resolved 48 hours after UMA tokenholders vote on the price of the asset at a given time. Contracts on UMA do not need to use the Optimistic Oracle unless it requires a price of an asset faster than 48 hours.
+Falls Einspruch erhoben wird, wird eine Anfrage an den DVM gesendet. Alle Verträge, die auf UMA basieren, verwenden den DVM als Möglichkeit, um Streitigkeiten beizulegen. Einsprüche, die an den DVM gesendet werden, werden innerhalb von 48 Stunden gelöst, nachdem die UMA-Tokeninhaber über einen Preis des Assets zu einem bestimmten Zeitpunkt abstimmen. Verträge auf UMA müssen das optimistische Oracle nicht verwenden, außer es wird ein Preis für ein Asset innerhalb von weniger als 48 Stunden benötigt.
 
-The Data Verification Mechanism (DVM) is the dispute resolution service for contracts built on UMA Protocol. The DVM is powerful because it encompasses an element of human judgment to ensure contracts are securely and correctly managed when issues arise from volatile (and sometimes manipulatable) markets.
+Der Datenverifizierungsmechanismus (DVM) ist der Streitbeilegungsdienst für Verträge, die auf dem UMA-Protokoll basieren. Der DVM ist leistungsstark, weil er menschliche Beurteilungen enthält, um sicherzustellen, dass Verträge sicher und korrekt verwaltet werden, wenn Probleme aufgrund von volatilen (und manchmal manipulierbaren) Märkten entstehen.
 
-## Optmisitc Oracle Interface
+## Schnittstelle des optimistischen Oracles {#optimistic-oracle-interface}
 
-The vast majority of projects will only require the Optmisitc Oracle for their implimentations.
+Das optimistische Oracle wird von Finanzverträgen oder anderen Dritten verwendet, um Preise abzurufen. Sobald ein Preis angefordert wird, kann jeder als Reaktion einen Preis vorschlagen. Nachdem er vorgeschlagen wurde, durchläuft der Preis eine Lebensdauer, während der jeder den vorgeschlagenen Preis anfechten und den angefochtenen Preis zur Beilegung an den UMA DVM übermitteln kann.
 
-This section explains how different participants can interact with the Optimistic Oracle. To view the most updated mainnet, kovan or L2 deployments of the Optimistic Oracle contracts, refer to the [production addresses](https://docs.umaproject.org/dev-ref/addresses).
+:::info
 
-The Optimistic Oracle is used by financial contracts or any third party to retrieve prices. Once a price is requested, anyone can propose a price in response. Once proposed, the price goes through a liveness period where anyone can dispute the proposed price and send the disputed price to the UMA DVM for settlement.
+In diesem Abschnitt erfährst du, wie verschiedene Teilnehmer mit dem optimistischen Oracle interagieren können. Um die am häufigsten aktualisierten Mainnet-, Kovan- oder L2-Bereitstellungen der optimistischen Oracle-Verträge zu sehen, lies die [Produktionsadressen](https://docs.umaproject.org/dev-ref/addresses).
 
-There are twelve methods that make up the Optimistic Oracle interface.
--  `requestPrice`
--  `proposePrice`
--  `disputePrice`
--  `settle`
--  `hasPrice`
--  `getRequest`
--  `settleAndGetPrice`
--  `setBond`
--  `setCustomLiveness`
--  `setRefundOnDispute`
--  `proposePriceFor`
--  `disputePriceFor`
+:::
 
-### requestPrice
+Es gibt zwölf Methoden, aus denen die optimistische Oracle-Schnittstelle besteht.
+- `requestPrice`
+- `proposePrice`
+- `disputePrice`
+- `settle`
+- `hasPrice`
+- `getRequest`
+- `settleAndGetPrice`
+- `setBond`
+- `setCustomLiveness`
+- `setRefundOnDispute`
+- `proposePriceFor`
+- `disputePriceFor`
 
-Requests a new price. This must be for a registered price identifier. Note that this is called automatically by most financial contracts that are registered in the UMA system, but can be called by anyone for any registered price identifier. For example, the Expiring Multiparty (EMP) contract calls this method when its `expire` method is called.
+### requestPrice {#requestprice}
 
-Parameters:
-- `identifier`: price identifier being requested.
-- `timestamp`: timestamp of the price being requested.
-- `ancillaryData`: ancillary data representing additional args being passed with the price request.
-- `currency`: ERC20 token used for payment of rewards and fees. Must be approved for use with the DVM.
-- `reward`: reward offered to a successful proposer. Will be paid by the caller. Note: this can be 0.
+Fordert einen neuen Preis an. Muss für eine registrierte Preiskennzahl gelten. Beachten bitte, dass dies automatisch von den meisten Finanzverträgen aufgerufen wird, die im UMA-System registriert sind, aber von jedem für jede registrierte Preiskennzahl aufgerufen werden kann. Der Expiring Multiparty (EMP) Vertrag ruft zum Beispiel diese Methode auf, wenn seine `expire`-Methode aufgerufen wird.
 
-### proposePrice
+Parameter:
+- `identifier`: angeforderte Preiskennzahl.
+- `timestamp`: Zeitstempel des angeforderten Preises.
+- `ancillaryData`: Zusatzdaten, die zusätzliche Args darstellen, welche mit der Preisanfrage weitergegeben werden.
+- `currency`: ERC20-Token für die Zahlung von Prämien und Gebühren. Muss für die Verwendung mit dem DVM genehmigt werden.
+- `reward`: Prämie für einen erfolgreichen Vorschlagenden. Wird vom Antragsteller bezahlt. Beachte: Das kann 0 sein.
 
-Proposes a price value for an existing price request.
+### proposePrice {#proposeprice}
 
-Parameters:
-- `requester`: sender of the initial price request.
-- `identifier`: price identifier to identify the existing request.
-- `timestamp`: timestamp to identify the existing request.
-- `ancillaryData`: ancillary data of the price being requested.
-- `proposedPrice`: price being proposed.
+Schlägt einen Preis für eine vorhandene Preisanfrage vor.
 
-### disputePrice
+Parameter:
+- `requester`: Absender der anfänglichen Preisanfrage.
+- `identifier`: Preiskennzahl zur Identifikation der vorhandenen Anfrage.
+- `timestamp`: Zeitstempel, um die vorhandene Anfrage zu identifizieren.
+- `ancillaryData`: Zusatzdaten des angeforderten Preis.
+- `proposedPrice`: Der vorgeschlagene Preis.
 
-Disputes a price value for an existing price request with an active proposal.
+### disputePrice {#disputeprice}
 
-Parameters:
-- `requester`: sender of the initial price request.
-- `identifier`: price identifier to identify the existing request.
-- `timestamp`: timestamp to identify the existing request.
-- `ancillaryData`: ancillary data of the price being requested.
+Erhebt Einspruch gegen einen Preis für eine vorhandene Preisanfrage mit einem aktiven Vorschlag.
 
-### settle
+Parameter:
+- `requester`: Absender der anfänglichen Preisanfrage.
+- `identifier`: Preiskennzahl zur Identifikation der vorhandenen Anfrage.
+- `timestamp`: Zeitstempel, um die vorhandene Anfrage zu identifizieren.
+- `ancillaryData`: Zusatzdaten des angeforderten Preis.
 
-Attempts to settle an outstanding price request. Will revert if it isn’t settleable.
+### settle {#settle}
 
-Parameters:
-- `requester`: sender of the initial price request.
-- `identifier`: price identifier to identify the existing request.
-- `timestamp`: timestamp to identify the existing request.
-- `ancillaryData`: ancillary data of the price being requested.
+Versucht, eine offene Preisanfrage beizulegen Wird zurückkehren, wenn es nicht abgewickelt werden kann.
 
-### hasPrice
+Parameter:
+- `requester`: Absender der anfänglichen Preisanfrage.
+- `identifier`: Preiskennzahl zur Identifikation der vorhandenen Anfrage.
+- `timestamp`: Zeitstempel, um die vorhandene Anfrage zu identifizieren.
+- `ancillaryData`: Zusatzdaten des angeforderten Preis.
 
-Checks if a given request has resolved or been settled (i.e the optimistic oracle has a price).
+### hasPrice {#hasprice}
 
-Parameters:
-- `requester`: sender of the initial price request.
-- `identifier`: price identifier to identify the existing request.
-- `timestamp`: timestamp to identify the existing request.
-- `ancillaryData`: ancillary data of the price being requested.
+Prüft, ob eine Anfrage gelöst oder beigelegt wurde (d. h. das optimistische Oracle hat einen Preis dafür).
 
-### getRequest
+Parameter:
+- `requester`: Absender der anfänglichen Preisanfrage.
+- `identifier`: Preiskennzahl zur Identifikation der vorhandenen Anfrage.
+- `timestamp`: Zeitstempel, um die vorhandene Anfrage zu identifizieren.
+- `ancillaryData`: Zusatzdaten des angeforderten Preis.
 
-Gets the current data structure containing all information about a price request.
+### getRequest {#getrequest}
 
-Parameters:
-- `requester`: sender of the initial price request.
-- `identifier`: price identifier to identify the existing request.
-- `timestamp`: timestamp to identify the existing request.
-- `ancillaryData`: ancillary data of the price being requested.
+Ruft die aktuelle Datenstruktur mit allen Informationen über eine Preisanfrage ab.
 
-### settleAndGetPrice
+Parameter:
+- `requester`: Absender der anfänglichen Preisanfrage.
+- `identifier`: Preiskennzahl zur Identifikation der vorhandenen Anfrage.
+- `timestamp`: Zeitstempel, um die vorhandene Anfrage zu identifizieren.
+- `ancillaryData`: Zusatzdaten des angeforderten Preis.
 
-Retrieves a price that was previously requested by a caller. Reverts if the request is not settled or settleable. Note: this method is not view so that this call may actually settle the price request if it hasn’t been settled.
+### settleAndGetPrice {#settleandgetprice}
 
-Parameters:
-- `identifier`: price identifier to identify the existing request.
-- `timestamp`: timestamp to identify the existing request.
-- `ancillaryData`: ancillary data of the price being requested.
+Ruft einen Preis ab, der zuvor von einem Antragstellenden angefordert wurde. Wird zurückgesetzt, falls die Anfrage nicht beigelegt wird oder nicht beigelegt werden kann. Hinweis: Diese Methode ist nicht sichtbar, damit dieser Aufruf die Preisanfrage beilegen kann, falls sie noch nicht beigelegt wurde.
 
-### setBond
+Parameter:
+- `identifier`: Preiskennzahl zur Identifikation der vorhandenen Anfrage.
+- `timestamp`: Zeitstempel, um die vorhandene Anfrage zu identifizieren.
+- `ancillaryData`: Zusatzdaten des angeforderten Preis.
 
-Set the proposal bond associated with a price request.
+### setBond {#setbond}
 
-Parameters:
-- `identifier`: price identifier to identify the existing request.
-- `timestamp`: timestamp to identify the existing request.
-- `ancillaryData`: ancillary data of the price being requested.
-- `bond`: custom bond amount to set.
+Legt den vorgeschlagenen Bond für eine Preisanfrage fest.
 
-### setCustomLiveness
+Parameter:
+- `identifier`: Preiskennzahl zur Identifikation der vorhandenen Anfrage.
+- `timestamp`: Zeitstempel, um die vorhandene Anfrage zu identifizieren.
+- `ancillaryData`: Zusatzdaten des angeforderten Preis.
+- `bond`Benutzerdefinierter Bond-Betrag.
 
-Sets a custom liveness value for the request. Liveness is the amount of time a proposal must wait before being auto-resolved.
+### setCustomLiveness {#setcustomliveness}
 
-Parameters:
-- `identifier`: price identifier to identify the existing request.
-- `timestamp`: timestamp to identify the existing request.
-- `ancillaryData`: ancillary data of the price being requested.
-- `customLiveness`: new custom liveness.
+Legt einen benutzerdefinierten Lebendigkeitswert für die Anfrage fest. Lebendigkeit ist die Zeit, die eine Anfrage warten muss, bevor sie automatisch beigelegt wird.
 
-### setRefundOnDispute
+Parameter:
+- `identifier`: Preiskennzahl zur Identifikation der vorhandenen Anfrage.
+- `timestamp`: Zeitstempel, um die vorhandene Anfrage zu identifizieren.
+- `ancillaryData`: Zusatzdaten des angeforderten Preis.
+- `customLiveness`: Neue benutzerdefinierte Lebendigkeit.
 
-Sets the request to refund the reward if the proposal is disputed. This can help to "hedge" the caller in the event of a dispute-caused delay. Note: in the event of a dispute, the winner still receives the other’s bond, so there is still profit to be made even if the reward is refunded.
+### setRefundOnDispute {#setrefundondispute}
 
-Parameters:
-- `identifier`: price identifier to identify the existing request.
-- `timestamp`: timestamp to identify the existing request.
-- `ancillaryData`: ancillary data of the price being requested.
+Legt die Anfrage fest, um die Prämie zurückzuerstatten, falls der Vorschlag angefochten wird. Dadurch kann der Antragsteller im Falle einer durch einen Einspruch verursachten Verzögerung „abgesichert“ werden. Hinweis: Im Falle eines Einspruchs erhält der Gewinner trotzdem den Bond des anderen und kann auf diese Weise auch dann Gewinne machen, wenn die Prämie zurückerstattet wird.
 
-### disputePriceFor
+Parameter:
+- `identifier`: Preiskennzahl zur Identifikation der vorhandenen Anfrage.
+- `timestamp`: Zeitstempel, um die vorhandene Anfrage zu identifizieren.
+- `ancillaryData`: Zusatzdaten des angeforderten Preis.
 
-Disputes a price request with an active proposal on another address' behalf. Note: this address will receive any rewards that come from this dispute. However, any bonds are pulled from the caller.
+### disputePriceFor {#disputepricefor}
 
-Parameters:
-- `disputer`: address to set as the disputer.
-- `requester`: sender of the initial price request.
-- `identifier`: price identifier to identify the existing request.
-- `timestamp`: timestamp to identify the existing request.
-- `ancillaryData`: ancillary data of the price being requested.
+Ficht eine Preisanfrage mit einem aktiven Vorschlag im Namen einer anderen Adresse an. Hinweis: Diese Adresse erhält alle Prämien aus diesem Streitfall. Alle Bonds werden jedoch vom Antragsteller abgebucht.
 
-### proposePriceFor
+Parameter:
+- `disputer`: Adresse, die den Einspruch erhoben hat.
+- `requester`: Absender der anfänglichen Preisanfrage.
+- `identifier`: Preiskennzahl zur Identifikation der vorhandenen Anfrage.
+- `timestamp`: Zeitstempel, um die vorhandene Anfrage zu identifizieren.
+- `ancillaryData`: Zusatzdaten des angeforderten Preis.
 
-Proposes a price value on another address' behalf. Note: this address will receive any rewards that come from this proposal. However, any bonds are pulled from the caller.
+### proposePriceFor {#proposepricefor}
 
-Parameters:
-- `proposer`: address to set as the proposer.
-- `requester`: sender of the initial price request.
-- `identifier`: price identifier to identify the existing request.
-- `timestamp`: timestamp to identify the existing request.
-- `ancillaryData`: ancillary data of the price being requested.
-- `proposedPrice`: price being proposed.
+Schlägt einen Preiswert im Namen einer anderen Adresse vor. Hinweis: Diese Adresse erhält alle Prämien aus diesem Vorschlag. Alle Bonds werden jedoch vom Antragsteller abgebucht.
 
-# Integrating the Optimistic Oracle
+Parameter:
+- `proposer`: Adresse, die als Vorschlagender festgelegt wird.
+- `requester`: Absender der anfänglichen Preisanfrage.
+- `identifier`: Preiskennzahl zur Identifikation der vorhandenen Anfrage.
+- `timestamp`: Zeitstempel, um die vorhandene Anfrage zu identifizieren.
+- `ancillaryData`: Zusatzdaten des angeforderten Preis.
+- `proposedPrice`: Der vorgeschlagene Preis.
 
-This demo will set up an `OptimisticDepositBox` contract which custodies a user’s ERC-20 token balance.
+## Integration des optimistischen Oracles {#integrating-the-optimistic-oracle}
 
-On a local testnet blockchain, the user will deposit wETH (Wrapped Ether) into the contract and withdraw wETH denominated in USD. For example, if the user wants to withdraw $10,000 USD of wETH, and the ETH/USD exchange rate is $2,000, they would withdraw 5 wETH.
+Diese Demo richtet einen `OptimisticDepositBox`Vertrag ein, der das ERC-20-Token-Guthaben eines Benutzers verwaltet.
 
-* The user links the `OptimisticDepositBox` with one of the price identifiers enabled on the DVM.
+Auf eine lokale Testnet-Blockchain zahlt der Benutzer wETH (Wrapped Ether) in den Vertrag ein und hebt wETH in USD ab. Wenn Benutzer zum Beispiel $10,000 USD of wETH, and the ETH/USD exchange rate is $2.000 abheben möchte, würde er 5 wETH abheben.
 
-* The user deposits wETH into the `OptimisticDepositBox` and register it with the `ETH/USD` price identifier.
+* Das Benutzer verknüpft das `OptimisticDepositBox` mit einer der Preiskennzahlen, die im DVM aktiviert wurden.
 
-* The user can now withdraw a USD-denominated amount of wETH from their `DepositBox` via smart contract calls, with the Optimistic Oracle enabling optimistic on-chain pricing.
+* Der Benutzer zahlt wETH in das `OptimisticDepositBox` ein und registriert es mit der `ETH/USD`-Preiskennzahl.
 
-In this example, the user would not have been able to transfer USD-denominated amounts of wETH without referencing an off-chain `ETH/USD` price feed. The Optimistic Oracle therefore enables the user to "pull" a reference price.
+* Der Benutzer kann jetzt einen wETH-Betrag in USD von seinem `DepositBox` über Smart Contract-Aufrufe abheben, wobei das optimistische Oracle eine optimistische Preisgestaltung auf der Chain ermöglicht.
 
-Unlike price requests to the DVM, a price request to the Optimistic Oracle can be resolved within a specified liveness window if there are no disputes, which can be significantly shorter than the DVM voting period. The liveness window is configurable, but is typically two hours, compared to 2-3 days for settlement via the DVM.
+In diesem Beispiel hätte der Benutzer keinen wETH-Betrag in USD übertragen können, ohne sich auf einen Off-Chain-`ETH/USD`-Preisfeed zu beziehen. Das optimistische Oracle ermöglicht es dem Benutzer daher, einen Referenzpreis „abzurufen“.
 
-The price requestor is not currently required to pay fees to the DVM. The requestor can offer a reward for the proposer who responds to a price request, but the reward value is set to `0` in this example.
+Im Gegensatz zu Preisanfragen an den DVM, kann eine Preisanfrage an das optimistische Oracle innerhalb eines festgelegten Lebendigkeitsfensters gelöst werden, sofern es keine Einsprüche gibt, das wesentlich kürzer ist als die DVM-Abstimmungsperiode Das Lebendigkeitsfenster ist konfigurierbar, normalerweise ist es aber zwei Stunden lang. Im Vergleich dazu, dauern Beilegungen über den DVM 2–3 Tage.
 
-The price proposer posts a bond along with their price, which will be refunded if the price is not disputed, or if a dispute is resolved in the proposer's favor. Otherwise, this bond is used to pay the final fee to the DVM and pay a reward to a successful disputer.
+Der Preis-Antragsteller ist derzeit nicht verpflichtet, Gebühren an den DVM zu bezahlen. Der Antragsteller kann eine Prämie für den Vorschlagenden anbieten, der auf eine Preisanfragen antwortet. Der Prämienbetrag ist in diesem Beispiel `0`.
 
-In the demo, the requestor does not require an additional bond from the price proposer, so the total bond posted is equal to the wETH final fee currently 0.2 wETH. See the `proposePriceFor` function in the `OptimisticOracle` [contract](https://docs-dot-uma-protocol.appspot.com/uma/contracts/OptimisticOracle.html) for implementation details.
+Der Preis-Vorschlagende veröffentlicht einen Bond mit seinem Preis, welcher erstattet wird, falls der Preis nicht angefochten wird oder falls ein Einspruch zugunsten des Vorschlagenden beigelegt wird. Ansonsten wird der Bond verwendet, um die endgültige Gebühr an den DVM und eine Prämie an die Person, die den Einspruch erhoben hat, zu bezahlen.
 
-## Running the Demo
+In der Demo benötigt der Antragsteller keinen zusätzlichen Bond vom Preis-Vorschlagenden, weshalb der gesamte gepostete Bond der wETH-Endgebühr entspricht, die derzeit 0,2 wETH beträgt. In der `proposePriceFor`-Funktion im `OptimisticOracle` [-Vertrag](https://docs-dot-uma-protocol.appspot.com/uma/contracts/OptimisticOracle.html) findest du Implementierungsdetails.
 
-1. Ensure that you have followed all the prerequisite setup steps [here](https://docs.umaproject.org/developers/setup).
-2. Run a local Ganache instance (i.e. not Kovan/Ropsten/Rinkeby/Mainnet) with `yarn ganache-cli --port 9545`
-3. In another window, migrate the contracts by running the following command:
+## Ausführung der Demo {#running-the-demo}
 
-```bash
-yarn truffle migrate --reset --network test
-```
+1. Stelle sicher, dass du die [hier](https://docs.umaproject.org/developers/setup) beschriebenen, erforderlichen Einrichtungsschritte befolgt hast.
+2. Führe eine lokale Ganache-Instanz (d. h. nicht Kovan/Ropsten/Rinkeby/Mainnet) mit `yarn ganache-cli --port 9545` aus
+3. Migriere in einem anderen Fenster die Verträge, indem du den folgenden Befehl ausführst:
 
-1. To deploy the `OptimisticDepositBox` [contract](https://github.com/UMAprotocol/protocol/blob/master/packages/core/contracts/financial-templates/demo/OptimisticDepositBox.sol) and go through a simple user flow, run the following demo script from the root of the repo:
+  ```bash
+  yarn truffle migrate --reset --network test
+  ```
+
+1. Um den `OptimisticDepositBox` [-Vertrag](https://github.com/UMAprotocol/protocol/blob/master/packages/core/contracts/financial-templates/demo/OptimisticDepositBox.sol) bereitzustellen und einen Benutzerfluss zu durchlaufen, führe das folgende Demo-Skript über die Root des Repo aus:
 
 ```bash
 yarn truffle exec ./packages/core/scripts/demo/OptimisticDepositBox.js --network test
 ```
 
-You should see the following output:
+Du solltest die folgende Ausgabe sehen:
 
 ```
 1. Deploying new OptimisticDepositBox
@@ -247,25 +251,25 @@ You should see the following output:
   - User's wETH balance: 5
 ```
 
-## Explaining the Contract Functions
+## Beschreibung der Vertragsfunktionen {#explaining-the-contract-functions}
 
-The `OptimisticDepositBox` [contract code](https://github.com/UMAprotocol/protocol/blob/master/packages/core/contracts/financial-templates/demo/OptimisticDepositBox.sol) how to interact with the Oracle.
+Der `OptimisticDepositBox`[Vertragscode](https://github.com/UMAprotocol/protocol/blob/master/packages/core/contracts/financial-templates/demo/OptimisticDepositBox.sol) zeigt, wie du mit der Oracle interagierst.
 
-The `constructor` function includes a `_finderAddress` argument for the UMA `Finder` contract, which maintains a registry of the `OptimisticOracle` address, approved collateral and price identifier whitelists, and other important contract addresses.
+Die `constructor`-Funktion enthält ein `_finderAddress`-Argument für den UMA`Finder`-Vertrag, der ein Register der `OptimisticOracle`-Adresse, die genehmigte Sicherheit, Preiskennzahl-Whitelisten und andere wichtige Vertragsadressen enthält.
 
-This allows the `constructor` to check that the collateral type and price identifier are valid, and allows the `OptimisticDepositBox` to find and interact with the `OptimisticOracle` later.
+Das ermöglicht es dem `constructor`, zu prüfen, dass der Sicherheitstyp und die Preiskennzahl gültig sind, und ermöglicht es dem `OptimisticDepositBox`, das `OptimisticOracle` später zu finden und damit zu interagieren.
 
-The `requestWithdrawal` function includes an internal call to the `OptimisticOracle` requesting the `ETH/USD` price. Once it's returned, the user can call `executeWithdrawal` to complete the withdrawal.
+Die -`requestWithdrawal`-Funktion enthält einen internen Aufruf an `OptimisticOracle`, mit dem der `ETH/USD`-Preis angefordert wird. Sobald er zurückgegeben wurde, kann der Benutzer `executeWithdrawal` aufrufen, um die Auszahlung abzuschließen.
 
-There is much more information and explanation in the code comments, so please take a look if you're interested in learning more!
+Es gibt viel mehr Informationen und Erklärungen in den code also schau dir mal an, wenn du mehr erfahren möchtest.
 
-# Additional Resources
+## Zusätzliche Ressourcen {#additional-resources}
 
-Here are some additional resources regarding the UMA DVM:
+Hier sind einige zusätzliche Ressourcen betreffend den UMA DVM:
 
-- [Technical Architecture](https://docs.umaproject.org/oracle/tech-architecture)
-- [Economic Architecture](https://docs.umaproject.org/oracle/econ-architecture)
-- [Blog post](https://medium.com/uma-project/umas-data-verification-mechanism-3c5342759eb8) on UMA’s DVM design
-- [Whitepaper](https://github.com/UMAprotocol/whitepaper/blob/master/UMA-DVM-oracle-whitepaper.pdf) on UMA’s DVM design
-- [Research repo](https://github.com/UMAprotocol/research) for optimal fee policy
-- [UMIP repo](https://github.com/UMAprotocol/UMIPs) for governance proposals
+- [Technische Architektur](https://docs.umaproject.org/oracle/tech-architecture)
+- [Ökonomische Architektur](https://docs.umaproject.org/oracle/econ-architecture)
+- [Blogbeitrag](https://medium.com/uma-project/umas-data-verification-mechanism-3c5342759eb8) über das Design von UMAs DVM
+- [Whitepaper](https://github.com/UMAprotocol/whitepaper/blob/master/UMA-DVM-oracle-whitepaper.pdf) über das Design von UMAs DVM
+- [Studien-Repo](https://github.com/UMAprotocol/research) für optimale Gebührenrichtlinien
+- [UMIP-Repo](https://github.com/UMAprotocol/UMIPs) für  Governance-Vorschläge

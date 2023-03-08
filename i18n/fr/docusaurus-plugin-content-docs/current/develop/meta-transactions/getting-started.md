@@ -1,8 +1,8 @@
 ---
 id: meta-transactions
-title: Meta Transactions
+title: Méta-Transactions
 sidebar_label: Overview
-description: Learn about meta transactions and how you can use them.
+description: Découvrez les méta-transactions et comment vous pouvez les utiliser.
 keywords:
   - docs
   - polygon
@@ -14,61 +14,61 @@ image: https://matic.network/banners/matic-network-16x9.png
 slug: meta-transactions
 ---
 
-Daily smart contract calls are at their highest, hitting around 2.5 to 3 million per day. DApps are starting to realize their utility but are becoming victims of their success or others’ success due to gas fees. Not to mention, the onboarding hurdles of users and the challenges of current UX are no easy fix.
+Les appels quotidiens de contrats intelligents sont à leur plus haut niveau, atteignant environ 2,5 à 3 millions par jour. Les DApps numériques commencent à prendre conscience de leur utilité, mais elles sont victimes de leur succès ou de celui des autres. succès en raison des frais de gaz. Sans mentionner, les obstacles à l'intégration des utilisateurs et les défis actuels Les UX ne sont pas une solution facile.
 
-## Servicing Smart Contracts
+## Servir les Contrats Intelligents {#servicing-smart-contracts}
 
-By design, smart contracts are deterministic state machines that execute when transaction fees are paid to service the contract’s logic by using the network’s computational resources. This is accomplished by a gas-metered model on Ethereum (and Polygon).
+De par leur conception, les contrats intelligents sont des machines à état déterministe qui s'exécutent lorsque les frais de transaction sont payés pour servir la logique du contrat en utilisant les ressources informatiques du réseau. Ceci est accompli par un modèle de mesure du gaz sur Ethereum (et Polygone).
 
-## The Current State of Transacting
+## L'État Actuel des Transactions {#the-current-state-of-transacting}
 
-There are limitations to this traditional transaction model on Ethereum (and other blockchains alike). A common limitation is a user not having the means to pay for gas. By default, the sender of the transaction acts as the payer, as these behaviors are coupled, so if a user attempts to create and send a transaction, they are responsible for the associated gas fees. Likewise, if a user builds, interacts with, or runs a dApp, the user is required to pay gas.
+Il existe des limites à ce modèle de transaction traditionnel sur Ethereum (et sur d'autres blockchains). Une limitation courante est le fait qu'un utilisateur n'a pas les moyens de payer le gaz. Par défaut, l'expéditeur du message fait office de payeur, car ces comportements sont couplés, de sorte que si un utilisateur tente de créer et d'envoyer une transaction, ils sont responsables des frais de gaz associés. De même, si un utilisateur construit, interagit avec, ou exécute une dApp, l'utilisateur est tenu de payer du gaz.
 
-It is unrealistic to expect the average user to buy crypto and pay for gas to interact with an application. What can be done to address this is to decouple the sender of a transaction from acting as a payer, enabling the opportunity to scale transaction execution and initiate a seamless transacting experience.
+Ce n'est pas réaliste de s'attendre à ce que l'utilisateur moyen achète des crypto-monnaies et paye l'essence pour interagir avec une application. Ce qui peut être fait pour résoudre ce problème est de dissocier l'expéditeur d'une transaction de l'action en tant que payeur, ce qui permet d'augmenter l'exécution des transactions et de mettre en place un système d'expérience de transaction transparent.
 
-Instead of direct transaction execution, a middleware would exist (via a third party) to handle the gas. This is where meta transactions come in.
+Au lieu de l'exécution directe des transactions, il existerait un intergiciel (via une tierce partie) pour gérer le gaz. C'est là qu'interviennent les méta-transactions.
 
-## What are Meta Transactions?
+## Que sont les Méta Transactions? {#what-are-meta-transactions}
 
-Meta transactions allow anyone to interact with the blockchain. They do not require users to have tokens to pay for the network’s services through transaction fees. This is done by decoupling the sender of a transaction and the payer of gas.
+ Les méta-transactions permettent à quiconque d'interagir avec la blockchain. Ils n'exigent pas que les utilisateurs aient des jetons pour payer les services du réseau par le biais de frais de transaction. Cela se fait en découplant l'expéditeur d'une transaction et le payeur de gaz.
 
-A solution that can onboard new users and helps current ones.
+Une solution qui peut accueillir de nouveaux utilisateurs et aider les utilisateurs actuels.
 
-The executor of a transaction acts as a sender. Rather than spending gas, they only create a transaction request by signing their intended action (the transaction parameters) with their private key. The meta transaction is a regular Ethereum transaction that includes additional parameters to craft the meta transaction.
+L'exécuteur d'une transaction opère comme un expéditeur. Au lieu de dépenser de l'essence, ils créent seulement une demande de transaction en signant leur action prévue (les paramètres de la transaction) avec leur code privé. clé. La méta transaction est une transaction Ethereum ordinaire qui comprend des paramètres supplémentaires pour élaborer la méta transaction.
 
-The signed transaction parameters are passed onto a secondary network, which acts as a relayer. While there are different schemes for this, relayers would generally choose which transactions are worth submitting by validating the transaction (e.g., being relevant to the dApp). Upon validation, the relayer will wrap the request (the signed message) into an actual transaction (which means paying the gas fee) and broadcast it to the network, where the contract unwraps the transaction by validating the original signature and executes it on behalf of the user.
+Les paramètres signés de la transaction sont transmis à un réseau secondaire, qui joue le rôle de relais. Bien qu'il existe différents schémas pour cela, les relais choisissent généralement les transactions qui en valent la peine d'être soumises en validant la transaction (par exemple, si elle est pertinente pour le dApp). Après validation, le relais transformera la demande (le message signé) en une transaction réelle (ce qui signifie payer le frais de gaz) et le diffuse sur le réseau, où le contrat déballe la transaction en validant la  signature originale et l'exécute au nom de l'utilisateur.
 
-:::note The words meta and batch may be analogous to some
+:::note Les mots "méta" et "lot" peuvent être analogues à certains mots
 
-To clarify: a meta transaction is different from a batch transaction, where a batch transaction is a transaction that can send multiple transactions at once and are then executed from a single sender (single nonce specified) in sequence.
+Pour clarifier: une méta transaction est différente d'une transaction par lot; une transaction par lot est une transaction qui peut envoyer plusieurs transactions en même temps et qui sont ensuite exécutées par un seul expéditeur (nonce unique spécifié) en séquence.
 
 :::
 
-In summary, meta transactions are a design pattern where:
+En résumé, les méta transactions sont un modèle de conception où:
 
-* A user (sender) signs a request with their private key and sends it to a relayer
-* The relayer wraps the request into a tx and sends it to a contract
-* The contract unwraps the tx and executes it
+* Un utilisateur (expéditeur) signe une demande avec sa clé privée et l'envoie à un relais.
+* Le relais enveloppe la demande dans un tx et l'envoie à un contrat
+* Le contrat déballe le tx et l'exécute
 
-Native transactions imply that the “sender” is also the “payer”. When taking the “payer” away from the “sender”, the “sender” becomes more like an “intender” - the sender shows the intent of the transaction they would like executed on the blockchain by signing a message containing specific parameters related to their message, and not an entirely constructed transaction.
+Les transactions autochtones impliquent que "l'expéditeur" soit également le "payeur". Lorsque l'on retire le "payeur" de "l'expéditeur", "l'expéditeur" devient plus comme un "volontaire" - l'expéditeur montre l'intention de la transaction qu'ils souhaitent voir exécutée sur la blockchain en signant un message contenant des paramètres spécifiques relatifs à leur message, et non une transaction entièrement construite.
 
-## Use Cases
+## Cas d'Utilisation {#use-cases}
 
-One can imagine the capabilities of meta transactions for scaling dApps and interactions with smart contracts. Not only can a user create a gasless transaction, but they can also do so many times, and with an automation tool, meta transactions can influence the next wave of applications for practical use cases. Meta transactions enable real utility in smart contract logic, which is often limited because of gas fees and the interactions required on-chain.
+On peut imaginer les capacités des méta transactions pour la réglementation des dApps et des interactions avec les smart contracts. Non seulement un utilisateur peut créer une transaction sans gaz, mais il peut également le faire plusieurs fois, et avec un outil d'automatisation, les méta-transactions peuvent influencer la prochaine vague d'applications pour des cas d'utilisation pratiques. Méta-transactions permettent une réelle utilité de la logique des contrats intelligents, qui est souvent limitée en raison des frais de gaz et des interactions nécessaires sur la chaîne.
 
-### Example with voting
+### Exemple avec vote {#example-with-voting}
 
-A user wants to participate in on-chain governance, and they intend to vote for a particular outcome via a voting contract. The user would sign a message which states the user’s decision in a vote in this particular contract. Traditionally, they would need to pay a gas fee for interacting with the contract (and know how to interact with the contract), but instead, they can sign a meta transaction (off-chain) with the necessary information for their vote and pass it to a relayer which would execute the transaction on their behalf.
+Un utilisateur souhaite participer à la gouvernance sur la chaîne, et il a l'intention de voter pour un résultat particulier par l'intermédiaire d'un contrat de vote. L'utilisateur présenterait un message indiquant sa décision lors d'un vote dans ce cas précis de contrat. Traditionnellement, ils devaient payer un droit d'utilisation du gaz pour interagir avec le contrat (et savoir comment interagir avec le contrat), mais au lieu de cela, ils peuvent signer une méta-transaction (hors chaîne) avec les les informations nécessaires relatives à leur vote et les transmettent à un relais qui exécute la transaction en leur nom.
 
-The signed message gets sent to a relayer (the signed tx params about the voting information). The relayer validates that this transaction is a priority vote, wraps the voting request into an actual transaction, pays the gas fees, and broadcasts it to the voting contract. Everything checks out on the voting contract’s end, and the vote executes on behalf of the user.
+Le message signé est envoyé à un relayeur (les paramètres tx signés concernent les informations de vote). Le relayeur valide que cette transaction est un vote prioritaire, transforme la demande de vote en une transaction réelle, paie les frais de gaz, et le diffuse au contrat de vote.  Tout est vérifié lors de l'envoi de la fin de contrat de vote, et le vote est exécuté au nom de l'utilisateur.
 
-## Try Them Out
+## Essayez-Les {#try-them-out}
 
-Assuming your familiarity with the different approaches you can take to integrate meta transactions in your dApp, and depending on whether you're migrating to meta transactions or building fresh dApp on using it.
+En supposant que vous soyez familier avec les différentes approches que vous pouvez adopter pour intégrer les méta-transactions dans votre dApp, et selon que vous migrez vers les méta-transactions ou que vous construisez un nouveau dApp en l'utilisant.
 
-To integrate your dApp with Meta Transactions on Polygon, you can choose to go with one of the following relayers or spin up a custom solution:
+Pour intégrer votre dApp avec Méta-Transactions sur Polygone, vous pouvez choisir l'un des relayeurs ou de mettre au point une solution personnalisée:
 
 * [Biconomy](https://docs.biconomy.io/products/enable-gasless-transactions)
-* [Gas Station Network (GSN)](https://docs.opengsn.org/#ethereum-gas-station-network-gsn)
+* [Réseau des Stations-Service (GSN)](https://docs.opengsn.org/#ethereum-gas-station-network-gsn)
 * [Infura](https://infura.io/product/ethereum/transactions-itx)
 * [Gelato](https://docs.gelato.network/developer-products/gelato-relay-sdk)

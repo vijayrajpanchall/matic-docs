@@ -1,7 +1,7 @@
 ---
 id: transaction-fees
-title: Transaction Fees
-description: "Distribution of fees among all validators on Heimdall."
+title: Frais de transactions
+description: Distribution des frais entre tous les validateurs sur Heimdall
 keywords:
   - docs
   - polygon
@@ -10,9 +10,9 @@ keywords:
   - transaction
   - fees
 slug: transaction-fees
-image: https://matic.network/banners/matic-network-16x9.png
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
-Each [block producer](../../glossary#block-producer) on the [Bor](../../glossary#bor) layer is given a certain percentage of the transaction fees collected in each block.
+Chaque [producteur de blocs](/docs/maintain/glossary.md#block-producer) sur la couche[Bor](/docs/maintain/glossary.md#bor) reçoit un certain pourcentage des frais de transaction collectés dans chaque bloc.
 
-The selection of producers for any given span is dependent on the validator’s ratio in the overall stake. The remaining transaction fees flow through the same funnel as the rewards which get shared among all validators working at the [Heimdall](../../glossary#heimdall) layer.
+La sélection des producteurs pour une période donnée dépend du ratio du validateur dans la mise globale. Les frais de transaction restants transitent par le même entonnoir que les récompenses qui sont partagées entre tous les validateurs travaillant sur la couche [Heimdall](/docs/maintain/glossary.md#heimdall).

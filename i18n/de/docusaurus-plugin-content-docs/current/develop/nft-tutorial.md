@@ -1,25 +1,30 @@
 ---
 id: nft-tutorial
-title: Polygon NFT Tutorial
-description: Build, mint, and send around your own ERC721 (NFT).
+title: Polygon NFT-Tutorial
+description: Erstelle, präge und versende deine eigenen NFT (ERC721).
 keywords:
   - graph
   - matic
-image: https://matic.network/banners/matic-network-16x9.png
+  - docs
+  - polygon
+  - nft tutorial
+  - mint nft on polygon
+  - erc721
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-Build, mint, and send around your own ERC721 (NFT) on Mumbai (testnet) and then on Polygon mainnet!
+Erstelle, präge und versende deine eigenen ERC721 (NFT) auf Mumbei (Testnet) und dann am Polygon-Mainnet!
 
-## Guides
+## Leitfäden {#guides}
 
-1. Click [here](https://github.com/scaffold-eth/scaffold-eth/tree/matic) for the detailed tutorial in scaffold-eth that demonstrates [how to mint an NFT on Mumbai and then Polygon](https://github.com/primeshprimesh/firstSimpleNFTProject).
+1. Klicke [hier](https://github.com/scaffold-eth/scaffold-eth/tree/matic) für einen detaillierten Leitfaden über Scaffold-eth, in dem du erfährst, [wie man ein NFT auf Mumbai und dann Polygon prägt](https://github.com/primeshprimesh/firstSimpleNFTProject).
 
-2. Click [here](https://docs.scaffoldeth.io/scaffold-eth/examples-branches/common-web3-patterns/push-the-button#side-quests) for the Multi-player Turn Based Game (Push The Button).
+2. Klicke [hier](https://docs.scaffoldeth.io/scaffold-eth/examples-branches/common-web3-patterns/push-the-button#side-quests) für das rundenbasierte Multiplayerspiel (Push The Button).
 
-3. Click [here](https://docs.alchemy.com/alchemy/tutorials/nft-minter) for a tutorial on how to create an NFT Minter that enables users to mint NFTs from a front-end (a mini-version of OpenSea). Be sure to use your Polygon RPC URL from [Alchemy](https://alchemy.com/?a=polygon-docs) instead of the Ethereum version!
+3. Klicke [hier](https://docs.alchemy.com/alchemy/tutorials/nft-minter) für einen Leitfaden, wie du einen NFT Minter erstellst, der es Benutzern ermöglicht, NFTs über ein Frontend (einer Mini-Version von OpenSea) zu prägen. Verwende deine Polygon RPC-URL von [Alchemy](https://alchemy.com/?a=polygon-docs), anstatt die Ethereum-Version!
 
-4. Click [here](https://docs.alchemy.com/alchemy/enhanced-apis/nft-api) for the Alchemy NFT API that will allow you to instantly find NFTs by owner, as well as verify and display NFTs within your app.
+4. Klicke [hier](https://docs.alchemy.com/alchemy/enhanced-apis/nft-api) für die Alchemy NFT-API, mit der du NFTs sofort nach Besitzer suchen und NFTs in deiner App verifizieren und anzeigen kannst.
 
-5. Click [here](https://nftschool.dev/tutorial/mint-nftstorage-polygon/) to mint with nft.storage [link](https://nft.storage/) and polygon.
+5. Klicke [hier](https://nftschool.dev/tutorial/mint-nftstorage-polygon/), um mit dem nft.storage [Link](https://nft.storage/) und Polygon zu prägen.

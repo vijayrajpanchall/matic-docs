@@ -2,20 +2,20 @@
 id: fx-portal
 title: FxPortal
 keywords:
-  - fx-portal
-  - client
-  - contract
-  - polygon
-  - sdk
-description: Get started with maticjs
+    - fx-portal
+    - client
+    - contract
+    - polygon
+    - sdk
+description: Polygon State-Sync-Mechanismus ohne Mapping.
 ---
 
-# FxPortal Bridge
+# FxPortal Bridge {#fxportal-bridge}
 
-FxPortal Bridge is similar to POS Bridge with a feature of using ERC standardized tokens without mapping.
+FxPortal Bridge ist der POS Bridge ähnlich. Dort werden standardisierte ERC-Token ohne Mapping verwendet.
 
-For more info about FxPortal, please read - [FxPortal Bridge doc](https://docs.polygon.technology/docs/develop/l1-l2-communication/fx-portal)
+Für weitere Informationen über FxPortal siehe – [FxPortal Bridge doc](https://docs.polygon.technology/docs/develop/l1-l2-communication/fx-portal)
 
-FxPortal bridge functionality is available in [seperate repository](https://github.com/fx-portal/maticjs-fxportal) as a plugin for maticjs. The package provides different API's for interacting with bridge.
+FxPortal-Bridge-Funktion ist in [Seperatem Repository](https://github.com/fx-portal/maticjs-fxportal) als Plugin für maticjs verfügbar. Das Paket bietet verschiedene API’s für die Interaktion mit der Bridge.
 
-Here is repository link - [https://github.com/fx-portal/maticjs-fxportal](https://github.com/fx-portal/maticjs-fxportal)
+Hier ist ein Repository-Link – [https://github.com/fx-portal/maticjs-fxportal](https://github.com/fx-portal/maticjs-fxportal)

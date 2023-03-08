@@ -1,51 +1,48 @@
 ---
 id: bug-bounty-program
-title: Bug Bounty Program
+title: Bug-Bounty-Programm
 sidebar_label: Bug bounty program
-description: Know more about Polygon's Bug Bounty Program.
+description: Erfahren Sie mehr über das Bug-Bounty-Programm von Polygon.
 keywords:
   - docs
   - matic
   - polygon
   - bug bounty
-image: https://matic.network/banners/matic-network-16x9.png
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 slug: bug-bountry-program
 ---
 
-Polygon is working with the community to find security vulnerabilities to keep the Polygon **Projects**, **Developers** and **Users** safe.
+Polygon sucht in Zusammenarbeit mit der Community nach Sicherheitslücken, damit die Sicherheit der Polygon ****-**Projekte**, **Entwickler** und Benutzer gewährleistet ist.
 
-The bounty program is to ensure everyone has an opportunity to find bugs in the Polygon system, which will in turn help the team ensure the security of Polygon. Payouts will go up to $5,000 for critical issues.
+Das Bounty-Programm zielt darauf ab, dass jeder Teilnehmer Fehler im Polygon-System finden kann. Das hilft dem Team dabei, die Sicherheit von Polygon zu stärken. Für kritische Probleme beträgt die Prämie bis zu 5.000 $.
 
-## Getting started
+## Erste Schritte {#getting-started}
 
-If you are new to blockchains and/or to Polygon, see [Polygon Architecture](/docs/home/architecture/polygon-architecture).
+Wenn Sie neu in Blockchains und/oder in Polygon sind, finden Sie Näheres unter [Polygon-Architektur](/docs/home/architecture/polygon-architecture).
 
-Explore the [code on GitHub](https://github.com/maticnetwork). There are 3 main repositories for you to study:
+Auf [GitHub](https://github.com/maticnetwork) können Sie sich mit dem Code vertraut machen.. Es gibt 3 wesentliche Datenbanken, die Sie prüfen können:
 
 * [Heimdall](https://github.com/maticnetwork/heimdall)
 * [Bor](https://github.com/maticnetwork/bor)
 * [Contracts](https://github.com/maticnetwork/contracts)
 
-## Setting up
+## Einrichtung {#setting-up}
 
-Set up a test network locally. See [Running a node on the local environment](https://github.com/maticnetwork/matic-cli)
+Richten Sie ein Testnetzwerk lokal ein. Siehe [Einen Netzpunkt in der lokalen Umgebung betreiben](https://github.com/maticnetwork/matic-cli)
 
-The Polygon CLI repository is an easy way to setup and manage the entire Polygon stack, including **Heimdall**, **Bor**, and the **Staking & Plasma smart contracts** on a local environment. This would help in simulating tests and attacks locally.
+Mit der Polygon CLI-Datenbank können Sie unkompliziert Polygon einrichten und verwalten. Dazu gehören auch **Heimdall**, **Bor** und **Staking & CLI** Contracts in einer lokalen Umgebung. Damit könnten Tests und Angriffe lokal simuliert werden.
 
-If you want to run a full node on the Polygon Mainnet or Mumbai Testnet, you can follow the links below:
+Wenn du einen vollständigen Knoten auf dem Polygon Mainnet oder Mumbai Testnet ausführen möchtest, kannst du den folgenden folgen. [Führe einen Validator](/docs/validate/validate/run-validator) Guide aus.
 
-* [Run a Validator Node with Ansible](/docs/maintain/validate/run-validator-ansible)
-* [Run a Validator Node from Binaries](/docs/maintain/validate/run-validator-binaries)
+## Beschaffen von Test-Token {#obtaining-tokens-for-testing}
 
-## Obtaining tokens for testing
+So bekommen Sie Token: Gehen Sie zu [Polygon Faucet](https://faucet.polygon.technology/), wählen und wählen das Goerli-Netzwerk.
 
-To get tokens, you can access the [Polygon faucet](https://faucet.polygon.technology/) and choose the Goerli network to get some tokens.
+## Noch Fragen? {#questions}
 
-## Questions?
-
-Check out the forum and join the discussion on Discord.
+Besuchen Sie das Forum und beteiligen Sie sich an der Diskussion auf Discord.
 
 * [Forum](https://forum.polygon.technology)
 * [Discord](https://discord.com/invite/0xPolygon)
 
-See also the [Immunefi Bug Bounty Program](https://immunefi.com/bounty/polygon/).
+Siehe auch das [Immunefi Bug-Bounty-Programm](https://immunefi.com/bounty/polygon/).

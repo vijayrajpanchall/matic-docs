@@ -1,40 +1,41 @@
 ---
 id: bandstandarddataset
 title: Band 표준 데이터세트
-description: 폴리곤에서 다음 블록체인 앱을 설치합니다.
+sidebar_label: Standard Dataset
+description: Band Stardard Dataset에서 실시간으로 가격 정보를 제공합니다. 암호 자산, 외환 및 상품 전반에 걸친 196개 이상의 심볼에 대한 실시간 가격 정보를 제공합니다.
 keywords:
-  - docs
-  - matic
-  - band
-  - oracle
-image: https://matic.network/banners/matic-network-16x9.png
+  - wiki
+  - polygon
+  - oracles
+  - bandchain
+  - web apis
+  - standard dataset
+  - band protocol
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
-
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-## 소개
+Polygon에 있는 개발자 구축은 이제 Band Protocol의 분산 오라클 인프라를 활용할 수 있습니다. 이제 Band Protocol의 오라클을 사용하면 다양한 암호 화폐 가격 데이터에 접근할 수 있으므로 해당 애플리케이션에 연동할 수 있습니다.
 
-폴리곤을 기반으로 하는 개발자들은 이제 Band의 분산된 Oracle 인프라를 활용할 수 있습니다. Band의 Oracle을 통해 이제 다양한 암호화폐의 가격 데이터에 액세스하여 애플리케이션에 통합할 수 있습니다.
+## 지원되는 토큰 {#supported-tokens}
 
-## 지원되는 토큰
+현재 지원되는 기호 목록은 [data.bandprotocol.com](http://data.bandprotcool.com)에서 찾을 수 있습니다. 앞으로 이 목록은 개발자 요구 및 커뮤니티 피드백을 토대로 하여 계속 확장될 것입니다.
 
-현재 지원되는 심볼들의 목록은 [data.bandprotocol.com](http://data.bandprotcool.com)에서 찾을 수 있습니다. 앞으로 이 목록은 개발자 요구 사항과 커뮤니티 피드백을 기반으로 계속 확장될 것입니다.
+## 가격 쌍 {#price-pairs}
 
-### 가격 쌍
+기준 및 상대 기호를 데이터세트가 지원하는 한, 다음 방법은 모든 기본/상대 토큰 쌍의 조합에서 작동합니다.
 
-다음 방법은 기준 및 인용 심볼들이 데이터 세트에서 지원되는 한 기준/인용 토큰 쌍의 모든 조합으로 작동할 수 있습니다.
+### 가격 쿼리 {#querying-prices}
 
-## 가격 쿼리
+현재 개발자가 Band Protocol에서 가격을 질의하는 두 가지 방법이 있습니다. Band의 스마트 계약을 Polygon과 [`bandchain.js`](https://www.npmjs.com/package/%40bandprotocol%2Fbandchain.js)자바스크립트 도우미 라이브러리를 통해 Band의 `StdReference`스마트 계약을 통해
 
-현재 개발자가 Band의 오라클에서 가격을 쿼리할 수 있는 두 가지 방법이 있습니다: 폴리곤에 대한 Band의 `StdReference` 스마트 컨트랙트와 [`bandchain.js`](https://www.npmjs.com/package/%40bandprotocol%2Fbandchain.js) JavaScript 도우미 라이브러리를 사용하는 것입니다.
+### Solidity 스마트 계약 {#solidity-smart-contract}
 
-### Solidity 스마트 컨트랙트
+Band Protocol의 오라클에서 가격을 질의하려면 스마트 계약이 Band의 `StdReference`계약, 특히 `getReferenceData`기술과 방법을 참조해야 `getReferenceDatabulk`합니다.
 
-Band의 오라클에서 가격을 쿼리하려면 스마트 컨트랙트가 Band의 StdReference 컨트랙트, 특히 `getReferenceData` 및 `getReferenceDatabulk` 메서드를 참조해야 합니다.
+`getReferenceData`각각 `base`입력과 `quote`기호로서 두 개의 문자열을 각각 사용합니다. 그런 다음 `StdReference` 계약을 쿼리하여 해당 두 토큰의 최신 가격 비율을 확인하고 아래와 같이 `ReferenceData` 구조체를 반환합니다.
 
-`getReferenceData`는 두 개의 문자열을 입력으로 각각 기본 및 인용 기호로 사용합니다. 그런 다음 `StdReference` 컨트랙트에서 해당 두 토큰에 대한 최신 요금을 쿼리하고 아래와 같이 `ReferenceData` 구조체를 반환합니다.
-
-```solidity
+```
 struct ReferenceData {
     uint256 rate; // base/quote exchange rate, multiplied by 1e18.
     uint256 lastUpdatedBase; // UNIX epoch of the last time when base price gets updated.
@@ -42,37 +43,30 @@ struct ReferenceData {
 }
 ```
 
-`getReferenceDataBulk`는 대신 `base`토큰 중 하나와 `quotes` 중 하나인 두 개의 목록을 사용합니다. 그런 다음 각 인덱스에서 각 기준/인용 쌍의 가격을 유사하게 쿼리하고 `ReferenceData` 구조체의 배열을 반환합니다.
+`getReferenceDataBulk`는 대신 두 개의 목록(`base` 토큰 중 하나와 `quotes` 중 하나)을 수신합니다. 그런 다음 각 인덱스에서 각 베이스의 가격을 유사하게 질의하고 다양한 문자열을 `ReferenceData`반환합니다.
 
-예를 들어, `['BTC','BTC','ETH']` 및 `['USD','ETH','BNB']`로 `getReferenceDataBulk`를 호출하면 반환된 `ReferenceData` 배열에는 쌍에 대한 정보가 포함됩니다:
+예를 들어, `['BTC','BTC','ETH']` 및 `['USD','ETH','BNB']`로 `getReferenceDataBulk`를 호출하면 반환된 `ReferenceData` 배열에는 해당 쌍과 관련된 정보가 포함됩니다.
 
 - `BTC/USD`
 - `BTC/ETH`
 - `ETH/BNB`
 
+## 계약 주소 {#contract-addresses}
 
-#### 컨트랙트 주소
+| 블록체인 | 계약 주소 |
+| -------------------- | :------------------------------------------: |
+| Polygon(테스트) | `0x56e2898e0ceff0d1222827759b56b28ad812f92f` |
 
-| 블록체인     |                   컨트랙트 주소                    |
-| -------- |:--------------------------------------------:|
-| 폴리곤(테스트) | `0x56e2898e0ceff0d1222827759b56b28ad812f92f` |
+## BandChain.JS {#bandchain-js}
 
-
-#### 사용예
-
-이 [컨트랙트](https://gist.github.com/tansawit/a66d460d4e896aa94a0790df299251db)는 Band의 `StdReference` 컨트랙트와 `getReferenceData` 함수를 사용하는 예를 보여줍니다.
+Band의 노드 헬퍼 라이브러리 [`bandchain.js`](https://www.npmjs.com/package/@bandprotocol/bandchain.js)도 유사한 `getReferenceData` 함수를 지원합니다. 이 함수는 하나의 인수를 사용하여 결과를 질의할 수 있습니다. 그런 다음 해당 가격 비율 값 목록을 반환합니다.
 
 
-### BandChain.JS
+### 사용 예시 {#example-usage}
 
-Band의 노드 도우미 라이브러리 [`bandchain.js`](https://www.npmjs.com/package/@bandprotocol/bandchain.js)도 유사한 `getReferenceData` 함수를 지원합니다. 이 함수는 결과를 쿼리할 토큰 쌍 목록인 하나의 인수를 취합니다. 그런 다음 해당 비율 값 목록을 반환합니다.
+아래 코드는 함수의 예제 사용을 보여줍니다.
 
-
-#### 사용 예
-
-아래 코드는 함수의 사용 예를 보여줍니다.
-
-```javascript=
+```javascript
 const { Client } = require('@bandprotocol/bandchain.js');
 
 // BandChain's REST Endpoint
@@ -92,31 +86,35 @@ async function exampleGetReferenceData() {
 
 ```
 
-해당 결과는 다음과 유사합니다.
+해당 결과는 다음과 같습니다.
 
 ```bash
 $ node index.js
-[ 
-    { 
+[
+    {
         pair: 'BTC/ETH',
         rate: 30.998744363906173,
         updatedAt: { base: 1615866954, quote: 1615866954 },
-        requestID: { base: 2206590, quote: 2206590 } 
+        requestID: { base: 2206590, quote: 2206590 }
     },
-    { 
+    {
         pair: 'BAND/EUR',
         rate: 10.566138918332376,
         updatedAt: { base: 1615866845, quote: 1615866911 },
-        requestID: { base: 2206539, quote: 2206572 } 
+        requestID: { base: 2206539, quote: 2206572 }
     }
 ]
 ```
 
-각 쌍에 대해 다음 정보가 반환됩니다:
+각 쌍에 대해 다음 정보가 반환됩니다.
 
-- `pair`: 기준/인용 심볼 쌍의 문자열
-- `rate`: 주어진 쌍의 결과 비율
-- `updated`: 기준 및 인용 기호가 BandChain에서 마지막으로 업데이트된 타임스탬프입니다. `USD`의 경우 현재 타임스탬프가 됩니다.
-- `rawRate`: 이 개체는 두 부분으로 구성됩니다.
-  - `value` 는  실제 비율의 `BigInt` 값에  `10^decimals`를 곱한 값입니다.
-  - `decimals` 는 `rawRate` 를 얻기 위해 `rate` 을 곱한 지수입니다.
+- `pair`: 기준/상대 기호 쌍 스트링
+- `rate`: 주어진 쌍의 결과 가격 비율
+- `updated`: 기준 및 상대 기호가 BandChain에서 마지막으로 업데이트된 때를 기록한 타임 스탬프 `USD`현재 타임스탬프가 될 것입니다.
+- `rawRate`: 이 객체는 두 부분으로 구성됩니다.
+  - `value`는 실제 가격 비율의 `BigInt` 값에 `10^decimals`를 곱한 것입니다.
+  - `decimals`는 지수로, 이것을 `rate`에 곱하여 `rawRate`를 얻습니다.
+
+## 사용 예시 {#example-usage-1}
+
+이 [계약](https://gist.github.com/tansawit/a66d460d4e896aa94a0790df299251db)은 Band의 `StdReference` 계약 및 `getReferenceData` 함수를 사용하는 예를 보여줍니다.

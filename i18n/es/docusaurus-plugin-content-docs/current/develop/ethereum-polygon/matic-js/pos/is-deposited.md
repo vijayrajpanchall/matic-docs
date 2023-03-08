@@ -2,11 +2,11 @@
 id: is-deposited
 title: isDeposited
 keywords:
-  - 'pos client, isDeposited, polygon, sdk'
-description: 'isDeposited method can be used to know if a deposit has been completed.'
+- 'pos client, isDeposited, polygon, sdk'
+description: 'Comprueba si se ha culminado un depósito.'
 ---
 
-`isDeposited` method can be used to know if a deposit has been completed.
+El método `isDeposited` se puede utilizar para saber si se ha culminado un depósito.
 
 ```
 const isDeposited = await posClient.isDeposited(<deposit tx hash>);

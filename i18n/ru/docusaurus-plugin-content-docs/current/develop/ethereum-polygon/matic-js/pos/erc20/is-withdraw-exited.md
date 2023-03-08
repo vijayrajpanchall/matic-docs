@@ -2,11 +2,11 @@
 id: is-withdraw-exited
 title: isWithdrawExited
 keywords:
-  - 'pos client, erc20, isWithdrawExited, polygon, sdk'
-description: 'isWithdrawExited method can be used to know whether the withdraw has been exited or not'
+- 'pos client, erc20, isWithdrawExited, polygon, sdk'
+description: 'Проверьте, был ли выполнен выход из вывода.'
 ---
 
-`isWithdrawExited` method can be used to know whether the withdraw has been exited or not.
+Метод `isWithdrawExited` можно использовать, чтобы узнать, был ли выполнен выход из вывода.
 
 ```
 const erc20RootToken = posClient.erc20(<root token address>,true);

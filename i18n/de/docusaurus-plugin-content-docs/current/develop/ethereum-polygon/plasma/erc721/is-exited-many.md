@@ -2,13 +2,13 @@
 id: is-exited-many
 title: isExitedMany
 keywords:
-  - 'plasma client, erc721, isExitedMany, polygon, sdk'
-description: 'Get started with maticjs'
+- 'plasma client, erc721, isExitedMany, polygon, sdk'
+description: 'Erste Schritte mit Maticjs'
 ---
 
-# isExitedMany
+# isExitedMany {#isexitedmany}
 
-`isExitedMany` method check if a withdraw has been exited. It returns boolean value.
+Damit `isExitedMany`wird geprüft, ob eine Auszahlung beendet wurde. Das Ergebnis ist der Boolesche Wert.
 
 ```
 const erc721Token = plasmaClient.erc721(<token address>);

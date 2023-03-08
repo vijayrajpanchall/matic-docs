@@ -1,30 +1,34 @@
 ---
 id: transactions
-title: Transactions
-description: When users want to interact with an application and make state changes (e.g. sending coins), they create transactions. Each of a transaction's `message` must be signed using the private key associated with the appropriate account before the transaction is broadcasted to the network.
+title: Транзакции
+description: Что такое транзакции, а когда они используются
 keywords:
   - docs
   - matic
+  - polygon
+  - Transactions
 image: https://matic.network/banners/matic-network-16x9.png
 ---
 
-Transactions are comprised of metadata held in [contexts](https://docs.cosmos.network/master/core/context.html) and [messages](https://docs.cosmos.network/master/building-modules/messages-and-queries.html) that trigger state changes within a module, through the module's [Handler](https://docs.cosmos.network/master/building-modules/handler.html).
+# Транзакции {#transactions}
 
-When users want to interact with an application and make state changes (e.g. sending coins), they create transactions. Each of a transaction's `message` must be signed using the private key associated with the appropriate account before the transaction is broadcasted to the network. A transaction must then be included in a block, validated, and then approved by the network through the consensus process. To read more about the lifecycle of a transaction, click [here](https://docs.cosmos.network/master/basics/tx-lifecycle.html).
+Транзакции состоят из метаданных, содержащихся в [контекстах](https://docs.cosmos.network/main/core/context.html) и [сообщений,](https://docs.cosmos.network/main/building-modules/messages-and-queries.html) которые вызывают изменения состояния в модуле, через Handler.
 
-## **Type Definition**
+Когда пользователи хотят взаимодействовать с приложением и изменять состояния (например, путем отправки монет), они совершают транзакции. Каждое `message` транзакции должно быть подписано с использованием приватного ключа, привязанного к соответствующему аккаунту, прежде чем транзакция будет передана в сеть. После этого транзакция должна быть включена в блок, проверена и одобрена сетью в процессе консенсуса. Чтобы узнать подробнее о жизненном цикле транзакции, нажмите [здесь](https://docs.cosmos.network/main/basics/tx-lifecycle.html).
 
-Transaction objects are SDK types that implement the `Tx` interface
+## Определение типа {#type-definition}
+
+Объекты транзакции — это типы SDK, которые реализуют `Tx`интерфейс.
 
 ```go
 type Tx interface {
-    // Gets all the transaction's messages.
-    GetMsgs() []Msg
+	// Gets all the transaction's messages.
+	GetMsgs() []Msg
 
-    // ValidateBasic does a simple and lightweight validation check that doesn't
-    // require access to any other information.
-    ValidateBasic() Error
+	// ValidateBasic does a simple and lightweight validation check that doesn't
+	// require access to any other information.
+	ValidateBasic() Error
 }
 ```
 
-More details on Transactions: [https://docs.cosmos.network/master/core/transactions.html](https://docs.cosmos.network/master/core/transactions.html)
+Более подробную информацию о транзакциях: [Transactions:](https://docs.cosmos.network/main/core/transactions.html)

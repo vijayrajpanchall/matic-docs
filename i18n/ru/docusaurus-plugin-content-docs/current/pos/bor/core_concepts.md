@@ -1,32 +1,35 @@
 ---
 id: core_concepts
-title: Core Concepts
-description: Bor is state chain in Polygon architecture. It is a fork of Geth [https://github.com/ethereum/go-ethereum](https://github.com/ethereum/go-ethereum) with new consensus called Bor.
+title: Ключевые понятия
+description: Bor — это цепочка состояния в архитектуре Polygon
 keywords:
   - docs
   - matic
+  - Core Concepts
+  - polygon
+  - state chain
+  - architecture
 image: https://matic.network/banners/matic-network-16x9.png
 ---
-
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-Bor is state chain in Polygon architecture. It is a fork of Geth [https://github.com/ethereum/go-ethereum](https://github.com/ethereum/go-ethereum) with new consensus called Bor.
+# Ключевые понятия {#core-concepts}
 
-Source: [https://github.com/maticnetwork/bor](https://github.com/maticnetwork/bor)
+Bor — это цепочка состояний в архитектуре Polygon. Bor — это форк Geth [https://github.com/ethereum/go-ethereum](https://github.com/ethereum/go-ethereum) с новым консенсусом.
 
-## Consensus
+Источник: [https://github.com/maticnetwork/bor](https://github.com/maticnetwork/bor)
 
-Bor uses new improved consensus, inspired by Clique consensus  [https://eips.ethereum.org/EIPS/eip-225](https://eips.ethereum.org/EIPS/eip-225)
+## consensus {#consensus}
 
-More details on consensus and specifications:
+Bor использует новый улучшенный консенсус, вдохновленный [консенсусом Clique](https://eips.ethereum.org/EIPS/eip-225)
 
-[Bor Consensus](https://www.notion.so/Bor-Consensus-5e52461f01ef4291bc1caad9ab8419c5)
+Более подробная информация о консенсусе и спецификациях: [Bor Consensus](https://www.notion.so/Bor-Consensus-5e52461f01ef4291bc1caad9ab8419c5)
 
-## Genesis
+## genesis {#genesis}
 
-The genesis block contains all the essential information to configure the network. It's basically the config file for Bor chain. To boot up Bor chain, the user needs to pass in the location of the file as a param.
+Генезисный блок содержит всю необходимую информацию для настройки сети. По сути, это файл конфигурации для цепочки Bor. Чтобы загрузить цепочку Bor, пользователю необходимо указать местоположение файла в качестве параметра.
 
-Bor uses `genesis.json` as Genesis block and params.  Here is an example for Bor genesis `config`
+Bor использует `genesis.json` в качестве генезисного блока и параметров.  Вот пример для генеза `config`Bor:
 
 ```json
 "config": {
@@ -48,43 +51,43 @@ Bor uses `genesis.json` as Genesis block and params.  Here is an example for Bor
   }
 ```
 
-[Config](https://www.notion.so/15ab7eb6e8124142a3641939762d6d67)
+[Конфигурация](https://www.notion.so/15ab7eb6e8124142a3641939762d6d67)
 
-[Consensus specific config](https://www.notion.so/17a8a10c3bd44b8caf34432c057e401c)
+[Специальная конфигурация консенсуса](https://www.notion.so/17a8a10c3bd44b8caf34432c057e401c)
 
-## EVM/Solidity as VM
+## EVM/Solidity в качестве виртуальной машины (VM) {#evm-solidity-as-vm}
 
-Bor uses un-modified EVM as a VM for a transaction. Developers can deploy any contract they wish using the same Ethereum tools and compiler like `solc` without any changes.
+Bor использует немодифицированную EVM в качестве виртуальной машины для транзакции. Разработчики могут развернуть любой контракт, используя те же инструменты и компилятор Ethereum, что и `solc`, без каких-либо изменений.
 
-## Matic as Native token (Gas token)
+## Matic как нативный токен (токен газа) {#matic-as-native-token-gas-token}
 
-Bor has a Matic token as a native token similar to ETH in Ethereum. It is often called the gas token. This token works correctly as to how ETH works currently on the Ethereum chain.
+В Bor есть нативный токен Matic, аналогичный токену ETH в сети Ethereum. Его также называют токен газа. Этот токен работает аналогично тому, как токен ETH работает в сети Ethereum.
 
-In addition to that, Bor provides an in-built wrapped ERC20 token for the native token (similar to WETH token), which means applications can use wrapped MATIC ERC20 token in their applications without creating their own wrapped ERC20 version of the Matic native token.
+В дополнение к этому, Bor предоставляет встроенный обернутый токен ERC20 для нативного токена (аналогичный токену WETH), что означает, что приложения могут использовать обернутый токен MATIC ERC20 в своих приложениях без создания собственной обернутой версии ERC20 нативного токена Matic.
 
-Wrapped ERC20 token is deployed at `0000000000000000000000000000000000001010` as `[MRC20.sol](https://github.com/maticnetwork/contracts/blob/develop/contracts/child/MRC20.sol)` on Bor as one of the genesis contracts.
+Обернутый токен ERC20 развертывается на `0000000000000000000000000000000000001010` как `[MRC20.sol](https://github.com/maticnetwork/contracts/blob/develop/contracts/child/MRC20.sol)` на Bor в качестве одного из контрактов genesis.
 
-### Fees
+### Комиссии {#fees}
 
-Native token is used as fees while sending transaction on Bor. This prevents spam on Bor and provides incentives to Block Producers to run the chain for longer period and discourages bad behaviour.
+Нативный токен используется в качестве комиссии при совершении транзакции в Bor. Это предотвращает спам в Bor, стимулирует блок продюсеров поддерживать цепочку в течение более длительного периода и препятствует ненадлежащему поведению.
 
-A transaction sender defines `GasLimit` and `GasPrice` for each transaction and broadcasts it on Bor. Each producer can define how much minimum gas price they can accept using `--gas-price` while starting Bor node. If user-defined `GasPrice` on the transaction is the same or greater than producer defined gas price, the producer will accept the transaction and includes it in the next available block. This enables each producer to allow its own minimum gas price requirement.
+Отправитель транзакции определяет `GasLimit` и `GasPrice` для каждой транзакции и транслирует их на Bor. При запуске нода Bor, каждый продюсер может определить, какую минимальную цену на газ он готов принять, используя `--gas-price`. Если определяемая пользователем `GasPrice` в транзакции равна или превышает цену на газ, определенную продюсером, продюсер примет транзакцию и включит ее в следующий доступный блок. Это позволяет каждому продюсеру устанавливать собственные минимальные цены на газ.
 
-Transaction fees will be deducted from sender's account in terms of Native token.
+Комиссия за транзакцию будет вычтена из счета отправителя в виде нативного токена.
 
-Here is the formula for transaction fees:
+Формула расчета комиссий за транзакцию:
 
 ```go
 Tx.Fee = Tx.GasUsed * Tx.GasPrice
 ```
 
-Collected fees for all transactions in a block are transferred to the producer's account using coinbase transfer. Since having more staking power increases your probability to become a producer, it will allow a validator with high staking power to collect more rewards (in terms of fees) accordingly.
+Собранные комиссии за все транзакции в блоке переводятся на аккаунт продюсера с помощью трансфера coinbase. Наличие большого объема в стейкинге повышает вероятность стать продюсером и позволит валидатору с высокой мощностью стейкинга получать больше наград (комиссий) соответственно.
 
-### Transfer receipt logs
+### Логи трансферных квитанций {#transfer-receipt-logs}
 
-Each Plasma compatible ERC20 token on Bor adds a special transfer receipt log. The Matic token is no exception to that.
+Каждый совместимый с Plasma токен ERC20 в Bor добавляет специальный лог о получении трансфера. Токен Matic не является исключением.
 
-`LogTransfer` is a special log that is added to all plasma compatible ERC20/721 tokens.  Consider it as one 2-inputs-2-outputs UTXO for transfer.  Here, `output1 = input1 - amount` and `output2 = input2 + amount`  This allows plasma fraud-proof contracts to verify a transfer of Matic ERC20 tokens (here, Native token) on the Ethereum chain.
+`LogTransfer` — это специальный лог, который добавляется ко всем токенам ERC20/721, совместимым с Plasma.  Рассматривайте это как один UTXO с 2 входами и 2 выходами для трансфера.  Здесь `output1 = input1 - amount` и `output2 = input2 + amount`  Это позволяет защищенным от мошенничества контрактам Plasma проверять передачу токентов Matic ERC20 (в данном случае, нативных токенов) в цепочке Ethereum.
 
 ```jsx
 /**
@@ -109,62 +112,62 @@ event LogTransfer(
 );
 ```
 
-Since Matic token is Native token and doesn't have Native ERC20 token, Bor adds receipt log for each transfer made for Native token using following Golang code. Source: [https://github.com/maticnetwork/bor/blob/develop/core/state_transition.go#L241-L252](https://github.com/maticnetwork/bor/blob/develop/core/state_transition.go#L241-L252)
+Поскольку токен MATIC — это нативный токен и не имеет токена Native ERC20, Bor добавляет журнал получения для каждого перевода для токена Native с использованием следующего кода Golang. Источник: [https://github.com/maticnetwork/bor/blob/develop/core/state_transition.go#L241-L252](https://github.com/maticnetwork/bor/blob/develop/core/state_transition.go#L241-L252)
 
-```jsx
+```go
 // addTransferLog adds transfer log into state
 func addTransferLog(
-    state vm.StateDB,
-    eventSig common.Hash,
+	state vm.StateDB,
+	eventSig common.Hash,
 
-    sender,
-    recipient common.Address,
+	sender,
+	recipient common.Address,
 
-    amount,
-    input1,
-    input2,
-    output1,
-    output2 *big.Int,
+	amount,
+	input1,
+	input2,
+	output1,
+	output2 *big.Int,
 ) {
-    // ignore if amount is 0
-    if amount.Cmp(bigZero) <= 0 {
-        return
-    }
+	// ignore if amount is 0
+	if amount.Cmp(bigZero) <= 0 {
+		return
+	}
 
-    dataInputs := []*big.Int{
-        amount,
-        input1,
-        input2,
-        output1,
-        output2,
-    }
+	dataInputs := []*big.Int{
+		amount,
+		input1,
+		input2,
+		output1,
+		output2,
+	}
 
-    var data []byte
-    for _, v := range dataInputs {
-        data = append(data, common.LeftPadBytes(v.Bytes(), 32)...)
-    }
+	var data []byte
+	for _, v := range dataInputs {
+		data = append(data, common.LeftPadBytes(v.Bytes(), 32)...)
+	}
 
-    // add transfer log
-    state.AddLog(&types.Log{
-        Address: feeAddress,
-        Topics: []common.Hash{
-            eventSig,
-            feeAddress.Hash(),
-            sender.Hash(),
-            recipient.Hash(),
-        },
-        Data: data,
-    })
+	// add transfer log
+	state.AddLog(&types.Log{
+		Address: feeAddress,
+		Topics: []common.Hash{
+			eventSig,
+			feeAddress.Hash(),
+			sender.Hash(),
+			recipient.Hash(),
+		},
+		Data: data,
+	})
 }
 ```
 
-### Deposit native token
+### Депозит нативного токена {#deposit-native-token}
 
-A user can receive Native token by depositing Matic tokens on Ethereum main-chain to `DepositManager` contract (deployed on Ethereum chain). Source: [https://github.com/maticnetwork/contracts/blob/develop/contracts/root/depositManager/DepositManager.sol#L68](https://github.com/maticnetwork/contracts/blob/develop/contracts/root/depositManager/DepositManager.sol#L68)
+Пользователь может получить нативный токен, внеся токены Matic в mainchain Ethereum на контракт `DepositManager` (развернутый в цепочке Ethereum). Источник: [https://github.com/maticnetwork/contracts/blob/develop/contracts/root/depositManager/DepositManager.sol#L68](https://github.com/maticnetwork/contracts/blob/develop/contracts/root/depositManager/DepositManager.sol#L68)
 
 ```jsx
 /**
- * Moves ERC20 tokens from Ethereum chain to Bor. 
+ * Moves ERC20 tokens from Ethereum chain to Bor.
  * Allowance for the `_amount` tokens to DepositManager is needed before calling this function.
  * @param _token   Ethereum ERC20 token address which needs to be deposited
  * @param _amount  Transferred amount
@@ -172,11 +175,11 @@ A user can receive Native token by depositing Matic tokens on Ethereum main-chai
 function depositERC20(address _token, uint256 _amount) external;
 ```
 
-Using `depositERC20` tokens, users can move Matic ERC20 token (Native token) or any other ERC20 tokens from the Ethereum chain to Bor chain.
+Используя токены `depositERC20`, пользователи могут перемещать токен Matic ERC20 (нативный токен) или любые другие токены ERC20 из цепочки Ethereum в цепочку Bor.
 
-### Withdraw native token
+### Вывод нативного токена {#withdraw-native-token}
 
-Withdraw from Bor chain to Ethereum chain works exactly like any other ERC20 tokens. A user can call `withdraw` function on ERC20 contract, deployed on Bor, at `0000000000000000000000000000000000001010`  to initiate withdraw process for the same.  Source: [https://github.com/maticnetwork/contracts/blob/develop/contracts/child/MaticChildERC20.sol#L47-L61](https://github.com/maticnetwork/contracts/blob/develop/contracts/child/MaticChildERC20.sol#L47-L61)
+Вывод из сети Bor в сеть Ethereum работает точно так же, как и с любыми другими токенами ERC20. Пользователь может вызвать функцию `withdraw` контракта ERC20, развернутого на Bor, в `0000000000000000000000000000000000001010`, чтобы инициировать процесс вывода средств для него.  Источник: [https://github.com/maticnetwork/contracts/blob/develop/contracts/child/MaticChildERC20.sol#L47-L61](https://github.com/maticnetwork/contracts/blob/develop/contracts/child/MaticChildERC20.sol#L47-L61)
 
 ```jsx
 /**
@@ -186,50 +189,50 @@ Withdraw from Bor chain to Ethereum chain works exactly like any other ERC20 tok
 function withdraw(uint256 amount) public payable;
 ```
 
-## In-built contracts (Genesis contracts)
+## Встроенные контракты (контракты Genesis) {#in-built-contracts-genesis-contracts}
 
-Bor starts with three in-built contracts, often called genesis contracts. These contracts are available at block 0. Source: [https://github.com/maticnetwork/genesis-contracts](https://github.com/maticnetwork/genesis-contracts)
+Bor основан на трех встроенных контрактах, часто называемых контрактами genesis. Эти контракты доступны в блоке 0. Источник: [https://github.com/maticnetwork/genesis-contracts](https://github.com/maticnetwork/genesis-contracts)
 
-These contracts are compiled using `solc --bin-runtime`. Example, following command emits compiled code for `contract.sol`
+Эти контракты скомпилированы с помощью `solc --bin-runtime`. Например, следующая команда выдает скомпилированный код для `contract.sol`
 
 ```bash
 solc --bin-runtime contract.sol
 ```
 
-Genesis contract is defined in `genesis.json`. When bor starts at block 0, it loads all contracts with the mentioned code and balance.
+Контракт Genesis определяется в `genesis.json`. Когда Bor запускается с нулевого блока, он загружает все контракты с указанным кодом и балансом.
 
 ```json
-"0x0000000000000000000000000000000000001010": { 
-    "balance": "0x0", 
-    "code" : "0x..." 
+"0x0000000000000000000000000000000000001010": {
+	"balance": "0x0",
+	"code" : "0x..."
 }
 ```
 
-Here are details for each genesis contract:
+Ниже приведены данные для каждого контракта генезиса.
 
-### Bor validator set
+### Набор валидаторов Bor {#bor-validator-set}
 
-Source: [https://github.com/maticnetwork/genesis-contracts/blob/master/contracts/BorValidatorSet.sol](https://github.com/maticnetwork/genesis-contracts/blob/master/contracts/BorValidatorSet.sol)
+Источник: [https://github.com/maticnetwork/genesis-contracts/blob/master/contracts/BorValidatorSet.sol](https://github.com/maticnetwork/genesis-contracts/blob/master/contracts/BorValidatorSet.sol)
 
-Deployed at: `0x0000000000000000000000000000000000001000`
+Развертывается в: `0x0000000000000000000000000000000000001000`
 
-`BorValidatorSet.sol` contract manages validator set for spans. Having a current validator set and span information into a contract allows other contracts to use that information. Since Bor uses producers from Heimdall (external source), it uses system call to change the contract state.
+Контракт `BorValidatorSet.sol` управляет набором валидаторов для диапазонов. Наличие в контракте текущего набора валидаторов и информации о диапазоне позволяет другим контрактам использовать эту информацию. Поскольку Bor использует продюсеров из Heimdall (внешний источник), он использует системный вызов для изменения состояния контракта.
 
-For first sprint all producers are defined in `BorValidatorSet.sol` directly.
+Для первого спринта все продюсеры определяются в `BorValidatorSet.sol` напрямую.
 
-`setInitialValidators` is called when the second span is being set. Since Bor doesn't support constructor for genesis contract, the first validator set needs to be set to `spans` map.
+`setInitialValidators` вызывается, когда устанавливается второй диапазон. Поскольку Bor не поддерживает конструктор для контракта genesis, первый набор валидаторов должен быть установлен на карту `spans`.
 
-First span details are following:
+Данные первого диапазона:
 
 ```jsx
 firstSpan = {
   number: 0,
-    startBlock: 0,
-    endBlock: 255
+	startBlock: 0,
+	endBlock: 255
 }
 ```
 
-Solidity contract definition:
+Определение контракта Solidity:
 
 ```jsx
 contract BorValidatorSet {
@@ -259,11 +262,11 @@ contract BorValidatorSet {
   mapping (uint256 => Span) public spans; // span number => span
   uint256[] public spanNumbers; // recent span numbers
 
-    /// Initializes initial validators to spans mapping since there is no way to initialize through constructor for genesis contract
-    function setInitialValidators() internal
+	/// Initializes initial validators to spans mapping since there is no way to initialize through constructor for genesis contract
+	function setInitialValidators() internal
 
-    /// Get current validator set (last enacted or initial if no changes ever made) with a current stake.
-    function getInitialValidators() public view returns (address[] memory, uint256[] memory;
+	/// Get current validator set (last enacted or initial if no changes ever made) with a current stake.
+	function getInitialValidators() public view returns (address[] memory, uint256[] memory;
 
   /// Returns bor validator set at given block number
   function getBorValidators(uint256 number) public view returns (address[] memory, uint256[] memory);
@@ -274,7 +277,7 @@ contract BorValidatorSet {
   /// Commits span (called through system call)
   function commitSpan(
     uint256 newSpan,
-    uint256 startBlock, 
+    uint256 startBlock,
     uint256 endBlock,
     bytes calldata validatorBytes,
     bytes calldata producerBytes
@@ -285,17 +288,17 @@ contract BorValidatorSet {
 }
 ```
 
-`proposeSpan` can be called by any valid validator with zero fees. Bor allows `proposeSpan` transaction to be free transaction since it is part of the system.
+`proposeSpan` может быть вызван любым действительным валидатором с нулевой комиссией. Bor допускает, чтобы транзакция `proposeSpan` была бесплатной транзакцией, поскольку она является частью системы.
 
-`commitSpan` is being called through the [system call](https://www.notion.so/maticnetwork/Overview-c8bdb110cd4d4090a7e1589ac1006bab#bba582b9e9c441d983aeec851b9421f9).
+`commitSpan` вызывается через [системный вызов](https://www.notion.so/maticnetwork/Overview-c8bdb110cd4d4090a7e1589ac1006bab#bba582b9e9c441d983aeec851b9421f9).
 
-### State receiver
+### Получатель состояния {#state-receiver}
 
-Source: [https://github.com/maticnetwork/genesis-contracts/blob/master/contracts/StateReceiver.sol](https://github.com/maticnetwork/genesis-contracts/blob/master/contracts/StateReceiver.sol)
+Источник: [https://github.com/maticnetwork/genesis-contracts/blob/master/contracts/StateReceiver.sol](https://github.com/maticnetwork/genesis-contracts/blob/master/contracts/StateReceiver.sol)
 
-Deployed at: `0x0000000000000000000000000000000000001001`
+Развертывается в: `0x0000000000000000000000000000000000001001`
 
-The state receiver contract manages incoming state sync records. The `state-sync` mechanism is basically a way to move state data from the Ethereum chain to Bor.
+Контракт получателя состояния управляет входящими записями синхронизации состояния. Механизм `state-sync` — это способ перемещения данных о состоянии из цепочки Ethereum в Bor.
 
 ```jsx
 contract StateReceiver {
@@ -306,17 +309,17 @@ contract StateReceiver {
   mapping(uint256 => bool) public states;
 
    /**
-     * Proposes new state from Ethereum chain
-     * @param stateId  State-id for new state
-     */
+	 * Proposes new state from Ethereum chain
+	 * @param stateId  State-id for new state
+	 */
   function proposeState(
     uint256 stateId
   ) external;
 
-    /**
-     * Commits new state through the system call
-     * @param recordBytes   RLP encoded record: {stateId, contractAddress, data}
-     */
+	/**
+	 * Commits new state through the system call
+	 * @param recordBytes   RLP encoded record: {stateId, contractAddress, data}
+	 */
   function commitState(
     bytes calldata recordBytes
   ) external onlySystem;
@@ -326,19 +329,19 @@ contract StateReceiver {
 }
 ```
 
-`proposeState` will be called by any valid validator with zero fees. Bor allows `proposeState`  transaction to be free transaction since it is part of the system.
+`proposeState` будет вызван любым действительным валидатором с нулевой комиссией. Bor допускает, чтобы транзакция `proposeState` была бесплатной транзакцией, поскольку она является частью системы.
 
-`commitState` is being called through the [system call](https://www.notion.so/maticnetwork/Overview-c8bdb110cd4d4090a7e1589ac1006bab#bba582b9e9c441d983aeec851b9421f9).
+`commitState` вызывается через [системный вызов](https://www.notion.so/maticnetwork/Overview-c8bdb110cd4d4090a7e1589ac1006bab#bba582b9e9c441d983aeec851b9421f9).
 
-### Matic ERC20 token
+### Токен Matic ERC20 {#matic-erc20-token}
 
-Source: [https://github.com/maticnetwork/contracts/blob/develop/contracts/child/MaticChildERC20.sol](https://github.com/maticnetwork/contracts/blob/develop/contracts/child/MaticChildERC20.sol)
+Источник: [https://github.com/maticnetwork/contracts/blob/develop/contracts/child/MaticChildERC20.sol](https://github.com/maticnetwork/contracts/blob/develop/contracts/child/MaticChildERC20.sol)
 
-Deployed at: `0x0000000000000000000000000000000000001010`
+Развертывается в: `0x0000000000000000000000000000000000001010`
 
-This is special contact that wraps Native coin (like ETH in Ethereum) and provides an ERC20 token interface. Example: `transfer` on this contract transfer Native coins. `withdraw` method in ERC20 token allows users to move their tokens from Bor to Ethereum chain.
+Это специальный контракт, который обрабатывает нативную монету (например, $ETH в Ethereum) и обеспечивает интерфейс токена ERC20. Пример: в этом `transfer`контракте передает нативные токены. `withdraw`Метод в токена ERC20 позволяет пользователям перенести свои токены из цепочки Bor в Ethereum.
 
-Note: This contract doesn't support `allowance`. This is same for every plasma compatible ERC20 token contracts.
+Примечание: Этот контракт не поддерживает `allowance`. Это одинаково для каждого контракта токена ERC20.
 
 ```jsx
 contract MaticChildERC20 is BaseERC20 {
@@ -379,7 +382,7 @@ contract MaticChildERC20 is BaseERC20 {
   }
 
   /**
-   * Total supply for the token. 
+   * Total supply for the token.
    * This is 10b tokens, same as total Matic supply on Ethereum chain
    */
   function totalSupply() public view returns (uint256) {
@@ -394,7 +397,7 @@ contract MaticChildERC20 is BaseERC20 {
       return account.balance;
   }
 
-  /** 
+  /**
    *  Function that is called when a user or another contract wants to transfer funds
    *  @param to Address of token receiver
    *  @param value Number of tokens to transfer
@@ -402,13 +405,13 @@ contract MaticChildERC20 is BaseERC20 {
    */
   function transfer(address to, uint256 value) public payable returns (bool) {
     if (msg.value != value) {
-          return false;
+		  return false;
     }
     return _transferFrom(msg.sender, to, value);
   }
 
   /**
-   * This enables to transfer native token between users 
+   * This enables to transfer native token between users
    * while keeping the interface the same as that of an ERC20 Token
    * @param _transfer is invoked by _transferFrom method that is inherited from BaseERC20
    */
@@ -419,123 +422,123 @@ contract MaticChildERC20 is BaseERC20 {
 }
 ```
 
-## System call
+## Системный вызов {#system-call}
 
-Only system address, `2^160-2`, allows making a system call. Bor calls it internally with the system address as `msg.sender`. It changes the contract state and updates the state root for a particular block. Inspired from [https://github.com/ethereum/EIPs/blob/master/EIPS/eip-210.md](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-210.md) and [https://wiki.parity.io/Validator-Set#contracts](https://wiki.parity.io/Validator-Set#contracts)
+Только системный адрес `2^160-2` позволяет выполнять системный вызов. Bor вызывает его внутри системы с системным адресом `msg.sender`. Он изменяет состояние контракта и обновляет корень состояния для определенного блока. На основе [https://github.com/ethereum/EIPs/blob/master/EIPS/eip-210.md](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-210.md) и [https://wiki.parity.io/Validator-Set#contracts](https://wiki.parity.io/Validator-Set#contracts)
 
-System call is helpful to change state to contract without making any transaction.
+Системный вызов полезен для изменения состояния контракта без совершения какой-либо транзакции.
 
-Limitation: Currently events emitted by system call are not observable and not-included in any transaction or block.
+Ограничение: в настоящее время события, создаваемые системным вызовом, недоступны для наблюдения и не включаются ни в одну транзакцию или блок.
 
-## Span management
+## Управление диапазоном {#span-management}
 
-Span is a logically defined set of blocks for which a set of validators is chosen from among all the available validators. Heimdall will select the committee of producers out of all validators. The producers will include a subset of validators depending upon the number of validators in the system.
+Диапазон (span) — это логически определенный набор блоков, для которого из всех доступных валидаторов выбирается набор валидаторов. Heimdall выбирает комитет продюсеров из всех валидаторов. Продюсеры будут включать подмножество валидаторов в зависимости от количества валидаторов в системе.
 
 <img src={useBaseUrl("img/Bor/span-management.svg")} />
 
-### Propose Span Tx
+### Предложить транзакцию Span {#propose-span-transaction}
 
-Type: **Heimdall transaction**
+Тип: **Транзакция Heimdall**
 
-Source:  [https://github.com/maticnetwork/heimdall/blob/develop/bor/handler.go#L27](https://github.com/maticnetwork/heimdall/blob/develop/bor/handler.go#L27)
+Источник: [https://github.com/maticnetwork/heimdall/blob/develop/bor/handler.go#L27](https://github.com/maticnetwork/heimdall/blob/develop/bor/handler.go#L27)
 
-`spanProposeTx` sets validators’ committee for a given `span` in case of successful transaction inclusion. One transaction for each span must be included in Heimdall. It is called `spanProposeTx` on Heimdall. `spanProposeTx` must revert if being sent frequently or there is no less than 33% stake change occurred within the current committee (for, given `span`).
+`spanProposeTx` устанавливает комитет валидаторов для заданных `span` в случае успешного включения транзакции. Одна транзакция для каждого диапазона должна быть включена в Heimdall. Он называется `spanProposeTx` на Heimdall. `spanProposeTx` должен быть возвращен, если его часто отправляют или в текущем комитете произошло изменение стейка не менее, чем на 33% (для заданного `span`).
 
-`bor` module on Heimdall handles span management. Here is how Bor chooses producers out of all validators:
+Модуль `bor` на Heimdall обрабатывает управление диапазоном. Вот как Bor выбирает продюсеров из всех валидаторов:
 
-1. Bor creates multiple slots based on validators' power. Example: A with power 10 will have 10 slots, B with power 20 with have 20 slots.
-2. With all slots, `shuffle` function shuffles them using `seed` and selects first `producerCount` producers.  `bor` module on Heimdall uses ETH 2.0 shuffle algorithm to choose producers out of all validators. Each span `n` uses block hash of Ethereum (ETH 1.0) block `n`  as `seed`. Note that slots based selection allows validators to get selected based on their power. The higher power validator will have a higher probability to get selected. Source: [https://github.com/maticnetwork/heimdall/blob/develop/bor/selection.go](https://github.com/maticnetwork/heimdall/blob/develop/bor/selection.go)
+1. Bor создает несколько слотов на основе мощности валидаторов. Пример: «А» с мощностью 10 будет иметь 10 слотов, «B» с мощностью 20 будет иметь 20 слотов.
+2. Функция `shuffle` перемешивает все слоты, используя `seed`, и выбирает первых `producerCount` продюсеров. Модуль `bor` на Heimdall использует алгоритм перетасовки ETH 2.0 для выбора продюсеров из всех валидаторов. Каждый диапазон `n` использует хэш блока Ethereum (ETH 1.0) блока `n`,  как `seed`. Обратите внимание, что выбор на основе слотов позволяет валидаторам выбираться на основе их мощности. Валидатор с более высокой мощностью будет иметь более высокую вероятность быть выбранным. Источник: [https://github.com/maticnetwork/heimdall/blob/develop/bor/selection.go](https://github.com/maticnetwork/heimdall/blob/develop/bor/selection.go)
 
 ```go
 // SelectNextProducers selects producers for the next span by converting power to slots
 // spanEligibleVals - all validators eligible for next span
 func SelectNextProducers(blkHash common.Hash, spanEligibleVals []hmTypes.Validator, producerCount uint64) (selectedIDs []uint64, err error) {
-    if len(spanEligibleVals) <= int(producerCount) {
-        for _, val := range spanEligibleVals {
-            selectedIDs = append(selectedIDs, uint64(val.ID))
-        }
-        return
-    }
+	if len(spanEligibleVals) <= int(producerCount) {
+		for _, val := range spanEligibleVals {
+			selectedIDs = append(selectedIDs, uint64(val.ID))
+		}
+		return
+	}
 
-    // extract seed from hash
-    seed := helper.ToBytes32(blkHash.Bytes()[:32])
-    validatorIndices := convertToSlots(spanEligibleVals)
-    selectedIDs, err = ShuffleList(validatorIndices, seed)
-    if err != nil {
-        return
-    }
-    return selectedIDs[:producerCount], nil
+	// extract seed from hash
+	seed := helper.ToBytes32(blkHash.Bytes()[:32])
+	validatorIndices := convertToSlots(spanEligibleVals)
+	selectedIDs, err = ShuffleList(validatorIndices, seed)
+	if err != nil {
+		return
+	}
+	return selectedIDs[:producerCount], nil
 }
 
 // converts validator power to slots
 func convertToSlots(vals []hmTypes.Validator) (validatorIndices []uint64) {
-    for _, val := range vals {
-        for val.VotingPower >= types.SlotCost {
-            validatorIndices = append(validatorIndices, uint64(val.ID))
-            val.VotingPower = val.VotingPower - types.SlotCost
-        }
-    }
-    return validatorIndices
+	for _, val := range vals {
+		for val.VotingPower >= types.SlotCost {
+			validatorIndices = append(validatorIndices, uint64(val.ID))
+			val.VotingPower = val.VotingPower - types.SlotCost
+		}
+	}
+	return validatorIndices
 }
 ```
 
-### Commit span Tx
+### Фиксация диапазона передачи {#commit-span-tx}
 
-Type: **Bor transaction**
+Тип: **Транзакция Bor**
 
-There are two way to commit span in Bor.
+Есть два способа фиксации диапазона в Bor.
 
-1. **Automatic span change**
+1. **Автоматическое изменение диапазона**
 
-    At the end of the current span, at last block of the last sprint, Bor queries the next span from Heimdall and set validators and producers for the next span using a system call.
+    В конце текущего диапазона, в последнем блоке последнего спринта, Bor запрашивает у Heimdall следующий диапазон и набор валидаторов и продюсеров для следующего диапазона с помощью системного вызова.
 
     ```jsx
     function commitSpan(
-        bytes newSpan, 
+        bytes newSpan,
         address proposer,
-        uint256 startBlock, 
+        uint256 startBlock,
         uint256 endBlock,
         bytes validatorBytes,
         bytes producerBytes
      ) public onlySystem;
     ```
 
-    Bor uses new producers as block producers for their next blocks.
+    Bor использует новых продюсеров в качестве блок продюсеров для своих следующих блоков.
 
-2. **Force commit**
+2. **Принудительная фиксация**
 
-    Once the `span` proposed on Heimdall, the validator can force push span if span needs to be changed before the current span ends. A transaction to propose a `span` must be committed to Bor by any validator. Bor then updates and commits the proposed span at end of the current sprint using a system call.
+    После того, как `span` предложен Heimdall, валидатор может форсировать проталкивание диапазона, если диапазон необходимо изменить до того, как текущий диапазон закончится. Транзакция для предложения `span` должна быть зафиксирована в Bor любым валидатором. Затем Бор обновляет и фиксирует предложенный диапазон в конце текущего спринта с помощью системного вызова.
 
 
-## State management (State-sync)
+## Управление состоянием (State-sync) {#state-management-state-sync}
 
-State management sends the state from the Ethereum chain to Bor chain. It is called `state-sync`. This is a way to move data from the Ethereum chain to Bor chain.
+Управление состоянием отправляет состояние из цепочки Ethereum в цепочку Bor. Это называется `state-sync`. Это способ переместить данные из цепочки Ethereum в цепочку Bor.
 
 <img src={useBaseUrl("img/Bor/state-managment.svg")} />
 
-### State sender
+### Отправитель состояния {#state-sender}
 
-Source: [https://github.com/maticnetwork/contracts/blob/develop/contracts/root/stateSyncer/StateSender.sol](https://github.com/maticnetwork/contracts/blob/develop/contracts/root/stateSyncer/StateSender.sol)
+Источник: [https://github.com/maticnetwork/contracts/blob/develop/contracts/root/stateSyncer/StateSender.sol](https://github.com/maticnetwork/contracts/blob/develop/contracts/root/stateSyncer/StateSender.sol)
 
-To sync state sync, call following method **state sender contract** on Ethereum chain. The `state-sync` mechanism is basically a way to move state data from the Ethereum chain to Bor.
+Чтобы синхронизировать управление состоянием, вызовите следующий метод **state sender contract** в цепочке Ethereum. Механизм `state-sync` — это способ перемещения данных о состоянии из цепочки Ethereum в Bor.
 
-A user, who wants to move `data` from contract on Ethereum chain to Bor chain, calls `syncSate` method on `StateSender.sol`
+Пользователь, который хочет переместить `data` из контракта в цепочке Ethereum в цепочку Bor, вызывает метод `syncSate` на `StateSender.sol`
 
 ```jsx
 contract StateSender {
-    /**
-     * Emits `stateSynced` events to start sync process on Ethereum chain
-     * @param receiver    Target contract on Bor chain
-     * @param data        Data to send
-     */
-    function syncState (
-        address receiver, 
-        bytes calldata data
-    ) external;
+	/**
+	 * Emits `stateSynced` events to start sync process on Ethereum chain
+	 * @param receiver    Target contract on Bor chain
+	 * @param data        Data to send
+	 */
+	function syncState (
+		address receiver,
+		bytes calldata data
+	) external;
 }
 ```
 
-`receiver` contract must be present on the child chain, which receives state `data` once the process is complete. `syncState` emits `StateSynced` event on Ethereum, which is the following:
+Контракт `receiver` должен присутствовать в дочерней цепочке, которая получает состояние `data` после завершения процесса. `syncState` генерирует событие `StateSynced` на Ethereum, которое выглядит следующим образом:
 
 ```jsx
 /**
@@ -545,21 +548,21 @@ contract StateSender {
  * @param data                Data to send to Bor chain for Target contract address
  */
 event StateSynced (
-    uint256 indexed id, 
-    address indexed contractAddress, 
-    bytes data
+	uint256 indexed id,
+	address indexed contractAddress,
+	bytes data
 );
 ```
 
-Once `StateSynced` event emitted on `stateSender` contract on the Ethereum chain, any validator sends `MsgEventRecord` transaction on Heimdall.
+Как только событие `StateSynced` сгенерировано на контракте `stateSender` в цепочке Ethereum, любой валидатор отправляет транзакцию `MsgEventRecord` на Heimdall.
 
-After confirmation of a tx on Heimdall, a validator proposes `proposeState` on Bor with the simple transaction and at end of the sprint, Bor commits and finalizes `state-sync` by calling `commitState` using a `system` call.
+После подтверждения передачи на Heimdall валидатор предлагает `proposeState` на Bor с простой транзакцией, а в конце спринта Bor фиксирует и завершает `state-sync`, вызывая `commitState` с помощью `system` вызова.
 
-During `commitState`, Bor executes `onStateReceive`, with `stateId` and `data` as args, on target contract.
+В течение `commitState` Bor выполняет `onStateReceive`, с `stateId` и `data` в качестве аргументов по целевому контракту.
 
-### State receiver interface
+### Интерфейс получателя состояний {#state-receiver-interface}
 
-`receiver` contract on Bor chain must implement following interface.
+`receiver` контракт в цепочке Bor должен реализовывать следующий интерфейс.
 
 ```jsx
 // IStateReceiver represents interface to receive state
@@ -568,44 +571,44 @@ interface IStateReceiver {
 }
 ```
 
-Only `0x0000000000000000000000000000000000001001` — `StateReceiver.sol`, must be allowed to call `onStateReceive` function on target contract.
+Только `0x0000000000000000000000000000000000001001` — `StateReceiver.sol` должно быть разрешено вызывать функцию `onStateReceive` в целевом контракте.
 
-## Transaction speed
+## Скорость транзакции {#transaction-speed}
 
-Bor currently works as expected with ~2 to 4 seconds' block time with 100 validators and 4 block producers. After multiple stress testing with huge number of transactions, exact block time will be decided.
+В настоящее время Bor работает, как и ожидалось, со временем блока от ~2 до 4 секунд со 100 валидаторами и 4 блок продюсерами. После многократного стресс-тестирования с огромным количеством транзакций будет определено точное время блока.
 
-Using sprint-based architecture helps Bor to create faster bulk blocks without changing the producer during the current sprint. Having delay between two sprints gives other producers to receive a broadcasted block, often called as `producerDelay`
+Использование архитектуры на основе спринта помогает Bor быстрее создавать объемные блоки, не меняя продюсера во время текущего спринта. Задержка между двумя спринтами дает другим продюсерам возможность получать транслируемый блок, часто называемый `producerDelay`
 
-Note that time between two sprints is higher than normal blocks to buffer to reduce the latency issues between multiple producers.
+Обратите внимание, что время между двумя спринтами больше, чем обычные блоки, что позволяет создать буфер для уменьшения задержек между несколькими продюсерами.
 
-## Attacks
+## Атаки {#attacks}
 
-### Censorship
+### Цензура {#censorship}
 
-Bor uses a very small set of producers to create faster blocks. It means it is prone to more censorship attacks than Heimdall. In order to deal with that, multiple testing will be done to find out the max number of producers for acceptable block time in the system.
+Bor использует очень небольшой набор продюсеров для создания более быстрых блоков. Это означает, что он подвержен большему количеству атак цензуры, чем Heimdall. Для решения этого будет проведено многократное тестирование, чтобы выяснить максимальное количество продюсеров для приемлемого времени блокировки в системе.
 
-Apart from that there are few attacks possible:
+Кроме того, есть несколько возможных атак:
 
-1. One producer is censoring the transaction
+1. Один продюсер цензурирует транзакцию
 
-    In that case, the transaction sender can wait for the next producer's sprint and try to send the transaction again.
+    В этом случае отправитель транзакции может дождаться следующего спринта продюсера и попытаться повторно отправить транзакцию.
 
-2. All validators are colluding with each-other and censoring particular transaction
+2. Все валидаторы вступают в сговор друг с другом и цензурируют конкретную транзакцию
 
-    In this case, Polygon system will provide a way to submit a transaction on Ethereum chain and ask validators to include the transaction in next `x` checkpoints. If validators fail to include it during that time window, the user can slash the validators. Note that this is not currently implemented.
+    В этом случае система Polygon предоставит способ отправить транзакцию в цепочку Ethereum и попросить валидаторов включить транзакцию в следующие `x` checkpoint. Если валидаторы не смогут включить его в течение этого времени, пользователь может сократить валидаторов. Обратите внимание, что в настоящее время это не реализовано.
 
-### Fraud
+### Мошенничество {#fraud}
 
-Producers can include invalid transaction during their turn. It can be possible at multiple levels:
+Продюсеры могут включить недействительную транзакцию в свой ход. Это возможно на нескольких уровнях:
 
-1. One producer is fraudulent
+1. Один продюсер является мошенником
 
-    If a producer includes invalid transaction at any height, other producers can create a fork and exclude that transaction since their valid node ignores invalid blocks
+    Если продюсер включает недопустимую транзакцию на любой высоте, другие продюсеры могут создать ответвление и исключить эту транзакцию, поскольку их действительный нод игнорирует недопустимые блоки
 
-2. Span producers are fraudulent
+2. Продюсеры диапазонов являются мошенниками
 
-    If other producers don't create a fork, other validators who are validating the block can forcefully change the span by creating their own fork. This is not currently implemented since it requires how Geth works internally. However, this is in our future roadmap.
+    Если другие продюсеры не создают ответвление, другие валидаторы, проверяющие блок, могут принудительно изменить диапазон, создав собственное ответвление. В настоящее время это не реализовано, поскольку требует внутренней поддержки со стороны Geth. Тем не менее, это есть в наших планах.
 
-3. All validators are fraudulent
+3. Все валидаторы являются мошенниками
 
-    Assumption is that ⅔+1 validators must be honest to work this system correctly.
+    Для правильной работы системы предполагается, что ⅔+1 валидаторов являются честными.

@@ -2,11 +2,11 @@
 id: is-approved-all
 title: isApprovedAll
 keywords:
-  - 'pos client, erc721, isApprovedAll, polygon, sdk'
-description: 'Get started with maticjs'
+- 'pos client, erc721, isApprovedAll, polygon, sdk'
+description: 'Vérifie si tous les jetons sont approuvés.'
 ---
 
-`isApprovedAll` method checks if all token is approved. It returns boolean value.
+`isApprovedAll` La méthode vérifie si tous les jetons sont approuvés. Cela renvoie une valeur booléenne.
 
 ```
 const erc721Token = posClient.erc721(<token address>, true);

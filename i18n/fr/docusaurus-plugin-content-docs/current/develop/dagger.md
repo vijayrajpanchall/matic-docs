@@ -2,21 +2,22 @@
 id: dagger
 title: Dagger
 sidebar_label: Dagger - Single App
-description: Build your next blockchain app on Matic.
+description: Créez votre prochaine application blockchain sur Polygon
 keywords:
   - docs
   - matic
-image: https://matic.network/banners/matic-network-16x9.png
+  - polygon
+  - dagger
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
-
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Dagger is the best way to get realtime updates from Ethereum Blockchain. It provides a way for your DApps and Backend system to get Ethereum blockchain events i.e. transactions, token transfers, receipts and logs in realtime over websocket or socket.
+Dagger est le meilleur moyen d'obtenir des mises à jour en temps réel de la Blockchain d'Ethereum. Il fournit un moyen pour votre système DApps et Backend d'obtenir des événements de la Blockchain d'Ethereum, c'est-à-dire des transactions, des transferts de jetons, des reçus et des journaux en temps réel via Websocket ou socket.
 
-We maintain infrastructure for reliable and scalable realtime events. `@maticnetwork/dagger` is consumer library for Dagger project written in NodeJS. It uses Dagger server to get realtime updates from Ethereum Network.
+Nous maintenons une infrastructure pour des événements en temps réel fiables et évolutifs. `@maticnetwork/dagger` est une bibliothèque grand public pour le projet Dagger écrite dans NodeJS. Il utilise le serveur Dagger pour obtenir des mises à jour en temps réel du Réseau Ethereum.
 
-## Installation
+## Installation {#installation}
 
 ```sh
 # Using Yarn
@@ -26,64 +27,64 @@ yarn add @maticnetwork/dagger
 npm install @maticnetwork/dagger --save
 ```
 
-## Network
+## Réseau {#network}
 
-### Ethereum Network
+### Réseau Ethereum {#ethereum-network}
 
-#### Mainnet
+#### Réseau principal {#mainnet}
 
 ```sh
 Websocket: wss://mainnet.dagger.matic.network
 Socket: mqtts://mainnet.dagger.matic.network (You can also use `ssl://` protocol)
 ```
 
-#### Kovan
+#### Kovan {#kovan}
 
 ```sh
 Websocket: wss://kovan.dagger.matic.network
 Socket: mqtts://kovan.dagger.matic.network (You can also use `ssl://` protocol)
 ```
 
-#### Ropsten
+#### Ropsten {#ropsten}
 
 ```sh
 Websocket: wss://ropsten.dagger.matic.network
 Socket: mqtts://ropsten.dagger.matic.network (You can also use `ssl://` protocol)
 ```
 
-#### Goerli
+#### Goerli {#goerli}
 
 ```sh
 Websocket: wss://goerli.dagger.matic.network
 Socket: mqtts://goerli.dagger.matic.network (You can also use `ssl://` protocol)
 ```
 
-### Matic Network
+### Réseau Matic {#matic-network}
 
-#### Mainnet
+#### Réseau principal {#mainnet-1}
 
 ```sh
 Websocket: wss://matic-mainnet.dagger.matic.network
 Socket: mqtts://matic-mainnet.dagger.matic.network (You can also use `ssl://` protocol)
 ```
 
-#### Mumbai Testnet
+#### Mumbai Testnet {#mumbai-testnet}
 
 ```sh
 Websocket: wss://mumbai-dagger.matic.today
 Socket: mqtts://mumbai-dagger.matic.today (You can also use `ssl://` protocol)
 ```
 
-## Example
+## Exemple {#example}
 
-- Lets first create a _npm_ project.
+- Commençons par créer un projet _npm_ .
 
 ```bash
 npm init -y
 touch index.js
 ```
 
-- Now we can put following code snippet in `index.js`.
+- Nous pouvons maintenant mettre l'extrait du code suivant dans `index.js`.
 
 ```javascript
 const Dagger = require('@maticnetwork/dagger')
@@ -99,109 +100,110 @@ dagger.on('latest:block.number', result => {
 })
 ```
 
-- Run `index.js` & you'll start receiving block number as soon as new block gets created.
+- Exécutez `index.js` et vous commencerez à recevoir le numéro de bloc dès qu'un nouveau bloc sera créé.
 
 ```bash
 node index.js
 ```
 
-## API
+## API {#api}
 
-### new Dagger(url)
+### nouveau Dagger (url) {#new-dagger-url}
 
-Create dagger object
+Créer un objet Dagger
 
-- `url` is dagger server's address. Check [network section](#network) for all available url values.
+- `url`  est l'adresse du serveur dagger. Vérifier la [section réseau](#network) pour toutes les valeurs d'url disponibles.
 
-Example:
+Exemple:
 
 ```js
 const dagger = new Dagger(<url>)
 ```
 
-### dagger.on(event, fn)
+### dagger.on(event, fn) {#dagger-on-event-fn}
 
-Subscribe to a topic
+Abonnez-vous à un sujet
 
-- `event` is a `String` topic to subscribe to. `event` wildcard characters are supported (`+` - for single level and `#` - for multi level)
-- `fn` - `function (data, removed)` fn will be executed when event occurred:
-  - `data` data from event
-  - `removed` flag saying if data is removed from blockchain due to re-organization.
+- `event`  est un `String` sujet  auquel s'abonner. `event`les caractères génériques  sont pris en charge (`+` - pour un seul niveau et `#` - pour plusieurs niveaux)
+- `fn` - `function (data, removed)`
+fn sera exécuté lorsque l'événement se produira:
+  - `data` les données de l'événement
+  - `removed` le drapeau indiquant si les données sont supprimées de la blockchain en raison d'une réorganisation.
 
-Example:
+Exemple:
 
 ```js
 dagger.on('latest:block.number', (res, flag) => { console.log(res, flag) })
 ```
 
-### dagger.once(event, fn)
+### dagger.once(event, fn) {#dagger-once-event-fn}
 
-Same as [on](#daggeronevent-fn) but will be fired only once.
+Identique à [sur](#daggeronevent-fn) mais ne sera tiré qu'une seule fois.
 
-Example:
+Exemple:
 
 ```js
 dagger.once('latest:block.number', (res, flag) => { console.log(res, flag) })
 ```
 
-### dagger.off(event, fn)
+### dagger.off(event, fn) {#dagger-off-event-fn}
 
-Unsubscribe from a topic
+Désabonnez-vous d'un sujet
 
-- `event` is a `String` topic to unsubscribe from
+- `event` est un `String` sujet dont il faut se désabonner
 - `fn` - `function (data, removed)`
 
-Example:
+Exemple:
 
 ```js
 dagger.off('latest:block.number', (res, flag) => { console.log(res, flag) })
 ```
 
-### dagger.of(room)
+### dagger.of(room) {#dagger-of-room}
 
-Create room out of dagger. `room` has to be one out of two values
+Créez de la place avec dagger. `room` doit être une valeur sur deux
   - `latest`
   - `confirmed`
 
-`room` object has following methods:
-  - `on` same as dagger `on`
-  - `once` same as dagger `once`
-  - `off` same as dagger `off`
+`room` l'objet dispose des méthodes suivantes:
+  - `on` identique à dagger `on`
+  - `once` identique à dagger `once`
+  - `off` identique à dagger `off`
 
 ```js
 const latestRoom = dagger.of('latest')
 const confirmedRoom = dagger.of('confirmed')
 ```
 
-### dagger.end([force])
+### dagger.end([force]) {#}
 
-Close the dagger, accepts the following options:
+Fermer le dagger, accepte les options suivantes:
 
-- `force`: passing it to true will close the dagger right away. This parameter is optional.
+- `force`: le passer sur « vrai » fermera immédiatement Dagger. Ce paramètre est facultatif.
 
 ```js
 dagger.end({force: true}) // immediate closing
 ```
 
-### dagger.contract(web3Contract)
+### dagger.contract(web3Contract) {#dagger-contract-web3contract}
 
-Creates web3 contract wrapper to support Dagger.
+Crée un papier de contrat Web3 pour prendre en charge Dagger.
 
-- First create a web3 contract object.
+- Créez d'abord un objet de contrat web3.
 
 ```javascript
 // web3 contract
 const web3Contract = new web3.eth.Contract(abi, address)
 ```
 
-- Now we'll create a dagger contract wrapper on it.
+- Nous allons maintenant créer un papier de contrat Dagger dessus.
 
 ```javascript
 // dagger contract
 const contract = dagger.contract(web3Contract)
 ```
 
-- Time to filter out contract events
+- Il est temps de filtrer les événements du contract
 
 ```javascript
 const filter = contract.events.Transfer({
@@ -210,7 +212,7 @@ const filter = contract.events.Transfer({
 })
 ```
 
-- Watching contract events
+- Regarder les événements du contract
 
 ```javascript
 // watch
@@ -220,61 +222,61 @@ filter.watch((data, removed) => { console.log(data, removed) })
 filter.watchOnce((data, removed) => { console.log(data, removed) })
 ```
 
-- Stopping event watching
+- Arrêter de surveiller les événements
 
 ```js
 // stop watching
 filter.stopWatching();
 ```
 
-## Events
+## Événements {#events}
 
-Every event has a room ∈ {`latest`, `confirmed`}.
-  - `latest` : Events are fired immediately after block included in chain.
-  - `confirmed` : Events are fired after 12 confirmations.
+Chaque événement a une salle ∈ {`latest`, `confirmed`}.
+  - `latest` : Les événements sont déclenchés immédiatement après le bloc inclus dans la chaîne.
+  - `confirmed` : Les événements sont déclenchés après 12 confirmations.
 
-If you want to show updates on UI in your DApp, use `latest` events. It will help to make UI/UX better and user friendly.
+Si vous souhaitez afficher des mises à jour sur l'interface utilisateur dans votre DApp, utilisez les événements `latest` . Cela contribuera à améliorer l'interface utilisateur et l'expérience utilisateur et à la rendre plus conviviale.
 
-Use `confirmed` events for irreversible tasks from server or on UI. Like sending email, notifications or allow user to do subsequent task on UI after one transaction gets confirmed.
+Utilisez `confirmed` les événements pour les tâches irréversibles à partir du serveur ou de l'interface utilisateur. Comme envoyer des e-mails, des notifications ou autoriser l'utilisateur à effectuer une tâche ultérieure sur l'interface utilisateur après la confirmation d'une transaction.
 
-### Network Events
+### Événements du Réseau {#network-events}
 
-| Ethereum event                                 | When?                                                                   | `removed` flag |
+| Événement Ethereum | Quand? | `removed`drapeau |
 | ---------------------------------------------- | ----------------------------------------------------------------------- | -------------- |
-| block                                          | For every new block created                                             | Yes            |
-| block.number                                   | For every new block number created                                      |                |
-| block.hash                                     | For every new block hash created                                        | Yes            |
-| block/`number`                                 | When particular block in future included in chain                       | Yes            |
-| addr/`address`/tx                              | On every new transaction for `address`                                  | Yes            |
-| addr/`address`/tx/out                          | On every new outgoing transaction for `address`                         | Yes            |
-| addr/`address`/tx/in                           | On every new incoming transaction for `address`                         | Yes            |
-| tx/`txId`                                      | When given `txId` included in block                                     | Yes            |
-| tx/`txId`/success                              | When tx status is success (included in block) for `txId`                | Yes            |
-| tx/`txId`/fail                                 | When tx fails (included in block) for `txId`                            | Yes            |
-| tx/`txId`/receipt                              | When receipt is generated (included in block) for `txId`                | Yes            |
-| addr/`contractAddress`/deployed                | When new `contractAddress` included in block                            | Yes            |
-| log/`contractAddress`                          | When new log generated for `contractAddress`                            | Yes            |
-| log/`contractAddress`/filter/`topic1`/`topic2` | When new log with `topic1` and `topic2` generated for `contractAddress` | Yes            |
+| bloc | Pour chaque nouveau bloc créé | Oui |
+| block.number | Pour chaque nouveau numéro de bloc créé |                |
+| block.hash | Pour chaque nouveau identifiant de bloc créé | Oui |
+| bloc/`number` | Lorsqu'un bloc particulier sera inclus à l'avenir dans la chaîne | Oui |
+| addr/`address`/tx | À chaque nouvelle transaction pour `address` | Oui |
+| addr/`address`/tx/out | À chaque nouvelle transaction sortante pour `address` | Oui |
+| addr/`address`/tx/in | À chaque nouvelle transaction entrante pour `address` | Oui |
+| tx/`txId` | Une fois que `txId` est inclus dans le bloc | Oui |
+| tx/`txId`/succès | Lorsque le statut tx est un succès (inclus dans le bloc) pour `txId` | Oui |
+| tx/`txId`/échec | Lorsque tx échoue (inclus dans le bloc) pour `txId` | Oui |
+| tx/`txId`/reçu | Lorsque le reçu est généré (inclus dans le bloc) pour `txId` | Oui |
+| addr/`contractAddress`/déployé | Lorsqu'un nouveau `contractAddress` est inclus dans le bloc | Oui |
+| log/`contractAddress` | Lorsqu'un nouveau dossier est généré pour `contractAddress` | Oui |
+| journal/`contractAddress`/filtre/`topic1`/`topic2` | Lorsqu'un nouveau journal avec `topic1` et `topic2` est généré pour `contractAddress` | Oui |
 
-### Dagger Events
+### Événements Dagger {#dagger-events}
 
-| Dagger Event      | When?                          | args           |
+| Événement Dagger | Quand? | args |
 | ----------------- | ------------------------------ | -------------- |
-| connection.status | When connection status changes | value: Boolean |
+| connection.status | Lorsque l'état de la connexion change | valeur : Booléen |
 
 
-Every event has to start with room:
+Chaque événement doit commencer avec un espace:
 
-#### block
+#### bloc {#block}
 
-For every new block
+Pour chaque nouveau bloc
 
 <Tabs
-  defaultValue="latest"
-  values={[
-    { label: 'latest', value: 'latest', },
- { label: 'confirmed', value: 'confirmed', },
- ]
+defaultValue="latest"
+values={[
+{ label: 'latest', value: 'latest', },
+{ label: 'confirmed', value: 'confirmed', },
+]
 }>
 <TabItem value="latest">
 
@@ -296,16 +298,17 @@ dagger.on("confirmed:block", result => {
 </TabItem>
 </Tabs>
 
-#### block.number
 
-For every new block number
+#### block.number {#block-number}
+
+Pour chaque nouveau numéro de bloc
 
 <Tabs
-  defaultValue="latest"
-  values={[
-    { label: 'latest', value: 'latest', },
- { label: 'confirmed', value: 'confirmed', },
- ]
+defaultValue="latest"
+values={[
+{ label: 'latest', value: 'latest', },
+{ label: 'confirmed', value: 'confirmed', },
+]
 }>
 <TabItem value="latest">
 
@@ -327,16 +330,16 @@ dagger.on("confirmed:block.number", result => {
 </TabItem>
 </Tabs>
 
-#### block.hash
+#### block.hash {#block-hash}
 
-For every new block hash
+Pour chaque nouveau identifiant du bloc
 
 <Tabs
-  defaultValue="latest"
-  values={[
-    { label: 'latest', value: 'latest', },
- { label: 'confirmed', value: 'confirmed', },
- ]
+defaultValue="latest"
+values={[
+{ label: 'latest', value: 'latest', },
+{ label: 'confirmed', value: 'confirmed', },
+]
 }>
 <TabItem value="latest">
 
@@ -358,16 +361,16 @@ dagger.on("confirmed:block.hash", result => {
 </TabItem>
 </Tabs>
 
-#### block/{number}
+#### bloc/{number} {#block-number-1}
 
-When particular block **X**, in future included in chain
+Lorsqu'un bloc particulier **X**, à l'avenir est inclus dans la chaîne
 
 <Tabs
-  defaultValue="latest"
-  values={[
-    { label: 'latest', value: 'latest', },
- { label: 'confirmed', value: 'confirmed', },
- ]
+defaultValue="latest"
+values={[
+{ label: 'latest', value: 'latest', },
+{ label: 'confirmed', value: 'confirmed', },
+]
 }>
 <TabItem value="latest">
 
@@ -389,16 +392,16 @@ dagger.on("confirmed:block/X", result => {
 </TabItem>
 </Tabs>
 
-#### addr/{address}/tx
+#### addr/{address}/tx {#addr-address-tx}
 
-On every new transaction for `address`
+À chaque nouvelle transaction pour `address`
 
 <Tabs
-  defaultValue="latest"
-  values={[
-    { label: 'latest', value: 'latest', },
- { label: 'confirmed', value: 'confirmed', },
- ]
+defaultValue="latest"
+values={[
+{ label: 'latest', value: 'latest', },
+{ label: 'confirmed', value: 'confirmed', },
+]
 }>
 <TabItem value="latest">
 
@@ -420,28 +423,28 @@ dagger.on("confirmed:addr/{address}/tx", result => {
 </TabItem>
 </Tabs>
 
-#### addr/{address}/tx/{dir}
+#### addr/{address}/tx/{dir} {#addr-address-tx-dir}
 
-`dir` is transaction direction ∈ {`in`, `out`}. `address` can be omitted to receive notification for any address.
+`dir` est le sens de transaction ∈ {`in`, `out`}. `address` peut être omis pour recevoir une notification pour n'importe quelle adresse.
 
 <Tabs
-  defaultValue="in"
-  values={[
-    { label: 'incoming', value: 'in', },
- { label: 'outgoing', value: 'out', },
- { label: 'wild card', value: 'all', },
- ]
+defaultValue="in"
+values={[
+{ label: 'incoming', value: 'in', },
+{ label: 'outgoing', value: 'out', },
+{ label: 'wild card', value: 'all', },
+]
 }>
 <TabItem value="in">
 
-On every new incoming transaction for `address`
+À chaque nouvelle transaction entrante pour `address`
 
 <Tabs
-  defaultValue="latest"
-  values={[
-    { label: 'latest', value: 'latest', },
- { label: 'confirmed', value: 'confirmed', },
- ]
+defaultValue="latest"
+values={[
+{ label: 'latest', value: 'latest', },
+{ label: 'confirmed', value: 'confirmed', },
+]
 }>
 <TabItem value="latest">
 
@@ -466,14 +469,14 @@ dagger.on("confirmed:addr/{address}/tx/in", result => {
 </TabItem>
 <TabItem value="out">
 
-On every new outgoing transaction for `address`
+À chaque nouvelle transaction sortante pour `address`
 
 <Tabs
-  defaultValue="latest"
-  values={[
-    { label: 'latest', value: 'latest', },
- { label: 'confirmed', value: 'confirmed', },
- ]
+defaultValue="latest"
+values={[
+{ label: 'latest', value: 'latest', },
+{ label: 'confirmed', value: 'confirmed', },
+]
 }>
 <TabItem value="latest">
 
@@ -498,14 +501,14 @@ dagger.on("confirmed:addr/{address}/tx/out", result => {
 </TabItem>
 <TabItem value="all">
 
-Using wildcard notation in place of `address`, to get notified for all incoming & outgooing transactions.
+En utilisant la notation générique à la place de `address`, pour être averti de toutes les transactions entrantes et sortantes.
 
 <Tabs
-  defaultValue="latest"
-  values={[
-    { label: 'latest', value: 'latest', },
- { label: 'confirmed', value: 'confirmed', },
- ]
+defaultValue="latest"
+values={[
+{ label: 'latest', value: 'latest', },
+{ label: 'confirmed', value: 'confirmed', },
+]
 }>
 <TabItem value="latest">
 
@@ -530,29 +533,29 @@ dagger.on("confirmed:addr/+/tx/in", result => {
 </TabItem>
 </Tabs>
 
-#### tx/{txId}/{status}
+#### tx/{txId}/{status} {#tx-txid-status}
 
-`status` is `txId`'s status ∈ {`success`, `fail`, `receipt`}. It can be kept empty too i.e. resulting into `tx/{txId}`, triggered when `txId` gets included in block.
+`status` est `txId`le statut de  ∈ {`success`, `fail`, `receipt`}. Il peut également être laissé vide, c'est-à-dire aboutissant au `tx/{txId}`, déclenché lorsque `txId` est inclus dans le bloc.
 
 <Tabs
-  defaultValue="any"
-  values={[
-    { label: 'any', value: 'any', },
- { label: 'success', value: 'success', },
- { label: 'fail', value: 'fail', },
- { label: 'receipt', value: 'receipt', },
- ]
+defaultValue="any"
+values={[
+{ label: 'any', value: 'any', },
+{ label: 'success', value: 'success', },
+{ label: 'fail', value: 'fail', },
+{ label: 'receipt', value: 'receipt', },
+]
 }>
 <TabItem value="any">
 
-When given `txId` included in block
+Une fois que `txId` est inclus dans le bloc
 
 <Tabs
-  defaultValue="latest"
-  values={[
-    { label: 'latest', value: 'latest', },
- { label: 'confirmed', value: 'confirmed', },
- ]
+defaultValue="latest"
+values={[
+{ label: 'latest', value: 'latest', },
+{ label: 'confirmed', value: 'confirmed', },
+]
 }>
 <TabItem value="latest">
 
@@ -573,14 +576,14 @@ dagger.on("confirmed:tx/{txId}", result => { console.log(result) })
 </TabItem>
 <TabItem value="success">
 
-When tx status is success (included in block) for `txId`
+Lorsque le statut tx est un succès (inclus dans le bloc) pour `txId`
 
 <Tabs
-  defaultValue="latest"
-  values={[
-    { label: 'latest', value: 'latest', },
- { label: 'confirmed', value: 'confirmed', },
- ]
+defaultValue="latest"
+values={[
+{ label: 'latest', value: 'latest', },
+{ label: 'confirmed', value: 'confirmed', },
+]
 }>
 <TabItem value="latest">
 
@@ -601,14 +604,14 @@ dagger.on("confirmed:tx/{txId}/success", result => { console.log(result) })
 </TabItem>
 <TabItem value="fail">
 
-When tx fails (included in block) for `txId`
+Lorsque tx échoue (inclus dans le bloc) pour `txId`
 
 <Tabs
-  defaultValue="latest"
-  values={[
-    { label: 'latest', value: 'latest', },
- { label: 'confirmed', value: 'confirmed', },
- ]
+defaultValue="latest"
+values={[
+{ label: 'latest', value: 'latest', },
+{ label: 'confirmed', value: 'confirmed', },
+]
 }>
 <TabItem value="latest">
 
@@ -629,14 +632,14 @@ dagger.on("confirmed:tx/{txId}/fail", result => { console.log(result) })
 </TabItem>
 <TabItem value="receipt">
 
-When receipt is generated (included in block) for `txId`
+Lorsque le reçu est généré (inclus dans le bloc) pour `txId`
 
 <Tabs
-  defaultValue="latest"
-  values={[
-    { label: 'latest', value: 'latest', },
- { label: 'confirmed', value: 'confirmed', },
- ]
+defaultValue="latest"
+values={[
+{ label: 'latest', value: 'latest', },
+{ label: 'confirmed', value: 'confirmed', },
+]
 }>
 <TabItem value="latest">
 
@@ -657,16 +660,16 @@ dagger.on("confirmed:tx/{txId}/receipt", result => { console.log(result) })
 </TabItem>
 </Tabs>
 
-#### log/{contractAddress}
+#### log/{contractAddress} {#log-contractaddress}
 
-When log generated for `contractAddress`
+Lorsque le journal est généré pour `contractAddress`
 
 <Tabs
-  defaultValue="latest"
-  values={[
-    { label: 'latest', value: 'latest', },
- { label: 'confirmed', value: 'confirmed', },
- ]
+defaultValue="latest"
+values={[
+{ label: 'latest', value: 'latest', },
+{ label: 'confirmed', value: 'confirmed', },
+]
 }>
 <TabItem value="latest">
 
@@ -688,9 +691,9 @@ dagger.on("confirmed:log/{contractAddress}", result => {
 </TabItem>
 </Tabs>
 
-#### log/{contractAddress}/filter/{topic0}/{topic1}/{topic2}
+#### log/{contractAddress}/filter/{topic0}/{topic1}/{topic2} {#log-contractaddress-filter-topic0-topic1-topic2}
 
-When new log with `topic0`, `topic1` & `topic2` generated for `contractAddress`
+Lorsqu'un nouveau journal avec `topic0`, `topic1` & `topic2` est généré pour `contractAddress`
 
 ```javascript
 // Triggers when 1 GNT (Golem token) get transferred to Golem multisig wallet
@@ -703,17 +706,17 @@ dagger.on('latest:log/0xa74476443119a942de498590fe1f2454d7d4ac0d/filter/0xddf252
 dagger.on('latest:log/0xa74476443119a942de498590fe1f2454d7d4ac0d/filter/0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef/#', ...)
 ```
 
-> Event names are case-sensitive. `address`, `txId` and `topics` must be in lowercase.
+> Les noms d'événements sont sensibles à la casse. `address`, `txId` et `topics` doivent être en minuscules.
 
-> Note: You can use wildcard for events too. There are two type of wildcards: `+` (for single) and `#` (for multiple). Use with caution as it will fetch more data then you need, and can bombard with data to your DApp.
+> Remarque: Vous pouvez également utiliser des caractères génériques pour les événements. Il existe deux types de caractères génériques: `+` (pour les simples) et `#` (pour les multiples). Utiliser-le avec prudence, car il récupérera plus de données que nécessaires et peut bombarder de données à votre DApp.
 
 
 
-## Test Dagger Server
+## Tester le Serveur Dagger {#test-dagger-server}
 
-This library consists `woodendagger` executable which is test dagger server on your local machine. So you can test with TestRPC.
+Cette bibliothèque consiste en un `woodendagger` exécutable qui est le serveur dagger de test sur votre machine locale. Vous pouvez donc effectuer le test avec TestRPC.
 
-Please do not use `woodendagger` in production. It's only for development purpose. It doesn't support `removed` flag.
+Veuillez ne pas utiliser `woodendagger` en production. C'est uniquement à des fins de développement. Il ne prend pas en charge `removed` le drapeau.
 
 ```bash
 $ woodendagger --url=https://mainnet.infura.io # or http://localhost:8545 for local json-rpc
@@ -727,10 +730,10 @@ $ woodendagger --url=http://localhost:8545 --sockport=1883 --wsport=1884
 const dagger = new Dagger('mqtt://localhost:1883')
 ```
 
-## Support
+## Prise En Charge {#support}
 
-If you have any queries, feedback or feature requests, feel free to reach out to us on [Telegram](https://t.me/maticnetwork)
+Si vous avez des questions, des commentaires ou des requêtes de fonctionnalités, n'hésitez pas à nous contacter sur [Telegram](https://t.me/maticnetwork)
 
-## License
+## Licence {#license}
 
 MIT

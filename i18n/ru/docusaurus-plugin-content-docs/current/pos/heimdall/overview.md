@@ -1,15 +1,21 @@
 ---
 id: overview
-title: Overview
-description: Heimdall is the heart of the Matic network. It manages validators, block producer span, the state-sync mechanism and other essentials aspects of the system.
+title: Обзор
+description: Heimdall — это сердце сети Polygon
 keywords:
   - docs
   - matic
+  - polygon
+  - heimdall
+  - cosmos
+  - peppermint
 image: https://matic.network/banners/matic-network-16x9.png
 ---
 
-Heimdall is the heart of the Matic system. It manages validators, block producer selection, spans, the state-sync mechanism between Ethereum and Matic and other essentials aspects of the system.
+# Heimdall {#heimdall}
 
-It uses the Cosmos-SDK and a forked version of Tendermint, called Peppermint. Peppermint source: [https://github.com/maticnetwork/tendermint/tree/peppermint](https://github.com/maticnetwork/tendermint/tree/peppermint)
+Heimdall — это сердце сети Polygon. Он управляет валидаторами, выбором блок продюсеров, диапазонами, механизмом синхронизации состояний между Ethereum и Matic и другими важными аспектами системы.
 
-Heimdall removes some of the modules from Cosmos-SDK, but mostly it uses a customised version of it - but follows the same pattern.
+Он использует **Cosmos-SDK** и вымышленную версию Tendermint, названную **Peppermint**. Источник Peppermint: [https://github.com/maticnetwork/tendermint/tree/peppermint](https://github.com/maticnetwork/tendermint/tree/peppermint)
+
+Heimdall удаляет некоторые модули из Cosmos-SDK, но в основном использует его на заказ при соблюдении того же шаблона.

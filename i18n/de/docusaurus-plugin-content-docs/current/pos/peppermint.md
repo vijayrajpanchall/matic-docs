@@ -1,47 +1,60 @@
 ---
 id: peppermint
 title: Peppermint
-description: Peppermint is modified Tendermint. It is changed to use to make it compatible with Ethereum addresses and verifiable on Ethereum chain.
+description: Peppermint ist ein modifiziertes Ethereum-kompatibles Tendermint
 keywords:
   - docs
   - matic
+  - polygon
+  - tendermint
+  - peppermint
 image: https://matic.network/banners/matic-network-16x9.png
 ---
 
-Peppermint is modified Tendermint. It is changed to use to make it compatible with Ethereum addresses and verifiable on Ethereum chain.
+# Peppermint {#peppermint}
 
-**Overview**
+Peppermint ist ein modifiziertes Tendermint. Es wurde geändert, um es kompatibel zu Ethereum zu machen und auf der Ethereum-Chain verifizierbar zu machen.
 
-1. Changes to signature scheme
-2. Changes to `vote` to make it verifiable on Ethereum smart contract
-3. Changes to `vote` encoding scheme
+## Übersicht {#overview}
 
-Peppermint uses `secp256k1` signature scheme to verify Tendermint votes on solidity smart contract. [https://github.com/maticnetwork/tendermint/blob/peppermint/crypto/secp256k1/secp256k1_nocgo.go](https://github.com/maticnetwork/tendermint/blob/peppermint/crypto/secp256k1/secp256k1_nocgo.go)
+1. Änderungen des Signaturschemas
+2. Änderungen an `vote`, um es auf Ethereum-Smart-Contract verifizierbar zu machen
+3. Änderungen des Kodierungsschemas von `vote`
 
-It adds `Data` field into `Vote` and `Proposal` struct to get `hash` for transactions in the block. On smart contract, it checks if `Data` matches with checkpoint data hash and majority (⅔+1) of validator signatures. The idea is to verify if majority of the validator set agrees on transaction in the contract.
+Peppermint verwendet `secp256k1`signature um Peppermint über solidity Contracts zu überprüfen.
 
-Peppermint uses RLP to get `Vote` bytes instead of Amino encoding. Here `Data` is `Txs.Hash()` for the block.  [https://github.com/maticnetwork/tendermint/blob/peppermint/types/canonical.go](https://github.com/maticnetwork/tendermint/blob/peppermint/types/canonical.go)
+Quelle: [https://github.com/maticnetwork/tendermint/blob/peppermint/crypto/secp256k1/secp256k1_nocgo.go](https://github.com/maticnetwork/tendermint/blob/peppermint/crypto/secp256k1/secp256k1_nocgo.go)
+
+Es fügt das Feld `Data` zur Struktur `Vote` und `Proposal` hinzu, um `hash` für die Transaktionen im Block zu erhalten. Bei Smart Contracts wird geprüft, ob `Data` mit dem Datenhash des Checkpoints und der Mehrheit (⅔+1) der Validator-Signaturen übereinstimmt. Die Idee ist, zu überprüfen, ob die Mehrheit der Validatoren mit der Transaktion im Contract einverstanden ist.
+
+Peppermint verwendet RLP, um `Vote` Bytes statt Aminokodierung zu erhalten. Hier `Data`ist `Txs.Hash()`für den Block.
+
+Quelle: [https://github.com/maticnetwork/tendermint/blob/peppermint/types/canonical.go](https://github.com/maticnetwork/tendermint/blob/peppermint/types/canonical.go)
+
 ```go
 // [peppermint] create RLP vote to decode in contract
 type CanonicalRLPVote struct {
-    ChainID string
-    Type    byte
-    Height  uint
-    Round   uint
-    Data    []byte
+	ChainID string
+	Type    byte
+	Height  uint
+	Round   uint
+	Data    []byte
 }
 ```
-And using RLP encoding lib to get byte data for signature on Vote.
 
- [https://github.com/maticnetwork/tendermint/blob/peppermint/types/vote.go#L75-L82](https://github.com/maticnetwork/tendermint/blob/peppermint/types/vote.go#L75-L82)
+Und die Verwendung der RLP-Kodierungslib, um Byte-Daten für die Signatur auf Vote zu erhalten.
+
+Quelle: [https://github.com/maticnetwork/tendermint/blob/peppermint/types/vote.go#L75-L82](https://github.com/maticnetwork/tendermint/blob/peppermint/types/vote.go#L75-L82)
+
 ```go
 func (vote *Vote) SignBytes(chainID string) []byte {
-    // [peppermint] converted from amino to rlp
-    bz, err := rlp.EncodeToBytes(CanonicalizeVote(chainID, vote))
-    if err != nil {
-        panic(err)
-    }
-    return bz
+	// [peppermint] converted from amino to rlp
+	bz, err := rlp.EncodeToBytes(CanonicalizeVote(chainID, vote))
+	if err != nil {
+		panic(err)
+	}
+	return bz
 }
 ```
-Source: [https://github.com/maticnetwork/tendermint](https://github.com/maticnetwork/tendermint)
+
+Complete Source: [https://github.com/maticnetwork/tendermint](https://github.com/maticnetwork/tendermint)

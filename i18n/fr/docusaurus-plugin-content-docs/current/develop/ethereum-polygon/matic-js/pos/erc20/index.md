@@ -2,37 +2,37 @@
 id: index
 title: POSClient
 keywords:
-  - pos client
-  - erc20
-  - contract
-  - polygon
-  - sdk
-description: POSClient provides erc20 method which helps you to interact with an erc20 token.
+    - pos client
+    - erc20
+    - contract
+    - polygon
+    - sdk
+description: "Fournit une méthode pour interagir avec un jeton ERC20."
 ---
 
-# ERC20
+# ERC20 {#erc20}
 
-`POSClient` provides `erc20` method which helps you to interact with an **ERC20** token.
+`POSClient` fournit `erc20` une méthode qui vous aide à interagir avec un jeton **ERC20** .
 
-The method returns an object which has other various methods.
+La méthode renvoie un objet qui possède d'autres méthodes différentes.
 
 ```
 const erc20token = posClient.erc20(<token address>,<isRoot>);
 ```
 
-Passing second arguments for `isRoot` is optional.
+Passer des seconds arguments pour `isRoot` est facultatif.
 
-## Child token
+## Jeton enfant {#child-token}
 
-Token on polygon can be initiated by using this syntax -
+Un jeton sur polygon peut être initié en utilisant cette syntaxe -
 
 ```
 const childERC20Token = posClient.erc20(<child token address>);
 ```
 
-## Parent token
+## Jeton parent {#parent-token}
 
-Token on ethereum can be initiated by providing the second parameter value as `true`.
+Le jeton sur ethereum peut être initié en fournissant la valeur du second paramètre en tant que `true`.
 
 ```
 const parentERC20Token = posClient.erc20(<parent token address>, true);

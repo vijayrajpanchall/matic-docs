@@ -2,13 +2,13 @@
 id: is-aproved
 title: isApproved
 keywords:
-  - 'plasma client, erc721, isApproved, polygon, sdk'
-description: 'Get started with maticjs'
+- 'plasma client, erc721, isApproved, polygon, sdk'
+description: 'Commencez à utiliser maticjs'
 ---
 
-# isApproved
+# isApproved {#isapproved}
 
-`isApproved` method checks if token is approved for specified tokenId. It returns boolean value.
+`isApproved` méthode vérifie si le jeton est approuvé pour le jeton d'Identifiant spécifié. Cela renvoie une valeur booléenne.
 
 ```
 const erc721Token = plasmaClient.erc721(<token address>, true);

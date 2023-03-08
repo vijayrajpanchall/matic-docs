@@ -2,19 +2,21 @@
 id: plugin
 title: Plugin
 keywords:
-  - 'plugin, api type, read, write, polygon'
-description: 'Using plugin you can inject your code into matic.js'
+- 'plugin, api type, read, write, polygon'
+description: 'Utilisez le plugin pour injecter des codes dans Matic.js.'
 ---
 
-Using plugin you can inject your code into `matic.js`. It can be used to write common set of generic codes which can be provided to anyone using a package.
+En utilisant le plugin, vous pouvez injecter votre code dans`matic.js`. Il peut être utilisé pour écrire un ensemble commun de codes génériques pouvant être fournis à toute personne utilisant un package.
 
-:::info Plugin makes the `matic.js` light weight as it implements only important logical part. :::
+:::info
+Le plugin rend le `matic.js`poids léger, car il n'implémente que des parties logiques importantes.
+:::
 
-In fact, the web3 library is supported using plugin which allows us to use our favourite library.
+En fait, la bibliothèque web3 est prise en charge à l'aide d'un plugin qui nous permet d'utiliser notre bibliothèque préférée.
 
-### Plugin development
+### Développement de plugin {#plugin-development}
 
-Plugin is a class which implements `IPlugin`.
+Le plugin est une classe qui implémente `IPlugin`.
 
 ```
 import { IPlugin } from "@maticnetwork/maticjs";
@@ -30,11 +32,11 @@ export class MyPlugin implements IPlugin {
 }
 ```
 
-As you can see - you just need to implement a `setup` method which will be called with default export of `matic.js`.
+Comme vous pouvez le constater, il vous suffit d'implémenter une `setup` méthode qui sera appelée avec l'exportation par défaut de `matic.js`.
 
-### Use Plugin
+### Utilisez le Plugin {#use-plugin}
 
-`matic.js` expose `use` method for using a plugin.
+`matic.js` exposez `use` la méthode pour utiliser un plugin.
 
 ```
 import { use } from '@maticnetwork/maticjs'
@@ -42,9 +44,9 @@ import { use } from '@maticnetwork/maticjs'
 use(MyPlugin)
 ```
 
-You can use multiple plugins and they will be called in the same order as they are declared.
+Vous pouvez utiliser plusieurs plugins et ils seront appelés dans le même ordre dans lequel ils sont déclarés.
 
-**Some plugin repos are -**
+**Certains répertoires de plugins sont -**
 
 - [Matic web3.js](https://github.com/maticnetwork/maticjs-web3)
 - [Matic ethers](https://github.com/maticnetwork/maticjs-ethers)

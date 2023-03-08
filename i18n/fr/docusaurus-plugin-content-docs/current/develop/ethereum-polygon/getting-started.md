@@ -1,30 +1,48 @@
 ---
 id: getting-started
-title: Ethereum↔Polygon Bridge
+title: Ethereum↔Pont de Polygone
 sidebar_label: Overview
-description: Build your next blockchain app on Polygon.
+description: Un canal de transaction de deux directions entre Polygon et Ethereum.
 keywords:
   - docs
-  - matic
-image: https://matic.network/banners/matic-network-16x9.png
+  - polygon
+  - polygon wiki
+  - crosschain bridge
+  - polygon
+  - ethereum
+  - fx portal
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
-Polygon brings you a trustless two-way transaction channel between Polygon and Ethereum by introducing the cross-chain bridge with Plasma and PoS security. With this users can transfer tokens across Polygon without incurring third-party risks and market liquidity limitations. **_The Plasma and PoS Bridge is available on both Mumbai as well as Mainnet._**
+import useBaseUrl from '@docusaurus/useBaseUrl';
 
-**Polygon bridge provides a scaling solution which is near-instant, low-cost, and quite flexible**. Polygon uses a dual-consensus architecture(Plasma + Proof-of-Stake (PoS) platform) to optimise for speed and decentralisation. We consciously architected the system to support arbitrary state transitions on our sidechains, which are EVM-enabled.
+Polygon vous offre un canal de transaction de deux directions sans confiance entre Polygone et Ethereum en introduisant le pont inter-chaînes avec la sécurité Plasma et PoS. Grâce à cela, les utilisateurs peuvent transférer des jetons sur Polygon sans encourir de risques tiers ni de limitations de liquidité du marché. **Le Plasma et le pont PoS sont disponibles sur Mumbai Testnet ainsi que sur Polygon Mainnet**.
 
-**There is no change to the circulating supply of your token when it crosses the bridge**;
+**Le pont Polygon fournit un mécanisme de pontage qui est presque instantané, à faible coût et assez flexible**. Polygon utilise une architecture à double consensus (plateforme Plasma + Preuve-de-Participation (PoS)) pour optimiser la vitesse et la décentralisation. Nous avons consciemment conçu le système pour prendre en charge les transitions d'état arbitraires sur nos chaînes latérales, qui sont compatibles avec EVM.
 
-- tokens that leave ethereum network are locked and the same number of tokens are minted on Polygon as a pegged token (1:1).
-- To move the tokens back to the ethereum network, tokens are burned on Polygon network and unlocked on ethereum network during the process.
+**Il n'y a aucun changement dans l'approvisionnement en circulation de votre jeton lorsqu'il traverse le pont**;
 
-## PoS vs Plasma
+- Les jetons qui quittent le réseau Ethereum sont verrouillés et le même nombre de jetons sont frappés sur Polygon qu'un jeton pegged (1:1).
+- Pour déplacer les jetons vers le réseau Ethereum, les jetons sont brûlés sur le réseau Polygon et déverrouillés sur le réseau Ethereum pendant le processus.
 
-|                                        | PoS Bridge(Recommended)                                                                 | Plasma Bridge                                                                           |
-| -------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
-| **Short description**                  | DApp Developers looking for flexibility and faster withdrawals with POS system security | DApp Developers looking for increased security guarantees with Plasma exit mechanism\. |
-| **Structure**                          | Highly flexible                                                                         | Rigid, Less Flexible                                                                    |
-| **Deposit\(Ethereum → Polygon\)**    | 3-5 mins                                                                                | 3-5 mins                                                                                |
-| **Withdrawal\(Polygon → Ethereum\)** | 1 checkpoint = ~ 20 mins to 3 hours                                                     | Call to the process-exit procedure on Ethereum's contract.                              |
-| **Security**                           | Proof\-of\-Stake system, secured by a robust set of external validators\.            | Polygon’s Plasma contracts piggybacks on Ethereum’s security.                           |
-| **Support Standards**                  | ETH, ERC20, ERC721, ERC1155 and Others                                                  | Only ETH, ERC20, ERC721                                                                 |
+## PoS vs Plasma {#pos-vs-plasma}
+
+|                                      | Pont PoS (Recommandé) | Pont Plasmique |
+| ------------------------------------ | ---------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| **Brève description** | Les développeurs DApp recherchent la flexibilité et les retraits plus rapides avec la sécurité du système POS. | Développeurs DApp à la recherche de garanties de sécurité accrues avec le mécanisme de sortie Plasma\. |
+| **Structure** | Très flexible | Rigide, Moins Flexible |
+| **Dépôt\(Ethereum → Polygon\)** | 22-30 minutes | 22-30 minutes |
+| **Retrait\(Polygon → Ethereum\)** | 1 point de contrôle = ~ 30 minutes à 6 heures | Appelez à la procédure de processus-sortie sur le contrat Ethereum |
+| **Securité** | Système de Preuve\-de\-Participation, sécurisé par un ensemble robuste de validateurs externes\. | Les contrats Plasma de Polygon s'appuie sur la sécurité d'Ethereum. |
+| **Normes de Prise en Charge** | ETH, ERC20, ERC721, ERC1155 et Autres | Uniquement ETH, ERC20, ERC721 |
+
+:::info
+
+Le [**FxPortal**](/develop/l1-l2-communication/fx-portal.md) est un autre type de pont qui est très similaire au pont PoS. Ils partagent les mêmes caractéristiques que celles mentionnées pour PoS dans le tableau ci-dessus. La seule différence est que les jetons n'ont pas besoin d'être cartographiés sur le pont FxPortal avant de be La cartographie se produit pendant la première transaction de dépôt qui est initiée pour un jeton donné. Aussi, tout le monde peut utiliser le FxPortal pour construire ses propres tunnels/ponts personnalisés sur le dessus du pont Polygon. Il est fortement recommandé d'utiliser le FxPortal pour n'importe quel cas d'utilisation de pont. Les nouvelles mappages jetons sur PoS et Plasma seront découragés après le 31 janvier 2023 pour que le processus de mapping soit entièrement décentralisé et flexible.
+
+:::
+
+## Ressources Supplémentaires {#additional-resources}
+
+- [Introduction aux ponts Blockchain](https://ethereum.org/en/bridges/)
+- [Qu'est-ce que les passerelles Cross-Chain](https://www.alchemy.com/overviews/cross-chain-bridges)

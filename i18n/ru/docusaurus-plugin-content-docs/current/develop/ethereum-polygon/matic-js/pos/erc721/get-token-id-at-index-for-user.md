@@ -2,11 +2,11 @@
 id: get-token-id-at-index-for-user
 title: getTokenIdAtIndexForUser
 keywords:
-  - 'pos client, erc721, getTokenIdAtIndexForUser, polygon, sdk'
-description: 'Get started with maticjs'
+- 'pos client, erc721, getTokenIdAtIndexForUser, polygon, sdk'
+description: 'Извлеките индикатор токена с указанным индексом для пользователя.'
 ---
 
-`getTokenIdAtIndexForUser` method returns token id on supplied index for user.
+Метод `getTokenIdAtIndexForUser` возвращает идентификатор токена с указанным индексом для пользователя.
 
 ```
 const erc721Token = posClient.erc721(<token address>);

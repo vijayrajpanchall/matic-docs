@@ -1,67 +1,66 @@
 ---
 id: architecture
 title: Architecture
-description: Ethereum, Heimdall and Bor layers.
+description: Les couches Ethereum, Heimdall et Bor
 keywords:
   - docs
   - matic
   - polygon
   - architecture
+  - validator
 slug: architecture
-image: https://matic.network/banners/matic-network-16x9.png
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
-
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-The Polygon Network is broadly divided into three layers:
+Le réseau Polygon est globalement divisé en trois couches :
 
-* Ethereum layer — a set of contracts on the Ethereum mainnet.
-* Heimdall layer — a set of proof-of-stake Heimdall nodes running in parallel to the Ethereum mainnet, monitoring the set of staking contracts deployed on the Ethereum mainnet, and committing the Polygon Network checkpoints to the Ethereum mainnet. Heimdall is based on Tendermint.
-* Bor layer — a set of block-producing Bor nodes shuffled by Heimdall nodes. Bor is based on Go Ethereum.
+* **Couche Ethereum** — un ensemble de contrats sur le réseau principal Ethereum.
+* **Couche Heimdall** — un ensemble de nœuds Heimdall preuve de jeu fonctionnant en parallèle au réseau principal Ethereum, surveillant l'ensemble de contrats d'empilage déployés sur le réseau principal Ethereum et exécutant les points de contrôle Polygon Network vers le réseau principal Ethereum. Heimdall est basé sur Tendermint.
+* **Couche Bor** — un ensemble de nœuds Bor producteurs de blocs shuffled par les nœuds Heimdall. Bor est basé sur Go Ethereum.
 
 <img src={useBaseUrl("img/staking/architecture.png")} />
 
-## Staking and Plasma smart contracts on Ethereum
+## Staking et contrats intelligents Plasma sur Ethereum {#staking-and-plasma-smart-contracts-on-ethereum}
 
-To enable the [Proof of Stake (PoS)](../polygon-basics/what-is-proof-of-stake) mechanism on Polygon, the system employs a set of [staking](../glossary#staking) management contracts on the Ethereum mainnet.
+Pour activer le mécanisme de [preuve d'enjeu (PoS)](/docs/home/polygon-basics/what-is-proof-of-stake) sur Polygon, le système utilise un ensemble de contrats de gestion de [staking](/docs/maintain/glossary.md#staking) sur le réseau principal d'Ethereum.
 
-The staking contracts implement the following features:
+Les contrats de staking mettent en œuvre les caractéristiques suivantes :
 
-* The ability for anyone to stake MATIC tokens on the staking contracts on the Ethereum mainnet and join the system as a [validator](../glossary#validator).
-* Earn staking rewards for validating state transitions on the Polygon Network.
-* Enable penalties/slashing for activities such as double signing, validator downtime, etc.
-* Save [checkpoints](../glossary#checkpoint-transaction) on the Ethereum mainnet.
+* La possibilité pour quiconque de miser des jetons MATIC sur les contrats de staking sur le réseau principal d'Ethereum et de rejoindre le système en tant que [validateur](/docs/maintain/glossary.md#validator).
+* Gagner des récompenses de staking pour valider les transitions d'état sur le Réseau de Polygon.
+* Sauvegardez les [points de contrôle](/docs/maintain/glossary.md#checkpoint-transaction) sur le réseau principal d'Ethereum.
 
-The PoS mechanism also acts as a mitigation to the data unavailability problem for the Polygon sidechains.
+Le mécanisme PoS permet également d'atténuer le problème de l'indisponibilité des données pour les chaînes latérales de Polygon.
 
-## Heimdall (validation layer)
+## Heimdall (couche de validation) {#heimdall-validation-layer}
 
-Heimdall layer handles the aggregation of blocks produced by [Bor](../glossary#bor) into a Merkle tree and publishing the Merkle root periodically to the root chain. The periodic publishing of snapshots of the Bor sidechain are called [checkpoints](../glossary#checkpoint-transaction).
+La couche Heimdall gère l'agrégation des blocs produits par [Bor](/docs/maintain/glossary.md#bor) dans un arbre de Merkle et publie périodiquement la racine de Merkle à la chaîne d'origine. La publication périodique d'instantanés de la chaîne latérale Bor est appelée [points de contrôle](/docs/maintain/glossary.md#checkpoint-transaction).
 
-For every few blocks on Bor, a validator on the Heimdall layer:
+Pour chaque groupe de blocs sur Bor, un validateur sur la couche Heimdall :
 
-1. Validates all the blocks since the last checkpoint.
-2. Creates a Merkle tree of the block hashes.
-3. Publishes the Merkle root hash to the Ethereum mainnet.
+1. Valide tous les blocs depuis le dernier point de contrôle.
+2. Crée un arbre de Merkle des identifiants de bloc.
+3. Publie l'identifiant de root de Merkle sur le réseau principal d'Ethereum.
 
-Checkpoints are important for two reasons:
+Les points de contrôle sont importants pour deux raisons:
 
-1. Providing finality on the root chain.
-2. Providing proof of burn in withdrawal of assets.
+1. Apporter une finalité sur la chaîne de root.
+2. Fournir une preuve de brûlure lors du retrait des actifs.
 
-An overview of the process:
+Un aperçu du processus:
 
-* A subset of active validators from the pool is selected to act as [block producers](../glossary#block-producer) for a [span](../glossary#span). These block producers are responsible for creating blocks and broadcasting the created blocks on the network.
-* A checkpoint includes the Merkle root hash of all blocks created during any given interval. All nodes validate the Merkle root hash and attach their signature to it.
-* A selected [proposer](../glossary#proposer) from the validator set is responsible for collecting all signatures for a particular checkpoint and committing the checkpoint on the Ethereum mainnet.
-* The responsibility of creating blocks and proposing checkpoints is variably dependent on a validator’s stake ratio in the overall pool.
+* Un sous-ensemble de validateurs actifs du pool est sélectionné pour agir en tant que [producteurs de blocs](/docs/maintain/glossary.md#block-producer) pour une [durée](/docs/maintain/glossary.md#span). Ces producteurs de blocs sont chargés de créer des blocs et de diffuser les blocs créés sur le réseau.
+* Un point de contrôle comprend l'identifiant root de Merkle de tous les blocs créés durant un intervalle donné. Tous les nœuds valident l'identifiant root de Merkle et y joignent leurs signatures.
+* Un [proposant](/docs/maintain/glossary.md#proposer) sélectionné parmi l'ensemble des validateurs est chargé de recueillir toutes les signatures pour un point de contrôle particulier et de valider le point de contrôle sur le réseau principal d'Ethereum.
+* La responsabilité de créer des blocs et de proposer des points de contrôle dépend de façon variable du ratio de participation d'un validateur dans le pool global.
 
-See also [Heimdall architecture](../../pos/heimdall/overview).
+Voir aussi [Architecture de Heimdall](/docs/pos/heimdall/overview).
 
-### Bor (block producer layer)
+## Bor (couche de producteurs de blocs) {#bor-block-producer-layer}
 
-Bor is Polygon's sidechain block producer — the entity responsible for aggregating transactions into blocks.
+Bor est le producteur de blocs de la chaîne latérale de Polygon, l'entité responsable de l'agrégation des transactions en blocs.
 
-Bor block producers are a subset of the validators and are shuffled periodically by the [Heimdall](../glossary#heimdall) validators.
+Les producteurs de bloc de Bor sont un sous-ensemble de validateurs et sont mélangés périodiquement par les validateurs de [Heimdall](/docs/maintain/glossary.md#heimdall).
 
-See also [Bor architecture](../../pos/bor/overview).
+Voir également [Architecture Bor](/docs/pos/bor/overview).

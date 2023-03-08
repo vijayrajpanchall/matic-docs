@@ -1,7 +1,7 @@
 ---
 id: heimdall-chain
-title: Heimdall Chain
-description: "Proof-of-stake verifier layer on the Polygon Network."
+title: Цепочка Heimdall
+description: Уровень проверки пакета Proof-of-stake в сети Polygon
 keywords:
   - docs
   - polygon
@@ -10,32 +10,33 @@ keywords:
   - chain
   - verifier
   - layer
+  - proof of stake
 slug: heimdall-chain
-image: https://matic.network/banners/matic-network-16x9.png
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
-Heimdall is is the proof-of-stake verifier layer, which is responsible for [checkpointing](../../glossary#checkpoint-transaction) the representation of the Plasma blocks to the Ethereum mainnet. Heimdall is based on [Tendermint](https://tendermint.com/).
+Heimdall — это уровень верификатора пакета, который отвечает за [проверку](/docs/maintain/glossary.md#checkpoint-transaction) представления блоков Plasma в Ethereum. Heimdall основан на [Tendermint](https://tendermint.com/).
 
-The staking contract on the Ethereum mainnet works in conjunction with the Heimdall node to act as the trustless stake management mechanism for the PoS engine, including selecting the [validator](../../glossary#validator) set, updating validators, etc. Since staking is done in the contract on the Ethereum mainnet, Polygon does not rely only on validator honesty and instead inherits the Ethereum mainnet security.
+Контракт на стейкинг в Ethereum mainnet работает в сочетании с нодом Heimdall, выступая для механизма PoS в качестве механизма управления стейкингом без доверия, включая создание набора [валидаторов](/docs/maintain/glossary.md#validator), обновление валидаторов и т. д. Поскольку стейкинг выполняется по контракту в Ethereum mainnet, Polygon не полагается только на честность валидатора, но также использует системы безопасности Ethereum mainnet.
 
-Heimdall layer handles the aggregation of blocks produced by [Bor](../../glossary#bor) into a Merkle tree and publishes the Merkle root periodically to the Ethereum mainnet. This periodic publishing is called *checkpointing*.
+Уровень Heimdall позволяет объединять блоки, созданные на уровне [Bor](/docs/maintain/glossary.md#bor), в дерево Меркла и периодически публиковать корень Меркла в Ethereum mainnet. Такая периодическая публикация называется *назначением чекпоинтов*.
 
-For every few blocks on Bor, a validator (on the Heimdall layer):
+Валидатор в каждых нескольких блоках Bor (на уровне Heimdall) выполняет следующие действия:
 
-1. Validates all the blocks since the last checkpoint.
-2. Creates a Merkle tree of the block hashes.
-3. Publishes the Merkle root to the Ethereum mainnet.
+1. Подтверждает все блоки с момента последнего созданного чекпоинта.
+2. Создает дерево Меркла из хэшей блока.
+3. Публикует корень Меркла в Ethereum mainnet.
 
-Checkpoints are important for two reasons:
+Чекпоинты важны по двум причинам:
 
-1. Providing finality on the root chain.
-2. Providing proof of burn in withdrawal of assets.
+1. Обеспечивают окончательность в корневой цепочке.
+2. Предоставляют подтверждение сжигания при выводе активов.
 
-An overview of the process:
+Обзор процесса:
 
-* A subset of active validators from the pool is selected to act as [block producers](../../glossary#block-producer) for a [span](../../glossary#span). These block producers are responsible for creating blocks and broadcasting the created blocks on the the network.
-* A checkpoint includes the Merkle root hash of all blocks created during any given interval. All nodes validate the Merkle root hash and attach their signature to it.
-* A selected [proposer](../../glossary#proposer) from the validator set is responsible for collecting all signatures for a particular checkpoint and committing the checkpoint on the Ethereum mainnet.
-* The responsibility of creating blocks and proposing checkpoints is variably dependent on a validator’s stake ratio in the overall pool.
+* Часть активных валидаторов выбирается из пула на роль [блок-продюсеров](/docs/maintain/glossary.md#block-producer) для определенного [диапазона блоков](/docs/maintain/glossary.md#span). Эти блок-продюсеры отвечают за создание блоков и их передачу в сеть.
+* Чекпоинт включает хэш корня Меркла для всех блоков, созданных в течение любого заданного интервала времени. Все ноды проверяют хэш корня Меркла и подписывают его.
+* [Автор предложения](/docs/maintain/glossary.md#proposer), выбранный из набора валидаторов, отвечает за сбор всех подписей для конкретного checkpoint и его фиксацию в Ethereum mainnet.
+* Ответственность за создание блоков и предложение чекпоинтов зависит от доли стейка валидатора в общем пуле.
 
-See also [Heimdall architecture](../../../pos/heimdall/overview).
+См. также статью [Архитектура Heimdall](/docs/pos/heimdall/overview).

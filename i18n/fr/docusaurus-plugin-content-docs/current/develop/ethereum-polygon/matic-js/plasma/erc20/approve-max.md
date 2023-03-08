@@ -2,11 +2,11 @@
 id: approve-max
 title: approveMax
 keywords:
-  - 'plasma client, erc20, approveMax, polygon, sdk'
-description: 'Get started with maticjs'
+- 'plasma client, erc20, approveMax, polygon, sdk'
+description: 'L''approbation du montant maximum sur le jeton root.'
 ---
 
-`approveMax` method can be used to approve max amount on root token.
+`approveMax`la méthode  peut être utilisée pour approuver le montant maximum sur le jeton root.
 
 ```
 const erc20RootToken = plasmaClient.erc20(<root token address>, true);

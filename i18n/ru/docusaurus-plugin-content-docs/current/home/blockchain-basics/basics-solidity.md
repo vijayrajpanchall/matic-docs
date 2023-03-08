@@ -1,43 +1,53 @@
 ---
 id: solidity
-title: What is Solidity?
+title: Что такое Solidity?
 sidebar_label: Solidity
-description: "An object-oriented language for implementing smart contracts."
+description: "Объектно-ориентированный язык для реализации смарт-контрактов."
 keywords:
   - docs
   - matic
-image: https://matic.network/banners/matic-network-16x9.png
+  - polygon
+  - solidity
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
-## Solidity<img src = 'https://solidity.readthedocs.io/en/v0.6.11/_images/logo.svg' width='50' />
-Solidity is an object oriented, high-level programming language for implementing smart contracts. It allows to write programs, which governs the behavior of accounts within blockchain network. It is statically typed, supports contract inheritance and has many built-in Contract Libraries. Solidity is similar to programming languages like  C++, Python and JavaScript.
+# Что такое Solidity {#what-is-solidity}
 
-It comprised of:
-- variables
-- operators
-- loops
-- conditionals
-- modifiers
-- functions
-- objects and types
-- events
-- interfaces
-- and handles money transactions!
+Solidity — это объектно-ориентированный язык программирования на высоком уровне для реализации смарт-контрактов. Он позволяет записывать программы, которые регулируют поведение аккаунтов в блокчейн-сети. Он статически типизирован, поддерживает наследование контрактов и имеет множество встроенных библиотек контрактов. Solidity похож на такие языки программирования, как C++, Python и JavaScript.
 
-Before jumping to coding with Solidity it is important to familiarize oneself with blockchain's mental models - these are essential because of the contrasting difference in a blockchain application architecture and a common web application architecture. Where we want to go is Web 3.0, where servers and databases are as decentralized as the clients. In other words, clients can also act as servers or databases or both (aka, peer-to-peer). With many-to-many relationships at all levels of the stack, there are no concentrations of control and a single point of failure. The network is maximally distributed.
+Он состоит из:
+- переменные
+- операторы
+- циклы
+- условия
+- модификаторы
+- функции
+- объекты и типы
+- события
+- интерфейсы
+- и отвечает за денежные транзакции.
 
-Essentially the following points need to be kept in mind always:
+Прежде чем перейти к программированию на Solidity, важно ознакомиться с ментальными моделями блокчейна — они необходимы из-за контрастных различий в архитектуре приложений блокчейна и общей архитектуре веб-приложений.
+Мы работаем с Web 3.0, где серверы и базы данных так же децентрализованы, как и клиенты. Другими словами, клиенты также могут действовать как серверы или базы данных, или в качестве и того, и другого (то есть как одноранговые). При множестве взаимоотношений на всех уровнях стека нет концентрации контроля и единой точки отказа. Такая сеть максимально распределена.
 
-- Memory is limited - each memory element requires all nodes on the blockchain to confirm and store that element
-- Computation complexity is limited
-- Reading data is free
-- Each write operation has a cost associated with it - you pay it with ether. The cost is measured in gas.
+По сути, всегда нужно помнить о следующих моментах:
 
-#### Tools for Working With Solidity
-- Truffle: DApp development framework
-- Remix:  Web IDE for Solidity
-- Web3
-- Metamask
-### **:scroll:Resources**
+- Память ограничена — каждый элемент памяти требует, чтобы все ноды в блокчейне подтверждали и сохраняли этот элемент.
+- Сложность вычислений ограничена
+- Чтение данных бесплатно
+- Каждая операция записи имеет свою стоимость — вы оплачиваете ее эфиром. Стоимость измеряется в газе.
 
-:books: [Solidity Docs](https://solidity.readthedocs.io/)
+### Инструменты для работы с Solidity {#tools-for-working-with-solidity}
+- [Hardhat](https://hardhat.org): framework dApp
+- [Truffle](https://trufflesuite.com/): dApp development framework
+- [Alchemy SDK](https://docs.alchemy.com/reference/alchemy-sdk-quickstart): Web3 SDK для развертывания/чтения смарт-контрактов
+- [Remix](https://remix-project.org/): Web IDE
+- [Metamask](https://metamask.io/): Самый популярный crypto
+
+### Информационные ресурсы {#resources}
+
+- [Документы Solidity](https://solidity.readthedocs.io/): Официальные документы Solidity
+- [Solidity By Example](https://solidity-by-example.org/): Используйте короткие фрагменты для того, чтобы научиться писать Solidity.
+- [Web3 University](https://web3.university): хаб с поддержкой сообщества для разработки смарт-контракта
+- [Университет Alchemy](https://university.alchemy.com/): 10-недельные курсы в Web3/Smart Contract dev.
+

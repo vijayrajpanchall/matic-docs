@@ -1,7 +1,7 @@
 ---
 id: key-management
-title: Key Management
-description: "Signer and owner keys management."
+title: Управление ключами
+description: Управление ключами подписанта и владельца
 keywords:
   - docs
   - polygon
@@ -9,37 +9,38 @@ keywords:
   - key
   - key management
   - signer
+  - owner
 slug: key-management
-image: https://matic.network/banners/matic-network-16x9.png
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
-Each validator uses two keys to manage validator related activities on Polygon:
+Каждый валидатор использует два ключа для управления деятельностью, связанной с обязанностями валидатора в Polygon:
 
-* Signer key
-* Owner key
+* Ключ подписанта
+* Ключ владельца
 
-## Signer key
+## Ключ подписанта {#signer-key}
 
-The signer key is the address used to sign Heimdall blocks, checkpoints, and other signing related activities.
+Ключ подписанта — это адрес, используемый для подписания блоков и чекпоинтов Heimdall и выполнения других связанных с этим действий.
 
-The signer address's private key must be located on the machine running the validator node for signing purposes.
+Для целей подписания закрытый ключ, соответствующий адресу подписанта, должен находиться на компьютере, на котором запущен узел проверки.
 
-The signer key cannot manage staking, rewards, or delegations.
+Ключ подписанта не может управлять стейкингом, наградами или делегированием.
 
-The validator must keep ETH on the signer address on the Ethereum mainnet to send [checkpoints](../../glossary#checkpoint-transaction).
+Для отправки [чекпоинтов](/docs/maintain/glossary.md#checkpoint-transaction) валидатору необходимо хранить ETH на адресе подписанта в Ethereum mainnet.
 
-## Owner key
+## Ключ владельца {#owner-key}
 
-The owner key is the address used to stake, restake, change the signer key, withdraw rewards and manage delegation related parameters on the Ethereum mainnet. The private key for the owner key must be secure at all costs.
+Ключ владельца — это адрес, используемый для стейкинга, добавления средств в стейкинг, смены ключа подписанта, вывода наград и управления параметрами, связанными с делегированием, в Ethereum mainnet. Конфиденциальность закрытого ключа для ключа владельца крайне важна.
 
-All transactions through the owner key are performed on the Ethereum mainnet.
+Все операции с использованием ключа владельца выполняются в Ethereum mainnet.
 
-The signer key is kept on the node and is generally considered a *hot* wallet, whereas the owner key is supposed to kept very secure, is used infrequently, and is generally considered a *cold* wallet. The staked funds are controlled by the owner key.
+Ключ подписанта хранится в ноде и обычно считается **горячим** кошельком, в то время как ключ владельца, который должен быть защищен очень надежно и использоваться редко, обычно рассматривается как **холодный** кошелек. Средства в стейкинге контролируются ключом владельца.
 
-This separation of responsibilities between the signer and the owner keys is done to ensure an efficient tradeoff between security and ease of use.
+Такое разделение функций между ключами подписанта и владельца призвано обеспечить эффективный баланс между безопасностью и простотой использования.
 
-Both keys are Ethereum compatible addresses and work in the exactl the same manner.
+Оба ключа являются адресами, совместимыми с Ethereum, и работают абсолютно одинаково.
 
-## Signer change
+## Изменение подписанта {#signer-change}
 
-See [Change Your Signer Address](../../validate/change-signer-address).
+См. статью [Изменение адреса подписанта](/docs/maintain/validate/change-signer-address).

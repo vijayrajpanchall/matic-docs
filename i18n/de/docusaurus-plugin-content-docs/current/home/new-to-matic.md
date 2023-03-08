@@ -1,81 +1,95 @@
 ---
 id: new-to-polygon
-title: New to Polygon?
-description: Build your next blockchain app on Polygon.
+title: Willkommen bei Polygon
+description: Baue deine nächste Blockchain-App auf Polygon
 keywords:
   - docs
   - matic
-image: https://matic.network/banners/matic-network-16x9.png
+  - polygon
+  - new to polygon
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
-Polygon is a scaling solution for public blockchains. Polygon PoS supports all the existing Ethereum tooling along with faster and cheaper transactions.
+# Willkommen bei Polygon {#welcome-to-polygon}
 
-## Types of Interaction on Polygon
+Polygon ist eine Skalierungslösung für öffentliche Blockchains. Polygon PoS unterstützt alle bestehenden Ethereum-Tools und ermöglicht schnellere und günstigere Transaktionen.
 
-* [Polygon PoS chain](/docs/develop/getting-started)
-* [Ethereum + Polygon with PoS bridge](https://docs.polygon.technology/docs/develop/ethereum-polygon/pos/getting-started)
-* [Ethereum + Polygon with Plasma bridge](https://docs.polygon.technology/docs/develop/ethereum-polygon/plasma/getting-started)
+## Arten von Interaktion auf Polygon {#types-of-interaction-on-polygon}
 
-## Deploy Smart Contracts
+* [Polygon PoS Chain](/docs/develop/getting-started)
+* [Ethereum + Polygon mit PoS-Brücke](https://docs.polygon.technology/docs/develop/ethereum-polygon/pos/getting-started)
+* [Ethereum + Polygon mit Plasma-Brücke](https://docs.polygon.technology/docs/develop/ethereum-polygon/plasma/getting-started)
 
-<!-- ### Are you an Experience Blockchain Developer? -->
+## Abfrage der Blockchain {#query-the-blockchain}
 
-* Deploy your Contracts on Polygon
-    - [Using Alchemy](/docs/develop/alchemy)
-    - [Using Chainstack](/docs/develop/chainstack)
-    - [Using QuickNode](/docs/develop/quicknode)
-    - [Using Remix](/docs/develop/remix)
-    - [Using Truffle](/docs/develop/truffle)
-    - [Using Hardhat](/docs/develop/hardhat)
-* Configure the Web3 RPC-URL to https://rpc-mumbai.matic.today, *Everything else remains the same*
+Die meisten blockchain beinhalten das Lesen seines Zustands.
 
-## What is a Blockchain?
-Simply put, Blockchain is a shared, immutable ledger for recording transactions, tracking assets and building trust. Head over to [Blockchain Basics](blockchain-basics/basics-blockchain.md) to read more.
+Alchemy bietet einen Referenzleitfaden zur Erstellung von grundlegenden Anfragen an die Blockchain. Sieh dir ihren Leitfaden [an, wie du Polygon abfragst](https://docs.alchemy.com/reference/polygon-sdk-examples).
 
-:movie_camera: [Your first DApp](https://www.youtube.com/watch?v=rzvk2kdjr2I)
+## Smart Contracts bereitstellen {#deploy-smart-contracts}
 
-## What is a Sidechain?
-Think of a Sidechain as a clone of a 'parent' blockchain, supporting transfer of assets to and from the main chain. It is simply an alternate to parent chain that creates a new blockchain with its own mechanism of creating blocks (consensus mechanism). Connecting a sidechain to a parent chain involves setting up a method of moving assets between the chains.
+* Bereitstellung deiner Contracts auf Polygon
+    - [Alchemy verwenden](/docs/develop/alchemy)
+    - [Chainstack verwenden](/docs/develop/chainstack)
+    - [QuickNode verwenden](/docs/develop/quicknode)
+    - [Remix verwenden](/docs/develop/remix)
+    - [Truffle verwenden](/docs/develop/truffle)
+    - [Hardhat verwenden](/docs/develop/hardhat)
 
-:page_facing_up: [Sidechains and Childchains](https://hackernoon.com/what-are-sidechains-and-childchains-7202cc9e5994)
+:::note
 
-## Validator and delegator roles
+Konfiguriere die Web3 RPC-URL auf "https://rpc-mumbai.matic.today", alles andere bleibt gleich.
 
-On the Polygon Network, you can be a validator or a delegator. See:
+:::
 
-* [Who Is a Validator](/docs/maintain/polygon-basics/who-is-validator)
-* [Who Is a Delegator](/docs/maintain/polygon-basics/who-is-delegator)
+## Was ist Blockchain? {#what-is-a-blockchain}
 
-## Architecture
+Blockchain ist ein gemeinsamer, nicht veränderbarer Ledger für die Aufzeichnung von Transaktionen, die Verfolgung von Assets und den Aufbau von Vertrauen. Gehe zu [Blockchain-Basics](blockchain-basics/basics-blockchain.md), um mehr zu erfahren.
 
-If your goal is to become a validator, it is essential that you understand the Polygon architecture.
+## Was ist eine Sidechain? {#what-is-a-sidechain}
 
-See [Polygon Architecture](/docs/maintain/validator/architecture).
+Stell dir eine Sidechain als einen Klon einer „Eltern“-Blockchain vor, der den Transfer von Assets zur und von der Mainchain unterstützt. Sie ist einfach eine Alternative zur Mainchain, die eine neue Blockchain mit einem eigenen Mechanismus zur Erstellung von Blöcken (Konsensmechanismus) erstellt. Die Verbindung einer Sidechain mit einer Eltern-Chain erfordert die Einrichtung einer Methode zur Übertragung von Assets zwischen den Chains.
 
-### Components
+## Validator- und Delegatorrollen {#validator-and-delegator-roles}
 
-To have a granular understanding of the Polygon architecture, see core components:
+Im Polygon Netzwerk kannst du ein Validator oder ein Delegator sein. Siehe:
+
+* [Wer ist ein Validator](/docs/maintain/polygon-basics/who-is-validator)
+* [Wer ist ein Delegator](/docs/maintain/polygon-basics/who-is-delegator)
+
+## Architektur {#architecture}
+
+Wenn du ein Validator werden willst, ist es wichtig, dass du die Polygon-Architektur verstehst.
+
+Siehe [Polygon Architektur](/docs/maintain/validator/architecture).
+
+### Komponenten {#components}
+
+Um ein detailliertes Verständnis der Polygon-Architektur zu erlangen, siehe Kernkomponenten:
 
 * [Heimdall](/docs/pos/heimdall/overview)
 * [Bor](/docs/pos/bor/overview)
 * [Contracts](/docs/pos/contracts/stakingmanager)
 
-#### Codebases
+#### Codebases {#codebases}
 
-To have a granular understanding of the core components, see the codebases:
+Um ein detailliertes Verständnis der Kernkomponenten zu erhalten, siehe Codebases:
 
 * [Heimdall](https://github.com/maticnetwork/heimdall)
 * [Bor](https://github.com/maticnetwork/bor)
 * [Contracts](https://github.com/maticnetwork/contracts)
 
-## How-tos
+## Anleitungen (How-tos) {#how-tos}
 
-### Node setup
+### Knoten Setup {#node-setup}
 
-* [Run a Validator Node with Ansible](/docs/maintain/validate/run-validator-ansible)
-* [Run a Validator Node from Binaries](/docs/maintain/validate/run-validator-binaries)
+Wenn du einen vollständigen Knoten auf dem Polygon Mainnet oder Mumbai Testnet ausführen möchtest, kannst du den folgenden folgen. [Führe einen Validator](/maintain/validate/run-validator.md) Guide aus.
 
-### Staking operations
+### Staking Vorgänge {#staking-operations}
 
-* [Validator Staking Operations](/docs/maintain/validate/validator-staking-operations)
-* [Delegate](/docs/maintain/delegate/delegate)
+* [Validator-Staking Vorgänge](/docs/maintain/validate/validator-staking-operations)
+* [Delegieren](/docs/maintain/delegate/delegate)
+
+### Externe Ressourcen {#external-resources}
+- [Deine erste dApp](https://www.youtube.com/watch?v=rzvk2kdjr2I)
+- [Sidechains und Childchains](https://hackernoon.com/what-are-sidechains-and-childchains-7202cc9e5994)

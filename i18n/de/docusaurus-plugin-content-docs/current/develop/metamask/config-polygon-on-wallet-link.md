@@ -1,39 +1,38 @@
 ---
 id: config-polygon-on-wallet-link
-title: Configure Polygon on Wallet Link
-description: Build your next blockchain app on Polygon.
+title: Polygon auf Wallet Link konfigurieren
+description: Einrichtung des Polygon-Mainnets auf Wallet Link.
 keywords:
-  - docs
-  - matic
-image: https://matic.network/banners/matic-network-16x9.png
+  - wiki
+  - polygon
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
-
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 
-## Configure Polygon on Walletlink
+## Polygon auf Walletlink konfigurieren {#configure-polygon-on-walletlink}
 
 <Tabs
-  defaultValue="mainnet"
-  values={[
-    { label: 'Polygon-Mainnet', value: 'mainnet', },
- { label: 'Mumbai-Testnet', value: 'mumbai', },
- ]
+defaultValue="mainnet"
+values={[
+{ label: 'Polygon-Mainnet', value: 'mainnet', },
+{ label: 'Mumbai-Testnet', value: 'mumbai', },
+]
 }>
 
 <TabItem value="mainnet">
 
-1. From the Walletlink home page, select the Settings button 
+1. Klicke auf der Walletlink-Startseite auf die Schaltfläche Einstellungen
 
 <img src={useBaseUrl("img/walletlink/config-polygon-walletlink-1.jpg")} width="30%" height="30%" />
 
-2. From the setting page, under the Advanced section, select the Active network Option. 
+2. Wähle auf der Einstellungsseite im Abschnitt Erweitert die Option Aktive Netzwerke aus.
 
 <img src={useBaseUrl("img/walletlink/config-polygon-walletlink-2.jpg")} width="30%" height="30%"/>
 
-3. From the Active Networks page, under the ETH section, select the Polygon Mainnet.
+3. Wählen auf der Seite Aktive Netzwerke im Abschnitt ETH das Polygon Mainnet aus.
 
 <img src={useBaseUrl("img/walletlink/config-polygon-walletlink-3.jpg")} width="30%" height="30%"/>
 
@@ -41,15 +40,15 @@ import TabItem from '@theme/TabItem';
 
 <TabItem value="mumbai">
 
-1. From the Walletlink home page, select the Settings button 
+1. Klicke auf der Walletlink-Startseite auf die Schaltfläche Einstellungen
 
 <img src={useBaseUrl("img/walletlink/config-polygon-walletlink-1.jpg")} width="30%" height="30%" />
 
-2. From the setting page, under the Advanced section, select the Active network Option. 
+2. Wähle auf der Einstellungsseite im Abschnitt Erweitert die Option Aktive Netzwerke aus.
 
 <img src={useBaseUrl("img/walletlink/config-polygon-walletlink-2.jpg")} width="30%" height="30%"/>
 
-3. From the Active Networks page, under the ETH section, select the Polygon Mumbai.
+3. Wähle auf der Seite Aktive Netzwerke im Abschnitt ETH Polygon Mumbai.
 
 <img src={useBaseUrl("img/walletlink/config-polygon-walletlink-4.jpg")} width="30%" height="30%"/>
 </TabItem>

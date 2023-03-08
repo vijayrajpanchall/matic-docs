@@ -1,114 +1,132 @@
 ---
 id: did-implementation
-title: Polygon DID Implementation
+title: Implementación de la DID de Polygon
 sidebar_label: Identity
-description: Learn about DID implementation on Polygon
+description: Conoce sobre la implementación de la DID en Polygon
 keywords:
   - docs
   - polygon
   - matic
   - DID
   - identity
-image: https://matic.network/banners/matic-network-16x9.png
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 slug: did-implementation/getting-started
 ---
 
-This is a startup guide for users who wish to use the implementation packages published by Polygon team, to generate and publish a Polygon DID on the Polygon ledger.
+Esta es una guía de inicio para los usuarios que deseen utilizar los paquetes de implementación publicados por el equipo de Polygon, para generar y publicar una DID de Polygon en el libro mayor de Polygon.
 
-The Polygon DID method Implementation comprises of 3 packages, namely the polygon-did-registrar, polygon-did-resolver and polygon-did-registry-contract. A user who wants to incorporate the functionality to either register or read a DID on or from Polygon network can use the following guide.
+La implementación del método de la DID de Polygon consta de 3 paquetes, a saber: polygon-did-registrar, polygon-did-resolver y polygon-did-registry-contract. Un usuario que quiera incorporar la funcionalidad de registro o lectura de una DID en o desde la red de Polygon puede utilizar la siguiente guía.
 
-A DID is essentially a unique identifier, that has been created without the presence of a central authority.  DID in context of Verifiable Credentials is used to sign documents, thereby facilitating the user to prove ownership of the document when required.
+Una DID es esencialmente un identificador único, que ha sido creado sin la presencia de una autoridad central. La DID en el contexto de las credenciales verificables se utiliza para firmar documentos, facilitándole al usuario probar que es el propietario del documento cuando sea necesario.
 
-## Polygon DID Method
+## Método de la DID de Polygon {#polygon-did-method}
 
-The Polygon DID method definition conforms to the DID-Core specifications and standards. A DID URI is composed of three components separated by colons, the scheme, followed by the method name and finally a method specific identifier. For Polygon the URI looks like
+La definición del método de la DID de Polygon se ajusta a las especificaciones y normas de DID-Core. Un URI tipo DID está formado por tres elementos separados por dos puntos, el esquema, seguido del nombre del método y, por último, un identificador específico del método. Para Polygon el URI se ve como:
+
 ```
 did:polygon:<Ethereum address>
 ```
-Here the scheme is ‘did’, method name is ‘polygon’ and method specific identifier is an ethereum address.
 
-## Polygon DID Implementation
+Aquí el esquema `did`es, el nombre del método es `polygon`y el identificador específico del método es una dirección .
 
-Polygon DID can be implemented with help of two packages, user can import the respective npm libraries and use them to incorporate Polygon DID methodologies in thier respective applications. Details for implementation are provided in next section.
+## Implementación de la DID de Polygon {#polygon-did-implementation}
 
-## Create DID
+La DID de Polygon puede ser implementada con ayuda de dos paquetes, el usuario puede importar las respectivas bibliotecas de npm y utilizarlas para incorporar las metodologías de la DID de Polygon en sus respectivas aplicaciones. En la siguiente sección se ofrece más información de la implementación.
 
-To get started, one first needs to create a DID. Creation in case of Polygon did is an encapsulation of two steps, first where a user needs to generate a DID uri for themselves and next register it on Polygon ledger.
+Para empezar, hay que crear una DID. La creación en el caso de la DID de Polygon es una encapsulación de dos pasos. En primer lugar, el usuario debe generar un URI tipo DID para sí mismo y luego registrarlo en el libro mayor de Polygon.
 
-### Step 1 - Create DID
+### Crea una DID {#create-did}
 
-In your project to create a polygon DID URI one first needs to install
+En tu proyecto para crear una URI DID  primero hay que instalar:
+
 ```
 npm i @ayanworks/polygon-did-registrar --save
 ```
-Once the installation is completed, the user can use it as follows
+
+Una vez finalizada la instalación, el usuario puede utilizarla de la siguiente manera:
+
 ```
 import { createDID } from "polygon-did-registrar";
 ```
-The createdDID function helps user generate a DID URI. While creating a DID, there can be two scenarios.
 
-1) The user already owns a wallet and wishes to generate a DID correponding to the same wallet.
-```
-const {address, publicKey58, privateKey, DID} = await createDID(network, privateKey);
-```
-2) If the user does not have an existing wallet and wants to generate one, the user can use
-```
-const {address, publicKey58, privateKey, DID} = await createDID(network);
-```
-The network parameter in both cases refers to whether the user wants to create the DID on Polygon test network or on Polygon main network.
+La `createdDID`función ayuda a los usuarios a generar una URL DID Al crear una DID, puede haber dos escenarios.
 
-Sample Input
+  1. El usuario ya posee una billetera y desea generar una DID que corresponda a la misma billetera.
+
+    ```
+    const {address, publicKey58, privateKey, DID} = await createDID(network, privateKey);
+    ```
+
+  2. Si el usuario no tiene una billetera existente y quiere generar una, el usuario puede utilizar:
+
+    ```
+    const {address, publicKey58, privateKey, DID} = await createDID(network);
+    ```
+
+El parámetro de la red en ambos casos se refiere a si el usuario quiere crear el DID en Polygon Mumbai Testnet o en Polygon Mainnet.
+
+Entrada de muestra:
+
 ```
 network :"testnet | mainnet"
 privateKey? : "0x....."
 ```
-So at the end of step 1, one will have a DID URI generated.
+
+Después de crear DID, tendrás una URI DID generada.
+
 ```
 DID mainnet: did:polygon:0x...
 DID testnet: did:polygon:testnet:0x...
 ```
 
-### Step 2 - Register DID
+### Registrar DID {#register-did}
 
-To register the DID URI and the corresponding DID document on ledger, the user first needs to use `polygon-did-registrar` as follows
-```
+Para registrar el URI DID y el documento DID correspondiente en el libro mayor, el usuario primero debe utilizar de `polygon-did-registrar`la siguiente manera:
+
+```js
 import { registerDID } from "polygon-did-registrar";
 ```
-As a prerequisite to registering DID, the user needs to make sure that the wallet corrsponding to the DID has the necessary tokens balance available. Once the user has a token balance in the wallet, a call can be made to the registerDID functionality as given below
-```
+
+Como requisito previo para registrar DID, el usuario debe asegurarse de que la billetera se corrsponding a la DID tenga el equilibrio de tokens necesario disponible. Una vez que el usuario tenga un saldo de token en la billetera, se puede hacer una llamada a la funcionalidad  como se muestra a continuación:
+
+```js
 const txHash = await registerDID(did, privateKey, url?, contractAddress?);
 ```
-Parameters `did` and `privateKey` are mandatory, while it is optional to enter the `url` and the `contractAddress`. If the user does not give the last two parameters, the library picks up the default configurations of the network from the DID URI.
 
-If all the parameters match the specifications and everything is given in correct order the registerDID function returns a transaction hash, a corresponding error is returned otherwise.
+Parámetros `did`y `privateKey`son obligatorios, mientras que es opcional entrar en el `url`.`contractAddress` Si el usuario no da los dos últimos parámetros, la biblioteca recoge las configuraciones por defecto de la red a partir del URI DID.
 
-And with this you have successfully completed your task of registering a DID on the Polygon Network.
+Si todos los parámetros coinciden con las especificaciones y todo se da en el orden correcto, la `registerDID`función devuelve un hash de transacción, se devuelve un error correspondiente de lo contrario.
 
-## Resolve DID
+Y con esto, has completado con éxito tu tarea de registrar un DID en la Red de Polygon.
 
-To start, install the following libraries.
-```
+## Resolución de una DID {#resolve-did}
+
+Para comenzar, instala las siguientes bibliotecas:
+
+```bash
 npm i @ayanworks/polygon-did-resolver --save
-```
-and
-```
 npm i did-resolver --save
 ```
 
-To read a DID document registered on ledger, any user with a DID polygon URI can first in their project import,
-```
+Para leer el documento de una DID registrado en el libro mayor, cualquier usuario con un URI de Polygon tipo DID puede, primero, en su proyecto importar:
+
+```js
 import * as didResolvers from "did-resolver";
 import * as didPolygon from '@ayanworks/polygon-did-resolver';
 ```
-after importing the packages the DID document can be retrieved by using
-```
+
+Después de importar los paquetes, el documento DID se puede recuperar mediante el uso:
+
+```js
 const myResolver = didPolygon.getResolver()
 const resolver = new DIDResolver(myResolver)
 
 const didResolutionResult = this.resolver.resolve(did)
 ```
-where the didResolutionResult object is as follows
-```
+
+donde el `didResolutionResult`objeto es el siguiente:
+
+```js
 didResolutionResult:
 {
     didDocument,
@@ -117,50 +135,49 @@ didResolutionResult:
 }
 ```
 
-It should be noted that, no gas cost will be entailed by the user while trying to resolve a DID.
+Hay que tener en cuenta que el usuario no tendrá ningún costo de gas al tratar de resolver una DID.
 
-## Update DID Document
+## Actualización del documento de la DID {#update-did-document}
 
-To encapsulate the project with the ability to update the DID document, the user first needs to use `polygon-did-registrar` as follows
-```
+Para encapsular el proyecto con la capacidad de actualizar el documento DID, el usuario primero debe utilizar de `polygon-did-registrar`la siguiente manera:
+
+```js
 import { updateDidDoc } from "polygon-did-registrar";
 ```
-Next is to just call the function
-```
+
+A continuación, llama a la función:
+
+```js
 const txHash = await updateDidDoc(did, didDoc, privateKey, url?, contractAddress?);
 ```
-It should be noted that to update the DID document, only the owner of DID can send the request.
 
-The private key here should also hold some corresponding Matic tokens.
+Cabe señalar que para actualizar el documento DID solo el propietario de DID puede enviar la solicitud. La clave privada aquí también debe contener algunos tokens de MATIC correspondientes.
 
-If the user does not provide the configuration with `url` and `contractAddress`, the library picks up the default configurations of the network from the DID URI.
+Si el usuario no proporciona la configuración con  `url`y `contractAddress`, la biblioteca recoge las configuraciones por defecto de la red desde el URI tipo DID.
 
-## Delete DID Document
+## Eliminar el documento de la DID {#delete-did-document}
 
-With Polygon DID implementation a user can also revoke his DID Document from the ledger. The user first needs to use `polygon-did-registrar` as follows
-```
+Con la implementación de Polygon DID un usuario también puede revocar su documento DID desde el libro mayor. El usuario primero debe utilizar de `polygon-did-registrar`la siguiente manera:
+
+```js
 import { deleteDidDoc } from "polygon-did-registrar";
 ```
-Then use,
-```
+
+Luego, debe usar:
+
+```js
 const txHash = await deleteDidDoc(did, privateKey, url?, contractAddress?);
 ```
 
-Amongst the parameters it is notable that, `url` and `contractAddress` are optional parameters, which if not provided by the user, a default configuration will be picked up by the function based on the DID URI.
+Entre los parámetros se destaca que `url`y `contractAddress`son parámetros opcionales que, de no proporcionarlos el usuario, la función basada en el URI tipo DID toma la configuración por defecto.
 
-It is important for the private key to hold the necessary Matic tokens, as per the network configuration of DID, or the transaction would fail.
+Es importante que la clave privada contenga los tokens de MATIC requeridos, según la configuración de red de la DID, para que la transacción no falle.
 
+## Contribución al repositorio {#contributing-to-the-repository}
 
-## Contributing to the Repository
-
-Use the standard fork, branch, and pull request workflow to propose changes to the repositories. Please make branch names informative—by including the issue or bug number for example.
-
-### Github Repositories
+Utiliza el flujo de trabajo estándar de bifurcación, rama y solicitud de incorporación de cambios para proponer cambios en los repositorios. Por favor, haz los nombres de las sucursales informativos incluyendo el número de problema o el número de fallos, por ejemplo.
 
 ```
 https://github.com/ayanworks/polygon-did-registrar
-```
-
-```
 https://github.com/ayanworks/polygon-did-resolver
 ```

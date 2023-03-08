@@ -1,6 +1,6 @@
 ---
-id: how-to-translate
-title: How to Translate
+id: translate
+title: Help with translations
 sidebar_label: Help with translations
 description: Learn how to help translate the Polygon Wiki.
 keywords:
@@ -12,12 +12,19 @@ keywords:
   - contribute
   - language
 image: https://wiki.polygon.technology/img/polygon-logo.png
-slug: how-to-translate
+slug: translate
 ---
 
-:::info Page is being updated
+:::caution State of translations and localization efforts
 
-Please see the **[Docusaurus guide](https://docusaurus.io/docs/i18n/crowdin#translate-the-sources)**
-in the meantime.
+We are committed to making the Polygon documentation accessible to a global audience and have added support for around fifteen languages, with more to come. However, the translations are still a work in progress, and we are working on automating the process to keep them up-to-date. We are also looking for native speakers in the community to help retranslate some sections and translate new content for the first time. Additionally, we are planning to support more languages in the future.
+
+:::
+
+:::info Help with translations
+
+We are also currently exploring options for translation management and may reactivate our use of [Crowdin](https://crowdin.com/) shortly for community contributions. Thank you for your patience and support as we continue to improve the localization of our documentation.
+
+Please see the **[Docusaurus guide](https://docusaurus.io/docs/i18n/crowdin#translate-the-sources)** in the meantime.
 
 :::

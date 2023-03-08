@@ -1,16 +1,21 @@
 ---
 id: gas
-title: What is Gas?
+title: Qu'est-ce que le gaz ?
 sidebar_label: Gas
-description: "How much work a set of actions takes to perform in a blockchain."
+description: "La quantité de travail nécessaire à l'exécution d'un ensemble d'actions dans une blockchain."
 keywords:
   - docs
   - matic
-image: https://matic.network/banners/matic-network-16x9.png
+  - polygon
+  - gas
+  - transaction fees
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
-"Gas" is the name for a special unit used in smart contract enabled blockchain networks. It measures how much "work" an action or set of actions takes to perform: for example, to calculate one Keccak256 cryptographic hash it will take 30 gas each time a hash is calculated, plus a cost of 6 more gas for every 256 bits of data being hashed. Every operation that can be performed by a transaction or contract on the platform costs a certain number of gas, with operations that require more computational resources costing more gas than operations that require few computational resources.
+# Qu'est-ce que le gaz ? {#what-is-gas}
 
-### **:scroll:Resources**
+« Gaz » est le nom d'une unité spéciale utilisée dans les réseaux blockchain compatibles avec les contrats intelligents. Cette unité mesure la quantité de travail nécessaire à l'exécution d'une action ou d'un ensemble d'actions. Par exemple, pour calculer un hachage cryptographique Keccak256, il faut 30 gaz à chaque fois qu'un hachage est calculé, plus un coût de 6 gaz supplémentaires pour chaque 256 bits de données à hacher. Chaque opération pouvant être effectuée par une transaction ou un contrat sur la plateforme coûte un certain montant de gaz, avec des opérations nécessitant plus de ressources informatiques coûtant plus de gaz que des opérations nécessitant moins de ressources informatiques.
 
-:green_book: [What is meant by the term "Gas"?](https://ethereum.stackexchange.com/questions/3/what-is-meant-by-the-term-gas)
+### **Ressources**
+
+- [Qu'est-ce que le terme "Gaz"?](https://ethereum.stackexchange.com/questions/3/what-is-meant-by-the-term-gas)

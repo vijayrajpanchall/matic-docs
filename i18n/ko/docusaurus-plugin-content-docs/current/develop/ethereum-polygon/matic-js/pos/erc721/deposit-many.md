@@ -2,11 +2,11 @@
 id: deposit-many
 title: depositMany
 keywords:
-  - 'pos client, erc721, depositMany, polygon, sdk'
-description: 'maticjs으로 시작하기'
+- 'pos client, erc721, depositMany, polygon, sdk'
+description: '이더리움에서 Polygon 체인으로 복수의 토큰을 입금합니다.'
 ---
 
-`depositMany` 메소드는 이더리움에서 폴리곤 체인으로 여러 토큰을 입금하는 데 사용할 수 있습니다.
+`depositMany` 메서드를 사용해 이더리움에서 Polygon 체인으로 복수의 토큰을 입금할 수 있습니다.
 
 ```
 const erc721RootToken = posClient.erc721(<root token address>, true);

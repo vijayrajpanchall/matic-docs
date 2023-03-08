@@ -1,209 +1,156 @@
 ---
 id: faq
 title: FAQ
-description: Build your next blockchain app on Polygon.
+description: Polygon과 관련된 FAQ
 keywords:
   - docs
   - matic
-image: https://matic.network/banners/matic-network-16x9.png
+  - polygon
+  - faq
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
-## What is Polygon?
+# 자주 묻는 질문 {#frequently-asked-questions}
 
-Polygon is a sidechain based scaling solution for public blockchains. Polygon provides scalability while ensuring a superior user experience in a secured and decentralized manner. It has a working implementation for Ethereum on Kovan Testnet. Polygon intends to support other blockchains in the future which will enable it to provide interoperability features alongside offering scalability to existing public blockchains.
+## Polygon은 무엇인가요? {#what-is-polygon}
 
-## How is Polygon different from other implementations of Plasma?
+Polygon은 공공 블록체인에서 스케일링 솔루션입니다. 특히 이더리움에 대한 스케일링 솔루션입니다. Polygon은 보안 및 분산 방식으로 우수한 사용자 경험을 보장하면서 스케일러빌ity를 제공합니다. Kovan Testnet에서 이더리움에 대한 작업 구현을 제공합니다. Polygon은 기존 공용 블록 체인 네트워크에 스케일러빌을 제공하는 것과 함께 상호 운용성 기능을 제공할 수 있도록 향후 다른 블록체인을 지원할 계획입니다.
 
-Polygon's implementation of Plasma is built on state-based side chains which run on EVM, while the other implementations of Plasma primarily use UTXOs which restricts them to being payment specific. Having state based side chains allows Polygon to provide scalability for generic smart contracts as well.
+## Polygon은 다른 플라스마 구현과 어떻게 다를까요? {#how-is-polygon-different-from-other-implementations-of-plasma}
 
-Secondly, Polygon uses a public checkpointing layer which publishes checkpoints after periodic intervals (unlike checkpoints  after every block in Plasma Cash) allowing the side chains to operate at high speeds while publishing the checkpoints in batches. These checkpoints along with the fraud proofs ensure that Polygon's side chains operate in a secure manner and any fraudulent activity can be detected on Ethereum mainchain and be penalized by slashing the stakes of the bad actors. This mainchain security is supplementary to the PoS protocol security on the side chains.
+Polygon의 Plasma의 구현은 EVM에서 운영하는 국영 시다시피인에 구축되어 있으며, Plasma의 다른 구현은 주로 결제에 대한 UTXO를 사용하는 반면 Plasma의 다른 구현은 주로 사용됩니다. 상태 기반의 sidechain을 사용하면 Polygon을 통해 일반 스마트 계약에 대한 스케일러빌을 제공할 수 있습니다.
 
-## Your project provides scalability for Ethereum using plasma chains, is it a protocol or a native blockchain in itself?
+둘째, Polygon은 주기적으로 간격(Plasma Cash의 모든 블록이 끝난 후 체크포인트와는 달리)을 발행하여 사이드카가 빠른 속도로 조작할 수 있도록 하는 공개 체크포인팅 레이어를 사용합니다. 사기 혐의와 함께 이러한 체크포인트는 Polygon의 sidecain이 보안 방식으로 작동하도록 보장합니다.
 
-Polygon Network is a "side chain" solution where Ethereum mainchain assets, i.e. all Dapps/Tokens/Protocols of the main chain can be moved/migrated to Polygon side chain(s) and when needed, one can withdraw assets back to mainchain.
+## 귀하의 프로젝트는 플라스마 체인을 사용하여 이더리움에 확장성을 제공합니다. 그 본질은 프로토콜 또는 네이티브 블록체인입니까? {#your-project-provides-scalability-for-ethereum-using-plasma-chains-is-it-a-protocol-or-a-native-blockchain-in-itself}
 
-## What are the competitive advantages of Polygon over its competitor?
+Polygon 네트워크는 이더리움 주요 체인 자산이 있는 **"sidechain"** 솔루션입니다. 모든 dapps/Tokens / 프로토콜이 주요 체인의 프로토콜을 Polygon sidechain으로 이동하거나 필요할 때 필요할 때 Exacception을 Polygon으로 이동시킬 수 있습니다.
 
-- L2 scaling solutions
+## 경쟁자에 비해 Polygon의 경쟁 장점은 무엇입니까? {#what-are-the-competitive-advantages-of-polygon-over-its-competitors}
 
-Polygon is committed to achieving scale with decentralization. Polygon uses periodic checkpoints and fraud proofs. When users want to withdraw their assets, they use the checkpoints to prove their assets on side-chain, while fraud proofs are needed to challenge fraud or any bad behavior and slash stakers.
+### L2 스케일링 솔루션 {#l2-scaling-solutions}
 
-Other projects like Loom are also offering L2 scaing solutions. Loom recently announced plans of Zombiechain that may have similarities to Polygon. But there two key elements that we differ on:
+Polygon은 분산화로 스케일을 달성하기 위해 최선을 다합니다. Polygon은 주기적 체크포인트와 사기 증명을 사용합니다. 사용자가 자산을 철회하기를 원할 때 체크포인트를 사용하여 sidechain에서 자산을 증명하고 사기 증명을 사용하여 사기 증명을 사용하여 사기 또는 나쁜 행동에 이의를 제기하고 스테이커에 슬래시할 수 있습니다.
 
-First and foremost,The focus is different. Loom is focusing on games and social apps (requiring relatively less decentralization) while Polygon is focusing on not just financial transactions/ trades but games and other casual Dapps as well. We also have plans for full-blown financial services like lending/trading DApps (token swaps, margin trades and much more)
+다른 프로젝트는 또한 L2 스케일링 솔루션을 제공하고 있지만 다음 두 가지 핵심 요소가 있습니다.
 
-Secondly, Plasma Cash, which is what we believe Loom wants to use "in future", will have block times greater than the Ethereum block times as you need to push every block of the sidechain to the main chain, while Polygon uses checkpoints for 1-second block times (with PoS layer)
+1. 첫째, Polygon은 금융 거래뿐만 아니라 게임 및 기타 유틸리티 앱에 초점을 맞추고 있습니다. 또한 대출 / 거래 앱(토큰의 스왑, 마진 거래 등의 본격적인 금융 서비스에 대한 계획을 가지고 있습니다).
 
-As Plasma Cash works with Non-Fungible Tokes (NFT), it works great for game cards and social state changes where you have pre-defined fees (bundled as NFT - eg "20 tokens" to play game equals 1 NFT coin on plasma cash). For normal token transfers, you may need to swap tokens (like currency notes & change) on top of plasma cash which makes it difficult to implement while offering a friendly UX. It is still being discussed on plasma calls, while Polygon uses state-based plasma (closer to Plasma MVP).
+2. 둘째, Polygon은 1-2블록 시간(PoS 레이어를 포함)을 위해 체크포인트를 사용하지만, 많은 다른 솔루션은 이더리움 블록 시간보다 블록 곱하기 블록을 주요 체인에 밀어 넣어야 할 때 이더리움 블록 시간보다 많은 블록을 가질 수 있습니다.
 
-- L1 scaling solutions
+### L1 스케일링 솔루션 {#l1-scaling-solutions}
 
-Apart from that, amongst other scaling projects like Ziliqa and Quarkchain, Polygon stands out due to its ability to achieve scale while maintaining a great degree of decentralization.
+그 외에도 다른 스케일링 프로젝트 중 Polygon은 상당한 수준의 분산화를 유지하면서 규모를 달성하는 능력에 의해 두드러집니다.
 
-More importantly, these scalability projects have a reinventing the wheel problem. They are creating new blockchains where the developer community, product ecosystem, technical documentation and more importantly businesses need to be built from "scratch". Polygon on the other hand, it being an EVM enabled chain,  programming language, developer documentation etc is available off the shelf to Polygon. All the Dapps/assets built on Ethereum mainchain have scalability available at the click of a button. This is made possible by Polygon being an EVM based side chain.
+더 중요한 것은, 이러한 스케일러빌리티 프로젝트는 "바퀴를 재발명"하는 "문제를 가지고 있습니다. 개발자 커뮤니티, 제품 생태계, 기술 문서 및 기업이 **"스크래치"에서** 구축해야 하는 새로운 블록체인을 만들고 있습니다. 반면 Polygon은 EVM을 가능하게 하는 체인이며, 버튼을 누르면 확장 가능한 모든 dApps/자산을 이더리움 메인 체인에 내장한 모든 dApp / 자산을 보유하고 있습니다.
 
-- Payments
+### 결제 {#payments}
 
-In payments, Raiden Network can be a competitor. Raiden thas implemented Lightning network on Ethereum. An important issue is of capacity/liquidity on the hubs. But this issue gets further amplified for Raiden as Lightning network has only one asset (Bitcoin) for hubs to maintain liquidity while Raiden Network would have to achieve liquidity for the countless number of assets (Ether, ERC20 Tokens)
+우리는 다른 솔루션에서, 발신자와 수신기가 모두 지불 채널을 만들어야하기 때문에 Polygon이 usability의 측면에서 우위를 가지고 있다고 믿습니다. 이는 사용자에게 매우 번거롭습니다. Polygon의 기본 기술을 사용하는 경우, 사용자에게 결제 채널을 요구하지 않으며 사용자들은 단지 토큰을 수령하는 유효한 이더리움 주소만 있으면 됩니다. 이는 또한 분산 응용 프로그램의 사용자 경험을 개선하려는 당사의 장기적 비전과도 부합합니다.
 
-We believe that Polygon has an edge in terms of usability because, in Raiden, both sender and receiver have to create their payment channels. This is very cumbersome for users. While with Polygon's underlying technology there is no requirement of payment channels for users and they only need to have a valid Ethereum address to receive tokens. This is also in line with our long-term vision of improving the user experience for decentralized applications.
+### 거래 및 금융 {#trading-and-finance}
 
-- Trading and Finance
+Polygon은 X의 (예: 0x), 유동성 풀장(예: Kyber Network) 및 London 프로토콜(Dhara Protocol)과 같은 기타 종류의 금융 프로토콜을 플랫폼에서 사용할 수 있도록 할 것이며, Polygon 사용자가 DEXs, lone dapps, LP 등의 다양한 금융 상거래 애플리케이션에 접근할 수 있도록 합니다.
 
-Polygon intends to enable DEX's (eg 0x), Liquidity pools (eg. Kyber Network) and other kinds of financial protocols like Lending protocols (Dharma Protocol) on its platform, which will allow Polygon users acees to varied financial serivce applications like DEXs, Lending DApps and many others
+## Polygon은 다른 idechain 솔루션과 어떻게 비교할까요? {#how-does-polygon-compare-with-other-sidechain-solutions}
 
-- Others
+Polygon에서 모든 사이드 거래는 사이드 샤인과 주요 체인에서 여러 메커니즘에 의해 보장됩니다. sidechain에서 블록 프로듀서에 의해 수행되는 모든 트랜잭션을 확인하고 고도로 분산 된 체크포인팅 레이어에 의해 메인 체인에 체크포인트를 확인합니다.
 
-Also, Polygon's core focus on creating applications having an enhanced user experience will aid in the mass adoption of DApps. For the same end objective, we are intent on building ecosystem tools. Our products like Dagger (which is well known in the Ethereum community) and Opensigner (implementation of Walletconnect protocol and complete Node.js implementation) are a testimony to the same -
+sidechain에서 사기 거래가 발생하면 체크포인팅 레이어에 의해 검출되고 처리할 수 있습니다. 심지어 극단적이고 매우 가능성이 높은 시나리오에서도 블록 프로듀서 층과 콜렉션 층이 모두 콜라보레이션을 모두 모두 모두 함께 하는 주요 체인은 대중의 누구나 와서 sidechain에서 부정행위를 부정하는 거래에 이의를 제기 할 수 있는 사기 증명을 가지고 있습니다.
 
-[WalletConnect](https://github.com/WalletConnect/walletconnect-monorepo)
+만약 어려움이 성공하면 지분을 슬래시됨에 따라 공모자에게 엄청난 경제적 불이익 / 재정적 처벌이 있습니다. 또한 공개 도전자는 사기 사이드 세카 배우의 슬래시된 스테이크로 보상을 받습니다.
 
-[Dagger](https://github.com/maticnetwork/eth-dagger.js)
+Polygon은 idechain 거래의 높은 수준의 분산화와 보안을 가진 경제적으로 인센티브 사이시카 인 네트워크를 만듭니다.
 
-[Sol-Trace](https://github.com/maticnetwork/sol-trace.js)
+또한 Polygon 사이드 키인의 능력과 TPS는 다른 솔루션보다 훨씬 높습니다. 특히 Polygon은 수천 개의 트랜잭션을 가질 수 있는 경우 다른 사용자가 몇 천 개의 트랜잭션을 더 제한하는 단일 사이드 헤인인 경우 더 많은 Polygon을 제공합니다.
 
+## 어떤 원칙을 통해 새로운 sidechain을 추가 할 것인가? 민간 기업의 지역 사이드 헤인에 대한 특별 요구 사항이 있습니까? {#via-what-principles-will-new-sidechains-be-added-will-there-be-any-special-requirements-for-private-companies-local-sidechains}
 
-## How does Polygon compare with other sidechain solutions like POA/Go-Chain?
+상태 채널과 관련하여 플라스마는 기본적으로 사용자가 어떠한 경우에도 자금을 잃지 않을 것이라고 말하는 프레임워크에서 제공하는 보안 보장으로 인해 스케일링 프레임워크에 대한 우수한 대안이 됩니다. 물론, 돈을 회수하는 데 지연이 발생할 수 있지만 Byzantine 플라스마 운영자는 허공에서 돈을 만들거나 트랜잭션을 이중으로 소비할 수 없습니다.
 
-Projects like POA use block producers notarised by Government and Go-Chain relies on institutions across various countries. Such public block producers have a big chance of getting influenced by powerful external agencies and self-interests. Also, side chain transactions are secured only by side chain consensus in which the participants are very low in number 3-25 while on Polygon, all side transactions are secured by multiple mechanisms on the side chain as well as mainchain.
+Polygon은 미래에 경제적 인센티브/반대 인센티브가 주로 시스템의 보안과 안정성을 주도하는 완전히 개방된 공개 블록체인 인프라가 되기 위해 노력할 것입니다. 따라서 누구나 시스템에 가입할 수 있고 합의에 참여할 수 있어야 합니다. 그러나 네트워크의 시드 단계에서 먼저 Polygon은 사이드 케인이 가능하도록 더 큰 역할을 해야 합니다.
 
-On sidechain, any transactions done by Block producer layer are verified and checkpointed to the mainchain by a highly decentralized checkpointing layer. So if any fraudulent transaction happens on sidechain it can be detected and handled by the checkpointing layer. Even in extreme and highly unlikely scenario wherein the block producer layer as well as the checkpointing layer both collude, even then Mainchain has fraud proofs on which anyone from the public can come and challenge any transaction that they deem fraudulent on the sidechain. If the challenge is successful, there is a huge economic disincentive/financial punishment to the colluding parties as their stakes are slashed. Also, the public challenger is rewarded with slashed stakes of the fraudulent sidechain actors.
+또한 Polygonic sidechain은 주로 공공 sidechain을 사용할 수 있습니다. 그러나 엔터프라이즈 Polygon 체인은 특정 조직에 전용 사이드 키인(비개인 정보 보호 사용)을 제공할 계획입니다. 이러한 체인의 보안 및 분산화는 여전히 메인 체인의 체크포인팅 층과 사기 증명을 사용하여 그대로 유지됩니다.
 
-This makes Polygon an economically incentivized side chain network which has a high degree of decentralization and security of the sidechain transactions.
+## 사이드 세카인도 메인 체인(이더리움)과 동기화될 수 있을까요? {#will-sidechains-also-be-synced-with-the-main-chain-ethereum}
 
-Secondly, capacity and TPS of Polygon sidechains are much higher than that of POA and Go-chain. Especially when Polygon can have thousands of transactions while POA and Go-chain are single sidechains which have a higher limit of a few thousand transactions.
+당연합니다. 공용 체크포인팅 층은 sidechain에서 일어나는 모든 트랜잭션을 확인하고 메인 체인에 증거를 게시할 것입니다. sidechain 거래의 가짜 보안을 보장하기 위해 주요 체인 Plasma 계약에는 모든 sidecain 거래가 사기 활동에 대해 이의를 제기 할 수 있는 다양한 종류의 Fraud Proofs가 포함되어 있습니다. 도전자가 성공하면 사기에 관련된 사이드 헤인 배우의 지분을 줄이고 도전자로 이전됩니다. 이것은 이제까지 실행되는 높은 지분 버그 현상과 동일합니다. 이해를 위한 좋은 다이어그램은 다음과 같습니다.
 
-## Via what principles will new Side Chains be added? Will there be any special requirements for private companies' local Side Chains?
+![스크린샷](/img/matic/Architecture.png)
 
-Relative to state channels, Plasma represents a superior alternative to scaling frameworks, chiefly due to the security guarantees provided by the framework - which basically say that users will never lose funds in any eventuality. Sure, there could be delays in getting back the money, but a Byzantine Plasma operator cannot create money out of thin air, or double spend a transaction.
+## 백서의 끝에 '잠재적 사용 사례' 목록이 있습니다. 이 목록이 모두 구현됩니까? 그 순서는 어떻게 됩니까? {#at-the-end-of-the-white-paper-there-is-a-list-of-potential-use-cases-will-all-of-that-be-implemented-in-what-order}
 
-Polygon will strive to be a completely open and public blockchain infra in the future wherein the economic incentives/disincentives will primarily drive the security and stability of the system. So anyone should be able to join the system and participate in the consensus. In the network seeding stage however, initially Polygon will have to play a larger role to enable side chains.
+기본 논리는 - 이더리움에서 작업하는 dApp / 프로토콜이 있다면 낮은 트랜잭션 처리량 및 높은 트랜잭션 수수료에 의해 제한되는 경우 - 그러면 Polygon 네트워크에서 이러한 dApp / Protocol에 대한 지원을 추가할 수 있습니다.
 
-Also, Polygon side chains would be primarily public side chains i.e sidechains available for use for anyone in public just like other public blockchains. Although, Enterprise Polygon chains will intend to provide dedicated side chains (non-privacy enabled) for particular organizations. The security and decentralization of such chains would still be kept intact using the checkpointing layer and fraud proofs on the mainchain. However, supporting privacy enabled sidechains with checkpoint validation and fraud proofs on the mainchain is still a research topic for us. We are looking into new technologies like zkSNARK and zkSTARK.
+## Polygon의 플라스마 구현을 복제하는 것이 왜 어렵습니까? {#why-will-it-be-difficult-to-replicate-polygon-s-plasma-implementation}
 
-## How is Polygon different than Celer Network?
+네트워크가 다른 네트워크보다 더 잘 확장 / 성장할 수 있는 측면에서 네트워크 효과에 대해 더 많은 경우에도, 블록체인 솔루션은 사용자가 사용하는 실제 자산을 포함하기 때문에 오픈소스여야 합니다.
 
-Both Polygon  and Celer Network are different solutions to the same problem - low transaction throughput in current blockchains. Both utilise off-chain scaling techniques and rely on the main chain for final security; however the fundamental difference is in the approaches - Polygon is based on a set of Plasma sidechain(s) backed by Proof-of-Stake consensus (see https://plasma.io/ for more details), whereas Celer Network is a state-channel based solution. Both projects aim for generalized state transitions off-chain, but in vastly different ways.
+모든 오픈 소스 프로젝트가 있는 경우입니다. 저희는 저희가 구현한 것을 사용하는 모든 사람에게 그들의 코드를 의무적으로 오픈 소스로 공개할 것을 요구하는 GPL 라이선스를 마련할 것이기 때문에 이는 저희가 구현하는 것뿐만 아니라 다른 경쟁자가 구현하는 것에도 동일하게 적용됩니다. 그러나 다시 말하지만, 코드 복제가 Bitcoin, 이더리움 및 기타 프로젝트에 적용된다는 포인트는 해당 프로젝트가 달성할 수 있는 네트워크 효과에 대해 더 많이 알고 있습니다.
 
-Polygon is aiming to build a DApp developer ecosystem. Since it uses an account-based Plasma sidechain, and also employs a EVM-compatible runtime known as the Polygon VM, it will be relatively easier for Ethereum based DApps to migrate to Polygon once it is live. So in this respect as well, Celer Network is different in terms of developer interfacing.
+## Polygon 네트워크의 플라스마 구현이 특별한 점은 무엇입니까? {#what-s-special-about-polygon-network-s-plasma-implementation}
 
-## Will side chains also be synced with the Mainchain (Ethereum)?
+Polygon Plasma는 UTXO 시스템이 아닌 계정 기반 모델 시스템을 사용합니다. Polygon 체인에서 EVM을 사용하여 Eygon 생태계, 개발자 도구, 통합 라이브러리 등을 모두 활용할 수 있는 큰 이점을 제공합니다.
 
-Absolutely. The public checkpointing layer will validate all the transactions happening on the side chains and publish the proofs to the mainchain. To ensure foolproof security of side chain transactions, the mainchain Plasma contract contains various kinds of Fraud Proofs where any sidechain transactions can be challenged for any fraudulent activity. If a challenger succeeds, the stakes of the side chain actors involved in the fraud are slashed and are transferred to the challenger. This is equivalent to an ever running high stake bug bounty.A good diagram for understanding is as below:.
+Polygon 네트워크는 ESC20 토큰에 대한 변경을 요구하지 않고 dfs에서 사용할 수 있습니다. 또한 체크포인팅 레이어를 사용하면 체크포인트에서 개별 블록의 증거를 배치하기 때문에 다른 Plasma 구현이 더 빨리 이루어질 수 있습니다.
 
-<!-- ![Screenshot](../../static/img/matic/Architecture.png) -->
+## 중앙 집중화 문제를 어떻게 해결할 예정입니까? {#how-are-you-going-to-solve-the-issues-with-centralization}
 
-## Will you implement atomic swaps? If yes, how?
+이것은 일부 맥락을 보여주는 도표입니다.
 
-There are ways to do so - Swingyby protocol, Doge/ETH bridges [check this Medium article](https://medium.com/truebit/enter-the-rabbit-hole-the-doge-ethereum-art-project-31e8116043c4), hash time locked contracts or simple pegging. We will choose best suited with UI/UX and security as we go ahead. Once assets from multiple blockchains are available on the sidechain, DEXs will be able to provide exchange between assets which are originally from different base chains.
+![스크린샷](/img/matic/Merkle.png)
 
-## At the end of the White Paper, there is a list of "Potential Use Cases" - will all of that be implemented? In what order?
+먼저, PoA 노드가 대표자가 될 것입니다 (Solvency 증명)과 KYC는 기본적으로 EOS 스타일 위조된 Processor (DPoS) 또는 그들에게 위임된 Fault Fault) 노드인 DBFT와 같은 PoS 층에 의해 선택됩니다.
 
-Polygon Foundation will enable and support ecosystem teams to develop these potential use cases. It is not our intention to implement all of these projects on our own - and we do not wish to give off that impression. We intend Polygon to be a DApp platform, which will provide instant transactions at low costs. Once the Polygon goes live, we will keep adding support to all these use cases. We will be leaning on community teams to work with us on our platform to create these apps.
+둘째, 모든 대표자 (또는 2/3)를 돌려 잘못된 블록을 생성합니다. 그런 다음 모든 블록을 검증할 PoS 레이어 스테이커(PoS 레이어 스테이커)를 가지고 있으며, 만약 사기가 커밋 된 경우 대표단의 스테이크가 슬래시되고 시정 동작을 위해 체크킹됩니다.
 
-The basic logic is - if there is a DApp/Protocol which is working on Ethereum, but is limited by low transaction throughput and high transaction fees - then we will be able to add support for these DApps/Protocols on Polygon.
+셋째, 스테이커 PoS 층(많은 노드가 될 경우)도 나빠지고 콜라보레이드로 인해 잘못된 체크 포인트를 생성합니다. e는 모든 PoA가 부패하고 PoS가 부패하고 PoS가 부패합니다. 그럼에도 불구하고 Plasma 철학에 따라 우리는 많은 큰 프로젝트에서 시청하는 **Fraud Procement, Fraud** Procements 중 하나를 작성하고 있습니다(워치는 시크인 클리닉에서 저장소 감시자로 볼 수 있음). 이 사기 증명 메커니즘을 사용하면 누구나 메인 체인인 이더리움에서 모든 거래에 이의를 제기 할 수 있습니다.
 
-The ultimate objective is to come up with Generalized State Scaling - however, this will take time. We are already working with teams such as Parsec Labs, Truebit and Decentraland on this initiative - A are few mentions about Matic from other projects, [here](https://parseclabs.org/blog/Development-Update-May-2018/) and [here](https://blog.decentraland.org/blockchain-security-will-it-scale-5d82c5df4640).
+## 매틱 토큰은 왜 필요합니까? {#why-is-matic-token-required}
 
-But before that happens, we will add support for specific contracts and protocols. Once the contract is secured by Fraud proof guarantees, it can go live on Polygon, and can be used by DApps.
+다음 이유로 MATIC 토큰을 갖는 필요성을 강조합니다.
 
-Priority order would be DEX, Payments, Liquidity Providers, Lending & Credit Scoring, Atomic Swaps.
+### Polygon은 공공 블록체인에 대한 일반적인 목적 확장 솔루션이 될 것입니다. {#polygon-intends-to-be-a-general-purpose-scaling-solution-for-public-blockchains}
 
-Although most of these features will run in parallel, we are in talks with various top teams to collaborate with us to deploy these protocols on Polygon side chains.
+우리는 첫 번째 베이시샤인으로 이더리움에서 시작되지만, 미래의 Polygon에서 여러 베이시샤인에 배포될 수 있습니다. 곧 다른 베이스체인이 추가될 것이므로 사이드체인에서 수수료를 지불하기 위해 하나의 통화(이더)를 사용하는 것은 불합리합니다. 어떤 기본 자산에 대한 네이티브 자산으로 해당 기본 자산을 갖는 경우 해당 기본 어셋의 통화가 스케일링 네트워크를 무력화시킬 수 있습니다. 따라서 Polygon의 자체 네트워크 토큰을 기반으로 스테이커 생태계를 구축하는 것이 중요합니다.
 
-## Why will it be difficult to replicate Polygon's plasma implementation?
+### Appcoon 보안 모델 {#appcoin-security-model}
 
-Although with blockchain solutions its more about the network effect as to which network is able to scale/grow ecosystem better than others BUT more importantly with blockchain solutions they have to mandatorily be open source as it entails the actual assets being used in them.
+Polygon은 Kyber와 같은 유동성 풀을 사용하여 토큰 스왑 메카니즘을 추상화함으로써 Dapp이 Polygon 수수료를 Dapp 코인으로 지불할 수 있게 하려고 합니다. 사용자는 단순히 그녀의 dApp-동전을 사용하여 수수료를 지불합니다. 배경에서 dApp-코인이 MATIC 토큰을 위해 교환됩니다. 따라서 매끄러운 사용자 경험을 제공하려는 DApp 개발자는 Polygon 유동성 풀의 유지를 도울 것입니다.
 
-Also it is the case with all the open source projects. It is equally applicable to us as well as the other rival implementations as we are going to have our GPL licence which mandates anyone using our implementation to mandatorily open source their code. But again, the point being, that copying of code is applicable to even to Bitcoin, Ethereum and any other projects, its more about the network effect that one project can achieve.
+### 초기 단계에서 네트워크를 보내기 {#seeding-the-network-in-nascent-stages}
 
-## What’s special about Polygon Network’s Plasma implementation?
+저희는 고도로 분산된 유효성 검사자 층과 블록 프로듀서에게 Eth를 배포할 수 없으므로, 처음에 네트워크에 txns가 거의 또는 전혀 없을 때 시스템에 시딩하는 것은 사실상 불가능합니다. 매틱 토큰을 이용해 저희는 블록 생산자, 체크포인터 스테이크를 시딩하기 위해 배포될 토큰의 큰 비율을 프로비저닝했으며, 그 이후에 블록 보상을 제공합니다. 이 공급은 설령 네트워크가 네트워크 효과를 부담하는 데 시간이 걸리더라도 스테이커가 보상을 받을 수 있게 합니다. 이는 비트코인에 대해 블록 마이닝 보상이 유지된 이유와 유사하며, 네트워크 보안을 유지하기 위해 이러한 방식으로 스테이커 및 블록 프로듀서에게 인센티브를 줄 수 있습니다.
 
-So Plasma Polygon uses a account based model system rather than the UTXO system used by Plasma Cash, Plasma MVP and Plasma XT. This provides us with a huge advantage of using an EVM on the Polygon chain which enables us to utilize the entire Ethereum ecosystem, developer tools, integration libraries etc for the Polygon.
+여러분의 우려가 개발자에 관한 것이라면, 저희 전략의 기둥 중 하나는 개발자의 진입 장벽을 매우 낮게 유지하는 것입니다. 저희는 모든 이더리움 개발 도구가 Polygon에서 즉시 작동하는지 확인했습니다. 테스트넷에서 수수료를 지불하기 위해 필요한 토큰의 측면에서 이더리움의 개발자 건물에 대해서는 이테룸에서 는 다릅니다. dev는 Eygom에 있는 것과 마찬가지로 Polygon faucet에서 테스트넷을 위해 무료 토큰을 가져옵니다. Polygon 메인넷에 배포하려는 경우에만 MATIC 토큰을 필요로 합니다. Eygon에서 가스 수수료가 이더리움보다 훨씬 낮은 경우, 약 1/100분의 1에 해당되며, 이더리움에서 지불할 트랜잭션 수수료의 약 1/100분의 1을 차지합니다.
 
-The Dapps can easily use the the Polygon system without making any changes to their ERC20 tokens. Also our checkpointing layer enables us to be magnitudes of times faster than the other Plasma implementations as we batch the proofs of the individual blocks in the checkpoints while other Plasma implementations have to submit every block proof to the mainchain
+## 매틱 토큰의 사용과 수요를 이끄는 원동력은 무엇입니까? {#what-drives-the-use-and-demand-for-matic-tokens}
 
-## How are you going to solve the issues with centralization?
+토큰에는 두 가지 기본 용도가 있습니다.
 
-Here is a diagram to give you some context:
+1. 토큰은 네트워크에서 트랜잭션 수수료를 지불하는 데 사용됩니다.
+2. 토큰은 체크포인팅 레이어 및 블록 제작 레이어를 위한 스테이크 컨센서스 메커니즘의 증거에 참여하기 위해 스테이킹에 사용됩니다.
 
-<!-- ![Screenshot](../../static/img/matic/Merkle.png) -->
+### 토큰 수요에 대한 2차 이유 중 일부는 {#some-of-the-secondary-reasons-for-token-demand}
 
-So firstly, The PoA nodes that you saw, are going to be Delegates ( with Proof of Solvency i.e They have to deposit high amount of stake ) and KYC basically selected by the PoS layer just like a EOS style DPoS or DBFT nodes.
+* Polygon 네트워크는 Kyber와 같은 유동성 풀을 사용하여 토큰 스왑 메카니즘을 추상화함으로써 Dapp이 Polygon 수수료를 Dapp 코인으로 지불할 수 있게 하려고 합니다. 사용자는 단순히 그녀의 dApp-동전을 사용하여 수수료를 지불합니다. 배경에서 dApp-코인이 MATIC 토큰을 위해 교환됩니다. 따라서 매끄러운 사용자 경험을 제공하려는 DApp 개발자는 Polygon 유동성 풀의 유지를 도울 것입니다.
 
-Secondly, let’s assume all of the Delegates (or 2/3rd of them) turn bad actors and produce faulty blocks, then you have PoS layer stakers who are going to validate all the blocks and if any frauds are committed the stakes of Delegates are slashed, the checkpointing is stopped for the corrective actions.
+* 더 빠른 엑싱을 위해 Dhara 프로토콜을 사용하여 대출 메커니즘을 구현하고 있습니다. 대출자는 일주일 후에 exit-token을 사용하여 토큰을 청구합니다. 따라서 사용자는 거의 즉시 인출할 수 있는 반면 대출자는 서비스 제공의 대가로 이자를 벌 수 있습니다.
 
-Thirdly, let's say even the Staker PoS layer (which would be a large number of nodes) also turns bad and collude to produce faulty checkpoints. I.e all the PoA are corrupt and PoS are corrupt Even then following Plasma philosophy we are writing one of the coveted things of side chain scaling, **Fraud proofs** which is being watched by many big projects ( The watchers can be seen as our repository watchers on GitHub). This fraud proof mechanism enables any one in public to challenge any transaction on the Mainchain, succeeding which they stand to gain rewards from the slashing of stakes of all the stakeholders involved in the commited fraud.
+### 프로토콜 수준의 토큰 소각 {#protocol-level-burning-of-tokens}
 
-## Why is Matic Token required?
+우리는 모든 블록에서 트랜잭션 수수료의 비율을 태울 계획입니다. 이를 통해 본질적으로 토큰을 만들고 프로토콜 수준에서 그 값 측면에서 지속적인 지원을 제공합니다.
 
-The following reasons reinforce the need of having Matic token
+### 낮은 진입 장벽(따라서 신속한 채택의 가능성이 높아짐) {#low-entry-barrier-and-hence-higher-chances-of-quick-adoption}
 
-### Polygon intends to be a general purpose scaling solution for public blockchains:
-We are starting out on Ethereum as our first base chain, but in the future Polygon can be deployed on multiple base chains. There will be other basechains added soon, So it won’t make sense to have one currency (ether) to be used for paying fees on the sidechains. If there's an existential concern over any basechains future, having that basechains’ currency as native asset for the Polygon will cripple the scaling network. Therefore it is important to build the Staker ecosystem on Polygon's own network token.
+저희는 최종 사용자의 채택을 확보하기 위해 DApps에 크게 의존하게 될 것입니다. 핵심 기능 중 하나는 모든 스마트 계약, 지갑, IDE, DevOps 도구 등과 완전히 호환되는 아키텍처를 유지하는 것입니다.
 
-### Appcoin security model:
-Polygon intends to enable Dapps to pay Polygon fees in Dapp-coins by abstracting a token swap mechanism using a liquidity pool like Kyber. The user simply uses her Dapp-coins to pay fees, in the background the Dappcoin is swapped for Matic tokens. Hence the DApp developers who want to provide a seamless user experience will help maintain a Polygon liquidity pool.
+모든 이더리움 Dapp은 큰 변경이 거의 없이 Polygon으로 이식될 수 있습니다. 따라서 기존 이더리움 개발자가 Polygon으로 전환하는 진입 장벽은 바이러스 dApp 입양을 시작할 수 있는 무시할 수 있습니다. 이것은 Polygon 네트워크를 중심으로 하는 네트워크 영향으로 인해 많은 유기농 수요를 가져올 수 있습니다.
 
-### Seeding the network in nascent stages:
-It’s practically impossible to seed the system when there are little to no txns in the network at the start, as we cannot distribute Eth to the highly decentralized Validator layer and the block producers. Whilst with Matic tokens, we have provisioned a large percentage of tokens to be distributed for seeding block producer, checkpointer stakes and subsequently offer block rewards. This provision ensures that the stakers receive rewards even if the network takes some time to assume network effects. It is akin to why Block Mining rewards were kept for Bitcoin, stakers and block producers can be incentivized in this way to keep the network secure.
+## 토큰 유형은 ERC20입니까? {#is-token-type-erc20}
 
-If your concern is about Devs, one of the pillars of our strategy is to keep the entry barrier for devs very low. We have made sure that all the Ethereum dev tools work out of the box on Polygon. In terms of the tokens needed for paying fees on testnet, it is no different for a developer developing on Ethereum. The dev gets free tokens for the testnet from a Polygon faucet and gets going, just like it is on Ethereum. You need Matic tokens only when you want to deploy on Polygon Mainnet, where the gas fee is much lower than Ethereum, around 1/100th of a txn fee you pay on Ethereum.
+예. 그리고 동일한 토큰은 Polygon 체인에도 적용될 수 있습니다. 미래에 네이티브 토큰으로 이동할 필요가 없습니다.
 
-## What drives the use and demand for Matic tokens?
+## 이더리움 네트워크에 가져올 수 있는 예상 TPS는 무엇입니까? 현재 테스트넷에서 무엇을 실행하고 있습니까? {#what-is-the-expected-tps-you-ll-be-able-to-bring-to-the-ethereum-network-what-are-you-running-at-now-on-testnet}
 
-There are two primary uses of the token:
-
-1. The token is used to pay for the transaction fees in the network
-2. The token is used for staking to participate in the Proof of Stake consensus mechanism for checkpointing layer and block production layer
-
-**Some of the secondary reasons for token demand**:
-
-* Polygon Network intends to enable Dapps to pay Polygon fees in Dapp-coins by abstracting a token swap mechanism using a liquidity pool like Kyber. The user simply uses her Dapp-coins to pay fees, in the background the Dappcoin is swapped for Matic tokens. Hence the DApp developers who want to provide a seamless user experience will help maintain a Polygon liquidity pool.
-
-* To enable faster exits we are implementing a lending mechanism using Dharma Protocol wherein an underwriter/lender can receive the exit-token and disburse the exit amount with a small fee as interest. The lender then claims the tokens after one week by using exit-token. The user thus gets near immediate withdrawals while the lenders can earn interest for the service they provide.
-
-**Protocol Level burning of tokens**
-
-We intend to burn a percentage of transaction fee in every block. This makes the tokens deflationary in nature and provide it a constant support in terms of its value at the protocol level.
-
-**Low entry barrier (and hence higher chances of quick adoption)**
-
-We will heavily lean on DApps to bring in end-user adoption. One of the key features is that we maintain an architecture which is fully compatible to Ethereum development ecosystem i.e all smart contracts, wallets, IDEs, DevOps tools etc are directly compatible with Polygon. Any Ethereum Dapp can be ported to Polygon without almost no significant changes. So the entry barriers for existing Ethereum developers to transition to  Polygon are negligible which can jumpstart a viral Dapp adoption.This has the potential to bring in a lot of organic demand due to Network effects that build around the Polygon.
-
-
-## Do you have prototype or demo to show to the public yet?
-
-Yes. The demo is available [Here](https://www.youtube.com/watch?v=l1vb5pjezJ8)
-
-## What is the transaction per seconds?
-
-Currently “a single Polygon side chain” can theoretically handle 2^16 (65,000+) transactions per second
-
-## Is token type ERC20?
-
-Yes. And the same token will be applicable to MatPolygonic Chain too i.e no need to move to a native token in future
-
-## Do you have a timeline on the Alpha Mainnet launch?
-
-Most likely Q3 or early Q4.
-
-## Could you outline your roadmap, How far are you with development and When do you expect a live implementation of Matic to be launched?
-
-We already have a implementation live. We have recently put it on youtube. We also conducted Consensys BSIC in Mumbai where we demoed Polygon on Kovan Testnet. In terms of the Roadmap, we are going to publish a detailed roadmap soon.
-
-## What is the expected TPS you'll be able to bring to the Ethereum network? What are you running at now on testnet?
-
-A single side chain has the capacity of 2^16 (65,000+) transactions per second. Polygon has the capability to add multiple side chains, But currently, our focus would be on stabilizing the network with one side chain.
-
-## "We have chosen Ethereum as the first platform to showcase our scalability" What other platforms are you aiming toward, and is there a timeline for implementation
-
-Making our Mainnet live on Ethereum is the first priority as of now. Once we have a stable implementation of our Testnet ready we will announce our plans for other Blockchains.
-
-## "We also intend to launch the alpha version of our Mainnet with working Dapps before the Token sale"
-
-The partner information is confidential as of now. We will soon make them public. We have 4 teams building their solutions on top of Polygon. One of them is a banking wallet in India, 1 in gaming segment, 1 in referral marketing (who are going to publish about Polygon in the Whitepaper) and 1 in the ad network. There are others in pipeline but are not yet finalized.
-
-## Do you have a timeline on the Token sale? Any information on these DApps?
-
-Token sale related details are again confidential as of now.
+단일 사이드 세카인은 초당 7,000+ 트랜잭션 용량이 있습니다. Polygon은 여러 sidechin을 추가할 수 있는 능력이 있지만 현재 우리의 초점은 네트워크를 한 sidechain으로 안정화하는 데 있습니다.

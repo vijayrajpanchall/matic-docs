@@ -1,14 +1,14 @@
 ---
 id: withdraw-start
-title: withdrawStart
+title: retirerCommencer
 keywords:
-  - 'plasma client, erc721, withdrawStart, polygon, sdk'
-description: 'Get started with maticjs'
+- 'plasma client, erc721, withdrawStart, polygon, sdk'
+description: 'Commencez à utiliser maticjs'
 ---
 
-# withdrawStart
+# retirerCommencer {#withdrawstart}
 
-`withdrawStart` method can be used to initiate the withdraw process which will burn the specified token on polygon chain.
+`withdrawStart`méthode peut être utilisée pour lancer le processus de retrait qui brûlera le jeton multiple sur la chaîne de polygone.
 
 ```
 const erc721Token = plasmaClient.erc721(<token address>);

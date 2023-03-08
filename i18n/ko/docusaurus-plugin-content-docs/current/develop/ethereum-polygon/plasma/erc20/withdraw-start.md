@@ -1,14 +1,14 @@
 ---
 id: withdraw-start
-title: withdraw start
+title: 출금 시작하기
 keywords:
-  - 'plasma client, erc20, approveMax, polygon, sdk'
-description: 'maticjs으로 시작하기'
+- 'plasma client, erc20, approveMax, polygon, sdk'
+description: 'Maticjs를 시작합니다'
 ---
 
-# withdrawStart
+# withdrawStart {#withdrawstart}
 
-`withdrawStart` 은 하위 토큰에서 특정 수량을 소각하는 인출 프로세스를 시작하는 데 사용할 수 있습니다.
+`withdrawStart` 메서드를 사용해 하위 토큰에서 지정된 금액을 소각하는 출금 프로세스를 시작할 수 있습니다.
 
 ```
 const erc20ChildToken = plasmaClient.erc20(<child token address>);
@@ -22,4 +22,4 @@ const txReceipt = await result.getReceipt();
 
 ```
 
-인출 프로세스에 도전하는 데 사용할 txHash를 저장합니다.
+출금 프로세스를 챌린지하는 데 사용될 txHash를 저장하세요.

@@ -1,48 +1,47 @@
 ---
 id: widget
-title: Wallet Widget
+title: Widget Porte-monnaie
 sidebar_label: Wallet Widget
-description: Build your next blockchain app on Polygon.
+description: "Des outils d'Interface Utilisateur pour exécuter des transactions de pont."
 keywords:
   - docs
   - matic
 image: https://matic.network/banners/matic-network-16x9.png
 ---
-
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Wallet widget is a UI tool which can be embedded in any web application for executing bridge transactions - Deposit & Withdraw.
+Le widget Porte-monnaie est un outil d'Interface Utilisateur qui peut être intégré dans n'importe quelle application web pour exécuter des transactions de pont - Dépôt et Retrait.
 
-Every widget is identified by an unique name which you can get from [Widget dashboard](https://wallet.polygon.technology/widget-dashboard) .
+Chaque widget est identifié par un nom unique que vous pouvez obtenir à partir du [tableau de bord Widget](https://wallet.polygon.technology/widget-dashboard).
 
-### Widget dashboard
+### Tableau de bord du widget {#widget-dashboard}
 
-Widget can be created from the widget dashboard page in the wallet application. It allows the user to create a new widget with some customisable options.
+Le widget peut être créé à partir de la page du tableau de bord du widgets dans l'application du porte-monnaie. Il permet à l'utilisateur de créer un nouveau widget avec quelques options personnalisables.
 
-Once the widget is created, You can copy code snippet and add it in your application or use the widget name and configure by yourself.
+Une fois le widget créé, vous pouvez copier l'extrait de code et l'ajouter dans votre application ou utiliser le nom du widget et le configurer vous-même.
 
-Here is link to widget dashboard -
+Voici le lien vers le tableau de bord des widgets -
 
-* mainnet - https://wallet.polygon.technology/widget-dashboard
+* réseau principal - https://wallet.polygon.technology/widget-dashboard
 * testnet - https://wallet-dev.polygon.technology/widget-dashboard
 
-## Install
+## Installer {#install}
 
-Widget is exported as javascript library and available as npm package.
+Le widget est exporté en tant que bibliothèque javascript et disponible en tant que paquet npm.
 
-```bash 
+```bash
 npm i @maticnetwork/wallet-widget
 ```
 
-## Examples
+## Exemples {#examples}
 
-We have created examples for different framework and tools to help you with the development. All examples are present at - [https://github.com/maticnetwork/wallet-widget-example](https://github.com/maticnetwork/wallet-widget-example)
+Nous avons créé des exemples pour différents cadres et outils afin de vous aider dans le développement. Tous les exemples sont présents sur - [https://github.com/maticnetwork/wallet-widget-example](https://github.com/maticnetwork/wallet-widget-example)
 
-## How to use
-### With target
+## Comment utiliser {#how-to-use}
+### Avec la cible {#with-target}
 
-Consider you have a button in your app and you want to show widget when clicked on that button -
+Considérez que vous avez un bouton dans votre application et que vous voulez afficher un widget lorsqu'on clique sur ce bouton -
 
 ```html
 <button id="btnMaticWidget"></btn>
@@ -58,14 +57,14 @@ var widget = new Widget({
 });
 ```
 
-Create widget whenever you are ready. It is best to call create function after document is loaded.
+Créez un widget dès que vous êtes prêt. Il est préférable d'appeler la fonction de création après le chargement du document.
 
-```javascript 
+```javascript
 await widget.create();
 ```
-widget is created, now click on your button and widget will be shown.
+Le widget est créé, cliquez maintenant sur votre bouton et le widget sera affiché.
 
-### Without target
+### Sans cible {#without-target}
 
 ```javascript
 import { Widget } from "@maticnetwork/wallet-widget";
@@ -78,51 +77,51 @@ var widget = new Widget({
 await widget.create();
 ```
 
-widget is now created, but in order to show the widget - you will have to call `show` API.
+Le widget est maintenant créé, mais pour afficher le widget, vous devrez appeler`show`l'API.
 
 ```
 widget.show();
 ```
 
-Similarly you can hide the widget, by calling `hide` API.
+De même, vous pouvez cacher le widget, en appelant `hide`l'API.
 
 ```
 widget.hide();
 ```
 
-### Important Note 👉
+### Remarque importante {#important-note}
 
-1. Based on network "testnet" or "mainnet", you need to create your app on respective dashboard. We recommend to create app with same name on both testnet & mainnet, so that you don't have any issue when you are changing network.
+1. En fonction du réseau "testnet" ou du "réseau principal", vous devez créer votre application sur le tableau de bord correspondant. Nous recommandons de créer une application avec le même nom sur testnet et réseau principal, afin d'éviter tout problème lorsque vous changez de réseau.
 
-2. Wallet widget is UI Library and on different website it will look different & might have some issues like - colors, responsiveness etc. So please spend some time on testing and customizing. In case of any help needed - please reach out to [support team](https://support.polygon.technology/).
+2. Le widget Porte-monnaie est une bibliothèque d'Interface Utilisateur et sur différents sites Web, il aura un aspect différent et pourrait présenter certains problèmes de couleurs, et d'adaptation, etc. Veuillez donc consacrer un peu de temps aux tests et à la personnalisation. Si vous avez besoin d'aide, veuillez contacter [l'équipe support](https://support.polygon.technology/).
 
-3. Wallet widget is full screen in mobile devices but you can customize it by `style` configuration.
+3. Le widget de portefeuille est en plein écran sur les appareils mobiles, mais vous pouvez le personnaliser par `style`une configuration
 
-## Configuration
+## Configuration {#configuration}
 
-Configuration can be supplied in Widget constructor.
+La configuration peut être fournie dans le constructeur du Widget.
 
-## Available configuration are
+## Les configurations disponibles sont {#available-configuration-are}
 
-- **target** : string - CSS selector for showing widget on click of element. For example, "#btnMaticWidget" will be the target in the code below.
+- **cible** : chaîne de caractère - Sélecteur CSS pour afficher le widget en cas de clic sur un élément. Par exemple, "#btnMaticWidget" sera la cible dans le code ci-dessous.
 
 ```javascript
 <button id="btnMaticWidget">Matic widget</button>
 ```
 
-- **network** : string - network to be used. Two options are available - 'testnet' or 'mainnet'.
-- **width** : number - Width of the widget
-- **height** : number - Height of the widget
-- **autoShowTime** : number - Auto show widget after specified time in millisecond
-- **appName** : string - name of your app, this can be retrieved on widget dashboard.
-- **position** : string - Sets the position of the widget. The available options are -
-    - center
-    - bottom-right
-    - bottom-left
-- **amount** : string - Prefill the amount in text box
-- **page** : string - select the page. Available options are - `withdraw`, `deposit`.
-- **overlay** : boolean - show overlay when widget is opened. By default it is false.
-- **style** : object - apply some css styles to the widget.
+- **réseau** : Chaîne de caractère - réseau à utiliser. Deux options sont disponibles - "testnet" ou "réseau principal"
+- **Largeur** : nombre - Largeur du widget
+- **Hauteur:** nombre - Hauteur du widget
+- **autoShowTime** : nombre - Affichez automatiquement le widget après le temps spécifié en millisecondes
+- **appName** : chaîne de caractère - nom de votre application, il peut être récupéré sur le tableau de bord du widget.
+- **position** : chaîne de caractères - Définit la position du widget. Les options disponibles sont -
+    - centre
+    - bas-droite
+    - bas-gauche
+- **montant** : chaîne de caractère - Pré-remplir le montant dans la zone de texte.
+- **page** chaîne de caractères - sélectionnez la page. Les options disponibles sont - `withdraw`, `deposit`.
+- **superposition** : booléen - affichez la superposition lorsque le widget est ouvert. Par défaut, c'est faux.
+- **style** : objet - appliquez certains styles css sur le  widget.
 
 ```
 var widget = new MaticWidget({
@@ -135,11 +134,11 @@ var widget = new MaticWidget({
 });
 ```
 
-## Events
+## Événements {#events}
 
-Widget emits some events which can be used to know what is happening inside the application.
+Le widget émet certains événements qui peuvent être utilisés pour savoir ce qui se passe dans l'application.
 
-### Subscribe to events
+### Abonnez-vous aux événements {#subscribe-to-events}
 
 ```javascript
 widget.on('load',()=>{
@@ -147,54 +146,54 @@ widget.on('load',()=>{
 })
 ```
 
-### Unsubscribe to events
+### Désabonnez-vous aux événements {#unsubscribe-to-events}
 
-```javascript 
+```javascript
 widget.off('load',<callback>)
 ```
 
-> Callback should be same as what was used to subscribe the event. So its better to store the callback in a variable.`
+> Le retour d'appel doit être le même que celui utilisé pour s'abonner à l'événement. C'est donc préférable de stocker le rappel dans une variable. `
 
-## List of events:
+## Liste des événements: {#list-of-events}
 
-- **load** - Widget is loaded
-- **close** - Widget is closed
-- **approveInit** - Approval transaction is initialized
-- **approveComplete** - Approval transaction is completed
-- **approveError** - Approval transaction failed due to some error, or the user denied the transaction on Metamask
-- **depositInit** - Deposit transaction is initialized
-- **depositComplete** - Deposit transaction is completed
-- **depositError** - Deposit transaction failed due to some error, or the user denied the deposit complete transaction on Metamask
-- **burnInit** - Withdrawal burn transaction is initialized
-- **burnComplete** - Withdrawal burn transaction is completed
-- **confirmWithdrawInit** - Withdrawal is checkpointed and confirm transaction is initialized
-- **confirmWithdrawComplete** - Withdrawal confirm transaction in completed
-- **confirmWithdrawError** - Withdrawal confirm transaction failed due to some error, or the user denied the withdrawal confirm transaction on Metamask
-- **exitInit** - Withdrawal exit transaction is initialized
-- **exitComplete** - Withdrawal exit transaction is completed
-- **exitError** - Withdrawal exit transaction failed due to some error, or the user denied the withdrawal exit transaction on Metamask
+- **charger** - Le widget est chargé
+- **fermer** - Le widget est fermé
+- **approveInit** - La transaction d'approbation est initialisée
+- **approveComplete** - La transaction d'approbation est terminée
+- **approveError** - La transaction d'approbation a échoué en raison d'une erreur, ou l'utilisateur a refusé la transaction sur Métamasque
+- **depositInit** - La transaction de dépôt est initialisée
+- **depositComplete** - La transaction de dépôt est terminée
+- **depositError** - La transaction de dépôt a échoué en raison d'une erreur, ou l'utilisateur a refusé la transaction de dépôt complète sur Métamasque
+- **burnInit** -  La transaction de brûlure de retrait est initialisée
+- **burnComplete** - La transaction de retrait par brûlure est terminée
+- **confirmWithdrawInit** - Le retrait est contrôlé et la transaction de confirmation est initialisée
+- **confirmWithdrawComplete** - La transaction de confirmation de retrait est terminée
+- **confirmWithdrawError** - La transaction de confirmation du retrait a échoué en raison d'une erreur, ou l'utilisateur a refusé la transaction de confirmation de retrait sur Métamasque
+- **exitInit** - La transaction de sortie de retrait est initialisée
+- **exitComplete** - La transaction de sortie du retrait est terminée
+- **exitError** -  La transaction de retrait de sortie a échoué en raison d'une erreur, ou l'utilisateur a refusé la transaction de retrait sur Métamasque
 
-## APIS
+## APIS {#apis}
 
-- **show** - show the widget
+- **afficher** - afficher le widget
 
 ```javascript
 widget.show()
 ```
 
-- **hide** - hide the widget
+- **cacher** - cacher le widget
 
 ```javascript
 widget.hide()
 ```
 
-- **on** - subscribe to events
+- **sur** - Abonnez-vous aux événements
 
 ```javascript
 widget.on('<event name>', callback)
 ```
 
-- **off** - unsubscribe to events
+- **hors** - se désabonner aux événements
 
 ```javascript
 widget.off('<event name>', callback)

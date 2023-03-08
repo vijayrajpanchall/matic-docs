@@ -1,29 +1,34 @@
 ---
 id: walletconnect
-title: Wallet Connect
-description: Build your next blockchain app on Polygon.
+title: WalletConnect
+description: Protocolo abierto que crea comunicación entre DApp y billeteras
 keywords:
-  - docs
-  - matic
-image: https://matic.network/banners/matic-network-16x9.png
+  - wiki
+  - polygon
+  - dapp
+  - wallet
+  - integrate
+  - guide
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
-Wallet Connect is an open protocol - not a wallet - built to create a communication link between DApps and Wallets. A wallet and an application supporting this protocol will enable a secure link through a shared key between the two peers. A connection is initiated by the DApp displaying a QR code with a standard WalletConnect URI and the connection is established when the wallet application approves the connection request. Further requests regarding funds transfer are confirmed on the wallet application itself.
+**WalletConnect** es un protocolo abierto, no una billetera - creado para crear un vínculo de comunicación entre las aplicaciones y las billeteras. Una billetera y una aplicación que apoya este protocolo habilitarán un enlace seguro a través de una clave compartida entre dos pares. La aplicación descentralizada inicia la conexión mostrando un código QR con un identificador uniforme de recursos (URI) estándar de Wallet Connect y esta conexión se establece cuando la aplicación de la billetera aprueba la solicitud de conexión. Otras solicitudes relacionadas con la transferencia de fondos se confirman en la aplicación misma de la billetera.
 
-## 1. Set up Web3
+## Configurar Web3 {#set-up-web3}
 
-To set up your DApp to connect to user’s Polygon Wallet we can use Wallet Connect’s provider to directly connect to Polygon. Install the following in your DApp:
+Para configurar tu aplicación para conectarte con la billetera Polygon de un usuario, puedes utilizar el proveedor de WalletConnect para conectarte directamente a Polygon. Instala lo siguiente en tu DApp:
 
 ```bash
 npm install --save @maticnetwork/walletconnect-provider
 ```
 
-Install matic.js for Matic integration:
+Instala `matic.js`para la integración de Polygon:
 
 ```bash
 $ npm install @maticnetwork/maticjs
 ```
-And add the following code in your App,
+
+Y añade el siguiente código en tu App;
 
 ```js
 import WalletConnectProvider from "@maticnetwork/walletconnect-provider"
@@ -32,7 +37,7 @@ import Web3 from "web3"
 import Matic from "maticjs"
 ```
 
-Next, we set up Polygon and Ropsten provider via Wallet Connect’s object:
+A continuación, configura  y proveedor de Ropsten a través del objeto de WalletConnect:
 
 ```javascript
 const maticProvider = new WalletConnectProvider(
@@ -53,32 +58,35 @@ const ropstenProvider = new WalletConnectProvider({
   }
 })
 ```
-We created the above two provider objects to instantiate our Web3 object with:
 
+Creaste los dos objetos de proveedor anteriores para ejemplificar el objeto Web3 con:
 
 ```js
 const maticWeb3 = new Web3(maticProvider)
 const ropstenWeb3 = new Web3(ropstenProvider)
 ```
 
+## Contratos de instanciación {#instantiating-contracts}
 
-## 2. Instantiating contracts
-
-Once we have our web3 object, the instantiating of contracts involves the same steps we followed for metamask.
-
-> Again, assuming you have your contract ABI and address already in place :)
+Una vez que tenemos nuestro **objeto web3**, la instanciación de contratos implica los mismos pasos que para Metamask. Asegúrate de tener tu **ABI de contrato** y **de dirección** ya en su lugar.
 
 ```js
 const myContractInstance = new this.maticWeb3.eth.Contract(myContractAbi, myContractAddress)
 ```
 
-## 3. Calling functions
+## Funciones de llamadas {#calling-functions}
 
-Like discussed above, we have two types of functions in Ethereum, depending upon the interaction with the blockchain. We `call()` when we read data and `send()` when we write data.
+:::info
 
-### Calling `call()` Functions
+La clave privada permanecerá en la billetera del usuario y la **aplicación no accede a ella de ninguna manera**.
 
-Now reading data doesn’t require a signature, therefore the process is the same as discussed above:
+:::
+
+Tenemos dos tipos de funciones en Ethereum, dependiendo de la interacción con la cadena de bloques. `call()` para cuando leemos datos y `send()` para cuando escribimos datos.
+
+### Llamado de las funciones `call()` {#functions}
+
+La lectura de datos no requiere una firma, por lo tanto, el código debe ser así:
 
 ```js
 this.myContractInstance.methods
@@ -88,15 +96,15 @@ this.myContractInstance.methods
   // do stuff with returned values
   )
 ```
-### Calling `send()` Functions
 
-Since writing to the blockchain requires a signature, we prompt the user on their wallet (that supports wallet connect) to sign the transaction.
+### Llamado de las funciones `send()` {#functions-1}
 
-This involves two steps:
-1. Constructing a transaction
-2. Getting a signature on the transaction
-3. Sending signed transaction
+Dado que escribir a la cadena de bloques requiere una firma, pedimos al usuario en su billetera (que soporta WalletConnect) que firme la transacción.
 
+Esto implica tres pasos:
+1. Construir una transacción
+2. Firmar la transacción
+3. Enviar la transacción firmada
 
 ```js
 const tx = {
@@ -107,20 +115,17 @@ const tx = {
 }
 ```
 
-
-The above code creates a transaction object which is then sent to user’s wallet for signature:
+El código anterior crea un objeto de transacción que luego se envía a la billetera del usuario para que lo firme:
 
 
 ```js
 maticWeb3.eth.signTransaction(tx)
   .then((result) =>{
     maticWeb3.eth.sendSignedTransaction(result)
-    .then((receipt) => 
+    .then((receipt) =>
     console.log (receipt)
   )
 })
 ```
 
-`signTransaction()` function prompts the user for their signature and `sendSignedTransaction()` sends the signed transaction over (returns a transaction receipt on success).
-
-> NOTE: all this while, the private key is in user’s wallet and the app does not access it any way. :)
+`signTransaction()`la función invita al usuario a su firma y `sendSignedTransaction()`envía la transacción firmada (devuelve un recibo de transacción en el momento de éxito).

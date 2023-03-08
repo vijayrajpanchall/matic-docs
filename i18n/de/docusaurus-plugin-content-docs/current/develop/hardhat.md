@@ -1,36 +1,110 @@
 ---
 id: hardhat
-title: Using Hardhat
-description: Build your next blockchain app on Matic.
+title: Bereitstellung eines Smart Contract mit Hardhat
+sidebar_label: Using Hardhat
+description: Verwenden Sie Hardhat, um einen Smart Contract auf Polygon bereitzustellen.
 keywords:
   - docs
   - matic
-image: https://matic.network/banners/matic-network-16x9.png
+  - polygon
+  - smart
+  - contracts
+  - hardhat
+  - deploy on polygon
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
-## **Setting up the development environment**
+## Übersicht {#overview}
 
-There are a few technical requirements before we start. Please install the following:
+Hardhat ist eine Ethereum Entwicklungsumgebung, die eine einfache Möglichkeit bietet, intelligente Aufträge bereitzustellen, Tests auszuführen und Solidity lokal zu debuggen.
 
-- [Node.js v10+ LTS and npm](https://nodejs.org/en/) (comes with Node)
+In diesem Tutorial erfährst du, wie man Hardhat einrichtet und damit einen einfachen Smart-Contract erstellt, testet und bereitstellt.
+
+### Was werden wir hier tun: {#what-you-will-do}
+
+- Hardhat einrichten
+- Erstelle einen einfachen Smart-Contract
+- Contract kompilieren
+- Contract testen
+- Contract bereitstellen
+
+## Einrichtung der Entwicklungsumgebung {#setting-up-the-development-environment}
+
+Bevor wir beginnen, gibt es einige technische Anforderungen. Bitte installiere Folgendes:
+
+- [Node.js v10+ LTS und npm](https://nodejs.org/en/) (in Node integriert)
 - [Git](https://git-scm.com/)
 
-Once we have those installed, To install hardhat, you need to create an npm project by going to an empty folder, running npm init, and following its instructions. Once your project is ready, you should run
+Sobald wir diese installiert haben, musst du ein npm-Projekt erstellen, indem du einen leeren Ordner öffnest, `npm init` ausführst und die Anweisungen zur Installation von Hardhat befolgst. Sobald dein Projekt fertig ist, solltest du Folgendes ausführen:
 
 ```bash
-$ npm install --save-dev hardhat
+npm install --save-dev hardhat
 ```
-To create your Hardhat project run `npx hardhat` in your project folder Let’s create the sample project and go through these steps to try out the sample task and compile, test and deploy the sample contract.
 
+Um dein Hardhat-Projekt zu erstellen, führe `npx hardhat` in deinem Projektordner aus.
+Erstelle das Beispielprojekt und führe diese Schritte aus, um eine Beispielaufgabe auszuprobieren und den Beispielvertrag zu kompilieren, zu testen und bereitzustellen.
 
-The sample project will ask you to install hardhat-waffle and hardhat-ethers.You can learn more about it [in this guide](https://hardhat.org/getting-started/#quick-start)
+:::note
 
-## **hardhat-config**
+Das hier verwendete Beispielprojekt stammt aus der [<ins>Hardhat Schnellstart-Anleitung</ins>](https://hardhat.org/getting-started/#quick-start) sowie deren Anweisungen.
 
-- Go to hardhat.config.js
-- Update the hardhat-config with matic-network-credentials
-- Create .env file in the root to store your private key
-- Add Polygonscan API key to .env file to verify the contract on Polygonscan. You can generate an API key by [creating an account](https://polygonscan.com/register)
+:::
+
+## Erstellung eines Projekts {#creating-a-project}
+
+Um ein Beispielprojekt zu erstellen, führe `npx hardhat` in deinem Projektordner aus. Du solltest die folgenden Eingabeaufforderung sehen:
+
+![img](/img/hardhat/quickstart.png)
+
+Wähle das JavaScript-Projekt und führe diese Schritte aus, um den Beispielvertrag zu kompilieren, zu testen und bereitzustellen.
+
+### Überprüfung des Vertrags {#checking-the-contract}
+
+Der `contracts`-Ordner enthält `Lock.sol`, einen Beispielvertrag mit einer einfachen digitalen Sperre, in dem Benutzer erst nach einer bestimmten Zeit Geld auszahlen konnten.
+
+```
+// SPDX-License-Identifier: UNLICENSED
+pragma solidity ^0.8.9;
+
+// Import this file to use console.log
+import "hardhat/console.sol";
+
+contract Lock {
+    uint public unlockTime;
+    address payable public owner;
+
+    event Withdrawal(uint amount, uint when);
+
+    constructor(uint _unlockTime) payable {
+        require(
+            block.timestamp < _unlockTime,
+            "Unlock time should be in the future"
+        );
+
+        unlockTime = _unlockTime;
+        owner = payable(msg.sender);
+    }
+
+    function withdraw() public {
+        // Uncomment this line to print a log in your terminal
+        // console.log("Unlock time is %o and block timestamp is %o", unlockTime, block.timestamp);
+
+        require(block.timestamp >= unlockTime, "You can't withdraw yet");
+        require(msg.sender == owner, "You aren't the owner");
+
+        emit Withdrawal(address(this).balance, block.timestamp);
+
+        owner.transfer(address(this).balance);
+    }
+}
+```
+
+### Einrichtung des Vertrags {#setting-up-the-contract}
+
+- Gehe zu `hardhat.config.js`
+- Aktualisiere die `hardhat-config` durch matic-network-credentials
+- Erstelle die `.env`-Datei in der Root, um deinen privaten Schlüssel zu speichern
+- Füge den Polygonscan API-Schlüssel zur `.env`-Datei hinzu, um den Vertrag auf Polygonscan zu verifizieren. Du kannst einen API-Schlüssel generieren, indem du [ein Konto erstellst](https://polygonscan.com/register)
 
 ```js
 require('dotenv').config();
@@ -42,7 +116,7 @@ module.exports = {
   networks: {
     hardhat: {
     },
-    matic: {
+    polygon_mumbai: {
       url: "https://rpc-mumbai.maticvigil.com",
       accounts: [process.env.PRIVATE_KEY]
     }
@@ -51,7 +125,7 @@ module.exports = {
     apiKey: process.env.POLYGONSCAN_API_KEY
   },
   solidity: {
-    version: "0.7.0",
+    version: "0.8.9",
     settings: {
       optimizer: {
         enabled: true,
@@ -62,39 +136,60 @@ module.exports = {
 }
 ```
 
-> Make sure to update the Solidity compiler version here based on what is required in your contract(s).
+:::note
 
-## **Compile Smart contract file**
+Beachte, dass die oben stehende Datei DOTENV benötigt, um Umgebungsvariablen, Ethers und Etherscan zu verwalten. Stelle sicher, dass du alle diese Pakete installierst.
 
-```bash
-$ npx hardhat compile
-```
+Weitere Anweisungen zur Nutzung von DOTENV findest du auf [<ins>dieser Seite</ins>](https://www.npmjs.com/package/dotenv).
 
-## **Deploying on Matic Network**
+Du kannst auf MATIC (Polygon mainnet) bereitstellen, wenn du polygon_mumbai durch MATIC änderst
 
-Run this command in root of the project directory:
-```bash
-$ npx hardhat run scripts/sample-script.js --network matic
-```
+:::
 
-Contract will be deployed on Matic's Mumbai Testnet, it look like this:
+### Erstellung des Vertrags {#compiling-the-contract}
 
-```shell
-Compilation finished successfully
-Greeter deployed to: 0xfaFfCAD549BAA6110c5Cc03976d9383AcE90bdBE
-```
-
-> Remember your address would differ, Above is just to provide an idea of structure. **Congratulations!** You have successfully deployed Greeter Smart Contract. Now you can interact with the Smart Contract.
-
-You can check the deployment status here: https://mumbai.polygonscan.com/
-
-## **Verifying contract on Polygonscan**
-
-Run the following commands to quickly verify your contract on Polygonscan. This makes it easy for anyone to see the source code of your deployed contract. For contracts that have a constructor with a complex argument list, see [here](https://hardhat.org/plugins/nomiclabs-hardhat-etherscan.html).
+Um den Vertrag zu kompilieren, musst du zunächst die Hardhat Toolbox installieren:
 
 ```bash
-$ npm install --save-dev @nomiclabs/hardhat-etherscan
-$ npx hardhat verify --network matic 0xfaFfCAD549BAA6110c5Cc03976d9383AcE90bdBE
+npm install --save-dev @nomicfoundation/hardhat-toolbox
 ```
 
-> Remember to update your address to your own deployed contract address. When the command is successful, you will see your contract verified on Polygonscan!
+Führe sie dann einfach aus, um Folgendes zu kompilieren:
+
+```bash
+npx hardhat compile
+```
+
+### Testen des Vertrags {#testing-the-contract}
+
+Um Tests mit Hardhat durchzuführen, musst du nur Folgendes eingeben:
+
+```bash
+npx hardhat test
+```
+
+Dies ist eine mögliche Ausgabe:
+
+![img](/img/hardhat/test.png)
+
+### Bereitstellung auf Polygon Network {#deploying-on-polygon-network}
+
+Führe diesen Befehl in der Root des Projektverzeichnisses aus:
+
+```bash
+npx hardhat run scripts/deploy.js --network polygon_mumbai
+```
+
+Der Vertrag wird auf dem Matic Mumbai Testnet bereitgestellt und du kannst den Bereitstellungsstatus hier überprüfen: https://mumbai.polygonscan.com/
+
+**Herzlichen Glückwunsch! Du hast den Greeter Smart Contract erfolgreich bereitgestellt. Du kannst jetzt mit dem Smart Contract interagieren.**
+
+:::tip Verträge auf Polygonscan schnell verifizieren
+
+Führe die folgenden Befehle aus, um deinen Vertrag auf Polygonscan schnell zu verifizieren. So kann jeder problemlos den Quellcode deines bereitgestellten Vertrags sehen. Verträge, die einen Konstruktor mit einer komplexen Argumentliste haben, findest du [hier](https://hardhat.org/plugins/nomiclabs-hardhat-etherscan.html).
+
+```bash
+npm install --save-dev @nomiclabs/hardhat-etherscan
+npx hardhat verify --network polygon_mumbai 0x4b75233D4FacbAa94264930aC26f9983e50C11AF
+```
+:::

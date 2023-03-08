@@ -2,17 +2,17 @@
 id: withdraw-confirm-faster
 title: withdrawChallengeFaster
 keywords:
-  - 'plasma client, erc721, withdrawChallengeFaster, polygon, sdk'
-description: 'Get started with maticjs'
+- 'plasma client, erc721, withdrawChallengeFaster, polygon, sdk'
+description: 'Подтвердите вывод, генерируя доказательство на серверном уровне.'
 ---
 
-`withdrawConfirmFaster` method is the second step in plasma withdraw process. In this step, proof of your burn transaction (first transaction) is submitted and an erc721 token of equivalent value is created.
+Метод `withdrawConfirmFaster` — второй шаг процесса вывода plasma. На этом этапе отправляется подтверждение вашей транзакции сжигания (первая транзакция) и создается токен erc721 эквивалентной ценности.
 
-After this process is successful, challenge period is started and upon completion of the the challenge period, user can get back the withdrawn amount in their account on root chain.
+После успешного завершения данного процесса начинается период запроса, и после завершения этого периода пользователь может получить сумму вывода обратно на счет в цепочке root.
 
-The challenge period is 7 days for mainnet.
+Для mainnet период запроса составляет 7 дней.
 
- class="highlight mb-20px mt-20px"> It is fast because it generates proof in backend. You need to configure [setProofAPI](/docs/develop/ethereum-polygon/matic-js/set-proof-api).
+Он выполняется быстро, потому что генерирует доказательство на серверном уровне. Вам необходимо конфигурировать [setProofAPI](/docs/develop/ethereum-polygon/matic-js/set-proof-api).
 
 ```
 const erc721Token = plasmaClient.erc721(<token address>, true);

@@ -1,16 +1,16 @@
 ---
 id: approve
-title: approve
+title: Freigeben
 keywords:
-  - 'pos client, erc20, approve, polygon, sdk'
-description: 'Get started with maticjs'
+- 'pos client, erc20, approve, polygon, sdk'
+description: 'Erste Schritte mit Maticjs'
 ---
 
-# approve
+# Freigeben {#approve}
 
-`approve` method can be used to approve required amount on root token.
+Mit dieser `approve`-Methode kann der erforderliche Betrag des root-Tokens freigegeben werden.
 
-approve is required in order to deposit amount on polygon chain.
+Approve wird benötigt, um den Betrag in die Polygon-Chain einzuzahlen.
 
 ```
 const erc20RootToken = plasmaClient.erc20(<root token address>, true);

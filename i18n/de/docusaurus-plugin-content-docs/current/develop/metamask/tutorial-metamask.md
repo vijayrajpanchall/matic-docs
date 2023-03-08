@@ -1,78 +1,78 @@
 ---
 id: hello
-title: How to create a MetaMask Wallet?
+title: Wie erstelle ich eine MetaMask-Wallet?
 sidebar_label: Hello Metamask
-description: Build your next blockchain app on Polygon.
+description: Erfahre, wie du eine Metamask-Wallet erstellst.
 keywords:
   - docs
   - matic
-image: https://matic.network/banners/matic-network-16x9.png
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
+import useBaseUrl from '@docusaurus/useBaseUrl';
 
-If you are wondering how to create a new cryptocurrency wallet, consider creating one by installing the MetaMask extension.
+Falls du dich fragst, wie du eine neue Krypto-Wallet erstellst, kannst du dafür die MetaMask-Erweiterung installieren.
 
-MetaMask is a free and secure browser extension that allows web applications to read and interact with the Ethereum blockchain.
+MetaMask ist eine kostenlose und sichere Browser-Erweiterung, mit der Web-Apps die Ethereum-Blockchain lesen und mit ihr interagieren können.
 
-## Step 1. Install MetaMask on your browser
+## Schritt 1. Installiere MetaMask auf deinem Browser {#step-1-install-metamask-on-your-browser}
 
-To create a new wallet with MetaMask you need to install the extension first. You can install MetaMask for [Chrome](https://chrome.google.com/webstore/detail/nkbihfbeogaeaoehlefnkodbefgpgknn), [Firefox](https://addons.mozilla.org/en-US/firefox/addon/ether-metamask/), Brave and [Opera](https://addons.opera.com/en/extensions/details/metamask/) browsers.
+Um eine neue Wallet mit MetaMask zu erstellen, musst du die Erweiterung zuerst installieren. Du kannst Metamask für die Browser [Chrome](https://chrome.google.com/webstore/detail/nkbihfbeogaeaoehlefnkodbefgpgknn), [Firefox](https://addons.mozilla.org/en-US/firefox/addon/ether-metamask/), Brave and [Opera](https://addons.opera.com/en/extensions/details/metamask/) installieren.
 
-1. Open [https://metamask.io](https://metamask.io/) or search for “Metamask extension” using your favorite search engine.
+1. Öffne [https://metamask.io](https://metamask.io/) oder suche mit deiner bevorzugten Suchmaschine nach der „Metamask-Erweiterung“.
 
-In this tutorial we will be using Google Chrome as an example, but the workflow is the same for all browsers.
+:::note
+In diesem Tutorial werden wir Google Chrome als Beispiel verwenden, aber der Workflow ist für alle Browser gleich.
+:::
 
-![https://miro.medium.com/max/1492/1*JCvnTXS3Xu0X-RExle77LA.png](https://miro.medium.com/max/1492/1*JCvnTXS3Xu0X-RExle77LA.png)
+<img src={useBaseUrl("img/metamask/develop/metamask-home.png")} />
 
-![https://miro.medium.com/max/2768/1*yO33yG60Vzht6n9L4JcXeA.png](https://miro.medium.com/max/2768/1*yO33yG60Vzht6n9L4JcXeA.png)
+2. Klicken Sie auf **Downloaden,** um MetaMask als Google Chrome-Erweiterung zu installieren.
 
-2. Click **Chrome** to install MetaMask as a Google Chrome extension.
+3. Klicke **Zu Chrome hinzufügen.**
 
-3. Click **Add to Chrome.**
+<img src={useBaseUrl("img/metamask/develop/add-chrome.png")} />
 
-4. Click **Add Extension**.
+4. Klicke **Erweiterung hinzufügen**.
 
-![https://miro.medium.com/max/2373/1*pGyNYTNmc_gZskdXH0enKQ.png](https://miro.medium.com/max/2373/1*pGyNYTNmc_gZskdXH0enKQ.png)
+<div align="center">
+<img src={useBaseUrl("img/metamask/develop/add-extension.png")} />
+</div>
 
-![https://miro.medium.com/max/2251/1*ukli2LnKCQkMKT0TJFi5iQ.png](https://miro.medium.com/max/2251/1*ukli2LnKCQkMKT0TJFi5iQ.png)
+Das war's! Du hast MetaMask-Erweiterung installiert!
 
-That’s it! You have successfully installed MetaMask extension!
+## Schritt 2. Konto eröffnen {#step-2-create-an-account}
 
-## Step 2. Create an account
+Der nächste Schritt ist die Eröffnung eines Kontos.
 
-The next step is to create an account.
+1. Wenn der Download abgeschlossen ist, kannst du entweder **eine Wallet** mit einer Secret Recovery Phrase wiederherstellen oder **ein neues Konto** erstellen, indem du eine neue Wallet erstellt und eine neue Secret Recovery Phrase generierst.
 
-1. Click on the MetaMask icon in the upper right corner to open the extension.
-2. To install the latest version of MetaMask, click **Try it now**.
-3. Click **Continue**.
+<div align="center">
+<img src={useBaseUrl("img/metamask/develop/new-metamask.png")} />
+</div>
 
-![https://miro.medium.com/max/1486/1*5hrpXhzgQYNQMV2GhQl4-Q.gif](https://miro.medium.com/max/1486/1*5hrpXhzgQYNQMV2GhQl4-Q.gif)
+2. Du wirst gebeten, ein neues Passwort zu erstellen. Wähle ein starkes Passwort und klicke auf **Erstellen**.
 
-4. You will be asked to create a new password. Create a strong password and click **Create**.
+<div align="center" >
+<img width="500" src={useBaseUrl("img/metamask/develop/create-password.png")} />
+</div>
 
-> Don’t forget to store your password for safekeeping!
+3. MetaMask wird dann einige Informationen über den Secret Recovery Phrase bereitstellen, und auf der nächsten Seite wirst du deinen Phrase sehen.
 
-![https://miro.medium.com/max/1433/1*FZEkwKijuGmIXMLfEHwtgg.png](https://miro.medium.com/max/1433/1*FZEkwKijuGmIXMLfEHwtgg.png)
+<div align="center" >
+<img  src={useBaseUrl("img/metamask/develop/reveal-phrase.png")} />
+</div>
 
-![https://miro.medium.com/max/1488/1*GY-dCrx6d2nXdJVT4g_STg.png](https://miro.medium.com/max/1488/1*GY-dCrx6d2nXdJVT4g_STg.png)
 
-5. Proceed by clicking **Next**, then accept Terms of Use.
+4. Schreibe den 12-Wort-Satz auf ein Stück Papier auf der gleichen Reihenfolge auf, die vorgestellt wird.
 
-6. Click **Reveal secret words**.
+:::caution
+Lesen Sie die Anweisungen von Metamask. Schreibe diesen Satz auf ein Stück Papier und speichere an einem sicheren Ort. Wenn du noch mehr Sicherheit möchtest, schreibe sie auf mehreren Papierstücken auf, und speichere jede an 2-3 verschiedenen Orten. Du kannst dir diesen Ausdruck einprägen.
+:::
 
-7. You will see a 12 words seed phrase. Save seed words as a file or copy them to a safe place and click **Next.**
+5. Prüfe deine geheime Phrase, indem du die zuvor generierte Phrase auswählst. Wenn du fertig bist, klicke **auf Bestätigen**.
 
-Reveal secret words and copy your secret backup phrase to a safe place
+<img src={useBaseUrl("img/metamask/develop/phrase.gif")} />
 
-![https://miro.medium.com/max/1499/1*3Q9CtffF4SrXNpcjoEiPWw.png](https://miro.medium.com/max/1499/1*3Q9CtffF4SrXNpcjoEiPWw.png)
+Indem du dieses Puzzle löst, bestätigst du, dass du deinen geheimen Ausdruck kennst.
 
-![https://miro.medium.com/max/1500/1*ZVGYYeUAhvWP3vx0MLyJvg.png](https://miro.medium.com/max/1500/1*ZVGYYeUAhvWP3vx0MLyJvg.png)
-
-> Security tips:Write this phrase on a piece of paper and store in a secure location. If you want even more security, write it down on multiple pieces of paper and store each in 2–3 different locations.Memorize this phrase.
-
-8. Verify your secret phrase by selecting the previously generated phrase. When done, click **Confirm**.
-
-![https://miro.medium.com/max/636/1*n6mJR5csvbgsBK-hcx6nBQ.gif](https://miro.medium.com/max/636/1*n6mJR5csvbgsBK-hcx6nBQ.gif)
-
-By “solving this puzzle” you are confirming that you know your secret phrase
-
-**Congratulations!** You have successfully created your MetaMask account. A new Ethereum wallet address was automatically generated for you!
+**Herzlichen Glückwunsch!**  Du hast dein MetaMask-Konto eröffnet. Eine neue Ethereum-Wallet-Adresse wurde automatisch für dich generiert!

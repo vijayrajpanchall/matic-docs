@@ -2,11 +2,11 @@
 id: withdraw-exit-many
 title: withdrawExitMany
 keywords:
-  - 'pos client, erc1155, withdrawExitMany, polygon, sdk'
-description: 'Get started with maticjs'
+- 'pos client, erc1155, withdrawExitMany, polygon, sdk'
+description: 'Supprimez le processus de retrait en utilisant le txHash de withdrawStart.'
 ---
 
-`withdrawExitMany` method can be used to exit the withdraw process by using the txHash from `withdrawStartMany` method.
+`withdrawExitMany`la méthode peut être utilisée pour supprimer le processus de retrait en utilisant le txHash de la méthode`withdrawStartMany`.
 
 ```
 const erc1155RootToken = posClient.erc1155(<root token address>, true);

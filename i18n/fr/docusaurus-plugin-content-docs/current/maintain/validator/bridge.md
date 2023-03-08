@@ -1,18 +1,20 @@
 ---
 id: bridge
-title: Bridge
-description: Work In Progress
+title: Pont
+description: En cours de réalisation
 keywords:
   - docs
   - polygon
   - matic
   - bridge
 slug: bridge
-image: https://matic.network/banners/matic-network-16x9.png
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
+
+# Pont {#bridge}
 
 :::info
 
-This section is a work in progress.
+Cette section est en cours de réalisation.
 
 :::

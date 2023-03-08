@@ -1,18 +1,18 @@
 ---
 id: approve
-title: approve
+title: approuvez
 keywords:
-  - pos client
-  - erc20
-  - approve
-  - polygon
-  - sdk
-description: approve method can be used to approve required amount on the root token.
+    - pos client
+    - erc20
+    - approve
+    - polygon
+    - sdk
+description: "Approuvez la quantité requise sur le jeton root."
 ---
 
-`approve` method can be used to approve required amount on the root token.
+`approve`la méthode  peut être utilisée pour approuver le montant requis sur le jeton root.
 
-approve is required in order to deposit amount on polygon chain.
+l'approbation est requise pour déposer un montant sur la chaîne Polygone.
 
 ```
 const erc20RootToken = posClient.erc20(<root token address>,true);
@@ -26,13 +26,13 @@ const txReceipt = await approveResult.getReceipt();
 
 ```
 
-## spenderAddress
+## spenderAddress {#spenderaddress}
 
-The address on which approval is given is called `spenderAddress`. It is a third-party user or a smart contract which can transfer your token on your behalf.
+L'adresse sur laquelle l'approbation est donnée est appelée `spenderAddress`. C'est un utilisateur tiers ou un contrat intelligent qui peut transférer votre jeton en votre nom.
 
-By default spenderAddress value is erc20 predicate address.
+Par défaut, la valeur de spenderAddress est l'adresse de prédicat du jeton erc20.
 
-You can specify spender address value manually.
+Vous pouvez spécifier manuellement la valeur de l'adresse du dépensier.
 
 ```
 const erc20RootToken = posClient.erc20(<root token address>,true);

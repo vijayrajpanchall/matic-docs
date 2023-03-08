@@ -91,7 +91,7 @@ Polygon is aiming to build a DApp developer ecosystem. Since it uses an account-
 
 Absolutely. The public checkpointing layer will validate all the transactions happening on the side chains and publish the proofs to the mainchain. To ensure foolproof security of side chain transactions, the mainchain Plasma contract contains various kinds of Fraud Proofs where any sidechain transactions can be challenged for any fraudulent activity. If a challenger succeeds, the stakes of the side chain actors involved in the fraud are slashed and are transferred to the challenger. This is equivalent to an ever running high stake bug bounty.A good diagram for understanding is as below:.
 
-![Screenshot](../../static/img/matic/Architecture.png)
+![Screenshot](/img/matic/Architecture.png)
 
 ## Will you implement atomic swaps? If yes, how?
 
@@ -127,7 +127,7 @@ The Dapps can easily use the the Polygon system without making any changes to th
 
 Here is a diagram to give you some context:
 
-![Screenshot](../../static/img/matic/Merkle.png)
+![Screenshot](/img/matic/Merkle.png)
 
 So firstly, The PoA nodes that you saw, are going to be Delegates ( with Proof of Solvency i.e They have to deposit high amount of stake ) and KYC basically selected by the PoS layer just like a EOS style DPoS or DBFT nodes.
 

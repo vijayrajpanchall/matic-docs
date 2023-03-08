@@ -1,34 +1,40 @@
 ---
 id: types
-title: Types
-description: Description of HeimdallAddress, Pubkey, & HeimdallHash.
+title: Arten
+description: Beschreibung von HeimdallAddress, Pubkey und HeimdallHash
 keywords:
   - docs
   - matic
+  - HeimdallAddress
+  - polygon
+  - Pubkey
+  - HeimdallHash
 image: https://matic.network/banners/matic-network-16x9.png
 ---
 
-## HeimdallAddress
+# Arten {#types}
 
-`HeimdallAddress` represents address on Heimdall. It uses Ethereum's common library for Address. Length of this address is 20 bytes.
+## HeimdallAddress {#heimdalladdress}
+
+`HeimdallAddress` steht für Adresse auf Heimdall. Sie greift für die Adresse auf Ethereums gemeinsame Bibliothek zurück. Die Adressenlänge beträgt 20 Bytes.
 
 ```go
 // HeimdallAddress represents Heimdall address
 type HeimdallAddress common.Address
 ```
 
-## PubKey
+## PubKey {#pubkey}
 
-It represents public key used in Heimdall, `ecdsa` compatible uncompressed public key:
+Er stellt den öffentlichen Key dar, der in Heimdall verwendet wird, dem `ecdsa`kompatiblen unkomprimierten öffentlichen Key ist.
 
 ```go
 // PubKey pubkey
 type PubKey [65]byte
 ```
 
-## HeimdallHash
+## HeimdallHash {#heimdallhash}
 
-It represents hash in Heimdall. It uses Ethereum's hash for the same.
+Dies steht für einen Hash auf Heimdall. Er wird wie der Ethereum-Hash verwendet.
 
 ```go
 // HeimdallHash represents heimdall address

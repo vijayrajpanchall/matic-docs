@@ -2,31 +2,31 @@
 id: index
 title: plasmaClient
 keywords:
-  - 'plasma client, erc721, contract, polygon, sdk'
-description: 'Get started with maticjs'
+- 'plasma client, erc721, contract, polygon, sdk'
+description: 'Предоставляет метод `ERC721` для взаимодействия с токеном erc721.'
 ---
 
-# ERC721
+# ERC721 {#erc721}
 
-`plasmaClient` provides `erc721` method which helps you to interact with a erc721 token.
+`plasmaClient` предоставляет метод `erc721`, помогающий взаимодействовать с токеном erc721.
 
-The method returns an object which has various methods.
+Данный метод возвращает объект, имеющий различные методы.
 
 ```
 const erc721token = plasmaClient.erc721(<token address>,<isRoot>);
 ```
 
-## Child token
+## Дочерний токен {#child-token}
 
-Token on polygon can be initiated by using this syntax -
+Токен на polygon можно инициировать с помощью следующего синтаксиса:
 
 ```
 const childERC20Token = plasmaClient.erc721(<child token address>);
 ```
 
-## Parent token
+## Родительский токен {#parent-token}
 
-Token on ethereum can be initiated by providing second parameter value as `true`.
+Токен на ethereum может быть инициирован посредством указания второго значения параметра как `true`.
 
 ```
 const parentERC20Token = plasmaClient.erc721(<parent token address>, true);

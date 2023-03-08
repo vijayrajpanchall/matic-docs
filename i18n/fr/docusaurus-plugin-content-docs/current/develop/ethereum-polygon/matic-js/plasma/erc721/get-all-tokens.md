@@ -2,11 +2,11 @@
 id: get-all-tokens
 title: getAllTokens
 keywords:
-  - 'plasma client, erc721, getAllTokens, polygon, sdk'
-description: 'Get started with maticjs'
+- 'plasma client, erc721, getAllTokens, polygon, sdk'
+description: 'Retourne tous les jetons possédés par un utilisateur spécifié.'
 ---
 
-`getAllTokens` method returns all tokens owened by specified user.
+`getAllTokens`la méthode  retourne tous les jetons appartenant à l'utilisateur spécifié.
 
 ```
 const erc721Token = plasmaClient.erc721(<token address>);
@@ -15,4 +15,4 @@ const result = await erc721Token.getAllTokens(<user address>, <limit>);
 
 ```
 
-you can also limit the tokens by specifying limit value in second parmater.
+vous pouvez également limiter les jetons en spécifiant la valeur limite dans le second paramètre.

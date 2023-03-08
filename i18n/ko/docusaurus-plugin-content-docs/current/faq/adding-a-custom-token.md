@@ -1,50 +1,64 @@
 ---
 id: adding-a-custom-token
-title: Adding a Custom Token
+title: 사용자 정의 토큰(Custom Token) 추가
 sidebar_label: Adding a Custom Token
-description: Build your next blockchain app on Polygon.
+description: Polygon에서 차세대 블록체인 앱을 구축하세요.
 keywords:
   - docs
   - matic
-image: https://matic.network/banners/matic-network-16x9.png
+  - wiki
+  - polygon
+  - custom token
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
-
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-The **Add Custom Token** feature allows you to add any token explicitly and use it with the Polygon Wallet Suite. You just have to search for the token by its contract address, either root or child:
+**사용자 정의 토큰 추가하기** 기능을 통해 사용자는 토큰을 명시적으로 추가할 수 있으며 Polygon 지갑 제품군에서 사용할 수 있습니다. 사용자는 루트 또는 차일드 중 계약 주소에 따라 토큰을 검색하기만 하면 됩니다.
 
-* The **root** is the token contract on Ethereum
-* The **child** is the contract on Polygon
+* **루트**는 이더리움에 대한 토큰 계약입니다
+* **차일드**는 Polygon에 대한 계약입니다
 
-### Pro tip: How do I find the token contract?
+### 토큰 계약은 어떻게 확인할 수 있습니까? {#how-do-i-find-the-token-contract}
 
-You can search for the token by its name on either [Coingecko](http://coingecko.com) or [Coinmarketcap](https://coinmarketcap.com/) where you will be able to see its address on the Ethereum chain (for ERC 20 tokens) and other supported subsequent chains like Polygon. The token address on other chains might not be updated but you can surely use the root address for all purposes.
+  [Coingecko](http://coingecko.com) 또는 [Coinmarketcap](https://coinmarketcap.com/)에서 토큰의 이름으로 토큰을 검색할 수 있으며, Etherium 체인 (ERC 20 토큰의 경우) 및 Polygon과 같은 기타 지원되는 후속 체인에서 해당 주소를 볼 수 있습니다. 다른 체인의 토큰 주소는 업데이트되지 않을 수 있지만, 루트 주소는 어떤 용도로든 사용할 수 있습니다.
 
-So when selecting a token, you will be able to search by:
-* token symbol
-* token name
-* contract
+따라서 토큰을 선택할 때, 다음을 통해 검색할 수 있습니다.
+* 토큰 기호
+* 토큰 이름
+* 계약
 
-Here is how it works:
+작동 원리는 다음과 같습니다.
 
-<img src={useBaseUrl("img/wallet-bridge/001.png")} height="420px" />
+1. 사용자 정의 토큰으로 계약 주소를 추가하여 사용자의 목록에 모든 토큰을 간편하게 추가합니다(Polygon은
 
-1. Easily add any token to your list by adding the contract address as a custom token (we support
+Polygon 또는 이더리움 모두에 대한 계약 주소를 지원합니다).
 
-contract addresses on both Polygon or Ethereum):
+<div align="center">
+<img src={useBaseUrl("img/wallet-bridge/001.png")} width="500" height="420px"/>
+</div>
 
-<img src={useBaseUrl("img/wallet-bridge/002.png")} height="600px" />
+<div align="center">
+<img src={useBaseUrl("img/wallet-bridge/002.png")} width="500"  height="600px"/>
+</div>
 
-2. Once the token information is fetched, you will see a confirmation screen with all the token information. You can then add it as a custom token which will be stored locally in your system, We suggest you reverify the token contracts twice as there are a lot of clone or scam tokens:
+2. 토큰 정보를 불러오면, 모든 토큰 정보와 함께 확인 화면이 표시됩니다. 이후 사용자의 시스템에 로컬로 저장될 사용자 정의 토큰으로 해당 토큰을 추가할 수 있습니다. 복제 또는 사기 토큰이 매우 많기 때문에 토큰 계약을 다시 한 번 검증하실 것을 권장합니다.
 
-<img src={useBaseUrl("img/wallet-bridge/003.png")} height="600px" />
+<div align="center">
+<img src={useBaseUrl("img/wallet-bridge/003.png")} width="500"  height="600px"/>
+</div>
 
-<img src={useBaseUrl("img/wallet-bridge/004.png")} height="600px" />
+<div align="center">
+<img src={useBaseUrl("img/wallet-bridge/004.png")} width="500"  height="600px"/>
+</div>
 
-3. Your added token is now shown when selecting a token:
+3. 이제 토큰을 선택할 때 추가된 토큰이 표시됩니다.
 
-<img src={useBaseUrl("img/wallet-bridge/005.png")} height="600px" />
+<div align="center">
+<img src={useBaseUrl("img/wallet-bridge/005.png")} width="500"  height="600px"/>
+</div>
 
-4. You can add a token directly from the tokens tab of the **Manage** screen:
+**또한 관리** 화면의 토큰을 직접 추가할 수 있습니다.
 
-<img src={useBaseUrl("img/wallet-bridge/006.png")} height="600px" />
+<div align="center">
+<img src={useBaseUrl("img/wallet-bridge/006.png")} width="500"  height="600px"/>
+</div>

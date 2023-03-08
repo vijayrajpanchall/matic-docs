@@ -1,39 +1,38 @@
 ---
 id: validator-commission-operations
-title: Commission Operations
-description: "Set up and change your validator commission."
+title: Операции с комиссией
+description: Настройка и изменение комиссий валидатора
 keywords:
   - docs
   - matic
   - polygon
   - validator
-  - commission
+  - commission operations
 slug: validator-commission-operations
-image: https://matic.network/banners/matic-network-16x9.png
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
-
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-You can set up and change your [commission](../glossary#commission) as a validator.
+Как валидатор, вы можете устанавливать или изменять свою [комиссию](/docs/maintain/glossary.md#commission).
 
-A validator is entitled to charge any commission rate. The minimum commission would be 0% and the maximum commission would be 100% of the rewards earned.
+Валидатор имеет право устанавливать комиссию любого размера. Минимальный размер комиссии составляет 0%, а максимальный — 100% от полученных наград.
 
-You are allowed to change the commission rates as many times as you would like.
+Комиссию разрешено менять неограниченное число раз.
 
-As a validator, it is one of your responsibilities to inform the community on commission changes. See [Validator Responsibilities](../validator/responsibilities).
+В обязанности валидатора входит информирование сообщества об изменении размера комиссии. См. статью [Обязанности валидатора](/docs/maintain/validator/responsibilities).
 
-## Set up your commission rate as a validator
+## Установка комиссии валидатора {#set-up-your-commission-rate-as-a-validator}
 
-You set up the commission rate as part of your initial validator staking process. See [Validator Staking Operations](validator-staking-operations).
+Размер комиссии устанавливается в начале процесса стейкинга валидатора. См. статью [Операции стейкинга валидатора](validator-staking-operations.md).
 
-## Change your commission rate
+## Изменение размера комиссии {#change-your-commission-rate}
 
-You can change your commission rate.
+Вы вправе изменять размер своей комиссии.
 
-1. With your owner address, login to the [staking dashboard](https://staking.polygon.technology/).
-1. On your profile, click **Edit Profile**.
-1. In the *Commission* field, provide your new commission rate.
+1. Используя адрес владельца, войдите в [дашборд стейкинга](https://staking.polygon.technology/).
+1. В профиле нажмите **Edit Profile** (изменить профиль).
+1. В поле **Commission** (комиссия) укажите новый размер комиссии.
 
-Once you have confirmed and signed the transaction your commission rate will be set.
+Комиссия будет установлена после того, как вы подтвердите и подпишете транзакцию.
 
-Once the commission is updated, there is a cool down period of 80 checkpoints.
+После изменения комиссии наступает период восстановления этой возможности, длящийся 80 чекпоинтов.

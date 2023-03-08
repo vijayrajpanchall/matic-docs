@@ -1,18 +1,20 @@
 ---
 id: bridge
-title: Bridge
-description: Work In Progress
+title: Мост
+description: В разработке
 keywords:
   - docs
   - polygon
   - matic
   - bridge
 slug: bridge
-image: https://matic.network/banners/matic-network-16x9.png
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
+
+# Мост {#bridge}
 
 :::info
 
-This section is a work in progress.
+Этот раздел находится в разработке.
 
 :::

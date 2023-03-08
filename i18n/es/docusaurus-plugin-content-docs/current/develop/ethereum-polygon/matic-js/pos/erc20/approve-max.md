@@ -2,15 +2,15 @@
 id: approve-max
 title: approveMax
 keywords:
-  - pos client
-  - erc20
-  - approveMax
-  - polygon
-  - sdk
-description: 'approveMax method can be used to approve max amount on the root token.'
+    - pos client
+    - erc20
+    - approveMax
+    - polygon
+    - sdk
+description: 'Aprueba la cantidad máxima en el token primario.'
 ---
 
-`approveMax` method can be used to approve max amount on the root token.
+El método `approveMax` puede utilizarse para aprobar la cantidad máxima en el token primario.
 
 ```
 const erc20RootToken = posClient.erc20(<root token address>, true);
@@ -23,13 +23,13 @@ const txReceipt = await approveResult.getReceipt();
 
 ```
 
-## spenderAddress
+## spenderAddress (Dirección de quien gasta) {#spenderaddress}
 
-The address on which approval is given is called `spenderAddress`. It is a third-party user or a smart contract which can transfer your token on your behalf.
+La dirección en la que se da la aprobación se llama `spenderAddress`. Es un usuario tercero o un contrato inteligente que puede transferir el token en tu nombre.
 
-By default spenderAddress value is erc20 predicate address.
+Por defecto, el valor de spenderAddress es la dirección de predicado ERC-20.
 
-You can specify spender address value manually.
+Puedes especificar manualmente el valor de la dirección de quien gasta.
 
 ```
 const erc20RootToken = posClient.erc20(<root token address>,true);

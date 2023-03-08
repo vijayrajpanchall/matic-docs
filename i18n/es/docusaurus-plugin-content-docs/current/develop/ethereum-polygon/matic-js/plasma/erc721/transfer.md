@@ -1,12 +1,12 @@
 ---
 id: transfer
-title: transfer
+title: transfer (Transferencia)
 keywords:
-  - 'plasma client, erc721, transfer, polygon, sdk'
-description: 'Get started with maticjs'
+- 'plasma client, erc721, transfer, polygon, sdk'
+description: 'Transifere tokens de un usuario a otro.'
 ---
 
-`transfer` method transfer tokens from one user to another user.
+El método `transfer` transfiere tokens de un usuario a otro.
 
 ```
 const erc721Token = plasmaClient.erc721(<token address>);

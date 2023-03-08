@@ -1,46 +1,50 @@
 ---
 id: governance
-title: Governance
+title: Gouvernance
 sidebar_label: Governance
-description: Heimdall governance works exactly the same as Cosmos-sdk `x/gov` module. [https://docs.cosmos.network/master/modules/gov/](https://docs.cosmos.network/master/modules/gov/). In this system, holders of the native staking token of the chain can vote on proposals on a 1 token - 1 vote basis.
+description: Système avec un jeton 1 - 1 base de vote
 keywords:
   - docs
   - matic
+  - one token
+  - one vote
+  - governance
+  - heimdall
 image: https://matic.network/banners/matic-network-16x9.png
 ---
 
-## Overview
+# Gouvernance {#governance}
 
-Heimdall governance works exactly the same as Cosmos-sdk `x/gov` module. [https://docs.cosmos.network/master/modules/gov/](https://docs.cosmos.network/master/modules/gov/)
+La gouvernance Heimdall fonctionne exactement comme le [module `x/gov`Cosmos-sdk.](https://docs.cosmos.network/master/modules/gov/)
 
-In this system, holders of the native staking token of the chain can vote on proposals on a `1 token = 1 vote` basis. Next is a list of features the module currently supports:
+Dans ce système, les titulaires du jeton de staking originaire de la chaîne peuvent voter sur des propositions, sur une `1 token = 1 vote`base. Voici une liste de fonctionnalités que le module prend actuellement en charge:
 
-- **Proposal submission:** Validators can submit proposals with a deposit. Once the minimum deposit is reached, proposal enters voting period. Valdiators that deposited on proposals can recover their deposits once the proposal is rejected or accepted.
-- **Vote:** Validators can vote on proposals that reached MinDeposit
+- **Soumission de propositions:** Les validateurs peuvent soumettre des propositions avec un dépôt. Une fois que le dépôt minimum est atteint, la proposition inclue la période de vote. Les validateurs qui ont déposés sur les propositions peuvent récupérer leurs dépôts une fois que la proposition est rejetée ou acceptée.
+- **Vote:** les validateurs peuvent voter sur des propositions qui ont atteint MinDeposit.
 
-There are deposit period and voting period as params in `gov` module. Minimum deposit has be achieved before deposit period ends, otherwise proposal will be automatically rejected.
+Il y a une période de dépôt et une période de vote en tant que params dans `gov` le module. Le dépôt minimum doit être réalisé avant la fin de la période de dépôt, sinon la proposition sera automatiquement rejetée.
 
-Once minimum deposits reached within deposit period, voting period starts. In voting period, all validators should vote their choices for the proposal. After voting period ends, `gov/Endblocker.go` executes `tally`  function and accepts or rejects proposal based on `tally_params` — `quorum`, `threshold` and `veto`.
+Une fois que les dépôts minimums atteints pendant la période de dépôt, la période de vote commence. Pendant la période de vote, tous les validateurs doivent voter leurs choix pour la proposition. Après que la période de vote se termine, `gov/Endblocker.go` exécute `tally` la fonction et accepte ou rejette la proposition en fonction de `tally_params` — `quorum`, `threshold` et `veto`.
 
-Source: [https://github.com/maticnetwork/heimdall/blob/develop/gov/endblocker.go](https://github.com/maticnetwork/heimdall/blob/develop/gov/endblocker.go)
+Source: [https://github.com/maticnetwork/heimdall/blob/develop/gov/endblocker.go](https://github.com/maticnetwork/heimdall/blob/develop/gov/endblocker.go)   
 
-There are different types of proposals that can be implemented in Heimdall but as of now, it supports only one proposal:
+Il existe différents types de propositions qui peuvent être mises en œuvre dans Heimdall. À partir de maintenant, il prend en charge uniquement la **proposition de changement Param**.
 
-- Param change proposal
+### Proposition de modification de Param {#param-change-proposal}
 
-### **Param change proposal**
+En utilisant ce type de proposition, les validateurs peuvent changer `params`n'importe `module`quel Heimdall.
 
-Using this type of proposal, validators can change any `params` in any `module` of Heimdall. Example: change minimum `tx_fees` for the transaction in `auth` module. When the proposal gets accepted, it automatically changes the `params` in Heimdall state. No extra TX is needed.
+Exemple: le changement minimum `tx_fees` pour la transaction dans `auth` le module. Lorsque la proposition est acceptée, elle modifie automatiquement `params` dans l'état de Heimdall. Aucun TX supplémentaire n'est nécessaire.
 
-## CLI commands
+## Les commandes de CLI {#cli-commands}
 
-### Query gov params
+### Demande de gov params {#query-gov-params}
 
 ```go
 heimdallcli query gov params --trust-node
 ```
 
-This shows all params for governance module.
+Cela montre tous les params pour le module de gouvernance.
 
 ```go
 voting_params:
@@ -57,17 +61,17 @@ deposit_parmas:
   max_deposit_period: 48h0m0s
 ```
 
-### Submit proposal
+### Soumettre la proposition {#submit-proposal}
 
 ```bash
 heimdallcli tx gov submit-proposal \
-    --validator-id 1 param-change proposal.json \
-    --chain-id <heimdall-chain-id>
+	--validator-id 1 param-change proposal.json \
+	--chain-id <heimdall-chain-id>
 ```
 
-`proposal.json` is a file which includes proposal in json format.
+`proposal.json`est un dossier qui inclut la proposition en format json.
 
-```go
+```json
 {
   "title": "Auth Param Change",
   "description": "Update max tx gas",
@@ -87,34 +91,34 @@ heimdallcli tx gov submit-proposal \
 }
 ```
 
-### Query proposal
+### Proposition de requête {#query-proposal}
 
-To query all proposals
+Pour interroger toutes les propositions:
 
 ```go
 heimdallcli query gov proposals --trust-node
 ```
 
-To query particular proposal
+Pour interroger une proposition particulière:
 
 ```go
 heimdallcli query gov proposals 1 --trust-node
 ```
 
-### Vote on proposal
+### Voter sur la proposition {#vote-on-proposal}
 
-To vote on a particular proposal
+Pour voter sur une proposition particulière:
 
 ```bash
 heimdallcli tx gov vote 1 "Yes" --validator-id 1  --chain-id <heimdal-chain-id>
 ```
 
-Proposal will be automatically tallied after voting period.
+La proposition sera automatiquement accordée après la période de vote.
 
-## REST APIs
+## API de REST {#rest-apis}
 
-| Name                           | Method | Endpoint                           |
-| ------------------------------ | ------ | ---------------------------------- |
-| Get all proposals              | GET    | /gov/proposals                     |
-| Get proposal details           | GET    | /gov/proposals/`proposal-id`       |
-| Get all votes for the proposal | GET    | /gov/proposals/`proposal-id`/votes |
+| Nom | Méthode | Point de terminaison |
+|----------------------|------|------------------|
+| Obtenez toutes les propositions | GET | /gov/propositions |
+| Obtenez les détails de la proposition | GET | /gov/propositions/`proposal-id` |
+| Obtenez tous les votes pour la proposition | GET | /gov/propositions/`proposal-id`/votes |

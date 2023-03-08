@@ -1,7 +1,7 @@
 ---
 id: validator-node-system-requirements
-title: Node System Requirements
-description: "System requirements to run a validator node."
+title: Системные требования
+description: Системные требования для запуска вердикта
 keywords:
   - docs
   - matic
@@ -9,46 +9,44 @@ keywords:
   - prerequisites
   - requirements
 slug: validator-node-system-requirements
-image: https://matic.network/banners/matic-network-16x9.png
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
-## Overview
+Системные требования, перечисленные в данном разделе, предназначены как для [сентри-нода](/docs/maintain/glossary.md#sentry), так и для узла проверки [валидатора](/docs/maintain/glossary.md#validator).
 
-The system requirements listed in this section are both for the [sentry](../glossary#sentry) node and the [validator](../glossary#validator) node.
+**Минимальные** системные требования означают, что вы можете запустить ноды, но они не гарантируют их работу.
 
-The *minimum* system requirements mean you can run the nodes but the setup is not future-proof.
+**Рекомендуемые** системные требования гарантируют работу нодов. Однако верхнего предела требований, которые гарантируют работу нодов, не существует.
 
-The *recommended* system requirements mean the nodes are future-proof. There is, however, no upper limit to future-proofing your nodes.
+Сентри-нод и узел проверки нужно всегда запускать на разных компьютерах.
 
-You must always run the sentry node and the validator node on separate machines.
+## Минимальные системные требования {#minimum-system-requirements}
 
-## Minimum system requirements
+* ОЗУ: 32 ГБ
+* Процессор: 8-ядерный
+* Хранение: 2.5 TB SSD
 
-* RAM: 32 GB
-* CPU: 8-core
-* Storage: 2 TB SSD
+:::info
 
-:::note
+Для Amazon Web Services (AWS) эквивалентом минимальных требований являются экземпляры **m5d.2xlarge** или **t3.2xlarge** с неограниченными кредитами.
 
-For Amazon Web Services (AWS), the equivalent of the minimum requirements instances are **m5d.2xlarge** or **t3.2xlarge** with unlimited credits selected.
-
-For storage, make sure the 2 TB SSD storage is extendable.
+Чтобы сохранить хранилище на 2,5 ТБ для SSD расширяется.
 
 :::
 
-## Recommended system requirements
+## Рекомендуемые системные требования {#recommended-system-requirements}
 
-* RAM: 64 GB
-* CPU: 16-core
-* Storage: 3-4 TB SSD
-* Bandwidth: 1 Gbit/s
+* ОЗУ: 64 ГБ
+* Процессор: 16-ядерный
+* Хранение: 5 TB SSD
+* Пропускная способность: 1 Гбит/с
 
-:::note
+:::info
 
-For Amazon Web Services (AWS), the equivalent of the recommended requirements instance is **m5d.4xlarge**.
+Для Amazon Web Services (AWS) эквивалентом рекомендуемых требований является экземпляр **m5d.4xlarge**.
 
-For OVH, the equivalent of the recommended requirements instance is **infra-3**.
+Для OVH эквивалентом рекомендуемых требований является экземпляр **infra-3**.
 
-For network, expect 3-5 TB of data transferred per month.
+Что касается сети, следует ожидать передачи данных в объеме 3–5 ТБ в месяц.
 
 :::

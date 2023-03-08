@@ -1,33 +1,40 @@
 ---
 id: blockchain
-title: What is Blockchain?
+title: Qu'est-ce qu'une Blockchain?
 sidebar_label: Blockchain
-description: Blockchain is an immutable ledger for recording transactions.
+description: Une blockchain est un registre immuable permettant d'enregistrer les transactions.
 keywords:
   - docs
   - matic
-image: https://matic.network/banners/matic-network-16x9.png
+  - polygon
+  - what is blockchain
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
-Blockchain is a shared, transparent and immutable ledger for recording transactions, tracking assets and building trust. It is a distributed ledger technology, which securely records information across a peer-to-peer network. Although it was created for financial service, blockchain's potential lies far beyond cryptocurrency. These ledgers can record data from Health sector, Land Registry, eSports, Enterprise Records, logistics Manifests, identities - almost anything that holds value.
+# Qu'est-ce qu'une Blockchain? {#what-is-blockchain}
 
-**Blockchain technology** is actually a combination of 4 components:
+Une blockchain est un grand registre partagé, transparent et immuable permettant d'enregistrer les transactions, de suivre les actifs et d'instaurer la confiance. Il s'agit d'une technologie de grand registre distribué, qui enregistre les informations de manière sécurisée sur un réseau pair-à-pair. Bien qu'elle ait été créée pour des services financiers, le potentiel d'une blockchain va bien au-delà des cryptomonnaies. Ces grands registres peuvent enregistrer des données provenant du secteur de Santé, des Titres Fonciers, eSports, des Registres d'Entreprise, de Rapports Logistiques, des Identités – et de presque tout ce qui a de la valeur.
 
-- Peer-to-peer networks
-- Consensus mechanism; Crypto economics and Game theory
-- Cryptography
-- Blockchain data structure
+**La technologie Blockchain** est en fait une combinaison de 4 composants:
 
-## Key benefits of Blockchain
+- Réseaux pair-à-pair
+- Mécanisme de consensus; Crypto-économie et Théorie des jeux
+- Cryptographie
+- Structure des données de Blockchain
 
-1. **Robustness** <br></br> Blockchain Technology stores information in blocks which are chronologically synchronised. And these blocks cannot be controlled by an individual making blockchain highly secured.
+## Les avantages clés des Blockchains {#key-benefits-of-blockchain}
 
-2. **Decentralised Ledger** <br></br> Decentralised Ledger operates on peer to peer basis. DLT allows recording the transaction of assets and their details in multiple places at the same time without any central authority. Unlike traditional databases, distributed ledgers have no central data store or administration functionality.
+1. **Robustesse** <br></br>
+La Technologie Blockchain stocke les informations dans des blocs qui sont synchronisés chronologiquement. Ces blocs ne peuvent pas être contrôlés par un individu en particulier, ce qui rend la blockchain hautement sécurisée.
 
-3. **Immutable** <br></br> Once a block is sealed cryptographically or added to main chain, it is impossible to delete or edit, ensuring the immutability of the digital ledger.
+2. **Ledger décentralisé**<br></br> Le livreur décentralisé fonctionne sur une base de pairs à pairs. DLT permet d'enregistrer la transaction des actifs et de leurs détails dans plusieurs endroits en même temps sans avoir recours à une autorité centrale. Contrairement aux bases de données classiques, les grands registres distribués ne disposent pas de stockage central des données ni de fonctionnalité d'administration.
 
-4. **Transparency** <br></br> It is possible for a user to verify and track their transactions, with the entire record of the transactions available in the blockchain.
+3. **Immuable** <br></br>Une fois qu'un bloc est scellé par cryptographie ou ajouté à la chaîne principale, il est impossible de le supprimer ou de le modifier, ce qui garantit l'immuabilité du registre numérique.
 
-### **:scroll:Resources**
+4. **Transparence** <br></br>
+Il est possible pour un utilisateur de vérifier et de suivre ses transactions, avec l'enregistrement complet des transactions étant disponible dans la blockchain.
 
-:green_book: [Newbie Guide to Blockchain](https://medium.com/ethindia/newbie-guide-to-blockchain-programming-a64f5186a57f)<br></br> :orange_book: [Blockchain 101](https://www.coindesk.com/learn/blockchain-101/what-is-blockchain-technology)
+### **Ressources**
+
+- [Newbie Guide to Blockchain](https://medium.com/ethindia/newbie-guide-to-blockchain-programming-a64f5186a57f)<br></br>
+- [Blockchain 101](https://www.coindesk.com/learn/blockchain-101/what-is-blockchain-technology)

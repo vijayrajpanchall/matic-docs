@@ -2,19 +2,23 @@
 id: plugin
 title: Plugin
 keywords:
-  - 'plugin, api type, read, write, polygon'
-description: 'Using plugin you can inject your code into matic.js'
+- 'plugin, api type, read, write, polygon'
+description: 'Mit dem Plugin einen Code in Matic.js einspeisen.'
 ---
 
-Using plugin you can inject your code into `matic.js`. It can be used to write common set of generic codes which can be provided to anyone using a package.
+Mithilfe des Plugins kannst du deinen Code in die  `matic.js`einspeisen. Damit kannst du einen gemeinsamen Satz generischer Codes aufschreiben, der dann jedem Paketnutzer zur Verfügung gestellt werden kann.
 
-:::info Plugin makes the `matic.js` light weight as it implements only important logical part. :::
+:::info
 
-In fact, the web3 library is supported using plugin which allows us to use our favourite library.
+Das Plugin erleichtert  `matic.js`, da es nur den wichtigen logischen Teil umsetzt.
 
-### Plugin development
+:::
 
-Plugin is a class which implements `IPlugin`.
+In Wirklichkeit wird die web3-Bibliothek durch ein Plugin unterstützt, wodurch wir unsere Favoriten-Bibliothek nutzen können.
+
+### Plugin-Entwicklung {#plugin-development}
+
+Plugin ist eine Klasse, die `IPlugin` umsetzt.
 
 ```
 import { IPlugin } from "@maticnetwork/maticjs";
@@ -30,11 +34,11 @@ export class MyPlugin implements IPlugin {
 }
 ```
 
-As you can see - you just need to implement a `setup` method which will be called with default export of `matic.js`.
+Wie du sehen kannst, muss du nur eine `setup` Methode umsetzen, die dann durch den Standard-Export von `matic.js`aufgerufen wird.
 
-### Use Plugin
+### Plugin verwenden {#use-plugin}
 
-`matic.js` expose `use` method for using a plugin.
+`matic.js` zeigt die `use` Methode zur Plugin-Nutzung.
 
 ```
 import { use } from '@maticnetwork/maticjs'
@@ -42,9 +46,9 @@ import { use } from '@maticnetwork/maticjs'
 use(MyPlugin)
 ```
 
-You can use multiple plugins and they will be called in the same order as they are declared.
+Du kannst mehrere Plugins verwenden. Sie werden dann in der gleichen Reihenfolge aufgerufen, wie sie deklariert sind.
 
-**Some plugin repos are -**
+**Manche Plugin-Repos sind -**
 
 - [Matic web3.js](https://github.com/maticnetwork/maticjs-web3)
 - [Matic ethers](https://github.com/maticnetwork/maticjs-ethers)

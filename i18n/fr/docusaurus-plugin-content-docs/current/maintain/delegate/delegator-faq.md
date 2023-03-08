@@ -1,210 +1,241 @@
 ---
 id: delegator-faq
-title: Delegator FAQ
+title: FAQ du délégant
 sidebar_label: Delegator FAQ
-description: Build your next blockchain app on Polygon.
+description: FAQ relatives à la délégation sur le réseau Polygon
 keywords:
   - docs
-  - matic
-image: https://matic.network/banners/matic-network-16x9.png
+  - polygon
+  - how to delegate
+  - validator
+  - stake
+  - faq
+  - delegator
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
-
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-### What is the Staking Dashboard URL?
+### Qu'est-ce que l'URL du tableau de bord de staking ? {#what-is-the-staking-dashboard-url}
 
-The staking dashboard URL is https://staking.polygon.technology/.
+L'URL du tableau de bord staking est https://staking.polygon.technology/.
 
-### What is the Minimum stake amount?
+### Quel est le montant minimum de la mise ? {#what-is-the-minimum-stake-amount}
 
-There is no minimum stake amount to delegate. However, you can always start with 1 Matic token
+Il n'y a pas de montant de mise minimum à déléguer. Cependant, vous pouvez toujours commencer avec 1 jeton MATIC.
 
-### How many rewards will I get if I delegate?
+### Combien de récompenses vais-je obtenir si je délègue ? {#how-many-rewards-will-i-get-if-i-delegate}
 
-Please use the Staking Rewards Calculator to determine your estimates. https://staking.polygon.technology/rewards-calculator
+Veuillez utiliser la [Calculatrice des récompenses Staking](https://staking.polygon.technology/rewards-calculator) pour déterminer vos estimations.
 
-### Why does my transaction take so long?
+### Pourquoi ma transaction prend-elle autant de temps ? {#why-does-my-transaction-take-so-long}
 
-All staking transactions of Polygon happen on Ethereum for security reasons.
+Toutes les transactions de staking de Polygon s'effectuent sur Ethereum pour des raisons de sécurité.
 
-The time taken to complete a transaction depends on the gas fees that you have allowed and also the network congestion of Ethereum mainnet at that point in time. You can always use the “Speed Up” option to increase the gas fees so that your transaction can be completed soon
+Le temps nécessaire pour effectuer une transaction dépend des frais de gaz que vous avez autorisés ainsi que de l'encombrement du réseau principal d'Ethereum à ce moment-là. Vous pouvez toujours utiliser l'option « Speed Up » pour augmenter les frais de gaz afin que votre transaction puisse être achevée bientôt.
 
-### Which wallets are currently supported?
+### Quels portefeuilles sont actuellement pris en charge ? {#which-wallets-are-currently-supported}
 
-Currently, only the MetaMask extension on the desktop browser and Coinbase Wallet are supported. Additionally you can use WalletConnect and Walletlink from supported mobile wallets to interact with the Staking UI dashboard on desktop/laptop. We will be gradually adding support for other wallets soon.
+Actuellement, seule l'extension Metamask sur le navigateur de bureau et le portefeuille Coinbase sont pris en charge. De plus, vous pouvez utiliser WalletConnect et Walletlink à partir de portefeuilles mobiles pris en charge pour interagir avec le tableau de bord Staking UI sur le bureau / ordinateur portable. Nous ajouterons bientôt un support pour d'autres portefeuilles.
 
-### Are hardware wallets supported?
+### Les portefeuilles matériels sont-ils pris en charge ? {#are-hardware-wallets-supported}
 
-Yes, hardware wallets are supported. You can use the "Connect Hardware Wallet" option on MetaMask and connect your Hardware wallet and then continue the delegation process.
+Oui, les portefeuilles matériels sont pris en charge. Vous pouvez utiliser l'option « Connecter le portefeuille matériel » sur Metamask et connecter votre portefeuille matériel, puis continuer le processus de délégation.
 
-### Why can’t I stake directly from Binance?
+### Pourquoi ne puis-je pas staker directement à partir Binance ? {#why-can-t-i-stake-directly-from-binance}
 
-Staking through Binance is not yet supported. There will be an announcement if and when Binance starts supporting it.
+Le staking via Binance n'est pas encore pris en charge. Une annonce sera faite pour indiquer si et quand Binance commencera à prendre en charge cette fonctionnalité.
 
-### I have completed my delegation, where can I check details?
+### J'ai terminé ma délégation, où puis-je consulter les informations ? {#i-have-completed-my-delegation-where-can-i-check-details}
 
-Once you have completed your delegation, wait for 12 block confirmations on Ethereum (~3-5 minutes), then on the Dashboard,you can click on the “My Delegator Details” option on the left-hand side. Or you could also click on “Show Delegator Profile” card
+Une fois que vous avez terminé votre délégation, attendez 12 confirmations de blocs sur Ethereum (env. 3-5 minutes), puis sur le Tableau de bord, vous pouvez cliquer sur **Mon compte**.
 
-### Where can I check my rewards?
+<div>
+  <img src={useBaseUrl("/img/delegator-faq/my-account.png")} />
+</div>
 
-On the Dashboard, you can click on the “My Delegator Details” option on the left-hand side. Or you could also click on “Show Delegator Profile” card.
+### Où puis-je consulter mes récompenses ? {#where-can-i-check-my-rewards}
 
-Check the `New Rewards` card on the right. Once you accrue rewards, you can click on the `Details` link to check rewards in detail.
+Sur le Tableau de bord, vous pouvez cliquer sur l'option **Mon compte** sur le côté gauche.
 
-### Do I need ETH to pay for Gas fees?
+<div>
+  <img src={useBaseUrl("/img/delegator-faq/my-account.png")} />
+</div>
 
-Yes. You should provision for ~0.05-0.1 ETH to be safe.
+### Ai-je besoin d'ETH pour payer les frais de gaz ? {#do-i-need-eth-to-pay-for-gas-fees}
 
-### Do I need to deposit Matic tokens to the Polygon Mainnet network for staking?
+Oui. Vous devriez prévoir entre 0,05 et 0,1 ETH pour être sûr.
 
-No. All your funds need to be on the Main Ethereum Network.
+### Dois-je déposer des jetons Matic sur le réseau principal de Polygon pour le staking ? {#do-i-need-to-deposit-matic-tokens-to-the-polygon-mainnet-network-for-staking}
 
-### When I try to do the transaction my Confirm button is disabled, why so?
+Non, tous vos fonds doivent être sur le réseau principal Ethereum.
 
-Please check if you have enough ETH for the gas fees.
+### Lorsque j'essaie d'effectuer la transaction, le bouton Confirmer est désactivé. Pourquoi ? {#when-i-try-to-do-the-transaction-my-confirm-button-is-disabled-why-so}
 
-### When does reward get distributed?
+Veuillez vérifier si vous avez assez d'ETH pour les frais de gaz.
 
-The rewards are distributed whenever a checkpoint is submitted.
+### Quand la récompense est-elle distribuée ? {#when-does-reward-get-distributed}
 
-Currently 20188 Matic tokens are distributed proportionately on each successful checkpoint submission to each delegator based on their stake relative to the overall staking pool of all validators and delegators. Also, the percentage for the reward distributed to each delegator will vary with each checkpoint depending on the relative stake of the delegator, validator and the overall stake.
+Les récompenses sont distribuées chaque fois qu'un point de contrôle est soumis.
 
-(Note that there is a 10% proposer bonus that accrues to the validator who submits the checkpoint, but over time, the effect of the extra bonus is nullified over multiple checkpoints by different validators.)
+Actuellement, les jetons MATIC 20188 sont distribués proportionnellement sur chaque soumission de point de contrôle réussi à chaque délégateur sur la base de leur participation par rapport au pool global de tous les validateurs et délégateurs. En outre, le pourcentage de la récompense distribuée à chaque délégant variera avec chaque point de contrôle en fonction de la mise relative du délégant, du validateur et du staking global.
 
-The checkpoint submission is done by one of the validators approximately every 34 minutes. This time is approximate and may vary based on validator consensus on the Polygon Heimdall layer. This may also vary based on Ethereum Network. Higher congestion in the network may result in delayed checkpoints.
+(Notez qu'un bonus de proposition de 10 % revient au validateur qui place le point de contrôle, mais à terme, l'effet du bonus supplémentaire est annulé sur plusieurs points de contrôle par différents validateurs.)
 
-You can track checkpoints on the staking contract here: https://etherscan.io/address/0x86e4dc95c7fbdbf52e33d563bbdb00823894c287
+L'ajout de points de contrôle est effectué par l'un des validateurs toutes les 34 minutes environ. Cette durée est approximative et peut varier en fonction du consensus du validateur sur la couche Polygon Heimdall. Cela peut également varier en fonction du réseau Ethereum. Une congestion plus importante dans le réseau peut entraîner des retards des points de contrôle.
 
-### Why does reward keep getting decreased every checkpoint?
+Vous pouvez suivre les points de contrôle sur le contrat de staking [ici](https://etherscan.io/address/0x86e4dc95c7fbdbf52e33d563bbdb00823894c287)
 
-Actual rewards earned will depend on the actual total locked supply in the network at each checkpoint. This is expected to vary significantly as more MATIC tokens get locked in the staking contracts.
+### Pourquoi la récompense diminue-t-elle à chaque point de contrôle ? {#why-does-reward-keep-getting-decreased-every-checkpoint}
 
-Rewards will be higher, to begin with, and will keep decreasing as the locked supply % goes up. This change in locked supply is captured at every checkpoint, and rewards are calculated based on this.
+Les récompenses réelles gagnées dépendront de l'approvisionnement verrouillé total réel dans le réseau à chaque point de contrôle. On s'attend à une variation significative au fur et à mesure que les jetons MATIC sont verrouillés dans les contrats de staking.
 
-### How can I claim my rewards?
+Les récompenses seront plus élevées, pour commencer, et continueront à diminuer à mesure que le % d'approvisionnement verrouillé augmentera. Ce changement dans l'approvisionnement verrouillé est capturé à chaque point de contrôle, et les récompenses sont calculées sur cette base.
 
-You can claim your rewards instantly by clicking on the “New Rewards” card and then clicking on the Withdraw rewards button. This will transfer the rewards accumulated to your delegated account on Metamask.
+### Comment puis-je réclamer mes récompenses ? {#how-can-i-claim-my-rewards}
 
-### What is the Unbonding period?
+Vous pouvez réclamer vos récompenses instantanément en cliquant sur le bouton **Retirer la** récompense. Cette opération permettra de transférer les récompenses accumulées sur votre compte délégué sur Metamask.
 
-The unbonding period on Polygon is approximately 9 days now. It was 19 days previously. This period applies to the originally delegated amount and re-delegated amounts - it does not apply to any rewards that were nor re-delegated.
+<div>
+  <img src={useBaseUrl("/img/delegator-faq/withdraw-reward.png")} />
+</div>
 
-### Will I keep receiving rewards after I unbond?
+### Qu'est-ce que la période d'unbonding ? {#what-is-the-unbonding-period}
 
-No. Once you unbond you stop receiving rewards.
+Actuellement, la période d'unbonding sur Polygon est d'environ 9 jours. Auparavant, elle était de 19 jours. Cette période s'applique au montant délégué initialement et aux montants re-delegated - elle ne s'applique pas aux récompenses qui n'ont pas été re-delegated.
 
-### How many transactions does the delegation require?
+### Vais-je continuer à recevoir des récompenses après verrouillage ? {#will-i-keep-receiving-rewards-after-i-unbond}
 
-Delegation requires 2 transactions one after the other - one Approve and another Deposit.
+Non. Une fois que vous êtes libéré, vous cesserez de recevoir des récompenses.
 
-### What does Redelegate Rewards mean?
+### Combien de transactions sont nécessaires pour la délégation ? {#how-many-transactions-does-the-delegation-require}
 
-Redelegating your rewards simply means, that you want to increase your stake by restaking the rewards you have accumulated.
+La délégation nécessite 2 transactions, l'une après l'autre. L'un pour **approuver** la demande et l'autre pour **dépôt**.
 
-### Can I stake to any validator?
+<div>
+  <img src={useBaseUrl("/img/delegator-faq/delegate.png")} />
+</div>
 
-Yes. All validators are Polygon Foundation nodes currently.
+### Que signifie « redéléguer » les récompenses ? {#what-does-redelegate-rewards-mean}
 
-We are doing a phased rollout of the Polygon mainnet. Later on, external validators will be onboarded gradually. Please see https://blog.matic.network/mainnet-is-going-live-announcing-the-launch-sequence/ for more details.
+Redelegating vos récompenses signifie simplement que vous voulez augmenter votre participation en reprenant les récompenses que vous avez accumulées.
 
-### Which browser is compatible with Staking Dashboard?
+### Puis-je miser sur n'importe quel validateur ? {#can-i-stake-to-any-validator}
 
-Chrome, Firefox, and Brave
+Oui. Tous les validateurs sont actuellement des nœuds de la Fondation Polygon.
 
-### My MetaMask is stuck at confirming after login, what do I do? Or nothing happens when I try to login?
+Nous procédons à un déploiement progressif du réseau principal de Polygon. Par la suite, les validateurs externes seront intégrés progressivement. Veuillez consulter la page https://blog.matic.network/mainnet-is-going-live-announcing-the-launch-sequence/ pour plus de détails.
 
-Check for the following:
+### Quel navigateur est compatible avec le tableau de bord de staking ? {#which-browser-is-compatible-with-staking-dashboard}
 
-- If you’re using Brave, please turn off the option for “Use Crypto Wallets” in the settings panel.
-- Check if you are logged into Metamask
-- Check if you are logged into MetaMask with Trezor/Ledger. You need to additionally turn on permission to call contracts on your Ledger device, if not enabled already.
-- Check your system timestamp. If the system time is not correct, you will need to correct it.
+Chrome, Firefox et Brave
 
-### How do I send funds from Binance or other exchanges to Polygon wallet?
+### Mon Metamask s'est bloqué au moment de la confirmation de la connexion, que dois-je faire ? Rien ne se produit lorsque j'essaie de me connecter. {#my-metamask-is-stuck-at-confirming-after-login-what-do-i-do-or-nothing-happens-when-i-try-to-login}
 
-Technically, the Polygon web wallet/Staking interface is just a web application. Currently it supports the following wallets - Metamask. WalletConnect and WalletLink
+Vérifiez les éléments suivants :
 
-So first you must withdraw your funds from Binance or any other exchange to your Ethereum address on Metamask. If you don't know how to use Metamask, google it a bit. There are plenty of videos and blogs to get started with it.
+- Si vous utilisez Brave, veuillez désactiver l'option **Utiliser** des portefeuilles cryptographiques dans le panneau des paramètres.
+- Vérifiez si vous êtes connecté à Metamask.
+- Vérifiez si vous êtes connecté à Metamask avec Trezor/Ledger. Vous devez également activer l'autorisation d'appeler des contrats sur votre appareil Ledger, si elle n'est pas déjà activée.
+- Vérifiez l'horodatage de votre système. Si l'heure système n'est pas correcte, vous devrez la corriger.
 
-### When will be possible to become a validator and how many tokens do I need to have?
+### Comment puis-je envoyer des fonds de Binance ou d'autres plateformes vers le portefeuille Polygon ? {#how-do-i-send-funds-from-binance-or-other-exchanges-to-polygon-wallet}
 
-A user can earn a validator spot only by if the below conditions come into play:
-1. When a validator decides to unstake from the network or
-2. Wait for the auction mechanism and replace the inactive validator.
+Techniquement, l'interface Polygon Wallet Suite/Staking n'est qu'une application web. Actuellement, il prend en charge les portefeuilles suivants - Metamask, WalletConnect, et WalletLink.
 
-The minimum stake depends on the auction process where one user outbids another.
+Premièrement, vous devez retirer vos fonds de Binance ou tout autre échange vers votre adresse Ethereum sur Metamask. Si vous ne savez pas comment utiliser Metamask, recherchez sur Internet. Vous trouverez beaucoup de vidéos et de blogs qui expliquent comment commencer.
 
-### If I have earned rewards while delegating, and if I add additional funds to the same validator node, what happens?
+### Quand puis-je devenir validateur et combien de jetons dois-je pour cela? {#when-can-i-become-a-validator-and-how-many-tokens-do-i-for-that}
 
-If you have not re-delegated your rewards before delegating additional funds to the same validator node, your rewards will be withdrawn automatically.
+Un utilisateur peut gagner une place de validateur uniquement si les conditions suivantes s'appliquent :
+1. Lorsqu'un validateur décide de se désengager du réseau, ou
+2. Attendez le mécanisme d'enchères et remplacez le validateur inactif.
 
-In case you dont want that to happen, re-delegate your rewards before delegating additional funds.
+La mise minimale dépend du processus d'enchères dans lequel un utilisateur surenchérit un autre.
 
-### I have delegated my tokens via MetaMask on the Staking dashboard. Do I need to keep my system or device on?
+### Si j'ai gagné des récompenses en déléguant, et si j'ajoute des fonds supplémentaires au même nœud validateur, que se passe-t-il ? {#if-i-have-earned-rewards-while-delegating-and-if-i-add-additional-funds-to-the-same-validator-node-what-happens}
 
-No. Once your Delegation transactions are confirmed, and you can see your tokens reflected in the Total Stake and New Reward cards/sections, then you are done. There is no need to keep your system or device on.
+Si vous n'avez pas redélégué vos récompenses avant de déléguer des fonds supplémentaires au même nœud validateur, vos récompenses seront retirées automatiquement.
 
-### I have unbonded, how long will it take to Unbond
+Si vous ne voulez pas que cela se produise, redéléguez vos récompenses avant de déléguer des fonds supplémentaires.
 
-The unbonding period is currently set to 82 checkpoints. This is approximately 9 days. Every checkpoint takes approximately 34 minutes. However, some checkpoints could be delayed upto ~1 hour due to congestion on Ethereum.
+### J'ai délégué mes jetons via Metamask sur le tableau de bord de staking. Dois-je garder mon système ou mon appareil allumé ? {#i-have-delegated-my-tokens-via-metamask-on-the-staking-dashboard-do-i-need-to-keep-my-system-or-device-on}
 
-### I have unbonded, and I now see the Claim Stake button, but it is disabled, why is that
+Non. Une fois que vos transactions de délégation sont confirmées et que vous pouvez voir vos jetons reflétés dans les sections **Total Stake** et **New Reward**, vous avez terminé. Vous n'avez pas besoin de garder votre système ou votre appareil allumé.
 
-The Claim stake button will only be enabled when your unbonding period is complete. The unbonding period is currently set at 82 checkpoints.
+### Je n'ai pas de liens ; combien de temps faudra-t-il à Unbond? {#i-have-unbonded-how-long-will-it-take-to-unbond}
 
-### Do I know when will the Claim Stake button be enabled?
+La période d'unbonding est actuellement fixée à 82 points de contrôle. Cela correspond à environ 9 jours. Chaque point de contrôle prend environ 34 minutes. Cependant, certains points de contrôle peuvent être retardés jusqu'à environ 1 heure en raison de la congestion sur Ethereum.
 
-Yes, under the Claim Stake button you would see a note on how many checkpoints are pending before the Claim Stake button would be enabled. Every checkpoint takes approximately 30 minutes. However, some checkpoints could be delayed upto ~1 hour due to congestion on Ethereum.
+### Je n'ai pas de lien et je vois maintenant le bouton Claim Stake bouton, mais il est désactivé, pourquoi est-ce ? {#i-have-unbonded-and-i-now-see-the-claim-stake-button-but-it-is-disabled-why-is-that}
 
-### How do I switch my delegation from Foundation Nodes to External nodes?
+Le bouton Réclamer la mise ne sera activé que lorsque votre période d'unbonding sera terminée. La période d'unbonding est actuellement fixée à 82 points de contrôle.
 
-You can switch your Delegation using the **Move Stake** option on the Staking UI. This will switch your Delegation from the Foundation node to any other external node of your choice.
+### Est-ce que je peux savoir quand le bouton Réclamer la mise sera activé ? {#do-i-know-when-will-the-claim-stake-button-be-enabled}
 
-### Will there be any ubonding period when I switch Delegation from Foundation nodes to external nodes?
+Oui, sous le bouton Réclamer la mise, vous verrez apparaître une note sur le nombre de points de contrôle en attente avant que le bouton Réclamer la mise ne soit activé. Chaque point de contrôle prend environ 30 minutes. Cependant, certains points de contrôle peuvent être retardés jusqu'à environ 1 heure en raison de la congestion sur Ethereum.
 
-There will be no Unbonding period when you switch Delegation from foundation nodes to external nodes. It will be a direct switch without any delays. However, if you are unbonding from a Foundation Node or an External node there will be an Unbonding period for that.
+<div>
+  <img src={useBaseUrl("/img/delegator-faq/unbond.png")} />
+</div>
 
-### Are they any specifics to choose an external node during switch delegation?
+### Comment changer ma délégation des nœuds de la Fondation à des nœuds externes ? {#how-do-i-switch-my-delegation-from-foundation-nodes-to-external-nodes}
 
-No. You can choose any node of your choice.
+Vous pouvez changer de délégation à l'aide de l'option **Déplacer la mise** sur l'interface de staking. La délégation passera alors du nœud de la Fondation à tout autre nœud externe de votre choix.
 
-### What happens to my rewards that are accumalated if I switch delegation from Foundation to External node?
+<div align="center">
+  <img src={useBaseUrl("/img/delegator-faq/move-stake.png")} width="500" />
+</div>
 
-If you haven't already claimed your rewards before switching delegation, then upon successful switch of your delegation from Foundation to External the Rewards that were accumalated till then will be transferred back to your account.
+Vous verrez une liste d'autres validateurs:
 
-### Will delegation on the External Nodes work the same as Foundation Nodes?
+<div>
+  <img src={useBaseUrl("/img/delegator-faq/validators.png")} />
+</div>
 
-Yes, it will work the same as Foundation nodes
+### Y aura-t-il une période d'unbonding lorsque je passerai des nœuds de la Fondation à des nœuds externes ? {#will-there-be-any-ubonding-period-when-i-switch-delegation-from-foundation-nodes-to-external-nodes}
 
-### Will I still get rewards after delegating to an External Node?
+Il n'y aura pas de période d'unbonding lorsque vous passerez des nœuds de la Fondation à des nœuds externes. Ce sera une transition directe sans aucun retard. Cependant, si vous effectuez un unbonding à partir d'un nœud de la Fondation ou d'un nœud externe, il y aura une période d'unbonding.
 
-Yes, rewards will be distributed the same as earlier with the Foundation nodes. Every successful submission of a checkpoint will yield in rewards. Rewards will be distributed and calculated at every checkpoint relative to the stake ratio, as currently implemented.
+### Y a-t-il des spécificités pour choisir un nœud externe lors du changement de délégation ? {#are-they-any-specifics-to-choose-an-external-node-during-switch-delegation}
 
-### Will there be any unbonding period if I unbond from an External Node?
+Non. Vous pouvez choisir le nœud de votre choix.
 
-Yes, the unbonding period will stay the same as currently implemented. 82 Checkpoints.
+### Qu'advient-il de mes récompenses accumulées si ma délégation passe d'un nœud de la Fondation à un nœud externe ? {#what-happens-to-my-rewards-that-are-accumalated-if-i-switch-delegation-from-foundation-to-external-node}
 
-### Will there be any locking period after I switch my Delegation from Foundation to External node?
+Si vous n'avez pas encore réclamé vos récompenses avant de changer de délégation, lors du passage réussi de votre délégation d'un nœud de la Fondation à un nœud externe, les récompenses accumulées jusqu'alors seront transférées à votre compte.
 
-No. There won't be any locking period after you switch your delegation.
+### La délégation à des nœuds externes fonctionnera-t-elle de la même manière que les nœuds de la Fondation ? {#will-delegation-on-the-external-nodes-work-the-same-as-foundation-nodes}
 
-### Can I partially switch my delegation from Foundation to External nodes?
+Oui, cela fonctionnera comme les nœuds Fondation.
 
-Yes, you will have the option to partially move your stake from Foundation node to an external node. The remaining partial stake will remain on the Foundation node. You can then move that to another node of your choice or the same node.
+### Est-ce que je recevrai toujours des récompenses après la délégation à un nœud externe ? {#will-i-still-get-rewards-after-delegating-to-an-external-node}
 
-### Can I switch delegation from an external node to another external node?
+Oui, les récompenses seront distribuées de la même manière que précédemment avec les nœuds de la Fondation. Chaque ajout réussi d'un point de contrôle donnera lieu à des récompenses. Les récompenses seront distribuées et calculées à chaque point de contrôle par rapport au ratio de mise, comme c'est le cas actuellement.
 
-No, the **Move Stake** option is only available on the Foundation Nodes. If you want to switch your delegation from an external node to another external node, you will have to unbond first and then delegate to another external node.
+### Y aura-t-il une période d'unbonding si j'effectue un unbonding à partir d'un nœud externe ? {#will-there-be-any-unbonding-period-if-i-unbond-from-an-external-node}
 
-### When will the Foundations node be turned off?
+Oui, la période d'unbonding restera la même que celle en vigueur actuellement. 82 points de contrôle.
 
-The foundation nodes will be turned by the end of January, 2021
+### Y aura-t-il une période de verrouillage après avoir fait passer ma délégation d'un nœud de la Fondation à un nœud externe ? {#will-there-be-any-locking-period-after-i-switch-my-delegation-from-foundation-to-external-node}
 
-### Will there be any Foundation nodes in the future?
+Non, il n'y aura pas de période de verrouillage après que vous ayez changé de délégation.
 
-No, there won't be any foundation nodes in the future.
+### Puis-je changer partiellement ma délégation des nœuds de la Fondation à des nœuds externes ? {#can-i-partially-switch-my-delegation-from-foundation-to-external-nodes}
 
+Oui, vous aurez la possibilité de déplacer partiellement votre mise du nœud de la Fondation vers un nœud externe. La mise partielle restante restera sur le nœud de la Fondation. Vous pouvez ensuite le déplacer vers un autre nœud de votre choix ou vers le même nœud.
 
-### How many transactions do I need to pay for Gas when I do a Move Stake?
+### Puis-je changer de délégation d'un nœud externe à un autre nœud externe ? {#can-i-switch-delegation-from-an-external-node-to-another-external-node}
 
-The Move Stake is a single transaction only. All transactions would be on the Ethereum Blockchain so you would need to spend some ETH while doing the Move Stake transaction.
+Non, l'option **Déplacer la mise** est uniquement disponible sur les nœuds de la Fondation. Si vous souhaitez changer votre délégation d'un nœud externe à un autre nœud externe, vous devrez d'abord effectuer un unbonding puis déléguer à un autre nœud externe.
+
+### Quand le nœud de la Fondation sera-t-il désactivé ? {#when-will-the-foundations-node-be-turned-off}
+
+Les nœuds de fondation seront éteints d'ici la fin de janvier 2021.
+
+### Y aura-t-il des nœuds de la Fondation à l'avenir ? {#will-there-be-any-foundation-nodes-in-the-future}
+
+Non, il n'y aura pas de nœuds de la Fondation à l'avenir.
+
+### Combien de transactions dois-je payer pour du gaz lorsque je choisis de déplacer la mise ? {#how-many-transactions-do-i-need-to-pay-for-gas-when-i-do-a-move-stake}
+
+Le déplacement de la mise est une transaction unique. Toutes les transactions sont sur la Blockchain Ethereum : vous devez seulement dépenser un peu d'ETH pour une transaction de déplacement de mise.

@@ -1,8 +1,8 @@
 ---
 id: port-management
-title: Technical infrastructure for nodes
-sidebar_label: Port Management
-description: "List of default ports used across Polygon nodes."
+title: Technische Infrastruktur für Knoten
+sidebar_label: Technical Infrastructure For Nodes
+description: Liste der Standard-Ports verwendet über Polygon Knoten
 keywords:
   - docs
   - polygon
@@ -10,34 +10,34 @@ keywords:
   - port
   - port management
   - infrastructure
-slug: port-management
-image: https://matic.network/banners/matic-network-16x9.png
+  - default ports
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
-Here is a list of default ports used across Polygon nodes:
+Hier ist eine Liste der Standardanschlüsse, die bei allen Polygon-Knoten verwendet werden:
 
-## Bor
+## Bor {#bor}
 
-| ﻿Name                  | Port  | Tags                      | description                                                                                                    |
-| ---------------------- | ----- | ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| Network listening port | 30303 | public                    | Network listening port. Bor uses this port to connect to peers and sync                                        |
-| RPC server             | 8545  | can-be-public, internal   | RPC port to send transaction and get data from Bor. Heimdall uses this port to get Bor headers for checkpoints |
-| WS server              | 8546  | can-be-public, internal   | Websocket port                                                                                                 |
-| Graphql server         | 8547  | can-be-public, internal   | Graphql port                                                                                                   |
-| Prometheus server      | 9091  | can-be-public, monitoring | Prometheus server APIs as datasource in Grafana. It can be mapped to 80/443 through nginx reverse proxy        |
-| Grafana server         | 3001  | can-be-public, monitoring | Grafana web sever. It can be mapped to 80/443 through nginx reverse proxy                                      |
-| Pprof server           | 7071  | internal, monitoring      | Pprof server to collect metrics from Bor                                                                       |
-| UDP discovery          | 30301 | can-be-public, internal   | Bootnode default port (for peer discovery)                                                                     |
+| ﻿Name | Anschluss | Tags | Beschreibung |
+|------------------------|-------|---------------------------|----------------------------------------------------------------------------------------------------------------|
+| Netzwerküberwachungsanschluss | 30303 | öffentlich | Netzwerküberwachungsanschluss. Bor verwendet diesen Anschluss, um sich mit Peers zu verbinden und zu synchronisieren |
+| RPC-Server | 8545 | kann öffentlich sein, intern, | RPC-Anschluss zum Senden von Transaktionen und Abrufen von Daten aus Bor. Heimdall nutzt diesen Anschluss, um Bor-Header für Checkpoints zu beziehen |
+| WS-Server | 8546 | kann öffentlich sein, intern, | Websocket-Anschluss |
+| Grafql-Server | 8547 | kann öffentlich sein, intern, | Grafql-Anschluss |
+| Prometheus-Server | 9091 | kann öffentlich sein, überwachen | Prometheus-Server APIs als Datenquelle in Grafana. Es kann über den Nginx Reverse Proxy auf 80/443 abgebildet werden |
+| Grafana-Server | 3001 | kann öffentlich sein, überwachen | Grafana-Webserver. Es kann über den Nginx Reverse Proxy auf 80/443 abgebildet werden |
+| Pprof-Server | 7071 | intern, überwachen | Pprof-Server zur Erfassung von Bor-Metriken |
+| UDP-Erkennung | 30301 | kann öffentlich sein, intern, | Bootnode Standardanschluss (für Peer-Erkennung) |
 
-## Heimdall
+## Heimdall {#heimdall}
 
-| ﻿Name                  | Port  | Tags                      | description                                                                                                    |
-| ---------------------- | ----- | ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| Network listening port | 30303 | public                    | Network listening port. Bor uses this port to connect to peers and sync                                        |
-| RPC server             | 8545  | can-be-public, internal   | RPC port to send transaction and get data from Bor. Heimdall uses this port to get Bor headers for checkpoints |
-| WS server              | 8546  | can-be-public, internal   | Websocket port                                                                                                 |
-| Graphql server         | 8547  | can-be-public, internal   | Graphql port                                                                                                   |
-| Prometheus server      | 9091  | can-be-public, monitoring | Prometheus server APIs as datasource in Grafana. It can be mapped to 80/443 through nginx reverse proxy        |
-| Grafana server         | 3001  | can-be-public, monitoring | Grafana web sever. It can be mapped to 80/443 through nginx reverse proxy                                      |
-| Pprof server           | 7071  | internal, monitoring      | Pprof server to collect metrics from Bor                                                                       |
-| UDP discovery          | 30301 | can-be-public, internal   | Bootnode default port (for peer discovery)                                                                     |
+| ﻿Name | Anschluss | Tags | Beschreibung |
+|------------------------|-------|---------------------------|----------------------------------------------------------------------------------------------------------------|
+| Netzwerküberwachungsanschluss | 30303 | öffentlich | Netzwerküberwachungsanschluss. Bor verwendet diesen Anschluss, um sich mit Peers zu verbinden und zu synchronisieren |
+| RPC-Server | 8545 | kann öffentlich sein, intern, | RPC-Anschluss zum Senden von Transaktionen und Abrufen von Daten aus Bor. Heimdall nutzt diesen Anschluss, um Bor-Header für Checkpoints zu beziehen |
+| WS-Server | 8546 | kann öffentlich sein, intern, | Websocket-Anschluss |
+| Grafql-Server | 8547 | kann öffentlich sein, intern, | Grafql-Anschluss |
+| Prometheus-Server | 9091 | kann öffentlich sein, überwachen | Prometheus-Server APIs als Datenquelle in Grafana. Es kann über den Nginx Reverse Proxy auf 80/443 abgebildet werden |
+| Grafana-Server | 3001 | kann öffentlich sein, überwachen | Grafana-Webserver. Es kann über den Nginx Reverse Proxy auf 80/443 abgebildet werden |
+| Pprof-Server | 7071 | intern, überwachen | Pprof-Server zur Erfassung von Bor-Metriken |
+| UDP-Erkennung | 30301 | kann öffentlich sein, intern, | Bootnode Standardanschluss (für Peer-Erkennung) |

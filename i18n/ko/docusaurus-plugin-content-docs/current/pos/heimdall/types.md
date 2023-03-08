@@ -1,34 +1,40 @@
 ---
 id: types
-title: Types
-description: Description of HeimdallAddress, Pubkey, & HeimdallHash.
+title: 유형
+description: Heimdall주소, Pubkey, & HeimdallHash 설명
 keywords:
   - docs
   - matic
+  - HeimdallAddress
+  - polygon
+  - Pubkey
+  - HeimdallHash
 image: https://matic.network/banners/matic-network-16x9.png
 ---
 
-## HeimdallAddress
+# 유형 {#types}
 
-`HeimdallAddress` represents address on Heimdall. It uses Ethereum's common library for Address. Length of this address is 20 bytes.
+## HeimdallAddress {#heimdalladdress}
+
+`HeimdallAddress`는 Heimdall의 주소를 나타냅니다. 이더리움의 공용 라이브러리를 주소로 사용합니다. 이 주소의 길이는 20 바이트입니다.
 
 ```go
 // HeimdallAddress represents Heimdall address
 type HeimdallAddress common.Address
 ```
 
-## PubKey
+## PubKey {#pubkey}
 
-It represents public key used in Heimdall, `ecdsa` compatible uncompressed public key:
+`ecdsa`Heimdall에서 사용하는 공개 키를 나타냅니다.
 
 ```go
 // PubKey pubkey
 type PubKey [65]byte
 ```
 
-## HeimdallHash
+## HeimdallHash {#heimdallhash}
 
-It represents hash in Heimdall. It uses Ethereum's hash for the same.
+Heimdall에서 해시를 나타냅니다. 동일하게 이더리움의 해시를 사용합니다.
 
 ```go
 // HeimdallHash represents heimdall address

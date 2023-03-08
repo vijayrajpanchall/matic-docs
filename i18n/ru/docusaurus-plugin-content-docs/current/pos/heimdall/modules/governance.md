@@ -1,46 +1,50 @@
 ---
 id: governance
-title: Governance
+title: Управление
 sidebar_label: Governance
-description: Heimdall governance works exactly the same as Cosmos-sdk `x/gov` module. [https://docs.cosmos.network/master/modules/gov/](https://docs.cosmos.network/master/modules/gov/). In this system, holders of the native staking token of the chain can vote on proposals on a 1 token - 1 vote basis.
+description: Система с 1 токеном - 1 основа
 keywords:
   - docs
   - matic
+  - one token
+  - one vote
+  - governance
+  - heimdall
 image: https://matic.network/banners/matic-network-16x9.png
 ---
 
-## Overview
+# Управление {#governance}
 
-Heimdall governance works exactly the same as Cosmos-sdk `x/gov` module. [https://docs.cosmos.network/master/modules/gov/](https://docs.cosmos.network/master/modules/gov/)
+Управление Heimdall работает точно так же, как [модуль `x/gov`Cosmos-sdk.](https://docs.cosmos.network/master/modules/gov/)
 
-In this system, holders of the native staking token of the chain can vote on proposals on a `1 token = 1 vote` basis. Next is a list of features the module currently supports:
+В этой системе владельцы нативного токена стейкинга цепочки могут голосовать по предложениям по принципу `1 token = 1 vote`. Вот список функций, которые в настоящее время поддерживает:
 
-- **Proposal submission:** Validators can submit proposals with a deposit. Once the minimum deposit is reached, proposal enters voting period. Valdiators that deposited on proposals can recover their deposits once the proposal is rejected or accepted.
-- **Vote:** Validators can vote on proposals that reached MinDeposit
+- **Отправка предложений:** валидаторы могут отправлять предложения с размещением депозита. По достижении минимального требуемого размера депозита начинается период голосования по предложению. Валидаторы, которые внесли депозиты по предложениям, могут вернуть свои депозиты после того, как предложение будет отклонено или принято.
+- **Голосование:** Валидаторы могут голосовать по предложениям, которые достигли MinDeposit.
 
-There are deposit period and voting period as params in `gov` module. Minimum deposit has be achieved before deposit period ends, otherwise proposal will be automatically rejected.
+В качестве параметров модуля `gov` определяются депозитный период и период голосования. Минимальный депозит должен быть достигнут до окончания периода депозита, в противном случае предложение будет автоматически отклонено.
 
-Once minimum deposits reached within deposit period, voting period starts. In voting period, all validators should vote their choices for the proposal. After voting period ends, `gov/Endblocker.go` executes `tally`  function and accepts or rejects proposal based on `tally_params` — `quorum`, `threshold` and `veto`.
+По достижении минимального депозита до истечения депозитного периода начинается период голосования. В период голосования всем валидаторам следует проголосовать по предложению в соответствии со своим выбором. После окончания периода голосования `gov/Endblocker.go` выполняет функцию `tally` и принимает или отклоняет предложение на основании `tally_params` — `quorum`, `threshold` и `veto`.
 
-Source: [https://github.com/maticnetwork/heimdall/blob/develop/gov/endblocker.go](https://github.com/maticnetwork/heimdall/blob/develop/gov/endblocker.go)
+Источник: [https://github.com/maticnetwork/heimdall/blob/develop/gov/endblocker.go](https://github.com/maticnetwork/heimdall/blob/develop/gov/endblocker.go)
 
-There are different types of proposals that can be implemented in Heimdall but as of now, it supports only one proposal:
+Существуют различные типы предложений, которые могут быть реализованы в Heimdall. На данный момент он поддерживает только **предложение о изменении параметра**.
 
-- Param change proposal
+### Предложение по изменению параметра {#param-change-proposal}
 
-### **Param change proposal**
+Используя этот тип предложения, валидаторы могут изменить любой `params``module`из Heimdall.
 
-Using this type of proposal, validators can change any `params` in any `module` of Heimdall. Example: change minimum `tx_fees` for the transaction in `auth` module. When the proposal gets accepted, it automatically changes the `params` in Heimdall state. No extra TX is needed.
+Например: изменить минимальный размер `tx_fees` для проведения транзакции в модуле `auth`. После принятия предложения оно автоматически изменяет `params` в состоянии Heimdall. Дополнительные транзакции не требуются.
 
-## CLI commands
+## Команды CLI {#cli-commands}
 
-### Query gov params
+### Запрос параметров управления {#query-gov-params}
 
 ```go
 heimdallcli query gov params --trust-node
 ```
 
-This shows all params for governance module.
+Показывает все параметры модуля управления.
 
 ```go
 voting_params:
@@ -57,17 +61,17 @@ deposit_parmas:
   max_deposit_period: 48h0m0s
 ```
 
-### Submit proposal
+### Направление предложения {#submit-proposal}
 
 ```bash
 heimdallcli tx gov submit-proposal \
-    --validator-id 1 param-change proposal.json \
-    --chain-id <heimdall-chain-id>
+	--validator-id 1 param-change proposal.json \
+	--chain-id <heimdall-chain-id>
 ```
 
-`proposal.json` is a file which includes proposal in json format.
+`proposal.json` — это файл, который содержит предложение в формате json.
 
-```go
+```json
 {
   "title": "Auth Param Change",
   "description": "Update max tx gas",
@@ -87,34 +91,34 @@ heimdallcli tx gov submit-proposal \
 }
 ```
 
-### Query proposal
+### Запрос предложения {#query-proposal}
 
-To query all proposals
+Чтобы запросить все предложения:
 
 ```go
 heimdallcli query gov proposals --trust-node
 ```
 
-To query particular proposal
+Чтобы запросить конкретное предложение:
 
 ```go
 heimdallcli query gov proposals 1 --trust-node
 ```
 
-### Vote on proposal
+### Голосование по предложению {#vote-on-proposal}
 
-To vote on a particular proposal
+Чтобы проголосовать по конкретному предложению:
 
 ```bash
 heimdallcli tx gov vote 1 "Yes" --validator-id 1  --chain-id <heimdal-chain-id>
 ```
 
-Proposal will be automatically tallied after voting period.
+Итоги голосования по предложению будут автоматически подсчитаны по окончании периода голосования.
 
-## REST APIs
+## REST API {#rest-apis}
 
-| Name                           | Method | Endpoint                           |
-| ------------------------------ | ------ | ---------------------------------- |
-| Get all proposals              | GET    | /gov/proposals                     |
-| Get proposal details           | GET    | /gov/proposals/`proposal-id`       |
-| Get all votes for the proposal | GET    | /gov/proposals/`proposal-id`/votes |
+| Название | Метод | Конечная точка |
+|----------------------|------|------------------|
+| Получить все предложения | GET | /gov/proposals |
+| Получить информацию о предложении | GET | /gov/proposals/`proposal-id` |
+| Получить информацию обо всех голосах за предложение | GET | /gov/proposals/`proposal-id`/votes |

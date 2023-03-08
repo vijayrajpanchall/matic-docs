@@ -1,8 +1,8 @@
 ---
 id: port-management
-title: Technical infrastructure for nodes
-sidebar_label: Port Management
-description: "List of default ports used across Polygon nodes."
+title: Техническая инфраструктура для нодов
+sidebar_label: Technical Infrastructure For Nodes
+description: Список портов по умолчанию, используемых в Polygon нодами
 keywords:
   - docs
   - polygon
@@ -10,34 +10,34 @@ keywords:
   - port
   - port management
   - infrastructure
-slug: port-management
-image: https://matic.network/banners/matic-network-16x9.png
+  - default ports
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
-Here is a list of default ports used across Polygon nodes:
+Ниже представлен список портов по умолчанию, которые используются в нодах Polygon:
 
-## Bor
+## Bor {#bor}
 
-| ﻿Name                  | Port  | Tags                      | description                                                                                                    |
-| ---------------------- | ----- | ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| Network listening port | 30303 | public                    | Network listening port. Bor uses this port to connect to peers and sync                                        |
-| RPC server             | 8545  | can-be-public, internal   | RPC port to send transaction and get data from Bor. Heimdall uses this port to get Bor headers for checkpoints |
-| WS server              | 8546  | can-be-public, internal   | Websocket port                                                                                                 |
-| Graphql server         | 8547  | can-be-public, internal   | Graphql port                                                                                                   |
-| Prometheus server      | 9091  | can-be-public, monitoring | Prometheus server APIs as datasource in Grafana. It can be mapped to 80/443 through nginx reverse proxy        |
-| Grafana server         | 3001  | can-be-public, monitoring | Grafana web sever. It can be mapped to 80/443 through nginx reverse proxy                                      |
-| Pprof server           | 7071  | internal, monitoring      | Pprof server to collect metrics from Bor                                                                       |
-| UDP discovery          | 30301 | can-be-public, internal   | Bootnode default port (for peer discovery)                                                                     |
+| ﻿Название | Порт | Теги | Описание |
+|------------------------|-------|---------------------------|----------------------------------------------------------------------------------------------------------------|
+| Порт прослушивания сети | 30303 | публичный | Порт прослушивания сети. Bor использует этот порт для подключения к одноранговым узлам и синхронизации. |
+| Сервер удаленного вызова процедур | 8545 | может быть публичным, внутренний | Порт удаленного вызова процедур служит для отправки транзакций и получения данных из уровня Bor. Heimdall использует этот порт, чтобы получать заголовки Bor для чекпоинтов. |
+| Сервер WS | 8546 | может быть публичным, внутренний | Порт WebSocket. |
+| Сервер Graphql | 8547 | может быть публичным, внутренний | Порт Graphql. |
+| Сервер Prometheus | 9091 | может быть публичным, контрольный | API сервера Prometheus в качестве источника данных в Grafana. Его можно сопоставить с 80/443 с помощью обратного прокси-сервера nginx. |
+| Сервер Grafana | 3001 | может быть публичным, контрольный | Веб-сервер Grafana. Его можно сопоставить с 80/443 с помощью обратного прокси-сервера nginx. |
+| Сервер Pprof | 7071 | внутренний, контрольный | Сервер Pprof для получения метрик из уровня Bor. |
+| Обнаружение UDP | 30301 | может быть публичным, внутренний | Порт загрузки узлов по умолчанию (для обнаружения одноранговых узлов). |
 
-## Heimdall
+## Heimdall {#heimdall}
 
-| ﻿Name                  | Port  | Tags                      | description                                                                                                    |
-| ---------------------- | ----- | ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| Network listening port | 30303 | public                    | Network listening port. Bor uses this port to connect to peers and sync                                        |
-| RPC server             | 8545  | can-be-public, internal   | RPC port to send transaction and get data from Bor. Heimdall uses this port to get Bor headers for checkpoints |
-| WS server              | 8546  | can-be-public, internal   | Websocket port                                                                                                 |
-| Graphql server         | 8547  | can-be-public, internal   | Graphql port                                                                                                   |
-| Prometheus server      | 9091  | can-be-public, monitoring | Prometheus server APIs as datasource in Grafana. It can be mapped to 80/443 through nginx reverse proxy        |
-| Grafana server         | 3001  | can-be-public, monitoring | Grafana web sever. It can be mapped to 80/443 through nginx reverse proxy                                      |
-| Pprof server           | 7071  | internal, monitoring      | Pprof server to collect metrics from Bor                                                                       |
-| UDP discovery          | 30301 | can-be-public, internal   | Bootnode default port (for peer discovery)                                                                     |
+| ﻿Название | Порт | Теги | Описание |
+|------------------------|-------|---------------------------|----------------------------------------------------------------------------------------------------------------|
+| Порт прослушивания сети | 30303 | публичный | Порт прослушивания сети. Bor использует этот порт для подключения к одноранговым узлам и синхронизации. |
+| Сервер удаленного вызова процедур | 8545 | может быть публичным, внутренний | Порт удаленного вызова процедур служит для отправки транзакций и получения данных из уровня Bor. Heimdall использует этот порт, чтобы получать заголовки Bor для чекпоинтов. |
+| Сервер WS | 8546 | может быть публичным, внутренний | Порт WebSocket. |
+| Сервер Graphql | 8547 | может быть публичным, внутренний | Порт Graphql. |
+| Сервер Prometheus | 9091 | может быть публичным, контрольный | API сервера Prometheus в качестве источника данных в Grafana. Его можно сопоставить с 80/443 с помощью обратного прокси-сервера nginx. |
+| Сервер Grafana | 3001 | может быть публичным, контрольный | Веб-сервер Grafana. Его можно сопоставить с 80/443 с помощью обратного прокси-сервера nginx. |
+| Сервер Pprof | 7071 | внутренний, контрольный | Сервер Pprof для получения метрик из уровня Bor. |
+| Обнаружение UDP | 30301 | может быть публичным, внутренний | Порт загрузки узлов по умолчанию (для обнаружения одноранговых узлов). |

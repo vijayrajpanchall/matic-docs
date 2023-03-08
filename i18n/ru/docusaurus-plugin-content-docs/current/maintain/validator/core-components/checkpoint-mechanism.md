@@ -1,30 +1,32 @@
 ---
 id: checkpoint-mechanism
-title: Checkpoint Mechanism
+title: Механизм checkpoint
 sidebar_label: Checkpoints
-description: "Checkpointing the system state to the Ethereum mainnet."
+description: Проверка состояния системы в Ethereum mainnet
 keywords:
   - docs
   - matic
   - polygon
   - checkpoint
+  - ethereum
+  - mainnet
 slug: checkpoint-mechanism
-image: https://matic.network/banners/matic-network-16x9.png
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
-:::info Polygon is not a Layer 1 platform
+:::info POLYGON НЕ ЯВЛЯЕТСЯ ПЛАТФОРМОЙ УРОВНЯ 1
 
-Polygon depends on the Ethereum Mainnet as its Layer 1 Settlement Layer. All staking mechanics need to be in sync with the contracts on the Ethereum mainnet.
+Polygon зависит от Mainnet Ethereum как его расчетный слой 1. Все механизмы стейкинга должны синхронизироваться с контрактами в Ethereum mainnet.
 
 :::
 
-[Proposers](../../glossary#proposer) for a checkpoint are initially selected via Tendermint’s weighted [round-robin algorithm](https://docs.tendermint.com/master/spec/consensus/proposer-selection.html). A further custom check is implemented based on the checkpoint submission success. This allows the Polygon system to decouple with Tendermint proposer selection and provides Polygon with the abilities like selecting a proposer only when the checkpoint transaction on the Ethereum mainnet succeeds or submitting a checkpoint transaction for the blocks belonging to previous failed checkpoints.
+[Proposers](/docs/maintain/glossary.md#proposer) checkpoint изначально выбираются с [помощью алгоритма взвешенного округлого робина Tendermint](https://docs.tendermint.com/master/spec/consensus/proposer-selection.html). Далее выполняется дополнительная пользовательская проверка на основе результатов отправки чекпоинтов. Это позволяет системе Polygon не зависеть от выбора авторов предложений Tendermint и обеспечивает такие возможности, как выбор автора предложения только после завершения транзакции создания чекпоинта в Ethereum mainnet или отправка транзакции создания чекпоинта для блоков, относящихся к предыдущим непринятым чекпоинтам.
 
-Successfully submitting a checkpoint on Tendermint is a 2-phase commit process:
+Отправка чекпоинта на Tendermint засчитывается по завершении двухэтапного процесса:
 
-* A proposer, selected via the round-robin algorithm, sends a checkpoint with the proposer's address and the Merkle hash in the proposer field.
-* All other proposers validate the data in the proposer field before adding the Merkle hash in their state.
+* Автор предложения, выбранный с помощью алгоритма циклического перебора, отправляет чекпоинт с адресом автора предложения и хэшем Меркла в поле авторов предложения.
+* Все остальные авторы предложений проверяют данные в поле авторов предложения, прежде чем добавить хэш Меркла в свое состояние.
 
-The next proposer then sends an acknowledgment transaction to prove that the previous [checkpoint transaction](../../glossary#checkpoint-transaction) has succeeded on the Ethereum mainnet. Every validator set change is relayed by the validator nodes on [Heimdall](../../glossary#heimdall) which is embedded onto the validator node. This allows Heimdall to remain in sync with the Polygon contract state on the Ethereum mainnet at all times.
+После этого следующий автор предложения совершает транзакцию одобрения в качестве доказательства того, что предыдущая [транзакция создания чекпоинта](/docs/maintain/glossary.md#checkpoint-transaction) была принята в Ethereum mainnet. Каждое изменение в наборе валидаторов передается узлами проверки на уровень [Heimdall](/docs/maintain/glossary.md#heimdall), встроенный в узел проверки. Это позволяет Heimdall постоянно поддерживать синхронизацию с состояниями контрактов Polygon в Ethereum mainnet.
 
-The Polygon contract deployed on the Ethereum mainnet is considered to be the ultimate source of truth, and therefore all validation is done via querying the Ethereum mainnet contract.
+Контракт Polygon, развернутый в Ethereum mainnet, считается главным источником достоверных данных, и поэтому вся проверка основана на запросе контракта в Ethereum mainnet.

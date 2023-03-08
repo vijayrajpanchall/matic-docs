@@ -2,20 +2,22 @@
 id: razor
 title: Razor
 sidebar_label: Razor
-description: Build your next blockchain app on Polygon.
+description: Razor Network ist ein dezentrales Oracle zur Bereitstellung von Daten für die Smart Contracts über ein Netzwerk von Stakers
 keywords:
-  - docs
-  - matic
-image: https://matic.network/banners/matic-network-16x9.png
+  - wiki
+  - polygon
+  - razor
+  - oracle
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
-Razor Network consists of validators who lock in their tokens as a “Stake” and provide data to the network. The honest validators are rewarded and those who report incoherently are penalised.
+**Razor Network** ist ein dezentrales Oracle zur Bereitstellung von Daten für die Smart Contracts über ein Netzwerk von Stakern. Das Netzwerk besteht aus Prüfern, die ihre Token als **Stake** sperren und Daten an das Netzwerk bereitstellen. Die ehrlichen Prüfer werden belohnt und diejenigen, die inkohärent berichten, werden bestraft.
 
-The core of Razor Network is a set of smart contracts, that can run on any Ethereum compatible blockchain. Razor relies on the underlying blockchain for providing certain properties such as censorship resistance, security from network partition attacks, etc.
+Der Kern von Razor Network ist eine Reihe von Smart Contracts, die auf jeder Ethereum-kompatiblen Blockchain ausgeführt werden können. Razor nutzt die zugrundeliegende Blockchain für die Bereitstellung bestimmter Eigenschaften wie Zensurwiderstand, Sicherheit vor Netzwerkpartitionsangriffen etc.
 
-### Usage
+## Nutzung {#usage}
 
-This oracle network is currently running on Matic Mumbai testnet. To get started with connecting to the data feed, check out this **[Tutorial](https://docs.razor.network/)**
+Dieses Oracle-Netzwerk wird derzeit auf dem Polygon Mumbai testnet ausgeführt. Um mit der Verbindung zum Datenfeed zu beginnen, schau dir dieses **[Tutorial](https://docs.razor.network/)** an.
 
-- The Razor Network can be explored at razorscan [https://razorscan.io/](https://razorscan.io/) 
+Das Razor Network kann mit [Razorscan](https://razorscan.io/) erkundet werden.
 

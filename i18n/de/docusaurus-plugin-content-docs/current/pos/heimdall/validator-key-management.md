@@ -1,40 +1,41 @@
 ---
 id: validator-key-management
-title: Validator key management
-description: Each validator uses two keys to manage validator related activities on Polygon, Signer Key & Owner Key.
+title: Validator-Schlüsselverwaltung
+description: Signer und Owner Key Validator-Management
 keywords:
   - docs
   - matic
+  - polygon
+  - Validator Key Management
+  - signer
+  - owner
 image: https://matic.network/banners/matic-network-16x9.png
 ---
 
-Each validator uses two keys to manage validator related activities on Polygon:
+# Validator-Schlüsselverwaltung {#validator-key-management}
 
-1. **Signer key**
+Jeder Prüfer verwendet zwei Keys, um die validator Aktivitäten auf Polygon zu verwalten. Der Signierschlüssel wird auf Knoten gehalten und wird im Allgemeinen als `hot`-Wallet betrachtet, während der Eigentümerschlüssel sehr sicher gehalten wird, selten verwendet wird und allgemein als `cold`-Wallet gilt. Das eingesetzte Geld wird durch den Eigentümerschlüssel kontrolliert.
 
-    The signer key is an address that is used for signing Heimdall blocks, checkpoints, and other signing related activities. This key's private key will be on the Validator node for signing purposes. It cannot manage stake, rewards or delegations.
+Diese Trennung der Verantwortlichkeiten wurde durchgeführt, um einen effizienten Tradeoff zwischen Sicherheit und Benutzerfreundlichkeit zu gewährleisten. Beide Keys sind Ethereum kompatible Adressen und arbeiten genau auf die gleiche Weise. Und ja, es ist möglich, dieselben Owner und Signer zu haben.
 
-    The validator must keep two types of balances on this address:
+## Signierschlüssel {#signer-key}
 
-    - Matic tokens on Heimdall (through Topup transactions) to perform validator responsibilities on Heimdall
-    - ETH on Ethereum chain to send checkpoints on Ethereum
-2. **Owner key**
+Der Signierschlüssel ist eine Adresse, die für die Signierung von Heimdall-Blöcken, Checkpoints und anderen signing Aktivitäten verwendet wird. Der private Schlüssel dieses Schlüssels wird auf dem Prüfknoten zu Signierzwecken gespeichert. Er kann nicht Stake, Prämien oder Delegationen verwalten.
 
-    The owner key is an address that is used for staking, re-stake, changing the signer key, withdraw rewards and manage delegation related parameters on the Ethereum chain. The private key for this key must be secure at all cost.
+Der Prüfer muss zwei Arten von Salden auf dieser Adresse behalten:
 
-    All transactions through this key will be performed on the Ethereum chain.
+- Matic-Token auf Heimdall (durch Top-up-Transaktionen), um Validierungsaufgaben auf Heimdall wahrzunehmen
+- ETH auf der Ethereum-Chain zum Senden von Checkpoints auf Ethereum
 
-The signer key is kept on the node and is generally considered a `hot` wallet, whereas the owner key is supposed to kept very secure, is used infrequently, and is generally considered a `cold` wallet. The staked funds are controlled by the owner key.
+## Eigentümerschlüssel {#owner-key}
 
-This separation of responsibilities has been done to ensure an efficient tradeoff between security and ease of use.
+Der Eigentümerschlüssel ist eine Adresse, die zum Stanzen, Re-Stake, Ändern des Signierschlüssels verwendet wird, zum Auszahlen von Belohnungen und zum Verwalten delegation Parameter auf der Ethereum-Chain verwendet wird. Der Privatschlüssel für diesen Schlüssel muss um jeden Preis sicher sein.
 
-Both keys are Ethereum compatible addresses and work exactly the same manner.
+Alle Transaktionen über diesen Key werden auf der Ethereum-Chain durchgeführt.
 
-It is possible to have same owner and signer keys.
+## Signiererwechsel {#signer-change}
 
-**Signer change**
-
-Following event is generated in case of signer change on Ethereum chain on `StakingInfo.sol`: [https://github.com/maticnetwork/contracts/blob/develop/contracts/staking/StakingInfo.sol](https://github.com/maticnetwork/contracts/blob/develop/contracts/staking/StakingInfo.sol)
+Das folgende Ereignis wird im Falle eines Signiererwechsels auf der Ethereum-Chain `StakingInfo.sol`erzeugt: [https://github.com/maticnetwork/contracts/blob/develop/contracts/staking/StakingInfo.sol](https://github.com/maticnetwork/contracts/blob/develop/contracts/staking/StakingInfo.sol)
 
 ```go
 // Signer change
@@ -46,4 +47,4 @@ event SignerChange(
 );
 ```
 
-Heimdall bridge processes these events and sends transactions on Heimdall to change state based on the events.
+Die Heimdall-Bridge verarbeitet diese Ereignisse und sendet Transaktionen an Heimdall, um den Status auf der Grundlage der Ereignisse zu ändern.

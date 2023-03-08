@@ -1,29 +1,34 @@
 ---
 id: walletconnect
-title: Wallet Connect
-description: Build your next blockchain app on Polygon.
+title: WalletConnect
+description: Открытый протокол, устанавливающий связь между децентрализованным приложением и кошельком.
 keywords:
-  - docs
-  - matic
-image: https://matic.network/banners/matic-network-16x9.png
+  - wiki
+  - polygon
+  - dapp
+  - wallet
+  - integrate
+  - guide
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
-Wallet Connect is an open protocol - not a wallet - built to create a communication link between DApps and Wallets. A wallet and an application supporting this protocol will enable a secure link through a shared key between the two peers. A connection is initiated by the DApp displaying a QR code with a standard WalletConnect URI and the connection is established when the wallet application approves the connection request. Further requests regarding funds transfer are confirmed on the wallet application itself.
+**WalletConnect** — это открытый протокол, а не кошелек, созданный для создания связи между dApps и кошельками. Кошелек и приложение, поддерживающее этот протокол, позволят обеспечить безопасную связь через общий ключ между любыми двумя коллегами. Децентрализованное приложение инициирует соединение, отображая QR-код со стандартным WalletConnect URI. Когда приложение кошелька подтверждает запрос подключения, соединение устанавливается. Дополнительные запросы, связанные с переводом средств подтверждаются в самом приложении кошелька.
 
-## 1. Set up Web3
+## Настройка Web3 {#set-up-web3}
 
-To set up your DApp to connect to user’s Polygon Wallet we can use Wallet Connect’s provider to directly connect to Polygon. Install the following in your DApp:
+Чтобы настроить свой dApp для подключения к кошельку Polygon, вы можете использовать провайдера WalletConnect для прямого подключения к Polygon. Установите в децентрализованное приложение следующее:
 
 ```bash
 npm install --save @maticnetwork/walletconnect-provider
 ```
 
-Install matic.js for Matic integration:
+Установите `matic.js`для интеграции Polygon:
 
 ```bash
 $ npm install @maticnetwork/maticjs
 ```
-And add the following code in your App,
+
+И добавьте следующий код в вашем dApp;
 
 ```js
 import WalletConnectProvider from "@maticnetwork/walletconnect-provider"
@@ -32,7 +37,7 @@ import Web3 from "web3"
 import Matic from "maticjs"
 ```
 
-Next, we set up Polygon and Ropsten provider via Wallet Connect’s object:
+Затем настройте провайдера Polygon и Ropsten через объект WalletConnect:
 
 ```javascript
 const maticProvider = new WalletConnectProvider(
@@ -53,32 +58,35 @@ const ropstenProvider = new WalletConnectProvider({
   }
 })
 ```
-We created the above two provider objects to instantiate our Web3 object with:
 
+Мы создали два вышеуказанных объекта поставщика для создания экземпляра объекта Web3 с помощью кода:
 
 ```js
 const maticWeb3 = new Web3(maticProvider)
 const ropstenWeb3 = new Web3(ropstenProvider)
 ```
 
+## Instantiating контракты {#instantiating-contracts}
 
-## 2. Instantiating contracts
-
-Once we have our web3 object, the instantiating of contracts involves the same steps we followed for metamask.
-
-> Again, assuming you have your contract ABI and address already in place :)
+После того, как у нас будет наш **объект web3**, инстанция контрактов включает те же шаги, что и для Metamask. Убедитесь, что у вас есть свой **контракт ABI** и **адрес** уже на месте.
 
 ```js
 const myContractInstance = new this.maticWeb3.eth.Contract(myContractAbi, myContractAddress)
 ```
 
-## 3. Calling functions
+## Функции {#calling-functions}
 
-Like discussed above, we have two types of functions in Ethereum, depending upon the interaction with the blockchain. We `call()` when we read data and `send()` when we write data.
+:::info
 
-### Calling `call()` Functions
+Закрытый ключ останется в кошельке пользователя, и приложение **не имеет к нему никаким образом**.
 
-Now reading data doesn’t require a signature, therefore the process is the same as discussed above:
+:::
+
+У нас есть два типа функций в Ethereum, в зависимости от взаимодействия с блокчейном. Мы используем `call()` при чтении данных и `send()` при записи данных.
+
+### Вызов функций `call()` {#functions}
+
+Данные для чтения не требуют подписи, поэтому код должен быть таким:
 
 ```js
 this.myContractInstance.methods
@@ -88,15 +96,15 @@ this.myContractInstance.methods
   // do stuff with returned values
   )
 ```
-### Calling `send()` Functions
 
-Since writing to the blockchain requires a signature, we prompt the user on their wallet (that supports wallet connect) to sign the transaction.
+### Вызов функций `send()` {#functions-1}
 
-This involves two steps:
-1. Constructing a transaction
-2. Getting a signature on the transaction
-3. Sending signed transaction
+Поскольку для письма в блокчейн требуется подпись, мы приглашаем пользователя на свой кошелек (который поддерживает WalletConnect) подписать транзакцию.
 
+Это включает три шага:
+1. Построение транзакции
+2. Получение подписи на транзакции
+3. Отправка подписанной транзакции
 
 ```js
 const tx = {
@@ -107,20 +115,17 @@ const tx = {
 }
 ```
 
-
-The above code creates a transaction object which is then sent to user’s wallet for signature:
+Вышеуказанный код создает объект транзакции, который отправляется в кошелек пользователя для получения подписи:
 
 
 ```js
 maticWeb3.eth.signTransaction(tx)
   .then((result) =>{
     maticWeb3.eth.sendSignedTransaction(result)
-    .then((receipt) => 
+    .then((receipt) =>
     console.log (receipt)
   )
 })
 ```
 
-`signTransaction()` function prompts the user for their signature and `sendSignedTransaction()` sends the signed transaction over (returns a transaction receipt on success).
-
-> NOTE: all this while, the private key is in user’s wallet and the app does not access it any way. :)
+`signTransaction()`Функция вызывает запрос пользователя для своей подписи и `sendSignedTransaction()`отправляет подписанную транзакцию (возвращает полученный транзакции на успех).

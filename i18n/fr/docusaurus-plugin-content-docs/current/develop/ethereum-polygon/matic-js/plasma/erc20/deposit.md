@@ -1,12 +1,12 @@
 ---
 id: deposit
-title: deposit
+title: depôt
 keywords:
-  - 'pos client, erc20, approveMax, polygon, sdk'
-description: 'Get started with maticjs'
+- 'pos client, erc20, approveMax, polygon, sdk'
+description: 'Verser le montant requis du jeton root au jeton enfant.'
 ---
 
-`deposit` method can be used to deposit required amount from root token to child token.
+`deposit`la méthode peut être utilisée pour verser le montant requis du jeton root au jeton enfant.
 
 ```
 const erc20RootToken = plasmaClient.erc20(<root token address>,true);

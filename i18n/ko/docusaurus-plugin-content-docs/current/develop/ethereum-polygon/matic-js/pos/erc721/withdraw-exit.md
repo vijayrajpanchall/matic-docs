@@ -2,11 +2,11 @@
 id: withdraw-exit
 title: withdrawExit
 keywords:
-  - 'pos client, erc721, withdrawExit, polygon, sdk'
-description: 'maticjs으로 시작하기'
+- 'pos client, erc721, withdrawExit, polygon, sdk'
+description: '''withdrawStart`의 txHash를 사용해 출금 프로세스를 종료합니다.'
 ---
 
-`withdrawExit` 메소드는 `withdrawStart` 메소드에서 txHash를 사용하여 인출 프로세스를 종료하는 데 사용할 수 있습니다.
+`withdrawExit` 메서드를 사용하면 `withdrawStart` 메서드의 txHash를 사용해 출금 프로세스를 종료할 수 있습니다.
 
 ```
 const erc721RootToken = posClient.erc721(<root token address>, true);
@@ -20,4 +20,5 @@ const txReceipt = await result.getReceipt();
 ```
 
 
-이 메소드는 여러 RPC 호출을 수행하여 증명 및 프로세스 종료를 생성합니다. 따라서 withdrawExitFaster 메소드를 사용하는 것이 좋습니다. >
+이 메서드는 증명을 생성하고 종료를 처리하기 위해 여러 RPC 호출을 수행합니다. 그러므로 withdrawExitFaster 메서드 사용을 권장합니다.
+>

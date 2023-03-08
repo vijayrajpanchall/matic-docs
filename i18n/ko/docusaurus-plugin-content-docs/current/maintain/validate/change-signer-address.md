@@ -1,37 +1,39 @@
 ---
 id: change-signer-address
-title: Change Your Signer Address
-description: "Change the signer address of your validator."
+title: 서명자 주소 변경
+description: 유효한 사람의 서명자 주소를 변경하기
 keywords:
   - docs
   - matic
   - polygon
-  - signer
+  - signer address
+  - change
+  - validator
 slug: change-signer-address
-image: https://matic.network/banners/matic-network-16x9.png
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
-
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-For information on what a [signer address](../glossary#signer-address) is, see [Key Management](../validator/core-components/key-management).
+[서명자 주소가](/docs/maintain/glossary.md#signer-address) 무엇인지에 대한 자세한 내용은 키 관리를 참조하세요.
+[키 관리](/docs/maintain/validator/core-components/key-management).
 
-## Prerequisites
+## 사전 요구 사항 {#prerequisites}
 
-Make sure your new validator node is fully synced and is running with the new signer address.
+새 유효성 검사 노드가 완전히 동기화되고 새 서명자 주소로 실행 중인지 확인합니다.
 
-## Change the signer address
+## 서명자 주소 변경 {#change-the-signer-address}
 
-This guide refers to your current validator node as Node 1 and your new validator node as Node 2.
+이 가이드에서는 기존 유효성 검사 노드를 노드 1로, 새 유효성 검사 노드를 노드 2로 설명합니다.
 
-1. Log in to the [staking dasboard](https://staking.polygon.technology/) with the Node 1 address.
-1. On your profile, click **Edit Profile**.
-1. In the *Signer's address* field, provide the Node 2 address.
-1. In the *Signer's public key* field, provide the Node 2 public key.
+1. 노드 1 주소로 [스테이킹 대시보드](https://staking.polygon.technology/)에 로그인합니다.
+2. 프로필에서 **프로필 편집**을 클릭합니다.
+3. **서명자 주소** 입력란에 노드 2 주소를 입력합니다.
+4. **서명자 공개 키** 입력란에 노드 2 공개 키를 입력합니다.
 
-   To get the public key, run the following command on the validator node:
+   공개 키를 가져오려면 유효성 검사 노드에서 다음 명령을 실행하십시오:
 
    ```sh
    heimdalld show-account
    ```
 
-Clicking **Save** will save your new details for your node. This essentially means that Node 1 will be your address that controls the stake, where the rewards will be sent to, etc. And Node 2 will now be performing activities like signing blocks, signing checkpoints, etc.
+**저장**을 클릭하면 노드에 대한 새로운 세부 정보가 저장됩니다. 이는 본질적으로 노드 1이 스테이크를 제어하고, 보상이 전송되는 등의 주소가 된다는 것을 의미합니다. 노드 2는 이제 블록 서명, 체크포인트 서명 등의 작업을 수행합니다.

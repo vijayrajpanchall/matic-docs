@@ -1,13 +1,18 @@
 ---
 id: overview
-title: Overview
-description: The Bor node or the Block Producer implementation is basically the sidechain operator. The sidechain VM is EVM-compatible. Currently, it is a basic Geth implementation with custom changes done to the consensus algorithm. However, this will be built from the ground up to make it lightweight and focused.
+title: Обзор
+description: Узел Bor в основном является оператором sidechain.
 keywords:
   - docs
   - matic
+  - polygon
+  - bor
+  - geth
 image: https://matic.network/banners/matic-network-16x9.png
 ---
 
-The Bor node or the Block Producer implementation is basically the sidechain operator. The sidechain VM is EVM-compatible. Currently, it is a basic Geth implementation with custom changes done to the consensus algorithm. However, this will be built from the ground up to make it lightweight and focused.
+# Bor {#bor}
 
-Block producers are chosen from the Validator set and are shuffled using historical Ethereum block hashes for the same purpose. However, we are exploring sources of randomness for this selection.
+Нод Bor или реализация блок продюсера — это оператор сайдчейна. VM сайдчейна совместима с EVM. В настоящее время это базовая реализация Geth с пользовательскими изменениями, внесенными в алгоритм консенсуса. Но решение будет построено с нуля, чтобы сделать его легким и сфокусированным.
+
+Блок продюсеров выбирают из набора валидаторов и перетасовывают с использованием исторических хэшей блоков Ethereum с той же целью. Тем не менее мы исследуем источники случайности для этого выбора.

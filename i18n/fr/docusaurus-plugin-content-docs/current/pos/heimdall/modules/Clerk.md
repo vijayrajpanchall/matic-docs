@@ -1,61 +1,65 @@
 ---
 id: clerk
 title: Clerk
-description: Clerk manages generic state-sync from Ethereum chain to Bor chain. Heimdall agrees on state sync, which is initiated on the Ethereum chain using this module.
+description: Module qui gère la synchronisation d'état générique d'Ethereum à Bor
 keywords:
   - docs
   - matic
+  - module
+  - state sync
+  - clerk
+  - heimdall
 image: https://matic.network/banners/matic-network-16x9.png
 ---
 
-## Overview
+# Clerk {#clerk}
 
-Clerk manages generic state-sync from Ethereum chain to Bor chain. Heimdall agrees on state sync, which is initiated on the Ethereum chain using this module.
+Clerk gère la synchronisation d'état générique de la chaîne d'Ethereum à la chaîne de Bor. Heimdall est d'accord sur la synchronisation d'état, qui est initié sur la chaîne Ethereum à l'aide du module Clerk.
 
-More details: [State sync mechanism](/docs/pos/bor/core_concepts#state-management-state-sync)
+Plus de détails sont disponibles dans le [mécanisme de synchronisation d'état](/docs/pos/bor/core_concepts.md#state-management-state-sync)
 
-## Messages
+## Messages {#messages}
 
-### MsgEventRecord
+### MsgEventRecord {#msgeventrecord}
 
-`MsgEventRecord` transaction is responsible for validating events from `StateSender.sol`  and storing the state on Heimdall for Bor to use.
+`MsgEventRecord` La transaction est responsable de la validation des événements provenant de `StateSender.sol` et du stockage de l'état sur Heimdall pour que Bor puisse l'utiliser.
 
-Handler for this transaction validates for any given `msg.TxHash` and `msg.LogIndex`. It throws `Older invalid tx found` error if trying to process the transaction more than once.
+Le gestionnaire de cette transaction valide pour tout `msg.TxHash` et `msg.LogIndex`. Une erreur `Older invalid tx found` est générée si la transaction est traitée plus d'une fois.
 
-Here is the structure for the transaction message:
+Voici la structure pour le message de transaction:
 
 ```go
 // MsgEventRecord - state msg
 type MsgEventRecord struct {
-    From     types.HeimdallAddress `json:"from"`
-    TxHash   types.HeimdallHash    `json:"tx_hash"`
-    LogIndex uint64                `json:"log_index"`
-    ID       uint64                `json:"id"`
-    ChainID  string                `json:"bor_chain_id"`
+	From     types.HeimdallAddress `json:"from"`
+	TxHash   types.HeimdallHash    `json:"tx_hash"`
+	LogIndex uint64                `json:"log_index"`
+	ID       uint64                `json:"id"`
+	ChainID  string                `json:"bor_chain_id"`
 }
 ```
 
-## CLI commands
+## Commandes CLI {#cli-commands}
 
-### Send state record transaction
+### Envoie d'une transaction d'enregistrement d'état {#send-state-record-transaction}
 
 ```bash
 heimdallcli tx clerk record
-    --log-index <log-index> 
-    --tx-hash <transaction-hash> 
-    --bor-chain-id <bor-chain-id>
-    --chain-id <heimdall-chain-id>
+	--log-index <log-index>
+	--tx-hash <transaction-hash>
+	--bor-chain-id <bor-chain-id>
+	--chain-id <heimdall-chain-id>
 ```
 
-### To query already validated state event record
+### Pour demander un enregistrement d'événement d'état déjà validé {#to-query-already-validated-state-event-record}
 
 ```go
 heimdallcli query clerk record --id <state-record-id>
 ```
 
-## REST APIs
+## API de REST {#rest-apis}
 
-| Name                 | Method | Endpoint                          |
-| -------------------- | ------ | --------------------------------- |
-| Event record details | GET    | /clerk/event-record/<record-id\> |
-| All event records    | GET    | /clerk/event-record/list          |
+| Nom | Méthode | Point de terminaison |
+|----------------------|------|------------------|
+| Détails de l'enregistrement d'événement | GET | /clerk/event-record/<record-id\> |
+| Tous les enregistrements d'événement | GET | /clerk/event-record/list |

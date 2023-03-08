@@ -1,33 +1,41 @@
 ---
 id: blockchain
-title: What is Blockchain?
+title: Что такое блокчейн?
 sidebar_label: Blockchain
-description: Blockchain is an immutable ledger for recording transactions.
+description: Блокчейн — это регистр, который хранит постоянную запись всех проведенных транзакций в неизменном виде.
 keywords:
   - docs
   - matic
-image: https://matic.network/banners/matic-network-16x9.png
+  - polygon
+  - what is blockchain
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
-Blockchain is a shared, transparent and immutable ledger for recording transactions, tracking assets and building trust. It is a distributed ledger technology, which securely records information across a peer-to-peer network. Although it was created for financial service, blockchain's potential lies far beyond cryptocurrency. These ledgers can record data from Health sector, Land Registry, eSports, Enterprise Records, logistics Manifests, identities - almost anything that holds value.
+# Что такое блокчейн? {#what-is-blockchain}
 
-**Blockchain technology** is actually a combination of 4 components:
+Блокчейн — это общий, прозрачный и неизменяемый регистр для записи транзакций, отслеживания активов и формирования доверия. Это технология представляет собой файл с распределенным регистром, который надежно записывает информацию в одноранговой сети. Несмотря на то, что изначально блокчейн создавался для финансовых услуг, его потенциал существенно превышает возможности использования для криптовалютных решений. Такие регистры могут сохранять данные из сектора здравоохранения, земельных кадастров, сферы киберспорта, корпоративной документации, логистических деклараций, управления идентификацией — почти любого источника информации, которая представляет ценность.
 
-- Peer-to-peer networks
-- Consensus mechanism; Crypto economics and Game theory
-- Cryptography
-- Blockchain data structure
+**Технология блокчейна** фактически включает 4 компонента:
 
-## Key benefits of Blockchain
+- Одноранговые сети
+- Механизм консенсуса; криптоэкономика и теория игр
+- Криптография
+- Структура данных блокчейна
 
-1. **Robustness** <br></br> Blockchain Technology stores information in blocks which are chronologically synchronised. And these blocks cannot be controlled by an individual making blockchain highly secured.
+## Ключевые преимущества блокчейна {#key-benefits-of-blockchain}
 
-2. **Decentralised Ledger** <br></br> Decentralised Ledger operates on peer to peer basis. DLT allows recording the transaction of assets and their details in multiple places at the same time without any central authority. Unlike traditional databases, distributed ledgers have no central data store or administration functionality.
+1. **Устойчивость** <br></br>
+Технология блокчейна обеспечивает хранение информации в блоках, которые хронологически синхронизированы. И эти блоки не поддаются контролю отдельным лицом, что гарантирует высокий уровень безопасности блокчейна.
 
-3. **Immutable** <br></br> Once a block is sealed cryptographically or added to main chain, it is impossible to delete or edit, ensuring the immutability of the digital ledger.
+2. **Децентрализованный Ledger**<br></br> Децентрализованный Ledger работает на основе peer Технология распределенного регистра позволяет осуществлять запись транзакций с активами и их данных в несколько мест одновременно без какого-либо централизованного контроля. В отличие от традиционных баз данных распределенные регистры не имеют центрального хранилища данных или функционала администрирования.
 
-4. **Transparency** <br></br> It is possible for a user to verify and track their transactions, with the entire record of the transactions available in the blockchain.
+3. **Неизменяемость данных** <br></br>
+После криптографической защиты или добавления блока в основную цепочку его невозможно удалить или отредактировать, что обеспечивает неизменность цифрового регистра.
 
-### **:scroll:Resources**
+4. **Прозрачность** <br></br>
+Пользователь может проверить и отследить свои транзакции и имеет доступ к полной записи транзакций в блокчейне.
 
-:green_book: [Newbie Guide to Blockchain](https://medium.com/ethindia/newbie-guide-to-blockchain-programming-a64f5186a57f)<br></br> :orange_book: [Blockchain 101](https://www.coindesk.com/learn/blockchain-101/what-is-blockchain-technology)
+### **Ресурсы**
+
+- [Руководство по блокчейну](https://medium.com/ethindia/newbie-guide-to-blockchain-programming-a64f5186a57f)<br></br>
+- [Blockchain 101](https://www.coindesk.com/learn/blockchain-101/what-is-blockchain-technology)

@@ -2,15 +2,15 @@
 id: withdraw-exit-faster
 title: withdraw exit faster
 keywords:
-  - 'pos client, erc20, withdrawExitFaster, polygon, sdk'
-description: 'withdrawExitFaster method can be used to exit the withdraw process faster by using the txHash from withdrawStart method.'
+- 'pos client, erc20, withdrawExitFaster, polygon, sdk'
+description: 'Выйдите из процесса вывода быстрее с помощью txHash из withdrawStart.'
 ---
 
-`withdrawExitFaster` method can be used to exit the withdraw process faster by using the txHash from `withdrawStart` method.
+Метод `withdrawExitFaster` можно использовать для более быстрого выхода из процесса вывода с помощью txHash метода `withdrawStart`.
 
-It is generally fast because it generates proof in the backend. You need to configure [setProofAPI](/docs/develop/ethereum-polygon/matic-js/set-proof-api).
+Он обычно выполняется быстро, потому что генерирует доказательство на серверном уровне. Вам необходимо конфигурировать [setProofAPI](/docs/develop/ethereum-polygon/matic-js/set-proof-api).
 
-**Note**- withdrawStart transaction must be checkpointed in order to exit the withdraw.
+**Примечание**: для выхода из процесса вывода необходимо установить контрольные точки для транзакции withdrawStart.
 
 ```
 import { setProofApi } from '@maticnetwork/maticjs'
@@ -28,4 +28,4 @@ const txReceipt = await result.getReceipt();
 
 ```
 
-Once the transaction is complete & checkpoint is completed, amount will be deposited to root chain.
+После завершения транзакции и завершения checkpoint количество вносится в качестве депозита на корневую цепочку.

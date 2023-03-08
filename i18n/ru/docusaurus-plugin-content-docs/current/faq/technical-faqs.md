@@ -1,121 +1,127 @@
 ---
 id: technical-faqs
-title: Technical FAQs
-description: Build your next blockchain app on Polygon.
+title: Технические FAQ
+description: Создайте свое следующее блокчейн-приложение на Polygon.
 keywords:
   - docs
   - matic
-image: https://matic.network/banners/matic-network-16x9.png
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
-### 1. Are the private keys same for Heimdall and Bor keystore?
-Yes, the private key used for generating Validator keys and Bor Keystore is the same. The private key used in this instance is your Wallet's ETH address where your Polygon testnet tokens are stored.
+:::tip Оставайтесь в курсе
 
-### 2. List of Common Commands
+Следите за последними обновлениями нода и валидатора от команды Polygon и сообщества, подписавшись на [<ins>уведомления Polygon</ins>](https://polygon.technology/notifications/).
 
-We currently have an easy to dive-in list for you for the Linux packages. We will keep updating this list regularly for more convenience.
+:::
 
-**For Linux packages**
+### 1. Одинаковы ли закрытые ключи для хранилища ключей Heimdall и Bor? {#1-are-the-private-keys-same-for-heimdall-and-bor-keystore}
+Да, для генерации ключей валидатора и хранилища ключей Bor используется одинаковый приватный ключ. Приватный ключ, используемый в данном случае, — это адрес вашего кошелька ETH, в котором хранятся токены тестовой сети Polygon.
 
-#### A. Where to find heimdall genesis file
+### 2. Перечень часто используемых команд {#2-list-of-common-commands}
+
+Мы подготовили для вас краткий перечень команд для пакетов Linux. Мы продолжим регулярно обновлять этот список для вашего удобства.
+
+**Для пакетов Linux**
+
+#### А. Расположение генезис-файла Heimdall {#a-where-to-find-heimdall-genesis-file}
 
 `$CONFIGPATH/heimdall/config/genesis.json`
 
-#### B. Where to find heimdall-config.toml
+#### Б. Расположение heimdall-config.toml {#b-where-to-find-heimdall-config-toml}
 
 `/etc/heimdall/config/heimdall-config.toml`
 
-#### C. Where to find config.toml
+#### В. Расположение config.tom {#c-where-to-find-config-toml}
 
 `/etc/heimdall/config/config.toml`
 
-#### D. Where to find heimdall-seeds.txt
+#### Г. Расположение heimdall-seeds.txt {#d-where-to-find-heimdall-seeds-txt}
 
 `$CONFIGPATH/heimdall/heimdall-seeds.txt`
 
-#### E. Start Heimdall
+#### Д. Запуск Heimdall {#e-start-heimdall}
 
 `$ sudo service heimdalld start`
 
-#### F. Start Heimdall rest-server
+#### Е. Запуск сервера Rest Heimdall {#f-start-heimdall-rest-server}
 
 `$ sudo service heimdalld-rest-server start`
 
-#### G. Start Heimdall bridge-server
+#### Ж. Запуск сервера Bridge Heimdall {#g-start-heimdall-bridge-server}
 
 `$ sudo service heimdalld-bridge start`
 
-#### H. Heimdall logs
+#### З. Журналы Heimdall {#h-heimdall-logs}
 
 `/var/log/matic-logs/`
 
-#### I. Where to find Bor genesis file
+#### И. Расположение генезис-файла Bor {#i-where-to-find-bor-genesis-file}
 
 `$CONFIGPATH/bor/genesis.json`
 
-#### J. Start Bor
+#### К. Запуск Bor {#j-start-bor}
 
 `sudo service bor start`
 
-#### K Check heimdall logs
+#### Л. Проверка журналов Heimdall {#k-check-heimdall-logs}
 
 `tail -f heimdalld.log`
 
-#### L. Check Heimdall rest-server
+#### М. Проверка сервера Rest Heimdall {#l-check-heimdall-rest-server}
 
 `tail -f heimdalld-rest-server.log`
 
-#### M. Check Heimdall bridge logs
+#### Н. Проверка журналов моста Heimdall {#m-check-heimdall-bridge-logs}
 
 `tail -f heimdalld-bridge.log`
 
-#### N. Check bor logs
+#### О. Проверка журналов Bor {#n-check-bor-logs}
 
 `tail -f bor.log`
 
-#### O. Kill Bor process
+#### П. Прекращение процесса Bor {#o-kill-bor-process}
 
-**For linux**:
+**Для linux**:
 
-1. `ps -aux | grep bor`. Get the PID for Bor and then run the following command.
+1. `ps -aux | grep bor`. Получите PID для Bor и выполните следующую команду.
 2. `sudo kill -9 PID`
 
-**For Binaries**:
+**Для двоичных файлов**:
 
-Go to `CS-2003/bor` and then run, `bash stop.sh`
+Перейдите в `CS-2003/bor` и выполните команду `bash stop.sh`
 
-### 3. Error: Failed to unlock account (0x...) No key for given address or file
+### 3. Ошибка: не удалось разблокировать аккаунт (0x…) Нет ключа для заданного адреса или файла {#3-error-failed-to-unlock-account-0x-no-key-for-given-address-or-file}
 
-This error occurs because the path for the password.txt file is incorrect. You can follow the below steps to rectify this:
+Эта ошибка возникает из-за неправильного пути к файлу password.txt. Для устранения этой проблемы сделайте следующее:
 
-This error occurs because the path for the password.txt and Keystore file is incorrect. You can follow the below steps to rectify this:
+Эта ошибка возникает из-за неправильного пути к файлу password.txt и файлу хранилища ключей. Для устранения этой проблемы сделайте следующее:
 
-1. Copy the bor keystore file to
+1. Скопируйте файл хранилища ключей Bor в следующий каталог:
 
     /etc/bor/dataDir/keystore
 
-2. And password.txt to
+2. Скопируйте password.txt в следующий каталог:
 
     /etc/bor/dataDir/
 
-3. Make sure you have added correct address in `/etc/bor/metadata`
+3. Убедитесь, что вы добавили правильный адрес в `/etc/bor/metadata`
 
-For Binaries:
+Для двоичных файлов:
 
-1. Copy the Bor keystore file to:
+1. Скопируйте файл хранилища ключей Bor в следующий каталог:
 
-    `~/.bor/keystore/`
+`/var/lib/bor/keystore/`
 
-2. And password.txt to
+2. Скопируйте password.txt в следующий каталог:
 
-    `~/.bor/password.txt`
+`/var/lib/bor/password.txt`
 
 
-### 4. Error: Wrong Block.Header.AppHash. Expected xxxx
+### 4. Ошибка: неправильный Block.Header.AppHash. Ожидалось xxxx {#4-error-wrong-block-header-apphash-expected-xxxx}
 
-This error usually occurs when the Heimdall service is stuck on a block; there is no reversal method available on Heimdall.
+Обычно эта ошибка возникает, когда служба Heimdall зависает на блоке, а в Heimdall недоступна функция отката назад.
 
-To resolve this, you need to reset Heimdall completely:
+Чтобы решить это, вам нужно выполнить полный сброс Heimdall:
 
 ```bash
     sudo service heimdalld stop
@@ -123,7 +129,7 @@ To resolve this, you need to reset Heimdall completely:
     heimdalld unsafe-reset-all
 ```
 
-After that, you should sync from the snapshot again:
+Произведите повторную синхронизацию данных моментального снимка:
 
 ```bash
     wget -c <Snapshot URL>
@@ -132,212 +138,214 @@ After that, you should sync from the snapshot again:
 
 ```
 
-Then, start the Heimdall services again.
+Затем перезапустите службы Heimdall.
 
 
-### 5. From where do I create the API key?
+### 5. Как создать ключ API? {#5-from-where-do-i-create-the-api-key}
 
-You can access this link: [https://infura.io/register](https://infura.io/register) . Make sure that once you have setup your account and project, you copy the API key for Ropsten and not Mainnet.
+Это можно сделать по ссылке [https://infura.io/register](https://infura.io/register) . Убедитесь, что после настройки аккаунта и проекта вы скопировали ключ API для Ropsten, а не для основной сети.
 
-Mainnet is selected by default.
+По умолчанию выбрана основная сеть (Mainnet).
 
-### 6. Heimdall isn't working. I'm getting a Panic error
+### 6. Heimdall не работает. Возникает ошибка паники {#6-heimdall-isn-t-working-i-m-getting-a-panic-error}
 
-**Actual Error**: My heimdalld isn’t working. In the log the first line is: panic: Unknown db_backend leveldb, expected either goleveldb or memdb or fsdb
+**Фактическая ошибка**: Heimdall не работает. Первая строка в журнале:
+паника: неизвестный db_backend leveldb, ожидается либо goleveldb, либо memdb, либо fsdb
 
-Change the config to `goleveldb` in config.toml
-
-
-### 7. How do I delete remnants of Heimdall and Bor?
-
-If you want to delete remnants of Heimdall and Bor then you can run the following commands Bor:
-
-For Linux package:
-
-`$ sudo dpkg -i matic-bor`
-
-And delete Bor Directory:
-
-`$ sudo rm -rf /etc/bor`
-
-For Binaries:
-
-`$ sudo rm -rf /etc/bor`
-
-And
-
-`$ sudo rm /etc/heimdall`
+Измените конфигурацию на `goleveldb` в config.toml.
 
 
-### 8. How many validators can be active concurrently?
+### 7. Как удалить оставшиеся фрагменты Heimdall и Bor? {#7-how-do-i-delete-remnants-of-heimdall-and-bor}
 
-There will be upto 100 active validators at a time. We will bring in more participants if the limit is reached mid-way through the event as well. Note that active validators is mostly those whose uptime is high. Participants with high downtime will be forced out.
+Чтобы удалить оставшиеся фрагменты Heimdall и Bor, выполните следующие команды:
+Bor:
 
-### 9. How much should I stake?
+Для пакета Linux:
 
-"stake-amount" and "heimdall-fee-amount" - how much it should be?
+```$ sudo dpkg -i matic-bor```
 
-A minimum of 10 Matic tokens is required for the stake amount whereas heimdall fee should be greater than 10. For example, your stake amount is 400 then the heimdall fee should be 20. We suggest to keep the Heimdall fee as 20.
+Также удалите каталог Bor:
 
-However, please note that the values entered in stake amount and heimdal-fee-amount should be entered in 18 decimals
+```$ sudo rm -rf /etc/bor```
 
-For example, 
+Для двоичных файлов:
+
+```$ sudo rm -rf /etc/bor```
+
+И
+
+```$ sudo rm /etc/heimdall```
+
+
+### 8. Сколько валидаторов могут быть активными одновременно? {#8-how-many-validators-can-be-active-concurrently}
+
+Одновременно активными могут быть до 100 валидаторов. Если лимит будет достигнут в середине события, мы будем привлекать дополнительных участников. Обращаем внимание, что активные валидаторы — это в основном те, у кого высокий показатель времени работы. Участники с высоким показателем времени простоя будут исключаться из проекта.
+
+### 9. Сколько средств следует размещать в стейкинге? {#9-how-much-should-i-stake}
+
+Какими должны быть параметры staked-amount и heimdall-fee-amount?
+
+Для стейкинга требуется не менее 10 токенов MATIC. Комиссия Heimdall должна быть больше 10. Например, если сумма вашего стейка равняется 400, тогда комиссия Heimdall должна быть 20. Мы советуем оставить комиссию Heimdall равной 20.
+
+Обращаем внимание, что значения, введенные в параметрах staked-amount и heimdal-fee-amount, должны быть введены с 18 знаками после основного значения.
+
+Пример:
 
     heimdallcli stake --staked-amount 400000000000000000000  --fee-amount 1000000000000000000 --validator 0xf8d1127780b89f167cb4578935e89b8ea1de774f
 
 
-### 10. I was selected to become a validator but my ETH address was incorrect. What do I do?
+### 10. Меня выбрали в качестве валидатора, но мой адрес ETH был неправильным. Что мне делать? {#10-i-was-selected-to-become-a-validator-but-my-eth-address-was-incorrect-what-do-i-do}
 
-If you have access to the ETH address that you submitted earlier then you can transfer the Test tokens from that account to the current account. And then you can initiate your process of setting up your nodes.
+Если у вас есть доступ к адресу ETH, который вы указали ранее, вы можете перевести тестовые токены с того аккаунта на ваш текущий аккаунт. После этого вы можете начать процесс настройки нод.
 
-If you don't have access to that ETH address, we won't be transferring you tokens separately. You can  re-register in the form again with the correct ETH address.
+Если у вас не осталось доступа к адресу предыдущему ETH, мы не будем переводить вам токены отдельно. Вы можете повторно зарегистрироваться с помощью формы и указать правильный адрес ETH.
 
-### 11. I'm getting an error starting the bridge
+### 11. При запуске моста возникает ошибка {#11-i-m-getting-an-error-starting-the-bridge}
 
-**Error**: Object "start" is unknown, try "bridge help". Is it still ok to ignore this?
+**Ошибка**: Объект «start» неизвестен, попробуйте «bridge help». Можно ли по-прежнему игнорировать это?
 
-Check "which bridge" - if it's `/usr/sbin/bridge` you're not running the right "bridge" program.
+Проверьте «which bridge». Если это `/usr/sbin/bridge`, то вы запустили неправильную програму «bridge».
 
-Try `~/go/bin/bridge` instead `(or $GOBIN/bridge)`
+Попробуйте `~/go/bin/bridge` вместо `(or $GOBIN/bridge)`
 
 
-### 12. I'm getting dpkg error
+### 12. Возникает ошибка dpkg. {#12-i-m-getting-dpkg-error}
 
-**Error**: "dpkg: error processing archive matic-heimdall_1.0.0_amd64.deb (--install): trying to overwrite '/heimdalld-rest-server.service', which is also in package matic-node 1.0.0"
+**Ошибка**: «dpkg: ошибка при обработке архива matic-heimdall_1.0.0_amd64.deb (--install): выполняется попытка перезаписать /heimdalld-rest-server.service, который также находится в пакете matic-node 1.0.0».
 
-This occurs mainly because of a previous installation of Matic on your machine. To resolve you can run:
+Эта ошибка возникает главным образом из-за предыдущей установки Matic на компьютер. Чтобы решить эту проблему, вы можете выполнить следующую команду:
 
 `sudo dpkg -r matic-node`
 
 
-### 13. I'm not clear on which Private Key should I add when I generate validator key
+### 13. Непонятно, на какой приватный ключ нужно добавить при генерации ключа валидатора. {#13-i-m-not-clear-on-which-private-key-should-i-add-when-i-generate-validator-key}
 
-The Private key to be used is your Wallet's ETH address where your Polygon testnet Tokens are stored. You can complete the setup with one public-private key pair tied to the address submitted on the form.
-
-
-### 14. Is there a way to know if Heimdall is synced?
-
-You can run the following command to check it:
-
-`$ curl [http://localhost:26657/status](http://localhost:26657/status)`
-
-Check the value of catching_up. If it is false then the node is all synced up.
+Приватный ключ, который следует использовать, — это адрес ETH вашего кошелька, в котором хранятся токены тестовой сети Polygon. Вы можете завершить настройку с помощью одной пары открытых и приватных ключей, которые привязаны к адресу, указанному в форме.
 
 
-### 15. What if someone become a Top 10 staker, how he will receive his MATIC reward at the end?
+### 14. Как узнать, синхронизирован Heimdal или нет? {#14-is-there-a-way-to-know-if-heimdall-is-synced}
 
-Stage 1 rewards are not based on stake. Please refer to https://blog.matic.network/counter-stake-stage-1-stake-on-the-beach-full-details-matic-network/ for the reward details. Participants with high stake don't automatically qualify for a reward in this stage.
+Чтобы проверить это, выполните следующую команду:
 
+```$ curl [http://localhost:26657/status](http://localhost:26657/status)```
 
-### 16. What should be my heimdall version?
-
-To check your Heimdall version you can simply run:
-
-`heimdalld version`
-
-The correct version of Heimdall for stage 1 should be `heimdalld version is beta-1.1-rc1-213-g2bfd1ac`
+Проверьте значение catching_up. Если оно равно false, тогда нода полностью синхронизирована.
 
 
-### 17. What values should I add in the stake amount and fee amount?
+### 15. Предусмотрена ли награда в MATIC для стейкеров, входящих в рейтинг 10 лучших стейкеров? {#15-what-if-someone-become-a-top-10-staker-how-he-will-receive-his-matic-reward-at-the-end}
 
-A minimum of 10 Matic tokens is required for the stake amount whereas heimdall fee should be greater than 10. For example, your stake amount is 400 then the heimdall fee should be 20. We suggest to keep the Heimdall fee as 20.
-
-However, please note that the values entered in stake amount and heimdal-fee-amount should be entered in 18 decimals
-
-For example, 
-
-    heimdallcli stake --staked-amount 400000000000000000000  --fee-amount 1000000000000000000 --validator 0xf8d1127780b89f167cb4578935e89b8ea1de774f
+Награды на этапе 1 не зависят от стейка. Более подробную информацию о наградах можно узнать по ссылке https://blog.matic.network/counter-stake-stage-1-stake-on-the-beach-full-details-matic-network/. Участники с крупным стейком не имеют автоматического права на получение награды на этом этапе.
 
 
-### 18. Whats the difference between `~.heimsdall` and `/etc/heimsdall?`
+### 16. Какую версию Heimdall нужно использовать? {#16-what-should-be-my-heimdall-version}
 
-`~/.heimsdall` is the heimdall dir when you use the binary installation method. `/etc/heimdall` is for the Linux package installation method.
+Чтобы узнать версию Heimdall, выполните следующую команду:
+
+```heimdalld version```
+
+Для этапа 1 правильная версия Heimdall — это `heimdalld version is beta-1.1-rc1-213-g2bfd1ac`
 
 
-### 19. When I make the stake transaction, I'm getting "Gas Exceeded" error
+### 17. Какие значения следует указать в параметрах staked-amount стейка и fee-amount? {#17-what-values-should-i-add-in-the-stake-amount-and-fee-amount}
 
-This error may occur because of the stake or fee amount format. The values entered during the stake command need to have 18 decimals.
+Для стейкинга требуется не менее 10 токенов MATIC. Комиссия Heimdall должна быть больше 10. Например, если сумма вашего стейка равняется 400, тогда комиссия Heimdall должна быть 20. Мы советуем оставить комиссию Heimdall равной 20.
 
-However, please note that the values entered in stake amount and heimdal-fee-amount should be entered in 18 decimals
+Обращаем внимание, что значения, введенные в параметрах staked-amount и heimdal-fee-amount, должны быть введены с 18 знаками после основного значения.
 
-For example, 
+Пример:
 
     heimdallcli stake --staked-amount 400000000000000000000  --fee-amount 1000000000000000000 --validator 0xf8d1127780b89f167cb4578935e89b8ea1de774f
 
 
-### 20. When will I get a chance to become a Validator?
+### 18. В чем разница между `/var/lib/heimdall` и `/etc/heimdall?`
 
-We are progressively adding validators throughout the course of Stage 1 event. We will be releasing a list of new external validators gradually. This list will be announced on the Discord channel.
+`/var/lib/heimdall` — это каталог Heimdall при установке с помощью двоичных файлов. `/etc/heimdall` — при установке с помощью пакета Linux.
 
 
-### 21. Where can I find Heimdall account info location?
+### 19. При выполнении транзакции стейкинга возникает ошибка «Gas Exceeded». {#19-when-i-make-the-stake-transaction-i-m-getting-gas-exceeded-error}
 
-For binaries:
+Эта ошибка может возникнуть из-за неверного формата размера стейка или комиссии. Значения, введенные во время команды стейкинга, должны иметь 18 знаков после основного значения.
 
-    ~/.heimdalld/config folder
+Обращаем внимание, что значения, введенные в параметрах staked-amount и heimdal-fee-amount, должны быть введены с 18 знаками после основного значения.
 
-For Linux package:
+Пример:
+
+    heimdallcli stake --staked-amount 400000000000000000000  --fee-amount 1000000000000000000 --validator 0xf8d1127780b89f167cb4578935e89b8ea1de774f
+
+
+### 20. Как стать валидатором? {#20-when-will-i-get-a-chance-to-become-a-validator}
+
+Мы постепенно добавляем валидаторов в течение всего этапа 1. Мы будем постепенно пополнять список новых внешних валидаторов. Его разместят на канале Discord.
+
+
+### 21. Где можно найти информацию о расположении аккаунта Heimdall? {#21-where-can-i-find-heimdall-account-info-location}
+
+Для двоичных файлов:
+
+    /var/lib/heimdalld/config folder
+
+Для пакета Linux:
 
     /etc/heimdall/config
 
 
-### 22. Which file do I add the API key in?
+### 22. В какой файл нужно добавить ключ API? {#22-which-file-do-i-add-the-api-key-in}
 
-Once you have created the API key you need to add the API key in `heimdall-config.toml` file.
-
-
-### 23. Which file do I add the persistent_peers?
-
-You can add the persistent_peers in the following file:
-
-    ~/.heimdalld/config/config.toml
+После создания ключ API нужно добавить в файл `heimdall-config.toml`.
 
 
-### 24. “Did you reset Tendermint without resetting your application's data?”
+### 23. В какой файл нужно добавить persistent_peers? {#23-which-file-do-i-add-the-persistent_peers}
 
-In such a case you can reset heimdall config data and try running the installation again.
+persistent_peers можно добавить в следующий файл:
+
+    /var/lib/heimdalld/config/config.toml
+
+
+### 24. Что делать при переустановке Tendermint без сброса данных приложения? {#24-did-you-reset-tendermint-without-resetting-your-application-s-data}
+
+В этом случае можно сбросить данные конфигурации Heimdall и попробовать повторно запустить установку.
 
     $ heimdalld unsafe-reset-all
     $ rm -rf $HEIMDALLDIR/bridge
 
 
-### 25. Error: Unable to unmarshall config Error 1 error(s) decoding
+### 25. Ошибка: не удалось распаковать конфигурацию. Ошибка 1 (ошибки) декодирования. {#25-error-unable-to-unmarshall-config-error-1-error-s-decoding}
 
-Error: `* '' has invalid keys: clerk_polling_interval, matic_token, span_polling_interval, stake_manager_contract, stakinginfo_contract`
+Ошибка: `* '' has invalid keys: clerk_polling_interval, matic_token, span_polling_interval, stake_manager_contract, stakinginfo_contract`
 
-This occurs mostly because when there are typos, or some missing parts or an old config file which is still a remnant. You will need to clear all the remnants and then try setting it up again.
+Это происходит главным образом из-за наличия опечаток, недостающих фрагментов или оставшегося старого файла конфигурации. Нужно удалить все оставшиеся фрагменты, а затем повторить настройку.
 
-### 26. To stop Heimdall and Bor services
+### 26. Как остановить службы Heimdall и Bor? {#26-to-stop-heimdall-and-bor-services}
 
-**For Linux packages**:
+**Для пакетов Linux**:
 
-Stop Heimdall: `sudo service heimdalld stop`
+Остановка Heimdall: `sudo service heimdalld stop`
 
-Stop Bor: `sudo service bor stop` or
+Остановка Bor: `sudo service bor stop`. Также можно выполнить следующие команды:
 
-1. `ps -aux | grep bor`. Get the PID for Bor and then run the following command.
+1. `ps -aux | grep bor`. Получите PID для Bor и выполните следующую команду.
 2. `sudo kill -9 PID`
 
-**For Binaries**:
+**Для двоичных файлов**:
 
-Stop Heimdall: `pkill heimdalld`
+Остановка Heimdall: `pkill heimdalld`
 
-Stop Bridge: `pkill heimdalld-bridge`
+Остановка моста: `pkill heimdalld-bridge`
 
-Stop Bor: Go to CS-2001/bor and then run, `bash stop.sh`
+Остановка Bor: перейдите в CS-2001/bor и выполните команду `bash stop.sh`
 
-### 27. To remove Heimdall and Bor directories
+### 27. Как удалить каталоги Heimdall и Bor? {#27-to-remove-heimdall-and-bor-directories}
 
-**For Linux packages**: Delete Heimdall: `sudo rm -rf /etc/heimdall/*`
+**Для пакетов Linux**: Удаление Heimdall: `sudo rm -rf /etc/heimdall/*`
 
-Delete Bor: `sudo rm -rf /etc/bor/*`
+Удаление каталогов Bor: `sudo rm -rf /etc/bor/*`
 
-**For Binaries**:
+**Для двоичных файлов**:
 
-Delete Heimdall: `sudo rm -rf ~/.heimdalld/`
+Удаление Heimdall: `sudo rm -rf /var/lib/heimdalld/`
 
-Delete Bor: `sudo rm -rf ~/.bor`
+Удаление каталогов Bor: `sudo rm -rf /var/lib/bor`
 
-### 28. What to do when you get "Wrong Block.Header.AppHash." error
+### 28. Что делать при возникновении ошибки «Wrong Block.Header.AppHash»? {#28-what-to-do-when-you-get-wrong-block-header-apphash-error}
 
-This error usually occurs due to Infura requests getting exhausted. When you setup a node on Polygon, you add an Infura Key to the Config file (Heimdall). By default you are allowed 100k Requests per day, if this limit is crossed, then you would face such problems. To resolve this you can create a new API key and add it to the `config.toml` file.
+Эта ошибка обычно возникает из-за того, что запросы Infura исчерпаны. При настройке ноды на Polygon вы добавляете ключ Infura в файл конфигурации (Heimdall). По умолчанию доступно 100 тысяч запросов в день. Такая ошибка возникает, если этот лимит превышен. Для решения этой проблемы вы можете создать новый ключ API и добавить его в файл `config.toml`.

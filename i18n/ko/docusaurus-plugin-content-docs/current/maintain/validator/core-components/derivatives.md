@@ -1,7 +1,7 @@
 ---
 id: derivatives
-title: Derivatives
-description: "Delegation through validator shares."
+title: 파생상품
+description: 유효자 주식을 통해 대표단은 위임
 keywords:
   - docs
   - polygon
@@ -10,39 +10,39 @@ keywords:
   - delegation
   - shares
 slug: derivatives
-image: https://matic.network/banners/matic-network-16x9.png
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
-Polygon supports [delegation](../../glossary#delegator) via validator shares. By using this design, it is easier to distribute rewards and slash with scale on the Ethereum mainnet contracts without much computation.
+Polygon은 유효성 검사자 공유를 통한 [위임](/docs/maintain/glossary#delegator)을 지원합니다. 이 디자인을 사용하면 이더리움 메인넷 계약에서 상당 규모의 보상과 슬래시를 복잡한 계산 없이 쉽게 분배할 수 있습니다.
 
-Delegators delegate by purchasing shares of a finite pool from validators. Each validator has their own validator share token.
+위임자는 유효성 검사자로부터 한정된 풀의 지분을 구입하여 위임합니다. 각 유효성 검사자는 자체 유효성 검사자 지분을 갖고 있습니다.
 
-Let's call the fungible validator share tokens VATIC for Validator A. When a user delegates to Validator A, the user is issued VATIC based on the exchange rate of the MATIC-VATIC pair. As users accrue value, the exchange rate indicates that the user can withdraw more MATIC for each VATIC. When validators get slashed, users withdraw less MATIC for their VATIC.
+유효성 검사자 A를 위해 대체 가능한 유효성 검사자 지분을 배틱이라고 부르겠습니다. 사용자가 유효성 검사자 A에 위임하면 사용자에게 매틱-배틱 쌍의 환율에 따라 배틱이 발급됩니다. 사용자가 가치를 창출하면 환율은 사용자가 각 배틱에 대해 더 많은 매틱을 인출할 수 있음을 나타냅니다. 유효성 검사자가 슬래시되면 사용자는 배틱에 대해 매틱을 덜 인출합니다.
 
-Note that MATIC is the staking token. A delegator needs to have MATIC tokens to participate in the delegation.
+매틱은 스테이킹 토큰이라는 점에 유의하세요. 위임자가 위임에 참여하려면 매틱 토큰이 있어야 합니다.
 
-Initially, Delegator D buys tokens from the Validator A specific pool when the exchange rate is 1 MATIC per 1 VATIC.
+처음에 위임자 D는 환율이 1 배틱당 1 매틱일 때 유효성 검사자 A의 특정 풀에서 토큰을 구매합니다.
 
-When a validator gets rewarded with more MATIC tokens, the new tokens are added to the pool.
+유효성 검사자가 더 많은 매틱 토큰으로 보상을 받으면 새 토큰이 풀에 추가됩니다.
 
-Let's say with the current pool of 100 MATIC tokens,  10 MATIC rewards are added to the pool. Since the total supply of VATIC tokens did not change due to rthe ewards, the exchange rate becomes 1 MATIC per 0.9 VATIC. Now, Delegator D gets more MATIC for the same amount if shares. Similar to slashing, if 10 MATIC gets slashed from the pool, the new exchange rate becomes 1 MATIC per 1.1 VATIC.
+현재 100개의 매틱 토큰 풀에서 10개의 매틱 보상이 풀에 추가된다고 가정해 보겠습니다. 환상으로 인해 VATIC 토큰의 총 공급이 바뀌지 않았기 때문에 환율은 0.9 VATIC에 당 1인 매틱이 됩니다. 이제 대표자 D는 주식을 사용하면 동일한 금액에 대해 더 많은 MATIC를 받습니다.
 
-## The flow in the contract
+## 계약의 흐름 {#the-flow-in-the-contract}
 
-`buyVoucher`: This function is attributed when performing a delegation process towards a validator. The delegation `_amount` is first transferred to `stakeManager`, which on confirmation mints delegation shares via `Mint` using the current `exchangeRate`.
+`buyVoucher`: 이 기능은 유효성 검사자에게 위임 프로세스를 수행할 때 발생합니다. 위임자 `_amount`은(는) 먼저 `stakeManager`에게 전송되며, 확인되면 현재 `exchangeRate`을(를) 사용하여 `Mint`을(를) 통해 위임자 공유 토큰을 생성합니다.
 
-The exchange rate is calculated as per the formula:
+환율은 다음 공식에 따라 계산됩니다:
 
 `ExchangeRate = (totalDelegatedPower + delegatorRewardPool) / totalDelegatorShares`
 
-`sellVoucher`: This is function that is called when a delegator is unbonding from a validator. This function basically initiates the process of selling the vouchers bought during delegation. There is a withdrawal period that is taken into consideration before the delegators can `claim` their tokens.
+`sellVoucher`: 위임자가 유효성 검사자로부터 언본딩할 때 호출되는 기능입니다. 이 기능은 기본적으로 위임 중에 구입한 바우처를 판매하는 프로세스를 시작합니다. 위임자가 토큰을 `claim`하기 전에 고려해야 할 인출 기간이 있습니다.
 
-`withdrawRewards`: As a delegator, you can claim your rewards by invoking the `withdrawRewards` function.
+`withdrawRewards`: 위임자는 `withdrawRewards` 기능을 호출하여 보상을 청구할 수 있습니다.
 
-`reStake`: Restaking can work in two ways: a) delegator can buy more shares using `buyVoucher` or `reStake` rewards. You can restake by staking more tokens towarda a validator or you can restake your accumulated rewards as a delegator. Purpose of `reStaking` is that since delegator's validator has now more active stake, they will earn more rewards for that and so will the delegator.
+`reStake`: 재스테이킹은 두 가지 방식으로 작동됩니다: a) 위임자는 `buyVoucher` 또는 `reStake` 보상을 사용하여 더 많은 지분을 구입할 수 있습니다. 유효성 검사자에게 더 많은 토큰을 스테이킹하여 재스테이킹하거나, 위임자로서 누적된 보상을 재스테이킹할 수 있습니다. `reStaking`의 목적은 위임자의 유효성 검사자가 이제 더 많은 적극적인 스테이크를 가지고 있기 때문에, 더 많은 보상을 얻을 것이고 위임자도 그럴 것입니다.
 
-`unStakeClaimTokens`: Once the withdrawal period is over, the delegators who sold their shares can claim their MATIC tokens.
+`unStakeClaimTokens`: 인출 기간이 끝나면 주식을 판 위임자는 지분을 청구할 수 있습니다.
 
-`updateCommissionRate`: Updates the commission % for the validator. See also [Validator Commission Operations](../../validate/validator-commission-operations).
+`updateCommissionRate`: 유효성 검사자에 대한 수수료 %를 업데이트합니다. [유효성 검사자 수수료 운영](/docs/maintain/validate/validator-commission-operations)도 참조하세요.
 
-`updateRewards`: When a validator gets rewards for submitting a [checkpoint](../../glossary#checkpoint-transaction), this function is called for disbursements of rewards between the validator and delegators.
+`updateRewards`: 유효성 검사자가 [체크포인트](/docs/maintain/glossary#checkpoint-transaction) 제출에 대한 보상을 받으면, 이 기능은 유효성 검사자와 위임자 간의 보상 지급에 대해 호출됩니다.

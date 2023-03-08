@@ -1,37 +1,38 @@
 ---
 id: change-signer-address
-title: Change Your Signer Address
-description: "Change the signer address of your validator."
+title: Modifier votre adresse de signataire
+description: Changez l'adresse signer de votre validateur
 keywords:
   - docs
   - matic
   - polygon
-  - signer
+  - signer address
+  - change
+  - validator
 slug: change-signer-address
-image: https://matic.network/banners/matic-network-16x9.png
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
-
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-For information on what a [signer address](../glossary#signer-address) is, see [Key Management](../validator/core-components/key-management).
+Pour avoir des informations sur l'adresse d'un [signataire](/docs/maintain/glossary.md#signer-address), voir [Gestion des clés](/docs/maintain/validator/core-components/key-management).
 
-## Prerequisites
+## Prérequis {#prerequisites}
 
-Make sure your new validator node is fully synced and is running with the new signer address.
+Assurez-vous que votre nouveau nœud de validation est entièrement synchronisé et s'exécute avec la nouvelle adresse de signataire.
 
-## Change the signer address
+## Modifier l'adresse du signataire {#change-the-signer-address}
 
-This guide refers to your current validator node as Node 1 and your new validator node as Node 2.
+Ce guide fait référence à votre nœud de validation actuel en tant que nœud 1 et à votre nouveau nœud de validation en tant que nœud 2.
 
-1. Log in to the [staking dasboard](https://staking.polygon.technology/) with the Node 1 address.
-1. On your profile, click **Edit Profile**.
-1. In the *Signer's address* field, provide the Node 2 address.
-1. In the *Signer's public key* field, provide the Node 2 public key.
+1. Connectez-vous au [tableau de bord de staking](https://staking.polygon.technology/) avec l'adresse de noeud 1.
+2. Sur votre profil, cliquez sur **Modifier le profil**.
+3. Dans le champ **Adresse du signataire**, indiquez l'adresse du nœud 2.
+4. Dans le champ **Clé publique du signataire**, fournissez la clé publique du noeud 2.
 
-   To get the public key, run the following command on the validator node:
+Pour obtenir la clé publique, exécutez la commande suivante au niveau du nœud de validation :
 
    ```sh
    heimdalld show-account
    ```
 
-Clicking **Save** will save your new details for your node. This essentially means that Node 1 will be your address that controls the stake, where the rewards will be sent to, etc. And Node 2 will now be performing activities like signing blocks, signing checkpoints, etc.
+Cliquez sur **Enregistrer** pour enregistrer les nouvelles informations sur votre nœud. Concrètement, cela signifie que le nœud 1 sera votre adresse qui contrôlera la mise, où les récompenses seront envoyées, etc. Le nœud 2 effectuera des activités comme la signature de blocs, la signature de points de contrôle, etc.

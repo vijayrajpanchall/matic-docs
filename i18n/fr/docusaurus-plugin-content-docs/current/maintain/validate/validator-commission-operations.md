@@ -1,39 +1,38 @@
 ---
 id: validator-commission-operations
-title: Commission Operations
-description: "Set up and change your validator commission."
+title: Opérations de la commission
+description: Configurez et modifiez vos commissions validator
 keywords:
   - docs
   - matic
   - polygon
   - validator
-  - commission
+  - commission operations
 slug: validator-commission-operations
-image: https://matic.network/banners/matic-network-16x9.png
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
-
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-You can set up and change your [commission](../glossary#commission) as a validator.
+Vous pouvez configurer et modifier votre [commission](/docs/maintain/glossary.md#commission) en tant que validateur.
 
-A validator is entitled to charge any commission rate. The minimum commission would be 0% and the maximum commission would be 100% of the rewards earned.
+Un validateur dispose du droit de faire payer un taux de commission. La commission minimale est de 0 % et la commission maximale est de 100 % des récompenses obtenues.
 
-You are allowed to change the commission rates as many times as you would like.
+Vous êtes autorisé à modifier les taux de commission autant de fois que vous le souhaitez.
 
-As a validator, it is one of your responsibilities to inform the community on commission changes. See [Validator Responsibilities](../validator/responsibilities).
+En tant que validateur, il est de votre responsabilité d'informer la communauté des changements de commission. Voir [Responsabilités du validateur](/docs/maintain/validator/responsibilities).
 
-## Set up your commission rate as a validator
+## Configurer votre taux de commission en tant que validateur {#set-up-your-commission-rate-as-a-validator}
 
-You set up the commission rate as part of your initial validator staking process. See [Validator Staking Operations](validator-staking-operations).
+Vous définissez le taux de commission dans le cadre de votre processus initial de staking des validateurs. Voir [Opérations de staking du validateur](validator-staking-operations.md).
 
-## Change your commission rate
+## Modifier votre taux de commission {#change-your-commission-rate}
 
-You can change your commission rate.
+Vous pouvez modifier votre taux de commission.
 
-1. With your owner address, login to the [staking dashboard](https://staking.polygon.technology/).
-1. On your profile, click **Edit Profile**.
-1. In the *Commission* field, provide your new commission rate.
+1. Avec votre adresse de propriétaire, connectez-vous au [tableau de bord de staking](https://staking.polygon.technology/).
+1. Sur votre profil, cliquez sur **Modifier le profil**.
+1. Dans le champ **Commission**, indiquez votre nouveau taux de commission.
 
-Once you have confirmed and signed the transaction your commission rate will be set.
+Une fois que vous aurez confirmé et signé la transaction, votre taux de commission est défini.
 
-Once the commission is updated, there is a cool down period of 80 checkpoints.
+Une fois la commission mise à jour, il y a une période de refroidissement de 80 points de contrôle.

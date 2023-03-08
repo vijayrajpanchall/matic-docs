@@ -1,199 +1,119 @@
 ---
 id: getting-started
-title: Developing on Polygon PoS
+title: Introduction à PoS de Polygon
 sidebar_label: Quick Start
-description: Build your next blockchain app on Polygon.
+description: Créez votre prochaine application de blockchain sur Polygon.
 keywords:
   - docs
   - matic
-image: https://matic.network/banners/matic-network-16x9.png
+  - polygon
+  - build on polygon
+  - blockchain
+  - introduction
+  - how to launch dapp
+  - dapps
+  - ethereum
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
-:::caution Updating the Develop Docs
+:::caution Mise à Jour des documents de développement
 
-The docs are being updated, enhanced, and improved. They are subject to change. Please feel free to raise an issue or pull request if you have any queries or suggestions.
+Les documents sont mis à jour, enrichis et améliorés. Ils sont susceptibles d'être modifiés.
+Si vous avez des questions ou des suggestions, n'hésitez pas à soulever un problème ou une demande de tirage.
 
 :::
 
-Welcome to the most exciting and innovative platform to build your blockchain application on **Polygon Blockchain**. Blockchain technology is poised to revolutionise the way the digital world handles data and does business. Be a part of this revolution and get a head start with decentralised application development on Polygon.
+Bienvenue à **Polygon (anciennement réseau Matic)** ! La plate-forme la plus innovante et la plus passionnante pour développer votre application blockchain. La technologie blockchain est sur le point de révolutionner la façon dont le monde numérique gère les données et mène ses affaires. Vous pouvez rejoindre cette révolution en prenant une longueur d'avance sur le développement d'applications décentralisées (dApp) de Polygon.
 
-This page will act as your guide into the **Polygon Ecosystem**. You'll find links to some useful resources and websites to get you up and started with building on Polygon in particular and Blockchain in general. Feel free to reach out to us on Telegram/Discord.
+Ce guide vous présentera l'écosystème de Polygon. Vous y trouverez des liens vers des ressources et des sites web utiles qui vous permettront de vous mettre à niveau en matière de construction, non seulement sur Polygon mais aussi sur le développement général d'applications blockchain.
 
-## **Developer Quick Start**
+:::tip Tenez-vous au courant
 
-If you're an Ethereum Developer, you're already a Polygon developer. All the tools you're familiar with are supported on Polygon out of the box: Truffle, Remix, Web3js. Switch over to Polygon's RPC and get started!
+Suivez les dernières mises à jour sur les constructeurs de l'équipe de Polygon
+et de la communauté en vous inscrivant sur les
+[<ins>Groupes de notification Polygon</ins>](https://polygon.technology/notifications/).
+
+:::
 
 Polygon's Test Network which is called **Mumbai** connects with **Ethereum's Goërli Testnet.** All the network related details can be found in [network docs](/docs/operate/network).
 
-- Set up [Metamask Wallet](/docs/develop/metamask/overview) or [Arkane Wallet](/docs/develop/wallets/arkane/intro)
-- Deploy your Contracts on Polygon
-    - [Using Alchemy](/docs/develop/alchemy)
-    - [Using Chainstack](/docs/develop/chainstack)
-    - [Using QuickNode](/docs/develop/quicknode)
-    - [Using Remix](/docs/develop/remix)
-    - [Using Truffle](/docs/develop/truffle)
-    - [Using Hardhat](/docs/develop/hardhat)
-    - [Using Replit](/docs/develop/replit)
-- Connecting to Polygon [with RPC](https://docs.polygon.technology/docs/develop/metamask/config-polygon-on-metamask) by adding Polygon on MetaMask or directly via [Arkane](/docs/develop/wallets/arkane/network).
+## Principales caractéristiques de Polygon {#key-features-of-polygon}
 
-:::note
-You can use the same RPC with web3.js.
-:::
+- **Vitesse**: le réseau Polygon utilise une blockchain à haut débit avec consensus fourni par un groupe de producteurs de blocs sélectionnés par les parties prenantes à chaque point de contrôle. Une couche de preuve d'enjeu est utilisée pour valider les blocs et publier périodiquement les preuves des producteurs de blocs sur le réseau principal Ethereum. Cela permet d'obtenir des taux de confirmation de blocs rapides, de l'ordre de 2 secondes, tout en préservant un haut degré de décentralisation, ce qui se traduit par un excellent débit pour le réseau.
+- **Scalabilité**: Polygon Network réalise une vitesse de transaction hypothétique de moins de 2 secondes sur un seul sidechain. L'utilisation de plusieurs chaînes latérales permet au réseau de traiter des millions de transactions par seconde. Ce mécanisme (déjà démontré dans la première chaîne latérale Matic) permet au réseau Polygon de se mettre à l'échelle facilement.
+- **Sécurité **: les contrats intelligents de Polygon, reposent sur la sécurité d'Ethereum. Pour protéger le réseau, elle utilise trois modèles de sécurité essentiels. Elle utilise les **contrats de gestion de staking** d'Ethereum et un groupe de validateurs incités qui exploitent les nœuds **Heimdall** et **Bor**. Les développeurs peuvent également mettre en œuvre les deux modèles (hybrides) dans leur dApp.
 
-```jsx
+## Construire sur Polygon {#building-on-polygon}
+
+Si vous êtes un développeur Ethereum, vous êtes déjà un développeur Polygon. Il suffit de passer au [RPC de Polygon](https://polygon-rpc.com/) et de commencer. Tous les outils que vous connaissez sur la blockchain Ethereum sont pris en charge par défaut sur Polygon, comme Truffle, Remix et Web3js.
+
+Vous pouvez déployer des applications décentralisées soit sur le Testnet Mumbai de Polygon soit sur le réseau principal. Le Testnet Mumbai de Polygon se connecte au Testnet Goërli d'Ethereum, qui opère comme son ParentChain. Vous pouvez trouver tous les détails relatifs au réseau dans la [documentation du réseau](https://github.com/maticnetwork/matic-docs/blob/master/docs/develop/network-details/network.md).
+
+### Portefeuilles {#wallets}
+
+Pour interagir avec le réseau Polygon, vous devez disposer d'un portefeuille basé sur Ethereum puisque Polygon fonctionne sur la machine virtuelle Ethereum (EVM). Vous pouvez choisir de mettre en place un porte-monnaie [Metamask](https://github.com/maticnetwork/matic-docs/blob/master/docs/develop/metamask/overview.md) ou [Arkane](https://github.com/maticnetwork/matic-docs/blob/master/docs/develop/wallets/arkane/intro_arkane.md). Plus d'informations relatives au portefeuille et pourquoi vous en avez besoin peuvent être trouvés dans notre [documentation de portefeuille](https://docs.polygon.technology/docs/develop/wallets/getting-started).
+
+### Contrats intelligents {#smart-contracts}
+
+Polygon prend en charge de nombreux services que vous pouvez utiliser pour tester, compiler, déboguer et déployer des applications décentralisées sur le réseau Polygon. Il s'agit notamment du déploiement en utilisant [Alchemy](https://github.com/maticnetwork/matic-docs/blob/master/docs/develop/alchemy.md), [Chainstack](https://github.com/maticnetwork/matic-docs/blob/master/docs/develop/chainstack.md), [QuickNode](https://github.com/maticnetwork/matic-docs/blob/master/docs/develop/quicknode.md), [Remix](https://github.com/maticnetwork/matic-docs/blob/master/docs/develop/remix.md), [Truffle](https://github.com/maticnetwork/matic-docs/blob/master/docs/develop/truffle.md), [Hardhat](https://github.com/maticnetwork/matic-docs/blob/master/docs/develop/hardhat.md) et [Replit](https://github.com/maticnetwork/matic-docs/blob/master/docs/develop/replit.md).
+
+### Se connecter à Polygon {#connecting-to-polygon}
+
+Vous pouvez ajouter Polygon à Metamask ou utiliser directement Arkane, qui vous permet de vous connecter à Polygon en utilisant [RPC](https://docs.polygon.technology/docs/develop/metamask/config-polygon-on-metamask/).
+
+Afin de se connecter au réseau Polygon pour lire les informations de blockchain, nous vous recommandons d'utiliser le SDK Alchemy.
+
+```js
 // Javascript
-const Web3 = require('Web3')
+// Setup: npm install alchemy-sdk
+const { Alchemy, Network } = require("alchemy-sdk");
 
-// Sign up for a free dedicated RPC URL at https://rpc.maticvigil.com/ or other hosted node providers.
-const web3 = new Web3('https://rpc-mumbai.matic.today')
+const settings = {
+  apiKey: "demo", // Can replace with your API Key from https://www.alchemy.com
+  network: Network.MATIC_MAINNET, // Can replace with MATIC_MUMBAI
+};
 
-// Sign up for a free dedicated RPC URL at https://www.alchemy.com or other hosted node providers.
-const web3 = new Web3('https://polygon-mainnet.g.alchemy.com/v2/<your-api-key>')
+const alchemy = new Alchemy(settings);
 
-// web3 object is now connected with Polygon's node
+async function main() {
+  const latestBlock = await alchemy.core.getBlockNumber();
+  console.log("The latest block number is", latestBlock);
+}
+
+main();
 ```
 
----
+### Construire une nouvelle dApp sur Polygon ? {#building-a-new-dapp-on-polygon}
 
-### **Already have a dApp?**
+Les applications décentralisées (dApps) servent de pont entre les utilisateurs et la confidentialité de leurs données sur la blockchain. Le nombre croissant de dApps valide leur utilité au sein de l'écosystème blockchain, en résolvant des défis tels que l'exécution de transactions entre deux participants sans avoir recours à une autorité centrale via des contrats intelligents.
 
-- **Migrating from Ethereum chain (or any EVM based chain for that matter)**
+Supposons que vous n'ayez aucune expérience préalable dans la création d'applications décentralisées (dApps). Dans ce cas, les ressources mentionnées ci-dessous vous donneront une longueur d'avance sur les outils nécessaires pour construire, déboguer et déployer des dApps sur le réseau Polygon.
 
-    Deploy all your smart contracts directly on Polygon chain. You don't have to worry about the underlying architecture, as long as it is EVM compatible!
+- [dApp complète : Série de tutoriels](https://kauri.io/full-stack-dapp-tutorial-series/5b8e401ee727370001c942e3/c)
+- [Web3.js](https://www.dappuniversity.com/articles/web3-js-intro)
+- [Ethers.js](https://docs.ethers.io/v5/)
+- [Remix](https://docs.polygon.technology/docs/develop/remix/)
+- [Truffe](https://docs.polygon.technology/docs/develop/truffle)
+- [Metamask](https://docs.polygon.technology/docs/develop/metamask/overview)
+- [Arkane](https://docs.polygon.technology/docs/develop/wallets/arkane/intro)
+- [Développer une dApp en utilisant Fauna, Polygon et React](https://docs.polygon.technology/docs/develop/dapp-fauna-polygon-react)
 
-    [Deploying your dApp on Polygon](https://docs.polygon.technology/docs/integrate/quickstart)
+### Vous avez déjà une dApp ? {#already-have-a-dapp}
 
-- **Using Polygon as a faster transactions layer**
+Si vous avez déjà une application décentralisée (dApp) et que vous recherchez une plate-forme pour vous aider à mettre à l'échelle efficacement, vous êtes au bon endroit, car Polygon vous permet de :
 
-    Using Polygon as a transactions layer in your dApp deployed on Mainnet, you can get started with getting your tokens mapped by us.
+1. **Migrer facilement de la chaîne basée sur la machine virtuelle Ethereum (EVM)** : Polygon est fière d'être la solution ultime de mise à l'échelle de la couche-2 pour Ethereum. Vous n'avez pas à vous soucier de l'architecture sous-jacente lorsque vous déplacez ou déployez vos dApps sur le réseau Polygon, tant qu'elle est compatible avec les EVM.
+2. **Utilisez Polygon comme une couche de transaction plus rapide** : le déploiement de votre dApp sur le réseau principal Polygon vous permet d'utiliser Polygon comme une couche de transaction plus rapide pour votre dApp. En outre, vous pouvez obtenir vos jetons cartographiés par nos soins. Vous pouvez rejoindre notre [groupe de discussion technique](http://bit.ly/matic-technical-group) sur Telegram pour en savoir plus.
 
-    Getting your tokens mapped on Polygon: 👋🏼 Ping us on [http://bit.ly/matic-technical-group](http://bit.ly/matic-technical-group)
+## Note complémentaire {#side-note}
 
-### **Building a new dApp on Polygon?**
+Si cela vous dépasse, ce n'est pas grave ! Vous pouvez passer directement à l'action et commencer à pirater. Voici quelques remarques avant de commencer à explorer les ressources, les référentiels et les documents :
 
-**Start building!**
+1. **Faites attention au prix à payer pour être à l'avant-garde** : comme la programmation de niche typique, le développement des dApps et de la blockchain évolue très rapidement. Au cours de vos recherches, vous pouvez trouver des dépôts de code complexes, des pages 404 sur un site de documentation ou même aucune documentation. Profitez de cette occasion pour nous contacter via un canal de médias sociaux.
+2. **La courbe d'apprentissage peut être décourageante, mais la barrière à l'entrée est faible** : la communauté est très ouverte et accueillante ! Les projets accueillent volontiers les demandes de tirage provenant de l'extérieur et résolvent activement les éventuels blocages. Nous travaillons à la création d'un monde meilleur et toute forme de contribution est appréciée. Nous serons heureux de vous accueillir dans ce formidable écosystème Web3.
 
-- [Full Stack dApp: Tutorial Series](https://kauri.io/full-stack-dapp-tutorial-series/5b8e401ee727370001c942e3/c)
-- Getting to know your tools:
+:::info Restez à jour
 
-    - [Web3js](https://www.dappuniversity.com/articles/web3-js-intro), [Ethers.js](https://docs.ethers.io/v5/),[Remix](https://docs.polygon.technology/docs/develop/remix/), [Truffle](https://docs.polygon.technology/docs/develop/truffle), [Metamask](/docs/develop/metamask/overview), [Arkane](/docs/develop/wallets/arkane/intro)
-- [Develop a dApp using Fauna, Polygon and React](/docs/develop/dapp-fauna-polygon-react)
-- [Integrating Webhooks](https://docs.alchemy.com/alchemy/enhanced-apis/notify-api/using-notify)
-- [Archive Nodes with Debug namespace](https://www.quicknode.com/chains/matic?utm_source=polygon_docs&utm_campaign=ploygon_docs_contract_guide)
+Le développement d'applications décentralisées encourage la décentralisation du réseau. Suivez nos comptes de réseaux sociaux pour obtenir plus d'informations et de mises à jour sur l'écosystème Polygon. Vous pouvez trouver les liens vers toutes les communautés Polygon [ici](https://polygon.technology/community/).
 
-**Advanced**
-
-- [Sidechains and Plasma](https://docs.polygon.technology/docs/home/blockchain-basics/sidechain)
-- [Polygon's architecture and Security](https://docs.polygon.technology/docs/home/architecture/security-models)
-- [When to use Plasma](https://docs.polygon.technology/docs/home/architecture/security-models)
-- [Moving assets from Mainchain to Polygon chain: the Plasma way](/docs/develop/ethereum-polygon/matic-js/get-started.md)
-- [Swapping Plasma Assets](https://docs.polygon.technology/docs/develop/advanced/swap-assets)
-
-**Other links**
-
-- [Video Tutorials Library](https://www.notion.so/Video-Tutorials-Library-f16cbb8c3d9d47d8bc809e06519f110c)
-- [Writings by the Team](https://www.notion.so/Writings-by-the-Team-c979819406894abb964cb50ae197f376)
-- [Matic Tools](https://www.notion.so/f5739c3ed3cc40e3ae71d5935a72143d)
-- [FAQs](https://docs.polygon.technology/docs/faq/technical-faqs)
-
-### **Learn the developer tools**
-
-- [CryptoZombies](https://cryptozombies.io/)
-- [Full stack dapp tutorial series](https://kauri.io/#collections/Full%20Stack%20dApp%20Tutorial%20Series/full-stack-dapp-tutorial-series-intro/)
-- [Alchemy (Blockchain APIs and Developer Tools)](https://alchemy.com/?a=polygon-docs)
-- [QuickNode (Multi-chain Blockchain infrastructure)](https://www.quicknode.com/docs/polygon?utm_source=polygon_docs&utm_campaign=ploygon_docs_contract_guide)
-- [Infura Docs](https://infura.io/docs)
-- [Getting Started with Infura and Polygon](https://docs.infura.io/infura/networks/polygon-pos/tutorials/send-a-transaction)
-- [Truffle Suite Docs](https://www.trufflesuite.com/docs) (Recommended)
-- [Truffle tutorial](https://www.trufflesuite.com/tutorial) (Recommended)
-- [Parity Wiki](https://openethereum.github.io/)
-- [Geth docs](https://geth.ethereum.org/)
-- [Remix](https://remix.ethereum.org/)
-- [OpenZeppelin Docs](https://docs.openzeppelin.com/)
-- [Ethernaut](https://ethernaut.openzeppelin.com/)
-    - A game that teaches security
-- [Capture the Ether](https://capturetheether.com/)
-    - A game that teaches security
-
-### **Learn the Basics of Development**
-
-- [Full stack dapp tutorial series](https://kauri.io/#collections/Full%20Stack%20dApp%20Tutorial%20Series/full-stack-dapp-tutorial-series-intro/)
-- [Web3 developer Stack](https://www.quicknode.com/guides/web3-sdks/the-web3-developer-stack)
-- [Deploy a smart contract using REMIX IDE](https://www.quicknode.com/guides/solidity/how-to-deploy-a-smart-contract-on-matic-polygon)
-- [How to create a token (ERC20)](https://www.quicknode.com/guides/solidity/how-to-create-and-deploy-an-erc20-token)
-- [Integrating IPFS with Ethereum](https://www.quicknode.com/guides/web3-sdks/how-to-integrate-ipfs-with-ethereum)
-- [Hello World Smart Contract](https://docs.alchemy.com/alchemy/tutorials/hello-world-smart-contract)
-- [How to Create an NFT](https://docs.alchemy.com/alchemy/tutorials/how-to-create-an-nft)
-- [Truffle tutorial](https://www.trufflesuite.com/tutorial)
-- [Dapp University](https://www.youtube.com/channel/UCY0xL8V6NzzFcwzHCgB8orQ)
-- [ConsenSys Academy Developer Program On-Demand course](https://consensys.net/academy/ondemand/)
-- [What is Ethereum?](https://blockgeeks.com/guides/ethereum/)
-- [Read Mastering Ethereum](https://github.com/ethereumbook/ethereumbook)
-- [OpenZeppelin Learn Docs](https://docs.openzeppelin.com/learn/)
-
-### **Get Involved with Hackathons**
-
-Hackathons take place at blockchain conferences and meetups all over the world. Chances are you can’t hop on a plane on a moment’s notice, but some conferences or projects host virtual hackathons open to anyone with an internet connection. Check [Polygon's Hackathons Discord Channel](https://discord.com/invite/0xPolygon)
-
-# **Keeping Up with Development**
-
-### **Social Media**
-
-Dapp development encourages network decentralization, and it also embodies it. Developers are located everywhere in the world! As such, social media has become important to keep people in touch across time zones. Besides the popular platforms, you may be less familiar with platforms such as Telegram, Discord and Gitter.
-
-Reddit:
-
-- https://reddit.com/r/0xPolygon
-- https://reddit.com/r/ethereum
-- https://reddit.com/r/ethdev
-- https://reddit.com/r/ethereumnoobies
-
-Twitter:
-
-- [Bankless: How to Use Crypto Twitter](https://bankless.substack.com/p/how-to-use-crypto-twitter-to-level-77c)
-- [EthHub](https://twitter.com/ethhub_io)
-- [QuickNode](https://twitter.com/QuickNode)
-- [Alchemy](https://twitter.com/AlchemyPlatform)
-- [CodeFi](https://twitter.com/ConsenSysCodefi)
-- [ConsenSys Labs](https://twitter.com/ConsenSys)
-- [Universal Login](https://twitter.com/unilogin)
-- [MetaCartle](https://twitter.com/meta_cartel)
-- [Ethereum Foundation](https://twitter.com/ethereum)
-- [DAI Dao](https://twitter.com/rDAI_dao)
-- [ETHGlobal](https://twitter.com/ETHGlobal)
-- [MakerDao](https://twitter.com/MakerDAO)
-- [DeFi Pulse](https://twitter.com/defipulse)
-- [DeFi Prime](https://twitter.com/defiprime)
-- [Uniswap](https://twitter.com/UniswapExchange)
-- [Compound](https://twitter.com/compoundfinance)
-- [Gnosis](https://twitter.com/gnosisPM)
-- [Nexus Mutual](https://twitter.com/NexusMutual)
-- [Argent](https://twitter.com/argentHQ)
-- [The Token Analyst](https://twitter.com/thetokenanalyst)
-- [EF Devcon account](https://twitter.com/EFDevcon)
-- [Status](https://twitter.com/ethstatus?lang=en)
-- [OpenZeppelin](https://twitter.com/openzeppelin)
-
-### **Newsletters**
-
-- [Week In Ethereum](https://weekinethereumnews.com/)
-- [QuickNode: #Web3Vibes](https://www.getrevue.co/profile/quiknode)
-- [Alchemy: Supercharged](https://www.alchemy.com/newsletter)
-- [EthHub](https://ethhub.io/)
-- [Chain Letter](https://forms.technologyreview.com/chain-letter/)
-- [ConsenSys Newsletter Digest](https://share.hsforms.com/1HiFwsb55S5GUf-EOe0KP8Q2urwb?email=)
-
-### **Podcasts**
-
-- [Zero Knowledge](https://www.zeroknowledge.fm/)
-- [Into the Ether](https://ethhub.substack.com/)
-- [Unconfirmed](https://unconfirmed.libsyn.com/)
-- [Epicenter](https://epicenter.tv/)
-- [11:FS Blockchain Insider](https://bi.11fs.com/)
-
-## Pointers
-
-If this is overwhelming, that’s okay! You can jump right into the fire and start hacking. Here are a few pointers before you start diving into resources, repositories, and documentation.
-
-1. **Beware the cost of being on the bleeding edge** More so than typical niche programming, dapp and blockchain development moves very quickly. Deep into learning, you may find complex code repositories, 404s on a documentation site, or, perhaps, no documentation at all. Rather than seeing this as a deterrent, see it as an invitation to a **Opportunity**. Ping on our developer channel, find the Discord / Gitter / Telegram channel, post on Stack Overflow or Reddit — you may be surprised at the rate of response and openness of the community.
-2. **The learning curve may be daunting, but the barrier to entry is low**. All communities have their grumps, of course, but if you do the work, put in the effort, it will be noticed. Projects welcome pull requests from outsiders and support will be there if you’ve exhausted every other resource. We’re working on creating a better world and can use all the help we can get. We’re just glad you’re here.
+:::

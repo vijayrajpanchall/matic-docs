@@ -2,11 +2,11 @@
 id: is-withdraw-exited
 title: isWithdrawExited
 keywords:
-  - 'pos client, erc721, isWithdrawExited, polygon, sdk'
-description: 'Get started with maticjs'
+- 'pos client, erc721, isWithdrawExited, polygon, sdk'
+description: 'Vérifiez si un retrait a été supprimé.'
 ---
 
-`isWithdrawExited` method check if a withdraw has been exited. It returns boolean value.
+`isWithdrawExited`La méthode vérifie si un retrait a été supprimé. Cela renvoie une valeur booléenne.
 
 ```
 const erc721Token = posClient.erc721(<token address>);

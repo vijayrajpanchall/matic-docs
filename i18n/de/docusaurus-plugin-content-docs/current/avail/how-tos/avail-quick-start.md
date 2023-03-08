@@ -1,8 +1,8 @@
 ---
 id: avail-quick-start
-title: How to use Polygon Avail
-sidebar_label: How to use Avail
-description: Learn how to use Polygon Avail
+title: Wie man mit Polygon Avail arbeitet
+sidebar_label: Quick Start
+description: Hier erfahren Sie, wie man mit Polygon Avail arbeitet
 keywords:
   - docs
   - polygon
@@ -12,196 +12,167 @@ keywords:
   - how-to
   - extrinsic
   - explorer
-image: https://matic.network/banners/matic-network-16x9.png
+  - use
+image: https://wiki.polygon.technology/img/thumbnail/polygon-avail.png
 slug: avail-quick-start
 ---
-
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-:::note We are working on improving many of the current features
+# Wie man mit Polygon Avail arbeitet {#how-to-use-polygon-avail}
 
-We appreciate you using our testnet and encourage your valuable feedback through one of our **[community channels](https://polygon.technology/community/)**.
+:::note
+
+Wir arbeiten daran, viele der aktuellen Features zu verbessern. Wir freuen uns, dass du unser Testnet verwendest, und dein wertvolles Feedback über einen unserer [<ins>community</ins>](https://polygon.technology/community/) ermutigst.
 
 :::
 
-## Generate an Avail Account
+## Ein Avail-Konto erstellen {#generate-an-avail-account}
 
-You can generate an account using one of two methods:
+Es gibt zwei Möglichkeiten, ein Konto zu erstellen:
 - [Avail Explorer](https://testnet.polygonavail.net/)
 - Console/Typescript
 
 <Tabs
-  defaultValue="explorer"
-  values={[
-    { label: 'Avail Explorer', value: 'explorer', },
- { label: '@polkadot/api', value: 'library', },
- ]
+defaultValue="explorer"
+values={[
+{ label: 'Avail Explorer', value: 'explorer', },
+{ label: '@polkadot/api', value: 'library', },
+]
 }>
 <TabItem value="explorer">
 
-Head over to [Avail Explorer](https://testnet.polygonavail.net/). 
+Gehen Sie zu [Avail Explorer](https://testnet.polygonavail.net/)
 
-<img src={useBaseUrl("img/avail/avail-explorer.png")} width="100%" height="100%"/> 
+<img src={useBaseUrl("img/avail/avail-explorer.png")} width="100%" height="100%"/>
 
 :::note
 
-**[Avail Explorer](https://testnet.polygonavail.net/)** is a fork 
-of **[Polkadot-JS Apps](https://polkadot.js.org/)**. The interface and navigation are the same 
-if you are familiar with Polkadot-JS Apps.
+Bei **[Avail Explorer](https://testnet.polygonavail.net/)** handelt es sich um eine Fork der **[Polkadot-JS App](https://polkadot.js.org/)** Die Benutzeroberfläche und Navigation sind gleich,
+wenn Sie mit Polkadot-JS Apps vertraut sind.
 
 :::
 
-Navigate to the **Accounts** tab and click on the **Accounts** sub-tab.
+Navigieren Sie **zur Registerkarte** **Konten** und klicken am entsprechenden Reiter auf Konten.
 
-<img src={useBaseUrl("img/avail/account.png")} width="100%" height="100%"/> 
+<img src={useBaseUrl("img/avail/account.png")} width="100%" height="100%"/>
 
-:::info Address Format
+:::info Adressformat
 
-As Avail is implemented using [Substrate](https://substrate.io/), generic Substrate addresses 
-always start with a 5 and follow the **[SS58 address format](https://docs.substrate.io/v3/advanced/ss58/)**.
-
-:::
-  
-On the Accounts page, click on the **Add account** button and follow the steps in the pop-up window.
-
-<img src={useBaseUrl("img/avail/add-account.png")} width="100%" height="100%"/> 
-
-:::caution Key Management
-
-The seed phrase is your account key, which controls your account.
-You should not store your seed phrase on a device that has or may have access to 
-an internet connection. The seed phrase should be written down and stored on a non-digital 
-medium.
-
-Storing your account's JSON file does not have to be as rigourous as storing the seed phrase,
-as long as you use a strong password to encrypt the file. You can import the JSON file to 
-access your account.
+Da Avail mithilfe von [Substrate ](https://substrate.io/)implementiert wird, beginnen generische Substrate-Adressen immer mit einer 5 und orientieren sich am S**[S58-Adressformat.](https://docs.substrate.io/v3/advanced/ss58/)**
 
 :::
 
-## Receive AVL Testnet Tokens
+Klicken Sie auf **der** Kontoseite auf Konto hinzufügen und gehen anhand der Anweisungen im Popup-Fenster vor.
 
-On the Avail Explorer, click on the icon next to your account name to
-copy your address.  Alternatively, you can copy the address manually.
+<img src={useBaseUrl("img/avail/add-account.png")} width="100%" height="100%"/>
 
-<img src={useBaseUrl("img/avail/account-icon.png")} width="100%" height="100%"/> 
+:::caution Key-Management
 
-Head over to the [Polygon faucet](https://faucet.polygon.technology).
+Die Seed-Phrase ist Ihr Account-Key, mit dem Ihr Konto angesteuert wird. Sie sollten Ihre Seed-Phrase nicht auf einem Gerät speichern, das Zugang zu einer Internetverbindung hat oder haben könnte. Die See-Phrase sollten Sie aufschreiben und nicht digital speichern.
 
-On the faucet page, select `DA Network`  and  `DA (Test Token)` as the network and token. 
-Paste your account address and click on **Submit**. The transfer will up to one 
-minute to complete.
-
-<img src={useBaseUrl("img/avail/faucet.png")} width="100%" height="100%"/> 
-
-Upon successful transfer, your account should now have a non-zero balance. If you face any issues 
-obtaining tokens from the faucet, please reach out to the 
-[support team](https://support.polygon.technology/support/home).
-
-## Submit a New Transaction
-
-On the Avail Explorer, navigate to the **Developer** tab and click on
-the **Extrinsics** sub-tab.
-
-<img src={useBaseUrl("img/avail/developer.png")} width="100%" height="100%"/> 
-
-Select your newly created account. 
-
-<img src={useBaseUrl("img/avail/developer-account.png")} width="100%" height="100%"/> 
-
-There are many extrinsics to choose from; go ahead and select
-the `dataAvailability` extrinsic from the **extrinsic dropdown menu**.
-
-:::info What are extrinsics?
-
-Extrinsics are a form of external information and can either be inherents, signed transactions,
-or unsigned Transactions. More details about extrinsics are available in the 
-[Substrate documentation](https://docs.substrate.io/v3/concepts/extrinsics/).
+Die Speicherung der JSON-Datei Ihres Kontos muss nicht so kompliziert sein wie die Speicherung der Seed-Phrase, solange Sie ein starkes Passwort zur Verschlüsselung der Datei verwenden. Sie können die JSON Datei importieren und damit auf Ihr Konto zugreifen.
 
 :::
 
-You can then use the dropdown menu on the right-hand side to create an application key or 
-submit data.
+## AVL Testnet-Token erhalten {#receive-avl-testnet-tokens}
+
+Klicken Sie im Avail Explorer auf das Symbol neben Ihrem Kontonamen und kopieren Sie Ihre Adresse. Alternativ können Sie die Adresse auch manuell kopieren.
+
+<img src={useBaseUrl("img/avail/account-icon.png")} align= "center" width="100%" height="100%"/>
+
+Gehen Sie zum [Polygon Faucet](https://faucet.polygon.technology)
+
+Wählen Sie auf der Hahnseite `DA Network`und a`DA (Test Token)`ls Netzwerk und Token aus. Fügen Sie Ihre Account-Adresse und ein klicken Sie auf **einreichen**. Die Übertragung wird bis zu eine Minute dauern.
+
+<img src={useBaseUrl("img/avail/faucet.png")} width="100%" height="100%"/>
+
+Nach erfolgreicher Übertragung sollte Ihr Konto jetzt einen Saldo ungleich Null aufweisen. Sollten Sie beim Erhalten von Token aus der Hahnseite auf Probleme stoßen, wenden Sie sich bitte an das [Support-Team](https://support.polygon.technology/support/home).
+
+## Eine neue Transaktion einreichen {#submit-a-new-transaction}
+
+Klicken Sie im Avail Explorer auf den Tab E**ntwickler **und klicken Sie auf den Untertab **Extrinsik**.
+
+<img src={useBaseUrl("img/avail/developer.png")} width="100%" height="100%"/>
+
+Wählen Sie Ihren neu erstellten Account aus.
+
+<img src={useBaseUrl("img/avail/developer-account.png")} width="100%" height="100%"/>
+
+Sie können aus vielen verschiedenen Extrinsics wählen. Wählen Sie das `dataAvailability`Extrinsic aus dem e**xtrinsischen Dropdown-Menü **aus.
+
+:::info Was sind Extrinsics?
+
+Extrinsics sind eine Form von externen Informationen und können entweder inhärente, signierte oder unsignierte Transaktionen sein. Weitere Details über Extrinsics finden Sie in der [Substrate-Dokumentation](https://docs.substrate.io/v3/concepts/extrinsics/).
+
+:::
+
+Sie können dann das Dropdown-Menü auf der rechten Seite verwenden, um einen Anwendungsschlüssel zu erstellen oder Daten zu übermitteln.
 
 <Tabs
-  defaultValue="key"
-  values={[
-    { label: 'Create an application key', value: 'key', },
- { label: 'Submit data', value: 'data', },
- ]
+defaultValue="key"
+values={[
+{ label: 'Create an application key', value: 'key', },
+{ label: 'Submit data', value: 'data', },
+]
 }>
 <TabItem value="key">
 
-In this example, `createApplicationKey` is used to create an application key.
+In diesem Beispiel wird `createApplicationKey`genutzt, um einen Anwendungsschlüssel zu erstellen.
 
-<img src={useBaseUrl("img/avail/da-app-key.png")} width="100%" height="100%"/> 
+<img src={useBaseUrl("img/avail/da-app-key.png")} width="100%" height="100%"/>
 
-Enter the value you wish to submit as part of this transaction using the `App_ID`, or 
-without a default key value as `0`.
+Geben Sie den Wert ein, den Sie als Teil dieser Transaktion einreichen wollen o`App_ID`der ohne einen Standard Key-Wert als.`0`
 
-<img src={useBaseUrl("img/avail/da-app-data.png")} width="100%" height="100%"/> 
+<img src={useBaseUrl("img/avail/da-app-data.png")} width="100%" height="100%"/>
 
 :::note
 
-Before sending a transaction using `App_ID`, it must be created using the `createApplicationKey` field.
+Bevor Sie eine Transaktion einreichen und dabei `App_ID`nutzen, muss sie über das Fe`createApplicationKey`ld erstellt werden.
 
 :::
 
-Submit the transaction. Head over to the [Avail Explorer](https://testnet.polygonavail.net/#/explorer). 
-The recent event list should list your transaction. You can click on the event and expand it to check out 
-the transaction details.
+Eine Transaktion einreichen. Gehen Sie zum [Avail Explorer](https://testnet.polygonavail.net/#/explorer) In der Liste der letzten Ereignisse sollte Ihre Transaktion aufgeführt sein. Sie können auf das Ereignis klicken und es vergrößern, um sich die Details der Transaktion anzusehen.
 
 </TabItem>
 
 <TabItem value="data">
 
-In this example, `submitBlockLengthProposal` is used to submit data.
+In diesem Beispiel wurde `submitBlockLengthProposal`genutzt, um Daten zu übermitteln.
 
-<img src={useBaseUrl("img/avail/extrinsic-da.png")} width="100%" height="100%"/> 
+<img src={useBaseUrl("img/avail/extrinsic-da.png")} width="100%" height="100%"/>
 
-Enter the values you wish to submit as part of this transaction for `row` and `col`.
+Geben Sie die Werte ein, die Sie als Teil dieser Transaktion für u`row`nd ü`col`bermitteln möchten.
 
-<img src={useBaseUrl("img/avail/da-row-col.png")} width="100%" height="100%"/> 
+<img src={useBaseUrl("img/avail/da-row-col.png")} width="100%" height="100%"/>
 
-Submit the transaction. Head over to the [Avail Explorer](https://testnet.polygonavail.net/#/explorer). 
-The recent event list should list your transaction. You can click on the event and expand it to check out 
-the transaction details.
+Eine Transaktion einreichen. Gehen Sie zum [Avail Explorer](https://testnet.polygonavail.net/#/explorer) In der Liste der letzten Ereignisse sollte Ihre Transaktion aufgeführt sein. Sie können auf das Ereignis klicken und es vergrößern, um sich die Details der Transaktion anzusehen.
 
 </TabItem>
 </Tabs>
 
-:::info How to get guarantees that the data behind the transaction is available?
+:::info Wie können Sie sicherstellen, dass die zur Transaktion gehörigen Daten verfügbar sind?
 
-We have abstracted out the nitty-gritty of verifying data availability and have hosted a light client 
-for your use. All you need to do is click on the block number against your desired transaction and
-see all of the block details. 
+Wir haben die Feinheiten der Überprüfung der Datenverfügbarkeit abstrahiert und für Ihre Nutzung einen Light Client gehostet. Sie müssen lediglich auf die Blocknummer der gewünschten Transaktion klicken, um alle Details des Blocks zu sehen.
 
-You will also see a *confidence factor*. If it shows `0%`, give it some time and recheck it later. 
-Otherwise, it should show a non-zero confidence level indicating the probability with which the underlying data 
-is available. 
+Sie werden zudem einen **Vertrauens-Faktor** sehen. Wenn dieser `0%`anzeigt, geben Sie dem Vorgang etwas Zeit und versuchen Sie es später erneut. Andernfalls sollte es ein Konfidenzniveau ungleich Null aufweisen, das die Wahrscheinlichkeit angibt, mit der die zugrunde liegenden Daten verfügbar sind.
 
 :::
 
 </TabItem>
 <TabItem value="library">
 
-Alternatively, you can use the console/typescript to generate an Avail account 
-via [`@polkadot/api`](https://polkadot.js.org/docs/). Create a new folder and add the 
-JS library using `yarn add @polkadot/api` or `npm install @polkadot/api`
+Alternativ können Sie die Konsole/das Typoskript verwenden, um einen Avail-Account zu erstellen via.[`@polkadot/api`](https://polkadot.js.org/docs/) Erstellen Sie einen neuen Ordner und fügen Sie die JS-Bibliothek mit `yarn add @polkadot/api`oder hi`npm install @polkadot/api`nzu.
 
 :::info
 
-Make sure Typescript dependencies are added for running the script. Here,
-`@polkadot/api` version `7.9.1` is used.
+Stellen Sie sicher, dass die Typescript-Abhängigkeiten für die Ausführung des Skripts hinzugefügt werden. Hier`@polkadot/api` wurde die Version `7.9.1`genutzt.
 
-You can use `ts-node` to execute Typescript files in the console. Either use 
-`yarn add ts-node typescript '@types/node'` or `npm i ts-node typescript '@types/node'` 
-to install the packages.
+Sie können `ts-node`nutzen, um Typescript-Dateien in der Konsole auszuführen. Verwenden Sie entweder `yarn add ts-node typescript '@types/node'` oder `npm i ts-node typescript '@types/node'`
+um die Pakete zu installieren.
 
-For instance, if you create a script called `account.ts`, you can execute the script
-in the command line by running:
+Wenn Sie zum Beispiel ein Skript namens `account.ts`erstellen möchten, können Sie das Skript in der Kommandozeile ausführen, indem Sie Folgendes ausführen:
 
 ```bash
 
@@ -209,12 +180,11 @@ ts-node account.ts
 
 ```
 
-You will also need to **[connect to a node](../node/avail-node-management.md)** before running 
-the scripts. 
+Zudem müssen Sie einen K**[noten verbinden,](../node/avail-node-management.md)** bevor Sie die Skripte ausführen können.
 
 :::
 
-To generate an account, run the following script:
+Führen Sie das folgende Skript aus, um einen Account zu erstellen:
 
 ```typescript
 
@@ -226,7 +196,7 @@ const keyring = new Keyring({ type: 'sr25519' });
 async function createApi() {
 
   // Create the API and wait until ready
-  return ApiPromise.create({ 
+  return ApiPromise.create({
     types: {
         AccountInfo: 'AccountInfoWithRefCount',
     },
@@ -235,7 +205,7 @@ async function createApi() {
 
 async function main () {
   // Create the API and wait until ready
-  const api = await createApi(); 
+  const api = await createApi();
 
   const keyring = new Keyring({ type: 'sr25519'});
   const mnemonic = mnemonicGenerate();
@@ -249,7 +219,7 @@ main().catch(console.error)
 
 ```
 
-Sample Result:
+Beispielergebnis:
 
 ```
 
@@ -257,45 +227,39 @@ test_pair has address 5Gq1hKAiSKFkdmcFjTt3U8KEaxDHp613hbdSmqJCRswMkwCB and the m
 
 ```
 
-:::info Address Format
+:::info Adressformat
 
-As Avail is implemented using [Substrate](https://substrate.io/), generic Substrate addresses 
-always start with a 5 and follow the **[SS58 address format](https://docs.substrate.io/v3/advanced/ss58/)**.
-
-:::
-
-:::info Key derivation and signing algorithm
-
-The reasons for using `sr25519` are outlined **[here](https://wiki.polkadot.network/docs/learn-cryptography#keypairs-and-signing)**.
+Da Avail mithilfe von [Substrate ](https://substrate.io/)implementiert wird, beginnen generische Substrate-Adressen immer mit einer 5 und orientieren sich am S**[S58-Adressformat.](https://docs.substrate.io/v3/advanced/ss58/)**
 
 :::
 
-Save the newly generated address and mnemonic phrase for next steps.
+:::info Key-Ableitung und Signaturalgorithmus
 
-:::caution Key Management
-
-The seed phrase is your account key, which controls your account.
-You should not store your seed phrase on a device that has or may have access to 
-an internet connection. The seed phrase should be written down and stored on a non-digital 
-medium.
+Die Gründe für die Nutzung von `sr25519`werden **[hier](https://wiki.polkadot.network/docs/learn-cryptography#keypairs-and-signing)** dargestellt.
 
 :::
 
-## Receive AVL Testnet Tokens
+Speichern Sie die neu generierte Adresse und die mnemonische Phrase für die nächsten Schritte.
 
-Head over to the [Polygon faucet](https://faucet.polygon.technology).
+:::caution Key-Management
 
-On the faucet page, select `DA (Test Token)` and `DA Network` as the token and network, 
-respectively. Paste your account address and click on **Submit**. The transfer will take up to one 
-minute to complete.
+Die Seed-Phrase ist Ihr Account-Key, mit dem Ihr Konto angesteuert wird. Sie sollten Ihre Seed-Phrase nicht auf einem Gerät speichern, das Zugang zu einer Internetverbindung hat oder haben könnte. Die See-Phrase sollten Sie aufschreiben und nicht digital speichern.
 
-<img src={useBaseUrl("img/avail/faucet.png")} width="100%" height="100%"/> 
+:::
 
-Upon successful transfer, your account should now have a non-zero balance. If you face any issues obtaining tokens from the faucet, please reach out to the [support team](https://support.polygon.technology/support/home).
+## AVL Testnet-Token erhalten {#receive-avl-testnet-tokens-1}
 
-### Balance Check with `@polkadot/api`
+Gehen Sie zum [Polygon Faucet](https://faucet.polygon.technology)
 
-Use the following script to check the balance of the account you just created:
+Wählen Sie auf der Hahnseite `DA (Test Token)`und a`DA Network`ls Token bzw. als Netzwerk aus. Fügen Sie Ihre Account-Adresse und ein klicken Sie auf **einreichen**. Die Übertragung wird bis zu eine Minute dauern.
+
+<img src={useBaseUrl("img/avail/faucet.png")} width="100%" height="100%"/>
+
+Nach erfolgreicher Übertragung sollte Ihr Konto jetzt einen Saldo ungleich Null aufweisen. Wenn Sie auf irgendwelche Probleme stoßen, wenn Sie Token von der Hahnseite erhalten wollen, kontaktieren Sie bitte das [Support-Team](https://support.polygon.technology/support/home)
+
+### Saldo-Kontrolle mit `@polkadot/api`
+
+Verwenden Sie das folgende Skript, um den Saldo des soeben erstellten Accounts zu überprüfen:
 
 ```typescript
 
@@ -311,7 +275,7 @@ async function createApi() {
   const provider = new WsProvider('wss://testnet.polygonavail.net/ws');
 
   // Create the API and wait until ready
-  return ApiPromise.create({ 
+  return ApiPromise.create({
     provider,
     types: {
         DataLookup: {
@@ -336,7 +300,7 @@ async function createApi() {
         AppId: 'u32',
         CheckAppId: {
             extra: {
-                appId: 'u32', 
+                appId: 'u32',
             },
             types: {}
         }
@@ -354,7 +318,7 @@ async function createApi() {
 
 async function main () {
   // Create the API and wait until ready
-  const api = await createApi(); 
+  const api = await createApi();
 
   // Retrieve the chain & node information information via rpc calls
   const [chain, nodeName, nodeVersion] = await Promise.all([
@@ -362,7 +326,7 @@ async function main () {
     api.rpc.system.name(),
     api.rpc.system.version()
   ]);
-  
+
   console.log(`You are connected to chain ${chain} using ${nodeName} v${nodeVersion}`);
 
     //address which is generated from previous step👇
@@ -372,7 +336,7 @@ async function main () {
       let { data: { free:balance}} = await api.query.system.account(ADDRESS)
       console.log(`${ADDRESS} has balance of ${balance}`)
     }catch (e){
-      console.log(e)  
+      console.log(e)
     }finally{
       process.exit(0)
     }
@@ -381,7 +345,7 @@ main().catch(console.error)
 
 ```
 
-Sample Result:
+Beispielergebnis:
 
 ```
 You are connected to chain Avail-Testnet using Polygon Avail Node v3.0.0-6c8781e-x86_64-linux-gnu
@@ -389,37 +353,34 @@ You are connected to chain Avail-Testnet using Polygon Avail Node v3.0.0-6c8781e
 5HBCFfAs5gfqYgSinsr5s1nSZY2uRCh8MhYhXXp6Y9jNRJFB has balance of 0
 ```
 
-> You should get balance as `0` if the account is newly created and you have not used the faucet. 
-> You should also see the confirmation of the transaction.
+> Ihr Saldo sollte `0`betragen, wenn Sie einen neuen Account erstellt und den Hahn bisher nicht genutzt haben. Sie sollten auch die Bestätigung der Transaktion sehen können.
 
-:::tip Using The Avail Explorer
+:::tip Nutzung des Avail-Explorers
 
-For convenience, you can add the account you generated with
-`@polkadot/api` on the Avail Explorer UI to perform account actions.
+Der Einfachheit halber können Sie den Account, den Sie mit k`@polkadot/api`reiert haben,  zur Avail Explorer-Benutzeroberfläche hinzufügen, um Kontoaktionen durchzuführen.
 
 :::
 
-## Submit a New Transaction
+## Eine neue Transaktion einreichen {#submit-a-new-transaction-1}
 
-You can use the provided scripts in this section to sign and submit transactions. 
+Sie können die bereitgestellten Skripte in diesem Abschnitt verwenden, um Transaktionen zu unterzeichnen und einzureichen.
 
 :::note
 
-Replace `value` and `APP_ID` with those you want to submit.
-Also, replace the mnemonic string with your own.
+Ersetzen Sie `value`und m`APP_ID`it den Transaktionen, die Sie einreichen möchten. Ersetzen Sie auch den mnemonic String durch Ihren eigenen.
 
 :::
 
 <Tabs
-  defaultValue="key-script"
-  values={[
-    { label: 'Create an application key', value: 'key-script', },
- { label: 'Submit data', value: 'data-script', },
- ]
+defaultValue="key-script"
+values={[
+{ label: 'Create an application key', value: 'key-script', },
+{ label: 'Submit data', value: 'data-script', },
+]
 }>
 <TabItem value="key-script">
 
-The following script creates an application key: 
+Das folgende Skript erzeugt einen Anwendungs-Key:
 
 ```typescript
 
@@ -438,7 +399,7 @@ async function createApi() {
   const provider = new WsProvider('ws://127.0.0.1:9944');
 
   // Create the API and wait until ready
-  return ApiPromise.create({ 
+  return ApiPromise.create({
     provider,
     types: {
         DataLookup: {
@@ -463,7 +424,7 @@ async function createApi() {
         AppId: 'u32',
         CheckAppId: {
             extra: {
-                appId: 'u32', 
+                appId: 'u32',
             },
             types: {}
         }
@@ -481,7 +442,7 @@ async function createApi() {
 
 async function main () {
   // Create the API and wait until ready
-  const api = await createApi(); 
+  const api = await createApi();
 
   //enter your mnemonic generated from the previous step and replace below.
   const pair = keyring.addFromUri( 'put your mnemonic', { name: 'test pair' }, 'sr25519');
@@ -497,16 +458,16 @@ async function main () {
         let createId = api.tx.dataAvailability.createApplicationKey(KEY);
         const unsub = await createId
             .signAndSend(
-            pair, 
-            { app_id: 0}, 
+            pair,
+            { app_id: 0},
             ( result: ISubmittableResult ) => {
                 console.log(`Tx status: ${result.status}`);
-        
+
                 if (result.status.isInBlock) {
                     console.log(`Tx included at block hash ${result.status.asInBlock}`);
                 } else if (result.status.isFinalized) {
                     console.log(`Tx included at blockHash ${result.status.asFinalized}`);
-        
+
                     result.events.forEach(({ phase, event: { data, method, section } }) => {
                         console.log(`\t' ${phase}: ${section}.${method}:: ${data}`);
                     });
@@ -525,9 +486,9 @@ main().catch(console.error)
 </TabItem>
 <TabItem value="data-script">
 
-The following script submits data: 
+Das folgende Skript übermittelt Daten:
 
-```typescript 
+```typescript
 
 const { ApiPromise, WsProvider, Keyring } = require('@polkadot/api');
 const {mnemonicGenerate, cryptoWaitReady } = require('@polkadot/util-crypto');
@@ -542,7 +503,7 @@ async function createApi() {
   const provider = new WsProvider('wss://testnet.polygonavail.net/ws');
 
   // Create the API and wait until ready
-  return ApiPromise.create({ 
+  return ApiPromise.create({
     provider,
     types: {
         DataLookup: {
@@ -567,7 +528,7 @@ async function createApi() {
         AppId: 'u32',
         CheckAppId: {
             extra: {
-                appId: 'u32', 
+                appId: 'u32',
             },
             types: {}
         }
@@ -585,7 +546,7 @@ async function createApi() {
 
 async function main () {
   // Create the API and wait until ready
-  const api = await createApi(); 
+  const api = await createApi();
 
   //enter your mnemonic generated from the previous step and replace below 👇.
   const pair = keyring.addFromUri( 'enter mnemonic here', { name: 'test pair' }, 'sr25519');
@@ -595,7 +556,7 @@ async function main () {
     api.rpc.system.name(),
     api.rpc.system.version()
   ]);
-  
+
   console.log(`You are connected to chain ${chain} using ${nodeName} v${nodeVersion}`);
 
     try{
@@ -604,20 +565,20 @@ async function main () {
         let transfer = api.tx.dataAvailability.submitData(VALUE);
         const unsub = await transfer
             .signAndSend(
-            pair, 
-            { app_id: APP_ID}, 
+            pair,
+            { app_id: APP_ID},
             ( result: ISubmittableResult ) => {
                 console.log(`Tx status: ${result.status}`);
-        
+
                 if (result.status.isInBlock) {
                     console.log(`Tx included at block hash ${result.status.asInBlock}`);
                 } else if (result.status.isFinalized) {
                     console.log(`Tx included at blockHash ${result.status.asFinalized}`);
-        
+
                     result.events.forEach(({ phase, event: { data, method, section } }) => {
                         console.log(`\t' ${phase}: ${section}.${method}:: ${data}`);
                     });
-        
+
                     process.exit(0);
                 }
             });
@@ -632,14 +593,11 @@ main().catch(console.error)
 </TabItem>
 </Tabs>
 
-You can head over to the [Avail Explorer](https://testnet.polygonavail.net/#/explorer), and the
-recent event list should list your transaction. You can click on the event and expand it to check out 
-the transaction details.
+Sie können zum [Avail-Explorer gehen](https://testnet.polygonavail.net/#/explorer), wo in der Liste der jüngsten Ereignisse Ihre Transaktion aufgelistet sein sollte. Sie können auf das Ereignis klicken und es vergrößern, um sich die Details der Transaktion anzusehen.
 
-:::info How to get guarantees that the data behind the transaction is available?
+:::info Wie können Sie sicherstellen, dass die zur Transaktion gehörigen Daten verfügbar sind?
 
-You can use the following curl request to check out the confidence level. Just replace the block number with the 
-one you wish to get availability guarantees for. 
+Sie können die folgende Curl-Anfrage nutzen, um das Zuverlässigkeitsniveau zu überprüfen. Ersetzen Sie einfach die Blocknummer mit der, für die Sie eine Verfügbarkeitsgarantie erhalten möchten.
 
 ```bash
 

@@ -2,11 +2,11 @@
 id: withdraw-start
 title: withdrawStart
 keywords:
-  - 'pos client, erc1155, withdrawStart, polygon, sdk'
-description: 'Initiate the withdraw process which will burn the specified amount of tokenId on polygon chain.'
+- 'pos client, erc1155, withdrawStart, polygon, sdk'
+description: 'Initiiere den Auszahlungsprozess'
 ---
 
-`withdrawStart` method can be used to initiate the withdraw process which will burn the specified amount of tokenId on polygon chain.
+`withdrawStart`-Methode kann angewandt werden, um den Auszahlungsvorgang zu starten, der die vorgegebene Anzahl an TokenID auf die Polygon-Chain brennt.
 
 ```
 const erc1155Token = posClient.erc1155(<child token address>);

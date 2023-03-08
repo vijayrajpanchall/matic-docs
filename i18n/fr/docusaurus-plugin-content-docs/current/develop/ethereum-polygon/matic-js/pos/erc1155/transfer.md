@@ -1,12 +1,12 @@
 ---
 id: transfer
-title: transfer
+title: transférez
 keywords:
-  - 'pos client, erc1155, transfer, polygon, sdk'
-description: 'transfer tokens from one user to another user.'
+- 'pos client, erc1155, transfer, polygon, sdk'
+description: 'Transférez des jetons d''un utilisateur à un autre.'
 ---
 
-`transfer` method can be used to transfer tokens from one user to another user.
+`transfer`la méthode peut être utilisée pour transférer des jetons d'un utilisateur à un autre.
 
 ```
 const erc1155Token = posClient.erc1155(<token address>);

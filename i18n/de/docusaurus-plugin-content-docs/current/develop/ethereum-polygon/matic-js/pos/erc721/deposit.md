@@ -1,12 +1,12 @@
 ---
 id: deposit
-title: deposit
+title: Einzahlung
 keywords:
-  - 'pos client, erc721, deposit, polygon, sdk'
-description: 'Get started with maticjs'
+- 'pos client, erc721, deposit, polygon, sdk'
+description: 'Einen Token von Ethereum auf Polygon Chain einzahlen.'
 ---
 
-`deposit` method can be used to deposit a token from ethereum to polygon chain.
+Die `deposit`-Methode kann genutzt werden, um einen Token von Ethereum in die Polygon-Chain einzuzahlen.
 
 ```
 const erc721RootToken = posClient.erc721(<root token address>, true);

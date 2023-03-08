@@ -1,37 +1,39 @@
 ---
 id: change-signer-address
-title: Change Your Signer Address
-description: "Change the signer address of your validator."
+title: Ändere deine Signier-Adresse
+description: Ände die Signer-Adresse deines Prüfers
 keywords:
   - docs
   - matic
   - polygon
-  - signer
+  - signer address
+  - change
+  - validator
 slug: change-signer-address
-image: https://matic.network/banners/matic-network-16x9.png
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
-
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-For information on what a [signer address](../glossary#signer-address) is, see [Key Management](../validator/core-components/key-management).
+Für Informationen darüber, was eine [Signier-Adresse](/docs/maintain/glossary.md#signer-address) ist, siehe
+[Key Management](/docs/maintain/validator/core-components/key-management).
 
-## Prerequisites
+## Voraussetzungen {#prerequisites}
 
-Make sure your new validator node is fully synced and is running with the new signer address.
+Stelle sicher, dass dein neuer Prüfknoten vollständig synchronisiert ist und mit der neuen Signier-Adresse läuft.
 
-## Change the signer address
+## Ändere die Signier-Adresse {#change-the-signer-address}
 
-This guide refers to your current validator node as Node 1 and your new validator node as Node 2.
+In diesem Leitfaden wird dein aktueller Prüfknoten als Knoten 1 und dein neuer Prüfknoten als Knoten 2 bezeichnet.
 
-1. Log in to the [staking dasboard](https://staking.polygon.technology/) with the Node 1 address.
-1. On your profile, click **Edit Profile**.
-1. In the *Signer's address* field, provide the Node 2 address.
-1. In the *Signer's public key* field, provide the Node 2 public key.
+1. Melde dich mit der Adresse des Knotens 1 im [Staking-Dasboard](https://staking.polygon.technology/) an.
+2. Klicken Sie auf Ihrem Profil auf **Profile bearbeiten**.
+3. Gib im **Adressfeld des Signierers** den Knoten 2 an.
+4. Gib im Feld **Öffentlicher Key des Signierers den öffentlichen Key** von Knoten 2 an.
 
-   To get the public key, run the following command on the validator node:
+   Um den öffentlichen Key zu erhalten, führst du den folgenden Befehl auf dem Prüfknoten aus:
 
    ```sh
    heimdalld show-account
    ```
 
-Clicking **Save** will save your new details for your node. This essentially means that Node 1 will be your address that controls the stake, where the rewards will be sent to, etc. And Node 2 will now be performing activities like signing blocks, signing checkpoints, etc.
+Durch Klicken **auf Speichern**, speicherst du deine neuen Details für deinen Knoten. Das bedeutet im Wesentlichen, dass Knoten 1 deine Adresse ist, die den Einsatz kontrolliert, an die die Prämien geschickt werden, usw. Und Knoten 2 wird nun Aktivitäten wie das Signieren von Blöcken, das Signieren von Checkpoints usw. durchführen.

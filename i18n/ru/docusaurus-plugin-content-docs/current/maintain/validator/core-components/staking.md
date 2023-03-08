@@ -1,46 +1,49 @@
 ---
 id: staking
-title: Staking
+title: Стейкинг
 sidebar_label: Staking
-description: "Stake, unstake, and restake as a validator."
+description: Stake, unstake и restake как валидатор
 keywords:
   - docs
   - matic
   - polygon
   - staking
+  - unstake
+  - restake
+  - validator
 slug: staking
-image: https://matic.network/banners/matic-network-16x9.png
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
-For Polygon Network, any participant can be qualified to become a Polygon's validator by running a full node to earn rewards and collect transaction fees. To ensure the good participation by validators, they lock up some of their MATIC tokens as a stake in the ecosystem.
+В сети Polygon право стать валидатором Polygon может получить любой участник, запустивший полный нод для получения наград и сбора комиссий за транзакции. Для обеспечения добросовестного участия валидаторы блокируют часть своих токенов MATIC в качестве стейка в экосистеме.
 
-Validators in Polygon Network are selected via an on-chain auction process which happens at regular intervals.
+Отбор валидаторов в сети Polygon производится с помощью онлайн-аукциона, который проводится через регулярные промежутки времени.
 
-A validator has two addresses an owner address and a signer address. The staking is done with the owner address.
+Валидатор имеет два адреса: адрес владельца и адрес подписанта. Стейкинг выполняется с помощью адреса владельца.
 
-See also [Key Management](key-management).
+См. также статью [Управление ключами](key-management.md).
 
-## Stake
+## Размещение средств в стейкинге {#stake}
 
 :::note
 
-Currently there is limited space to accept new validators.
+В настоящее время количество мест для приема новых валидаторов ограничено.
 
-A new validator can only join the active set when a currently active validator unbonds.
+Новый валидатор может присоединиться к набору активных валидаторов только после отвязки одного из активных валидаторов.
 
 :::
 
-To join the validator set, you must stake your MATIC tokens. See [Validator Staking Operations](../../validate/validator-staking-operations).
+Чтобы присоединиться к набору валидаторов, необходимо разместить токены MATIC в стейкинге. См. статью [Операции стейкинга валидатора](/docs/maintain/validate/validator-staking-operations).
 
-## Unstake
+## Вывод средств из стейкинга {#unstake}
 
-Unstaking allows the validator to be out of active pool of validators.
+Вывод средств из стейкинга позволяет валидатору выйти из пула активных валидаторов.
 
-To ensure good participation, the validator stake is locked for 80 checkpoints.
+Для обеспечения добросовестного участия стейк валидатора блокируется на 80 checkpoint.
 
-## Restake
+## Добавление средств в стейкинг {#restake}
 
-Validators can add more MATIC tokens to their stake:
+Валидаторы могут добавлять токены MATIC в стейкинг со следующими целями:
 
-* To earn more rewards.
-* To maintain the position in the validator set.
+* Получение большего количества наград.
+* Сохранение позиции в наборе валидаторов.

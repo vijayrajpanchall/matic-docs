@@ -1,7 +1,7 @@
 ---
 id: reporting-issues
-title: Reporting Issues
-description: Report issues on attacks and bugs on the Polygon Network.
+title: Probleme melden
+description: Melde Probleme mit Angriffen und Fehlern im Polygon-Netzwerk.
 keywords:
   - docs
   - polygon
@@ -11,28 +11,28 @@ keywords:
   - bugs
   - attacks
 slug: reporting-issues
-image: https://matic.network/banners/matic-network-16x9.png
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
-## Where to report a bug
+## Wo kann ich einen Fehler melden {#where-to-report-a-bug}
 
-For any bugs or attacks that are discovered, you need to report them to the [Immunefi bug bountry program](https://immunefi.com/bounty/polygon/). **Performing an attack and not providing submission of your proof will result in disqualification of your attempt.**
+Wenn du Bugs oder Angriffe erkennst, musst du sie an das [Immunefi-Bug-Bountry-Programm](https://immunefi.com/bounty/polygon/) melden. **Wenn du bei einem Angriff nicht deinen Nachweis vorlegst, wird dein Versuch abgelehnt.**
 
-You need to make sure that you add all relevant details, such as an email address and Discord ID in order to maintain a rapport of communication in case it is required. You also need to provide as many details as possible so that the Polygon team can appropriately evaluate your submission.
+Du musst sicherstellen, dass du alle relevanten Details wie eine E-Mail-Adresse und eine Discord-ID hinzufügst, damit du im Bedarfsfall in Kontakt bleiben kannst. Außerdem solltest du so viele Details wie möglich angeben, damit das Polygon-Team deinen Beitrag angemessen bewerten kann.
 
-## What happens after submitting a report
+## Was passiert nach dem Einreichen einer Meldung {#what-happens-after-submitting-a-report}
 
-Upon reporting an issue, the Polygon Project team will review and update/comment on the status of the issue. Upon evaluation, the Polygon team will report the outcome of the submission. The Severity will also be tagged as per the evaluation.
+Wenn du ein Problem meldest, wird das Polygon Team den Status des Problems überprüfen und aktualisieren/kommentieren. Nach der Bewertung wird das Polygon-Team das Ergebnis der Einreichung mitteilen. Auch der Schweregrad wird entsprechend der Bewertung markiert.
 
-## Contact us for further questions
+## Kontaktiere uns bei weiteren Fragen {#contact-us-for-further-questions}
 
-You can always connect with the community leaders, Anurag & Parvez, via email or tag the validator-support-team on Discord:
+Du kannst dich jederzeit mit den Leitern der Community, Anurag & Parvez, per E-Mail in Verbindung setzen oder das Prüfer-Support-Team auf Discord markieren:
 
-### Via email
+### Per E-Mail {#via-e-mail}
 
 * Anurag — anurag@polygon.technology
 * Parvez — parvez.shaikh@polygon.technology
 
-## Via Discord tag:
+### Via Discord {#via-discord}
 
-* @validator-support-team
+* Schaue dir den @validator-support-team Kanal auf unserem [Discord](https://discord.com/invite/0xPolygon)-Server an.

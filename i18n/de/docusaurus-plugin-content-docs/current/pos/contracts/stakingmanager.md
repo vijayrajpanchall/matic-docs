@@ -1,37 +1,65 @@
 ---
 id: stakingmanager
-title: Staking Manager
-description: For the Polygon's Proof of Security based consensus, all the 2/3+1 proof verification and handling of staking, rewards are executed on the Ethereum smart contract. The whole design follows this philosophy of doing less on the Mainnet contract.
+title: Staking-Manager
+description: Staking Manager ist der Hauptauftrag für die Handhabung von validator-bezogenen Aktivitäten im Polygon Netzwerk.
 keywords:
   - docs
-  - matic
-image: https://matic.network/banners/matic-network-16x9.png
+  - Staking Manager
+  - polygon
+  - wiki
+  - validator
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-For the Polygon's Proof of Security based consensus, all the ⅔+1 proof verification and handling of staking, rewards are executed on the Ethereum smart contract.
+Alle Prämien werden auf Grundlage von Polygons Proof-of Security-basiertem Konsens, der gesamten ⅔+1- Proof-Verfizierung und der Abwicklung des Stakings auf dem Ethereum Smart Contract durchgeführt. Der gesamte Aufbau folgt dieser Philosophie, den Datenverkehr auf dem Mainnet-Contract möglichst gering zu halten. Es führt die information durch und schiebt alle computation-heavy Operationen auf L2 (lies über [Heimdall](https://wiki.polygon.technology/docs/pos/heimdall/overview)).
 
-The whole design follows this philosophy of doing less on the Mainnet contract. It does information verification and pushes all the computation-heavy operations to L2 (Read Heimdall for this doc).
+**Stakers** werden in **Prüfer**, **Delegatoren** und **Beobachter** unterteilt (für fraud
 
-Staking actors (Stakers) are divided into validators, delegators and watchers(for fraud reporting).
+[**StakeManager**](https://github.com/maticnetwork/contracts/blob/develop/contracts/staking/stakeManager/StakeManager.sol) ist der Hauptvertrag für die Handhabung von Validator-bezogenen Aktivitäten wie `checkPoint`signature Prämienverteilung und Stake Management. Da der Vertrag **NFT ID** als source verwendet, hat der Wechsel des Eigentums und des Signers nichts im System.
 
-StakeManager is the main contract for handling validator related activities like `checkPoint` signature verification, reward distribution, slashing and stake management.
+:::tip
 
-Note that from one Ethereum address, a Staker can only be a validator or delegator (It's just a design choice, no hard reasons).
+Von einer Ethereum-Adresse **aus kann ein Staker nur ein Prüfer oder Delegator sein** (es ist nur eine Design-Wahl, keine harten Gründen).
 
-Since the contract is using NFT ID as a source of ownership, change of ownership and signer won't affect anything in the system.
+:::
 
-`validatorThreshold`: Shows the maximum number of validators accepted by the system, also called slots.
+## Validator Admissions / Ersatz {#validator-admissions-replacement}
 
-### AccountStateRoot
+### Zulassungen {#admissions}
+Derzeit sind keine offenen Validator-Slots auf Polygon PoS verfügbar. Es gibt auch eine Warteliste, um Prüfer zu werden. Wenn Slots verfügbar werden, können Validatoren angewandt werden, um in Betracht zu ziehen und von der Warteliste entfernt werden.
 
-- For various accounting done on heimdall for validators and delegator account root is submitted while submitting the `checkpoint` .
-- accRoot is used while `claimRewards` and `unStakeClaim` .
 
-## Stake/stakeFor
+### Ersatz {#replacement}
+PIP4 hat das Konzept der Darstellung der validator für die community vorgestellt. Wenn sich ein Prüfer für einen längeren Zeitraum in einem ungesunden Zustand befindet, wie in PIP4 beschrieben, werden sie vom Netzwerk ausgesperrt. Der validator wird dann für diejenigen zur Verfügung gestellt, die aus der Warteliste kommen.
 
-```cpp
+:::info
+
+Derzeit wird [<ins>Phase 2 von PART C in PIP4</ins>](https://forum.polygon.technology/t/pip-4-validator-performance-management/9956/24) implementiert. Hier entscheidet die Community über die Bewertungskriterien für die validator In der Zeit wird diese Übung einen Bewerbungs- und Zulassungsprozess erstellen.
+
+:::
+
+## Methoden und Variablen {#methods-and-variables}
+
+:::caution Slashing Implementation
+
+`jail``unJail`, und `slash`Funktionen werden derzeit nicht als Teil der slashing verwendet.
+
+:::
+
+### validatorThreshold {#validatorthreshold}
+
+Es speichert die maximale Anzahl der vom System akzeptierten Prüfer, auch Slots genannt.
+
+### AccountStateRoot {#accountstateroot}
+
+- Für verschiedene Buchhaltung, die auf Heimdall für Prüfer und Delegator durchgeführt wird, wird Account root eingereicht, während der Einreichung der `checkpoint`.
+- accRoot wird verwendet während `claimRewards`und .`unStakeClaim`
+
+### stake / stakeFor {#stake-stakefor}
+
+```solidity title="StakeManager.sol"
 function stake(
     uint256 amount,
     uint256 heimdallFee,
@@ -48,172 +76,145 @@ function stakeFor(
 ) public;
 ```
 
-- Allows anyone with amount(Matic tokens) greater `minDeposit` then if `currentValidatorSetSize` is less then `validatorThreshold` .
-- MUST transfer `amount+heimdallFee` , puts validator into auction period for an auctionInterval.(more on auction in auction section)
-- `updateTimeLine` updates special timeline data structure, which keeps track of active validators and active stake for given epoch/checkpoint count.
-- One unique `NFT` is minted on each new stake/stakeFor call, which can be transferred to anyone but can be owned 1:1 ethereum address.
-- `acceptDelegation` set true if validators want to accept delegation, `ValidatorShare` contract is deployed for the validator.
+- Ermöglicht jedem mit einem Betrag (in MATIC Token) größer als , wenn weniger `minDeposit`als `currentValidatorSetSize`ist.`validatorThreshold`
+- Muss übertragen `amount+heimdallFee`werden, legt Prüfer in den Auktionsperiode für ein auctionInterval (mehr im Auction
+- `updateTimeLine`aktualisiert spezielle Timeline-Datenstruktur, die den Überblick über aktive Prüfer und den aktiven Einsatz für die gegebenen for behalten.
+- Eine Unique `NFT`wird auf jedem neuen `stake`oder Call angezeigt, der an jeden übertragen werden `stakeFor`kann, aber 1:1 Ethereum Adresse sein.
+- `acceptDelegation`auf true gesetzt, wenn Validatoren eine Delegation akzeptieren möchten, wird der `ValidatorShare`Vertrag für den Validator bereitgestellt.
 
-## unstake
+### Entfernen {#unstake}
 
-- Remove validator from validator set in next epoch(only valid for current checkpoint once called `unstake`
-- Remove validator's stake from timeline data structure, update count for validator's exit epoch.
-- If validator had delegation on collect all rewards and lock delegation contract for new delegations.
+- Entfernen Sie den Prüfer von der in der nächsten Epoche gesetzt (nur gültig für den aktuellen Checkpoint, der einmal aufgerufen `unstake`wird)
+- Entferne den Stake des Validators von der Datenstruktur der Timeline, aktualisiere den Zähler für den Austritt des Validators am Ende der Epoche.
+- Wenn der Prüfer die Delegation aufgeteilt hat, sammle alle Belohnungen und schalte den delegation für neue Delegationen ein.
 
-## unstakeClaim
+### unstakeClaim {#unstakeclaim}
 
-```cpp
+```solidity
 function unstakeClaim(uint256 validatorId) public;
 ```
 
-- After `unstaking` validators are put into withdrawal period so that they can be slashed if any fraud found after `unstaking` for pas frauds.
-- Once `WITHDRAWAL_DELAY` period is served validator's can call this function and do settlement with stakeManager(get rewards if any, get staked tokens back, burn NFT etc)
+- `unstaking`Nach werden Prüfer in den withdrawal gesetzt, damit sie für frühere Betrüger gesättigt werden können, wenn ein Betrug nach `unstaking`, gefunden wird.
+- Sobald der `WITHDRAWAL_DELAY`Zeitraum bedient ist, können Prüfer diese Funktion aufrufen und mit der Abwicklung durchführen `stakeManager`(erhalten Sie Prämien, wenn überhaupt, erhalten gestohlene Token zurück, brennen NFT usw.).
 
-## Restake
+### Wiederverwenden {#restake}
 
-```cpp
-function restake(uint256 validatorId, uint256 amount, bool stakeRewards)
-        public;
+```solidity
+function restake(uint256 validatorId, uint256 amount, bool stakeRewards) public;
 ```
 
-- Allows validators to increase their stake by putting new amount or rewards or both.
-- MUST update timeline(amount) for active stake.
+- Erlaubt es Validatoren, ihren Stake zu erhöhen, indem sie neue Beträge oder Prämien oder beides einlegen.
+- Muss die Timeline (Betrag) für den aktiven Einsatz aktualisieren.
 
-## withdrawRewards
+### withdrawRewards {#withdrawrewards}
 
-```cpp
-function withdrawRewards(uint256 validatorId)
-        public;
+```solidity
+function withdrawRewards(uint256 validatorId) public;
 ```
 
-- Allows validators to withdraw accumulated rewards, must consider getting rewards from delegation contract if validator accepts delegation.
+Diese Methode ermöglicht es den Prüfern, akkumulierte Belohnungen zurückzuziehen, müssen in Erwägung ziehen, Belohnungen aus dem delegation zu erhalten, wenn der Prüfer die Delegation akzeptiert.
 
-## updateSigner
+### updateSigner {#updatesigner}
 
-```cpp
-function updateSigner(uint256 validatorId, bytes memory signerPubkey)
-        public
+```solidity
+function updateSigner(uint256 validatorId, bytes memory signerPubkey) public
 ```
 
-- Allows validators to update signer address(which is used to validate blocks on Polygon chain and checkpoint sigs on stakeManager)
-- Once slashing is implemented there will be cap on how many times a validator can change signer key.
+Diese Methode ermöglicht es validators die Signer-Adresse zu aktualisieren (die verwendet wird, um Blöcke auf Polygon blockchain und Checkpoint-Signaturen auf zu `stakeManager`validieren).
 
-### topUpForFee
+### topUpForFee {#topupforfee}
 
-```cpp
-function topUpForFee(uint256 validatorId, uint256 heimdallFee) public
+```solidity
+function topUpForFee(uint256 validatorId, uint256 heimdallFee) public;
 ```
 
-- Validators can top-up their balance for heimdall fee.
+Validatoren können ihr Guthaben für Heimdall Fee aufladen, indem sie diese Methode aufrufen.
 
-## claimFee
+### claimFee {#claimfee}
 
-```cpp
+```solidity
 function claimFee(
         uint256 validatorId,
         uint256 accumSlashedAmount,
         uint256 accumFeeAmount,
         uint256 index,
         bytes memory proof
-    ) public
+    ) public;
 ```
 
-- Used to withdraw fee from heimdall.
-- `accountStateRoot` is updated on each checkpoint, so that validators can provide proof of inclusion in this root for account on heimdall and withdraw fee.
-- Note that `accountStateRoot` is re-written to prevent exits on multiple checkpoints(for old root and save accounting on stakeManager)
-- `accumSlashedAmount` is unused atm, will be used for slashing on heimdall if needed.
+Diese Methode wird verwendet, um Gebühren von Heimdall abzuheben. wird auf jedem Checkpoint aktualisiert, damit Prüfer einen Nachweis über die Aufnahme in diesem root für Konto auf `accountStateRoot`Heimdall erbringen und Gebühren zurücknehmen können.
 
-### StakingNFT
+Beachten Sie, dass neu geschrieben `accountStateRoot`wird, um Ausgänge auf mehreren Checkpoints zu verhindern (für alte root und Accounting `stakeManager`speichern). `accumSlashedAmount`wird im Moment nicht verwendet und für das Slashing auf Heimdall verwendet, wenn nötig.
 
-- Standard erc721 with few restrictions like one token per user and minted in sequential manner.
+### StakingNFT {#stakingnft}
 
-## Validator Replacement
+Standard ERC721 Vertrag mit wenigen Einschränkungen wie einem Token pro Benutzer und in sequentieller Weise geprägt.
 
-- In order to replace poor performing validator there is periodic auction for each validator slot.
-- For individual validators there is auction window where wanna be validators can bid their amount and start an auction using `startAuction` function.
-- Once the `auctionInterval` is over last bidder needs to close the auction in order to confirm and become validator. For which she needs to call `confirmAuctionBid` which accepts and behave similar to new `stake` function for upcoming validator and `unStake` for old validator.
-- Current validator can bid for herself and try to keep that place.
-- Whole mech dynamically balances the stake value and overall security according to market conditions and use of Polygon chain.
+### startAuction {#startauction}
 
-    ### startAuction
+```solidity
+function startAuction(
+    uint256 validatorId, /**  auction for validator */
+    uint256 amount /**  amount greater then old validator's stake */
+    ) external;
+```
 
-    ```jsx
-    function startAuction(
-        uint256 validatorId, /**  auction for validator */
-      uint256 amount /**  amount greater then old validator's stake */
-        ) external;
-    ```
+Um ein Gebot zu starten oder ein Gebot höher auf bereits laufenden Auktion zu starten, wird diese Funktion verwendet. Die Auktionsperiode läuft in Zyklen, `(auctionPeriod--dynasty)--(auctionPeriod--dynasty)--(auctionPeriod--dynasty)`so dass sie **auf die richtige Auktionsperiode überprüfen muss.**
 
-    - In order to start a bid or bid higher on already running auction this function is used.
-    - Auction period runs in cycles like `(auctionPeriod--dynasty)--(auctionPeriod--dynasty)--(auctionPeriod--dynasty)`  so it MUST check for correct auction period.
-    - `perceivedStakeFactor` is used to calculate exact factor*old stake (note currently it is by default 1 WIP for picking the function).
-    - MUST check for auction from last auction period if any still going on (one can choose to not call `confirmAuction` in order to get her capital out in next auction).
-    - Normally continuous english auction is going on in a `auctionPeriod` .
+`perceivedStakeFactor`wird verwendet, um den genauen Faktor zu calculate Stake (beachte, dass es derzeit standardmäßig 1 WIP für die Auswahl der Funktion ist). **Muss nach Auktion aus der letzten Auktionsphase überprüfen, ob noch los ist** (man kann wählen, nicht `confirmAuction`anrufen um ihr Kapital in der nächsten Auktion zu erhalten). Normalerweise wird die kontinuierliche englische Auktion in einer `auctionPeriod`stattfinden.
 
+### confirmAuctionBid {#confirmauctionbid}
 
-    ### confirmAuctionBid
+```solidity
+function confirmAuctionBid(
+        uint256 validatorId,
+        uint256 heimdallFee, /** for new validator */
+        bool acceptDelegation,
+        bytes calldata signerPubkey
+    ) external
+```
 
-    ```jsx
-    function confirmAuctionBid(
-            uint256 validatorId,
-            uint256 heimdallFee, /** for new validator */
-            bool acceptDelegation,
-            bytes calldata signerPubkey
-        ) external
-    ```
+- **Muss überprüfen, ob dies keine auctionPeriod. ist.**
+- Wenn der letzte Bieter Eigentümer von `validatorId`ist, sollte Verhalten ähnlich sein, wie auf restake.
+- Im zweiten Fall, nimm einen unStake vor `validatorId`und füge einen neuen Benutzer als Validator vom nächsten Checkpoint hinzu, da das Verhalten für den neuen Benutzer ähnlich sein sollte, wie stake/stakeFor.
 
-    - MUST check that this is not an auctionPeriod.
-    - If last bidder is owner of `validatorId` behaviour should be similar to restake.
-    - In second case unStake `validatorId` and add new user as validator from next checkpoint, for the new user behaviour should be similar to stake/stakeFor.
+### checkSignatures {#checksignatures}
 
-## checkSignatures
-
-```cpp
+```solidity
 function checkSignatures(
         uint256 blockInterval,
         bytes32 voteHash,
         bytes32 stateRoot,
         bytes memory sigs
-    ) public
+    ) public;
 ```
 
-- Writes are meant only for RootChain contract when submitting checkpoints
-- `voteHash` on which all validators sign (BFT ⅔+1 agreement)
-- This function validates only unique sigs and checks for ⅔+1 power has signed on checkpoint root (inclusion in `voteHash` verification in RootChain contract for all data) `currentValidatorSetTotalStake` provides current active stake.
-- Rewards are distributed proportional to validator's stake, more on rewards in below doc.
+- Die Writes sind nur für den Root-Chain-Contract gedacht, wenn Checkpoints eingereicht werden.
+- `voteHash`, auf welchem alle Validatoren unterschreiben (BFT ⅔+1-Vereinbarung)
+- Diese Funktion validiert nur die eindeutigen Signaturen und Kontrollen, da die ⅔+1-Bemächtigung auf der Checkpoint-Root unterschrieben wurde (Miteinbeziehung in `voteHash`-Verifizierung im RootChain-Contract für alle Daten) `currentValidatorSetTotalStake` stellt den aktuellen aktiven Stake zur Verfügung.
+- Prämien werden proportional zum Einsatz des Prüfers verteilt. Mehr zu Prämien in [Rewards Distribution](https://www.notion.so/Rewards-Distribution-127d586c14544beb9ea326fd3bb5d3a2).
 
-[Rewards Distribution](https://www.notion.so/Rewards-Distribution-127d586c14544beb9ea326fd3bb5d3a2)
+### isValidator {#isvalidator}
 
-### isValidator
+Prüft, ob ein bestimmter Prüfer für die aktuelle Epoche aktiv ist.
 
-- Checks if given validator is active validator for current epoch.
+## Datenstruktur der Timeline {#timeline-data-structure}
 
-### Timeline data structure
-
-```cpp
+```solidity
 struct State {
-        int256 amount;
-        int256 stakerCount;
-    }
+    int256 amount;
+    int256 stakerCount;
+}
+
 mapping(uint256 => State) public validatorState;
 ```
 
 <img src={useBaseUrl("img/staking_manager/staking_manager.png")} />
 
-Diagram trying to explain timeline data structure
+## StakingInfo {#stakinginfo}
 
----
+Der zentralisierte logging für Validator- und delegation enthält nur wenige read Du kannst den Quellcode des [StakingInfo.sol](https://github.com/maticnetwork/contracts/blob/develop/contracts/staking/StakingInfo.sol) auf GitHub ansehen.
 
-# StakingInfo
+## ValidatorShareFactory {#validatorsharefactory}
 
-Source: [StakingInfo.sol](https://github.com/maticnetwork/contracts/blob/develop/contracts/staking/StakingInfo.sol)
-
-Centralised logging contract for both validator and delegation events, Includes few read only functions.
-
-# ValidatorShareFactory
-
-Factory contract to deploy `ValidatorShare` contract for each validator who opt-in for delegation.
-
----
-
-NOTE: `jail`, `unJail` and `slash` function aren't used currently (part of slashing implementation).
+Ein Werkvertrag zur Bereitstellung von `ValidatorShare`Vertrag für jeden Prüfer, der sich für die Delegation anmeldet. Du kannst den Quellcode des Vertrags über den [ValidatorShareFactory.sol](https://github.com/maticnetwork/contracts/blob/develop/contracts/staking/validatorShare/ValidatorShareFactory.sol) auf GitHub ansehen.

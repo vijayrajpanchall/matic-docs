@@ -1,80 +1,83 @@
 ---
 id: nftstorage
-title: Mint NFTs
-description: Mint with NFT.storage and Polygon
+title: Acuñación de NFT
+description: Acuña con NFT.storage y Polygon.
 keywords:
   - nft.storage
   - filecoin
   - matic
-image: https://matic.network/banners/matic-network-16x9.png
+  - polygon
+  - docs
+  - mint nfts
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
-This tutorial will teach you to mint an NFT using the Polygon blockchain and IPFS/Filecoin storage via NFT.Storage. Polygon, a Layer 2 scaling solution for Ethereum, is often chosen by developers for its speed and lower transaction costs while maintaining full compatibility with Ethereum's EVM. The tutorial will walk you through the creation and deployment of a standardized smart contract, storing metadata and assets on IPFS and Filecoin via the NFT.Storage API and minting the NFT to your own wallet on Polygon.
+Este tutorial te enseñará a acuñar un NFT utilizando la cadena de bloques de Polygon y el almacenamiento de IPFS/Filecoin por medio de NFT.Storage. Con frecuencia, los desarrolladores eligen Polygon, una solución de escalado de capa 2 para Ethereum, por su velocidad, sus bajos costos de transacción y por ser completamente compatible con la máquina virtual de Ethereum (EVM). El tutorial te explicará la creación y la implementación de un contrato inteligente estandarizado, almacenando metadatos y activos en IPFS y Filecoin mediante la interfaz de programación de aplicaciones (API) de NFT.Storage, y acuñando el NFT en tu propia billetera de Polygon.
 
-## Introduction
+## Introducción {#introduction}
 
-In this tutorial we will aim to fulfill three characteristics with our minting process:
+En este tutorial, intentaremos cumplir tres características con nuestro proceso de acuñación:
 
-1. *Scalability* of the minting process in terms of cost and throughput. If the use case aims to rapidly create NFTs, the underlying technology needs to handle all minting requests and the minting should be cheap.
-2. *Durability* of the NFT, as assets can be long-lived and therefore need to remain usable during their full lifetime.
-3. *Immutability* of the NFT and the asset it represents to prevent unwanted changes and malicious actors from changing the digital asset the NFT represents.
+1. *Escalabilidad* del proceso de acuñación en términos de costo y rendimiento. Si el caso de uso apunta a crear NFT rápidamente, la tecnología usada debe poder manejar todas las solicitudes de acuñación y la acuñación debe ser de bajo costo.
+2. *Durabilidad* del NFT, ya que los activos pueden ser de larga duración y el NFT debe poder usarse durante toda la vida útil de aquellos.
+3. *Inmutabilidad* del NFT y del activo al que representa para evitar que cambios indeseados y actores malintencionados modifiquen el activo digital que el NFT representa.
 
-[Polygon](https://polygon.technology) addresses the *scalability* characteristic with their protocol and framework. They are also compatible with Ethereum and its virtual machine, enabling developers to move their code freely between the two blockchains. Likewise, [NFT.Storage](https://nft.storage) guarantees *durability* with the power of the underlying [Filecoin](https://filecoin.io) network and *immutability* by using IPFS' [content addressing](https://nftschool.dev/concepts/content-addressing/).
+[Polygon](https://polygon.technology) soluciona la *escalabilidad* con su protocolo y marco de trabajo. Estos también son compatibles con Ethereum y su máquina virtual, lo que les permite a los desarrolladores mover sus códigos libremente entre ambas cadenas de bloques. Asimismo, [NFT.Storage](https://nft.storage) garantiza la *durabilidad* gracias a la potencia de la red subyacente de [Filecoin](https://filecoin.io) y la *inmutabilidad* gracias al [direccionamiento de contenido](https://nftschool.dev/concepts/content-addressing/) de IPFS.
 
-In this tutorial you will get an overview of the NFT minting process, learn how to store a digital asset with NFT.Storage and use this digital asset to mint your NFT on Polygon.
+En este tutorial, obtendrás una descripción general del proceso de acuñación de NFT, aprenderás a almacenar un activo digital con NFT.Storage y usarás ese activo digital para acuñar tu NFT en Polygon.
 
-## Prerequisites
+## Prerrequisitos {#prerequisites}
 
-General knowledge about NFTs will give you background and context. [NFT School covers NFT basics](https://nftschool.dev/concepts/non-fungible-tokens/), advanced topics and has more tutorials.
+Tener conocimiento general sobre los NFT te dará contexto. [NFT School trata los aspectos básicos y avanzados de los NFT](https://nftschool.dev/concepts/non-fungible-tokens/), y ofrece más tutoriales.
 
-To test and run the code found in this tutorial, you will need a working [Node.js installation](https://nodejs.org/en/download/package-manager/).
+Para poner a prueba y ejecutar el código que incluye este tutorial, necesitarás una [instalación de Node.js](https://nodejs.org/en/download/package-manager/) activa.
 
-You'll also need a Polygon wallet on the Mumbai testnet with a small amount of the MATIC token. Follow the instructions below to get started:
+También necesitarás una billetera de Polygon en la red de pruebas Mumbai con una pequeña cantidad de tokens MATIC. Sigue estas instrucciones para comenzar:
 
-1. **Download and install [Metamask](https://metamask.io/)**. MetaMask is a crypto wallet and gateway to blockchain apps. It's very easy to use and simplifies a lot of steps, e.g., setting up a Polygon wallet.
-2. **Connect MetaMask to Polygon's [Mumbai testnet](https://docs.polygon.technology/docs/develop/metamask/overview)** and select it in the dropdown menu. We will use Polygon's testnet to mint our NFT as it's free of charge.
-3. **Receive MATIC token** to your wallet by using the [faucet](https://faucet.polygon.technology/). Select the Mumbai testnet and paste your wallet address from MetaMask into the form. To mint an NFT, we need to pay a small amount of MATIC, which is a fee charged by miners for operations to add new transactions to the blockchain, e.g., minting an NFT or creating a new smart contract.
-4. **Copy your private key** from MetaMask by clicking on the three dots in the top right corner and selecting 'Account details'. On the bottom you can find a button to export your private key. Click it and enter your password when prompted. You can copy and paste the private key in a text file for now. We will use it later in the tutorial when interacting with the blockchain.
+1. **Descarga e instala [MetaMask](https://metamask.io/)**. MetaMask es una billetera de criptomonedas y una puerta de entrada a las aplicaciones de cadena de bloques. Es muy fácil de usar y simplifica muchos pasos, como configurar una billetera de Polygon.
+2. **Conecta MetaMask con la [red de pruebas Mumbai](https://docs.polygon.technology/docs/develop/metamask/overview)**de Polygon y selecciónala en el menú desplegable. Usaremos la red de pruebas de Polygon para acuñar nuestro NFT, ya que es gratuita.
+3. **Obtén tokens MATIC** en tu billetera usando el [grifo](https://faucet.polygon.technology/). Selecciona la red de pruebas Mumbai y pega la dirección de tu billetera de MetaMask en el formulario. Para acuñar un NFT, tienes que pagar un pequeño monto de MATIC, que es la comisión que cobran los mineros por las operaciones para añadir transacciones nuevas a la cadena de bloques, por ejemplo, acuñar un NFT o crear un nuevo contrato inteligente.
+4. **Copia tu clave privada** de MetaMask haciendo clic en los tres puntos que se encuentran en la esquina superior derecha y seleccionando "Account details" (Información de la cuenta). En la parte inferior puedes encontrar un botón para exportar tu clave privada. Haz clic en ese botón y escribe tu contraseña cuando se te solicite. Puedes copiar y pegar la clave privada en un archivo de texto por ahora. Lo usaremos más adelante en el tutorial, cuando interactuemos con la cadena de bloques.
 
-Lastly, you will need a text or code editor. For more convenience, choose an editor with language support for both JavaScript and Solidity. A good option is [Visual Studio Code](https://code.visualstudio.com) with the [solidity](https://marketplace.visualstudio.com/items?itemName=JuanBlanco.solidity) extension enabled.
+Por último, necesitarás un editor de texto o de código. Te conviene elegir un editor con soporte de lenguaje para JavaScript y Solidity. Una buena opción es [Visual Studio Code](https://code.visualstudio.com) con la extensión de [Solidity](https://marketplace.visualstudio.com/items?itemName=JuanBlanco.solidity) habilitada.
 
-## Preparation
+## Preparación {#preparation}
 
-### Get an API key for NFT.storage
+### Obtén una clave para la API de NFT.storage {#get-an-api-key-for-nft-storage}
 
-In order to use NFT.Storage you need an API key. First, [head over to NFT.Storage to log in with your email address](https://nft.storage/login/). You will receive an email with a magic link that signs you in -- no password needed. After you successfully logged in, go to API Keys via the navigation bar. You will find a button to create a **New Key**. When prompted for an API key name, you can freely choose one or use “polygon + NFT.Storage”. You can copy the content of the key column now or reference back to NFT.Storage later in the tutorial.
+Necesitas una clave para la API para usar NFT.Storage. Primero, [dirígete a NFT.Storage e inicia sesión con tu dirección de correo electrónico](https://nft.storage/login/). Recibirás un correo electrónico con un enlace mágico con el que podrás ingresar sin contraseña. Después de iniciar sesión, dirígete a las claves de la API mediante la barra de navegación. Encontrarás un botón para crear una **nueva clave**. Cuando se te pida el nombre de la clave de la API, puedes elegir uno o usar “polygon + NFT.Storage”. Puedes copiar el contenido de la columna de la clave ahora o volver a NFT.Storage más adelante en el tutorial.
 
-### Set up your workspace
+### Configura tu espacio de trabajo {#set-up-your-workspace}
 
-Create a new empty folder that we can use as our workspace for this tutorial. Feel free to choose any name and location on your file system. Open up a terminal and navigate to the newly created folder.
+Crea una nueva carpeta vacía que puedas utilizar como espacio de trabajo para este tutorial. Escoge cualquier nombre y ubicación en tu sistema de archivos. Abre un terminal y busca la carpeta recién creada.
 
-Next, we will install the following Node.js dependencies:
+A continuación, instalaremos las siguientes dependencias de Node.js:
 
-- **Hardhat and Hardhat-Ethers**, a development environment for Ethereum (and Ethereum compatible blockchains like Polygon).
-- **OpenZeppelin**, a collection of smart contracts featuring standardized NFT base contracts.
-- **NFT.Storage**, a library to connect to the NFT.Storage API.
-- **Dotenv**, a library to handle environment files for configuration (e.g., injecting private keys into the script).
+- **Hardhat y Hardhat-Ethers**, un entorno de desarrollo para Ethereum (y las cadenas de bloques compatibles con Ethereum, como Polygon).
+- **OpenZeppelin**, una colección de contratos inteligentes que ofrece contratos estandarizados para NFT.
+- **NFT.Storage**, una biblioteca para conectarse con la API de NFT.Storage.
+- **Dotenv**, una biblioteca para administrar archivos de entorno para la configuración (por ejemplo, inyectar claves privadas en la secuencia de comandos).
 
-Use the following command to install all dependencies at once:
+Usa el siguiente comando para instalar todas las dependencias a la vez:
 
 ```bash
 npm install hardhat @openzeppelin/contracts nft.storage dotenv @nomiclabs/hardhat-ethers
 ```
 
-Hardhat needs to be initialized in the current folder. In order to start the initialization, execute:
+Hardhat tiene que inicializarse en la carpeta actual. Para activar la inicialización, ejecuta:
 
 ```bash
 npx hardhat
 ```
 
-When prompted, choose `Create an empty hardhat.config.js`. Your console output should look like this:
+Cuando se te lo solicite, selecciona **Crear un  vacío**. La salida de tu consola debería verse así:
 
 ```bash
 ✔ What do you want to do? · Create an empty hardhat.config.js
 ✨ Config file created ✨
 ```
 
-We will do some modifications to the hardhat configuration file `hardhat.config.js` to support the Polygon Mumbai test network. Open the `hardhat.config.js` that was created in the last step. Please note that we are loading your Polygon wallet private key from an environment file and that this environment file must be kept safe. You can even use other rpc [link](https://docs.polygon.technology/docs/operate/network), as per requirement.
+Haremos algunas modificaciones en el archivo de configuración de Hardhat `hardhat.config.js` para admitir la red de pruebas Mumbai de Polygon. Abre el `hardhat.config.js` que se creó en el paso anterior. Ten en cuenta que estamos cargando la clave privada de tu billetera de Polygon desde un archivo de entorno y ese archivo de entorno debe mantenerse en un sitio seguro. También puedes usar otro [enlace](https://docs.polygon.technology/docs/develop/network-details/network) de llamada a procedimiento remoto (RPC), según los requisitos.
 
 ```js
 /**
@@ -105,36 +108,36 @@ module.exports = {
 }
 ```
 
-Create a new file called `.env` which will hold your API key for NFT.Storage and your Polygon wallet. The content of the `.env` file should look like the listing below:
+Crea un nuevo archivo llamado `.env`que mantendrá tu clave API para NFT.Storage y tu clave privada de billetera Polygon. El contenido del `.env`archivo debe verse algo como:
 
 ```bash
 PRIVATE_KEY="Your Private Key"
 NFT_STORAGE_API_KEY="Your Api Key"
 ```
 
-Replace the placeholders with the API key you created during preparation and your Polygon wallet private key.
+Reemplaza los marcadores de posición con la clave de la API que creaste durante la preparación y la clave privada de tu billetera de Polygon.
 
-To keep our project organized, we'll create three new folders:
+Para organizar nuestro proyecto, crearemos tres carpetas nuevas:
 
-1. `contracts`, for the Polygon contracts written in Solidity.
-2. `assets`, containing the digital asset we will mint as an NFT.
-3. `scripts`, as helpers to drive the preparation and minting process.
+1. `contracts`, para los contratos de Polygon escritos en Solidity.
+2. `assets`, que contiene el activo digital que acuñaremos como NFT.
+3. `scripts`, como ayudantes para dirigir el proceso de preparación y acuñación.
 
-Execute the following command:
+Ejecuta el siguiente comando:
 
 ```bash
 mkdir contracts assets scripts
 ```
 
-Lastly, we will add an image to the `assets` folder. This image will be our artwork that we will upload to NFT.Storage and mint on Polygon. We will name it `ExampleNFT.png` for now. If you do not have some nice art ready, you can [download a simple pattern](https://ipfs.io/ipfs/bafkreiawxb4aji744637trok275odl33ioiijsvvahnat2kw5va3at45mu).
+Por último, añadiremos una imagen a la carpeta `assets`. Esta será la ilustración que cargaremos en NFT.Storage y acuñaremos en Polygon. La llamaremos `MyExampleNFT.png` por ahora. Si no tienes una ilustración bonita preparada, puedes [descargar un patrón sencillo](https://ipfs.io/ipfs/bafkreiawxb4aji744637trok275odl33ioiijsvvahnat2kw5va3at45mu).
 
-## Minting your NFT
+## Acuñación de NFT {#minting-your-nft}
 
-### Storing asset data with NFT.Storage
+### Almacenamiento de datos de activos con NFT.Storage {#storing-asset-data-with-nft-storage}
 
-We will use NFT.Storage to store our digital asset and its metadata. NFT.Storage guarantees immutability and durability by uploading your digital asset to Filecoin and IPFS automatically. IPFS and Filecoin operate on content identifiers (CID) for immutable referencing. IPFS will provide fast retrieval with its geo-replicated caching and Filecoin guarantees durability with incentivized storage providers.
+Usaremos NFT.Storage para almacenar nuestro activo digital y sus metadatos. NFT.Storage garantiza la inmutabilidad y la durabilidad cargando tu activo digital en Filecoin e IPFS automáticamente. IPFS y Filecoin trabajan con identificadores de contenido (CID) para ofrecer referencias inmutables. IPFS proporcionará una rápida recuperación con su almacenamiento en caché con replicación geográfica y Filecoin garantiza la durabilidad con proveedores de almacenamiento incentivados.
 
-Create a script called `store-asset.mjs` below the `scripts` directory. The contents are listed below:
+Crea una secuencia de comandos con el nombre  `store-asset.mjs`debajo del directorio `scripts`. El contenido se enuncia a continuación:
 
 ```js
 import { NFTStorage, File } from "nft.storage"
@@ -166,25 +169,25 @@ storeAsset()
    });
 ```
 
-The main part of the script is the `storeAsset` function. It creates a new client connecting to NFT.Storage using the API key you created earlier. Next we introduce the metadata consisting of name, description, and the image. Note that we are reading the NFT asset directly from the file system from the `assets` directory. At the end of the function we will print the metadata URL as we will use it later when creating the NFT on Polygon.
+La parte principal de la secuencia de comandos es la función `storeAsset`. Esta crea un nuevo cliente que se conecta a NFT.Storage con la clave de la API que creaste anteriormente. Luego, introducimos los metadatos, que son el nombre, la descripción y la imagen. Ten en cuenta que estamos leyendo el activo del NFT directamente desde el sistema de archivos del directorio `assets`. Al final de la función, imprimiremos el URL de los metadatos, ya que lo usaremos más adelante, cuando creemos el NFT en Polygon.
 
-After setting up the script, you can execute it by running:
+Después de configurar la secuencia de comandos, puedes ejecutarla mediante:
 
 ```bash
 node scripts/store-asset.mjs
 ```
 
-Your output should look like the listing below, where `HASH` is the CID to the art you just stored.
+La salida debería verse como el siguiente listado, donde `HASH` es el CID de la ilustración que acabas de almacenar.
 
 ```bash
 Metadata stored on Filecoin/IPFS at URL: ipfs://HASH/metadata.json
 ```
 
-### Creating your NFT on Polygon
+### Creación de un NFT en Polygon {#creating-your-nft-on-polygon}
 
-#### Create the smart contract for minting
+#### Crea un contrato inteligente para la acuñación {#create-the-smart-contract-for-minting}
 
-First, we will create a smart contract that will be used to mint the NFT. Since Polygon is compatible with Ethereum, we will write the smart contract in [Solidity](https://soliditylang.org). Create a new file for our NFT smart contract called `ExampleNFT.sol` inside the `contracts` directory. You can copy the code of the listing below:
+Primero, crearemos un contrato inteligente que se utilizará para acuñar el NFT. Dado que Polygon es compatible con Ethereum, escribiremos el contrato inteligente en [Solidity](https://soliditylang.org). Crea un archivo nuevo para el contrato inteligente de NFT con el nombre `ExampleNFT.sol` dentro del directorio `contracts`. Puedes copiar el código del listado a continuación:
 
 ```solidity
 // Contract based on https://docs.openzeppelin.com/contracts/4.x/erc721
@@ -217,33 +220,33 @@ contract ExampleNFT is ERC721URIStorage, Ownable {
 }
 ```
 
-To be a valid NFT, your smart contract must implement all the methods of the [ERC-721 standard](https://ethereum.org/en/developers/docs/standards/tokens/erc-721/). We use the implementation of the [OpenZeppelin](https://openzeppelin.com) library, which already provides a set of basic functionalities and adheres to the standard.
+Para que sea un NFT válido, el contrato inteligente debe implementar todos los métodos del [estándar ERC-721](https://ethereum.org/en/developers/docs/standards/tokens/erc-721/). Nosotros usamos la implementación de la biblioteca [OpenZeppelin](https://openzeppelin.com), que ofrece un conjunto de funcionalidades básicas y cumple con el estándar.
 
-At the top of our smart contract, we import three OpenZeppelin smart contract classes:
+En la parte superior del contrato inteligente, importamos tres clases de contrato inteligente de OpenZeppelin:
 
-`\@openzeppelin/contracts/token/ERC721/ERC721.sol` contains the implementation of the basic methods of the ERC-721 standard, which our NFT smart contract will inherit. We use the `ERC721URIStorage,` which is an extension to store not just the assets but also metadata as a JSON file off-chain. Like the contract, this JSON file needs to adhere to ERC-721.
+1. `\@openzeppelin/contracts/token/ERC721/ERC721.sol` contiene la implementación de los métodos básicos del estándar ERC-721, que heredará nuestro contrato inteligente de NFT. Usamos `ERC721URIStorage,`, que es una extensión para almacenar no solo los activos, sino también metadatos como archivo JSON fuera de la cadena. Al igual que el contrato, el archivo JSON tiene que cumplir con la ERC-721.
 
-`\@openzeppelin/contracts/utils/Counters.sol` provides counters that can only be incremented or decremented by one. Our smart contract uses a counter to keep track of the total number of NFTs minted and to set the unique ID on our new NFT.
+2. `\@openzeppelin/contracts/utils/Counters.sol` proporciona contadores que solo pueden incrementarse o disminuirse de a una unidad. El contrato inteligente emplea un contador para llevar un registro de la cantidad total de NFT acuñados y establecer el identificador único del nuevo NFT.
 
-`\@openzeppelin/contracts/access/Ownable.sol` sets up access control on our smart contract, so only the owner of the smart contract (you) can mint NFTs.
+3. `\@openzeppelin/contracts/access/Ownable.sol` configura el control de acceso del contrato inteligente, para que solo el titular del contrato (tú) pueda acuñar NFT.
 
-After our import statements, we have our custom NFT smart contract, which contains a counter, a constructor, and a method to actually mint the NFT. Most of the hard work is done by the base contract inherited from OpenZeppelin, which implements most of the methods we require to create an NFT adhering to the ERC-721 standard.
+Después de las sentencias de importación, tendremos el contrato inteligente de NFT personalizado, que contiene un contador, un constructor y un método para acuñar el NFT. La mayor parte del trabajo difícil lo hace el contrato de base heredado de OpenZeppelin, que implementa la mayoría de los métodos que necesitamos para crear un NFT que cumpla con el estándar ERC-721.
 
-The counter keeps track of the total number of NFTs minted, which is used in the minting method as a unique identifier for the NFT.
+El contador lleva el registro de la cantidad total de NFT acuñados, que se utiliza en el método de acuñación como identificador único del NFT.
 
-In the constructor, we pass in two string arguments for the name of the smart contract and the symbol (represented in wallets). You can change them to whatever you like.
+En el constructor, pasamos dos argumentos de cadena para el nombre del contrato inteligente y el símbolo (representado en las billeteras). Puedes cambiarlos por los que quieras.
 
-Finally, we have our method `mintNFT` that allows us to actually mint the NFT. The method is set to `onlyOwner` to make sure it can only be executed by the owner of the smart contract.
+Por último, tenemos el método `mintNFT`, que nos permite acuñar efectivamente el NFT. El método se configura en `onlyOwner` para garantizar que solo pueda ejecutarlo el titular del contrato inteligente.
 
-`address recipient` specifies the address that will receive the NFT at first
+`address recipient`especifica la dirección que recibirá el NFT al principio.
 
-`string memory tokenURI` is a URL that should resolve to a JSON document that describes the NFT's metadata. In our case it's already stored on NFT.Storage. We can use the returned IPFS link to the metadata JSON file during the execution of the method.
+`string memory tokenURI` es un URL que debería resolverse en un documento JSON que describa los metadatos del NFT. En nuestro caso, ya se almacenó en NFT.Storage. Podemos utilizar el enlace de IPFS que se le devolvió al archivo JSON de metadatos durante la ejecución del método.
 
-Inside the method, we increment the counter to receive a new unique identifier for our NFT. Then we call the methods provided by the base contract from OpenZeppelin to mint the NFT to the recipient with the newly created identifier and setting the URI of the metadata. The method returns the unique identifier after execution.
+En el método, incrementamos el contador para recibir un nuevo identificador único para el NFT. Luego, llamamos a los métodos proporcionados por el contrato de base de OpenZeppelin para acuñar el NFT para el receptor con el identificador recién creado y configurar el identificador uniforme de recursos (URI) de los metadatos. El método devuelve el identificador único después de la ejecución.
 
-#### Deploy the smart contract to Polygon
+#### Implementación del contrato inteligente en Polygon {#deploy-the-smart-contract-to-polygon}
 
-Now, it's time to deploy our smart contract to Polygon. Create a new file called `deploy-contract.mjs` within the `scripts` directory. Copy the contents of the listing below into that file and save it.
+Ahora, es momento de implementar el contrato inteligente en Polygon. Crea un archivo nuevo con el nombre `deploy-contract.mjs` dentro del directorio `scripts`. Copia el contenido del siguiente listado en ese archivo y guárdalo.
 
 ```js
 async function deployContract() {
@@ -265,23 +268,25 @@ deployContract()
  });
 ```
 
-Deploying the contract is done with the helper functions provided by the hardhat library. First, we get the smart contract we created in the previous step with the provided factory. Then we deploy it by calling the respective method and wait for the deployment to be completed. There are a few more lines below the described code to get the correct address in the testnet environment. Save the `mjs` file Execute the script with the following command:
+La implementación del contrato se realiza con las funciones de ayuda proporcionadas por la biblioteca de Hardhat. Primero, obtenemos el contrato inteligente que creamos en el paso anterior con la fábrica proporcionada. Después, lo implementamos llamando al método respectivo y esperamos que se complete la implementación. Hay otras líneas debajo del código descrito para obtener la dirección correcta en el entorno de la red de pruebas. Guarda el `mjs`archivo.
+
+Ejecuta el script con el siguiente comando:
 
 ```bash
 npx hardhat run scripts/deploy-contract.mjs --network PolygonMumbai
 ```
 
-If everything is correct, you will see the following output:
+Si todo es correcto, verás el siguiente resultado:
 
 ```bash
 Contract deployed to address: 0x{YOUR_CONTRACT_ADDRESS}
 ```
 
-Note that you will need the printed contract address in the minting step. You can copy and paste it into a separate text file and save it for later. This is necessary so the minting script can call the minting method of that specific contract.
+Ten en cuenta que necesitarás tener impresa la dirección del contrato en el paso de acuñación. Puedes pegarla en un archivo de texto aparte y guardarlo para más tarde. Eso es necesario para que la secuencia de comandos de acuñación pueda llamar al método de acuñación de ese contrato específico.
 
-#### Minting the NFT on Polygon
+#### Acuñación del NFT en Polygon {#minting-the-nft-on-polygon}
 
-Minting the NFT is now merely calling the contract we just deployed to Polygon. Create a new file called `mint-nft.mjs` inside the `scripts` directory and copy this code from the listing below:
+Para acuñar el NFT, ahora solo tenemos que llamar al contrato que acabamos de implementar en Polygon. Crea un archivo nuevo con el nombre `mint-nft.mjs` dentro del directorio `scripts` y copia este código de la siguiente lista:
 
 ```bash
 const CONTRACT_ADDRESS = "0x00"
@@ -302,25 +307,28 @@ mintNFT(CONTRACT_ADDRESS, META_DATA_URL)
    });
 ```
 
-Edit the first two lines to insert your **contract address** from the earlier deployment and the **metadata URL** that was returned when storing the asset with NFT.Storage. The rest of the script sets up the call to your smart contract with you as the to-be owner of the NFT and the pointer to the metadata stored on IPFS.
+Edita las dos primeras líneas para insertar la **dirección del contrato** de la implementación anterior y el **URL de los metadatos** devuelta al almacenar el activo con NFT.Storage. El resto de la secuencia de comandos configura la llamada al contrato inteligente poniéndote a ti como futuro propietario del NFT y el apuntador hacia los metadatos almacenados en IPFS.
 
-Next, run the script:
+A continuación, ejecuta la secuencia de comandos:
 
 ```bash
-npx hardhat run scripts/mint-nft.mjs \--network PolygonMumbai
+npx hardhat run scripts/mint-nft.mjs --network PolygonMumbai
 ```
 
-You can expect to see the following output:
-```bash NFT minted to: 0x{YOUR_WALLET_ADDRESS} ````
+Deberías ver la siguiente salida:
 
-Looking for the sample code from this tutorial? You can find it in the polygon-nft.storage-demo [link](https://github.com/itsPiyushMaheshwari/Polygon-nft.storage-demo) Github repo.
+```bash
+NFT minted to: 0x<YOUR_WALLET_ADDRESS>
+```
 
-## Conclusion
+¿Estás buscando el código de ejemplo de este tutorial? Puedes encontrarlo en el repositorio de Github en polygon-nft.storage-demo ([enlace](https://github.com/itsPiyushMaheshwari/Polygon-nft.storage-demo)).
 
-In this tutorial, we learned how to mint a NFT end-to-end with Polygon and NFT.Storage. This technology combination results in proper decentralization and guarantees *scalability*, *durability*, and *immutability*.
+## Conclusión {#conclusion}
 
-We deployed a custom smart contract to mint our NFT specific to our needs. For this tutorial, we used a simple example based on the ERC-721 standard. However, you can also define complex logic that governs your NFT life cycle. For more complex use cases, the successor standard [ERC-1155](https://ethereum.org/en/developers/docs/standards/tokens/erc-1155/) is a good place to start. OpenZeppelin, the library we use in our tutorial offers a [contracts wizard](https://docs.openzeppelin.com/contracts/4.x/wizard) that helps create NFT contracts.
+En este tutorial, aprendimos a acuñar un NFT de principio a fin con Polygon y NFT.Storage. Esta combinación de tecnologías da lugar a una descentralización adecuada y garantiza la *escalabilidad*, la *durabilidad* y *la inmutabilidad*.
 
-Successful minting can be seen as the start of the valuable phase of the NFT. The NFT can then be used to prove ownership and can be transferred to other users. Reasons to transfer a NFT might include a successful sale on one of the NFT marketplaces like [OpenSea](https://opensea.io), or a different type of event such as acquiring an item in a NFT based game. Exploring the rich possibilities for NFTs is definitely an exciting next step.
+Implementamos un contrato inteligente personalizado para acuñar un NFT de acuerdo con nuestras necesidades. Para este tutorial, usamos un ejemplo sencillo basado en el estándar ERC-721. Sin embargo, también puedes definir la lógica compleja que rige el ciclo de vida del NFT. Para casos de uso más complejos, te recomendamos empezar con el estándar sucesor, [ERC-1155](https://ethereum.org/en/developers/docs/standards/tokens/erc-1155/). OpenZeppelin, la biblioteca que utilizamos en el tutorial, ofrece un [asistente de contratos](https://docs.openzeppelin.com/contracts/4.x/wizard) que ayuda a crear contratos de NFT.
 
-If you\'d like help building your NFT project with NFT.storage, we encourage you to join the `#nft-storage` channel on [Discord](https://discord.gg/Z4H6tdECb9) and [Slack](https://filecoinproject.slack.com/archives/C021JJRH26B).
+La acuñación exitosa se puede considerar el inicio de la fase con valor del NFT. Después de eso, el NFT se puede utilizar para probar la titularidad y se les puede transferir a otros usuarios. Los motivos para transferir un NFT podrían ser la venta en uno de los mercados de NFT, como [OpenSea](https://opensea.io) u otro tipo de evento, como la adquisición de un artículo en un juego basado en NFT. Definitivamente, explorar las variadas posibilidades de los NFT debe ser tu próximo paso.
+
+Si quieres ayudar a construir tu proyecto NFT con NFT.storage, te animamos a que te unes al `#nft-storage`canal en D[iscord ](https://discord.gg/Z4H6tdECb9)y S[lack.](https://filecoinproject.slack.com/archives/C021JJRH26B)

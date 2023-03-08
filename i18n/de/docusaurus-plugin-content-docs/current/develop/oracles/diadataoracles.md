@@ -1,15 +1,14 @@
 ---
 id: diadataoracles
-title: DIA Data
-description: Build your next blockchain app on Polygon.
+title: DIA-Daten
+description: Erstelle deine nächste Blockchain-App auf Polygon.
 keywords:
   - docs
   - matic
   - dia
   - oracle
-image: https://matic.network/banners/matic-network-16x9.png
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
-
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-DApp developers who want to leverage DIA oracles can access the published data on Polygon. DIA offers cryptocurrency and data about traditional financial assets. For more details click [here](https://github.com/diadata-org/diadata/blob/master/documentation/oracle-documentation/matic.md)
+DApp-Entwickler, die DIA-Oracles nutzen möchten, können bei Polygon auf veröffentlichte Daten zugreifen. DIA bietet Kryptowährungen und Daten über traditionelle finanzielle Vermögenswerte an. Für weitere Details klicke [hier](https://github.com/diadata-org/diadata/blob/master/documentation/oracle-documentation/matic.md)

@@ -1,12 +1,12 @@
 ---
 id: withdraw-exit
-title: withdraw exit
+title: Auszahlung beenden
 keywords:
-  - 'pos client, erc721, withdrawExit, polygon, sdk'
-description: 'Get started with maticjs'
+- 'pos client, erc721, withdrawExit, polygon, sdk'
+description: 'Den Abhebungsprozess beenden.'
 ---
 
-`withdrawExit` method can be used to exit the withdraw process once challenge period has been completed.
+Die `withdrawExit`-Methode kann angewandt werden, um den Abhebungsprozess zu beenden, nachdem der Anfechtungszeitraum abgelaufen ist.
 
 ```
 const erc20RootToken = plasmaClient.erc721(<root token address>, true);

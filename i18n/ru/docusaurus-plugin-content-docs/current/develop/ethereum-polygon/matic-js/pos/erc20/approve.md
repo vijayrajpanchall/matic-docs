@@ -2,17 +2,17 @@
 id: approve
 title: approve
 keywords:
-  - pos client
-  - erc20
-  - approve
-  - polygon
-  - sdk
-description: approve method can be used to approve required amount on the root token.
+    - pos client
+    - erc20
+    - approve
+    - polygon
+    - sdk
+description: "Утвердите требуемое количество на корневом токене."
 ---
 
-`approve` method can be used to approve required amount on the root token.
+Метод `approve` можно использовать для утверждения требуемого количества на корневом токене.
 
-approve is required in order to deposit amount on polygon chain.
+Утверждение требуется для того, чтобы внести это количество в качестве депозита на polygon chain.
 
 ```
 const erc20RootToken = posClient.erc20(<root token address>,true);
@@ -26,13 +26,13 @@ const txReceipt = await approveResult.getReceipt();
 
 ```
 
-## spenderAddress
+## spenderAddress {#spenderaddress}
 
-The address on which approval is given is called `spenderAddress`. It is a third-party user or a smart contract which can transfer your token on your behalf.
+Адрес, на котором происходит утверждение, называется `spenderAddress`. Это сторонний пользователь или смарт-контракт, который может выполнить трансфер вашего токена от вашего имени.
 
-By default spenderAddress value is erc20 predicate address.
+По умолчанию значением spenderAddress является адрес predicate стандарта erc20.
 
-You can specify spender address value manually.
+Указать адрес исполнителя трансфера можно вручную.
 
 ```
 const erc20RootToken = posClient.erc20(<root token address>,true);

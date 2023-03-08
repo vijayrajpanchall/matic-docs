@@ -1,168 +1,238 @@
 ---
 id: fx-portal
-title: Fx-Portal
-description: Transfer state or data from Ethereum to Polygon without any mapping required
+title: FxPortal
+description: Übertrage Status oder Daten von Ethereum zu Polygon, ohne mit FxPortal zuzuordnen.
 keywords:
   - docs
-  - matic
+  - polygon wiki
   - polygon
-image: https://matic.network/banners/matic-network-16x9.png
+  - FxPortal
+  - ethereum to polygon
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
-## Overview
+import useBaseUrl from '@docusaurus/useBaseUrl';
 
-The usual mechanism to natively read Ethereum data from Polygon is using `State Sync`.  This enables the transfer of arbitrary data from Ethereum to Polygon. However, this approach also requires mapping of the root and child contracts if the default interface cannot be used. FxPortal offers an alternative where ERC standardized tokens can be deployed without any mapping involved, simply using the deployed base FxPortal contracts.
+Der übliche Mechanismus, um Ethereum-Daten von Polygon nativ zu lesen, verwendet **State Sync**. Dies ermöglicht die Übertragung beliebiger Daten von Ethereum zu Polygon. Dieser Ansatz erfordert aber auch das Mapping der Root- und Child-Verträge, wenn die Standardschnittstelle nicht verwendet werden kann. FxPortal bietet eine Alternative, bei der standardisierte Token von ERC ohne Mapping bereitgestellt werden können, indem bereitgestellte FxPortal-Verträge verwendet werden.
 
-## What is [Fx-Portal](https://github.com/fx-portal/contracts)?
+## Was ist FxPortal? {#what-is-fxportal}
 
-It is a powerful yet simple implementation Polygon [state sync](https://docs.polygon.technology/docs/pos/state-sync/state-sync/) mechanism. The Polygon PoS bridge is built on the same architecture. The code in the `examples` folder are some examples of usage. You can easily use these examples to build your own implementations or own custom bridge which allows any state-syncs without mapping.
+Es ist eine leistungsfähige und dennoch einfache Implementierung des Polygon [State Sync](../../pos/state-sync/state-sync-mechanism.md) Mechanismus. Die Polygon PoS-Bridge basiert auf derselben Architektur. Der Code im [examples](https://github.com/fx-portal/contracts/tree/main/contracts/examples) sind einige Beispiele für die Verwendung. Du kannst diese Beispiele verwenden, um deine eigenen Implementierungen oder deine eigene benutzerdefinierte Bridge zu erstellen, die eine State-Sync ohne Zuordnung ermöglicht.
 
-## How does it work?
+Du kannst das [GitHub Repository](https://github.com/fx-portal/contracts) für Verträge und Beispiele ansehen.
 
-`FxChild` (FxChild.sol)  and `FxRoot` (FxRoot.sol) are the main contracts on which FxPortal works. It calls and passes data to user-defined methods on another chain without any mapping using the state sync mechanism. To use the deployed main contracts, you can implement FxPortal's base contracts in the smart contracts you deploy - [FxBaseRootTunnel](https://github.com/fx-portal/contracts/blob/main/contracts/tunnel/FxBaseRootTunnel.sol) and [FxBaseChildTunnel](https://github.com/fx-portal/contracts/blob/main/contracts/tunnel/FxBaseChildTunnel.sol). By building on these contracts, your deployed contracts will be able to communicate with each other using the data tunnel mechanism.
+## Wie funktioniert es? {#how-does-it-work}
 
-Otherwise, you can choose to map your tokens with the already deployed tunnel contracts.
+[FxChild](https://github.com/fx-portal/contracts/blob/main/contracts/FxChild.sol) und [FxRoot](https://github.com/fx-portal/contracts/blob/main/contracts/FxRoot.sol) sind die wichtigsten Verträge, auf denen FxPortal funktioniert. Er ruft und leitet Daten an benutzerdefinierte Methoden auf der anderen Chain weiter, ohne dass eine Zuordnung mit dem State Sync Mechanismus verwendet wird. Um die bereitgestellten Hauptverträge zu verwenden, kannst du die Basisverträge von FxPortal in deine bereitgestellten Smart-Verträge implementieren – [FxBaseRootTunnel](https://github.com/fx-portal/contracts/blob/main/contracts/tunnel/FxBaseRootTunnel.sol) und [FxBaseChildTunnel](https://github.com/fx-portal/contracts/blob/main/contracts/tunnel/FxBaseChildTunnel.sol). Aufbauend auf diese Verträge können deine bereitgestellten Verträge über den Datentunnelmechanismus miteinander kommunizieren.
 
-### ERC20 Transfer
+Andernfalls kannst du deine Token mit den bereits bereitgestellten tunnel kartieren. Default für Polygon Mainnet und Mumbai Testnet sind wie folgt:
 
-The child and root tunnel contracts enable the deposit of tokens on the root chain and withdrawal on the child chain.
+- [Polygon Mainnet](https://static.matic.network/network/mainnet/v1/index.json)
+- [Mumbai Testnet](https://static.matic.network/network/testnet/mumbai/index.json)
+
+Suchen Sie nach dem Keyword `FxPortalContracts`in den obigen Links, um alle default und andere wichtige FxPortal zu finden.
+
+## Brauche ich eine Custom FxTunnel Implementation? {#do-i-need-a-custom-fxtunnel-implementation}
+
+Du musst für eine **benutzerdefinierte** FxTunnel nur entscheiden, wenn die default nicht mit deinem Use Case übereinstimmen. Wenn du die default von FxPortal verwendest, kannst du den child nicht ändern. Der Bytecode für den Child-Token-Vertrag ist immer behoben und bleibt immer gleich für die [default](https://github.com/fx-portal/contracts/tree/main/contracts/examples) Wenn du einen benutzerdefinierten Child-Token brauchst, musst du für deinen eigenen benutzerdefinierten FxTunnel gehen und den nächsten Teil lesen, wird dich mehr bei der Bereitstellung deiner eigenen benutzerdefinierten FxTunnels leiten.
+
+Es wird dringend empfohlen, [FxPortal State Transfer](state-transfer.md) zu lesen und zu verstehen, bevor du den bevorstehenden Abschnitt liest. Jeder dieser kommenden Abschnitte wird beispielsweise tunnel haben, die ihm beigefügt sind. Diese Beispiele können als Referenz verwendet werden, während du deine eigenen benutzerdefinierten fx-tunnels. erstellt.
+
+## Übertragung von ERC20 {#erc20-transfer}
+
+Die [child root](https://github.com/fx-portal/contracts/tree/main/contracts/examples/erc20-transfer) ermöglichen die Einzahlung von Token auf der Root-Chain und die Auszahlung auf der on
 
 #### `FxERC20RootTunnel`
 
-- `mapToken(address rootToken)` You can call the function on the deployed contract to map your ERC20 token and create a corresponding child token on the child chain.
-- `deposit(address rootToken, address user, uint256 amount, bytes memory data)` Call deposit() with the address of the mapped token, the address who can withdraw with a corresponding amount (along with data if needed). You must have approved the contract using the standard ERC20 `approve` function to spend your tokens first.
+- `mapToken(address rootToken)`: Du kannst die Funktion im bereitgestellten Vertrag aufrufen, um deinen ERC20-Token zuzuordnen und einen entsprechenden Child-Token auf der Child-Chain zu erstellen.
+- `deposit(address rootToken, address user, uint256 amount, bytes memory data)`: `deposit()`call mit der Adresse des zugewiesenen Tokens und der Adresse, die mit einem entsprechenden Betrag zurückziehen kann (zusammen mit Daten, falls erforderlich). Du musst den Vertrag über die standardmäßige ERC20 `approve`-Funktion genehmigt haben, um deine Token zuerst auszugeben.
 
 #### `FxERC20ChildTunnel`
 
-- `withdraw(address childToken, uint256 amount)` The address assigned in deposit() can withdraw all the amount of child token using this function. They will receive the child token created when first mapped.
-- `rootToChildToken` This public variable contains the root token to child token mapping. You can query the mapping with the address of the root token to know the address of the deployed child token.
+- `withdraw(address childToken, uint256 amount)`: Die in zugewiesene Adresse `deposit()`kann die gesamte Menge an Child-Token mit dieser Funktion zurückziehen. Sie erhält das Child-Token, das beim ersten Mapping erstellt wurde.
+- `rootToChildToken`: Diese öffentliche Variable enthält den Root-Token auf child Du kannst das Mapping mit der Adresse des Root-Tokens abfragen, um die Adresse des bereitgestellten Child-Tokens zu erfahren.
 
-#### Steps for ERC20 transfer from Ethereum to Polygon
+### Aus Ethereum → Polygon {#polygon}
 
-1. Deploy your own ERC20 token on the root chain. You will need this address later.
-2. Approve the tokens for transfer by calling the `approve()` function of the root token with the address of the root tunnel and the amount as the arguments.
-3. Proceed to call `deposit()` with the address of the receiver and amount on the root chain to receive the equivalent child token on the child chain. This will also map the token automatically. Alternatively, you can call `mapToken()` first before depositing.
-4. That's it! 🎉 After mapping, you should now be able to execute cross-chain transfers using the `deposit` and `withdraw` functions of the tunnel.
+1. Stelle dein eigenes ERC20-Token auf der Root-Chain bereit. Du benötigst diese Adresse später.
+2. Genehmige die Token für die Übertragung durch Aufrufen der `approve()`-Funktion des Root-Tokens mit der Adresse des Root-Tunnels und des Betrags als Argumente.
+3. Rufe dann `deposit()` mit der Adresse des Empfängers und dem Betrag auf der Root-Chain auf, um das entsprechende Child-Token auf der Child-Chain zu erhalten. Dadurch wird das Token auch automatisch gemappt. Alternativ kannst du zuerst `mapToken()` aufrufen, bevor du einzahlst.
+4. Nach der Zuordnung solltest du nun in der Lage sein, Cross-Chain Transfers mit der `deposit`und `withdraw`Funktionen des Tunnels auszuführen.
 
-**Note:** After you have performed `deposit()` on the root chain, it will take 10-15 minutes for state sync to happen. Once  state sync happens, you will get the tokens deposited at the given address.
+:::note
 
-### Steps for ERC20 transfer from Polygon to Ethereum
+Nachdem du `deposit()`auf der Root-Chain durchgeführt hast, dauert es 22-30 Minuten, bis die State Sync geschehen ist. Sobald der State Sync stattfindet, erhältst du die Token an der angegebenen Adresse hinterlegt.
 
-1. Proceed to call `withdraw()` with the respective token address and amount as arguments on the child contract to move the child tokens back to the designated receiver on the root chain. **Note the tx hash** as this will be used to generate the burn proof.
+:::
 
-### Steps for ERC721 transfer from Ethereum to Polygon
+### Aus Polygon → Ethereum {#ethereum}
 
-1. Deploy your own ERC721 token on the root chain. You will need this address later.
-2. Approve the tokens for transfer by calling the `approve()` function of the root token with the address of the root tunnel and the token ID as the arguments.
-3. Proceed to call `deposit()` with the address of the receiver and token ID on the root chain to receive the equivalent child token on the child chain. This will also map the token automatically. Alternatively, you can call `mapToken()` first before depositing.
+1. Rufe `withdraw()` mit der jeweiligen Token-Adresse und dem Betrag als Argumente im Child-Vertrag auf, um die Child-Token zum vorgesehenen Empfänger auf der Root-Chain zurück zu verschieben. **Schreibe dir den tx Hash auf**, da dieser verwendet wird, um den Burn-Proof zu generieren.
 
-**Note:** After you have performed `deposit()` on the root chain, it will take 10-15 minutes for state sync to happen. Once  state sync happens, you will get the tokens deposited at the given address.
+2. Die Schritte zum Abschließen des Widerrufs findest du [hier](#withdraw-tokens-on-the-root-chain).
 
-#### Steps for ERC721 transfer from Polygon to Ethereum
+## ERC721 Transfer {#erc721-transfer}
 
-1. Proceed to call `withdraw()` with the respective token address and token ID as arguments on the child contract to move the child tokens back to the designated receiver on the root chain. **Note the tx hash** as this will be used to generate the burn proof.
+Falls du ein Beispiel brauchst, schau dir diesen [ERC721 Root und Child Tunnels](https://github.com/fx-portal/contracts/tree/main/contracts/examples/erc721-transfer) Guide an.
 
-### ERC1155 Transfer
+### Aus Ethereum → Polygon {#polygon-1}
+
+1. Stelle dein eigenes ERC721-Token auf der Root-Chain bereit. Du benötigst diese Adresse später.
+2. Genehmige die Token für die Übertragung durch Aufrufen der `approve()`-Funktion des Root-Tokens mit der Adresse des Root-Tunnels und der Token-ID als Argumente.
+3. Rufe `deposit()` mit der Adresse des Empfängers und der Token-ID auf der Root-Chain auf, um das entsprechende Child-Token auf der Child-Chain zu erhalten. Dadurch wird das Token auch automatisch gemappt. Alternativ kannst du zuerst `mapToken()` aufrufen, bevor du einzahlst.
+
+:::note
+
+Nachdem du `deposit()`auf der Root-Chain durchgeführt hast, dauert es 22-30 Minuten, bis die State Sync geschehen ist. Sobald der State Sync stattfindet, erhältst du die Token an der angegebenen Adresse hinterlegt.
+
+:::
+
+### Aus Polygon → Ethereum {#ethereum-1}
+
+1. Rufe `withdraw()` mit der jeweiligen Token-Adresse und dem Betrag als Argumente im Child-Vertrag auf, um die Child-Token zum vorgesehenen Empfänger auf der Root-Chain zurück zu verschieben. **Beachten Sie, dass der tx Hash** verwendet wird, um den Burn-Proof zu generieren.
+
+2. Die Schritte zum Abschließen des Widerrufs findest du [hier](#withdraw-tokens-on-the-root-chain).
+
+## ERC1155-Übertragung {#erc1155-transfer}
+
+Falls du ein Beispiel brauchst, schau dir diesen [ERC1155 Root und Child Tunnels](https://github.com/fx-portal/contracts/tree/main/contracts/examples/erc1155-transfer) Guide an.
 
 #### `FxERC1155RootTunnel`
 
-- `mapToken(rootToken)`: Used to map your root ERC1155 token to child chain
-- `deposit(rootToken, user, id, amount, data)`: Function used to deposit root tokens to child chain
-- `depositBatch(rootToken, user,  ids, amounts, bytes memory data)`: Used for multiple token Ids and corresponding amounts
-- `receiveMessage(inputData)`: To be called after burn proof has been generated with the payload as `inputData`
+- `mapToken(rootToken)`: Wird verwendet, um dein Root-ERC1155-Token auf die Child-Chain zu mappen
+- `deposit(rootToken, user, id, amount, data)`: Funktion, die genutzt wird, um Root-Token auf die Child-Chain einzuzahlen
+- `depositBatch(rootToken, user,  ids, amounts, bytes memory data)`: Wird für mehrere Token-IDs und entsprechende Beträge verwendet
+- `receiveMessage(inputData)`: Wird aufgerufen, nachdem der Burn-Proof mit der Payload als `inputData` generiert wurde
 
 #### `FxERC1155ChildTunnel`
 
-- `withdraw(childToken, id, amount, data)`: Used to withdraw token from Polygon to Ethereum
-- `withdrawBatch(childToken, ids, amounts, data)`: Same as withdraw but for withdrawing multiple token Ids
+- `withdraw(childToken, id, amount, data)`: Wird verwendet, um Token von Polygon auf Ethereum auszuzahlen
+- `withdrawBatch(childToken, ids, amounts, data)`: Gleiches wie die Auszahlung, aber für die Auszahlung mehrerer Token-IDs
 
-#### Steps for depositing ERC1155 tokens from Ethereum to Polygon
+### Aus Ethereum → Polygon {#polygon-2}
 
-1. Deploy your ERC1155 token on the root chain. You will need this address later.
-2. Call `setApprovalForAll(operator, approved)` on the deployed token with FxERC1155RootTunnel's address as `operator` to allow FxERC1155RootTunnel to transfer your tokens to FxERC1155ChildTunnel on Polygon.
-3. Call `mapToken()` on FxERC1155RootTunnel with your deployed token's address as `rootToken`. This will send a message to FxERC1155ChildTunnel instructing it to deploy and map the ERC1155 token on Polygon. To query your child token address, call `rootToChildToken` on FxERC1155ChildTunnel.
-4. Call `deposit()` on FxERC1155RootTunnel with the address of the token on Ethereum as `rootToken`, receiver as `user`, token Id as `id` and the amount as `amount`. Alternatively, you can also call `depositBatch()` for multiple token ids.
+1. Stelle dein ERC1155-Token auf der Root-Chain bereit. Du benötigst diese Adresse später.
+2. Rufe den bereitgestellten Token mit `FxERC1155RootTunnel`Adresse `setApprovalForAll(operator, approved)`an, um zu `operator`erlauben, deine Token an Polygon zu `FxERC1155RootTunnel``FxERC1155ChildTunnel`übertragen.
+3. `mapToken()`Rufe `FxERC1155RootTunnel`mit der Adresse deines bereitgestellten Tokens an.`rootToken` Dies wird eine Nachricht senden, um sie `FxERC1155ChildTunnel`anzuweisen, den ERC1155 Token auf Polygon zu implementieren und abzubilden. Um deine Child-Token-Adresse abzufragen, rufe `rootToChildToken`an .`FxERC1155ChildTunnel`
+4. Rufe `FxERC1155RootTunnel`mit der Adresse des Tokens auf Ethereum als , `rootToken`Empfänger als , `user`Token-ID als `id`und der Menge als `deposit()`auf.`amount` Alternativ kannst du auch `depositBatch()` für mehrere Token-IDs aufrufen.
 
-**Note:** After you have performed `deposit()` on the root chain, it will take 10-15 minutes for state sync to happen. Once  state sync happens, you will get the tokens deposited at the given address.
+:::note
 
-#### Steps to withdraw ERC1155 tokens from Polygon to Ethereum
+Nachdem du `deposit()`auf der Root-Chain durchgeführt hast, dauert es 22-30 Minuten, bis die State Sync geschehen ist. Sobald der State Sync stattfindet, erhältst du die Token an der angegebenen Adresse hinterlegt.
 
-1. Call `withdraw()` on FxERC1155ChildTunnel with the address of the child token deployed on Polygon as the `childToken` and the token id as `id` (the child token address can be queried from `rootToChildToken` mapping). Alternatively, you can also call `withdrawBatch()` for multiple token ids and corresponding amounts. **Note the tx hash** as this will be used to generate the burn proof.
+:::
 
-### Withdrawing your tokens on the root chain
+### Aus Polygon → Ethereum {#ethereum-2}
 
-**Note:** After you have performed `withdraw()` on the child chain, it will take 30-90 minutes for a checkpoint to happen. Once the next checkpoint includes the burn tx, you can withdraw the tokens on the root chain.
+1. Rufe `FxERC1155ChildTunnel`mit der Adresse des Child-Tokens `withdraw()`auf, das auf Polygon als die `childToken`und der Token-ID als bereit gestellt wird, an `id`(die Child-Token-Adresse kann von der Zuordnung abgefragt `rootToChildToken`werden). Alternativ kannst du auch `withdrawBatch()` für mehrere Token-IDs und entsprechende Beträge aufrufen. **Beachten Sie, dass der tx Hash** verwendet wird, um den Burn-Proof zu generieren.
 
-1. Generate the burn proof using the tx hash and MESSAGE_SENT_EVENT_SIG. An example script to generate the proof can be found [here](https://gist.github.com/QEDK/62c4503d9a6a4bc57c491ee09376d71a).
-2. Feed the generated payload as the argument to `receiveMessage()` in the respective root tunnel contract.
+2. Die Schritte zum Abschließen des Widerrufs findest du [hier](#withdraw-tokens-on-the-root-chain).
 
-### Mintable ERC-20 Transfer
+## Token auf der Root-Chain ausheben {#withdraw-tokens-on-the-root-chain}
+
+:::info
+
+Nachdem du `withdraw()`auf der Child-Chain durchgeführt hast, dauert es 30-90 Minuten, bis ein Checkpoint stattfindet. Sobald der nächste Checkpoint die Burn-Transaktion enthält, kannst du die Token auf der Root-Chain abheben.
+
+:::
+
+1. Erstelle den burn mit dem **tx hash** und **MESSAGE_SENT_EVENT_SIG**. Um den Proof zu generieren, kannst du entweder die von Polygon gehostete proof verwenden, oder du kannst deine eigene [generation](https://github.com/maticnetwork/proof-generation-api) auch drehen, indem du den Anweisungen folgend.
+
+Der proof der von Polygon gehostet wird, ist [hier](https://apis.matic.network/api/v1/matic/exit-payload/{burnTxHash}?eventSignature={eventSignature}) verfügbar.
+
+  - `burnTxHash`ist der transaction der `withdraw()`Transaktion, die du auf Polygon initiiert hast.
+  - `eventSignature`ist die event des Ereignisses, das von der Funktion ausgesandt `withdraw()`wird. Die event für die MESSAGE_SENT_EVENT_SIG `0x8c5261668696ce22758910d05bab8f186d6eb247ceac2af2e82c7dc17669b036`ist.
+
+Die proof API Nutzungsbeispiele für Mainnet und Testnet sind wie folgt:
+
+→ [Polygon Mainnet Proof Generierung](https://apis.matic.network/api/v1/matic/exit-payload/0x70bb6dbee84bd4ef1cd1891c666733d0803d81ac762ff7fdc4726e4525c1e23b?eventSignature=0x8c5261668696ce22758910d05bab8f186d6eb247ceac2af2e82c7dc17669b036)
+
+→ [Mumbai Testnet Proof Generation](https://apis.matic.network/api/v1/mumbai/exit-payload/0x4756b76a9611cffee3d2eb645819e988c34615621ea256f818ab788d81e1f838?eventSignature=0x8c5261668696ce22758910d05bab8f186d6eb247ceac2af2e82c7dc17669b036)
+
+2. Füge die generierte Nutzlast als Argument `receiveMessage()`in dem jeweiligen Root-Tunnel-Vertrag auf Goerli oder Ethereum ein.
+
+## Mintable ERC-20-Übertragung {#mintable-erc-20-transfer}
+
+Falls du ein Beispiel brauchst, schau dir diesen [Mintable ERC20 Root und Child Tunnels](https://github.com/fx-portal/contracts/tree/main/contracts/examples/mintable-erc20-transfer) Guide an.
+
+:::info
+
+Im Falle von Mintable Token FxTunnels wird der Child-Token zuerst bereitgestellt und der Root-Token nur dann bereitgestellt, wenn der erste withdraw/exit abgeschlossen ist. Die Vertragsadresse für root Token kann direkt nach dem Einsatz des pre-determined vorbestimmt werden, aber die Mapping wird technisch nur bestehen, wenn die erste Auszahlung / den Ausgang abgeschlossen ist.
+
+:::
 
 #### `FxMintableERC20RootTunnel`
 
-- `deposit(address rootToken, address user, uint256 amount, bytes memory data)`: To deposit tokens from Ethereum to Polygon
-- `receiveMessage(bytes memory inputData)`: Burn proof to be fed as the `inputData` to receive tokens on the root chain
+- `deposit(address rootToken, address user, uint256 amount, bytes memory data)`: Um Token von Ethereum auf Polygon einzuzahlen
+- `receiveMessage(bytes memory inputData)`: Burn-Proof, der als `inputData` ausgegeben wird, um Token auf der Root-Chain zu empfangen
 
 #### `FxMintableERC20ChildTunnel`
 
-- `deployChildToken(uint256 uniqueId, string memory name, string memory symbol, uint8 decimals)`: To deploy a ERC20 token on Polygon chain
-- `mintToken(address childToken, uint256 amount)`: Mint a particular amount of tokens on Polygon
-- `withdraw(address childToken, uint256 amount)`: To burn tokens on the child chain in order to withdraw on the root chain
+- `deployChildToken(uint256 uniqueId, string memory name, string memory symbol, uint8 decimals)`: um einen ERC20-Token im Polygon Netzwerk bereitzustellen
+- `mintToken(address childToken, uint256 amount)`: Mintet eine bestimmte Anzahl von Tokens auf Polygon
+- `withdraw(address childToken, uint256 amount)`: Um Token auf die Child-Chain zu brennen, um auf der Root-Chain auszuzahlen
 
-#### Steps for minting tokens on Polygon
+### Token auf Polygon abzählen {#minting-tokens-on-polygon}
 
-1. Call the `deployChildToken()` on `FxMintableERC20ChildTunnel` and pass the necessary token info as parameters. This emits a `TokenMapped` event which contains the `rootToken` and `childToken` addresses. Note these addresses.
-2. Call `mintToken()` on `FxMintableERC20ChildTunnel` to mint tokens on the child chain.
-3. Call `withdraw()` on `FxMintableERC20ChildTunnel` to withdraw tokens from Polygon. Note the tx hash as this will come in handy to generate the burn proof.
-4. Wait for the burn tx to be included in the checkpoint (~30-45 minutes). After this, generate the burn proof using an example script [here](https://gist.github.com/QEDK/62c4503d9a6a4bc57c491ee09376d71a).
+1. Rufe die `deployChildToken()` auf `FxMintableERC20ChildTunnel` auf und übertrage die erforderlichen Token-Informationen als Parameter. Dies gibt ein `TokenMapped`-Ereignis aus, das die `rootToken`- und `childToken`-Adressen enthält. Schreibe dir diese Adressen auf.
+2. Rufe `mintToken()` auf `FxMintableERC20ChildTunnel` auf, um Token auf der Child-Chain zu minten.
+3. Rufe `withdraw()` auf `FxMintableERC20ChildTunnel` auf, um Token von Polygon auszuzahlen. Beachten Sie den transaction da dies praktisch ist, um den Burn-Proof zu generieren.
+4. Die Schritte zum Abschließen des Widerrufs findest du [hier](#withdraw-tokens-on-the-root-chain).
 
-#### Steps for withdrawing tokens on Ethereum
+### Token auf Ethereum abheben {#withdrawing-tokens-on-ethereum}
 
-Feed the generated burn proof as the argument to `receiveMessage()` in `FxMintableERC20RootTunnel`. After this, the token balance would be reflected on the root chain.
+Füge den generierten Burn-Proof als Argument für `receiveMessage()` in `FxMintableERC20RootTunnel` ein. Danach wird das Token-Guthaben auf der Root-Chain angezeigt.
 
-#### Steps to deposit tokens back from Ethereum to Polygon
+### Token zurück an Polygon einzahlen {#deposit-tokens-back-to-polygon}
 
-1. Make sure you approve `FxMintableERC20RootTunnel` to transfer your tokens.
-2. Call `deposit()` in `FxMintableERC20RootTunnel` with the `rootToken` as address of root token and `user` as the recipient.
-3. Wait for the state sync event (~10-15 mins). After this, you can query the target recipient's balance on the child chain.
+1. Stelle sicher, dass du `FxMintableERC20RootTunnel` genehmigst, um deine Token zu übertragen.
+2. Rufe `deposit()` in `FxMintableERC20RootTunnel` mit der `rootToken` als Adresse des Root-Tokens und `user` als Empfänger auf.
+3. Warte auf das State Sync Event (22-30 min). Danach kannst du das Guthaben des Zielempfängers auf der Child-Chain abfragen.
 
-## Example deployments
+Die Beispiele **ERC721** und **ERC1155** Mintable FxTunnel sind wie folgt:
 
-Goerli:
+- [FxMintableERC721Tunnels](https://github.com/fx-portal/contracts/tree/main/contracts/examples/mintable-erc721-transfer)
+- [FxMintableERC1155Tunnels](https://github.com/fx-portal/contracts/tree/main/contracts/examples/mintable-erc1155-transfer)
 
-- Checkpoint Manager: 0x2890bA17EfE978480615e330ecB65333b880928e
-- Dummy ERC20 token: 0xe9c7873f81c815d64c71c2233462cb175e4765b3
-- FxERC20RootTunnel: 0x3658ccFDE5e9629b0805EB06AaCFc42416850961
-- FxMintableERC20RootTunnel: 0xA200766a7D64E54611E2D232AA6c1f870aCb63c1
-- Dummy ERC721 token: 0x73594a053cb5ddDE5558268d28a774375C4E23dA
-- FxERC721RootTunnel: 0xF9bc4a80464E48369303196645e876c8C7D972de
-- Dummy ERC1155 Token: 0x1906d395752FE0c930f8d061DFEb785eBE6f0B4E
-- FxERC1155RootTunnel : 0x48DE785970ca6eD289315036B6d187888cF9Df48
+## Beispiele für Bereitstellungen {#example-deployments}
 
-Mumbai:
+### Goerli {#goerli}
 
-- FxERC20: 0xDDE69724AeFBdb084413719fE745aB66e3b055C7
-- FxERC20ChildTunnel: 0x9C37aEbdb7Dd337E0215BC40152d6689DaF9c767
-- FxMintableERC20ChildTunnel: 0xA2C7eBEf68B444056b4A39C2CEC23844275C56e9
-- Child token dummy ERC20: 0x346d21bc2bD3dEE2d1168E1A632b10D1d7B9c0A
-- FxERC721: 0xf2720927E048726267C0221ffA41A88528048726
-- FxERC721ChildTunnel: 0x3658ccFDE5e9629b0805EB06AaCFc42416850961
-- FxERC1155: 0x80be8Cf927047A40d3f5791BF7436D8c95b3Ae5C
-- FxERC1155ChildTunnel: 0x3A0f90D3905601501652fe925e96d8B294243Efc
+- Checkpoint Manager: [0x2890bA17EfE978480615e330ecB65333b80928e](https://goerli.etherscan.io/address/0x2890bA17EfE978480615e330ecB65333b880928e)
+- Dummy ERC20 Token: [0xe9c7873f81c815d64c71c2233462cb175e4765b3](https://goerli.etherscan.io/address/0xe9c7873f81c815d64c71c2233462cb175e4765b3)
+- FxERC20RootTunnel: [0x3658ccFDE5e9629b0805EB06AaCFc42416850961](https://goerli.etherscan.io/address/0x3658ccFDE5e9629b0805EB06AaCFc42416850961)
+- FxMintableERC20RootTunnel: [0xA200766a7D64E54611E2D232AA6c1f870aCb63c1](https://goerli.etherscan.io/address/0xA200766a7D64E54611E2D232AA6c1f870aCb63c1)
+- Dummy ERC721 Token: [0x73594a053cb5ddDE558268d28a774375C4E23dA](https://goerli.etherscan.io/address/0x73594a053cb5ddDE5558268d28a774375C4E23dA)
+- FxERC721RootTunnel: [0xF9bc4a80464E48369303196645e876c8C7D972de](https://goerli.etherscan.io/address/0xF9bc4a80464E48369303196645e876c8C7D972de)
+- Dummy ERC1155 Token: [0x1906d395752FE0c930f8d061DFEb785eBE6f0B4E](https://goerli.etherscan.io/address/0x1906d395752FE0c930f8d061DFEb785eBE6f0B4E)
+- FxERC1155RootTunnel : [0x48DE785970ca6eD289315036B6d187888cF9Df48](https://goerli.etherscan.io/address/0x48DE785970ca6eD289315036B6d187888cF9Df48)
 
-## Contract addresses
+### Mumbai {#mumbai}
 
-**Mumbai**
+- [FxERC20:](https://mumbai.polygonscan.com/address/0xDDE69724AeFBdb084413719fE745aB66e3b055C7) 0xDDE69724AeFBdb08413719fE745aB66e3b055C7
+- FxERC20ChildTunnel: [0x9C37aEbdb7Dd337E0215BC40152d6689DaF9c767](https://mumbai.polygonscan.com/address/0x9C37aEbdb7Dd337E0215BC40152d6689DaF9c767)
+- [FxMintableERC20ChildTunnel:](https://mumbai.polygonscan.com/address/0xA2C7eBEf68B444056b4A39C2CEC23844275C56e9) 0xA2C7eBEf68B44056b4A39C2CEC23844275C56e9
+- Child-Token-Platzhalter ERC20: 0x346d21bc2bD3dEE2d1168E1A632b10D1d7B9c0A
+- FxERC721: [0xf2720927E048726267C0221ffA41A88528048726](https://mumbai.polygonscan.com/address/0xf2720927E048726267C0221ffA41A88528048726)
+- FxERC721ChildTunnel: [0x3658ccFDE5e9629b0805EB06AaCFc42416850961](https://mumbai.polygonscan.com/address/0x3658ccFDE5e9629b0805EB06AaCFc42416850961)
+- FxERC1155: [0x80be8Cf927047A40d3f5791BF7436D8c95b3Ae5C](https://mumbai.polygonscan.com/address/0x80be8Cf927047A40d3f5791BF7436D8c95b3Ae5C)
+- FxERC1155ChildTunnel: [0x3A0f90D3905601501652fe925e96d8B294243Efc](https://mumbai.polygonscan.com/address/0x3A0f90D3905601501652fe925e96d8B294243Efc)
 
-| Contract                                                                                                        | Deployed address                             |
-|:--------------------------------------------------------------------------------------------------------------- |:-------------------------------------------- |
-| [FxRoot (Goerli)](https://goerli.etherscan.io/address/0x3d1d3E34f7fB6D26245E6640E1c50710eFFf15bA#code)          | `0x3d1d3E34f7fB6D26245E6640E1c50710eFFf15bA` |
-| [FxChild (Mumbai)](https://mumbai.polygonscan.com/address/0xCf73231F28B7331BBe3124B907840A94851f9f11/contracts) | `0xCf73231F28B7331BBe3124B907840A94851f9f11` |
+Die entsprechenden Mainnet findest du [hier](https://static.matic.network/network/mainnet/v1/index.json). Suchen Sie nach dem Keyword, `FxPortalContracts`um alle default und andere wichtige FxPortal zu finden. Du kannst das [`maticnetwork/meta`](https://www.npmjs.com/package/@maticnetwork/meta)Paket nutzen, um auf die Vertragsadressen und ABIs zuzugreifen.
 
-**Mainnet**
+## Vertragsadressen {#contract-addresses}
+
+### Mumbai-Testnet {#mumbai-testnet}
+
+| Vertrag | Bereitgestellte Adresse  |
+| :----- | :- |
+| [FxRoot (Goerli)](https://goerli.etherscan.io/address/0x3d1d3E34f7fB6D26245E6640E1c50710eFFf15bA#code) | `0x3d1d3E34f7fB6D26245E6640E1c50710eFFf15bA` |
+| [FxChild (Mumbai)](https://mumbai.polygonscan.com/address/0xCf73231F28B7331BBe3124B907840A94851f9f11/contracts) | `0xCf73231F28B7331BBe3124B907840A94851f9f11`|
+
+### Polygon Mainnet {#polygon-mainnet}
 
 
-| Contract                                                                                                           | Deployed address                             |
-|:------------------------------------------------------------------------------------------------------------------ |:-------------------------------------------- |
-| [FxRoot (Ethereum Mainnet)](https://etherscan.io/address/0xfe5e5d361b2ad62c541bab87c45a0b9b018389a2#code)          | `0xfe5e5D361b2ad62c541bAb87C45a0B9B018389a2` |
-| [FxChild (Polygon Mainnnet)](https://polygonscan.com/address/0x8397259c983751DAf40400790063935a11afa28a/contracts) | `0x8397259c983751DAf40400790063935a11afa28a` |
+| Vertrag | Bereitgestellte Adresse  |
+| :----- | :- |
+| [FxRoot (Ethereum-Mainnet)](https://etherscan.io/address/0xfe5e5d361b2ad62c541bab87c45a0b9b018389a2#code) | `0xfe5e5D361b2ad62c541bAb87C45a0B9B018389a2` |
+| [FxChild (Polygon-Mainnnet)](https://polygonscan.com/address/0x8397259c983751DAf40400790063935a11afa28a/contracts) | `0x8397259c983751DAf40400790063935a11afa28a`|

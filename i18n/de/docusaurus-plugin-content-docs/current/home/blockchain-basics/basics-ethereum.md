@@ -1,24 +1,31 @@
 ---
 id: ethereum
-title: What is Ethereum?
+title: Was ist das Ethereum?
 sidebar_label: Ethereum
-description: A programmable blockchain that allows building dapps.
+description: Eine programmierbare Blockchain, die den Aufbau von Dapps ermöglicht.
 keywords:
   - docs
   - matic
-image: https://matic.network/banners/matic-network-16x9.png
+  - polygon
+  - what is ethereum
+  - ethereum
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
-Ethereum is the foundation for a new era of the internet:
+# Was ist Ethereum? {#what-is-ethereum}
 
-- An internet where money and payments are built in.
-- An internet where users can own their data, and your apps don’t spy and steal from you.
-- An internet where everyone has access to an open financial system.
-- An internet built on neutral, open-access infrastructure, controlled by no company or person.
+Ethereum ist die Grundlage für eine neue Ära des Internets:
 
-But unlike other blockchains, Ethereum can do much more. Ethereum is programmable, which means that developers can use it to build new kinds of applications.
+- Ein Internet, in dem Geld und Zahlungen integriert sind.
+- Ein Internet, in dem die Nutzer ihre Daten selbst verwalten können und deine Apps dich nicht ausspionieren und bestehlen.
+- Ein Internet, in dem jeder Zugang zu einem offenen Finanzsystem hat.
+- Ein Internet, das auf einer neutralen, offen zugänglichen Infrastruktur aufbaut, die von keinem Unternehmen und keiner Person kontrolliert wird.
 
-These decentralized applications (or “dapps”) gain the benefits of cryptocurrency and blockchain technology. They can be trustworthy, meaning that once they are “uploaded” to Ethereum, they will always run as programmed. They can control digital assets in order to create new kinds of financial applications. They can be decentralized, meaning that no single entity or person controls them.
-### **:scroll:Resources**
+Aber im Gegensatz zu anderen Blockchains, kann Ethereum viel mehr machen. Ethereum ist programmierbar, was bedeutet, dass die Entwickler es nutzen können, um neue Arten von Anwendungen zu erstellen.
 
-:book: [What is Ethereum?](https://ethereum.org/what-is-ethereum/) <br/> :books: [Ethereum](https://ethereum.org/)
+Diese dezentralen Anwendungen (oder „Dapps“) profitieren von den Vorteilen der Kryptowährung und der Blockchain-Technologie. Sie können vertrauenswürdig sein, was bedeutet, dass sie, sobald sie auf Ethereum „hochgeladen“ wurden, immer wie programmiert ausgeführt werden. Sie können digitale Assets kontrollieren, um neue Arten von Finanzanwendungen zu schaffen. Sie können dezentralisiert sein, was bedeutet, dass keine einzelne Einheit oder Person sie kontrolliert.
+
+### **Ressourcen**
+
+- [Was ist Ethereum?](https://ethereum.org/what-is-ethereum/)<br/>
+- [Ethereum](https://ethereum.org/)

@@ -1,65 +1,72 @@
 ---
 id: who-is-validator
-title: Who is a Validator
+title: Qui est un validateur
 sidebar_label: Who is a Validator
-description: "A participant in the network who runs Heimdall and Bor nodes."
+description: "Un participant au réseau qui gère les nœuds Heimdall et Bor."
 keywords:
   - docs
   - matic
   - polygon
   - validator
-image: https://matic.network/banners/matic-network-16x9.png
+  - Who is a Validator
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
-A validator is a participant in the network who locks up MATIC tokens in the system and runs Heimdall validator and Bor block producer nodes in order to help run the network. Validators stake their MATIC tokens as collateral to work for the security of the network and in exchange for their service, earn rewards.
+Le validateur est un participant au réseau qui verrouille les jetons MATIC dans le système et exécute les nœuds de validation Heimdall et de producteurs de blocs Bor afin de contribuer à exécuter le réseau. Les validateurs stakent leurs jetons MATIC comme garantie pour travailler à la sécurité du réseau et, en échange de leur service, gagnent des récompenses.
 
-Rewards are distributed to all stakers proportional to their stake at every checkpoint with the exception being the proposer getting an additional bonus. User reward balance gets updated in the contract which is referred to while claiming rewards.
+Les récompenses sont distribuées à tous les participants proportionnellement à leur stake à chaque point de contrôle, à l'exception du proposant, qui reçoit un bonus supplémentaire. Le solde des récompenses de l'utilisateur est mis à jour dans le contrat auquel il est fait référence lorsqu'il sollicite des récompenses.
 
-Stakes are at risk of getting slashed in case the validator node commits a malicious act like double signing which also affects the linked delegators at that checkpoint.
+Les stakes risquent d'être réduits si le nœud de validation réalise un acte malveillant, comme la double signature, qui affecte également les délégateurs liés à ce point de contrôle.
 
-:::note Those who are interested in securing the network but are not running a full node can participate as [delegators](../glossary#delegator). :::
+:::tip
 
-## Overview
+Ceux qui sont intéressés à sécuriser le réseau, mais ne exécutent pas un nœud complet peuvent participer en tant que [délégateurs](/docs/maintain/glossary.md#delegator).
 
-Validators on the Polygon network are selected through an on-chain auction process which happens at regular intervals. These selected validators participate as block producers and verifiers. Once a [checkpoint](../glossary#checkpoint-transaction) is validated by the participants, updates are made on the parent chain (the Ethereum mainnet) which releases the rewards for validators depending on their stake in network.
-
-Polygon relies on a set of [validators](../glossary#validator) to secure the network. The role of validators is to run a full node, [produce blocks](../glossary#block-producer), validate and participate in consensus, and commit [checkpoints](../glossary#checkpoint-transaction) on the Ethereum mainnet. To become a validator, one needs to [stake](../glossary#staking) their MATIC tokens with staking management contracts residing on the Ethereum mainnet.
-
-## Core compenents
-
-[Heimdall](../glossary#heimdall) reads the events emitted by the staking contracts to pick the validators for the current set with their updated stake ratio, which is used also by [Bor](../glossary#bor) while producing blocks.
-
-[Delegation](../glossary#delegator) is also recorded in the staking contracts and any update in the validator power or node [signer address](../glossary#signer-address) or unbonding requests comes into effect when the next checkpoint gets committed.
-
-
-## End-to-end flow for a Polygon validator
-
-Validators set up their signing nodes, sync data and then stake their tokens on the Ethereum mainnet staking contracts to be accepted as a validator in the current set. If a slot is vacant, the validator is accepted immediately. Otherwise, one needs to go through the replacement mechanism to get a slot.
-
-:::note
-There is limited space for accepting new validators. New validators can only join the active set when a currently active validator unbonds. A new auction process for validator replacement will be rolled out.
 :::
 
-Block producers are chosen from the validator set where it is the responsibility of the selected validators to produce blocks for a given [span](../glossary#span).
+## Aperçu {#overview}
 
-Nodes at Heimdall validate the blocks being produced, participate in consensus and commit checkpoints on the Ethereum mainnet at defined intervals.
+Les validateurs du réseau Polygon sont sélectionnés par un processus d'enchères sur la chaîne qui a lieu à intervalles réguliers. Ces validateurs sélectionnés participent en tant que producteurs et vérificateurs de blocs. Une fois qu'un [point de contrôle](/docs/maintain/glossary.md#checkpoint-transaction) est validé par les participants, des mises à jour sont effectuées sur la chaîne mère (le réseau principal Ethereum), qui libère les récompenses pour les validateurs en fonction de leur participation au réseau.
 
-The probability of validators to get selected as the block producer or checkpoint [proposer](../glossary#proposer) is dependent on one’s stake ratio including delegations in the overall pool.
+Polygon s'appuie sur un ensemble de [validateurs](/docs/maintain/glossary.md#validator) pour sécuriser le réseau. Le rôle des validateurs est de faire fonctionner un nœud complet, de [produire des blocs](/docs/maintain/glossary.md#block-producer), de valider et de participer au consensus, ainsi que d'engager des [points de contrôle](/docs/maintain/glossary.md#checkpoint-transaction) sur le réseau principal Ethereum. Pour devenir un validateur, il faut [staker](/docs/maintain/glossary.md#staking) ses jetons MATIC avec des contrats de gestion de staking se trouvant sur le réseau principal Ethereum.
 
-Validators receive rewards at every checkpoint as per their stake ratio, after deducting the proposer bonus which is disbursed to the checkpoint proposer.
+## Composants principaux {#core-components}
 
-One can opt out of the system at any time and can withdraw tokens once the unbonding period ends.
+[Heimdall](/docs/maintain/glossary.md#heimdall) lit les événements émis par les contrats de staking pour choisir les validateurs de l'ensemble actuel avec leur ratio de stake actualisé, qui est également utilisé par [Bor](/docs/maintain/glossary.md#bor) lors de la production de blocs.
 
-## Economics
+La [délégation](/docs/maintain/glossary.md#delegator) est également enregistrée dans les contrats de staking et toute mise à jour de la puissance du validateur ou de l'[adresse du signataire](/docs/maintain/glossary.md#signer-address) du nœud ou des demandes de verrouillage entre en vigueur lorsque le prochain point de contrôle est validé.
 
-See [Rewards](/docs/maintain/validator/rewards).
 
-## Setting up a validator node
+## Flux de bout en bout pour un validateur de Polygon {#end-to-end-flow-for-a-polygon-validator}
 
-See [Validate](../validate/validator-index).
+Les validateurs configurent leurs nœuds de signature, synchronisent les données et stakent leurs jetons sur les contrats de staking du réseau principal Ethereum afin d'être acceptés comme validateurs dans l'ensemble actuel. Si un créneau est disponible, le validateur est accepté immédiatement. Sinon, il faut passer par le mécanisme de remplacement pour obtenir un créneau.
 
-## See also
+:::warning
 
-* [Validator Responsibilities](../validate/validator-responsibilities)
-* [Validate](../validate/validator-index)
-* [Validator FAQ](../validate/faq/validator-faq)
+La capacité de réception de nouveaux validateurs est limitée. Les nouveaux validateurs ne peuvent rejoindre l'ensemble actif que lorsqu'un validateur actuellement actif verrouille. Un nouveau processus d'enchères pour le remplacement des validateurs est introduit.
+
+:::
+
+Les producteurs de blocs sont choisis parmi l'ensemble des validateurs. Il est de la responsabilité des validateurs sélectionnés de produire des blocs pour une [durée](/docs/maintain/glossary.md#span) donnée.
+
+Les nœuds de Heimdall valident les blocs produits, participent au consensus et engagent des points de contrôle sur le réseau principal Ethereum à intervalles définis.
+
+La probabilité pour les validateurs d'être sélectionnés en tant que producteurs de blocs ou [proposants](/docs/maintain/glossary.md#proposer) de points de contrôle dépend du ratio de stake de chacun, qui inclut les délégations dans le pool global.
+
+Les validateurs reçoivent des récompenses à chaque point de contrôle en fonction de leur ratio de stake, après déduction de la prime du proposant, qui est versée au proposant du point de contrôle.
+
+Il est possible de se désengager du système à tout moment et de retirer des jetons à la fin de la période de verrouillage.
+
+## Économie {#economics}
+
+Voir [Récompenses](/docs/maintain/validator/rewards)
+
+## Configuration d'un nœud de validation {#setting-up-a-validator-node}
+
+Voir [Valider](/docs/maintain/validate/validator-index).
+
+## Voir aussi {#see-also}
+
+* [Responsabilités du validateur](/docs/maintain/validate/validator-responsibilities)
+* [Valider](/docs/maintain/validate/validator-index)
+* [FAQ du validateur](/docs/maintain/validate/faq/validator-faq)

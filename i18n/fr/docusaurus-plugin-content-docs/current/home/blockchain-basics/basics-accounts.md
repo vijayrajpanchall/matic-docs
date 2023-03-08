@@ -1,33 +1,41 @@
 ---
 id: accounts
-title: What are Accounts?
+title: Que sont les comptes ?
 sidebar_label: Accounts
-description: "EOAs and Contract Accounts."
+description: "Comptes externes et comptes de contrat."
 keywords:
   - docs
   - matic
-image: https://matic.network/banners/matic-network-16x9.png
+  - polygon
+  - accounts
+  - EOAs
+  - contract accounts
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
-The global state of Ethereum is comprised of accounts that interact with one another through a message-passing framework. The most basic interaction is that of sending some value - like matic tokens, ether - the native cryptocurrency of Ethereum blockchain. Each account is identified by a 20 byte hex identifier which is called an address - this is generated from public key of the account. There exist two types of accounts:
+# Que sont les comptes ? {#what-are-accounts}
 
-1. Externally Owned Account - An account controlled by a private key, and if you own the private key associated with the account you have the ability to send tokens and messages from it.
-2. Contract Owned Account - An account that has an associated smart contract code with it and its private key is not owned by anyone
+Le système Ethereum global est composé de comptes qui interagissent les uns avec les autres par le biais d'un cadre de passage de messages. L'interaction la plus fondamentale est celle d'envoyer une certaine valeur - comme les jetons MATIC, le jeton native de Polygon, ou $ETH, le jeton native de la blockchain Ethereum.
 
-These can be differentiated as follows:
+Chaque compte est identifié par un identifiant hexagonal de 20 octets qui est appelé une adresse - généré à partir de la clé publique du compte.
 
-**Externally Owned Accounts**
+Il existe deux types de comptes: **Compte propriétaire externe** et **Comptes propriété Contrats**.
 
-1. can send transactions (ether transfer or trigger contract code)
-2. is controlled by private keys
-3. has no associated code
+## Les comptes détenus par des tiers {#externally-owned-accounts}
 
-**Contract Owned Accounts**
+Les EOA sont des comptes contrôlés par une clé privée, avec la possibilité d'envoyer des jetons et des messages.
 
-1. has associated code
-2. code execution is triggered by transactions or messages (calls) received from other contracts
-3. when executed - perform operations of arbitrary complexity (Turing completeness) - manipulate its own persistent storage, i.e., can have its own permanent state - can call other contracts.
+1. Ils peuvent envoyer des transactions (transfert d'éther ou code de contrat de déclenchement),
+2. sont contrôlés par des clés privées,
+3. et n'ont pas de code associé.
 
-### **:scroll:Resources**
+## Les comptes détenant un contrat {#contract-owned-accounts}
+Le compte propriétaire du contrat sont des comptes qui ont un code de contrat intelligent associé avec celui-ci et leur clé privée n'est pas la propriété de personne.
 
-[Read more about accounts](https://github.com/ethereum/homestead-guide/blob/master/source/contracts-and-transactions/account-types-gas-and-transactions.rst#externally-owned-accounts-eoas)
+1. Ils ont du code associé,
+2. leur exécution de code est déclenchée par des transactions ou des messages (appels) reçus d'autres contrats,
+3. et lorsque ce code est exécuté - il effectue des opérations de complexité arbitraire (Turing complet) - manipule son propre stockage persistant et peut appeler d'autres contrats.
+
+### Ressources {#resources}
+
+- [En savoir plus sur les comptes](https://github.com/ethereum/homestead-guide/blob/master/source/contracts-and-transactions/account-types-gas-and-transactions.rst#externally-owned-accounts-eoas)

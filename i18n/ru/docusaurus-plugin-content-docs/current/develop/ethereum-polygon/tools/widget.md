@@ -1,48 +1,47 @@
 ---
 id: widget
-title: Wallet Widget
+title: Виджет кошелька
 sidebar_label: Wallet Widget
-description: Build your next blockchain app on Polygon.
+description: "Инструменты пользовательского интерфейса для выполнения транзакций моста."
 keywords:
   - docs
   - matic
 image: https://matic.network/banners/matic-network-16x9.png
 ---
-
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Wallet widget is a UI tool which can be embedded in any web application for executing bridge transactions - Deposit & Withdraw.
+Виджет кошелька — это инструмент пользовательского интерфейса, который можно встроить в любое веб-приложение для выполнения транзакций моста — депозита и вывода.
 
-Every widget is identified by an unique name which you can get from [Widget dashboard](https://wallet.polygon.technology/widget-dashboard) .
+Каждый виджет идентифицируется по уникальному имени, которое можно получить из [дашборда виджета](https://wallet.polygon.technology/widget-dashboard) .
 
-### Widget dashboard
+### Дашборд виджета {#widget-dashboard}
 
-Widget can be created from the widget dashboard page in the wallet application. It allows the user to create a new widget with some customisable options.
+Виджет можно создать на странице дашборда виджета в приложении кошелька. Он позволяет пользователю создать новый виджет с пользовательскими опциями.
 
-Once the widget is created, You can copy code snippet and add it in your application or use the widget name and configure by yourself.
+После создания виджета вы можете скопировать фрагмент кода и добавить его в приложение или использовать имя виджета и настроить его самостоятельно.
 
-Here is link to widget dashboard -
+Вот ссылка на дашборд виджета -
 
 * mainnet - https://wallet.polygon.technology/widget-dashboard
-* testnet - https://wallet-dev.polygon.technology/widget-dashboard
+* тестовая сеть - https://wallet-dev.polygon.technology/widget-dashboard
 
-## Install
+## Установка {#install}
 
-Widget is exported as javascript library and available as npm package.
+Виджет экспортируется как библиотека javascript и доступен как пакет npm.
 
-```bash 
+```bash
 npm i @maticnetwork/wallet-widget
 ```
 
-## Examples
+## Примеры {#examples}
 
-We have created examples for different framework and tools to help you with the development. All examples are present at - [https://github.com/maticnetwork/wallet-widget-example](https://github.com/maticnetwork/wallet-widget-example)
+Мы создали примеры из разных инфраструктур и инструментов, чтобы оказать вам помощь в разработке. Все примеры можно найти здесь: [https://github.com/maticnetwork/wallet-widget-example](https://github.com/maticnetwork/wallet-widget-example)
 
-## How to use
-### With target
+## Как использовать {#how-to-use}
+### С целью {#with-target}
 
-Consider you have a button in your app and you want to show widget when clicked on that button -
+Допустим, у вас в приложении есть кнопка, и вы хотите показать виджет при нажатии на эту кнопку -
 
 ```html
 <button id="btnMaticWidget"></btn>
@@ -58,14 +57,14 @@ var widget = new Widget({
 });
 ```
 
-Create widget whenever you are ready. It is best to call create function after document is loaded.
+Создайте виджет, когда будете готовы. Лучше всего вызвать функцию создания после загрузки документа.
 
-```javascript 
+```javascript
 await widget.create();
 ```
-widget is created, now click on your button and widget will be shown.
+Виджет создан, и теперь следует нажать на кнопку, после чего появится виджет.
 
-### Without target
+### Без цели {#without-target}
 
 ```javascript
 import { Widget } from "@maticnetwork/wallet-widget";
@@ -78,51 +77,51 @@ var widget = new Widget({
 await widget.create();
 ```
 
-widget is now created, but in order to show the widget - you will have to call `show` API.
+виджет уже создан, но для отображения виджета вам потребуется вызвать `show` API.
 
 ```
 widget.show();
 ```
 
-Similarly you can hide the widget, by calling `hide` API.
+Точно так же вы можете скрыть виджет, вызвав `hide` API.
 
 ```
 widget.hide();
 ```
 
-### Important Note 👉
+### Важное замечание 👉 {#important-note}
 
-1. Based on network "testnet" or "mainnet", you need to create your app on respective dashboard. We recommend to create app with same name on both testnet & mainnet, so that you don't have any issue when you are changing network.
+1. В зависимости от типа сети (тестовая сеть или mainnet) вам потребуется создать приложение в соответствующем дашборде. Мы рекомендуем создать приложение с одинаковым именем в тестовой сети и mainnet, так что у вас не будет проблем при смене сети.
 
-2. Wallet widget is UI Library and on different website it will look different & might have some issues like - colors, responsiveness etc. So please spend some time on testing and customizing. In case of any help needed - please reach out to [support team](https://support.polygon.technology/).
+2. Виджет кошелька — это библиотека пользовательского интерфейса, и на разных сайтах он будет выглядеть по-разному и может иметь разные проблемы, в том числе с цветами, быстродействием и т. д. Поэтому желательно выделить время на тестирование и персонализацию. Если требуется какая-либо помощь, обратитесь в [команду поддержки](https://support.polygon.technology/).
 
-3. Wallet widget is full screen in mobile devices but you can customize it by `style` configuration.
+3. Виджет кошелька отображается на полный экран на мобильных устройствах, но это можно настроить посредством конфигурации `style`.
 
-## Configuration
+## Конфигурация {#configuration}
 
-Configuration can be supplied in Widget constructor.
+Конфигурация может передаваться в конструкторе виджета.
 
-## Available configuration are
+## Доступные конфигурации {#available-configuration-are}
 
-- **target** : string - CSS selector for showing widget on click of element. For example, "#btnMaticWidget" will be the target in the code below.
+- **target** : строка-селектор CSS для отображения виджета при нажатии на элемент. Например, "#btnMaticWidget" будет целью в коде ниже.
 
 ```javascript
 <button id="btnMaticWidget">Matic widget</button>
 ```
 
-- **network** : string - network to be used. Two options are available - 'testnet' or 'mainnet'.
-- **width** : number - Width of the widget
-- **height** : number - Height of the widget
-- **autoShowTime** : number - Auto show widget after specified time in millisecond
-- **appName** : string - name of your app, this can be retrieved on widget dashboard.
-- **position** : string - Sets the position of the widget. The available options are -
+- **network** : строка - используемая сеть. Доступны два варианта - тестовая сеть и mainnet.
+- **width** : число - ширина виджета
+- **height** : число - высота виджета
+- **autoShowTime** : число - автоматическое отображение виджета после указанного периода времени в миллисекундах
+- **appName** : строка - имя вашего приложения, которое можно получить на дашборде виджета.
+- **position** : строка - устанавливает позицию виджета. Доступные опции -
     - center
     - bottom-right
     - bottom-left
-- **amount** : string - Prefill the amount in text box
-- **page** : string - select the page. Available options are - `withdraw`, `deposit`.
-- **overlay** : boolean - show overlay when widget is opened. By default it is false.
-- **style** : object - apply some css styles to the widget.
+- **amount** : строка - введите количество в текстовое поле
+- **page** : строка - выберите страницу. Доступные опции - `withdraw`, `deposit`.
+- **overlay** : логический оператор - показывать оверлей при открытии виджета. По умолчанию имеет значение false.
+- **style** : object - применяет некоторые стили css к виджету.
 
 ```
 var widget = new MaticWidget({
@@ -135,11 +134,11 @@ var widget = new MaticWidget({
 });
 ```
 
-## Events
+## События {#events}
 
-Widget emits some events which can be used to know what is happening inside the application.
+Widget выдает некоторые события, которые можно использовать, чтобы узнать, что происходит внутри приложения.
 
-### Subscribe to events
+### Подписаться на события {#subscribe-to-events}
 
 ```javascript
 widget.on('load',()=>{
@@ -147,54 +146,58 @@ widget.on('load',()=>{
 })
 ```
 
-### Unsubscribe to events
+### Отменить подписку на события {#unsubscribe-to-events}
 
-```javascript 
+```javascript
 widget.off('load',<callback>)
 ```
 
-> Callback should be same as what was used to subscribe the event. So its better to store the callback in a variable.`
+> Обратный вызов должен быть аналогичным тому, который был использован при подписке на событие. Поэтому обратный вызов лучше хранить внутри переменной. `
 
-## List of events:
+## Список событий: {#list-of-events}
 
-- **load** - Widget is loaded
-- **close** - Widget is closed
-- **approveInit** - Approval transaction is initialized
-- **approveComplete** - Approval transaction is completed
-- **approveError** - Approval transaction failed due to some error, or the user denied the transaction on Metamask
-- **depositInit** - Deposit transaction is initialized
-- **depositComplete** - Deposit transaction is completed
-- **depositError** - Deposit transaction failed due to some error, or the user denied the deposit complete transaction on Metamask
-- **burnInit** - Withdrawal burn transaction is initialized
-- **burnComplete** - Withdrawal burn transaction is completed
-- **confirmWithdrawInit** - Withdrawal is checkpointed and confirm transaction is initialized
-- **confirmWithdrawComplete** - Withdrawal confirm transaction in completed
-- **confirmWithdrawError** - Withdrawal confirm transaction failed due to some error, or the user denied the withdrawal confirm transaction on Metamask
-- **exitInit** - Withdrawal exit transaction is initialized
-- **exitComplete** - Withdrawal exit transaction is completed
-- **exitError** - Withdrawal exit transaction failed due to some error, or the user denied the withdrawal exit transaction on Metamask
+- **load** - виджет загружен
+- **close** - виджет закрыт
+- **approveInit** - транзакция одобрения инициализирована
+- **approveComplete** - транзакция одобрения выполнена
+- **approveError** - произошла ошибка транзакции одобрения в связи с определенной ошибкой, или пользователь отклонил транзакцию в Metamask
+- **depositInit** - инициализирована транзакция депозита
+- **depositComplete** - транзакция депозита выполнена
+- **depositError** - не удалось выполнить транзакцию депозита в связи с какой-то ошибкой, или пользователь отклонил транзакцию завершения депозита в Metamask
+- **burnInit** - инициализируется транзакция сжигания при выводе
+- **burnComplete** - транзакция сжигания при выводе завершена
+- **confirmWithdrawInit** - для вывода создается checkpoint и инициализируется транзакция подтверждения
+- **confirmWithdrawComplete** - транзакция подтверждения вывода выполнена
+- **confirmWithdrawError** - не удалось выполнить транзакцию подтверждения из-за ошибки или пользователь отклонил транзакцию подтверждения вывода в Metamask
+- **exitInit** - транзакция выхода из вывода инициализирована
+- **exitComplete** - транзакция выхода из вывода выполнена
+- **exitError** - Не удалось выполнить транзакцию выхода из-за ошибки или пользователь отклонил транзакцию выхода из вывода в Metamask
 
-## APIS
+## APIS {#apis}
 
-- **show** - show the widget
+- **show** -
+показать виджет
 
 ```javascript
 widget.show()
 ```
 
-- **hide** - hide the widget
+- **hide** -
+скрыть виджет
 
 ```javascript
 widget.hide()
 ```
 
-- **on** - subscribe to events
+- **on** -
+подписаться на события
 
 ```javascript
 widget.on('<event name>', callback)
 ```
 
-- **off** - unsubscribe to events
+- **off** -
+отменить подписку на события
 
 ```javascript
 widget.off('<event name>', callback)

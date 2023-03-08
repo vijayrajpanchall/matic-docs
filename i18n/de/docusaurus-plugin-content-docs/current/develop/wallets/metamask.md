@@ -1,26 +1,33 @@
 ---
 id: metamask
 title: Metamask
-description: Build your next blockchain app on Polygon.
+description: Erstelle die nächste Blockchain-App auf Polygon.
 keywords:
   - docs
   - matic
-image: https://matic.network/banners/matic-network-16x9.png
+  - polygon
+  - wallet
+  - metamask
+  - integrate
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
-Metamask is a browser add-on that manages a user’s Ethereum wallet by storing their private key on their browser’s data store and the seed phrase encrypted with their password. It is a non-custodial wallet, meaning, the user has full access and responsibility their private key. Once lost, the user can no longer control the savings or restore access to the wallet.
+Metamask ist Browser-Add-on, das die Ethereum Wallet eines Benutzers verwaltet, indem es seinen Private Key im Datenspeicher des Browsers ablegt und die Seed-Phrase mit seinem Passwort verschlüsselt. Es ist eine nicht-verwahrende Wallet, was bedeutet, dass der Benutzer voll auf den Private Key zugreifen kann und für diesen verantwortlich ist. Falls ihn der Benutzer verliert, kann er nicht mehr auf seine Einlagen zugreifen und den Zugriff auf die Wallet nicht wiederherstellen.
 
-**Type**: Non-custodial/HD <br/> **Private Key Storage**: User’s local browser storage <br/> **Communication to Ethereum Ledger**: Infura <br/> **Private key encoding**: Mnemonic <br/>
+**Typ**: Nicht-Verwahrend/HD <br/>
+**Speicherung des Private Keys**: Lokaler Browser-Speicher des Benutzers<br/>
+**Kommunikation mit Ethereum Ledger**: Infura <br/>
+**Codierung des Private Keys**: Mnemonik<br/>
 
-### 1. Set up Web3
+### 1. Web3 einrichten {#1-set-up-web3}
 
-**Step 1**
+**Schritt 1**
 
-Install the following in your DApp:
+Installiere Folgendes in deiner dApp:
   ```javascript
   npm install --save web3
   ```
-Create a new file, name it `web3.js` and insert the following code in it:
+Eine neue Datei mit dem Namen `web3.js`erstellen und den folgenden Code benutzen:
 
   ```javascript
   import Web3 from 'web3';
@@ -54,51 +61,51 @@ Create a new file, name it `web3.js` and insert the following code in it:
   export default getWeb3;
   ```
 
-The above file exports a function called `getWeb3()` - the purpose of which is to request MetaMask account’s access via detecting a global object (`ethereum` or `web3`) injected by Metamask.
+Die oben stehende Datei exportiert eine Funktion namens.`getWeb3()` die den Zugriff auf das Metamask-Konto über die Erkennung eines globalen Objekts (o`ethereum`der) d`web3`as von Metamask eingebunden wurde, anfordern soll.
 
-According to [Metamask’s API documentation](https://docs.metamask.io/guide/ethereum-provider.html#upcoming-provider-changes):
+Laut der [API-Dokumentation von Metamask](https://docs.metamask.io/guide/ethereum-provider.html#upcoming-provider-changes):
 
-> MetaMask injects a global API into websites visited by its users at window.ethereum (Also available at window.web3.currentProvider for legacy reasons). This API allows websites to request user login, load data from blockchains the user has a connection to, and suggest the user sign messages and transactions. You can use this API to detect the user of a web3 browser.
+> MetaMask integriert eine globale API in Websites, die von seinen Nutzern unter window.ethereum besucht werden (auch unter window.web3.currentProvider abrufbar aus historischen Gründen). Diese API ermöglicht es Websites, die Logindaten von Blockchains anzufordern, mit denen der Benutzer verbunden ist, und empfiehlt Benutzern Nachrichten und Transaktionen zu signieren. Mithilfe dieser API kannst du den Benutzer eines Web3-Browsers ermitteln.
 
-In simpler terms, it basically means, having Metamask’s extension/add-on installed in your browser, you’d have a global variable defined, called `ethereum` (`web3` for older versions) - using this variable we instantiate our web3 object.
+Einfacher ausgedrückt bedeutet dies, dass du, wenn du die Metamask-Erweiterung in deinem Browser installiert hast, eine globale Variable mit dem Namen `ethereum`(f`web3`ür ältere Versionen) festlegen musst, mit dieser Variable erstellen wir unser web3-Objekt.
 
-**Step 2**
+**Schritt 2**
 
-Now, in your client code, import the above file,
+Importiere jetzt die oben stehende Datei in deinem Client-Code
 ```js
   import getWeb3 from '/path/to/web3';
 ```
-and call the function:
+Und rufen die Funktion auf:
 ```js
   getWeb3()
     .then((result) => {
       this.web3 = result;// we instantiate our contract next
     });
 ```
-### 2. Set up account
+### 2. Konto einrichten {#2-set-up-account}
 
-Now to send transactions (specifically those that alter the state of the blockchain) we’ll need an account to sign those transactions from We instantiate our contract instance from the web3 object we created above:
+Um Transaktionen zu senden (insbesondere diejenigen, die den Status der Blockchain ändern) muss ein Konto diese Transaktionen über die Instanz „Wir erstellen unseren contract“ aus dem oben erstellten web3-Objekt signieren:
 ```js
   this.web3.eth.getAccounts()
   .then((accounts) => {
     this.account = accounts[0];
   })
 ```
-The `getAccounts()` function returns an array of all the accounts on user’s MetaMask, and `accounts[0]` is the one currently selected by the user.
+Die `getAccounts()`-Funktion gibt ein Spektrum aller Konten in der Metamaske des Benutzers zurück, und `accounts[0]`ist das derzeit vom Benutzer ausgewählte Konto.
 
-### 3. Instantiate your contracts
+### 3. Contract erstellen {#3-instantiate-your-contracts}
 
-Once we have our `web3` object in place, we’ll next instantiate our contracts > Assuming you have your contract ABI and address already in place :)
+Sobald unser `web3`-Objekt bereit ist, erstellen wir unsere contracts > Vorausgesetzt, dass die ABI Ihres contracts und Ihre Adresse vorhanden sind :)
 ```js
   const myContractInstance = new this.web3.eth.Contract(myContractAbi, myContractAddress)
 ```
-### 4. Call functions
+### 4. Funktionsaufruf {#4-call-functions}
 
-Now for any function you’d want to call from your contract, we directly interact with our instantiated contract object (which is `myContractInstance` declared in Step 2)
+Für jede Funktion, die du von deinem Contract aufrufen möchtest, greifen wir nun direkt auf unser installiertes Contract-Objekt zu (`myContractInstance`das in Schritt 2 festgelegt wurde)
 
-A quick review: - Functions that alter the state of the contract are called `send()` functions - Functions that do not alter the state of the contract are called `call()` functions
+Kurzzusammenfassung: – Funktionen, die den Status des contracts ändern, werden `send()`-Funktionen genannt – Funktionen, die den Status des contracts nicht ändern, werden als `call()`-Funktionen bezeichnet
 
-**Calling `call()` Functions**
+**Funktionsaufrufe `call()`**
 ```js
   this.myContractInstance.methods.myMethod(myParams)
   .call()
@@ -106,7 +113,7 @@ A quick review: - Functions that alter the state of the contract are called `sen
     // do stuff with returned values
   )
 ```
-**Calling `send()` Functions**
+**Funktionsaufrufe `send()`**
 ```js
   this.myContractInstance.methods.myMethod(myParams)
   .send({

@@ -1,22 +1,29 @@
 ---
 id: stdtx
 title: StdTx
-description: Build your next blockchain app on Polygon.
+description: Eine standard eine Msg mit Fee und Signaturen zu wickeln.
 keywords:
   - docs
   - matic
+  - polygon
+  - StdTx
+  - wrap a msg with fee
 image: https://matic.network/banners/matic-network-16x9.png
 ---
 
-Source: [https://github.com/maticnetwork/heimdall/blob/master/auth/types/stdtx.go](https://github.com/maticnetwork/heimdall/blob/master/auth/types/stdtx.go)
+# StdTx {#stdtx}
 
-Heimdall's `StdTx` is not using `Fee` for each transaction. We have very limited types of the transactions and as end-users won't be deploying any kind of contracts on Heimdall, it is using fixed fee model for the transaction.
+Heimdalls `StdTx` verwendet `Fee` nicht für jede Transaktion. Wie verfügen über eine begrenzte Anzahl von Transaktionsarten und da die Endbenutzer keinerlei Contracts auf Heimdall anwenden werden, wird ein festgelegtes Gebührenmodell für die Transaktion angewendet.
 
-Check here: [https://github.com/maticnetwork/heimdall/blob/master/auth/ante.go#L32](https://github.com/maticnetwork/heimdall/blob/master/auth/ante.go#L32)
+Sieh hier nach: [https://github.com/maticnetwork/heimdall/blob/master/auth/ante.go#L32](https://github.com/maticnetwork/heimdall/blob/master/auth/ante.go#L32)
 
-    // StdTx is a standard way to wrap a Msg with Fee and Signatures.
-    type StdTx struct {
-        Msg       sdk.Msg      `json:"msg" yaml:"msg"`
-        Signature StdSignature `json:"signature" yaml:"signature"`
-        Memo      string       `json:"memo" yaml:"memo"`
-    }
+```go
+// StdTx is a standard way to wrap a Msg with Fee and Signatures.
+type StdTx struct {
+  Msg       sdk.Msg      `json:"msg" yaml:"msg"`
+  Signature StdSignature `json:"signature" yaml:"signature"`
+  Memo      string       `json:"memo" yaml:"memo"`
+}
+```
+
+Quelle: [https://github.com/maticnetwork/heimdall/blob/master/auth/types/stdtx.go](https://github.com/maticnetwork/heimdall/blob/master/auth/types/stdtx.go)

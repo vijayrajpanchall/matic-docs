@@ -1,14 +1,14 @@
 ---
 id: withdraw-exit
-title: withdraw exit
+title: retirer sortir
 keywords:
-  - 'pos client, erc20, withdrawExit, polygon, sdk'
-description: 'Get started with maticjs'
+- 'pos client, erc20, withdrawExit, polygon, sdk'
+description: 'Commencez à utiliser maticjs'
 ---
 
-# withdrawExit
+# retirerSortir {#withdrawexit}
 
-`withdrawExit` method can be used to exit the withdraw process once challenge period has been completed.
+`withdrawExit`méthode peut être utilisée pour quitter le processus de retrait une fois que la période de défi est terminée.
 
 ```
 const erc20RootToken = plasmaClient.erc20(<root token address>, true);

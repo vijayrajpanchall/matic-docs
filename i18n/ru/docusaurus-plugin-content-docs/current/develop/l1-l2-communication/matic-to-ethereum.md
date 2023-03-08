@@ -1,7 +1,7 @@
 ---
 id: matic-to-ethereum
-title: Transfer data from Polygon to Ethereum
-description: Transfer state or data from Polygon to Ethereum via Contracts
+title: Трансфер данных из Polygon в Ethereum
+description: Передача состояния или данных из Polygon в Ethereum через контракты
 keywords:
   - docs
   - matic
@@ -10,31 +10,31 @@ image: https://matic.network/banners/matic-network-16x9.png
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-Mechanism for transferring data from Polygon to Ethereum is a little different from doing the same for Ethereum to Polygon. The **checkpoint** transactions created by the Validators on the Ethereum chain are used for achieving this. Basically a transaction is initially created on Polygon. While creating this transaction it has to be ensured that an **event is emitted** and the **event logs includes the data we wish to transfer** from Polygon to Ethereum.
+Механизм передачи данных из Polygon в Ethereum немного отличается от механизма передачи данных из Ethereum в Polygon. Для этого используются транзакции **checkpoint**, создаваемые валидаторами в цепочке Ethereum. Первоначально транзакция создается в Polygon. При создании этой транзакции необходимо убедиться, что **событие эмитировано**, и что **журналы события включают данные, которые мы хотим передать** из Polygon в Ethereum.
 
-In a period of time ( about 10-30mins ), this transaction is check-pointed on the Ethereum chain by the validators. Once checkpointing is done, the hash of the transaction created on the Polygon chain can be submitted as a proof on the **RootChainManager** contract on the Ethereum chain. This contract, validates the transaction, verifies that this transaction is included in the checkpoint and finally decodes the event logs from this transaction.
+В течение периода (около 10-30 минут ) эта транзакция проверяется на цепочке Ethereum валидаторами. После создания checkpoint хэш транзакции, созданной в цепочке Polygon, можно представить как доказательство в контракте **RootChainManager** в цепочке Ethereum. Этот контракт подтверждает транзакцию, проверяет добавление транзакции в checkpoint и декодирует журналы событий из этой транзакции.
 
-Once this phase is over, we can use the **decoded event log data to perform any change** on the root contract deployed on the Ethereum chain. For this we also need to ensure that, the change of state on Ethereum is only done in a secure way. Hence, we make use of a **Predicate** contract which is a special type of contract that can be only triggered by the **RootChainManager** contract. This architecture ensures that the state changes on Ethereum happens only when the transaction on Polygon is check pointed and verified on the Ethereum chain by the **RootChainManager** contract.
+После завершения этого этапа мы можем использовать **декодированные данные журнала событий для выполнения любых изменений** в корневом контракте, развернутом в цепочке Ethereum. Для этого нам также необходимо сделать так, чтобы изменение состояния в Ethereum выполнялось только безопасным путем. Поэтому мы используем контракт **Predicate**, который представляет собой особый тип контракта, который может активироваться только контрактом **RootChainManager**. Благодаря этой архитектуре изменения состояния в Ethereum происходят только тогда, когда для транзакции в Polygon создан checkpoint, и эта транзакция проверена в цепочке Ethereum контрактом **RootChainManager**.
 
-# Overview
+# Обзор {#overview}
 
-- A transaction is executed on the child contract deployed on the Polygon chain.
-- An event is also emitted in this transaction. The parameters of this **event includes the data which has to be transferred** from Polygon to Ethereum.
-- The validators on the Polygon network picks up this transaction in a specific interval of time( probably 10-30mins), validates them and **adds them to the checkpoint** on Ethereum.
-- A checkpoint transaction is created on the **RootChain** contract and the checkpoint inclusion can be checked using this [script](https://github.com/rahuldamodar94/matic-learn-pos/blob/transfer-matic-ethereum/script/check-checkpoint.js)
-- Once the checkpoint addition is completed, the **matic.js** library can be used to call the **exit** function of the **RootChainManager** contract. **exit** function can be called using the matic.js library as shown in this [example](https://github.com/rahuldamodar94/matic-learn-pos/blob/transfer-matic-ethereum/script/exit.js).
+- Транзакция выполняется в дочернем контракте, развернутом в цепочке Polygon chain.
+- Также эта транзакция эмитирует событие. Параметры этого события **включают данные, которые должны быть переданы** из Polygon в Ethereum.
+- Валидаторы в сети Polygon подбирают эту транзакцию через определенный интервал времени (вероятно 10-30 минут), подтверждают ее **и добавляют ее в checkpoint** в Ethereum.
+- Транзакция checkpoint создается в контракте **RootChain**, и добавление checkpoint можно проверить с помощью этого [скрипта](https://github.com/rahuldamodar94/matic-learn-pos/blob/transfer-matic-ethereum/script/check-checkpoint.js)
+- После завершения добавления checkpoint библиотека **matic.js** может использоваться для вызова функции **exit** контракта **RootChainManager**. Функцию **exit** можно вызвать с помощью библиотеки matic.js, как показано в этом [примере](https://github.com/rahuldamodar94/matic-learn-pos/blob/transfer-matic-ethereum/script/exit.js).
 
-- Running the script, verifies the inclusion of the Polygon transaction hash on Ethereum chain, and then in turn calls the **exitToken** function of the [predicate](https://github.com/rahuldamodar94/matic-learn-pos/blob/transfer-matic-ethereum/contracts/CustomPredicate.sol) contract.
-- This ensures that the **state change on the root chain contract** is always done in a **secure** way and **only through the predicate contract**.
-- The important thing to note is that the **verification of the transaction hash** from Polygon and **triggering the predicate** contract happens in a **single transaction** and thus ensuring security of any state change on root contract.
+- Запуск скрипта подтверждает включение хэша Polygon в цепочке Ethereum, а затем вызывает функцию **exitToken** контракта [predicate](https://github.com/rahuldamodar94/matic-learn-pos/blob/transfer-matic-ethereum/contracts/CustomPredicate.sol).
+- Это гарантирует, что **изменение состояния контракта корневой цепочки** всегда выполняется **безопасным** способом и **только через контракт predicate**.
+- Важно отметить, что **проверка хэша транзакции** из Polygon и **активация контракта predicate** происходят в рамках **одной транзакции**, и это обеспечит безопасность любого изменения состояния корневого контракта.
 
-# Implementation
+# Реализация {#implementation}
 
-This is a simple demonstration of how data can be transfered from Polygon to Ethereum. This tutorial shows an example of transfering a uint256 value across the chain. But you can transfer type of data. But it is necessary to encode the data in bytes and then emit it from the child contract. It can be finally decoded at the root contract.
+Это простая демонстрация того, как данные могут передаваться из Polygon в Ethereum. В этом руководстве показан пример передачи значения uint256 по цепочке. Вы можете передавать тип данных, однако данные необходимо кодировать в байтах и эмитировать из дочернего контракта. После этого их можно декодировать как корневой контракт.
 
-1.  First create the root chain and child chain contract. Ensure that the function that does the state change also emits an event. This event must include the data to be transferred as one of its parameters. A sample format of how the Child and Root contract must look like is given below. This is a very simple contract that has a data variable whose value is set by using a setData function. Calling the setData function emits the Data event. Rest of the things in the contract will be explained in the upcoming sections of this tutorial.
+1. Вначале создайте корневую цепочку и контракт дочерней цепочки. Убедитесь, что функция изменения состояния также эмитирует событие. Это событие должно включать данные для передачи в качестве одного из параметров. Ниже приведен образец формата дочернего контракта и корневого контракта. Это очень простой контракт, содержащий переменную данных, значение которой задается функцией setData. Вызов функции setData эмитирует событие Data. Остальные элементы контракта будут разъяснены в последующих разделах настоящего руководства.
 
-A. Child Contract
+A. Дочерний контракт
 
 ```javascript
 contract Child {
@@ -51,9 +51,9 @@ contract Child {
 }
 ```
 
-B. Root Contract
+B. Корневой контракт
 
-Pass this `0x1470E07a6dD1D11eAE439Acaa6971C941C9EF48f` as the value for `_predicate` in the root contract constructor.
+`0x1470E07a6dD1D11eAE439Acaa6971C941C9EF48f` передается как значение `_predicate` в конструкторе корневых контрактов.
 
 ```javascript
 contract Root {
@@ -77,11 +77,11 @@ contract Root {
 }
 ```
 
-2.  Once the child and root contract is deployed on the Polygon and Ethereum chain respectively, these contracts have to be mapped using the PoS bridge. This mapping ensures that a connection is maintained between these two contracts across the chains. For doing this mapping,the Polygon team can be reached on [discord](https://discord.com/invite/0xPolygon).
+2. После развертывания дочернего контракта и корневого контракта в цепочках Polygon и Ethereum соответственно необходимо провести сопоставление этих контрактов с помощью моста PoS. Сопоставление обеспечивает поддержание соединения между этими двумя контрактами в цепочках. Для выполнения сопоставления можно связаться с командой Polygon в [discord](https://discord.com/invite/0xPolygon).
 
-3.  One important thing to note is that, in the root contract, there is a onlyPredicate modifier. It is reccomended to use this modifier always because it ensures that only the predicate contract makes the state change on the root contract. The predicate contract is a special contract that triggers the root contract only when the transaction that happened on the Polygon chain is verified by the RootChainManager on Ethereum chain. This ensures secure change of state on the root contract.
+3. Важно отметить, что корневой контракт имеет модификатор onlyPredicate. Рекомендуется использовать этот модификатор во всех случаях, поскольку он определяет, что изменять состояние корневого контракта может только контракт predicate. Контракт predicate — это специальный контракт, который активирует корневой контракт, только если транзакция в цепочке Polygon проверяется RootChainManager в цепочке Ethereum. Это обеспечивает безопасность изменения состояния корневого контракта.
 
-For testing the above implementation, we can create a transaction on the Polygon chain by calling the **setData** function of the child contract. We need to wait at this point for the checkpoint to be completed. The checkpoint inclusion can be checked using this [script](https://github.com/rahuldamodar94/matic-learn-pos/blob/transfer-matic-ethereum/script/check-checkpoint.js). Once checkpoint is completed, call the exit function of the RootChainManager using the matic.js SDK.
+Для тестирования вышеуказанной реализации мы можем создать транзакцию в цепочке Polygon, вызвав функцию **setData** дочернего контракта. Сейчас нам необходимо подождать завершения checkpoint. Включение checkpoint можно проверить [с помощью этого скрипта](https://github.com/rahuldamodar94/matic-learn-pos/blob/transfer-matic-ethereum/script/check-checkpoint.js). После завершения checkpoint нужно вызвать функцию exit в RootChainManager, используя matic.js SDK.
 
 ```jsx
 const txHash =
@@ -103,9 +103,8 @@ const execute = async () => {
 };
 ```
 
-As shown in the above screenshot, the **txHash** is the transaction hash of the transaction that happened on the child contract deployed on Polygon chain.
+Как показано на снимке экрана выше, **txHash** — это хэш транзакции в дочернем контракте, развернутом в цепочке Polygon.
 
-The **logEventSignature** is the keccack-256 hash of the Data event. This is the same hash that we have included in the Predicate contract. All the contract code used for this tutorial and the exit script can be found [here](https://github.com/rahuldamodar94/matic-learn-pos/tree/transfer-matic-ethereum)
+**logEventSignature** — это хэш keccack-256 события Data. Это тот же самый хэш, который мы включили в контракт Predicate. Весь код контрактов, использованный в этом руководстве, а также скрипт выхода можно найти [здесь](https://github.com/rahuldamodar94/matic-learn-pos/tree/transfer-matic-ethereum)
 
-Once the exit script is completed, the root contract on Ethereum chain can be queried to verify if the value of the variable **data** that was set in child contract has also been reflected in the **data** variable of the root contract.
-
+После выполнения скрипта выхода можно отправить запрос в корневой контракт в цепочке Ethereum для проверки отражения значения переменной **data**, установленного в дочернем контракте, в переменной **data** в корневом контракте.

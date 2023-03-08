@@ -1,12 +1,12 @@
 ---
 id: transfer
-title: transfer
+title: transfer (Transferencia)
 keywords:
-  - 'POS client, erc20, transfer, polygon, sdk'
-description: 'transfer method can be used to transfer amount from one address to another address.'
+- 'POS client, erc20, transfer, polygon, sdk'
+description: 'Transfiere una cantidad de una dirección a otra.'
 ---
 
-`transfer` method can be used to transfer amount from one address to another address.
+El método `transfer` puede utilizarse para transferir una cantidad de una dirección a otra.
 
 ```
 const erc20Token = posClient.erc20(<token address>);

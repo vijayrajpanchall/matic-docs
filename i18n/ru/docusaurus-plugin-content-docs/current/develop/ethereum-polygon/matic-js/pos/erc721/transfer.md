@@ -2,11 +2,11 @@
 id: transfer
 title: transfer
 keywords:
-  - 'pos client, erc721, transfer, polygon, sdk'
-description: 'transfer tokens from one user to another user.'
+- 'pos client, erc721, transfer, polygon, sdk'
+description: 'Выполните трансфер токенов от одного пользователя другому.'
 ---
 
-`transfer` method can be used to transfer tokens from one user to another user.
+Метод `transfer` можно использовать для выполнения трансфера токенов от одного пользователя другому.
 
 ```
 const erc721Token = posClient.erc721(<token address>);

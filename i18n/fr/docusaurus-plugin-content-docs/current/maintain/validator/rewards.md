@@ -1,74 +1,77 @@
 ---
 id: rewards
-title: Rewards
+title: Récompenses
 sidebar_label: Rewards
-description: Learn about the Polygon Network staking incentives.
+description: Découvrez les incitations du staking sur le réseau Polygon.
 keywords:
   - docs
   - matic
-image: https://matic.network/banners/matic-network-16x9.png
+  - polygon
+  - rewards
+  - staking
+  - incentives
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
-For an introduction to Polygon and the Proof of Stake algorithm, see:
+Pour une introduction à Polygon et à l'algorithme Proof Stake (Preuve), consultez [What is Proof of](/docs/home/polygon-basics/what-is-proof-of-stake) Stake
 
-* [What Is Proof of Stake](/docs/home/polygon-basics/what-is-proof-of-stake)
+Dans Polygon, les validateurs stakent leurs jetons MATIC comme garantie pour travailler à la sécurité du réseau, et en échange de leur service, ils obtiennent des récompenses.
 
-In Polygon, validators stake their MATIC tokens as collateral to work for the security of the network, and in exchange for their service, earn rewards.
+Pour tirer parti de l'économie de Polygon, vous devez devenir soit un validateur, soit un délégant.
 
-To leverage Polygon's economics, you should either become a validator or a delegator.
+Pour être un [validateur](/docs/maintain/glossary.md#validator), vous devez **exécuter un nœud de validation complet** et staker MATIC. Voir [Valider](/docs/maintain/validate/validator-index).
 
-To be a [validator](/docs/maintain/glossary#validator), you need to **run a full validator** node and stake MATIC. See [Validate](/docs/maintain/validate/validator-index). Check the [Validator Responsibilities](/docs/maintain/validate/validator-responsibilities).
+Vérifiez également la page [Responsabilités du](/docs/maintain/validate/validator-responsibilities) validateur.
 
-To be a [delegator](/docs/maintain/glossary#delegator), you only need to **delegate MATIC to a validator**. See [Delegate](/docs/maintain/delegate/delegate).
+Pour être [délégant](/docs/maintain/glossary.md#delegator), il suffit de **déléguer MATIC à un validateur**. Voir la section [Déléguer](/docs/maintain/delegate/delegate).
 
+## Quelle est l'incitation ? {#what-is-the-incentive}
 
-## What is the incentive?
+Polygon alloue 12 % de son offre totale de 10 milliards de jetons pour financer les récompenses de staking. Cela permet de s'assurer que le réseau est suffisamment bien implanté jusqu'à ce que les frais de transaction gagnent du terrain. Ces récompenses sont principalement destinées à faire démarrer le réseau, tandis que le protocole est destiné à se maintenir à long terme sur la base des frais de transaction.
 
-Polygon allocates 12% of its total supply of 10 billion tokens to fund the staking rewards. This is to ensure that the network is seeded well enough until transaction fees gain traction. These rewards are primarily meant to jump-start the network, while the protocol in the long run is intended to sustain itself on the basis of transaction fees.
+**Récompenses du validateur = Récompenses du staking + Frais de transaction**
 
-**Validator Rewards = Staking Rewards + Transaction Fees**
+Ce montant est alloué de manière à assurer le découplage progressif des récompenses de staking, qui ne seront plus la composante dominante des récompenses des validateurs.
 
-This is allocated in a way to ensure gradual decoupling of staking rewards from being the dominant component of the validator rewards.
+| Année | Stake cible (30 % de l'approvisionnement en circulation) | Taux de récompense pour un blocage de 30 %. | Pool de récompenses |
+|---|---|---|---|
+| Première année | 1 977 909 431 | 20 % | 312 917 369 |
+| Deuxième année | 2 556 580 023 | 12 % | 275 625 675 |
+| Troisième année | 2 890 642 855 | 9 % | 246 933 140 |
+| Quatrième année | 2 951 934 048 | 7 % | 204 303 976 |
+| Cinquième année | 2 996 518 749 | 5 % | 148 615 670 + **11 604 170** |
 
-| Year   | Target Stake (30% of circulating supply) | Reward Rate for 30% Bonding | Reward Pool                  |
-| ------ | ---------------------------------------- | --------------------------- | ---------------------------- |
-| First  | 1,977,909,431                            | 20%                         | 312,917,369                  |
-| Second | 2,556,580,023                            | 12%                         | 275,625,675                  |
-| Third  | 2,890,642,855                            | 9%                          | 246,933,140                  |
-| Fourth | 2,951,934,048                            | 7%                          | 204,303,976                  |
-| Fifth  | 2,996,518,749                            | 5%                          | 148,615,670 + **11,604,170** |
+Vous trouverez ci-dessous un aperçu des récompenses annuelles escomptées pour les 5 premières années en tenant compte d'une offre de 5 % à 40 % à un intervalle de 5 %.
 
-Below is a sample snapshot of the expected annual rewards for the first 5 years considering staked supply ranging from 5% to 40% at 5% interval
+| % de l'approvisionnement en circulation staké | 5 % | 10 % | 15 % | 20 % | 25 % | 30 % | 35 % | 40 % |
+|---|---|---|---|---|---|---|---|---|
+| Récompense annuelle |
+| Première année | 120 % | 60 % | 40 % | 30 % | 24 % | 20 % | 17,14 % | 15 % |
+| Deuxième année | 72 % | 36 % | 24 % | 18 % | 14,4 % | 12 % | 10,29 % | 9 % |
+| Troisième année | 54 % | 27 % | 18 % | 13,5 % | 10,8 % | 9 % | 7,71 % | 6,75 % |
+| Quatrième année | 42 % | 21 % | 14 % | 10,5 % | 8,4 % | 7 % | 6 % | 5,25 % |
+| Cinquième année | 30 % | 15 % | 10 % | 7,5 % | 6 % | 5 % | 4,29 % | 3,75 % |
 
-| % of circulating supply staked | 5%   | 10% | 15% | 20%   | 25%   | 30% | 35%    | 40%   |
-| ------------------------------ | ---- | --- | --- | ----- | ----- | --- | ------ | ----- |
-| Annual reward for year         |      |     |     |       |       |     |        |       |
-| First                          | 120% | 60% | 40% | 30%   | 24%   | 20% | 17.14% | 15%   |
-| Second                         | 72%  | 36% | 24% | 18%   | 14.4% | 12% | 10.29% | 9%    |
-| Third                          | 54%  | 27% | 18% | 13.5% | 10.8% | 9%  | 7.71%  | 6.75% |
-| Fourth                         | 42%  | 21% | 14% | 10.5% | 8.4%  | 7%  | 6%     | 5.25% |
-| Fifth                          | 30%  | 15% | 10% | 7.5%  | 6%    | 5%  | 4.29%  | 3.75% |
+## Qui bénéficie des incitations ? {#who-gets-the-incentives}
 
-## Who gets the incentives?
+Les stakers qui gèrent des nœuds de validation et les stakers qui délèguent leurs jetons vers le validateur qu'ils préfèrent.
 
-Stakers running validator nodes and stakers delegating their tokens toward a validator that they prefer.
+Les validateurs ont la possibilité de prélever une commission sur la récompense obtenue par les délégants.
 
-Validators have the option to charge a commission on the reward earned by delegators.
+Les fonds appartenant à tous les stakers sont verrouillés dans un contrat déployé sur le réseau principal d'Ethereum.
 
-The funds belonging to all stakers are locked in a contract deployed on the Ethereum mainnet.
+Aucun validateur ne dispose du contrôle sur les jetons des délégants.
 
-No validator holds custody over delegator tokens.
+## Récompenses de staking {#staking-rewards}
 
-## Staking rewards
+L'incitation annuelle est absolue : indépendamment du stake global ou du taux de blocage cible dans le réseau, le montant de l'incitation est distribué périodiquement comme récompense à tous les signataires.
 
-The yearly incentive is absolute — irrespective of the overall stake or the target bonding rate in the network, the incentive amount is given out as a reward to all signers periodically.
+Dans Polygon, un autre facteur vient s'ajouter : l'engagement de [points de contrôle](/docs/maintain/glossary.md#checkpoint-transaction) périodiques sur le réseau principal Ethereum. Il s'agit d'une partie importante des responsabilités des validateurs, qui sont incités à effectuer cette activité. Cela constitue un coût pour le validateur qui est unique pour une solution de couche 2 telle que Polygon. Nous nous efforçons de prendre en compte ce coût dans le mécanisme de paiement de la récompense de staking du validateur, sous la forme d'une prime à verser au [proposant](/docs/maintain/glossary.md#proposer), chargé d'engager le point de contrôle. La récompense sous déduction de la prime doit être partagée entre tous les stakers, les proposants et [les signataires](/docs/maintain/glossary.md#signer-address), proportionnellement.
 
-In Polygon, there is an additional element of committing periodic [checkpoints](/docs/maintain/glossary#checkpoint-transaction) to the Ethereum mainnet. This is a major part of the validator responsibilities and they are incentivized to perform this activity. This constitutes a cost to the validator which is unique to a Layer 2 solution such as Polygon. We strive to accommodate this cost in the validator staking reward payout mechanism as a bonus to be paid to the [proposer](/docs/maintain/glossary#proposer), who is responsible for committing the checkpoint. Rewards minus the bonus is to be shared among all stakers, proposer and [signers](/docs/maintain/glossary#signer-address), proportionally.
+## Encourager le proposant à inclure toutes les signatures {#encouraging-the-proposer-to-include-all-signatures}
 
-## Encouraging the proposer to include all signatures
+Pour bénéficier pleinement de la prime, le [proposant](/docs/maintain/glossary.md#proposer) doit inclure toutes les signatures dans le [point de contrôle](/docs/maintain/glossary.md#checkpoint-transaction). Le protocole souhaitant une pondération de ⅔ +1 du total du stake, le point de contrôle est accepté même avec 80 % de votes. Toutefois, dans ce cas, le proposant ne reçoit que 80 % de la prime calculée.
 
-To avail the bonus completely, the [proposer](/docs/maintain/glossary#proposer) must include all signatures in the [checkpoint](/docs/maintain/glossary#checkpoint-transaction). Because the protocol desires ⅔ +1 weight of the total stake, the checkpoint is accepted even with 80% votes. However, in this case, the proposer gets only 80% of the calculated bonus.
+## Frais de transactions {#transaction-fees}
 
-## Transaction fees
-
-Each block producer at [Bor](/docs/maintain/glossary#bor) is given a certain percentage of the transaction fees collected in each block. The selection of producers for any given span is also dependent on the validator’s ratio in the overall stake. The remaining transaction fees flow through the same funnel as the rewards which get shared among all validators working at the [Heimdall](/docs/maintain/glossary#heimdall) layer.
+Chaque producteur de blocs à [Bor](/docs/maintain/glossary.md#bor) reçoit un certain pourcentage des frais de transaction collectés dans chaque bloc. La sélection des producteurs pour une durée donnée dépend également du ratio du validateur dans le stake global. Les frais de transaction restants transitent par le même entonnoir que les récompenses qui sont partagées entre tous les validateurs travaillant sur la couche [Heimdall](/docs/maintain/glossary.md#heimdall).

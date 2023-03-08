@@ -697,7 +697,7 @@ module.exports = {
       link: {
         type: "generated-index",
       },
-      items: ["contribute/non-native-speakers", "contribute/how-to-translate"],
+      items: ["contribute/translate"],
     },
   ],
 

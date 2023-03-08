@@ -1,74 +1,77 @@
 ---
 id: rewards
-title: Rewards
+title: 보상
 sidebar_label: Rewards
-description: Learn about the Polygon Network staking incentives.
+description: Polygon 네트워크 스테이킹 인센티브에 대해 알아봅니다.
 keywords:
   - docs
   - matic
-image: https://matic.network/banners/matic-network-16x9.png
+  - polygon
+  - rewards
+  - staking
+  - incentives
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
-For an introduction to Polygon and the Proof of Stake algorithm, see:
+Polygon 및 Stake 알고리즘의 증거를 소개하려면 [스테이크 증명이 무엇인지](/docs/home/polygon-basics/what-is-proof-of-stake) 알 수 있습니다.
 
-* [What Is Proof of Stake](/docs/home/polygon-basics/what-is-proof-of-stake)
+Polygon에서 유효성 검사자는 네트워크 보안에 기여하기 위해 자신의 매틱 토큰을 담보로 스테이크하고 그러한 서비스의 대가로 보상을 얻습니다.
 
-In Polygon, validators stake their MATIC tokens as collateral to work for the security of the network, and in exchange for their service, earn rewards.
+Polygon의 경제적 효과를 활용하기 위해서는 유효성 검사자 또는 위임자가 되어야 합니다.
 
-To leverage Polygon's economics, you should either become a validator or a delegator.
+[유효성 검사자](/docs/maintain/glossary.md#validator)가 되려면 **전체 유효성 검사** 노드를 실행하고 매틱을 스테이크해야 합니다. [유효성 검사](/docs/maintain/validate/validator-index)를 참조해 주세요.
 
-To be a [validator](/docs/maintain/glossary#validator), you need to **run a full validator** node and stake MATIC. See [Validate](/docs/maintain/validate/validator-index). Check the [Validator Responsibilities](/docs/maintain/validate/validator-responsibilities).
+또한 [검사기 책임](/docs/maintain/validate/validator-responsibilities) 페이지를 확인하십시오.
 
-To be a [delegator](/docs/maintain/glossary#delegator), you only need to **delegate MATIC to a validator**. See [Delegate](/docs/maintain/delegate/delegate).
+[위임자](/docs/maintain/glossary.md#delegator)가 되려면 **유효성 검사자에게 매틱을 위임**하기만 하면 됩니다. [위임](/docs/maintain/delegate/delegate)을 참조하세요.
 
+## 인센티브는 무엇인가요? {#what-is-the-incentive}
 
-## What is the incentive?
+Polygon은 공급하는 총 100억 개 토큰의 12%를 스테이킹 보상을 위한 자금에 할당하고 있습니다. 이는 트랜잭션 수수료가 확보될 때 까지 네트워크를 충분히 확충하기 위한 것 입니다. 이러한 보상의 주요 목적은 네트워크에 활기를 불어넣기 위한 것이며, 장기적 안목에서 프로토콜은 트랜잭션 수수료를 기반으로 자체적으로 유지하는 것이 목적입니다.
 
-Polygon allocates 12% of its total supply of 10 billion tokens to fund the staking rewards. This is to ensure that the network is seeded well enough until transaction fees gain traction. These rewards are primarily meant to jump-start the network, while the protocol in the long run is intended to sustain itself on the basis of transaction fees.
+**유효성 검사자 보상 = 스테이킹 보상 + 트랜잭션 수수료**
 
-**Validator Rewards = Staking Rewards + Transaction Fees**
+이러한 할당은 스테이킹 보상을 유효성 검사자 보상의 주요 구성 요소가 되는 것에서 점차 분리해 나가는 방식으로 이루어집니다.
 
-This is allocated in a way to ensure gradual decoupling of staking rewards from being the dominant component of the validator rewards.
+| 연도 | 목표 스테이크(순환 공급량의 30%) | 30% 본딩에 대한 보상 비율 | 보상 풀 |
+|---|---|---|---|
+| 첫해 | 1,977,909,431 | 20% | 312,917,369 |
+| 둘째 해 | 2,556,580,023 | 12% | 275,625,675 |
+| 셋째 해 | 2,890,642,855 | 9% | 246,933,140 |
+| 넷째 해 | 2,951,934,048 | 7% | 204,303,976 |
+| 다섯째 해 | 2,996,518,749 | 5% | 148,615,670 + **11,604,170** |
 
-| Year   | Target Stake (30% of circulating supply) | Reward Rate for 30% Bonding | Reward Pool                  |
-| ------ | ---------------------------------------- | --------------------------- | ---------------------------- |
-| First  | 1,977,909,431                            | 20%                         | 312,917,369                  |
-| Second | 2,556,580,023                            | 12%                         | 275,625,675                  |
-| Third  | 2,890,642,855                            | 9%                          | 246,933,140                  |
-| Fourth | 2,951,934,048                            | 7%                          | 204,303,976                  |
-| Fifth  | 2,996,518,749                            | 5%                          | 148,615,670 + **11,604,170** |
+아래의 샘플 스냅샷에는 5% 간격으로 5%~40% 범위의 스테이크 공급을 고려할 때 처음 5년 동안 기대되는 연간 보상이 나와 있습니다.
 
-Below is a sample snapshot of the expected annual rewards for the first 5 years considering staked supply ranging from 5% to 40% at 5% interval
+| 순환 공급 스테이크의 비율 | 5% | 10% | 15% | 20% | 25% | 30% | 35% | 40% |
+|---|---|---|---|---|---|---|---|---|
+| 연간 보상 |
+| 첫해 | 120% | 60% | 40% | 30% | 24% | 20% | 17.14% | 15% |
+| 둘째 해 | 72% | 36% | 24% | 18% | 14.4% | 12% | 10.29% | 9% |
+| 셋째 해 | 54% | 27% | 18% | 13.5% | 10.8% | 9% | 7.71% | 6.75% |
+| 넷째 해 | 42% | 21% | 14% | 10.5% | 8.4% | 7% | 6% | 5.25% |
+| 다섯째 해 | 30% | 15% | 10% | 7.5% | 6% | 5% | 4.29% | 3.75% |
 
-| % of circulating supply staked | 5%   | 10% | 15% | 20%   | 25%   | 30% | 35%    | 40%   |
-| ------------------------------ | ---- | --- | --- | ----- | ----- | --- | ------ | ----- |
-| Annual reward for year         |      |     |     |       |       |     |        |       |
-| First                          | 120% | 60% | 40% | 30%   | 24%   | 20% | 17.14% | 15%   |
-| Second                         | 72%  | 36% | 24% | 18%   | 14.4% | 12% | 10.29% | 9%    |
-| Third                          | 54%  | 27% | 18% | 13.5% | 10.8% | 9%  | 7.71%  | 6.75% |
-| Fourth                         | 42%  | 21% | 14% | 10.5% | 8.4%  | 7%  | 6%     | 5.25% |
-| Fifth                          | 30%  | 15% | 10% | 7.5%  | 6%    | 5%  | 4.29%  | 3.75% |
+## 인센티브는 누가 받나요? {#who-gets-the-incentives}
 
-## Who gets the incentives?
+유효성 검사 노드를 실행하고 선호하는 유효성 검사자에게 자신의 토큰을 위임하는 스테이커들이 받습니다.
 
-Stakers running validator nodes and stakers delegating their tokens toward a validator that they prefer.
+유효성 검사자에게는 위임자가 얻은 보상에 대해 수수료를 청구할 수 있는 옵션이 있습니다.
 
-Validators have the option to charge a commission on the reward earned by delegators.
+모든 스테이커에 속한 자금은 이더리움 메인넷에 배포된 계약에 락업되어 있습니다.
 
-The funds belonging to all stakers are locked in a contract deployed on the Ethereum mainnet.
+어떤 유효성 검사자도 위임자 토큰을 보유 관리할 수 없습니다.
 
-No validator holds custody over delegator tokens.
+## 스테이킹 보상 {#staking-rewards}
 
-## Staking rewards
+매년 인센티브는 확실하게 제공됩니다. 네트워크에서 목표 본딩 비율이나 전체 스테이크에 상관없이 정기적으로 모든 서명자에게 인센티브 금액이 보상으로 주어집니다.
 
-The yearly incentive is absolute — irrespective of the overall stake or the target bonding rate in the network, the incentive amount is given out as a reward to all signers periodically.
+Polygon에는 이더리움 메인넷에 주기적으로 [체크포인트](/docs/maintain/glossary.md#checkpoint-transaction)를 제공하는 추가 요소가 있습니다. 이는 유효성 검사자의 책임에서 주요한 부분을 차지하며 이 작업을 수행하도록 장려하는 인센티브가 제공됩니다. 이로 인해 유효성 검사자에게 비용이 발생하게 되며 이것은 Polygon과 같은 레이어 2 솔루션만이 갖고 있는 특징이기도 합니다. 우리는 유효성 검사자 스테이킹 보상 지불 메카니즘에서 체크포인트 제공 책임이 있는 [제안자](/docs/maintain/glossary.md#proposer)에게 지불하는 보너스 형태로 이러한 비용을 수용하기 위해 노력하고 있습니다. 보너스를 뺀 보상은 모든 스테이커, 제안자 및 [서명자](/docs/maintain/glossary.md#signer-address) 사이의 비율에 맞춰 분배됩니다.
 
-In Polygon, there is an additional element of committing periodic [checkpoints](/docs/maintain/glossary#checkpoint-transaction) to the Ethereum mainnet. This is a major part of the validator responsibilities and they are incentivized to perform this activity. This constitutes a cost to the validator which is unique to a Layer 2 solution such as Polygon. We strive to accommodate this cost in the validator staking reward payout mechanism as a bonus to be paid to the [proposer](/docs/maintain/glossary#proposer), who is responsible for committing the checkpoint. Rewards minus the bonus is to be shared among all stakers, proposer and [signers](/docs/maintain/glossary#signer-address), proportionally.
+## 제안자가 모든 서명을 포함해야 좋은 이유 {#encouraging-the-proposer-to-include-all-signatures}
 
-## Encouraging the proposer to include all signatures
+보너스를 완전히 받으려면 [제안자가](/docs/maintain/glossary.md#proposer) [체크포인트](/docs/maintain/glossary.md#checkpoint-transaction)에 모든 서명을 포함해야 합니다. 프로토콜은 총 스테이크의 ⅔ +1 가중치를 원하기 때문에 80% 투표로도 체크포인트는 수락됩니다. 그러나 이 경우 제안자는 계산된 보너스의 80%만 받게 됩니다.
 
-To avail the bonus completely, the [proposer](/docs/maintain/glossary#proposer) must include all signatures in the [checkpoint](/docs/maintain/glossary#checkpoint-transaction). Because the protocol desires ⅔ +1 weight of the total stake, the checkpoint is accepted even with 80% votes. However, in this case, the proposer gets only 80% of the calculated bonus.
+## 트랜잭션 수수료 {#transaction-fees}
 
-## Transaction fees
-
-Each block producer at [Bor](/docs/maintain/glossary#bor) is given a certain percentage of the transaction fees collected in each block. The selection of producers for any given span is also dependent on the validator’s ratio in the overall stake. The remaining transaction fees flow through the same funnel as the rewards which get shared among all validators working at the [Heimdall](/docs/maintain/glossary#heimdall) layer.
+[Bor](/docs/maintain/glossary.md#bor)의 각 블록프로듀서는 각 블록에서 징수된 트랜잭션 수수료의 일정 비율을 받습니다. 특정 범위에 대한 프로듀서 선택 또한 전체 스테이크에서 유효성 검사자가 차지하는 비율에 따라 결정됩니다. 나머지 트랜잭션 수수료는 [Heimdall](/docs/maintain/glossary.md#heimdall) 층에서 일하는 모든 유효성 검사자 간에 분배되는 보상과 똑같은 경로를 통해 처리됩니다.

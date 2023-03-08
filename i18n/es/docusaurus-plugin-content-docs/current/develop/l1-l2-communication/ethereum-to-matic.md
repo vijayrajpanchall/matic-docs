@@ -1,32 +1,32 @@
 ---
 id: ethereum-to-matic
-title: Transfer data from Ethereum to Polygon
-description: Transfer state or data from Ethereum to Polygon via Contracts
+title: Transferencia de datos de Ethereum a Polygon
+description: Transfiere estados o datos de Ethereum a Polygon por medio de contratos
 keywords:
   - docs
   - matic
 image: https://matic.network/banners/matic-network-16x9.png
 ---
 
-The mechanism to natively read Ethereum data from Polygon EVM chain is that of ‘State Sync’. In other words, this mechanism enables transfer of arbitrary data from Ethereum chain to Polygon chain. The procedure that makes it possible is: Validators on the Heimdall layer are listening for a particular event — `StateSynced` from a Sender contract, as soon as the event is picked, the `data` that was passed in the event is written on the Receiver contract. Read more [here](/docs/maintain/validator/core-components/state-sync-mechanism).
+La sincronización de estado es el mecanismo para leer de forma nativa datos de Ethereum desde la cadena de la EVM de Polygon. En otras palabras, este permite transferir datos arbitrarios de la cadena de Ethereum a la cadena de Polygon. El procedimiento que lo hace posible es el siguiente: los validadores de la capa de Heimdall están esperando un evento determinado, `StateSynced`, de un contrato remitente; cuando se registra el evento, el `data` que se pasó en el evento se escribe en el contrato receptor. Lee más [aquí](/docs/maintain/validator/core-components/state-sync-mechanism).
 
-The Sender and Receiver contract are required to be mapped on Ethereum — [StateSender.sol](https://github.com/maticnetwork/contracts/blob/release-betaV2/contracts/root/stateSyncer/StateSender.sol) needs to be aware of each sender and receiver. If you'd like to get the mapping done, please request a mapping [here](https://mapper.polygon.technology/).
+Los contratos remitente y receptor deben estar mapeados en Ethereum: [StateSender.sol](https://github.com/maticnetwork/contracts/blob/release-betaV2/contracts/root/stateSyncer/StateSender.sol) debe estar enterado de cada remitente y receptor. Si quieres que hagamos el mapeo, solicítalo [aquí](https://mapper.polygon.technology/).
 
 ---
 
-In the following walkthrough, we'll be deploying a Sender contract on Goerli (Ethereum testnet) and a Receiver contract on Mumbai (Polygon's testnet) and then we'll be sending data from Sender and reading data on Receiver via web3 calls in a node script.
+En la siguiente explicación, vamos a implementar un contrato remitente en Goerli (la red de pruebas de Ethereum) y un contrato receptor en Mumbai (la red de pruebas de Polygon). Luego enviaremos datos del remitente y los leeremos en el receptor mediante llamadas de web3 en una secuencia de comandos de nodo.
 
-### 1. Deploy Sender contract
+### 1. Implementación del contrato remitente {#1-deploy-sender-contract}
 
-The sole purpose of Sender contract is to be able to call [syncState](https://github.com/maticnetwork/contracts/blob/e999579e9dc898ab6e66ddcb49ee84c2543a9658/contracts/root/stateSyncer/StateSender.sol#L33) function on the StateSender contract — which is Matic's state syncer contract - the StateSynced event of which Heimdall is listening to.
+El único propósito del contrato remitente es poder llamar a la función [syncState](https://github.com/maticnetwork/contracts/blob/e999579e9dc898ab6e66ddcb49ee84c2543a9658/contracts/root/stateSyncer/StateSender.sol#L33) en el contrato StateSender, que es el contrato sincronizador de estado de MATIC, cuyo evento StateSynced está esperando Heimdall.
 
-Deployed at:
+Implementado en:
 
-`0xEAa852323826C71cd7920C3b4c007184234c3945` on Goerli
+`0xEAa852323826C71cd7920C3b4c007184234c3945` en Goerli
 
-`0x28e4F3a7f651294B9564800b2D01f35189A5bFbE` on Ethereum Mainnet
+`0x28e4F3a7f651294B9564800b2D01f35189A5bFbE` en la red principal de Ethereum
 
-To be able to call this function, let's first include it's interface in our contract:
+Para poder llamar a esta función, primero, hay que incluir su interfaz en el contrato:
 
 ```jsx
 // Sender.sol
@@ -41,7 +41,7 @@ contract IStateSender {
 ...
 ```
 
-Next, let's write our custom function that takes in the data we'd like to pass on to Polygon and calls syncState
+A continuación, hay que escribir una función personalizada que incluya los datos que queremos pasar a Polygon y llamarla "syncState"
 
 ```jsx
 function sendState(bytes calldata data) external {
@@ -50,11 +50,11 @@ function sendState(bytes calldata data) external {
 }
 ```
 
-In the above function, `stateSenderContract` is the address of the StateSender on the network you'll be deploying `Sender` on. (eg., we'll be using `0xEAa852323826C71cd7920C3b4c007184234c3945` for Goerli), and `receiver` is the contract that will receive the data we send from here.
+En la función anterior, `stateSenderContract` es la dirección del StateSender en la red en la que implementarás `Sender` (p. ej., aquí usaremos `0xEAa852323826C71cd7920C3b4c007184234c3945` para Goerli), y `receiver` es el contrato que recibirá los datos que envíes desde allí.
 
-It is recommended to use constructors to pass in variables, but for the purpose of this demo, we'll simply hardcode these two addresses:
+Se recomienda usar constructores para pasar las variables, pero, para esta demostración, tan solo introduciremos directamente estas dos direcciones:
 
-Following is how our Sender.sol looks like:
+Así se verá Sender.sol:
 
 ```jsx
 // sender.sol
@@ -80,15 +80,15 @@ contract sender {
 }
 ```
 
-We're using a simple `states` counter to keep track of the number of states sent via the Sender contract.
+Estamos usando un contador simple de `states` para hacerle seguimiento al número de estados enviados por medio del contrato remitente.
 
-Use Remix to deploy the contract and keep a note of the address and ABI.
+Usa Remix para implementar el contrato y anota la dirección y la interfaz binaria de la aplicación (ABI).
 
-### 2. Deploy Receiver contract
+### 2. Implementación del contrato receptor {#2-deploy-receiver-contract}
 
-Receiver contract is the one that is invoked by a Validator when the `StateSynced` event is emitted. The Validator invokes the function `onStateReceive`on the receiver contract to submit the data. To implement it, we first import [StateReceiver](https://github.com/maticnetwork/contracts/blob/release-betaV2/contracts/child/bor/StateReceiver.sol) interface and write down our custom logic — to interpret the tranferred data inside onStateReceive.
+El contrato receptor es el invocado por el validador cuando se emite el evento `StateSynced`. El validador llama a la función `onStateReceive` del contrato receptor para enviar los datos. Para implementarlo, primero, importa la interfaz [StateReceiver](https://github.com/maticnetwork/contracts/blob/release-betaV2/contracts/child/bor/StateReceiver.sol) y anota nuestra lógica personalizada: interpretar los datos que hay dentro de onStateReceive.
 
-Following is how our Receiver.sol looks like:
+Así se ve Receiver.sol:
 
 ```jsx
 // receiver.sol
@@ -108,26 +108,26 @@ contract receiver {
   function onStateReceive(uint256 stateId, bytes calldata data) external {
     lastStateId = stateId;
     lastChildData = data;
-    }
+	}
 
 }
 ```
 
-The function simply assigns the last received State Id and data to variables. [StateId](https://github.com/maticnetwork/contracts/blob/239a91045622ddcf9ebec2cec81fdc6daa3a33e3/contracts/root/stateSyncer/StateSender.sol#L36) is a simple unique reference to the transferred state (a simple counter).
+La función simplemente le asigna la última ID de estado recibida y los datos a las variables. [StateId](https://github.com/maticnetwork/contracts/blob/239a91045622ddcf9ebec2cec81fdc6daa3a33e3/contracts/root/stateSyncer/StateSender.sol#L36) es una referencia única y simple al estado transferido (un contador simple).
 
-Deploy  your Receiver.sol on Polygon's testnet and keep a note of the address and ABI
+Implementa Receiver.sol en la red de pruebas de Polygon y anota la dirección y la ABI.
 
-### 3. Getting your Sender and Receiver mapped
+### 3. Mapeo del remitente y el receptor {#3-getting-your-sender-and-receiver-mapped}
 
-You can either use the already deployed addresses (mentioned above) for sender and receiver, or deploy your custom contracts and request a mapping done here: [https://mapper.polygon.technology/](https://mapper.polygon.technology/)
+Puedes usar las direcciones ya implementadas (mencionadas anteriormente) para el remitente y el receptor o implementar tus contratos personalizados y solicitar el mapeo aquí: [https://mapper.polygon.technology/](https://mapper.polygon.technology/)
 
-### 4. Sending and Receiving data
+### 4. Envío y recepción de datos {#4-sending-and-receiving-data}
 
-Now that we have our contracts in place and mapping done, we'll be writing a simple node script to send arbitrary hex bytes, receive them on Polygon and interpret the data!
+Ahora que tenemos los contratos implementados y el mapeo listo, vamos a escribir una secuencia de comandos de nodo simple para enviar bytes hexadecimales arbitrarios, recibirlos en Polygon e interpretar los datos.
 
-**4.1 Setup your script**
+**4.1 Configuración de la secuencia de comandos**
 
-We'll first initialise our web3 objects, wallet to make the transactions and contracts
+Primero, tienes que inicializar los objetos web3 y la billetera para hacer las transacciones y los contratos
 
 ```jsx
 // test.js
@@ -155,15 +155,15 @@ let receiver = new matic.eth.Contract(JSON.parse(receiverABI), receiverAddress)
 
 ```
 
-We're using @maticnetwork/meta package for the RPCs, the package isn't a requirement to run the script.
+Nosotros estamos usando el paquete @maticnetwork/meta para las RPC. Este paquete no es obligatorio para ejecutar la secuencia de comandos.
 
-`matic` and `main` objects refer to the web3 object initialised with Polygon's and Ropsten's RPC respectively.
+Los objetos `matic` y `main` hacen referencia al objeto web3 inicializado con la RPC de Polygon y Ropsten, respectivamente.
 
-`sender` and `receiver` objects refer to the contract objects of Sender.sol and Receiver.sol that we deployed in Step 1 and 2.
+Los objetos `sender` y `receiver` hacen referencia a los objetos de contrato de Sender.sol y Receiver.sol que implementaste en el paso 1 y 2.
 
-**4.2 Sending data**
+**4.2 Envío de datos**
 
-Next, let's setup our functions to create bytestring of the data and send it via Sender contract:
+Luego, tienes que configurar las funciones para crear la bytestring (cadena de bytes) de los datos y enviarla a través del contrato remitente:
 
 ```jsx
 // data to sync
@@ -184,15 +184,15 @@ async function sendData (data) {
 }
 ```
 
-Calling `getData` will convert an ascii string (eg., `Hello World !`) to a string of bytes (eg., `0x48656c6c6f20576f726c642021`); while the function `sendData`takes in `data` (an ascii string), calls `getData` and passes on the bytestring to sender contract
+Llamar a `getData` convierte una cadena ASCII (p. ej., `Hello World !`) en una cadena de bytes (p. ej., `0x48656c6c6f20576f726c642021`); mientras que la función `sendData` toma `data` (una cadena ASCII), llama a `getData` y pasa la cadena de bytes al contrato remitente
 
-**4.3 Receiving data**
+**4.3 Recepción de datos**
 
-Next, we'll be checking for received data on Receiver.sol.
+A continuación, revisaremos los datos recibidos en Receiver.sol.
 
-It should take ~7-8 minutes for the state sync to execute.
+La sincronización del estado debería tardar unos 7 a 8 minutos en ejecutarse.
 
-Add the following functions to check (a) number of sent states from Sender and (b) Last received state on Receiver.
+Agrega las siguientes funciones para revisar (a) el número de estados enviados desde el remitente y (b) el último estado recibido en el receptor.
 
 ```jsx
 // check `states` variable on sender
@@ -216,7 +216,7 @@ async function checkReceiver () {
 }
 ```
 
-the function `checkReceiver` simply calls the variables we defined in the contract — which would be set as soon as the Validator calls `onStateReceive` on the contract. The `getString` function simply interprets the bytestring (converts it back to ascii)
+La función `checkReceiver` llama a las variables que definiste en el contrato, que se establecen apenas el validador llama a `onStateReceive` en el contrato. La función `getString` interpreta la cadena de bytes (la convierte a ASCII)
 
 ```jsx
 function getString(data) {
@@ -225,19 +225,19 @@ function getString(data) {
 }
 ```
 
-Finally, we'll write up a method to execute our functions:
+Por último, escribe un método para ejecutar las funciones:
 
 ```jsx
 async function test() {
-    await sendData ('Sending a state sync! :) ')
-    await checkSender ()
-    await checkReceiver ()
+	await sendData ('Sending a state sync! :) ')
+	await checkSender ()
+	await checkReceiver ()
 }
 ```
 
-**4.4 Putting it all together!**
+**4.4 Combinación de todos los pasos**
 
-This is how our test script looks like:
+Así se ve nuestra secuencia de comandos de prueba:
 
 ```jsx
 // test.js
@@ -304,23 +304,23 @@ async function checkReceiver () {
 }
 
 async function test() {
-    await sendData ('Hello World !')
-    await checkSender ()
-    // add a timeout here to allow time gap for the state to sync
-    await checkReceiver ()
+	await sendData ('Hello World !')
+	await checkSender ()
+	// add a timeout here to allow time gap for the state to sync
+	await checkReceiver ()
 }
 
 test()
 ```
 
-**4.5 Let's run the script**
+**4.5 Ejecución de la secuencia de comandos**
 
-Successful execution of the above script provide an output as:
+La ejecución exitosa de la secuencia de comandos anterior arroja una salida como la siguiente:
 
 ```bash
 $ node test
 > sent data from root 0x4f64ae4ab4d2b2d2dc82cdd9ddae73af026e5a9c46c086b13bd75e38009e5204
 number of states sent from sender: 1
 last state id: 453 and last data: 0x48656c6c6f20576f726c642021
-interpreted data: Hello World ! 
+interpreted data: Hello World !
 ```

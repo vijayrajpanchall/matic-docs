@@ -76,7 +76,7 @@ Also, Polygon sidechains would be primarily public sidechains i.e sidechains ava
 
 Absolutely. The public checkpointing layer will validate all the transactions happening on the sidechains and publish the proofs to the main chain. To ensure foolproof security of sidechain transactions, the main chain Plasma contract contains various kinds of Fraud Proofs where any sidechain transactions can be challenged for any fraudulent activity. If a challenger succeeds, the stakes of the sidechain actors involved in the fraud are slashed and are transferred to the challenger. This is equivalent to an ever running high stake bug bounty. A good diagram for understanding is as below:.
 
-![Screenshot](../../static/img/matic/Architecture.png)
+![Screenshot](/img/matic/Architecture.png)
 
 ## At the end of the White Paper, there is a list of "Potential Use Cases" - will all of that be implemented? In what order?
 
@@ -98,7 +98,7 @@ The Polygon network can be used by dApps without requiring any changes to their
 
 Here is a diagram to give you some context:
 
-![Screenshot](../../static/img/matic/Merkle.png)
+![Screenshot](/img/matic/Merkle.png)
 
 So firstly, the PoA nodes are going to be Delegates (with Proof of Solvency i.e they have to deposit a high amount of stake) and KYC basically selected by the PoS layer just like an EOS style Delegated Proof of Stake (DPoS) or Delegated Byzantine Fault Tolerance (DBFT) nodes.
 
