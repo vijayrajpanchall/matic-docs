@@ -1,34 +1,43 @@
-# This is a basic workflow to help you get started with Actions
-
 name: Master deployment
 
 on:
   push:
-    branches: [master]
     paths:
       - 'i18n/**'
   workflow_dispatch:
+    branches:
+      - main
 
 jobs:
   build:
-    strategy:
-      matrix:
-        locale: ['en', 'ko', 'de', 'es', 'fr', 'it', 'ja', 'pt', 'br', 'hi', 'id', 'ru', 'th', 'tl']
-
     runs-on: ubuntu-latest-8-cores
-
     steps:
       - uses: actions/checkout@v2
         with:
-          ref: master
+          ref: ${{ github.ref }}
 
       - name: INSTALL
         run: rm -rf node_modules && yarn install --immutable --immutable-cache --check-cache
 
-      - name: Build
-        run: yarn build --locale ${{ matrix.locale }}
+      # Build each locale separately
+      - name: Build locales
+        run: |
+          for locale in en ko de es fr it ja pt br hi id ru th tl
+          do
+            yarn build --locale $locale
+          done
 
-      - name: Uploading to s3 bucket
+      # Merge all the locales into one build
+      - name: Merge locales
+        run: |
+          mkdir -p build/merged
+          for locale in en ko de es fr it ja pt br hi id ru th tl
+          do
+            cp -R build/$locale/. build/merged
+          done
+
+      # Upload the merged build to S3 bucket
+      - name: Upload to S3 bucket
         uses: jakejarvis/s3-sync-action@master
         with:
           args: --acl public-read --follow-symlinks --delete
@@ -37,9 +46,9 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.POLYGON_AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.POLYGON_AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: 'us-east-1'
-          SOURCE_DIR: ${{secrets.TARGET_DIRECTORY}}
+          SOURCE_DIR: 'build/merged'
 
-      - name: invalidate cloudfront distribution and wait for completion
+      - name: Invalidate CloudFront distribution and wait for completion
         uses: muratiger/invalidate-cloudfront-and-wait-for-completion-action@master
         env:
           DISTRIBUTION_ID: ${{ secrets.POLYGON_CLOUDFRONT_DISTRIBUTION_ID }}
