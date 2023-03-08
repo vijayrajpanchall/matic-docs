@@ -53,16 +53,6 @@ sudo apt-get update
 sudo apt-get install build-essential
 ```
 
-### Install GO
-
-This is also **required** for running your full node. Installing **v1.18 or above** is recommended.
-
-```bash
-wget https://raw.githubusercontent.com/maticnetwork/node-ansible/master/go-install.sh
-bash go-install.sh
-sudo ln -nfs ~/.go/bin/go /usr/bin/go
-```
-
 ## Install Binaries
 
 Polygon node consists of 2 layers: Heimdall and Bor. Heimdall is a tendermint fork that monitors contracts in parallel with the Ethereum network. Bor is basically a Geth fork that generates blocks shuffled by Heimdall nodes.
@@ -89,16 +79,12 @@ Length in byte format - 4
 To install **Heimdall**, run the below commands:
 
 ```bash
-cd ~/
-git clone https://github.com/maticnetwork/heimdall
-cd heimdall
-
-# Checkout to a proper version, for example
-git checkout v0.3.0
-git checkout <TAG OR BRANCH>
-make install
-source ~/.profile
+curl -L https://raw.githubusercontent.com/maticnetwork/install/main/heimdall.sh | bash -s -- <heimdall_version> <network_type> <node_type>
 ```
+
+**heimdall_version**: `valid v0.3+ release tag from https://github.com/maticnetwork/heimdall/releases`
+**network_type**: `mainnet` and `mumbai`
+**node_type**: `sentry`
 
 That will install the `heimdalld` and `heimdallcli` binaries. Verify the installation by checking the Heimdall version on your machine:
 
@@ -106,145 +92,60 @@ That will install the `heimdalld` and `heimdallcli` binaries. Verify the install
 heimdalld version --long
 ```
 
-### Bor
-
-Install the latest version of Bor. Make sure you git checkout to the correct [released version](https://github.com/maticnetwork/bor/releases).
+### Configure heimdall seeds (mainnet)
 
 ```bash
-cd ~/
-git clone https://github.com/maticnetwork/bor
-cd bor
-
-# Checkout to a proper version
-# For e.g: git checkout 0.3.3
-git checkout <TAG OR BRANCH>
-make bor
-sudo ln -nfs ~/bor/build/bin/bor /usr/bin/bor
-sudo ln -nfs ~/bor/build/bin/bootnode /usr/bin/bootnode
+sed -i 's|^seeds =.*|seeds = "d3a8990f61bb3657da1664fe437d4993c4599a7e@3.211.248.31:26656,d3d7d397339c9126235dfab11bf925e269776f4f@3.212.183.151:26656,68254d33685fad151e45bfe1ed33d538ba6ec8cb@3.93.224.197:26656,d26c54ebbf274896f12977bb13d83ac1237a8226@184.73.124.158:26656,f4f605d60b8ffaaf15240564e58a81103510631c@159.203.9.164:26656,4fb1bc820088764a564d4f66bba1963d47d82329@44.232.55.71:26656,2eadba4be3ce47ac8db0a3538cb923b57b41c927@35.199.4.13:26656,25f5f65a09c56e9f1d2d90618aa70cd358aa68da@35.230.116.151:26656,3b23b20017a6f348d329c102ddc0088f0a10a444@35.221.13.28:26656"|g' /var/lib/heimdall/config/config.toml
+chown heimdall /var/lib/heimdall
 ```
 
-That will install the `bor` and `bootnode` binaries. Verify the installation by checking the Bor version on your machine:
+### Configure heimdall seeds (mumbai)
+
+```bash
+sed -i 's|^seeds =.*|seeds = "b18bbe1f3d8576f4b73d9b18976e71c65e839149@34.226.134.117:26656,4cd60c1d76e44b05f7dfd8bab3f447b119e87042@54.147.31.250:26656,7a6c7b5d25b13ce3448b047dbebeb1a19cc2e092@18.213.200.99:26656"|g' /var/lib/heimdall/config/config.toml
+chown heimdall /var/lib/heimdall
+```
+
+### Bor install
+
+Install the latest version of Bor, based on valid v0.3+ [released version](https://github.com/maticnetwork/bor/releases).
+
+```bash
+curl -L https://raw.githubusercontent.com/maticnetwork/install/main/bor.sh | bash -s -- <bor_version> <network_type> <node_type>
+```
+
+**bor_version**: `valid v0.3+ release tag from https://github.com/maticnetwork/bor/releases`
+**network_type**: `mainnet` and `mumbai`
+**node_type**: `sentry`
+
+That will install the `bor` binary. Verify the installation by checking the Bor version on your machine:
 
 ```bash
 bor version
 ```
 
-## Configure Node Files
-
-### Fetch launch repo
+### Configure bor seeds (mainnet)
 
 ```bash
-cd ~/
-git clone https://github.com/maticnetwork/launch
+sed -i 's|.*\[p2p.discovery\]|  \[p2p.discovery\] |g' /var/lib/bor/config.toml
+sed -i 's|.*bootnodes =.*|    bootnodes = ["enode://0cb82b395094ee4a2915e9714894627de9ed8498fb881cec6db7c65e8b9a5bd7f2f25cc84e71e89d0947e51c76e85d0847de848c7782b13c0255247a6758178c@44.232.55.71:30303","enode://88116f4295f5a31538ae409e4d44ad40d22e44ee9342869e7d68bdec55b0f83c1530355ce8b41fbec0928a7d75a5745d528450d30aec92066ab6ba1ee351d710@159.203.9.164:30303","enode://4be7248c3a12c5f95d4ef5fff37f7c44ad1072fdb59701b2e5987c5f3846ef448ce7eabc941c5575b13db0fb016552c1fa5cca0dda1a8008cf6d63874c0f3eb7@3.93.224.197:30303","enode://32dd20eaf75513cf84ffc9940972ab17a62e88ea753b0780ea5eca9f40f9254064dacb99508337043d944c2a41b561a17deaad45c53ea0be02663e55e6a302b2@3.212.183.151:30303"]|g' /var/lib/bor/config.toml
+chown bor /var/lib/bor
 ```
 
-### Configure launch directory
-
-To set up the network directory, the network name and type of node are required.
-
-**Available networks**: `mainnet-v1` and `testnet-v4`
-
-**Node type**: `sentry`
-
-:::tip
-
-For Mainnet and Testnet configuration, use appropriate `<network-name>`. Use `mainnet-v1` for Polygon mainnet and `testnet-v4` for Mumbai Testnet.
-:::
+### Configure bor seeds (mumbai)
 
 ```bash
-cd ~/
-mkdir -p node
-cp -rf launch/<network-name>/sentry/<node-type>/* ~/node
+sed -i 's|.*\[p2p.discovery\]|  \[p2p.discovery\] |g' /var/lib/bor/config.toml
+sed -i 's|.*bootnodes =.*|    bootnodes = ["enode://320553cda00dfc003f499a3ce9598029f364fbb3ed1222fdc20a94d97dcc4d8ba0cd0bfa996579dcc6d17a534741fb0a5da303a90579431259150de66b597251@54.147.31.250:30303","enode://f0f48a8781629f95ff02606081e6e43e4aebd503f3d07fc931fad7dd5ca1ba52bd849a6f6c3be0e375cf13c9ae04d859c4a9ae3546dc8ed4f10aa5dbb47d4998@34.226.134.117:30303"]|g' /var/lib/bor/config.toml
+chown bor /var/lib/bor
 ```
 
-### Configure network directories
-
-**Heimdall data setup**
+### Update service config user permission
 
 ```bash
-cd ~/node/heimdall
-bash setup.sh
+sed -i 's/User=heimdall/User=root/g' /lib/systemd/system/heimdalld.service
+sed -i 's/User=bor/User=root/g' /lib/systemd/system/bor.service
 ```
-
-**Bor data setup**
-
-```bash
-cd ~/node/bor
-bash setup.sh
-```
-
-## Configure Service Files
-
-Download `service.sh` file using appropriate `<network-name>`. Use `mainnet-v1` for Polygon mainnet and `testnet-v4` for Mumbai Testnet.
-
-```bash
-cd ~/node
-wget https://raw.githubusercontent.com/maticnetwork/launch/master/<network-name>/service.sh
-```
-
-Generate the **metadata** file:
-
-```bash
-sudo mkdir -p /etc/matic
-sudo chmod -R 777 /etc/matic/
-touch /etc/matic/metadata
-```
-
-Generate `.service` files and copy them into system directory:
-
-```bash
-cd ~/node
-bash service.sh
-sudo cp *.service /etc/systemd/system/
-```
-
-
-## Setup Config Files
-
-- Log in to the remote machine / VM
-- You will need to add a few details in the `config.toml` file. To open and edit the `config.toml` file, run the following command: `vi ~/.heimdalld/config/config.toml`.
-
-    In the config file, you will have to change `Moniker` and add `seeds` information:
-
-    ```bash
-    moniker=<enter unique identifier>
-    # For example, moniker=my-sentry-node
-
-    # Mainnet:
-    seeds="f4f605d60b8ffaaf15240564e58a81103510631c@159.203.9.164:26656,4fb1bc820088764a564d4f66bba1963d47d82329@44.232.55.71:26656"
-
-    # Testnet:
-    seeds="4cd60c1d76e44b05f7dfd8bab3f447b119e87042@54.147.31.250:26656,b18bbe1f3d8576f4b73d9b18976e71c65e839149@34.226.134.117:26656"
-    ```
-
-    - Change the value of **Pex** to `true`
-    - Change the value of **Prometheus** to `true`
-    - Set the `max_open_connections` value to `100`
-
-  Make sure you **keep the proper formatting** when you make the above changes.
-
-- Configure the following in `~/.heimdalld/config/heimdall-config.toml`:
-
-    ```jsx
-    eth_rpc_url=<insert Infura or any full node RPC URL to Goerli>
-    ```
-
-- Open the `start.sh` file for Bor using this command: `vi ~/node/bor/start.sh`. Add the following flags to start params:
-
-  ```bash
-  # Mainnet:
-  --bootnodes "enode://0cb82b395094ee4a2915e9714894627de9ed8498fb881cec6db7c65e8b9a5bd7f2f25cc84e71e89d0947e51c76e85d0847de848c7782b13c0255247a6758178c@44.232.55.71:30303,enode://88116f4295f5a31538ae409e4d44ad40d22e44ee9342869e7d68bdec55b0f83c1530355ce8b41fbec0928a7d75a5745d528450d30aec92066ab6ba1ee351d710@159.203.9.164:30303"
-
-  # Testnet:
-  --bootnodes "enode://320553cda00dfc003f499a3ce9598029f364fbb3ed1222fdc20a94d97dcc4d8ba0cd0bfa996579dcc6d17a534741fb0a5da303a90579431259150de66b597251@54.147.31.250:30303"
-  ```
-
-- To enable **Archive** mode, you can add the following flags in the `start.sh` file:
-
-  ```jsx
-  --gcmode 'archive' \
-  --ws --ws.port 8546 --ws.addr 0.0.0.0 --ws.origins '*' \
-  ```
 
 ## Start Services
 
@@ -252,7 +153,6 @@ Run the full Heimdall node with these commands on your Sentry Node:
 
 ```bash
 sudo service heimdalld start
-sudo service heimdalld-rest-server start
 ```
 
 Now, you need to make sure that **Heimdall is synced** completely, and then only start Bor. If you start Bor without Heimdall syncing completely, you will run into issues frequently.
