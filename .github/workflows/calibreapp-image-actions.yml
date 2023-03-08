@@ -1,0 +1,25 @@
+name: Image Optimization
+
+on:
+  pull_request:
+    paths:
+      - 'static/img/*.jpg'
+      - 'static/img/*.jpeg'
+      - 'static/img/*.png'
+      - 'static/img/*.webp'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+
+      - name: Compress Images
+        uses: calibreapp/image-actions@main
+        with:
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          jpegQuality: '100'
+          jpegProgressive: true
+          pngQuality: '100'
+          webpQuality: '100'
