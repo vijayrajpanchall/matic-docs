@@ -82,7 +82,7 @@ Bor is the Block producer node and layer for the Polygon Network. It is based on
 
 This section guides you through the following topics:
 
-* [Validator responsibilities](validator-responsibilities.md)
+* [Validator responsibilities](/maintain/validator/responsibilities.md)
 * Joining the network as a validator:
   * [Start and run the nodes with Ansible](run-validator-ansible.md)
   * [Start and run the nodes with binaries](run-validator-binaries.md)

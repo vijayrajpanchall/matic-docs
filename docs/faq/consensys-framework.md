@@ -36,7 +36,7 @@ malicious act like double signing, validator downtime which also affects the lin
 delegators at that checkpoint.
 
 For more details please refer to
-[End-to-end flow to a Polygon validator](/maintain/polygon-basics/who-is-validator.md#end-to-end-flow-for-a-polygon-validator) and [Responsibilities of a validator](/maintain/validate/validator-responsibilities.md).
+[End-to-end flow to a Polygon validator](/maintain/polygon-basics/who-is-validator.md#end-to-end-flow-for-a-polygon-validator) and [Responsibilities of a validator](/maintain/validator/responsibilities.md).
 
 
 ### - What trust assumptions must the Polygon PoS users make about the operator?
@@ -72,7 +72,7 @@ For more details, refer to [Steps to use the PoS bridge](/develop/ethereum-polyg
 
 ### - How soon are those funds available on the Polygon PoS?
 
-Around ~22-30 minutes. This is done via a message passing mechanism called `state sync`. More details can be found [here](/pos/state-sync/state-sync-mechamism.md).
+Around ~22-30 minutes. This is done via a message passing mechanism called `state sync`. More details can be found [here](/pos/state-sync/state-sync-mechanism.md).
 
 Does Polygon PoS provide support for users entering without a L1 lock-up (i.e. in the case of onboarding a user directly onto Polygon, then the user wishes to exit to Ethereum mainnet)?
 

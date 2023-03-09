@@ -127,7 +127,7 @@ run
 
     ```heimdalld unsafe-reset-all```
 
-and start Heimdall services again. You can refer to this guide - https://docs.polygon.technology/docs/validate/validate/run-validator
+and start Heimdall services again. You can refer to this guide - https://docs.polygon.technology/docs/maintain/validate/run-validator
 
 ### 5. From where do I create the API key?
 

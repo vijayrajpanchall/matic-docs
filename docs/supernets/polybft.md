@@ -159,7 +159,7 @@ provide specific network capabilities and govern the network. The consensus engi
 core smart contracts that implements a staking solution and incentivization scheme which defines all the
 network's proof-of-stake rules.
 
-Polygon Edge follows [delegated proof of stake consensus](../../maintain/delegate/delegate.md), where
+Polygon Edge follows [delegated proof of stake consensus](/maintain/delegate/delegate.md), where
 delegators delegate their MATIC to back validators on the network.
 
 The consensus protocol follows a set of state transitions. While things are still being finalized, the

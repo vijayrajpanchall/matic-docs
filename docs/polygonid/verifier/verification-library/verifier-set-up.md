@@ -285,7 +285,7 @@ return res.status(200).set('Content-Type', 'application/json').send(request);
 </Tabs>
 
 :::note
-The highlighted lines are to be added only if the authentication needs to design a [query](./zk-query-langage) for a specific proof as in the case of [Query-based Auth](./request-api-guide.md#query-based-auth). When not included, itwill perform a [Basic Auth](./request-api-guide.md#basic-auth). 
+The highlighted lines are to be added only if the authentication needs to design a [<ins>query</ins>](zk-query-language.md) for a specific proof as in the case of [<ins>Query-based Auth</ins>](./request-api-guide.md#query-based-auth). When not included, itwill perform a [<ins>Basic Auth</ins>](./request-api-guide.md#basic-auth). 
 :::
 
 4. **Callback Endpoint**

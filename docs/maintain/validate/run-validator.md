@@ -502,8 +502,7 @@ Save the changes in `/var/lib/bor/config.toml`.
 On Polygon, it is recommended that you keep the owner and signer keys different.
 
 * Signer — the address that signs the
-  [checkpoint transactions](/docs/validate/glossary#checkpoint-transaction). The recommendation is
-  to keep at least 1 ETH on the signer address.
+  [checkpoint transactions](/docs/maintain/glossary.md#checkpoint-transaction). The recommendation is to keep at least 1 ETH on the signer address.
 * Owner — the address that does the staking transactions. The recommendation is to keep the MATIC
   tokens on the owner address.
 

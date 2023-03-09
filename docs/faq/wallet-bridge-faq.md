@@ -200,7 +200,7 @@ If your transaction is completed and you received your funds but still the trans
 
 The MATIC coin can be traded in many exchanges. However, it’s always important to do your own research when you are choosing one to trade. It is not unusual that some exchanges keep making changes to their current available tokens and also have maintenance periods.
 
-You might visit [Coinmarketcap]([https://coinmarketcap.com/currencies/polygon/markets/](https://coinmarketcap.com/currencies/polygon/markets/)) for a list of exchanges where you might find MATIC.
+You might visit [Coinmarketcap](https://coinmarketcap.com/currencies/polygon/markets/) for a list of exchanges where you might find MATIC.
 
 ## Does Polygon support hardware wallets?
 
@@ -250,7 +250,7 @@ If you need help from our specialists, please send us a message at https://suppo
 
 ## How do I bridge assets across chains?
 
-Polygon offers a bridge to move assets from Ethereum to Polygon and vice versa. You can learn more about it on the [Bridges section]([https://wiki.polygon.technology/docs/develop/ethereum-polygon/getting-started](https://wiki.polygon.technology/docs/develop/ethereum-polygon/getting-started)) of this wiki.
+Polygon offers a bridge to move assets from Ethereum to Polygon and vice versa. You can learn more about it on the [Bridges section](/develop/ethereum-polygon/getting-started.md) of this wiki.
 
 However, if you are using any external service that is not owned by Polygon, we advise you to reach out to their customer service to request tutorials and instructions. It is also important to do your own research when you are using web3 services.
 

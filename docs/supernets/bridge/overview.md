@@ -35,7 +35,7 @@ blockchain (`rootchain`). Transfers can occur without mapping.
 > The bridge is an add-on ontop of PolyBFT which can be enabled or disabled.
 
 The bridge uses the same consensus protocol and does not need a third-party application
-[chainbridge](additional-features/chainbridge/overview.md)
+[chainbridge](/edge/additional-features/chainbridge/overview.md).
 
 Message passing between a `rootchain` to a given `childchain` is accomplished by continuously
 syncing the state of the `rootchain` with the `childchain`, known as `StateSync`. These transfers of state happen between system calls.

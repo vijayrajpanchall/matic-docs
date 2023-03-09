@@ -23,7 +23,7 @@ A blockchain validator is someone who is responsible for validating transactions
 
 :::info
 
-Currently, there is a limit of 100 active validators at a time. For a detailed description on what a validator is, see [Validator](/maintain/validator/architecture).
+Currently, there is a limit of 100 active validators at a time. For a detailed description on what a validator is, see [<ins>Validator</ins>](architecture.md).
 
 Also, after the [<ins>PIP4 governance proposal</ins>](https://forum.polygon.technology/t/pip-4-validator-performance-management/9956) is implemented on the contract-level, the minimum staking amount will increase to 10,000 MATIC.
 
@@ -59,7 +59,7 @@ The following technical node operations are **done automatically by the nodes:**
   * If more than 2/3 of the active validators reach consensus on the checkpoint, the checkpoint is submitted to the Ethereum mainnet.
 * Sync changes to Polygon staking contracts on Ethereum:
   * Continuing from the checkpoint submission step, since this is an external network call, the checkpoint transaction on Ethereum may or may not be confirmed, or may be pending due to Ethereum congestion issues.
-  * In this case, there is an `ack/no-ack` process that is followed to ensure that the next checkpoint contains a snapshot of the previous Bor blocks as well. For example, if checkpoint 1 is for Bor blocks 1-256, and it failed for some reason, the next checkpoint 2 will be for Bor blocks 1-512. See also [Heimdall architecture: Checkpoint](/pos/heimdall/checkpoint).
+  * In this case, there is an `ack/no-ack` process that is followed to ensure that the next checkpoint contains a snapshot of the previous Bor blocks as well. For example, if checkpoint 1 is for Bor blocks 1-256, and it failed for some reason, the next checkpoint 2 will be for Bor blocks 1-512. See also [Heimdall architecture: Checkpoint](/pos/heimdall/checkpoint.md).
 * State sync from the Ethereum mainnet to the Bor sidechain:
   * Contract state can be moved between Ethereum and Polygon, specifically through [Bor](/maintain/glossary.md#bor):
   * A DApp contract on Ethereum calls a function on a special Polygon contract on Ethereum.

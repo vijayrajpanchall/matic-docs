@@ -24,7 +24,7 @@ Below are some additional information to the official documentation which might 
 
 :::
 
-This document gives some additional details for setting up a new node based on [Full Node Deployment](/docs/integrate/full-node-deployment/) guide.
+This document gives some additional details for setting up a new node based on [Full Node Deployment](/docs/operate/full-node-deployment.md) guide.
 
 - VPN setup is required before proceeding with any of these steps can be done by referring [Bastillion user guide](https://www.notion.so/Bastillion-VPN-user-guide-c04f5f26afda4fa59d5d9f6041327f43).
 - If you are using Macbook, it has native Python 2.7 available which **needs to be replaced by with anything Python 3.x**.
