@@ -13,22 +13,22 @@ image: https://wiki.polygon.technology/img/polygon-logo.png
 
 The goal of **Polygon zkEVM Gas Station** is to provide dApp developers with gas pricing suggestions so they can use it before sending transactions to the **Polygon zkEVM** network. The prediction method is modelled after the [Polygon Gas Station](/develop/tools/polygon-gas-station.md) but is unique in its own ways.
 
-Polygon zkEVM Gas Station is currently **deployed on the Blueberry and Mango testnet of zkEVM**, where it analyzes recent 500 transactions and recommends gas price. Note that the Mango testnet will be deprecated on March 6, 2023.
+Polygon zkEVM Gas Station is currently **deployed on the Blueberry and Mango testnet of zkEVM**, where it analyzes recent 1500 transactions and recommends gas price. Note that the Mango testnet will be deprecated on March 6, 2023.
 
 ## Usage
 
-Send a GET request to the [zkEVM Gas Station endpoint](https://gasstation-mumbai.matic.today/zkevm) to get a gas price recommendation from this oracle.
+Send a GET request to the [zkEVM Gas Station endpoint](https://gasstation-testnet.polygon.technology/zkevm) to get a gas price recommendation from this oracle.
 
 ### cURL
 
 ```bash
-curl https://gasstation-mumbai.matic.today/zkevm
+curl https://gasstation-testnet.polygon.technology/zkevm
 ```
 
 ### JavaScript
 
 ```javascript
-fetch('https://gasstation-mumbai.matic.today/zkevm')
+fetch('https://gasstation-testnet.polygon.technology/zkevm')
   .then(response => response.json())
   .then(json => console.log(json))
 ```
@@ -37,7 +37,7 @@ fetch('https://gasstation-mumbai.matic.today/zkevm')
 
 ```python
 import requests
-requests.get('https://gasstation-mumbai.matic.today/zkevm').json()
+requests.get('https://gasstation-testnet.polygon.technology/zkevm').json()
 ```
 
 ## Interpretation
