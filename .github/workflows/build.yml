@@ -1,7 +1,6 @@
 name: Doc build
 
 on:
-  push:
   pull_request:
     branches: [ master ]
     paths:
