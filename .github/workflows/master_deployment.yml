@@ -11,6 +11,10 @@ on:
 
 jobs:
   build:
+    strategy:
+      matrix:
+        locale: ['en']
+
     runs-on: ubuntu-latest-8-cores
 
     steps:
@@ -36,7 +40,7 @@ jobs:
       - name: Install dependencies and build
         run: |
           yarn install --frozen-lockfile
-          yarn build
+          yarn build --locale ${{ matrix.locale }}
 
       - name: Uploading to s3 bucket
         uses: jakejarvis/s3-sync-action@master
@@ -57,3 +61,4 @@ jobs:
           AWS_REGION: 'us-east-1'
           AWS_ACCESS_KEY_ID: ${{ secrets.POLYGON_AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.POLYGON_AWS_SECRET_ACCESS_KEY }}
+          
