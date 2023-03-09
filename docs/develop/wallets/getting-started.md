@@ -61,6 +61,7 @@ The following wallets are solutions that Polygon Technology has partnered with:
 | [Ambire](https://www.ambire.com/) 	| non-custodial 	| smart contract 	| no 	| interface 	| no 	| yes 	| yes 	| browser 	|
 | [BitKeep](https://bitkeep.com/) 	| non-custodial 	| EOA 	| no 	| interface 	| yes 	| yes 	| yes 	| mobile, browser extension 	|
 | [Bitski](https://www.bitski.com/) 	| custodial 	| EOA 	| no 	| interface 	| no  	| yes 	| no 	| browser, api/sdk 	|
+| [Coin Wallet](https://coin.space/) 	| non-custodial 	| EOA 	| no 	| no 	| no 	| no 	| yes 	| mobile, browser, desktop 	|
 | [Coin98](https://coin98.com/wallet) 	| non-custodial 	| EOA 	| no 	| interface 	| yes 	| yes 	| yes 	| mobile, browser, api/sdk 	|
 | [Coinbase](https://www.coinbase.com/wallet) 	| hybrid 	| EOA 	| no 	| interface 	| yes 	| yes 	| yes 	| mobile, browser, api/sdk 	|
 | [CypherD](https://cypherd.io/) 	| non-custodial 	| EOA 	| no 	| yes 	| yes 	| yes 	|  yes	| mobile 	|
