@@ -149,7 +149,7 @@ Bor Protocol
 - StartEpoch - Checkpoint number post which a validator is activated and will participate in the consensus.
 - EndEpoch - Checkpoint number post which a validator is considered deactivated and won't participate in the consensus.
 - Sprint - Sprint is a continuous set of blocks created by a single validator.
-- Span -  Span is a big set of blocks with a fixed validator set but consisting of various sprints. For eg for a span of length 6400 blocks it will consist of 100 sprints of 64 blocks.
+- Span -  Span is a big set of blocks with a fixed validator set but consisting of various sprints. For eg for a span of length 6400 blocks it will consist of 100 sprints of 16 blocks.
 - Dynasty: Time between the end of last auction and start time of next auction.
 
 ## Resources
