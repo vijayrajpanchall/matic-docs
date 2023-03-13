@@ -260,6 +260,35 @@ For binaries:
 1. Copy the Bor keystore file to `/var/lib/bor/keystore/`
 1. Copy `password.txt` file to `/var/lib/bor/password.txt`
 
+## How to connect to a Web Socket?
+
+Your /var/lib/bor/config.toml should have settings like this:
+
+```json
+[jsonrpc]
+ipcpath = "/var/lib/bor/bor.ipc"
+# ipcdisable = false
+# gascap = 50000000
+# txfeecap = 5.0
+[jsonrpc.http]
+    enabled = true
+    port = 8545
+    host = "0.0.0.0"
+    api = ["eth", "net", "web3", "txpool", "bor"]
+    vhosts = ["*"]
+    corsdomain = ["*"]
+    # prefix = ""
+[jsonrpc.ws]
+    enabled = true
+    port = 8546
+    # prefix = ""
+    host = "0.0.0.0"
+    api = ["eth", "net", "web3", "txpool", "bor", "net"]
+    origins = ["*"]
+```
+
+And then restart Bor for the changes to reflect.
+
 ## Node is not signing any checkpoints
 
 Your node not signing checkpoints could be for multiple reasons:

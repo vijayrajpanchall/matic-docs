@@ -73,7 +73,7 @@ It is important to keep in mind that a sentry node must always be set up before 
     curl -L https://raw.githubusercontent.com/maticnetwork/install/main/heimdall.sh | bash
     ```
 
-    or install a specific version, node type (`sentry` or `validator`), and network (`mainnet` or `testnet`). All release versions can be found on
+    or install a specific version, node type (`sentry` or `validator`), and network (`mainnet` or `mumbai`). All release versions can be found on
     [Heimdall GitHub repository](https://github.com/maticnetwork/heimdall/releases).
 
     ```shell
@@ -90,7 +90,7 @@ It is important to keep in mind that a sentry node must always be set up before 
     curl -L https://raw.githubusercontent.com/maticnetwork/install/main/bor.sh | bash
     ```
 
-    or install a specific version,  node type (`sentry` or `validator`), and network (`mainnet` or `testnet`). All release versions could be found on
+    or install a specific version,  node type (`sentry` or `validator`), and network (`mainnet` or `mumbai`). All release versions could be found on
     [Bor Github repository](https://github.com/maticnetwork/bor/releases).
 
     ```shell
@@ -213,88 +213,6 @@ The sentry machine must have the following ports open to the world `0.0.0.0/0`:
 * `30303`- Your Bor service will connect your node to other nodes Bor service.
 
 * `22`- For the validator to be able to ssh from wherever they are.
-
-## Upgrade from 0.2.x to 0.3.x
-
-Bor 0.3.0 and Heimdall 0.3.0 uses new CLIs and path standards. It is recommended to set up everything from a new machine.
-However, if you still want to perform an upgrade on existing node, you need to follow the one-time migration steps
-outlined below. If you are installing everything from a new machine, you can skip this section and continue to [Configure service files](#configure-service-files-for-bor-and-heimdall).
-
-- Stop existing Heimdall and Bor services
-    ```shell
-    sudo service bor stop
-    sudo service heimdalld stop
-    sudo service heimdalld-rest-server stop
-    sudo service heimdalld-bridge stop
-    ```
-
-- Create a backup folder in case something went wrong
-    ```shell
-    mkdir ./backup
-    mkdir ./backup/bin
-    mkdir -p ./backup/go/bin
-    ```
-
-- Move old binaries
-    ```shell
-    sudo mv /usr/bin/bor ./backup/bin
-    sudo mv /usr/bin/heimdalld ./backup/bin
-    sudo mv /usr/bin/heimdallcli ./backup/bin
-    sudo mv /usr/bin/bridge ./backup/bin
-    sudo mv $(go env GOPATH)/bin/bor ./backup/go/bin
-    sudo mv $(go env GOPATH)/bin/heimdalld ./backup/go/bin
-    sudo mv $(go env GOPATH)/bin/heimdallcli ./backup/go/bin
-    sudo mv $(go env GOPATH)/bin/bridge ./backup/go/bin
-    ```
-
-- Move old service files
-    ```shell
-    sudo mv /etc/systemd/system/bor.service ./backup
-    sudo mv /etc/systemd/system/heimdalld.service ./backup
-    sudo mv /etc/systemd/system/heimdalld-rest-server.service ./backup
-    sudo mv /etc/systemd/system/heimdalld-bridge.service ./backup
-    ```
-
-- Migrate the Heimdall and Bor directory to `/var/lib` and change ownership:
-    ```shell
-    sudo mv ~/.heimdalld /var/lib/heimdall
-    sudo mv ~/.bor /var/lib/bor
-    sudo chown -R heimdall /var/lib/heimdall
-    sudo chown -R bor /var/lib/bor
-    ```
-
-    In case data copying is too slow or original data folder is mounted on a different device, you can create symlinks
-
-    ```shell
-    sudo chown -R heimdall ~/.bor
-    sudo chown -R bor ~/.heimdalld
-    sudo rm -rf /var/lib/heimdall
-    sudo ln -nfs ~/.heimdalld /var/lib/heimdall
-    sudo ln -nfs ~/.bor /var/lib/bor
-    sudo chown -R heimdall /var/lib/heimdall
-    sudo chown -R bor /var/lib/bor
-    ```
-
-- Copy configurations in `node/bor/start.sh` to Bor configuration file `/var/lib/bor/config.toml`. Note that some
-  flags are renamed in the new CLI, you can find the documentation for new CLI [here](https://github.com/maticnetwork/bor/tree/master/docs/cli) and sample configuration file in [launch repository](https://github.com/maticnetwork/launch).
-
-  You can use [this util script](https://github.com/maticnetwork/bor/blob/develop/scripts/getconfig.sh) to convert `start.sh` to a `config.toml` file on your host. Example usage:
-
-  ```shell
-  $ git clone https://github.com/maticnetwork/bor.git
-  $ cd bor/scripts
-  $ BOR_DIR=/var/lib/bor ./getconfig.sh
-  * Path to start.sh: /home/ubuntu/node/bor/start.sh
-  * Your validator address (e.g. 0xca67a8D767e45056DC92384b488E9Af654d78DE2), or press Enter to skip if running a sentry node: 0xca67a8D767e45056DC92384b488E9Af654d78DE2
-  Thank you, your inputs are:
-  Path to start.sh: /home/ubuntu/node/bor/start.sh
-  Address: 0xca67a8D767e45056DC92384b488E9Af654d78DE2
-  Path to the config file: /home/ubuntu/node/bor/start-config.toml
-  ...
-
-  $ sudo cp /home/ubuntu/node/bor/start-config.toml /var/lib/bor/config.toml
-  $ sudo chown bor /var/lib/bor/config.toml
-  ```
 
 ## Configure service files for Bor and Heimdall
 
