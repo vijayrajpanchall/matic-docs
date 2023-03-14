@@ -121,7 +121,7 @@ You can sign up for a dedicated free RPC URL at the following:
 * [Chainnodes](https://www.chainnodes.org/)
 * [Chainstack](https://chainstack.com/build-better-with-polygon/)
 * [DataHub (Figment)](https://datahub.figment.io)
-* [Getblock](https://getblock.io/en/)
+* [GetBlock](https://getblock.io/en/)
 * [Infura](https://infura.io)
 * [MaticVigil](https://rpc.maticvigil.com/)
 * [Moralis](https://moralis.io)
