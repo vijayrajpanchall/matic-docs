@@ -1,7 +1,7 @@
 ---
 id: overview
 title: Miden VM overview
-sidebar_label: Overview
+sidebar_label: Miden VM
 description: "Miden components and structure."
 keywords:
   - docs

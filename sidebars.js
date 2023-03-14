@@ -885,8 +885,10 @@ module.exports = {
           },
           items: [
             "miden/user_docs/stdlib/crypto/hashes",
+            "miden/user_docs/stdlib/crypto/fri",
             "miden/user_docs/stdlib/math/u64",
             "miden/user_docs/stdlib/sys",
+            "miden/user_docs/stdlib/mem",
           ],
         },
       ],

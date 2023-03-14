@@ -1,16 +1,16 @@
 ---
 id: hashes
-title: Cryptographic hashes
-sidebar_label: Cryptographic hashes (std::crypto::hashes)
-description: "Cryptographic hash functions."
+title: Cryptographic Hashes
+sidebar_label: Cryptographic Hashes
+description: Crypto module contains modules for commonly used cryptographic hash functions.
 keywords:
   - docs
-  - matic
-  - polygon
+  - polygon wiki
   - miden
   - hash
   - BLAKE3
   - SHA256
+  - crypto
 image: https://wiki.polygon.technology/img/thumbnail/polygon-miden.png
 ---
 

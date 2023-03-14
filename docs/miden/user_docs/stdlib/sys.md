@@ -1,12 +1,12 @@
 ---
 id: sys
-title: System procedures
-sidebar_label: System procedures (std::sys)
-description: "A set of system-level utility procedures."
+title: System Procedures
+sidebar_label: System Procedures
+description: Sys module contains a set of system-level utility procedures.
 keywords:
   - docs
-  - matic
   - polygon
+  - wiki
   - miden
   - system
 image: https://wiki.polygon.technology/img/thumbnail/polygon-miden.png
