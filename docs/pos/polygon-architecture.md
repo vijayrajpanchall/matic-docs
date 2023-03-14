@@ -1,19 +1,18 @@
 ---
 id: polygon-architecture
-title: The Architecture of Polygon
-description: The Architecture of Polygon
+title: Introduction to Polygon PoS
+sidebar_label: Introduction
+description: Introduction to the architecture of Polygon PoS blockchain.
 keywords:
   - architecture
-  - layers
   - polygon
-  - matic
-  - docs
+  - pos
+  - wiki
   - research
-image: https://matic.network/banners/matic-network-16x9.png
+image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
-import useBaseUrl from '@docusaurus/useBaseUrl';
 
-# The Architecture of Polygon
+import useBaseUrl from '@docusaurus/useBaseUrl';
 
 **Polygon** is a blockchain application platform that provides hybrid Proof-of-Stake and Plasma-enabled sidechains.
 
