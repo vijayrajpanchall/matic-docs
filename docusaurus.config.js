@@ -276,10 +276,6 @@ module.exports = {
                   href: "https://polygon.technology/solutions/polygon-pos/"
               },
               {
-                label: "Polygon Edge",
-                href: "https://polygon.technology/solutions/polygon-edge/"
-              },
-              {
                   label: "Polygon Supernets",
                   href: "https://polygon.technology/polygon-edge-supernets/"
               },
@@ -529,12 +525,6 @@ module.exports = {
 
                   /* Removing these links till finalization
                   {
-                    href: 'https://github.com/0xPolygon/polygon-edge',
-                    label: 'Edge',
-                    target: '_self',
-                    rel: null,
-                  },
-                  {
                     href: '/docs/supernets/overview',
                     label: 'Supernets',
                     target: '_self',
@@ -578,12 +568,6 @@ module.exports = {
                     rel: null,
                   },
                   {
-                    href: '/docs/edge/get-started/installation',
-                    label: 'Run an Edge node',
-                    target: '_self',
-                    rel: null,
-                  },
-                  {
                     href: '/docs/miden/intro/usage',
                     label: 'Run a Miden VM',
                     target: '_self',
@@ -604,12 +588,6 @@ module.exports = {
                   {
                     href: '/docs/zkEVM/introduction/',
                     label: 'zkEVM',
-                    target: '_self',
-                    rel: null,
-                  },
-                  {
-                    href: '/docs/edge/overview',
-                    label: 'Edge',
                     target: '_self',
                     rel: null,
                   },
@@ -648,12 +626,6 @@ module.exports = {
                   {
                     href: '/docs/zkEVM/introduction/',
                     label: 'zkEVM',
-                    target: '_self',
-                    rel: null,
-                  },
-                  {
-                    href: '/docs/edge/overview/',
-                    label: 'Edge',
                     target: '_self',
                     rel: null,
                   },
@@ -824,12 +796,6 @@ module.exports = {
                   {
                     to: '/docs/supernets/supernets-faq',
                     label: 'Supernet FAQ',
-                    target: '_self',
-                    rel: null,
-                  },
-                  {
-                    to: '/docs/edge/faq/validators/',
-                    label: 'Edge FAQ',
                     target: '_self',
                     rel: null,
                   },
