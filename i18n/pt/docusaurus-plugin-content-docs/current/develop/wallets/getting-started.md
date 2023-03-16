@@ -46,8 +46,6 @@ Para obter a lista de CEXs que suportam a Polygon, visite um website de rastreio
 |----------------------------------------------------------------------|---------------|--------------|-----------|--------------|----------|
 | [Carteira PoS](https://wallet.polygon.technology/login/) | não custodial | EOA | sem | sem | navegador |
 | [Carteira Hermez](https://wallet.hermez.io/login) | não custodial | EOA | sem | sem | navegador |
-| [Aplicativos do Avail (Testnet)](https://devnet-avail.polygon.technology/) | não custodial | EOA | sim | sem | navegador |
-
 
 ## Carteiras parceiras {#partner-wallets}
 

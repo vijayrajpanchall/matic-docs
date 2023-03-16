@@ -57,12 +57,6 @@ export const secondRow = [
         description: "Application-specific blockchain networks that are secure, interoperable, and scalable."
     },
     {
-        title: "Avail",
-        linkUrl: "docs/avail/introduction/what-is-avail",
-        imageUrl: "img/avail-logo.png",
-        description: "General-purpose, scalable, and data availability-focused blockchain."
-    },
-    {
         title: "Miden",
         linkUrl: "docs/miden/intro/main",
         imageUrl: "img/miden-logo.png",

@@ -40,8 +40,6 @@ We have listed three faucet tools you can use to receive **MATIC Testnet tokens*
 - Select one of the blockchain testnet networks, where:
     - **Mumbai** - Polygon Testnet
     - **Goerli** - Ethereum Testnet
-    - **Avail Devnet** - For testing DA Chain
-    - **Avail Testnet** - Avail Testnet
 
 - Select the type of Testnet token that you want to receive, where:
     - **MATIC Token** - Testnet token of Polygon network

@@ -40,8 +40,6 @@ image: https://wiki.polygon.technology/img/polygon-wiki.png
 |----------------------------------------------------------------------|---------------|--------------|-----------|--------------|----------|
 | [PoS Wallet](https://wallet.polygon.technology/login/) | ไม่เก็บรักษาคีย์ส่วนตัว | EOA | ไม่ | ไม่ | เบราว์เซอร์ |
 | [Hermez Wallet](https://wallet.hermez.io/login) | ไม่เก็บรักษาคีย์ส่วนตัว | EOA | ไม่ | ไม่ | เบราว์เซอร์ |
-| [แอพ Avail (Tesnet)](https://devnet-avail.polygon.technology/) | ไม่เก็บรักษาคีย์ส่วนตัว | EOA | ใช่ | ไม่ | เบราว์เซอร์ |
-
 
 ## วอลเล็ตของพาร์ทเนอร์ {#partner-wallets}
 

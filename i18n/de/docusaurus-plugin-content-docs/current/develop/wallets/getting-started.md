@@ -46,8 +46,6 @@ Eine Liste der CEXs, die Polygon unterstützen, findest du auf einer Tracking-We
 |----------------------------------------------------------------------|---------------|--------------|-----------|--------------|----------|
 | [PoS-Wallet](https://wallet.polygon.technology/login/) | Nicht-verwahrend | EOA | Nein | Nein | Browser |
 | [Hermez-Wallet](https://wallet.hermez.io/login) | Nicht-verwahrend | EOA | Nein | Nein | Browser |
-| [Avail Apps (Testnet)](https://devnet-avail.polygon.technology/) | Nicht-verwahrend | EOA | Ja | Nein | Browser |
-
 
 ## Partner-Wallets {#partner-wallets}
 

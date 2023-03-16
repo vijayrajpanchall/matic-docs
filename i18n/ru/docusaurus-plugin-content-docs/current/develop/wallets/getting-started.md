@@ -45,8 +45,6 @@ image: https://wiki.polygon.technology/img/polygon-wiki.png
 |----------------------------------------------------------------------|---------------|--------------|-----------|--------------|----------|
 | [PoS Wallet](https://wallet.polygon.technology/login/) | некастодиальный | EOA | нет | нет | браузер |
 | [Hermez Wallet](https://wallet.hermez.io/login) | некастодиальный | EOA | нет | нет | браузер |
-| [Avail Apps](https://devnet-avail.polygon.technology/) | некастодиальный | EOA | да | нет | браузер |
-
 
 ## Кошельки партнеров {#partner-wallets}
 

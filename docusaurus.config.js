@@ -288,10 +288,6 @@ module.exports = {
                 href: "https://polygon.technology/solutions/polygon-zkevm/"
               },
               {
-                label: "Polygon Avail",
-                href: "https://polygon.technology/solutions/polygon-avail/"
-              },
-              {
                 label: "Polygon Zero",
                 href: "https://polygon.technology/solutions/polygon-zero/"
               },
@@ -545,12 +541,6 @@ module.exports = {
                     rel: null,
                   },
                   {
-                    href: 'https://github.com/maticnetwork/avail',
-                    label: 'Avail',
-                    target: '_self',
-                    rel: null,
-                  },
-                  {
                     href: '/docs/miden/design/main',
                     label: 'Miden',
                     target: '_self',
@@ -599,12 +589,6 @@ module.exports = {
                     target: '_self',
                     rel: null,
                   },
-                  {
-                    href: '/docs/category/operate-a-node',
-                    label: 'Run an Avail node',
-                    target: '_self',
-                    rel: null,
-                  },
                 ],
         },
         {
@@ -632,12 +616,6 @@ module.exports = {
                   {
                     href: '/docs/supernets/overview',
                     label: 'Supernets',
-                    target: '_self',
-                    rel: null,
-                  },
-                  {
-                    href: '/docs/avail/introduction/what-is-avail',
-                    label: 'Avail',
                     target: '_self',
                     rel: null,
                   },
@@ -682,12 +660,6 @@ module.exports = {
                   {
                     href: '/docs/supernets/overview',
                     label: 'Supernets',
-                    target: '_self',
-                    rel: null,
-                  },
-                  {
-                    href: '/docs/avail/introduction/what-is-avail',
-                    label: 'Avail',
                     target: '_self',
                     rel: null,
                   },
@@ -858,12 +830,6 @@ module.exports = {
                   {
                     to: '/docs/edge/faq/validators/',
                     label: 'Edge FAQ',
-                    target: '_self',
-                    rel: null,
-                  },
-                  {
-                    to: '/docs/avail/faq',
-                    label: 'Avail FAQ',
                     target: '_self',
                     rel: null,
                   },

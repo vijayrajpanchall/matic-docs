@@ -46,8 +46,6 @@ Polygon destekleyen CEX'lerin bir listesi için aşağıdaki gibi üçüncü tar
 |----------------------------------------------------------------------|---------------|--------------|-----------|--------------|----------|
 | [PoS Cüzdanı](https://wallet.polygon.technology/login/) | gözetimsiz | EOA | hayır | hayır | tarayıcı |
 | [Hermez Wallet](https://wallet.hermez.io/login) | gözetimsiz | EOA | hayır | hayır | tarayıcı |
-| [Avail Uygulamaları (Testnet)](https://devnet-avail.polygon.technology/) | gözetimsiz | EOA | evet | hayır | tarayıcı |
-
 
 ## İş Ortağı Cüzdanları {#partner-wallets}
 

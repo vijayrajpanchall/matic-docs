@@ -46,8 +46,6 @@ Pour obtenir une liste des CEX qui prennent en charge Polygon, consultez un site
 |----------------------------------------------------------------------|---------------|--------------|-----------|--------------|----------|
 | [Portefeuille PoS](https://wallet.polygon.technology/login/) | sans garde | EOA | non | non | navigateur |
 | [Portefeuille Hermez](https://wallet.hermez.io/login) | sans garde | EOA | non | non | navigateur |
-| [Applications Avail (Testnet)](https://devnet-avail.polygon.technology/) | sans garde | EOA | oui | non | navigateur |
-
 
 ## Portefeuilles partenaires {#partner-wallets}
 

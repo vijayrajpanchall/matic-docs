@@ -46,8 +46,6 @@ image: https://wiki.polygon.technology/img/polygon-wiki.png
 |----------------------------------------------------------------------|---------------|--------------|-----------|--------------|----------|
 | [पॉस वॉलेट](https://wallet.polygon.technology/login/) | गैर-कस्टोडियल | eoa | नहीं | नहीं | ब्राउज़र |
 | [Hermez वॉलेट](https://wallet.hermez.io/login) | गैर-कस्टोडियल | eoa | नहीं | नहीं | ब्राउज़र |
-| [Avail Apps (टेस्टनेट)](https://devnet-avail.polygon.technology/) | बिना कस्टडी वाले | eoa | हाँ | नहीं | ब्राउज़र |
-
 
 ## पार्टनर वॉलेट {#partner-wallets}
 

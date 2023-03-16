@@ -71,7 +71,6 @@ module.exports = {
 
   operate: [
     "operate/technical-requirements",
-    "avail/node/avail-node-management",
     "miden/intro/usage",
   ],
 
@@ -478,7 +477,6 @@ module.exports = {
           },
           items: ["maintain/validate/validator-performance-overview"],
         },
-        "avail/node/avail-node-management",
         {
           type: "category",
           label: "Knowledge Base",
@@ -812,29 +810,6 @@ module.exports = {
       ],
     },
   ],
-
-  avail: [
-    "avail/introduction/what-is-avail",
-    "avail/architecture/avail-system-overview",
-    "avail/architecture/avail-consensus",
-    "avail/how-tos/avail-quick-start",
-    {
-      type: "category",
-      label: "Operate a Node",
-      link: {
-        type: "generated-index",
-      },
-      collapsed: false,
-      items: [
-        "avail/node/avail-node-management",
-        "avail/node/avail-validator",
-        "avail/node/avail-data-avail",
-        "avail/node/avail-light-client-da",
-      ],
-    },
-    "avail/faq",
-  ],
-
   miden: [
     {
       type: "category",

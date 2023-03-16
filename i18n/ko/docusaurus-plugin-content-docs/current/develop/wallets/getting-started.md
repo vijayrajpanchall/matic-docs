@@ -41,8 +41,6 @@ Polygon [지원은](https://support.polygon.technology/support/home) 사용자�
 |----------------------------------------------------------------------|---------------|--------------|-----------|--------------|----------|
 | [PoS 지갑](https://wallet.polygon.technology/login/) | 비수탁(논커스터디알) | EOA | 없음 | 없음 | 브라우저 |
 | [Hermez Wallet](https://wallet.hermez.io/login) | 비수탁(논커스터디알) | EOA | 없음 | 없음 | 브라우저 |
-| [Available Apps(Testnet)](https://devnet-avail.polygon.technology/) | 비수탁(논커스터디알) | EOA | 예 | 없음 | 브라우저 |
-
 
 ## 파트너 지갑 {#partner-wallets}
 

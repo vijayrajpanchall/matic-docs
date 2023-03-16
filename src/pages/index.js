@@ -177,7 +177,6 @@ function Home() {
             <Tabs defaultValue="public" values={[
                 {label: 'Public Chains', value: 'public'},
                 {label: 'App Specific Chains', value: 'app-specific'},
-                {label: 'Data Availability', value: 'da'},
                 {label: 'Decentralized Identity', value: 'identity'},
               ]}>
 
@@ -241,23 +240,6 @@ function Home() {
                   <p class="description-text">Build app-chains powered by an industry-leading technology and ecosystem around Polygon.</p>
                   <div class="padding-bottom custom-padding"></div>
                   <Buttonizer docsUrl={'docs/supernets/overview'} linkUrl={'docs/supernets/overview'} />
-                </div>
-              </div>
-            </TabItem>
-
-            <TabItem value="da">
-              <div class="tabs-element">
-                <div class="tabs_animation-wrapper">
-                  <div class="tabs_animation-embed pb_video_embed w-embed w-iframe">
-                    <iframe src="https://player.vimeo.com/video/791153857?h=a0b62c3daa&badge=0&autopause=0&player_id=0&app_id=58479&loop=1&autoplay=1&background=1" frameborder="0" allow="autoplay" class="tabs-frame" title="Hero" data-ready="true"></iframe>
-                  </div>
-                </div>
-                <div class="tabs-content">
-                  <h4 class="text-weight-medium">Polygon Avail <span class="solution-status">Testnet</span></h4>
-                  <div class="padding-bottom padding-small"></div>
-                  <p class="description-text">Increase throughput without sacrificing decentralization with a base consensus and data availability layer for chains.</p>
-                  <div class="padding-bottom custom-padding"></div>
-                  <Buttonizer docsUrl={'docs/avail/introduction/what-is-avail'} linkUrl={'docs/avail/how-tos/avail-quick-start'} />
                 </div>
               </div>
             </TabItem>

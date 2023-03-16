@@ -46,8 +46,6 @@ Para obtener una lista de las CEX compatibles con Polygon, visita un sitio web d
 |----------------------------------------------------------------------|---------------|--------------|-----------|--------------|----------|
 | [Billetera de PoS](https://wallet.polygon.technology/login/) | sin custodia | EOA | no | no | navegador |
 | [Billetera de Hermez](https://wallet.hermez.io/login) | sin custodia | EOA | no | no | navegador |
-| [Aplicaciones de uso (Testnet)](https://devnet-avail.polygon.technology/) | sin custodia | EOA | sí | no | navegador |
-
 
 ## Billeteras asociadas {#partner-wallets}
 

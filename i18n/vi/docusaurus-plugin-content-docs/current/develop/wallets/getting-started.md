@@ -40,8 +40,6 @@ Các ví bên thứ ba này đã tích hợp Polygon và hỗ trợ nhiều tín
 |----------------------------------------------------------------------|---------------|--------------|-----------|--------------|----------|
 | [Ví PoS](https://wallet.polygon.technology/login/) | không lưu ký | EOA | không | không | trình duyệt |
 | [Ví Hermez](https://wallet.hermez.io/login) | không lưu ký | EOA | không | không | trình duyệt |
-| [Ứng dụng Acule (Testnet)](https://devnet-avail.polygon.technology/) | không lưu ký | EOA | có | không | trình duyệt |
-
 
 ## Ví đối tác {#partner-wallets}
 

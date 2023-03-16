@@ -43,8 +43,6 @@ Maaaring magbigay ang [Suporta](https://support.polygon.technology/support/home)
 |----------------------------------------------------------------------|---------------|--------------|-----------|--------------|----------|
 | [PoS Wallet](https://wallet.polygon.technology/login/) | non-custodial | EOA | hindi | hindi | browser |
 | [Hermez Wallet](https://wallet.hermez.io/login) | non-custodial | EOA | hindi | hindi | browser |
-| [Avail Apps (Testnet)](https://devnet-avail.polygon.technology/) | non-custodial | EOA | oo | hindi | browser |
-
 
 ## Partner ng Mga Wallet {#partner-wallets}
 

@@ -46,8 +46,6 @@ Untuk daftar CEX yang mendukung Polygon, kunjungi situs pelacakan pihak ketiga s
 |----------------------------------------------------------------------|---------------|--------------|-----------|--------------|----------|
 | [PoS Wallet](https://wallet.polygon.technology/login/) | nonkustodial | EOA | tidak | tidak | browser |
 | [Dompet Hermez](https://wallet.hermez.io/login) | nonkustodial | EOA | tidak | tidak | browser |
-| [Avail Apps (Testnet)](https://devnet-avail.polygon.technology/) | nonkustodial | EOA | ya | tidak | browser |
-
 
 ## Dompet Mitra {#partner-wallets}
 

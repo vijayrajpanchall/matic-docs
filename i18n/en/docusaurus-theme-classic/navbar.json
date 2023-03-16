@@ -83,10 +83,6 @@
     "message": "PoS FAQ",
     "description": "Navbar item with label PoS FAQ"
   },
-  "item.label.Avail FAQ": {
-    "message": "Avail FAQ",
-    "description": "Navbar item with label Avail FAQ"
-  },
   "item.label.Edge FAQ": {
     "message": "Edge FAQ",
     "description": "Navbar item with label Edge FAQ"

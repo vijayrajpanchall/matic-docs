@@ -40,8 +40,6 @@ PolygonをサポートしているCEXのリストについては、以下のよ�
 |----------------------------------------------------------------------|---------------|--------------|-----------|--------------|----------|
 | [PoSウォレット](https://wallet.polygon.technology/login/) | 非保管 | EOA | いいえ | いいえ | ブラウザ |
 | [Hermezウォレット](https://wallet.hermez.io/login) | 非保管 | EOA | いいえ | いいえ | ブラウザ |
-| [Availアプリ（テストネット）](https://devnet-avail.polygon.technology/) | 非保管 | EOA | はい | いいえ | ブラウザ |
-
 
 ## パートナーウォレット {#partner-wallets}
 

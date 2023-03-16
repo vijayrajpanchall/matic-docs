@@ -43,8 +43,6 @@ Per un elenco dei CEX che supportano Polygon, visita un sito web di terze parti 
 |----------------------------------------------------------------------|---------------|--------------|-----------|--------------|----------|
 | [Wallet PoS](https://wallet.polygon.technology/login/) | non-custodial | EOA | no | no | browser |
 | [Wallet Hermez](https://wallet.hermez.io/login) | non-custodial | EOA | no | no | browser |
-| [Avail Apps (Testnet)](https://devnet-avail.polygon.technology/) | non-custodial | EOA | sì | no | browser |
-
 
 ## Wallet partner {#partner-wallets}
 
