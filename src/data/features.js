@@ -77,36 +77,36 @@ export const secondRow = [
 ];
 export const thirdRow = [
     {
-        title: "Create a ZK smart contract",
+        title: "Create scalable business logic",
         class_name: "polygon-banner",
         linkUrl: "https://codingwithmanny.medium.com/how-to-deploy-a-contract-to-polygon-zkevm-testnet-385afc1fb1a5",
         imageUrl: "img/zkevm-logo.png",
-        description: "Learn how to deploy a smart contract to the zkEVM testnet."
+        description: "Learn how to use the zkEVM to deploy a smart contract."
     },
     {
-        title: "Create a ZK dApp",
+        title: "Create a scalable application",
         class_name: "polygon-banner",
         linkUrl: "https://github.com/oceans404/fullstack-zkevm",
         imageUrl: "img/zkevm-logo.png",
-        description: "Learn how to create a full-stack dApp on the zkEVM testnet."
+        description: "Learn how to create a scalable full-stack dApp on the zkEVM."
     },
     {
-        title: "Issue claims with ZK identity",
+        title: "Issue and verify claims",
         linkUrl: "https://github.com/oceans404/generate-frontend-polygon-id-issuer",
         imageUrl: "img/id-logo.png",
         description: "Learn how to generate your own claims website with Polygon ID."
     },
     {
-        title: "Create a payment dApp",
-        linkUrl: "https://github.com/PolygonStudiosLab/gaming-recipes",
-        imageUrl: "img/pos-logo.png",
-        description: "Learn how to create a peer-to-peer payment dApp on PoS mainnet."
+        title: "Create a gaming platform",
+        linkUrl: "https://events.polygon.technology/blueprint-web3-games-guide",
+        imageUrl: "img/polygon-logo.png",
+        description: "Explore web3 gaming design with the Blueprint guide."
     },
     {
-        title: "Build a social media dApp",
-        linkUrl: "https://learn.figment.io/tutorials/build-a-social-media-dapp-and-deploy-it-on-polygon",
-        imageUrl: "img/pos-logo.png",
-        description: "Learn how to build a social media dApp & deploy it on Mumbai."
+        title: "Craft gaming recipes",
+        linkUrl: "https://github.com/PolygonStudiosLab/gaming-recipes",
+        imageUrl: "img/polygon-logo.png",
+        description: "Learn how to generate gaming primitives with the recipes framework."
     },
     {
         title: "Build a DAO",
