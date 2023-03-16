@@ -168,7 +168,7 @@ function Home() {
                   <div className="col-md-10">
                     <h3 className="mt-0">Mass Scale for Mass Adaption</h3>
                     <p className="lead">By leveraging cutting-edge technologies like ZK cryptography and transaction rollups, Polygon is making blockchains more accessible and user-friendly than ever before and is at the forefront of mass adoption through various layer 2s and appchains.</p>
-                    <p><a href="#polygon-protocol" onClick={(e) => { e.preventDefault(); smoothScrollTo('#polygon-protocols'); }}><b>Explore our Protocol Docs ↓</b></a></p>
+                    <p><a href="#polygon-protocol" onClick={(e) => { e.preventDefault(); smoothScrollTo('#polygon-protocols'); }}><b>Explore the Protocol Docs ↓</b></a></p>
                   </div>
                 </div>
               </section>
@@ -290,7 +290,7 @@ function Home() {
               <div className="col-lg-8">
                 <h3 className="mt-0">Explore the Endless Possibilities of Polygon</h3>
                 <p className="lead">Polygon is an enterprise-ready blockchain platform that has emerged as the go-to solution for a growing number of businesses and development teams. With its scalable architecture, fast and low-cost transactions, and growing ecosystem, Polygon is the ideal platform for entrepreneurs, developers, and businesses alike to build and launch their blockchain solutions.</p>
-                <p className="lead">Explore the docs to learn more about how you can use Polygon to achieve your goals. <a class="landing-page-link"><b>Stay tuned for the upcoming content!</b></a></p>
+                <p className="lead">Explore the docs to learn more about how you can use Polygon to achieve your goals. <b>Stay tuned for the upcoming content!</b></p>
                 <p><a href="#polygon-use-cases" onClick={(e) => { e.preventDefault(); smoothScrollTo('#polygon-use-cases'); }}><b>Check it out ↓</b></a></p>
               </div>
               <div className="col-lg-4 text-center pt-3 d-none d-lg-block">

@@ -80,38 +80,38 @@ export const thirdRow = [
         title: "Create a ZK smart contract",
         class_name: "polygon-banner",
         linkUrl: "https://codingwithmanny.medium.com/how-to-deploy-a-contract-to-polygon-zkevm-testnet-385afc1fb1a5",
-        imageUrl: "img/logo-zkevm-dark.png",
+        imageUrl: "img/zkevm-logo.png",
         description: "Learn how to deploy a smart contract to the zkEVM testnet."
     },
     {
         title: "Create a ZK dApp",
         class_name: "polygon-banner",
         linkUrl: "https://github.com/oceans404/fullstack-zkevm",
-        imageUrl: "img/logo-zkevm-dark.png",
+        imageUrl: "img/zkevm-logo.png",
         description: "Learn how to create a full-stack dApp on the zkEVM testnet."
     },
     {
         title: "Issue claims with ZK identity",
         linkUrl: "https://github.com/oceans404/generate-frontend-polygon-id-issuer",
-        imageUrl: "img/logo-id-dark.png",
+        imageUrl: "img/id-logo.png",
         description: "Learn how to generate your own claims website with Polygon ID."
     },
     {
         title: "Create a payment dApp",
         linkUrl: "https://github.com/PolygonStudiosLab/gaming-recipes",
-        imageUrl: "img/logo-pos-dark.png",
+        imageUrl: "img/pos-logo.png",
         description: "Learn how to create a peer-to-peer payment dApp on PoS mainnet."
     },
     {
         title: "Build a social media dApp",
         linkUrl: "https://learn.figment.io/tutorials/build-a-social-media-dapp-and-deploy-it-on-polygon",
-        imageUrl: "img/logo-pos-dark.png",
+        imageUrl: "img/pos-logo.png",
         description: "Learn how to build a social media dApp & deploy it on Mumbai."
     },
     {
         title: "Build a DAO",
         linkUrl: "https://learn.figment.io/tutorials/funding-dao-polygon",
-        imageUrl: "img/logo-pos-dark.png",
+        imageUrl: "img/pos-logo.png",
         description: "Learn how to create a funding DAO on Polygon."
     }
 ];

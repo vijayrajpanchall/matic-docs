@@ -961,7 +961,7 @@ html[data-theme='dark'] .header-github-link:before {
 }
 
 .landing-page-link{
-  color: #8b43ee;
+  color: #6a23e7;
 }
 
 [data-theme="dark"] {
@@ -1505,4 +1505,48 @@ strong {
   filter: none;
   background-clip: padding-box;
   -webkit-text-fill-color: inherit;
+}
+
+/* announcement bar */
+
+.announcement-bar {
+  line-height: 1.4;
+  letter-spacing: .3px;
+  font-weight: 500;
+}
+
+.announcementBar_node_modules-\@docusaurus-theme-classic-lib-theme-AnnouncementBar-styles-module {
+  background-image: linear-gradient(to right, #a626c1 0%, #9b2dc9 26%, #9332d1 51%, #8539db 76%, #7c3ee3 100%);
+  height: var(--docusaurus-announcement-bar-height) + 1rem;
+}
+
+.announcement-link {
+  margin-left: 6px;
+  padding-right: 20px;
+  background-image: url(https://assets-global.website-files.com/637359c81e22b715cec245ad/6374d3decc04fdd8fb2563ac_arrow-up-right.svg);
+  background-position: 102% -2px;
+  background-color: transparent;
+  transition: color .1s;
+  background-size: auto;
+  background-repeat: no-repeat;
+  color: #af89ee;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.announcementBarPlaceholder_node_modules-\@docusaurus-theme-classic-lib-theme-AnnouncementBar-styles-module, .announcementBarClose_node_modules-\@docusaurus-theme-classic-lib-theme-AnnouncementBar-styles-module {
+  color: #fff;
+}
+
+@media (min-width: 2140px) {
+  /* fixes announcement bar in larger screens */
+  .announcement-bar {
+    line-height: 1.75;
+    letter-spacing: .5px;
+    font-size: 1.125rem;
+  }
+  
+  .announcementBar_node_modules-\@docusaurus-theme-classic-lib-theme-AnnouncementBar-styles-module {
+    height: var(--docusaurus-announcement-bar-height) + 1.25rem;
+  }
 }
