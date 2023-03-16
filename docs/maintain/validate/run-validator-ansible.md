@@ -283,11 +283,11 @@ Save the changes in `static-nodes.json`.
 
 The sentry machine must have the following ports open to the world `0.0.0.0/0`:
 
-* 26656- Your Heimdall service will connect your node to other nodes using the Heimdall service.
+* `26656`- Your Heimdall service will connect your node to other nodes using the Heimdall service.
 
-* 30303- Your Bor service will connect your node to other nodes using the Bor service.
+* `30303`- Your Bor service will connect your node to other nodes using the Bor service.
 
-* 22- For the validator to be able to ssh from wherever he/she is.
+* `22`- Open this port if your node is servicing validators. You will likely want to restrict what traffic can access this port as it is a sensitive port.
 
 :::note
 

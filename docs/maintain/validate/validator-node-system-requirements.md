@@ -28,9 +28,7 @@ You must always run the sentry node and the validator node on separate machines.
 
 :::info
 
-For Amazon Web Services (AWS), the equivalent of the minimum requirements instances are **m5d.2xlarge** or **t3.2xlarge** with unlimited credits selected.
-
-For storage, make sure the 2.5 TB SSD storage is extendable.
+For Amazon Web Services (AWS), the equivalent of the minimum requirements instances are **m5d.2xlarge** or **r5.xlarge** with unlimited credits selected.
 
 :::
 
