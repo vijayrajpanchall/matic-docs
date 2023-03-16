@@ -253,7 +253,7 @@ module.exports = {
     metadata: [{name: 'description', content: 'Welcome to Polygon Wiki, the official documentation for Polygon. Learn about Polygon and its suite of Ethereum-scaling solutions.'}],
     announcementBar: {
       id: 'banner',
-      content: '<div class="announcement-bar">Supercharge with Supernets: Unleashing the future of blockchain.<a href="/docs/supernets/overview" class="announcement-link">Stay tuned for the Testnet launch</a></div>',
+      content: '<div class="announcement-bar">Supercharge with Supernets: Unleashing the future of blockchain.<a href="/docs/supernets/overview" class="announcement-link">Stay tuned for the test launch</a></div>',
       textColor: '#ffffff',
       isCloseable: true,
     },
