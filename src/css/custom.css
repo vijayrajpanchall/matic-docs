@@ -1515,7 +1515,7 @@ strong {
   font-weight: 500;
 }
 
-.announcementBar_node_modules-\@docusaurus-theme-classic-lib-theme-AnnouncementBar-styles-module {
+[role=banner] {
   background-image: linear-gradient(to right, #a626c1 0%, #9b2dc9 26%, #9332d1 51%, #8539db 76%, #7c3ee3 100%);
   height: var(--docusaurus-announcement-bar-height) + 1rem;
 }
@@ -1534,7 +1534,7 @@ strong {
   cursor: pointer;
 }
 
-.announcementBarPlaceholder_node_modules-\@docusaurus-theme-classic-lib-theme-AnnouncementBar-styles-module, .announcementBarClose_node_modules-\@docusaurus-theme-classic-lib-theme-AnnouncementBar-styles-module {
+.clean-btn.close {
   color: #fff;
 }
 
@@ -1546,7 +1546,7 @@ strong {
     font-size: 1.125rem;
   }
   
-  .announcementBar_node_modules-\@docusaurus-theme-classic-lib-theme-AnnouncementBar-styles-module {
+  [role=banner] {
     height: var(--docusaurus-announcement-bar-height) + 1.25rem;
-  }
+    }
 }
