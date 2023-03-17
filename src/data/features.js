@@ -1,15 +1,15 @@
 export const firstRow = [
     {
+        title: "Deploy a contract",
+        linkUrl: "docs/category/deploying-contracts",
+        imageUrl: "img/logo-round-dark.png",
+        description: "Learn how to deploy secure smart contracts confidently with battle-tested tech stacks."
+    },
+    {
         title: "Build a dApp",
         linkUrl: "docs/develop/getting-started",
         imageUrl: "img/logo-round-dark.png",
         description: "Empower the world by building next-gen dApps using Polygon's PoS and ZK tech."
-    },
-    {
-        title: "Deploy a contract",
-        linkUrl: "docs/category/deploying-contracts",
-        imageUrl: "img/logo-round-dark.png",
-        description: "Learn to deploy secure smart contracts confidently with battle-tested tech stacks."
     },
     {
         title: "Operate a node",

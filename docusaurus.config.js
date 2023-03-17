@@ -253,10 +253,18 @@ module.exports = {
     metadata: [{name: 'description', content: 'Welcome to Polygon Wiki, the official documentation for Polygon. Learn about Polygon and its suite of Ethereum-scaling solutions.'}],
     announcementBar: {
       id: 'banner',
-      content: '<div class="announcement-bar">Supercharge with Supernets: Unleashing the future of blockchain.<a href="/docs/supernets/overview" class="announcement-link">Stay tuned for the test launch</a></div>',
+      content: `
+        <div class="announcement-bar">
+          Supercharge with Supernets: Unleashing the future of blockchain.
+          <a href="/docs/supernets/overview" class="announcement-link" style="color: #ffffff;">
+            Stay tuned for the test launch
+          </a>
+        </div>
+      `,
       textColor: '#ffffff',
       isCloseable: true,
     },
+
     colorMode: {
       defaultMode: 'dark',
       disableSwitch: true,
@@ -269,36 +277,11 @@ module.exports = {
       style: 'light',
       links: [
         {
-          title: "Solutions",
+          title: "Resources",
           items: [
               {
-                  label: "Polygon PoS",
-                  href: "https://polygon.technology/solutions/polygon-pos/"
-              },
-              {
-                  label: "Polygon Supernets",
-                  href: "https://polygon.technology/polygon-edge-supernets/"
-              },
-              {
-                label: "Polygon zkEVM",
-                href: "https://polygon.technology/solutions/polygon-zkevm/"
-              },
-              {
-                label: "Polygon Zero",
-                href: "https://polygon.technology/solutions/polygon-zero/"
-              },
-              {
-                label: "Polygon Miden",
-                href: "https://polygon.technology/solutions/polygon-miden/"
-              },
-          ]
-        },
-        {
-          title: "Developers",
-          items: [
-              {
-                  label: "Get Started",
-                  href: "https://wiki.polygon.technology/docs/develop/getting-started/"
+                href: 'https://support.polygon.technology/support/home',
+                label: 'Polygon Support',
               },
               {
                   label: "Advocate Program",
@@ -313,16 +296,32 @@ module.exports = {
                   href: "https://immunefi.com/bounty/polygon/"
               },
               {
-                label: "dApps",
-                href: "https://polygon.technology/ecosystem/"
+                href: 'https://www.dappstorekit.io/',
+                label: 'Build your own dApp',
+                target: '_blank',
+                rel: null,
+                position: 'right',
+              },
+          ]
+        },
+        {
+          title: "Reference",
+          items: [
+              {
+                label: "Whitepaper",
+                href: "https://github.com/maticnetwork/whitepaper/"
               },
               {
-                label: "Polygon Lightpaper",
+                label: "Lightpaper",
                 href: "https://polygon.technology/lightpaper-polygon.pdf"
               },
               {
-                label: "Matic Whitepaper",
-                href: "https://github.com/maticnetwork/whitepaper/"
+                label: "zkEVM",
+                href: "docs/category/zk-assembly"
+              },
+              {
+                label: "Miden",
+                href: "docs/miden/design/main"
               },
           ]
         },
@@ -332,12 +331,6 @@ module.exports = {
                   {
                     href: 'https://wallet.polygon.technology',
                     label: 'PoS Wallet',
-                    target: '_blank',
-                    rel: null,
-                  },
-                  {
-                    href: 'https://wallet.polygon.technology/polygon/bridge/deposit',
-                    label: 'PoS Bridge',
                     target: '_blank',
                     rel: null,
                   },
@@ -354,23 +347,10 @@ module.exports = {
                     rel: null,
                   },
                   {
-                    href: 'https://wallet.hermez.io/login',
-                    label: 'Hermez Wallet',
-                    target: '_blank',
-                    rel: null,
-                  },
-                  {
                     href: 'https://explorer.hermez.io/',
-                    label: 'Hermez Explorer',
+                    label: 'Hermez',
                     target: '_blank',
                     rel: null,
-                  },
-                  {
-                    href: 'https://www.dappstorekit.io/',
-                    label: 'dApp Store Kit',
-                    target: '_blank',
-                    rel: null,
-                    position: 'right',
                   },
                 ],
         },
@@ -386,24 +366,12 @@ module.exports = {
                 href: "https://polygon.technology/contact-us/"
               },
               {
-                label: "Transparency Sheet",
-                href: "https://polygon.technology/transparency-sheet/"
-              },
-              {
                   label: "Blogs",
                   href: "https://blog.polygon.technology/"
               },
               {
                 label: "Brand Kit",
                 href: "https://www.notion.so/polygontechnology/Brand-Resources-2cd18ae436584e98a6c5aae56db73058/"
-              },
-              {
-                  label: "Careers",
-                  href: "https://polygon.technology/careers/"
-              },
-              {
-                label: "Ecosystem Careers",
-                href: "https://ecosystemjobs.polygon.technology/jobs/"
               },
             ]
         },
@@ -429,14 +397,6 @@ module.exports = {
               {
                 href: 'https://t.me/polygonofficial',
                 label: 'Telegram',
-              },
-              {
-                href: 'https://support.polygon.technology/support/home',
-                label: 'Support',
-              },
-              {
-                label: "Get Updates",
-                href: 'https://polygon.technology/notifications/',
               },
             ]
           },

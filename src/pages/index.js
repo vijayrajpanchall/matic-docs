@@ -7,6 +7,7 @@ import useBaseUrl from "@docusaurus/useBaseUrl";
 import styles from "./styles.module.css";
 import { firstRow, thirdRow, networkBanner } from "../data/features";
 import SearchBar from '@theme-original/SearchBar'; // Import the SearchBar component
+import { Container, Row, Col } from 'react-bootstrap';
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -115,7 +116,34 @@ function Buttonizer({docsUrl, linkUrl}) {
   );
 }
 
+function ImproveWiki({docUrl, translationRecruitingLink}) {
+  return (
+    <div className="col-lg-6 d-flex align-items-end flex-column pb-5">
+      <div>
+        <span className="material-icons" style={{fontSize: '50px'}}>
+          language
+        </span>
+        <h3 className="h2 font-weight-medium">Help with Translations</h3>
+        <p className="mb-5">
+          This Polygon Wiki was started by and is maintained by Polygon Labs. It is
+          an open-source project and aims to be the most extensive resource
+          of knowledge on Polygon.
+        </p>
+      </div>
+      <div>
+        <a href={translationRecruitingLink} target="_blank" rel="noreferrer noopener">
+          <button className="btn-custom">
+            Help Translate
+          </button>
+        </a>
+      </div>
+    </div>
+  );
+}
+
 function smoothScrollTo(target) {
+  const context = useDocusaurusContext();
+  const { siteConfig = {} } = context;
   const element = document.querySelector(target);
   if (element) {
     window.scrollTo({
@@ -128,6 +156,61 @@ function smoothScrollTo(target) {
 function Home() {
   const context = useDocusaurusContext();
   const { siteConfig = {} } = context;
+
+  const ImproveWiki = () => (
+    <div className="helpTranslateContainer">
+      <Container>
+        <Row className="helpTranslateWrapper">
+          <Col md={6} className="text-center" style={{ marginRight: '10rem' }}>
+            <section>
+            <div>
+              <h3 className="h2 font-weight-medium section-title">[Coming soon] Help with Translations</h3>
+              <p className="section-text">
+                Help make the Polygon documentation more accessible to a wider audience
+                by contributing to translation and localization efforts.
+              </p>
+              <a
+                href={siteConfig.translationRecruitingLink}
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                 <a href="docs/contribute/translate/" style={{ color: '#ffffff' }}>
+                 <button className="btn btn-custom">
+                  Help translate
+                </button>
+                </a>
+              </a>
+            </div>
+            </section>
+          </Col>
+          <Col md={6} className="text-center">
+          <section>
+            <div>
+              <h3 className="h2 font-weight-medium section-title">Contribute to the Wiki</h3>
+              <p className="section-text">
+              Boost the quality and expand the content of Polygon by actively
+              engaging in open-source contributions, both by improving existing materials and
+              creating new documents on the Wiki.
+              </p>
+              <a
+                href={siteConfig.wikiContributionLink}
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                <a href="docs/contribute/orientation/" style={{ color: '#ffffff' }}>
+                 <button className="btn btn-custom">
+                  Contribute
+                </button>
+                </a>
+              </a>
+            </div>
+            </section>
+          </Col>
+        </Row>
+      </Container>
+    </div>
+  );
+
   return (
     <Layout>
       <div className="bootstrap-wrapper">
@@ -142,7 +225,7 @@ function Home() {
                 <h3 className="mt-0"> The official documentation for <a href="https://polygon.technology" class="landing-page-link">0xPolygon</a></h3>
                 <p className="lead">The <b>Polygon Wiki</b> is the source of truth for Polygon, providing comprehensive documentation, community resources, and guides for enthusiasts and developers interested in learning about or building on Polygon.</p>
                 <a href="docs/home/new-to-polygon/" style={{ color: '#ffffff' }}>
-                  <button className="btn btn-custom button is-icon">Get started with Polygon</button>
+                  <button className="btn btn-custom">Get started with Polygon</button>
                 </a>
                 <p className="lead">From its origins as a plasma chain, Polygon has evolved into a multichain powerhouse, providing developers and creators with the tools they need to build innovative, secure, and scalable blockchain solutions. Revolutionize how we interact with the world by building on and participating in the Polygon ecosystem.</p>
                 <p><a href="#common-docs" onClick={(e) => { e.preventDefault(); smoothScrollTo('#common-docs'); }}><b>Find out more ↓</b></a></p>
@@ -295,6 +378,7 @@ function Home() {
           <br />
         </div>
       </div>
+      <ImproveWiki docUrl={siteConfig.docUrl} translationRecruitingLink={siteConfig.translationRecruitingLink} />
     </Layout>
   );
 }
