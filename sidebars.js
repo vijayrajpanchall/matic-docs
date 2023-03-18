@@ -1208,9 +1208,18 @@ module.exports = {
   // #####################################################################
 
   supernets: [
-    "supernets/overview",
-    "supernets/architecture",
-    "supernets/polybft",
+    {
+      type: "category",
+      label: "Introduction",
+      link: {
+        type: "generated-index",
+      },
+      collapsed: false,
+      items: [
+        "supernets/get-started/what-are-supernets",
+        "supernets/get-started/why-supernets",,
+      ],
+    },
     {
       type: "category",
       label: "Core Contracts",
@@ -1226,19 +1235,6 @@ module.exports = {
         "supernets/contracts/reward-pool",
         "supernets/contracts/validator-queue",
         "supernets/contracts/withdrawal-queue",
-      ],
-    },
-    {
-      type: "category",
-      label: "Bridge",
-      link: {
-        type: "generated-index",
-      },
-      collapsed: false,
-      items: [
-        "supernets/bridge/overview",
-        "supernets/bridge/statesync",
-        "supernets/bridge/checkpoint",
       ],
     },
     {
