@@ -16,6 +16,8 @@ keywords:
 
 This document provides an overview of how StateSyncs work on in Supernets.
 
+---
+
 ## Introduction
 
 State synchronization (StateSync) is a mechanism used to update the state of a contract on the rootchain based on events occurring on a childchain. It is a critical component of blockchain technology as it enables secure and efficient communication between the two chains. State synchronization allows for a more efficient and secure way to update the chain state on the rootchain without needing to process all transactions from the genesis block.

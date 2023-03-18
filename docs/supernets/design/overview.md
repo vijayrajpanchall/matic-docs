@@ -16,8 +16,6 @@ keywords:
 
 This document provides an architectural overview of Polygon Supernets.
 
----
-
 :::caution In active development
 
 **This Hub documents the functionality of the upcoming v0.8.0 release.**
@@ -26,6 +24,8 @@ This document provides an architectural overview of Polygon Supernets.
 Please get in touch with the Polygon team if you want to use it in production or have any questions.
 
 :::
+
+---
 
 The following diagram offers an architectural overview of Polygon Supernets.
 

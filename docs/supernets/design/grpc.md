@@ -14,6 +14,8 @@ keywords:
 
 This documents provides an overview on how gRPC is used in Supernets.
 
+---
+
 ## What is gRPC used for?
 
 gRPC is a popular RPC (remote procedure call) framework that enables efficient communication between distributed systems. It is commonly used in microservices architectures and is especially useful for building high-performance, scalable applications that require low-latency communication between services. With its support for multiple programming languages and its built-in support for data serialization, gRPC provides a powerful and flexible tool for building distributed systems.

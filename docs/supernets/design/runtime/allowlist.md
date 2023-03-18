@@ -13,6 +13,10 @@ keywords:
   - epoch
 ---
 
+This document provides an overiew on the contract allowlisting capabilities of Supernets.
+
+---
+
 ## Overview
 
 An `allowlist` package provides a mechanism to manage and control access to specific Supernet resources, contracts, or functionalities. By creating an allowlist, maintainers can limit access to particular addresses, ensuring a controlled and secure environment for their applications.

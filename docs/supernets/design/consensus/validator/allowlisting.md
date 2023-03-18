@@ -14,6 +14,8 @@ keywords:
 
 This documents provides an overview on how allowlisting works in Supernets.
 
+---
+
 The current implementation of the consensus engine only allows for allowlisting of validators.
 
 Allowlisting is a process in Polygon Supernets that allows the contract owner to manage a list of authorized users who can access specific functions or features of the contract. This is done through the [CVSAccessControl module](/docs/supernets/modules/access-control), which allows the owner to add or remove addresses to the allowlist.

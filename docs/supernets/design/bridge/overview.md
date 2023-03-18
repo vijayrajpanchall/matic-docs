@@ -12,7 +12,15 @@ keywords:
   - ethereum
 ---
 
-This document provides an overview of the native cross-chain bridge in Polygon Supernets.
+This document provides an overview of the native cross-chain bridge in Supernets.
+
+:::caution In active development
+
+The bridge is in active development and the content in this section is subject to change.
+
+:::
+
+---
 
 ## Overview
 

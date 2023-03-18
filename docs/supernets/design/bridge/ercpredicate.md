@@ -12,6 +12,16 @@ keywords:
   - checkpoint
 ---
 
+This document provides an overview on the rootchain bridging predicate.
+
+:::caution In active development
+
+The bridge is in active development and the content in this section is subject to change.
+
+:::
+
+---
+
 The `RootERC20Predicate` contract is responsible for bridging ERC20 tokens between a childchain and a rootchain.
 
 A `deposit` function allows users to deposit ERC20 tokens from the rootchain into the childchain. It first maps the root token to a child token and then transfers the specified amount of root tokens from the sender to the contract. Afterward, it sends a message to the child ERC20 predicate with information about the deposit, which results in the minting of the equivalent amount of child tokens to the receiver's address on the childchain.

@@ -12,6 +12,10 @@ keywords:
   - pos
 ---
 
+This document provides an explanation on PolyBFT, the consensus mechanism for Superents.
+
+---
+
 ## State Transitions
 
 In PolyBFT, the consensus protocol follows a set of state transitions that enable the network to reach consensus on the state of the blockchain. The process begins when a validator proposes adding a new block to the blockchain. This block contains a list of transactions that the validator would like to include in the next update to the blockchain's state.

@@ -12,6 +12,16 @@ keywords:
   - checkpoint
 ---
 
+This document provides an overview on the childchain bridging predicate.
+
+:::caution In active development
+
+The bridge is in active development and the content in this section is subject to change.
+
+:::
+
+---
+
 A core contract called `ChildERC20Predicate` enables deposits and withdrawals of ERC20 tokens between an arbitrary rootchain and childchain.
 
 A `deposit` function allows users to deposit ERC20 tokens from the rootchain into the childchain. It performs this by mapping the root token to a child token and then minting the equivalent amount of child tokens to the receiver's address on the childchain.

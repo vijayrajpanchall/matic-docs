@@ -13,6 +13,10 @@ keywords:
   - modular
 ---
 
+This document presents an overview on the ERC-20 standard available in Supernets.
+
+---
+
 Polygon Supernets offer two token standards for creating fungible tokens on the network: `NativeERC20` and `ChildERC20`. Both standards are based on the widely-used ERC-20 standard and offer similar functionality. However, there are key differences in their deployment and management.
 
 ## ChildERC20

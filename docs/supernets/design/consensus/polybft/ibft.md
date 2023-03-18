@@ -14,6 +14,8 @@ keywords:
 
 This document presents an overview of the Istanbul Byzantine Fault Tolerant (IBFT) 2.0, the consensus engine of [PolyBFT](/docs/supernets/design/consensus/polybft/polybft-overview).
 
+---
+
 ## Consensus Engine
 
 The PolyBFT consensus mechanism uses the IBFT 2.0 consensus engine to agree on adding new blocks to the blockchain. The validator pool in IBFT 2.0 is responsible for validating candidate blocks proposed by a randomly selected block proposer who is part of the validator pool. The proposer is responsible for constructing a block at the block interval. The proposer mechanism is based on [Tendermint](https://tendermint.com/), where a proposer is chosen based on a deterministic selection algorithm. The frequency of selection is proportional to the voting power of the validator.

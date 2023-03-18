@@ -13,7 +13,9 @@ keywords:
   - epoch
 ---
 
-This documents provides an overview on how libp2p is used as a networking layer in Supernets.
+This documents provides an overview on how libp2p is used as the networking layer in Supernets.
+
+---
 
 ## Overview
 

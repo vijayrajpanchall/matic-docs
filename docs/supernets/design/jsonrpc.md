@@ -16,6 +16,8 @@ keywords:
 
 This document provides an overview of how JSON-RPC is used in Supernets.
 
+---
+
 ## What is JSON-RPC used for?
 
 JSON-RPC is a remote procedure call (RPC) protocol encoded in JSON. It enables the communication between distributed systems, often found in microservices architectures. JSON-RPC is a lightweight, language-agnostic protocol that allows developers to build scalable applications with low-latency communication between services. With its simplicity and support for multiple programming languages, JSON-RPC offers an accessible and flexible tool for building distributed systems.
