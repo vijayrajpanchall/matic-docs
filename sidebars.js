@@ -1279,23 +1279,6 @@ module.exports = {
     },
     {
       type: "category",
-      label: "Core Contracts",
-      link: {
-        type: "generated-index",
-      },
-      collapsed: false,
-      items: [
-        "supernets/contracts/state-sender",
-        "supernets/contracts/state-receiver",
-        "supernets/contracts/checkpoint-manager",
-        "supernets/contracts/exit-helper",
-        "supernets/contracts/reward-pool",
-        "supernets/contracts/validator-queue",
-        "supernets/contracts/withdrawal-queue",
-      ],
-    },
-    {
-      type: "category",
       label: "JSON RPC Commands",
       link: {
         type: "generated-index",
