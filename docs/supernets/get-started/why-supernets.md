@@ -22,7 +22,7 @@ This document provides an overview on the significance and benefits of Polygon S
 Supernets are at the forefront of shaping the next generation of the web, where unstoppable networks hold the key to enabling secure, decentralized, and efficient applications to thrive. These networks must not only be resilient and secure, but also scalable to support the growing demands of the decentralized ecosystem.
 
 <div align="center">
-  <img src="/img/supernets/supernets-together.excalidraw.png" alt="bridge" width="80%" height="40%" />
+  <img src="/img/supernets/supernets-together.excalidraw.png" alt="bridge" width="90%" height="40%" />
 </div>
 
 The diagram above illustrates the interconnectivity of Supernets with the Polygon PoS network, which is ultimately secured and supported by the security properties of Ethereum.
@@ -82,10 +82,10 @@ Developers can further customize their networks with features such as default tr
 
 ## Robust Consensus
 
-Supernets utilize the [PolyBFT consensus mechanism](/docs/supernets/consensus/polybft/polybft-overview), purposefully engineered to yield exceptional throughput, minimal latency, and immediate network finality.
+Supernets utilize the [PolyBFT consensus mechanism](/docs/supernets/design/consensus/polybft/polybft-overview), purposefully engineered to yield exceptional throughput, minimal latency, and immediate network finality.
 
 <div align="center">
-  <img src="/img/supernets/supernets-consensus.excalidraw.png" alt="bridge" width="70%" height="40%" />
+  <img src="/img/supernets/supernets-consensus.excalidraw.png" alt="bridge" width="80%" height="40%" />
 </div>
 
 This positions Supernets as a highly suitable platform for an extensive variety of use cases within the Polygon PoS network, even accommodating those that demand substantial blockspace allocations for specialized applications. Through the provision of unparalleled throughput and reduced latency, PolyBFT assures swift and secure transaction processing, a critical element in the thriving landscape of decentralized applications.
@@ -99,7 +99,7 @@ This positions Supernets as a highly suitable platform for an extensive variety 
     <h3>Asset Mobility and Exchange</h3>
     <p>By facilitating seamless asset transfers across blockchains, the native bridge improves asset mobility and exchange. Users can conveniently interact with a wide range of tokens, digital assets, and data transfers across diverse networks, enhancing their experience and opportunities within the decentralized ecosystem.</p>
   </div>
-  <img src="/img/supernets/l1-l2-l3.excalidraw.png" alt="bridge" style={{flex: 'none', width: '240px', height: 'auto', objectFit: 'contain', marginLeft: '30px', marginTop: '0px'}}/>
+  <img src="/img/supernets/l1-l2-l3.excalidraw.png" alt="bridge" style={{flex: 'none', width: '290px', height: 'auto', objectFit: 'contain', marginLeft: '30px', marginTop: '0px'}}/>
 </div>
 
 ## On-chain governance

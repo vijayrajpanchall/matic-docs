@@ -1222,6 +1222,63 @@ module.exports = {
     },
     {
       type: "category",
+      label: "System Design",
+      link: {
+        type: "generated-index",
+      },
+      collapsed: false,
+      items: [
+        "supernets/design/overview",
+        {
+          type: "category",
+          label: "PolyBFT consensus",
+          link: {
+            type: "generated-index",
+          },
+          items: [
+            "supernets/design/consensus/supernets-pos",
+            "supernets/design/consensus/polybft/polybft-overview",
+            "supernets/design/consensus/polybft/ibft-overview",
+            "supernets/design/consensus/validator/polybft-allowlist",
+          ],
+        },
+        {
+          type: "category",
+          label: "Cross-chain bridge",
+          link: {
+            type: "generated-index",
+          },
+          items: [
+            "supernets/design/bridge/overview",
+            "supernets/design/bridge/erc20-child-predicate",
+            "supernets/design/bridge/erc20-predicate",
+            "supernets/design/bridge/statesync",
+            "supernets/design/bridge/checkpoint",
+          ],
+        },
+        "supernets/design/assets/erc/erc20",
+        "supernets/design/supernets-libp2p",
+        {
+          type: "category",
+          label: "EVM ruuntime",
+          link: {
+            type: "generated-index",
+          },
+          items: [
+            "supernets/design/runtime/supernets-runtime",
+            "supernets/design/runtime/supernets-runtime-allowlist",
+          ],
+        },
+        "supernets/design/supernets-blockchain",
+        "supernets/design/supernets-mempool",
+        "supernets/design/supernets-txpool",
+        "supernets/design/supernets-txrelayer",
+        "supernets/design/supernets-json-rpc",
+        "supernets/design/supernets-grpc",
+      ],
+    },
+    {
+      type: "category",
       label: "Core Contracts",
       link: {
         type: "generated-index",
