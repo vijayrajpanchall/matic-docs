@@ -6,8 +6,6 @@ on:
       - 'docs/**'
       - 'i18n/**'
   workflow_dispatch:
-    branches:
-      - master
 
 jobs:
   build:
