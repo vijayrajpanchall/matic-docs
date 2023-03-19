@@ -152,7 +152,7 @@ The tutorial will cover the following steps:
 The diagram below illustrates a standard Supernet deployment in bridge mode.
 
 <div align="center">
-  <img src="/img/supernets/supernets-setup-non-bridge.excalidraw.png" alt="bridge" width="80%" height="40%" />
+  <img src="/img/supernets/supernets-setup-non.excalidraw.png" alt="bridge" width="80%" height="40%" />
 </div>
 
 ## Genesis workflow
