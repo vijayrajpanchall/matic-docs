@@ -13,91 +13,90 @@ keywords:
   - modular
 ---
 
+This document provides frequently asked questions related to Polygon Supernets.
+
+---
+
+## Are Supernets meant to be "Super networks"?
+
+Yes, Supernets are designed as "super networks" that offer a wide range of features and capabilities to developers, enabling them to build and deploy blockchain-based solutions with ease. The name "Supernets" conveys the idea that the network is more powerful, robust, and feature-rich than other blockchain networks, making it an ideal platform for various use cases.
+
 ## What is the relation between Supernets and Edge?
 
-Polygon Supernets is a cutting-edge software application built on top of
-the Edge client, designed to enable EVM-compatible, application-specific
-sovereign blockchains. The Supernets logic was first introduced in the
-0.7.x release of the Edge client.
+Polygon Supernets is a cutting-edge software application built on top of an iteration of the legacy Edge client, designed to enable EVM-compatible, application-specific sovereign blockchains. The Supernets logic was first introduced in the 0.7.0 release of the previous Edge client.
 
-:::note Polygon Edge source code
+:::caution The state of Polygon Edge
 
-The releases of the Edge client, starting from version 0.7.x and beyond
+The releases of the Edge client, **starting from version 0.7.x and beyond,
 are related explicitly to Supernets, while versions 0.6.x and below are
-solely the Polygon Edge client.
+for the older versions of the Polygon Edge client**.
+
+However, it's important to note that **as of version 0.8.x, which is set to be released on March 20, 2023, the legacy Edge client will no longer be supported by Polygon Labs**. The **Edge documentation on the Polygon Wiki will also be archived**. Developers are encouraged to build with Polygon Supernets for support.
 
 :::
-
-The Supernets feature on the Edge client is designed to support and assist
-enterprises in quickly and effectively creating application-specific
-blockchain solutions, providing premium tooling and leveraging the benefits
-of a thriving ecosystem.
-
-## How do I run Supernets?
-
-:::caution Active development
-
-The site will eventually provide comprehensive technical documentation and
-reference material for setting up, configuring, and deploying a Supernet,
-including node configuration, cloud deployments, templates, and more.
-
-In the meantime, for information on configuration, please see the
-**[Edge client](/edge/get-started/installation.md)**.
-:::
-
-To use Supernets, you must first deploy the [Edge client](/edge/get-started/installation.md).
-The Edge client acts as the foundation upon which Supernets operates,
-providing the necessary infrastructure for creating an
-application-specific blockchain. Ensure you are on the latest 0.7.x release.
-
-## How do I run a validator?
-
-Please note that as Supernets is still in active development and being audited,
-these steps may change or be updated. Additionally, depending on your specific
-use case, the steps may vary. For more detailed and up-to-date information on
-validator hosting, please refer to the **[Edge documentation](/edge/validator-hosting.md)**.
-
-### Setting up the infrastructure and the host configuration for your validator node
-
-- Ensure that the Edge system service is configured to restart
-  and run on boot automatically.
-- Deploy the pre-built Polygon Edge binary from the GitHub releases.
-- Store the blockchain data on a separate volume that can be resized.
-- Properly set up local filesystem log rotation.
-- Configure a static public IP address for the validator node.
-- Implement daily automated backups of the Polygon Edge system or volume/VM with
-  off-node storage.
-- Apply security patches to the host OS daily.
-- Set up metric system collection.
-- Set up validator metric collection via the Polygon Edge Prometheus API.
-- Expose the JSON-RPC and gRPC ports exclusively on localhost.
-- Set up the required infrastructure for hosting the validator keys on a dedicated
-  key management service.
-
-### Generation of validator private & public keys
-
-- Generate private keys and store them securely on an external secrets manager
-  compatible with Polygon Edge.
-- Send the public keys to the Polygon network.
-
-### Setup of the genesis.json and the firewall rules per instructions
-
-- Send the public static IP to the Polygon network.
-- Receive the `genesis.json` and libp2p firewall rules from Polygon.
-- Set up the `genesis.json` and libp2p firewall rules.
-- Start chain validation.
 
 ## What tools are available for Supernets?
 
-The team is actively developing the infrastructure for necessary tooling, and
-aiming to provide an all inclusive toolkit for blockchain development.
+Various development and blockchain tools will soon be available.
 
-In general, the Supernets package will include "native" tooling, while multiple
-third-parties will offer integrations and additional support for Supernets.
+Polygon Labs has partnered with multiple infrastructure providers, tool providers, and implementation partners to offer an all-inclusive development experience for building and launching blockchains.
+
+The Supernets package will eventually include "native" tooling that covers a wide range of use cases for blockchain development, supplemented by third-party integrations and support. As the ecosystem grows, more resources are expected to become available, making it even easier for developers to build and deploy blockchain solutions on the Supernets network.
 
 ## What infrastructure providers support Supernets?
 
-Multiple infrastructure providers are being onboarded and we anticipate
-even more support in the future. These providers are also creating their
-own resources and technical documentation to aid in the utilization of
-Supernets.
+Several infrastructure providers are currently onboarded to support Supernets and more are expected to join in the future. These providers offer a range of services including node hosting, developer tools, and technical support to help developers build and deploy applications on the Supernets network.
+
+In addition to providing infrastructure and technical support, many of these providers also offer their own resources and documentation to aid in the utilization of Supernets. This makes it easier for developers to get started with the platform and to access the resources they need to create powerful and scalable blockchain-based solutions.
+
+As the Supernets ecosystem continues to grow, we expect to see even more infrastructure providers joining the platform, further expanding the resources and support available to developers.
+
+## Do Supernets address the need for large blockspace requirements?
+
+Developers can utilize the capabilities of Supernets to create application-specific blockchains that cater to the need for large blockspace requirements. By designing a dedicated blockchain for their application, developers can optimize it to suit their unique use case and minimize the impact of large blockspace requirements on the overall Polygon Proof-of-Stake (PoS) network.
+
+Supernets are specifically designed to facilitate the development of highly scalable, Ethereum Virtual Machine (EVM)-compatible, application-specific, sovereign blockchains that can be customized according to the needs of the application. The modular design of Supernets empowers developers to configure and customize the network to fulfill their specific
+requirements and provide tailored solutions that are optimized for their use case.
+
+Moreover, with the PolyBFT consensus mechanism, which is specifically designed to deliver high throughput, low latency, and instant network finality, Supernets have become the ideal platform for a wide range of use cases on the Polygon PoS network, including those that necessitate large blockspace requirements for specific applications.
+
+In the long run, Supernets will be able to interact with each other to exchange various kinds of data, creating a robust internet of blockchains.
+
+## Can the native bridge be deployed on any chain?
+
+Yes, the bridge can be deployed to connect any EVM-compatible childchain (i.e., Supernet) to any EVM-compatible rootchain (e.g. Polygon PoS). By leveraging the capabilities of the bridge and the modular design of Supernets, developers can create tailored solutions that are customized for their specific needs and can interact with other chains in the Polygon ecosystem as needed.
+
+This makes it possible to create highly scalable, application-specific blockchains that are optimized for their specific use cases, while still benefiting from the security and scalability of the Polygon PoS network as a whole.
+
+## What assets are supported on the bridge?
+
+The bridge currently supports ERC20 and ERC721 tokens on Supernets for transfer. However, support for other asset types will soon be available. It is important to keep in mind that not all tokens on Supernets have the same functionality and capabilities. Users should review the [token overview document](/docs/supernets/assets/erc/erc20.md) to understand how to use tokens on Supernets and with the bridge.
+
+As the Supernets ecosystem evolves, the bridge will support additional assets, enhancing interoperability between various blockchain networks and applications.
+
+## When will the Supernets mainnet be live?
+
+The mainnet launch for Supernets is currently **targeted for Q2 2023, subject to the completion of an ongoing audit**. While we are working hard to ensure that the platform is launched as soon as possible, we are also committed to ensuring that the platform is fully tested and secure before release.
+
+In the meantime, the first **testnet stable release will become available on March 20, 2023**, for developers and users to test and experiment. The testnet serves as a valuable testing ground for developers to build and test their applications on the platform, and for users to get a sense of the functionality and capabilities of the platform.
+
+The ongoing audit is a critical step in the launch process, as it helps to identify any potential vulnerabilities or issues that could impact the security or functionality of the platform. The audit is expected to take several weeks, after which we will have a better idea of the timeline for the mainnet launch.
+
+## What are some use cases for Supernets?
+
+Supernets are a highly flexible and customizable blockchain platform that can be used to create tailored solutions for a wide range of use cases. Some use cases for Supernets include:
+
+- Gaming applications and platforms
+- Decentralized finance (DeFi) applications
+- Supply chain management solutions
+- Identity verification and management systems
+- Social networks and content platforms
+- Tokenization of assets such as real estate, art, and intellectual property
+- Decentralized autonomous organizations (DAOs) and governance systems
+- IoT and machine-to-machine communication
+- E-commerce platforms and payment systems
+- Insurance and risk management solutions
+
+These are just a few examples of the many potential use cases for Supernets. With its flexible and customizable architecture, developers can create powerful and scalable blockchain-based solutions for virtually any industry or application.
+
+It is important to note that this represents a **sincere effort to leverage blockchain technology to address everyday needs at a mass scale while being able to reap the benefits of blockchain technology.**

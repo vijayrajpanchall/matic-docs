@@ -15,11 +15,10 @@ keywords:
 
 This document outlines how to deploy a local blockchain with PolyBFT consensus. In other words, a local Supernet is in non-bridge mode.
 
----
+:::tip Stay tuned for upcoming deployment guides
 
-## Overview
-
-This tutorial will teach you how to set up a local blockchain using PolyBFT. The tutorial will use Polygon's polygon-edge binary to start multiple nodes on your local machine and create a custom blockchain environment with PolyBFT consensus.
+Deployment guides for Polygon Supernets are forthcoming, with cloud deployment scripts for AWS and Azure, and Terraform infrastructure-as-a-service guides to be included. The genesis workflow and deployment of Supernets are currently undergoing testing, and the guides will be released once testing is successful. Stay tuned for updates!
+:::
 
 :::info Fast-track guide
 
@@ -109,6 +108,12 @@ polygon-edge server --data-dir ./test-chain-4 \
 </details>
 
 :::
+
+---
+
+## Overview
+
+This tutorial will teach you how to set up a local blockchain using PolyBFT. The tutorial will use Polygon's polygon-edge binary to start multiple nodes on your local machine and create a custom blockchain environment with PolyBFT consensus.
 
 ## What you'll learn
 

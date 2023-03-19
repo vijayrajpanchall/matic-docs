@@ -15,20 +15,10 @@ keywords:
 
 This document outlines how to deploy a local Supernet in bridge mode, using a demo Geth instance.
 
----
+:::tip Stay tuned for upcoming deployment guides
 
-:::info Stay tuned for upcoming deployment guides
-
-Please stay tuned for our upcoming deployment guides on the deployment of Polygon Supernets, including cloud deployment scripts (e.g., AWS and Azure) and Infrastructure-as-a-service (IaaS) using Terraform.
-
-At present, the genesis workflow and deployment of Polygon Supernets are undergoing testing. We will soon be releasing documentation on how to deploy a Supernet in bridge-mode using the Mumbai testnet and not a demo Geth instance, as well as guides for deploying Supernets to the cloud using AWS and using Terraform scripts for infrastructure as a service.
-
-We appreciate your patience and look forward to sharing our deployment guides with you as soon as testing is successful.
+Deployment guides for Polygon Supernets are forthcoming, with cloud deployment scripts for AWS and Azure, and Terraform infrastructure-as-a-service guides to be included. The genesis workflow and deployment of Supernets are currently undergoing testing, and the guides will be released once testing is successful. Stay tuned for updates!
 :::
-
-## Overview
-
-This tutorial will teach you how to set up a local Supernet. This tutorial will guide you through setting up a local testing environment for PolyBFT consensus and configuring its native support for running bridges, enabling cross-chain transactions with Ethereum-compatible blockchains.
 
 :::info Fast-track guide
 
@@ -141,6 +131,12 @@ This tutorial will teach you how to set up a local Supernet. This tutorial will 
 </details>
 
 :::
+
+---
+
+## Overview
+
+This tutorial will teach you how to set up a local Supernet. This tutorial will guide you through setting up a local testing environment for PolyBFT consensus and configuring its native support for running bridges, enabling cross-chain transactions with Ethereum-compatible blockchains.
 
 ## What you'll learn
 

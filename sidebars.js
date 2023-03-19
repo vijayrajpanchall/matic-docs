@@ -1260,7 +1260,7 @@ module.exports = {
         "supernets/design/supernets-libp2p",
         {
           type: "category",
-          label: "EVM ruuntime",
+          label: "EVM runtime",
           link: {
             type: "generated-index",
           },
