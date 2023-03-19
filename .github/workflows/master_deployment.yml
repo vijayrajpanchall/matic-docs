@@ -21,6 +21,10 @@ jobs:
       - uses: actions/checkout@v2
         with:
           ref: master
+    
+      # Fetch Git history
+      - name: Fetch Git history
+        run: git fetch --unshallow
 
       # Cache Docusaurus artifacts and node_modules
       - name: Cache Docusaurus artifacts
