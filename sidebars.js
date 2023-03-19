@@ -1279,6 +1279,39 @@ module.exports = {
     },
     {
       type: "category",
+      label: "Build a Supernet",
+      link: {
+        type: "generated-index",
+      },
+      collapsed: false,
+      items: [
+        "supernets/operate/supernets-requirements",
+        "supernets/operate/supernets-install",
+        "supernets/operate/supernets-local-deploy",
+        "supernets/operate/supernets-local-deploy-supernet",
+        //"supernets/operate/supernets-how-allowlist",
+        //"supernets/operate/supernets-ibft-to-polybft",
+        "supernets/operate/supernets-performance",
+        "supernets/operate/supernets-faqs",
+/*
+        {
+          type: "category",
+          label: "Deployment guides",
+          link: {
+            type: "generated-index",
+          },
+          items: [
+            "supernets/operate/supernets-local-deploy-supernet",
+            "supernets/operate/supernets-deploy-bridge",
+            //"supernets/operate/supernets-setup-dev-env",
+          ],
+        },
+        "supernets/operate/supernets-stake-mainnet",
+        */
+      ],
+    },
+    {
+      type: "category",
       label: "JSON RPC Commands",
       link: {
         type: "generated-index",
