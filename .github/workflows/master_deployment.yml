@@ -2,6 +2,8 @@ name: Master deployment
 
 on:
   push:
+    branches:
+      - master
     paths:
       - 'docs/**'
       - 'i18n/**'
