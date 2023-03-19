@@ -322,7 +322,7 @@ function Home() {
                   <div class="padding-bottom padding-small"></div>
                   <p class="description-text">Build app-chains powered by an industry-leading technology and ecosystem around Polygon.</p>
                   <div class="padding-bottom custom-padding"></div>
-                  <Buttonizer docsUrl={'docs/supernets/overview'} linkUrl={'docs/supernets/overview'} />
+                  <Buttonizer docsUrl={'docs/supernets/get-started/what-are-supernets'} linkUrl={'docs/category/build-a-supernet'} />
                 </div>
               </div>
             </TabItem>
