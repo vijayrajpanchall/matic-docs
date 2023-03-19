@@ -1312,6 +1312,32 @@ module.exports = {
     },
     {
       type: "category",
+      label: "Interfaces",
+      link: {
+        type: "generated-index",
+      },
+      collapsed: false,
+      items: [
+       // "supernets/interfaces/child-validator-set",
+      ],
+    },
+    {
+      type: "category",
+      label: "Modules",
+      link: {
+        type: "generated-index",
+      },
+      collapsed: false,
+      items: [
+        "supernets/modules/access-control",
+        "supernets/modules/staking",
+        "supernets/modules/delegation",
+        "supernets/modules/withdraw",
+        "supernets/modules/storage",
+      ],
+    },
+    {
+      type: "category",
       label: "JSON RPC Commands",
       link: {
         type: "generated-index",
