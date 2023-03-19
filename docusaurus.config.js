@@ -441,14 +441,8 @@ module.exports = {
           position: "left",
           items: [
                   {
-                    to: '/docs/category/blockchain-basics',
-                    label: 'Blockchain',
-                    target: '_self',
-                    rel: null,
-                  },
-                  {
-                    to: '/docs/category/polygon-basics',
-                    label: 'Polygon',
+                    to: '/docs/home/new-to-polygon',
+                    label: 'Polygon Basics',
                     target: '_self',
                     rel: null,
                   },
@@ -467,6 +461,12 @@ module.exports = {
                   {
                     href: '/docs/develop/getting-started',
                     label: 'Build on PoS',
+                    target: '_self',
+                    rel: null,
+                  },
+                  {
+                    href: '/docs/category/build-a-supernet',
+                    label: 'Build a Supernet',
                     target: '_self',
                     rel: null,
                   },
@@ -529,7 +529,7 @@ module.exports = {
                   },
                   {
                     href: '/docs/miden/intro/usage',
-                    label: 'Run a Miden VM',
+                    label: 'Deploy a Miden VM',
                     target: '_self',
                     rel: null,
                   },
@@ -546,14 +546,14 @@ module.exports = {
                     rel: null,
                   },
                   {
-                    href: '/docs/zkEVM/introduction/',
-                    label: 'zkEVM',
+                    href: '/docs/supernets/get-started/what-are-supernets',
+                    label: 'Supernets',
                     target: '_self',
                     rel: null,
                   },
                   {
-                    href: '/docs/supernets/get-started/what-are-supernets',
-                    label: 'Supernets',
+                    href: '/docs/zkEVM/introduction/',
+                    label: 'zkEVM',
                     target: '_self',
                     rel: null,
                   },
@@ -742,24 +742,6 @@ module.exports = {
               "rel": null
             }
           ]
-        },
-        {
-          label: "FAQs",
-          position: "right",
-          items: [
-                  {
-                    to: '/docs/faq/general-faq/',
-                    label: 'PoS FAQ',
-                    target: '_self',
-                    rel: null,
-                  },
-                  {
-                    to: '/docs/supernets/supernets-faq',
-                    label: 'Supernet FAQ',
-                    target: '_self',
-                    rel: null,
-                  },
-                ],
         },
         {
           href: "https://github.com/maticnetwork",

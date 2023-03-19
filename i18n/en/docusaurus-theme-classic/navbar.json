@@ -79,10 +79,6 @@
     "message": "End-user support",
     "description": "Navbar item with label End-user support"
   },
-  "item.label.PoS FAQ": {
-    "message": "PoS FAQ",
-    "description": "Navbar item with label PoS FAQ"
-  },
   "item.label.Edge FAQ": {
     "message": "Edge FAQ",
     "description": "Navbar item with label Edge FAQ"
