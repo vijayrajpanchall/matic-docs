@@ -1,7 +1,7 @@
 ---
 id: supernets-ibft-to-polybft
-title: Migrate from IBFT to PolyBFT
-sidebar_label: Migrate IBFT to PolyBFT
+title: (Regenesis) Migrate from IBFT to PolyBFT
+sidebar_label: (Regenesis) IBFT to PolyBFT
 description: "An introduction to Polygon Supernets."
 keywords:
   - docs
@@ -12,3 +12,5 @@ keywords:
   - network
   - modular
 ---
+
+BEING UPDATED.

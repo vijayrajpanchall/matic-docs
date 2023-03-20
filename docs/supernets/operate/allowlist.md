@@ -1,7 +1,7 @@
 ---
 id: supernets-how-allowlist
-title: How to Allowlist Validators
-sidebar_label: How to allowlist validators
+title: How to Allowlist
+sidebar_label: How to allowlist
 description: "An introduction to Polygon Supernets."
 keywords:
   - docs
@@ -12,3 +12,5 @@ keywords:
   - network
   - modular
 ---
+
+BEING UPDATED.

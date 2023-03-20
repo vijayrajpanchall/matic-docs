@@ -15,11 +15,6 @@ keywords:
 
 This document outlines how to deploy a local blockchain with PolyBFT consensus. In other words, a local Supernet is in non-bridge mode.
 
-:::tip Stay tuned for upcoming deployment guides
-
-Deployment guides for Polygon Supernets are forthcoming, with cloud deployment scripts for AWS and Azure, and Terraform infrastructure-as-a-service guides to be included. The genesis workflow and deployment of Supernets are currently undergoing testing, and the guides will be released once testing is successful. Stay tuned for updates!
-:::
-
 :::info Fast-track guide
 
 **Here's the fast-track guide if you're just looking for a quick guide on the essential commands needed to set up a local blockchain.**

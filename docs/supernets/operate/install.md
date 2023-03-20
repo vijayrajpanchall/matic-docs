@@ -15,11 +15,9 @@ This document highlights the different methods available to install the Polygon 
 
 We recommend that you refer to the installation method that is most applicable to you. Our suggestion is to use the pre-built releases and verify the provided checksums.
 
-:::info Latest release: v0.7.3-beta3
+:::info Latest release: v0.8.0
 
-**The latest release is the [v0.7.3-beta3](https://github.com/0xPolygon/polygon-edge/releases/tag/v0.7.3-beta3) pre-release.**
-
-**The first stable release, v0.8.0, is scheduled for March 20th, 2023.**
+**The lateststable release is [v0.8.0](https://github.com/0xPolygon/polygon-edge/releases/tag/v0.8.0), which is the first stable release.**
 
 :::
 

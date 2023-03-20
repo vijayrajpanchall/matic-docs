@@ -15,11 +15,6 @@ keywords:
 
 This document outlines how to deploy a local Supernet in bridge mode, using a demo Geth instance.
 
-:::tip Stay tuned for upcoming deployment guides
-
-Deployment guides for Polygon Supernets are forthcoming, with cloud deployment scripts for AWS and Azure, and Terraform infrastructure-as-a-service guides to be included. The genesis workflow and deployment of Supernets are currently undergoing testing, and the guides will be released once testing is successful. Stay tuned for updates!
-:::
-
 :::info Fast-track guide
 
 **Here's the fast-track guide if you're looking for a quick guide on the essential commands needed to set up a local Supernet.**
@@ -182,7 +177,6 @@ The diagram below illustrates a standard Supernet deployment in bridge mode.
 <div align="center">
   <img src="/img/supernets/supernets-setup.excalidraw.png" alt="bridge" width="110%" height="40%" />
 </div>
-
 
 ## Genesis workflow
 
