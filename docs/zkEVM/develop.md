@@ -39,9 +39,22 @@ In order to add the **Polygon zkEVM** network to your wallet, you will need to e
 - **Currency Symbol**: ETH
 - **Block Explorer URL**: [https://explorer.public.zkevm-test.net](https://explorer.public.zkevm-test.net)
 
-Also, for moving assets across chains, you will need to use the zkEVM Bridge. The bridge interface is available on [https://public.zkevm-test.net/](https://public.zkevm-test.net/). The Bridge API (for developers) is available at [https://bridge-api.public.zkevm-test.net/](https://bridge-api.public.zkevm-test.net/)
+### Bridge Assets to zkEVM
 
-Check out this video tutorial on how to add Polygon zkEVM Testnet to MetaMask and deploy smart contracts:
+For moving assets across chains (L1 &harr; zkEVM), you will need to use the zkEVM Bridge. The bridge interface is available on [https://public.zkevm-test.net/](https://public.zkevm-test.net/). The Bridge API (for developers) is available at [https://bridge-api.public.zkevm-test.net/](https://bridge-api.public.zkevm-test.net/)
+
+Check out this video guide on **how to bridge tokens from L1 to the zkEVM Testnet**:
+
+<video autoplay width="100%" height="100%" controls="true" >
+  <source type="video/mp4" src="/img/zkevm/zkEVM-Bridge.mov"></source>
+  <p>Your browser does not support the video element.</p>
+</video>
+
+### Deploying Smart Contracts
+
+The development experience on zkEVM is seamless and identical to Ethereum Virtual Machine. Developers on zkEVM can use their existing code and toolings to deploy on zkEVM with much higher throughput and lower fees.
+
+Here is a video tutorial on **how to add Polygon zkEVM Testnet to MetaMask and deploy smart contracts**:
 
 <video autoplay width="100%" height="100%" controls="true" >
   <source type="video/mp4" src="/img/zkevm/tutorial.mp4"></source>
