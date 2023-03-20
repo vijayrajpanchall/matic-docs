@@ -1,5 +1,5 @@
 <p align="center">
-<img align="center" src="https://user-images.githubusercontent.com/25497083/156289024-df2c8970-2072-4439-813d-d38809e80eef.png" width="200">
+<img align="center" src="/static/img/polygon-logo.png" width="300">
 </p>
 
 <div align="Center">
