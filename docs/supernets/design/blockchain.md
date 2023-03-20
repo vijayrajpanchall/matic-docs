@@ -17,7 +17,7 @@ This document provides an overview on the core blockchain design of Supernets.
 
 ---
 
-Supernets are built on a common blockchain design that effectively manages and maintains the blockchain data structure, consisting of a sequential chain of blocks containing transactions and other metadata.
+Supernets are built on a common blockchain design that effectively manages and maintains the blockchain data structure, consisting of a sequential chain of blocks containing transactions and other metadata; a state database.
 
 The core blockchain implementation offers various functionalities, such as:
 

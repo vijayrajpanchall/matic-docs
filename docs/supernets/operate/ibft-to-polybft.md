@@ -13,9 +13,10 @@ keywords:
   - modular
 ---
 
-This document describes the process for regenesis from an exisiting chain that uses IBFT consensus, to a new chain using PolyBFT consensus.
+:::caution Document is being updated
+:::
 
-**Document is being updated!**
+This document describes the process for regenesis from an exisiting chain that uses IBFT consensus, to a new chain using PolyBFT consensus.
 
 ---
 

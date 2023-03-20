@@ -20,7 +20,7 @@ This document provides guidance on the minimum hardware requirements to run and 
 This is the minimum hardware configuration required to set up a childchain:
 
 - **Processor**: At least a 4-core CPU
-- **Memory**: 8 GB RAM minimum (16 GB recommended)
+- **Memory**: At least 8 GB RAM
 - **Storage**: Minimum 200 GB SSD storage (increasing storage capacity is recommended as the network grows)
 - **Network**: High-speed internet connection with low latency
 

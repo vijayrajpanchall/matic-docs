@@ -1223,17 +1223,8 @@ module.exports = {
       items: [
         "supernets/operate/supernets-requirements",
         "supernets/operate/supernets-install",
-        {
-          type: "category",
-          label: "Demo instance",
-          link: {
-            type: "generated-index",
-          },
-          items: [
-            "supernets/operate/supernets-local-deploy",
-            "supernets/operate/supernets-local-deploy-supernet",
-          ],
-        },
+        "supernets/operate/supernets-local-deploy",
+        "supernets/operate/supernets-local-deploy-supernet",
         "supernets/operate/supernets-deploy-bridge",
         {
           type: "category",
