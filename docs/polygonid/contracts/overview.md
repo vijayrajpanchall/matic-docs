@@ -1,9 +1,9 @@
 ---
 id: overview
 title: Smart Contracts
-sidebar_label: Overview
+sidebar_label: Contracts
 description: "."
-keywords: 
+keywords:
   - docs
   - polygon
   - id

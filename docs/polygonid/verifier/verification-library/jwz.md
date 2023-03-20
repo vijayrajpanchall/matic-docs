@@ -1,9 +1,9 @@
 ---
 id: jwz
-title: JWZ - JSON Web Zero Knowledge
-sidebar_label: JWZ - JSON Web Zero Knowledge
+title: JSON Web Zero Knowledge (JWZ)
+sidebar_label: JSON Web Zero Knowledge (JWZ)
 description: "An open standard for representing messages proven with zero-knowledge technology."
-keywords: 
+keywords:
   - docs
   - polygon
   - id
@@ -52,7 +52,7 @@ Defines the feature of the token.
 
 **circuitId** - is a circuit that is used for proof generation. Auth circuit must be used for authentication.
 
-**crit** - describes the list of header keys that the verifier must support. 
+**crit** - describes the list of header keys that the verifier must support.
 
 **typ** - is the media type of the message. In our case, it is the type of the protocol of the packed message *application/iden3-zkp-json*.
 
@@ -60,7 +60,7 @@ Defines the feature of the token.
 
 Contains the message that needs to be shared with another party.
 
-In this example, the message is the proof related to the query analysed previously. However, any type of message can be included in the payload. 
+In this example, the message is the proof related to the query analysed previously. However, any type of message can be included in the payload.
 
 ```json
 {
@@ -115,7 +115,7 @@ JWT relies on digital signatures for secure transmission of information. In part
 
 ### Usage
 
-JWZ represents the main instrument to communicate securely between parties off-chain. This data primitive integrates seamlessly within web2 architectures for authentication purposes. 
+JWZ represents the main instrument to communicate securely between parties off-chain. This data primitive integrates seamlessly within web2 architectures for authentication purposes.
 
 Here, we used the JWZ to manage the communication between the user and the Verifier. A JWZ can also be used in the communication between the user and the Issuer so that the user can prove his/her identity in order to fetch the claims associated with his/her identity.
 

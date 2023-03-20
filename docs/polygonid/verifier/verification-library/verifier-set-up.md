@@ -1,9 +1,9 @@
 ---
 id: verifier-set-up
 title: Run a Verifier
-sidebar_label: Run a Verifier
+sidebar_label: Run a verifier
 description: "Learn how to set up a Verifier."
-keywords: 
+keywords:
   - docs
   - polygon
   - id
@@ -16,11 +16,11 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-Any application that needs user authentication must set up a Verifier. A Verifier is made of a Server and a Client. 
+Any application that needs user authentication must set up a Verifier. A Verifier is made of a Server and a Client.
 
 The Server generates [Auth Requests](./request-api-guide) according to the requirements of the platform. There are two types of authentication:
 
-- [**Basic Auth**](./request-api-guide.md#basic-auth): For example, a platform that issues claims must authenticate users by their identifiers before sharing claims with them. 
+- [**Basic Auth**](./request-api-guide.md#basic-auth): For example, a platform that issues claims must authenticate users by their identifiers before sharing claims with them.
 - [**Query-based Auth**](./request-api-guide.md#query-based-auth): For example, a platform that gives access only to those users that are over 18 years of age.
 
 The second role of the Server is to execute [Verification](./verification-api-guide.md) of the proof sent by the Identity Wallet.
@@ -31,11 +31,11 @@ To interact with a Verifier, users should have the Polygon ID identity wallet (o
 
 :::note
 The executable code for this section can be found <a href="https://github.com/0xPolygonID/tutorial-examples/tree/main/verifier-integration" target="_blank">here</a>.
-::: 
+:::
 
 ## Verifier Server Setup
 
-1. **Add the authorization package to your project** 
+1. **Add the authorization package to your project**
 
 <Tabs
   defaultValue="golang"
@@ -49,7 +49,7 @@ The executable code for this section can be found <a href="https://github.com/0x
 
 #### GoLang
 
-``` bash 
+``` bash
 go get github.com/iden3/go-iden3-auth
 ```
 
@@ -58,7 +58,7 @@ go get github.com/iden3/go-iden3-auth
 
 #### Javascript
 
-```bash 
+```bash
 npm i @iden3/js-iden3-auth --save
 ```
 
@@ -66,9 +66,9 @@ npm i @iden3/js-iden3-auth --save
 
 </Tabs>
 
-2. **Set up a server** 
+2. **Set up a server**
 
-	Initiate a server that contains two endpoints: 
+	Initiate a server that contains two endpoints:
 
 	- GET /api/sign-in: Returns auth request.
 	- POST /api/callback: Receives the callback request from the identity wallet containing the proof and verifies it.
@@ -85,7 +85,7 @@ npm i @iden3/js-iden3-auth --save
 
 #### GoLang
 
-```go 
+```go
 package main
 
 import (
@@ -150,9 +150,9 @@ const requestMap = new Map();
 
 </Tabs>
 
-3. **Sign-in endpoint** 
+3. **Sign-in endpoint**
 
-	This endpoint generates the auth request for the user. Using this endpoint, the developers set up the requirements that users must meet in order to sign in. 
+	This endpoint generates the auth request for the user. Using this endpoint, the developers set up the requirements that users must meet in order to sign in.
 
 <Tabs
   defaultValue="golang"
@@ -227,12 +227,12 @@ func GetAuthRequest(w http.ResponseWriter, r *http.Request) {
 
 #### Javascript
 
-```js 
+```js
 // GetAuthRequest returns auth request
 async function GetAuthRequest(req,res) {
 
 // Audience is verifier id
-const hostUrl = '<YOUR REMOTE NGROK HOST>'; 
+const hostUrl = '<YOUR REMOTE NGROK HOST>';
 const sessionId = 1;
 const callbackURL = "/api/callback"
 const audience = "1125GJqgw6YEsKFwj63GY87MMxPL9kwDKxPUiwMLNZ"
@@ -246,7 +246,7 @@ const request = auth.createAuthorizationRequestWithMessage(
     audience,
     uri,
 );
-            
+
 request.id = '7f38a193-0918-4a48-9fac-36adfdb8b542';
 request.thid = '7f38a193-0918-4a48-9fac-36adfdb8b542';
 // highlight-start
@@ -285,7 +285,7 @@ return res.status(200).set('Content-Type', 'application/json').send(request);
 </Tabs>
 
 :::note
-The highlighted lines are to be added only if the authentication needs to design a [<ins>query</ins>](zk-query-language.md) for a specific proof as in the case of [<ins>Query-based Auth</ins>](./request-api-guide.md#query-based-auth). When not included, itwill perform a [<ins>Basic Auth</ins>](./request-api-guide.md#basic-auth). 
+The highlighted lines are to be added only if the authentication needs to design a [<ins>query</ins>](zk-query-language.md) for a specific proof as in the case of [<ins>Query-based Auth</ins>](./request-api-guide.md#query-based-auth). When not included, itwill perform a [<ins>Basic Auth</ins>](./request-api-guide.md#basic-auth).
 :::
 
 4. **Callback Endpoint**
@@ -376,7 +376,7 @@ async function Callback(req,res) {
 
 	// fetch authRequest from sessionID
 	const authRequest = requestMap.get(`${sessionId}`);
-				
+
 	// Locate the directory that contains circuit's verification keys
 	const verificationKeyloader = new loaders.FSKeyLoader('../keys');
 	const sLoader = new loaders.UniversalSchemaLoader('ipfs.io');
@@ -404,7 +404,7 @@ async function Callback(req,res) {
 
 ## Verifier Client Setup
 
-The Verifier Client must fetch the Auth Request generated by the Server (`/api/sign-in` endpoint) and deliver it to the user via a QR Code. 
+The Verifier Client must fetch the Auth Request generated by the Server (`/api/sign-in` endpoint) and deliver it to the user via a QR Code.
 
 To do so, add the <a href="https://github.com/0xPolygonID/tutorial-examples/tree/main/verifier-integration/js/static" target="_blank">Static Folder</a> to your Verifier repository. This folder contains an HTML static webpage that renders a static webpage with the QR code containing the Auth Request.
 
@@ -455,6 +455,6 @@ To do so, add the <a href="https://github.com/0xPolygonID/tutorial-examples/tree
 
 3. **Implement Further Logic**
 
-	This tutorial showcased a minimalistic application that leverages Polygon ID Framework for authentication purposes. Developers can leverage the broad set of existing claims held by users to set up any customized [Query](./zk-query-language) to unleash the full potential of the framework. 
+	This tutorial showcased a minimalistic application that leverages Polygon ID Framework for authentication purposes. Developers can leverage the broad set of existing claims held by users to set up any customized [Query](./zk-query-language) to unleash the full potential of the framework.
 
 	For example, the concept can be extended to exchanges that require KYC claims, DAOs that require proof-of-personhood claims, or social media applications that intend to re-use users' aggregated reputation.

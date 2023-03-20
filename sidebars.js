@@ -1132,22 +1132,14 @@ module.exports = {
 
   polygonid: [
     "polygonid/overview",
-    {
-      type: "category",
-      label: "Issuer",
-      link: {
-        type: "generated-index",
-      },
-      collapsed: false,
-      items: ["polygonid/issuer/issuer-overview"],
-    },
+    "polygonid/issuer/issuer-overview",
     {
       type: "category",
       label: "Verifier",
       link: {
         type: "generated-index",
       },
-      collapsed: false,
+      collapsed: true,
       items: [
         "polygonid/verifier/verifier-overview",
         {
@@ -1158,6 +1150,7 @@ module.exports = {
           },
           items: [
             "polygonid/verifier/verification-library/verifier-library-intro",
+            "polygonid/verifier/verification-library/verifier-set-up",
             {
               type: "category",
               label: "APIs",
@@ -1172,7 +1165,6 @@ module.exports = {
                 "polygonid/verifier/verification-library/jwz",
               ],
             },
-            "polygonid/verifier/verification-library/verifier-set-up",
           ],
         },
         {
@@ -1185,24 +1177,8 @@ module.exports = {
         },
       ],
     },
-    {
-      type: "category",
-      label: "Wallet",
-      link: {
-        type: "generated-index",
-      },
-      collapsed: false,
-      items: ["polygonid/wallet/wallet-overview"],
-    },
-    {
-      type: "category",
-      label: "Smart Contracts",
-      link: {
-        type: "generated-index",
-      },
-      collapsed: false,
-      items: ["polygonid/contracts/overview"],
-    },
+    "polygonid/contracts/overview",
+    "polygonid/wallet/wallet-overview",
   ],
 
   // #####################################################################

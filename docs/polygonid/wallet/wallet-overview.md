@@ -1,9 +1,9 @@
 ---
 id: wallet-overview
 title:  Wallet Overview
-sidebar_label: Overview
+sidebar_label: Wallet
 description: "Wallet features."
-keywords: 
+keywords:
   - docs
   - polygon
   - id
@@ -13,7 +13,7 @@ image: https://wiki.polygon.technology/img/thumbnail/polygon-id.png
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-A digital wallet is a software that can hold and manage user's Claims. Based on the principles of Self-Sovereign Identity (SSI) and cryptography, a wallet helps its Holder share data with others without exposing any other sensitive private information stored on it. Only the wallet holder has the right to decide which information to share with other entities and what needs to remain private. 
+A digital wallet is a software that can hold and manage user's Claims. Based on the principles of Self-Sovereign Identity (SSI) and cryptography, a wallet helps its Holder share data with others without exposing any other sensitive private information stored on it. Only the wallet holder has the right to decide which information to share with other entities and what needs to remain private.
 
 The Polygon ID Wallet is a *Privacy by Default* wallet that helps protect a user's identity (and other metadata) by using zero-knowledge protocols. The wallet interacts with an Issuer to fetch claims and with a Verifier for sharing zkProofs based on these claims.
 
@@ -27,8 +27,8 @@ The Polygon ID app will be a reference implementation that other web3 wallets wi
 
 The Polygon ID Wallet supports the following features:
 
-- Privacy by design and Self-sovereignty: The user is in full control of his/her identity data and exchanges Claims with other identities without the need of an intermediary or centralized authority. 
-- Open and Permissionless. 
+- Privacy by design and Self-sovereignty: The user is in full control of his/her identity data and exchanges Claims with other identities without the need of an intermediary or centralized authority.
+- Open and Permissionless.
 - Fetching, storing, and managing claims.
 - Generating cost-optimized zero-knowledge proofs for claim verification.
 - Communication with Issuer and Verifier.
@@ -43,7 +43,7 @@ Download links for the PolygonID Wallet App:
 
 <br></br>
 
-:::note 
+:::note
 Our tutorials on ***Wallet SDK*** will be published soon. The SDK will allow you to integrate the identity wallet core functionalities into your own app.
 :::
 

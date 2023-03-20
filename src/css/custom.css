@@ -1685,3 +1685,7 @@ strong {
     height: var(--docusaurus-announcement-bar-height) + 1.25rem;
     }
 }
+
+[data-theme='dark'] {
+  --docusaurus-highlighted-code-line-bg: #0f1722;
+}
