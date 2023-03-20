@@ -1,6 +1,7 @@
 ---
 id: nft-tutorial
 title: Polygon NFT Tutorial
+sidebar_label: ERC721
 description: Build, mint, and send around your own NFT (ERC721).
 keywords:
   - graph

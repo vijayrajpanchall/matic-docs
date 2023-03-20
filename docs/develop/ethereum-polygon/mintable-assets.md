@@ -1,6 +1,7 @@
 ---
 id: mintable-assets
-title: Polygon Mintable Assets
+title: Mintable PoS Assets
+sidebar_label: Mintable assets
 description: Mint and create assets on the Polygon network with Fx-Portal.
 keywords:
   - docs

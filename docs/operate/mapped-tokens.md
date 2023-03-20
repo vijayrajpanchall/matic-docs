@@ -1,6 +1,7 @@
 ﻿---
 id: mapped-tokens
 title: Mapped Tokens
+sidebar_label: Mapped tokens
 description: Examples about different mapped tokens on Polygon Mainnet
 keywords:
   - docs
@@ -14,20 +15,26 @@ image: https://wiki.polygon.technology/img/polygon-logo.png
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+This document provides examples of different mapped tokens on the Polygon PoS mainnet and Mumbai PoS testnet. The table in the document lists token name, bridge, parent chain address, and child chain for various tokens, including Plasma-DAI, PoS-DAI, PoS-USDT, PoS-WETH, and PoS-ETH, among others. The documnet also includes instructions for getting a token mapped via [mapper.polygon.technology](https://mapper.polygon.technology/).
+
+:::tip Mapping
+
+If you want to get your token mapped then please send your mapping request via [mapper.polygon.technology](https://mapper.polygon.technology/).
+
+:::
+
+---
+
+Below are tables that provide several examples of various mapped tokens for each network. It is important to note that these are not exhaustive lists.
+
 <Tabs
 defaultValue="mainnet"
 values={[
-{ label: 'Polygon-Mainnet', value: 'mainnet', },
-{ label: 'Mumbai-Testnet', value: 'mumbai', },
+{ label: 'PoS mainnet', value: 'mainnet', },
+{ label: 'Mumbai testnet', value: 'mumbai', },
 ]
 }>
 <TabItem value="mumbai">
-
-# Mumbai-Testnet
-
-If you want to get your token mapped then please send your mapping request via https://mapper.polygon.technology/
-
-The table below shows some examples about different mapped tokens on Mumbai testnet, including but not limited to:
 
 | Token Name        | Bridge | Parent Chain Address: Goerli                                                                                                 | Child Chain: MUMBAI                                                                                                                  |
 | ----------------- | ------ | ---------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
@@ -42,12 +49,6 @@ The table below shows some examples about different mapped tokens on Mumbai test
 
 </TabItem>
 <TabItem value="mainnet">
-
-# Polygon-Mainnet
-
-If you want to get your token mapped then please send your mapping request via https://mapper.polygon.technology/
-
-The table below shows some examples about different mapped tokens on Polygon-Mainnet, including but not limited to:
 
 | Token Name        | Bridge | Parent Chain Address: Ethereum Mainnet                                                                                | Child Chain: Polygon Network                                                                                                      |
 | ----------------- | ------ | --------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
@@ -74,7 +75,6 @@ The table below shows some examples about different mapped tokens on Polygon-Mai
 | DummyERC721Token  | PoS    | [0x71B821aa52a49F32EEd535fCA6Eb5aa130085978](https://etherscan.io/address/0x71B821aa52a49F32EEd535fCA6Eb5aa130085978) | [0x6EBEAC13f6403D19C95b6B75008B12fd21a93Aab](https://polygonscan.com/address/0x6EBEAC13f6403D19C95b6B75008B12fd21a93Aab) |
 | DummyERC1155Token | PoS    | [0x556f501CF8a43216Df5bc9cC57Eb04D4FFAA9e6D](https://etherscan.io/address/0x556f501CF8a43216Df5bc9cC57Eb04D4FFAA9e6D) | [0xA0c68C638235ee32657e8f720a23ceC1bFc77C77](https://polygonscan.com/address/0xA0c68C638235ee32657e8f720a23ceC1bFc77C77) |
 | WDEV | PoS    | [0x4a5df63b0c37b38515e4ee51baf40edd420bf7d5](https://etherscan.io/address/0x4a5df63b0c37b38515e4ee51baf40edd420bf7d5) | [0xa5577d1cec2583058a6bd6d5deac44797c205701](https://polygonscan.com/address/0xa5577d1cec2583058a6bd6d5deac44797c205701) |
-
 
 </TabItem>
 </Tabs>

@@ -1,6 +1,7 @@
 ---
 id: fx-portal
-title: FxPortal
+title: FxPortal Overview
+sidebar_label: Overview
 description: Transfer state or data from Ethereum to Polygon without mapping using FxPortal.
 keywords:
   - docs

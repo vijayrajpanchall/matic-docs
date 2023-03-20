@@ -1,6 +1,7 @@
 ---
 id: submit-mapping-request
 title: Mapping Tokens
+sidebar_label: Mapping tokens
 description:  A guide on how to map tokens between Ethereum and Polygon Chains using the PoS Bridge
 keywords:
   - docs

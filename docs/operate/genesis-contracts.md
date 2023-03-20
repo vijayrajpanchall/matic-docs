@@ -57,7 +57,6 @@ Parent Chain: Goerli
 | ERC20Predicate        | [0x39c1e715316a1acbce0e6438cf62edf83c111975](https://goerli.etherscan.io/address/0x39c1e715316a1acbce0e6438cf62edf83c111975) |
 | ERC721Predicate       | [0x473cb675c9214f79dee10948443509c441a678e7](https://goerli.etherscan.io/address/0x473cb675c9214f79dee10948443509c441a678e7) |
 
-
 [Child Chain: Mumbai]
 
 | Contracts             | Address                                    |

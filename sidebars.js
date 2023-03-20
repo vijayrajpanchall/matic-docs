@@ -180,22 +180,9 @@ module.exports = {
       },
       collapsed: false,
       items: [
-        {
-          type: "category",
-          label: "Matic",
-          link: {
-            type: "generated-index",
-          },
-          items: ["operate/gas-token", "operate/mapped-tokens"],
-        },
-        {
-          type: "category",
-          label: "NFTs",
-          link: {
-            type: "generated-index",
-          },
-          items: ["develop/nft-tutorial"],
-        },
+        "operate/gas-token",
+        "develop/nft-tutorial",
+        "operate/mapped-tokens",
       ],
     },
     {
@@ -270,47 +257,16 @@ module.exports = {
         "develop/ethereum-polygon/submit-mapping-request",
         {
           type: "category",
-          label: "PoS Bridge",
+          label: "FxPortal",
           link: {
             type: "generated-index",
           },
           items: [
-            "develop/ethereum-polygon/pos/getting-started",
-            {
-              type: "category",
-              label: "Using Matic.js",
-              link: {
-                type: "generated-index",
-              },
-              items: [
-                "develop/ethereum-polygon/pos/using-sdk/getting-started",
-                "develop/ethereum-polygon/pos/using-sdk/eth",
-                "develop/ethereum-polygon/pos/using-sdk/erc20",
-                "develop/ethereum-polygon/pos/using-sdk/erc721",
-                "develop/ethereum-polygon/pos/using-sdk/erc1155",
-              ],
-            },
-            {
-              type: "category",
-              label: "Calling Contracts",
-              link: {
-                type: "generated-index",
-              },
-              items: [
-                "develop/ethereum-polygon/pos/calling-contracts/ether",
-                "develop/ethereum-polygon/pos/calling-contracts/erc20",
-                "develop/ethereum-polygon/pos/calling-contracts/erc721",
-                "develop/ethereum-polygon/pos/calling-contracts/erc1155",
-              ],
-            },
-            "develop/ethereum-polygon/pos/deposit-withdraw-event-pos",
-            "develop/ethereum-polygon/pos/deployment",
-            "develop/pos-using-metamask",
+            "develop/l1-l2-communication/fx-portal",
+            "develop/ethereum-polygon/mintable-assets",
+            "develop/l1-l2-communication/state-transfer",
           ],
         },
-        "develop/l1-l2-communication/fx-portal",
-        "develop/ethereum-polygon/mintable-assets",
-        "develop/l1-l2-communication/state-transfer",
       ],
     },
     {

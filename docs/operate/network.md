@@ -31,7 +31,7 @@ lists their associated RPC and node endpoints.
 }>
 <TabItem value="mumbai">
 
-## Mumbai PoS Testnet
+## Mumbai PoS testnet
 
 Mumbai Testnet replicates the Polygon Mainnet and is used for testing. Users can obtain
 testnet tokens from the [faucet](https://faucet.polygon.technology/).
