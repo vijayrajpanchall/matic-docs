@@ -26,4 +26,4 @@ Currently, Supernets are only available as testnets. Mainnet is targetted for so
 Deployment guides for Polygon Supernets are forthcoming, with cloud deployment scripts for AWS and Azure, and Terraform infrastructure-as-a-service guides to be included. Stay tuned for updates!
 :::
 
-BEING UPDATED.
+Will be updated shortly!

@@ -1235,36 +1235,24 @@ module.exports = {
           ],
         },
         "supernets/operate/supernets-deploy-bridge",
-        "supernets/operate/supernets-how-allowlist",
+        {
+          type: "category",
+          label: "Modules",
+          link: {
+            type: "generated-index",
+          },
+          collapsed: false,
+          items: [
+            "supernets/modules/access-control",
+            "supernets/modules/staking",
+            "supernets/modules/delegation",
+            "supernets/modules/withdraw",
+            "supernets/modules/storage",
+          ],
+        },
         "supernets/operate/supernets-ibft-to-polybft",
         "supernets/operate/supernets-performance",
         "supernets/operate/supernets-faqs",
-      ],
-    },
-    {
-      type: "category",
-      label: "Interfaces",
-      link: {
-        type: "generated-index",
-      },
-      collapsed: false,
-      items: [
-       // "supernets/interfaces/child-validator-set",
-      ],
-    },
-    {
-      type: "category",
-      label: "Modules",
-      link: {
-        type: "generated-index",
-      },
-      collapsed: false,
-      items: [
-        "supernets/modules/access-control",
-        "supernets/modules/staking",
-        "supernets/modules/delegation",
-        "supernets/modules/withdraw",
-        "supernets/modules/storage",
       ],
     },
     {

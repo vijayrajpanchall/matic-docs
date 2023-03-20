@@ -1,7 +1,7 @@
 ---
 id: access-control
-title: Validator Access Control
-sidebar_label: Validator access control
+title: How to Allowlist Validators
+sidebar_label: How to Allowlist Validators
 description: ""
 keywords:
   - docs
