@@ -1689,3 +1689,33 @@ strong {
 [data-theme='dark'] {
   --docusaurus-highlighted-code-line-bg: #0f1722;
 }
+
+/* admonitions */
+
+.alert--secondary {
+  background-color: #2C3E50;
+  border-left-color: #464449;
+}
+
+.alert--info {
+  background-color: #424874;
+  border-left-color: #464449;
+}
+
+.alert--warning {
+  background-color: #ffb74d;
+  border-left-color: #c69500;
+  color: #000;
+}
+
+.alert--danger {
+  background-color: #e57373;
+  border-left-color: #c69500;
+  color: #000;
+}
+
+.alert--success {
+  background-color: #607D8B;
+  border-left-color: #464449;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
