@@ -256,7 +256,7 @@ module.exports = {
       content: `
         <div class="announcement-bar">
           Supercharge with Supernets: Unleashing the future of blockchain.
-          <a href="/docs/supernets/overview" class="announcement-link" style="color: #ffffff;">
+          <a href="/docs/supernets/get-started/what-are-supernets" class="announcement-link" style="color: #ffffff;">
             Stay tuned for the test launch
           </a>
         </div>
