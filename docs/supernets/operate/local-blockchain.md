@@ -160,7 +160,7 @@ The diagram below illustrates a standard Supernet deployment in bridge mode.
 ### 1. Initialize PolyBFT consensus
 
 PolyBFT is a consensus protocol used in the Polygon network that uses a validator set to achieve consensus.
-> If you need to become more familiar with PolyBFT or consensus protocols in general, you can check out the [system design documents](docs/category/system-design) for more information.
+> If you need to become more familiar with PolyBFT or consensus protocols in general, you can check out the [system design documents](/docs/category/system-design) for more information.
 
 To initialize the PolyBFT consensus, we need to generate the necessary secrets for each node. This is done using the polygon-edge `polybft-secrets` command with the following options:
 

@@ -33,13 +33,13 @@ Polygon Supernets incorporates a built-in two-way bridging mechanism that facili
 
 Message passing between a `rootchain` and a `childchain` is achieved through continuous state synchronization, known as `StateSync`. This process involves transferring state data between system calls.
 
-Check out the [StateSync doucment](/docs/supernets/design/bridge/statesync) to learn more.
+Check out the [StateSync document](/docs/supernets/design/bridge/statesync.md) to learn more.
 
 ### Checkpoints: Ensuring Liveliness and Reference Points
 
 When passing messages from a `childchain` to a `rootchain`, the validator set commits checkpoints, which are snapshots of the `childchain` state containing only the root of the `Exit` events, excluding all transactions. Checkpoints serve as reference points for clients, and validators periodically checkpoint all transactions occurring on the `childchain` to the `rootchain`. Checkpoints also ensure liveliness and are submitted to the associated `rootchain` asset contract.
 
-Check out the [checkpointing doucment](/docs/supernets/design/bridge/checkpoint) to learn more.
+Check out the [checkpointing document](/docs/supernets/design/bridge/checkpoint.md) to learn more.
 
 ### Bridge States: Tracking Event Progress
 

@@ -20,7 +20,7 @@ This documents provides an overview on what Polygon Supernets are.
 
 Before diving into the documentation, please keep the following points in mind:
 
-- **Polygon Supernets were official introduced in v0.7.x of the Polygon Edge client.**
+- **Polygon Supernets were officially introduced in v0.7.x of the Polygon Edge client.**
 - **The Polygon team will prioritize the latest version of the Edge client, and as a result, will no longer provide support for older versions (v0.6.2 and earlier).**
 
   It is **highly recommend to upgrade to the latest version**, which includes the most up-to-date features and fixes. However, for users who prefer to stay on older versions, they may continue to do so. The repository will remain accessible, and users may fork it and use it as they wish, subject to applicable open-source license terms.
@@ -53,4 +53,4 @@ Supernets offer a comprehensive blockchain design that encompasses all the cruci
 </div>
 
 By extending the Polygon PoS mainnet, Supernets enable unlimited transactions, compliance capabilities, the ability to pay gas in a native ERC-20, and more.
-Find out why you should consider Supernets [here](docs/supernets/get-started/why-supernets).
+Find out why you should consider Supernets [here](/supernets/get-started/why-supernets.md).

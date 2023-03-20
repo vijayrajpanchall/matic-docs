@@ -70,7 +70,7 @@ This makes it possible to create highly scalable, application-specific blockchai
 
 ## What assets are supported on the bridge?
 
-The bridge currently supports ERC20 and ERC721 tokens on Supernets for transfer. However, support for other asset types will soon be available. It is important to keep in mind that not all tokens on Supernets have the same functionality and capabilities. Users should review the [token overview document](/docs/supernets/assets/erc/erc20.md) to understand how to use tokens on Supernets and with the bridge.
+The bridge currently supports ERC20 and ERC721 tokens on Supernets for transfer. However, support for other asset types will soon be available. It is important to keep in mind that not all tokens on Supernets have the same functionality and capabilities. Users should review the [token overview document](/docs/supernets/design/assets/erc/erc20.md) to understand how to use tokens on Supernets and with the bridge.
 
 As the Supernets ecosystem evolves, the bridge will support additional assets, enhancing interoperability between various blockchain networks and applications.
 
