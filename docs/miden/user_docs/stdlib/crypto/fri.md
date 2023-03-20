@@ -12,7 +12,7 @@ keywords:
 image: https://wiki.polygon.technology/img/thumbnail/polygon-miden.png
 ---
 
-Namespace `std::crypto::fri` contains modules for verifying [Fast Reed-Solomon Interactive (FRI)](https://eccc.weizmann.ac.il/report/2017/134/) proofs.
+Namespace `std::crypto::fri` contains modules for verifying [FRI](https://eccc.weizmann.ac.il/report/2017/134/) proofs.
 
 ## FRI Extension 2, Fold 4
 

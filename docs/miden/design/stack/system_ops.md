@@ -15,7 +15,7 @@ keywords:
 image: https://wiki.polygon.technology/img/thumbnail/polygon-miden.png
 ---
 
-In this section we describe the AIR constraints for Miden VM system operations.  
+In this section, we describe the AIR constraints for Miden VM system operations.  
 
 ## NOOP
 The `NOOP` operation advances the cycle counter but does not change the state of the operand stack (i.e., the depth of the stack and the values on the stack remain the same). 
@@ -27,7 +27,7 @@ s'_i - s_i = 0 \ \text{ for } i \in \{0, .., 15\} \text { | degree} = 1
 $$
 
 ## ASSERT
-The `ASSERT` operation pops an element off the stack and checks if the popped element is equal to $1$. If the element is not equal to $1$, program execution fails.
+The `ASSERT` operation pops an element off the stack and checks if the popped element is equal to $1$. If the element is not equal to $1$, program execution fails..
 
 ![assert](../../assets/design/stack/system_ops/ASSERT.png)
 
@@ -67,3 +67,17 @@ $$
 
 The effect on the rest of the stack is:
 * **Left shift** starting from position $1$.
+
+## CLK
+The `CLK` operation pushes the current value of the clock cycle onto the stack. The diagram below illustrates this graphically.
+
+![clk](../../assets/design/stack/system_ops/CLK.png)
+
+The stack transition for this operation must follow the following constraint:
+
+$$
+s_0' - clk = 0 \text{ | degree} = 1
+$$
+
+The effect on the rest of the stack is:
+* **Right shift** starting from position $0$.

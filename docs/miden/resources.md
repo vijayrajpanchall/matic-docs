@@ -1,8 +1,8 @@
 ---
-id: background
-title:  Background Material
-sidebar_label:  Background Material
-description: Useful resources for exploring Polygon ID
+id: resources
+title: Useful Resources
+sidebar_label: Resources
+description: Useful resources for exploring Polygon Miden.
 keywords:
   - docs
   - matic

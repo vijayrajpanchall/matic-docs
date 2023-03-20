@@ -1,7 +1,7 @@
 ---
 id: main
-title:  Operand stack
-sidebar_label:  Operand stack
+title:  Operand Stack
+sidebar_label:  Operand Stack
 description: "Stack rules and restrictions."
 keywords:
   - docs
@@ -26,7 +26,8 @@ To ensure that managing stack depth does not impose significant burden, we adopt
 
 * When the stack depth is $16$, removing additional items from the stack does not change its depth. To keep the depth at $16$, $0$'s are inserted into the deep end of the stack for each removed item.
 
-## Stack representation
+## Stack Representation
+
 The VM allocates $19$ trace columns for the stack. The layout of the columns is illustrated below.
 
 ![](../../assets/design/stack/trace_layout.png)
@@ -37,7 +38,8 @@ The meaning of the above columns is as follows:
 * Column $b_1$ contains an address of a row in the "overflow table" in which we'll store the data that doesn't fit into the top $16$ slots. When $b_1 = 0$, it means that all stack data fits into the top $16$ slots of the stack.
 * Helper column $h_0$ is used to ensure that stack depth does not drop below $16$. Values in this column are set by the prover non-deterministically to $\frac{1}{b_0 - 16}$ when $b_0 \neq 16$, and to any other value otherwise.
 
-### Overflow table
+### Overflow Table
+
 To keep track of the data which doesn't fit into the top $16$ stack slots, we'll use an overflow table. This will be a [virtual table](../multiset.md#virtual-tables). To represent this table, we'll use a single auxiliary column $p_1$.
 
 The table itself can be thought of as having 3 columns as illustrated below.
@@ -76,6 +78,7 @@ There are a couple of other rules we'll need to enforce:
 How these are enforced will be described a bit later.
 
 ## Right shift
+
 If an operation adds data to the stack, we say that the operation caused a right shift. For example, `PUSH` and `DUP` operations cause a right shift. Graphically, this looks like so:
 
 ![](../../assets/design/stack/stack_right_shift.png)
@@ -109,6 +112,7 @@ Overall, during a right shift we do the following:
 Also, as mentioned previously, the prover sets values in $h_0$ non-deterministically to $\frac{1}{b_0 - 16}$.
 
 ## Left shift
+
 If an operation removes an item from the stack, we say that the operation caused a left shift. For example, a `DROP` operation causes a left shift. Assuming the stack is in the state we left it at the end of the previous section, graphically, this looks like so:
 
 ![](../../assets/design/stack/stack_1st_left_shift.png)
@@ -130,16 +134,18 @@ Overall, the during the left shift we do the following:
 If the stack depth becomes (or remains) $16$, the prover can set $h_0$ to any value (e.g., $0$). But if the depth is greater than $16$ the prover sets $h_0$ to $\frac{1}{b_0 - 16}$.
 
 ## AIR Constraints
+
 To simplify constraint descriptions, we'll assume that the VM exposes two binary flag values described below.
 
 | Flag      | Degree | Description |
 | --------- | ------ | ----------- |
-| $f_{shr}$ | 7      | When this flag is set to $1$, the instruction executing on the VM is performing a "right shift". |
+| $f_{shr}$ | 6      | When this flag is set to $1$, the instruction executing on the VM is performing a "right shift". |
 | $f_{shl}$ | 5      | When this flag is set to $1$, the instruction executing on the VM is performing a "left shift". |
 
 These flags are mutually exclusive. That is, if $f_{shl}=1$, then $f_{shr}=0$ and vice versa. However, both flags can be set to $0$ simultaneously. This happens when the executed instruction does not shift the stack. How these flags are computed is described [here](./op_constraints.md).
 
-### Stack overflow flag
+### Stack Overflow Flag
+
 Additionally, we'll define a flag to indicate whether the overflow table contains values. This flag will be set to $0$ when the overflow table is empty, and to $1$ otherwise (i.e., when stack depth $>16$). This flag can be computed as follows:
 
 $$
@@ -157,7 +163,8 @@ The above constraint can be satisfied only when either of the following holds:
 * $b_0 = 16$, in which case $f_{ov}$ evaluates to $0$, regardless of the value of $h_0$.
 * $f_{ov} = 1$, in which case $b_0$ cannot be equal to $16$ (and $h_0$ must be set to $\frac{1}{b_0 - 16}$).
 
-### Stack depth constraints
+### Stack Depth Constraints
+
 To make sure stack depth column $b_0$ is updated correctly, we need to impose the following constraints:
 
 | Condition   | Constraint__     | Description |
@@ -172,7 +179,7 @@ $$
 b'_0 - b_0 + f_{shl} \cdot f_{ov} - f_{shr} = 0 \text{ | degree} = 7
 $$
 
-### Overflow table constraints
+### Overflow Table Constraints
 
 When the stack is shifted to the right, a tuple $(k_0, s_{15}, b_1)$ should be added to the overflow table. We will denote value of the row to be added to the table as follows:
 
@@ -206,7 +213,7 @@ Notice that in the case of the left shift, the constraint forces the prover to s
 In case of a right shift, we also need to make sure that the next value of $b_1$ is set to the current value of $k_0$. This can be done with the following constraint:
 
 $$
-f_{shr} \cdot (b'_1 - k_0) = 0 \text{ | degree} = 8
+f_{shr} \cdot (b'_1 - k_0) = 0 \text{ | degree} = 7
 $$
 
 In case of a left shift, when the overflow table is empty, we need to make sure that a $0$ is "shifted in" from the right (i.e., $s_{15}$ is set to $0$). This can be done with the following constraint:
@@ -215,7 +222,8 @@ $$
 f_{shl} \cdot (1 - f_{ov}) \cdot s_{15}' = 0 \text{ | degree} = 8
 $$
 
-### Boundary constraints
+### Boundary Constraints
+
 In addition to the constraints described above, we also need to enforce the following boundary constraints:
 * $b_0 = 16$ at the first and at the last row of execution trace.
 * $b_1 = 0$ at the first and at the last row of execution trace.

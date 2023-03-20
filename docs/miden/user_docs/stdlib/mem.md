@@ -16,4 +16,4 @@ Module `std::mem` contains a set of utility procedures for working with random a
 
 | Procedure | Description |
 | ----------- | ------------- |
-| memcopy | Copies `n` words from `read_ptr` to `write_ptr`.<br /><br />Stack transition looks as follows:<br />`[n, read_ptr, write_ptr, ...]` -> `[...]` <br /><br />Cycles: 15 + 16n |
+| memcopy | Copies `n` words from `read_ptr` to `write_ptr`.<br /><br />Stack transition looks as follows:<br /><br />[n, read_ptr, write_ptr, ...] -> [...]<br /><br />Cycles: 15 + 16n |

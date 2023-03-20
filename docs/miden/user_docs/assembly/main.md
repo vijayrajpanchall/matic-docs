@@ -1,7 +1,7 @@
 ---
 id: main
-title: Miden Assembly
-sidebar_label: Miden Assembly
+title: Miden Assembly Language
+sidebar_label: Overview
 description: "The Miden language's advantages, notations and design."
 keywords:
   - docs
@@ -11,7 +11,6 @@ keywords:
   - assembly
 image: https://wiki.polygon.technology/img/thumbnail/polygon-miden.png
 ---
-
 
 Miden assembly is a simple, low-level language for writing programs for Miden VM. It stands just above raw Miden VM instruction set, and in fact, many instructions of Miden assembly map directly to raw instructions of Miden VM.
 

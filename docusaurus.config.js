@@ -528,7 +528,7 @@ module.exports = {
                     rel: null,
                   },
                   {
-                    href: '/docs/miden/intro/usage',
+                    href: '/docs/miden/user_docs/usage',
                     label: 'Deploy a Miden VM',
                     target: '_self',
                     rel: null,

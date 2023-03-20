@@ -28,18 +28,18 @@ $$
 x' - (x + y) = 0 \text{ | degree} = 1
 $$
 
-In the formula above, the constraint equation is followed by the implied algebraic degree of the constraint. This degree is determined by the number of multiplications between trace columns. If a constraint does not involve any multiplications between columns, its degree is $1$. If a constraint involves multiplication between two columns, its degree is $2$. If we need to multiply three columns together, the degree is $3$ ect.
+In the above, the constraint equation is followed by the implied algebraic degree of the constraint. This degree is determined by the number of multiplications between trace columns. If a constraint does not involve any multiplications between columns, its degree is $1$. If a constraint involves multiplication between two columns, its degree is $2$. If we need to multiply three columns together, the degree is $3$ ect.
 
 The maximum allowed constraint degree in Miden VM is $9$. If a constraint degree grows beyond that, we frequently need to introduce additional columns to reduce the degree.
 
 ## VM components
-Miden VM consists of several interconnected components, each providing a specific set of functionalities. These components are:
+Miden VM consists of several interconnected components, each providing a specific set of functionality. These components are:
 
 * **Program decoder**, which is responsible for computing a commitment to the executing program and converting the program into a sequence of operations executed by the VM.
 * **Operand stack**, which is a push-down stack which provides operands for all operations executed by the VM.
 * **Range checker**, which is responsible for providing 16-bit range checks needed by other components.
 * **Chiplets**, which is a set of specialized circuits used to accelerate commonly-used complex computations. Currently, the VM relies on 3 chiplets:
-  - Hash chiplet, used to compute Rescue Prime hashes both for sequential hashing and for Merkle tree hashing.
+  - Hash chiplet, used to compute Rescue Prime Optimized hashes both for sequential hashing and for Merkle tree hashing.
   - Bitwise chiplet, used to compute bitwise operations (e.g., `AND`, `XOR`) over 32-bit integers.
   - Memory chiplet, used to support random-access memory in the VM.
 
@@ -50,7 +50,7 @@ Execution trace of Miden VM consists of $66$ main trace columns, $2$ buses, and 
 
 ![vm_trace.png](../assets/design/vm_trace.png)
 
-As can be seen from the image above, decoder, stack, and range checker components use dedicated sets of columns, while all chiplets share the same $18$ columns. To differentiate between chiplets, we use a set of binary selector columns, a combination of which uniquely identifies each chiplet.
+As can be seen from the above, decoder, stack, and range checker components use dedicated sets of columns, while all chiplets share the same $18$ columns. To differentiate between chiplets, we use a set of binary selector columns, a combination of which uniquely identifies each chiplet.
 
 In addition to the components described previously, execution trace also contains $2$ system columns:
 

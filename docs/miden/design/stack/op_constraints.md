@@ -1,8 +1,8 @@
 ---
 id: op_constraints
 title:  Stack Operation Constraints
-sidebar_label:  Stack operation constraints
-description: "Operation-specific constraints."
+sidebar_label:  Stack Operation Constraints
+description: Operation-specific constraints.
 keywords:
   - docs
   - matic
@@ -38,7 +38,8 @@ It is easy to notice that while the first constraint changed, the second constra
 
 In fact, for most operations it makes sense to make a distinction between constraints unique to the operation vs. more general constraints which enforce correct behavior for the stack items not affected by the operation. In the subsequent sections we describe in detail only the former constraints, and provide high-level descriptions of the more general constraints. Specifically, we indicate how the operation affects the rest of the stack (e.g., shifts right starting from position $0$).
 
-## Operation flags
+## Operation Flags
+
 As mentioned above, operation flags are used as selectors to enforce operation-specific constraints. That is, they turn on relevant constraints for a given operation. In total, the VM provides $88$ unique operations, and thus, there are $88$ operation flags (not all of them currently used).
 
 Operation flags are mutually exclusive. That is, if one flag is set to $1$, all other flags are set to $0$. Also, one of the flags is always guaranteed to be set to $1$.
@@ -75,6 +76,7 @@ In the above:
 How operations are distributed between these $3$ groups is described in the sections below.
 
 ### No stack shift operations
+
 This group contains $32$ operations which do not shift the stack (this is almost all such operations). Since the op flag degree for these operations is $7$, constraints for these operations cannot exceed degree $2$.
 
 | Operation    | Opcode value | Binary encoding | Operation group               | Flag degree |
@@ -95,9 +97,9 @@ This group contains $32$ operations which do not shift the stack (this is almost
 | `MOVDN3`     | $13$         | `000_1101`      | [Stack ops](./stack_ops.md)   | $7$         |
 | `READW`      | $14$         | `000_1110`      | [I/O ops](./io_ops.md)        | $7$         |
 | `EXPACC`     | $15$         | `000_1111`      | [Field ops](./field_ops.md)   | $7$         |
-| `MOVDN4`     | $16$         | `001_0000`      | [Stack ops](./stack_ops.md)   | $7$         |
-| `MOVUP4`     | $17$         | `001_0001`      | [Stack ops](./stack_ops.md)   | $7$         |
-| `MOVDN5`     | $18$         | `001_0010`      | [Stack ops](./stack_ops.md)   | $7$         |
+| `MOVUP4`     | $16$         | `001_0000`      | [Stack ops](./stack_ops.md)   | $7$         |
+| `MOVDN4`     | $17$         | `001_0001`      | [Stack ops](./stack_ops.md)   | $7$         |
+| `MOVUP5`     | $18$         | `001_0010`      | [Stack ops](./stack_ops.md)   | $7$         |
 | `MOVDN5`     | $19$         | `001_0011`      | [Stack ops](./stack_ops.md)   | $7$         |
 | `MOVUP6`     | $20$         | `001_0100`      | [Stack ops](./stack_ops.md)   | $7$         |
 | `MOVDN6`     | $21$         | `001_0101`      | [Stack ops](./stack_ops.md)   | $7$         |
@@ -113,6 +115,7 @@ This group contains $32$ operations which do not shift the stack (this is almost
 | `<unused>`   | $31$         | `001_1111`      |                               | $7$         |
 
 ### Left stack shift operations
+
 This group contains $16$ operations which shift the stack to the left (i.e., remove an item from the stack). Most of left-shift operations are contained in this group. Since the op flag degree for these operations is $7$, constraints for these operations cannot exceed degree $2$.
 
 | Operation    | Opcode value | Binary encoding | Operation group               | Flag degree |
@@ -135,6 +138,7 @@ This group contains $16$ operations which shift the stack to the left (i.e., rem
 | `FMPUPDATE`  | $47$         | `010_1111`      | [System ops](./system_ops.md) | $7$         |
 
 ### Right stack shift operations
+
 This group contains $16$ operations which shift the stack to the right (i.e., push a new item onto the stack). Most of right-shift operations are contained in this group. Since the op flag degree for these operations is $7$, constraints for these operations cannot exceed degree $2$.
 
 | Operation    | Opcode value | Binary encoding | Operation group               | Flag degree |
@@ -154,9 +158,10 @@ This group contains $16$ operations which shift the stack to the right (i.e., pu
 | `DUP15`      | $60$         | `011_1100`      | [Stack ops](./stack_ops.md)   | $7$         |
 | `READ`       | $61$         | `011_1101`      | [Stack ops](./stack_ops.md)   | $7$         |
 | `SDEPTH`     | $62$         | `011_1110`      | [I/O ops](./io_ops.md)        | $7$         |
-| `<unused>`   | $63$         | `011_1111`      |                               | $7$         |
+| `CLK`        | $63$         | `011_1111`      | [System ops](./system_ops.md) | $7$         |
 
 ### u32 operations
+
 This group contains $8$ u32 operations. These operations are grouped together because all of them require range checks. The constraints for range checks are of degree $5$, however, since all these operations require them, we can define a flag with common prefix `100` to serve as a selector for the range check constraints. The value of this flag is computed as follows:
 
 $$
@@ -187,34 +192,36 @@ Putting these operations into a group with flag degree $6$ is important for two 
 * Operations `U32ADD3` and `U32MADD` shift the stack to the left. Thus, having these two operations in this group and putting them under the common prefix `10011`, allows us to create a common flag for these operations of degree $5$ (recall that left-shift flag cannot exceed degree $5$).
 
 ### High-degree operations
+
 This group contains operations which require constraints with degree up to $3$. Similar to the previous group, the last op bit is not used in the computation of flag values for these operations.
 
 | Operation    | Opcode value | Binary encoding | Operation group                        | Flag degree |
 | ------------ | :----------: | :-------------: | :-------------------------------------:| :---------: |
-| `HPERM`     | $80$         | `101_0000`      | [Crypto ops](./crypto_ops.md)          | $6$         |
-| `MPVERIFY`  | $82$         | `101_0010`      | [Crypto ops](./crypto_ops.md)          | $6$         |
-| `PIPE`      | $84$         | `101_0100`      | [I/O ops](./io_ops.md)                 | $6$         |
-| `MSTREAM`   | $86$         | `101_0110`      | [I/O ops](./io_ops.md)                 | $6$         |
-| `SPAN`      | $88$         | `101_1000`      | [Flow control ops](../decoder/main.md) | $6$         |
-| `JOIN`      | $90$         | `101_1010`      | [Flow control ops](../decoder/main.md) | $6$         |
-| `SPLIT`     | $92$         | `101_1100`      | [Flow control ops](../decoder/main.md) | $6$         |
-| `LOOP`      | $94$         | `101_1110`      | [Flow control ops](../decoder/main.md) | $6$         |
+| `HPERM`      | $80$         | `101_0000`      | [Crypto ops](./crypto_ops.md)          | $6$         |
+| `MPVERIFY`   | $82$         | `101_0010`      | [Crypto ops](./crypto_ops.md)          | $6$         |
+| `PIPE`       | $84$         | `101_0100`      | [I/O ops](./io_ops.md)                 | $6$         |
+| `MSTREAM`    | $86$         | `101_0110`      | [I/O ops](./io_ops.md)                 | $6$         |
+| `SPAN`       | $88$         | `101_1000`      | [Flow control ops](../decoder/main.md) | $6$         |
+| `JOIN`       | $90$         | `101_1010`      | [Flow control ops](../decoder/main.md) | $6$         |
+| `SPLIT`      | $92$         | `101_1100`      | [Flow control ops](../decoder/main.md) | $6$         |
+| `LOOP`       | $94$         | `101_1110`      | [Flow control ops](../decoder/main.md) | $6$         |
 
 Note that `SPLIT` and `LOOP` operations are grouped together under the common prefix `10111`, and thus, can have a common flag of degree $5$. This is important because both of these operations shift the stack to the left.
 
 ### Very high-degree operations
+
 This group contains operations which require constraints with degree up to $5$.
 
 | Operation    | Opcode value | Binary encoding | Operation group                        | Flag degree |
 | ------------ | :----------: | :-------------: | :-------------------------------------:| :---------: |
-| `MRUPDATE`  | $96$         | `11_00000`      | [Crypto ops](./crypto_ops.md)          | $4$         |
-| `PUSH`      | $100$        | `11_00100`      | [I/O ops](./io_ops.md)                 | $4$         |
-| `<unused>`  | $104$        | `11_01000`      |                                        | $4$         |
-| `<unused>`  | $108$        | `11_01100`      |                                        | $4$         |
-| `END`       | $112$        | `11_10000`      | [Flow control ops](../decoder/main.md) | $4$         |
-| `REPEAT`    | $116$        | `11_10100`      | [Flow control ops](../decoder/main.md) | $4$         |
-| `RESPAN`    | $120$        | `11_11000`      | [Flow control ops](../decoder/main.md) | $4$         |
-| `HALT`      | $124$        | `11_11100`      | [Flow control ops](../decoder/main.md) | $4$         |
+| `MRUPDATE`   | $96$         | `11_00000`      | [Crypto ops](./crypto_ops.md)          | $4$         |
+| `PUSH`       | $100$        | `11_00100`      | [I/O ops](./io_ops.md)                 | $4$         |
+| `SYSCALL`    | $104$        | `11_01000`      | [Flow control ops](../decoder/main.md) | $4$         |
+| `CALL`       | $108$        | `11_01100`      | [Flow control ops](../decoder/main.md) | $4$         |
+| `END`        | $112$        | `11_10000`      | [Flow control ops](../decoder/main.md) | $4$         |
+| `REPEAT`     | $116$        | `11_10100`      | [Flow control ops](../decoder/main.md) | $4$         |
+| `RESPAN`     | $120$        | `11_11000`      | [Flow control ops](../decoder/main.md) | $4$         |
+| `HALT`       | $124$        | `11_11100`      | [Flow control ops](../decoder/main.md) | $4$         |
 
 As mentioned previously, the last two bits of the opcode are not used in computation of the flag for these operations. We force these bits to always be set to $0$ with the following constraints:
 
@@ -227,9 +234,11 @@ b_6 \cdot b_5 \cdot b_1 = 0 \text{ | degree} = 3
 $$
 
 ## Composite flags
+
 Using the operation flags defined above, we can compute several composite flags which are used by various constraints in the VM.
 
 ### Shift right flag
+
 The right-shift flag indicates that an operation shifts the stack to the right. This flag is computed as follows:
 
 $$
@@ -239,6 +248,7 @@ $$
 In the above, $(1 - b_6) \cdot b_5 \cdot b_4$ evaluates to $1$ for all [right stack shift](#right-stack-shift-operations) operations described previously. This works because all these operations have a common prefix `011`. We also need to add in flags for other operations which shift the stack to the right but are not a part of the above group (e.g., `PUSH` operation).
 
 ### Shift left flag
+
 The left-shift flag indicates that a given operation shifts the stack to the left. To simplify the description of this flag, we will first compute the following intermediate variables:
 
 A flag which is set to $1$ when $f_{u32add3} = 1$ or $f_{u32madd} = 1$:
@@ -264,3 +274,27 @@ In the above:
 * $h_5$ is the helper register in the decoder which is set to $1$ when we are exiting a `LOOP` block, and to $0$ otherwise.
 
 Thus, similarly to the right-shift flag, we compute the value of the left-shift flag based on the prefix of the operation group which contains most left shift operations, and add in flag values for other operations which shift the stack to the left but are not a part of this group.
+
+### Control flow flag
+
+The control flow flag $f_{ctrl}$ is set to $1$ when a control flow operation is being executed by the VM, and to $0$ otherwise. Naively, this flag can be computed as follows:
+
+$$
+f_{ctrl} = f_{join} + f_{split} + f_{loop} + f_{repeat} + f_{span} + f_{respan} + f_{call} + f_{syscall} + f_{end} + f_{halt} \text{ | degree} = 6
+$$
+
+However, this can be computed more efficiently via the common operation prefixes for the two groups of control flow operations as follows.
+
+$$
+f_{span,join,split,loop} = b_6 \cdot (1 - b_5) \cdot b_4 \cdot b_3 \text{ | degree} = 4
+$$
+
+$$
+f_{end,repeat,respan,halt} = b_6 \cdot b_5 \cdot b_4  \text{ | degree} = 3
+$$
+
+$$
+f_{ctrl} = f_{span,join,split,loop} + f_{end,repeat,respan,halt} + f_{call} + f_{syscall} \text{ | degree} = 4
+$$
+
+Note that the degree of $f_{end,repeat,respan,halt}$ can be reduced to degree 2 using the extra column, but this will not affect the degree of the $f_{ctrl}$ constraint.

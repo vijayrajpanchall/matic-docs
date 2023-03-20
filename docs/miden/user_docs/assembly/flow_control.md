@@ -13,7 +13,7 @@ keywords:
 image: https://wiki.polygon.technology/img/thumbnail/polygon-miden.png
 ---
 
-As mentioned before, Miden assembly provides high-level constructs to facilitate flow control. These constructs are:
+As mentioned above, Miden assembly provides high-level constructs to facilitate flow control. These constructs are:
 
 - *if-else* expressions for conditional execution.
 - *repeat* expressions for bounded counter-controlled loops.
@@ -35,9 +35,7 @@ where `instructions` can be a sequence of any instructions, including nested con
 3. If the value of the item is $0$, instructions in the `else` branch are executed.
 4. If the value is not binary, the execution fails.
 
-:::note A note on performance
-    Using *if-else* statements incurs a small, but non-negligible overhead. Thus, for simple conditional statements, it may be more efficient to compute the result of both branches, and then select the result using [conditional drop](./stack_manipulation.md#conditional-manipulation) instructions.
-:::
+A note on performance: using *if-else* statements incurs a small, but non-negligible overhead. Thus, for simple conditional statements, it may be more efficient to compute the result of both branches, and then select the result using [conditional drop](./stack_manipulation.md#conditional-manipulation) instructions.
 
 ### Counter-controlled loops
 Executing a sequence of instructions a predefined number of times can be accomplished with *repeat* statements. These statements look like so:
@@ -67,3 +65,16 @@ where `instructions` can be a sequence of any instructions, including nested con
     c. If the popped value is not binary, the execution fails.
 3. If the value of the item is $0$, execution of loop body is skipped.
 4. If the value is not binary, the execution fails.
+
+Example:
+
+```
+# push the boolean true to the stack
+push.1
+
+# pop the top element of the stack and loop while it is true
+while.true
+    # push the boolean false to the stack, finishing the loop for the next iteration
+    push.0
+end
+```
