@@ -50,7 +50,7 @@ This is the flow of the Watch Sync process:
    * If it is, jump out of sync state
    * If it is not, continue listening for new block events
 
-## Perfomance report
+## Performance report
 
 :::info
 Performance was measured on a local machine by syncing a ** million blocks **
