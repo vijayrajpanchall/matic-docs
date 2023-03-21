@@ -29,8 +29,11 @@ The performance tests were conducted in a controlled environment to ensure accur
 The tests utilized three different Amazon Web Services (AWS) instance types to evaluate the impact of varying compute resources on network performance:
 
 - **x2iezn.2xlarge**
-- **x2iezn.4xlarge**
-- **x2iezn.8xlarge**
+- **t2.large**
+- **t2.micro**
+- **c5.2xlarge**
+- **c6a.xlarge**
+- **c6a.48xlarge**
 
 ### Transaction Types
 
@@ -71,42 +74,14 @@ Moreover, the network's gas per transaction and gas per second metrics have also
 
 ### Table 1: Comparing 0.6.1, 0.7.0-alpha1, and 0.7.3-beta1
 
-| Version       | Consensus | Instance Type | Block Gas Limit | Transactions | TPS Sent | TPS Mined | Gas per tx | Gas per sec |
-|---------------|-----------|---------------|-----------------|--------------|----------|-----------|------------|-------------|
-| 0.6.1         | IBFT      | x2iezn.2xlarge| 200,000,000     | 30,000       | 1,900    | 1,666     | 21,000     | 34,986,000  |
-| 0.7.0-alpha1  | PolyBFT   | x2iezn.2xlarge| 200,000,000     | 30,000       | 1,900    | 1,666     | 21,000     | 34,986,000  |
-| 0.7.3-beta1   | PolyBFT   | x2iezn.2xlarge| 200,000,000     | 476,000      | 2,200    | 2,078     | 21,000     | 43,638,000  |
+| Version       | Consensus | Instance Type  | Block Gas Limit | Transactions | TPS Sent | TPS Mined | Gas per tx | Gas per sec |
+|---------------|-----------|----------------|-----------------|--------------|----------|-----------|------------|-------------|
+| 0.6.1         | IBFT      | x2iezn.2xlarge | 200,000,000     | 30,000       | 1,900    | 1,666     | 21,000     | 34,986,000  |
+| 0.7.0-alpha1  | PolyBFT   | x2iezn.2xlarge | 200,000,000     | 30,000       | 1,900    | 1,666     | 21,000     | 34,986,000  |
+| 0.7.3-beta1   | PolyBFT   | x2iezn.2xlarge | 200,000,000     | 476,000      | 2,200    | 2,078     | 21,000     | 43,638,000  |
 
 This table compares the performance of the Polygon Edge for three different versions (0.6.1, 0.7.0-alpha1, and 0.7.3-beta1) using the same instance type (x2iezn.2xlarge) and block gas limit (200,000,000).
 
 - **v0.6.1**, which uses the IBFT consensus algorithm, has identical performance metrics to v0.7.0-alpha1, which uses the PolyBFT consensus algorithm. Both versions processed 30,000 transactions at a rate of 1,900 TPS sent and 1,666 TPS mined. They also had the same gas usage per transaction (21,000) and per second (34,986,000). This indicates that the transition from IBFT to PolyBFT in the alpha release did not significantly impact performance.
 
 - **v0.7.3-beta1** shows improved performance compared to the previous two versions. This version has a substantial increase in the number of transactions processed (476,000) and a higher TPS sent (2,200), and TPS mined (2,078). Despite the increased throughput, the gas usage per transaction remains constant at 21,000. The gas usage per second has also increased to 43,638,000, reflecting the higher transaction throughput.
-
-### Table 2: Comparison of Different Block Gas Limits
-
-| Version | Consensus | Instance Type | Block Gas Limit | Transactions | TPS Sent | TPS Mined | Gas per tx | Gas per sec |
-|---------|-----------|---------------|-----------------|--------------|----------|-----------|------------|-------------|
-| 0.7.3   | PolyBFT   | x2iezn.2xlarge| 200,000,000     | 476,000      | 2,200    | 2,078     | 21,000     | 43,638,000  |
-| 0.7.3   | PolyBFT   | x2iezn.2xlarge| 250,000,000     | 592,000      | 2,750    | 2,537     | 21,000     | 53,277,000  |
-| 0.7.3   | PolyBFT   | x2iezn.2xlarge| 300,000,000     | 708,000      | 3,300    | 2,996     | 21,000     | 62,916,000  |
-
-This table compares the performance of the Polygon Edge network for different block gas limits using the same instance type (x2iezn.2xlarge) and version (0.7.3).
-
-- As the block gas limit increases from 200,000,000 to 250,000,000 and 300,000,000, the number of transactions processed and the TPS sent and mined increase. This suggests that a higher block gas limit can accommodate more transactions, increasing throughput.
-
-- Gas usage per transaction remains constant at 21,000 across all block gas limits. However, gas usage per second increases with the block gas limit, reflecting the increased transaction throughput.
-
-### Table 3: Comparison of Different Instance Types
-
-| Version | Consensus | Instance Type | Block Gas Limit | Transactions | TPS Sent | TPS Mined | Gas per tx | Gas per sec |
-|---------|-----------|---------------|-----------------|--------------|----------|-----------|------------|-------------|
-| 0.7.3   | PolyBFT   | x2iezn.2xlarge| 200,000,000     | 476,000      | 2,200    | 2,078     | 21,000     | 43,638,000  |
-| 0.7.3   | PolyBFT   | x2iezn.4xlarge| 200,000,000     | 952,000      | 4,400    | 4,156     | 21,000     | 87,276,000  |
-| 0.7.3   | PolyBFT   | x2iezn.8xlarge| 200,000,000     | 1,904,000    | 8,800    | 8,312     | 21,000     | 174,552,000 |
-
-This table compares the performance of the Polygon Edge network for different instance types using the same version (0.7.3) and block gas limit (200,000,000).
-
-- As the instance type changes from x2iezn.2xlarge to x2iezn.4xlarge and x2iezn.8xlarge, the number of transactions processed and the TPS sent and mined also increase. This indicates that using a more powerful instance can increase transaction throughput.
-
-- Gas usage per transaction remains constant at 21,000 across all instance types. However, gas usage per second increases with the instance type, reflecting the increased transaction throughput.
