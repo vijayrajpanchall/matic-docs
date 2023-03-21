@@ -2,7 +2,7 @@
 id: supernets-runtime-allowlist
 title: Smart Contract Allowlist
 sidebar_label: Smart contract allowlist
-description: "Stake, unstake and other staking-related instructions."
+description: "Learn about smart contract allowlising in Supernets."
 keywords:
   - docs
   - polygon

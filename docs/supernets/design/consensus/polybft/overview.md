@@ -2,7 +2,7 @@
 id: polybft-overview
 title: Polygon Byzantine Fault Tolerance (PolyBFT)
 sidebar_label: Polygon Byzantine Fault Tolerance (PolyBFT)
-description: "Explanation about PolyBFT, the consensus mechanism for Polygon Supernets."
+description: "Learn about the new consensus mechanism for the Edge client."
 keywords:
   - docs
   - polygon

@@ -1,8 +1,8 @@
 ---
 id: supernets-deploy-bridge
-title: Deploy the Native Bridge on Mumbai
-sidebar_label: Deploy the native bridge on Mumbai
-description: "An introduction to Polygon Supernets."
+title: Using the native bridge
+sidebar_label: Using the native bridge
+description: "Learn how to use the native cross-chain bridge."
 keywords:
   - docs
   - Polygon
@@ -16,38 +16,39 @@ keywords:
 :::caution Document is being updated
 :::
 
-This document outlines a full deployment of a testnet childchain in bridge mode, using the Mumbai PoS testnet as the rootchain.
+This document outlines how to use the native bridge to deposit and withdraw ERC20 tokens across childchain and rootchain.
 
-:::info Testnet version only available
+:::info Test version only available
 
-Currently, Supernets are only available as testnets. Mainnet is targetted for some time in Q2 2023, where the rootchain becomes Polygon PoS.
+Currently, Supernets are only available as a test release. The production-ready release is targetted for some time in Q2 2023, where the rootchain becomes Polygon PoS.
 
 :::
 
 :::tip Stay tuned for upcoming deployment guides
 
-Deployment guides for Polygon Supernets are forthcoming, with cloud deployment scripts for AWS and Azure, and Terraform infrastructure-as-a-service guides to be included. Stay tuned for updates!
+Deployment guides for Polygon Supernets are forthcoming, with cloud deployment scripts for GCP, AWS, and Azure, and Terraform infrastructure-as-a-service guides to be included. Stay tuned for updates!
 :::
 
 ---
 
-## Genesis
+## Prerequisites
 
-```bash
-polygon-edge genesis --consensus polybft --block-gas-limit 10000000 --epoch-size 10 \
-      --bridge-json-rpc https://mumbai-rpc.com \
-      --manifest <path to the manifest file>
-      --premine 0x0000000000000000000000000000000000000000
-```
+If you haven't already, please follow the [deployment guide](/docs/supernets/operate/local-blockchain.md)
+before trying to run the commands to interact with the bridge.
 
-## Childchain testnet
+> ```bash
+> polygon-edge genesis --consensus polybft --block-gas-limit 10000000 --epoch-size 10 \
+>       --bridge-json-rpc https://mumbai-rpc.com \
+>       --manifest <path to the manifest file>
+>       --premine 0x0000000000000000000000000000000000000000
+> ```
 
-```bash
-$ polygon-edge server
-    --chain genesis.json [--data-dir <account secrets data directory> | --config <path to the account secrets config>] \
-    --libp2p <lib p2p ip address and port> --json-rpc <json rpc ip address and port> ... \
-    --num-block-confirmations 2
-```
+> ```bash
+> $ polygon-edge server
+>     --chain genesis.json [--data-dir <account secrets data directory> | --config <path to the account secrets config>] \
+>     --libp2p <lib p2p ip address and port> --json-rpc <json rpc ip address and port> ... \
+>     --num-block-confirmations 2
+> ```
 
 ## Deposit
 

@@ -2,7 +2,7 @@
 id: erc20
 title: ERC-20
 sidebar_label: Native assets
-description: "An introduction to Polygon Supernets."
+description: "Learn about the predefined token standards on a childchain."
 keywords:
   - docs
   - Polygon

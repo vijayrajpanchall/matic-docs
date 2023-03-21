@@ -2,7 +2,7 @@
 id: supernets-ibft-to-polybft
 title: Regenesis from IBFT to PolyBFT
 sidebar_label: Regenesis from IBFT to PolyBFT
-description: "An introduction to Polygon Supernets."
+description: "Learn how to migrate from a client running IBFT consensus to PolyBFT consensus."
 keywords:
   - docs
   - Polygon
@@ -20,15 +20,15 @@ This document describes the process for regenesis from an exisiting chain that u
 
 ---
 
-## Regensis flow
+## Prerequisites
 
-### 1. Create cluster
+### Create cluster
 
 ```bash
 scripts/cluster ibft
 ```
 
-### 2. Check balance
+### Check balance
 
 ```bash
 curl -s -X POST --data '{"jsonrpc":"2.0", "method":"eth_getBalance", "params":["0x85da99c8a7c2c95964c8efd687e95e632fc533d6", "latest"], "id":1}' http://localhost:10002
@@ -36,7 +36,9 @@ curl -s -X POST --data '{"jsonrpc":"2.0", "method":"eth_getBalance", "params":["
 {"jsonrpc":"2.0","id":1,"result":"0x3635c9adc5dea00000"}
 ```
 
-### 2. Get trie root
+## Regensis flow
+
+### 1. Get trie root
 
 ```bash
 ./polygon-edge regenesis getroot --rpc "http://localhost:10002"
@@ -46,7 +48,7 @@ state root 0xf5ef1a28c82226effb90f4465180ec3469226747818579673f4be929f1cd8663 fo
 
 ```
 
-### 4. Create trie snapshot
+### 2. Create trie snapshot
 
 ```bash
 
@@ -56,13 +58,13 @@ state root 0xf5ef1a28c82226effb90f4465180ec3469226747818579673f4be929f1cd8663 fo
 
 ```
 
-### 5. Remove old chain data
+### 3. Remove old chain data
 
 ```bash
 rm -rf test-chain-*
 ```
 
-### 6. Create new validators
+### 4. Create new validators
 
 ```bash
 ./polygon-edge polybft-secrets --insecure --data-dir test-chain- --num 4
@@ -97,13 +99,13 @@ Node ID              = 16Uiu2HAmEuYYyzQKpyVr2HVCG8Gqx5e5DLCi8LWY4TkFYvHYcWAq
 
 ```
 
-### 7. Generate the manifest file
+### 5. Generate the manifest file
 
 ```bash
 ./polygon-edge manifest
 ```
 
-### 8. Generate the genesis file
+### 6. Generate the genesis file
 
 ```bash
 ./polygon-edge genesis --consensus polybft --validator-set-size=4 --bridge-json-rpc http://127.0.0.1:8545 \
@@ -116,7 +118,7 @@ Genesis written to ./genesis.json
 
 ```
 
-### 9. Start new a v0.7.x chain
+### 7. Start new a v0.7.x chain
 
 ```bash
  ./polygon-edge server --data-dir ./test-chain-1 --chain genesis.json --grpc-address :10000 --libp2p :30301 --jsonrpc :10002 --seal --log-level DEBUG &
@@ -155,7 +157,7 @@ invalid initial state root
 
 It fails, it is because we have not provided the trie database with the correct state trie.
 
-### 10. Copy the snapshot trie to the data directory
+### 8. Copy the snapshot trie to the data directory
 
 ```bash
 rm -rf ./test-chain-1/trie
@@ -168,7 +170,7 @@ cp -fR ./trie_new/ ./test-chain-3/trie/
 cp -fR ./trie_new/ ./test-chain-4/trie/
 ```
 
-### 11. Re-run chain
+### 9. Re-run chain
 
 ```bash
 ./polygon-edge server --data-dir ./test-chain-1 --chain genesis.json --grpc-address :10000 --libp2p :30301 --jsonrpc :10002 --seal --log-level DEBUG &
@@ -206,7 +208,7 @@ cp -fR ./trie_new/ ./test-chain-4/trie/
 
 </details>
 
-### 12. Check that balance of account on v0.6 is not 0
+### 10. Check that balance of account on v0.6 is not 0
 
 ```bash
  curl -s -X POST --data '{"jsonrpc":"2.0", "method":"eth_getBalance", "params":["0x85da99c8a7c2c95964c8efd687e95e632fc533d6", "latest"], "id":1}' http://localhost:10002

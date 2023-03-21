@@ -2,7 +2,7 @@
 id: storage
 title: Childchain Storage
 sidebar_label: Childchain storage
-description: ""
+description: "Learn about the storage module and how the childchain stores key system components."
 keywords:
   - docs
   - polygon

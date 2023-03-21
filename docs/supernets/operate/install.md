@@ -2,7 +2,7 @@
 id: supernets-install
 title: Installation
 sidebar_label: Install binaries
-description: "How to install Polygon Supernets."
+description: "Steps on how to install the Supernet binaries."
 keywords:
   - docs
   - polygon

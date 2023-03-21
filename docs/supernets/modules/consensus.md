@@ -2,7 +2,7 @@
 id: staking
 title: Validator Staking
 sidebar_label: Validator staking
-description: ""
+description: "Learn about about the staking module and how to stake."
 keywords:
   - docs
   - polygon

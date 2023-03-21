@@ -2,7 +2,7 @@
 id: overview
 title: Introduction to Native Supernet Bridging
 sidebar_label: Introduction to native Supernet bridging
-description: "Learn about the bridge for Supernets"
+description: "Learn about the native bridge of Supernets."
 keywords:
   - docs
   - polygon

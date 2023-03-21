@@ -2,7 +2,7 @@
 id: erc20-child-predicate
 title: Managing ERC20 Tokens on Supernets
 sidebar_label: Managing ERC20 tokens on Supernets
-description: ""
+description: "The predicate that enables deposits and withdraws between a chilchain and rootchain."
 keywords:
   - docs
   - polygon

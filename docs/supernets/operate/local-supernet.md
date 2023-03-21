@@ -13,7 +13,7 @@ keywords:
   - modular
 ---
 
-This document outlines how to deploy a local Supernet in bridge mode, using a demo Geth instance.
+This document a full deployment of a testnet childchain in bridge mode, either using a demo geth instance or the Mumbai PoS testnet as the rootchain.
 
 :::info Fast-track guide
 

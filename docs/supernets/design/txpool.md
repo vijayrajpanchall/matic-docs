@@ -2,7 +2,7 @@
 id: supernets-txpool
 title: Transaction Pool
 sidebar_label: Transaction pool
-description: Introduction to the architecture of Polygon Supernets.
+description: "The transaction pool of Supernets."
 keywords:
   - docs
   - polygon

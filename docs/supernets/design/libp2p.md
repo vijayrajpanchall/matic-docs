@@ -2,7 +2,7 @@
 id: supernets-libp2p
 title: libp2p
 sidebar_label: P2P networking
-description: "Stake, unstake and other staking-related instructions."
+description: "The networking layer of Supernets."
 keywords:
   - docs
   - polygon

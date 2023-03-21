@@ -2,7 +2,7 @@
 id: supernets-local-deploy
 title: Deploy a local blockchain (non-bridge mode)
 sidebar_label: Deploy a local blockchain (non-bridge mode)
-description: "An introduction to Polygon Supernets."
+description: "Learn how to deploy a local blockchain using the new Edge client with PolyBFT consensus."
 keywords:
   - docs
   - Polygon

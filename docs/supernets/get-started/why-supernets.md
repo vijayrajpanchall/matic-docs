@@ -2,7 +2,7 @@
 id: why-supernets
 title: Why Supernets?
 sidebar_label: Why Supernets
-description: "An introduction to Polygon Supernets."
+description: "Discover how Supernets provide infrastructure to reshape the next generation of the web."
 keywords:
   - docs
   - Polygon

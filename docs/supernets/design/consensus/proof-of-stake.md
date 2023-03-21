@@ -2,7 +2,7 @@
 id: supernets-pos
 title: Delegated Proof of Stake (DPoS)
 sidebar_label: Delegated Proof of Stake (DPoS)
-description: "Stake, unstake and other staking-related instructions."
+description: "An overview of DPoS and how it is used in Supernets."
 keywords:
   - docs
   - polygon

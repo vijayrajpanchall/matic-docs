@@ -2,7 +2,7 @@
 id: supernets-blockchain
 title: Blockchain Mechanics
 sidebar_label: Blockchain mechanics
-description: "Stake, unstake and other staking-related instructions."
+description: "The state database for Supernets."
 keywords:
   - docs
   - polygon

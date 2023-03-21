@@ -2,7 +2,7 @@
 id: delegation
 title: Delegation to Validators
 sidebar_label: Delegation to validators
-description: ""
+description: "Learn about the delegation module and how to delegate."
 keywords:
   - docs
   - polygon

@@ -2,7 +2,7 @@
 id: supernets-mempool
 title: Memory pool
 sidebar_label: Memory pool
-description: Introduction to the architecture of Polygon Supernets.
+description: "The memory pool of Supernets."
 keywords:
   - docs
   - polygon

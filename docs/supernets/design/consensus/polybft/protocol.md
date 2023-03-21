@@ -2,7 +2,7 @@
 id: polybft-protocol
 title: Consensus Protocol
 sidebar_label: Consensus protocol
-description: "Explanation about PolyBFT, the consensus mechanism for Polygon Edge."
+description: "Explanation about consensus protocol within PolyBFT."
 keywords:
   - docs
   - polygon

@@ -1732,8 +1732,7 @@ strong {
 
 .tabs-frame {
   position: absolute;
-  top: -50px;
-  width: 500px;
+  top: -70px;
+  width: 520px;
   height: 550px;
 }
-

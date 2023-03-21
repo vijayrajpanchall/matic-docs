@@ -2,7 +2,7 @@
 id: supernets-requirements
 title: System Requirements
 sidebar_label: System requirements
-description: "How to install Polygon Supernets."
+description: "System requirements to successfully run Supernets on a local or remote machine."
 keywords:
   - docs
   - polygon

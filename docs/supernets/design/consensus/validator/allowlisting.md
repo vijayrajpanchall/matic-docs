@@ -2,7 +2,7 @@
 id: polybft-allowlist
 title: Allowlisting Validators
 sidebar_label: Allowlisting validators
-description: "Explanation about PolyBFT, the consensus mechanism for Polygon Edge."
+description: "Learn about how allowlising works for validators."
 keywords:
   - docs
   - polygon

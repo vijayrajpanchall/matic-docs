@@ -1,7 +1,7 @@
 ---
 id: supernets-grpc
 title: gRPC
-description: "Stake, unstake and other staking-related instructions."
+description: "The gRPC layer fof Supernets."
 keywords:
   - docs
   - polygon

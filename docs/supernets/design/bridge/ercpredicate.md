@@ -2,7 +2,7 @@
 id: erc20-predicate
 title: Bridging ERC20 Tokens Between Supernet and Rootchain
 sidebar_label: Bridging ERC20 tokens between Supernet and rootchain
-description: ""
+description: "The predicate that is responsible for bridging ERC20 tokens between a childchain and rootchain."
 keywords:
   - docs
   - polygon

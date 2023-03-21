@@ -2,7 +2,7 @@
 id: ibft-overview
 title: Istanbul Byzantine Fault Tolerant (IBFT) 2.0
 sidebar_label: Istanbul Byzantine Fault Tolerant (IBFT) 2.0
-description: "Explanation about PolyBFT, the consensus mechanism for Polygon Edge."
+description: "Learn about the consensus engine of Supernets."
 keywords:
   - docs
   - polygon

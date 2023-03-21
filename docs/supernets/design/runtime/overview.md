@@ -2,7 +2,7 @@
 id: supernets-runtime
 title: Ethereum Virtual Machine (EVM)
 sidebar_label: Overview
-description: Introduction to the architecture of Polygon Supernets.
+description: "Learn about the runtime environment of Supernets."
 keywords:
   - docs
   - polygon

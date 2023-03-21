@@ -2,7 +2,7 @@
 id: supernets-txrelayer
 title: Transaction Relayer
 sidebar_label: Transaction relayer
-description: Introduction to the architecture of Polygon Supernets.
+description: "The transaction relayer of Supernets."
 keywords:
   - docs
   - polygon

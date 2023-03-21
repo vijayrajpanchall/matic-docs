@@ -2,7 +2,7 @@
 id: supernets-faqs
 title: Technical FAQs
 sidebar_label: Technical FAQs
-description: "How to install Polygon Supernets."
+description: "Learn about the most common FAQs for Supernets."
 keywords:
   - docs
   - polygon

@@ -2,7 +2,7 @@
 id: withdraw
 title: User Withdrawals
 sidebar_label: User withdrawals
-description: ""
+description: "Learn about the withdrawal module and how to perform withdrawals."
 keywords:
   - docs
   - polygon

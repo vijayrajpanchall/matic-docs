@@ -2,7 +2,7 @@
 id: access-control
 title: How to Allowlist Validators
 sidebar_label: How to Allowlist Validators
-description: ""
+description: "Learn about the access control module and how to allowlist validators."
 keywords:
   - docs
   - polygon

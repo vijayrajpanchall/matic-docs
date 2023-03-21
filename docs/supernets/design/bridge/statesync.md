@@ -2,7 +2,7 @@
 id: statesync
 title: Synchronizing Chain State between Rootchain and Supernet
 sidebar_label:  Synchronizing chain state between rootchain and Supernet
-description: ""
+description: "Learn about the StateSync mechanism of Supernets."
 keywords:
   - docs
   - polygon

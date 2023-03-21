@@ -2,7 +2,7 @@
 id: checkpoint
 title: Ensuring Data Integrity through Checkpoint Management
 sidebar_label: Ensuring data integrity through checkpoint management
-description: ""
+description: "An overview of the checkpointing mechanism of Supernets."
 keywords:
   - docs
   - polygon

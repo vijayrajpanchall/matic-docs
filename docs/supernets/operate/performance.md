@@ -2,7 +2,7 @@
 id: supernets-performance
 title: Performance Benchmarks
 sidebar_label: Performance benchmarks
-description: "How to install Polygon Supernets."
+description: "The first performance benchmarks for the new Edge client."
 keywords:
   - docs
   - polygon
