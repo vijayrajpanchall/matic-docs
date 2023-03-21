@@ -109,14 +109,14 @@ The following key performance metrics were considered during the tests:
 
 - **ERC20 transactions:**
   - The highest TPS Sent: 1,300 using x2iezn.2xlarge
-  - The highest TPS Mined: 714 using x2iezn.2xlarge
+  - The highest TPS Mined: 724 using x2iezn.2xlarge
   - The highest Gas per Second: 32,385,650 using c6a.48xlarge
   - The highest Gas per Transaction: 29,150 using x2iezn.2xlarge and c6a.48xlarge
 
 - **ERC721 transactions:**
   - The highest TPS Sent: 800 using x2iezn.2xlarge
   - The highest TPS Mined: 574 using x2iezn.2xlarge
-  - The highest Gas per Second: 56,081,946 using c5.2xlarge
+  - The highest Gas per Second: 82,222,812 using c5.2xlarge
   - The highest Gas per Transaction: 115,158 in multiple tests using x2iezn.2xlarge and c5.2xlarge
 
 <details>
