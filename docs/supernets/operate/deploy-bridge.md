@@ -1,6 +1,6 @@
 ---
-id: supernets-deploy-bridge
-title: Using the native bridge
+id: supernets-bridge
+title: Using the Native Bridge
 sidebar_label: Using the native bridge
 description: "Learn how to use the native cross-chain bridge."
 keywords:

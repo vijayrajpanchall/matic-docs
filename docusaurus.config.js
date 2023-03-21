@@ -255,9 +255,14 @@ module.exports = {
       id: 'banner',
       content: `
         <div class="announcement-bar">
-          Supercharge with Supernets: Unleashing the future of blockchain.
+          Supercharge with Supernets:
+          <a href="https://www.nexon.com/main/en" class="announcement-link" style="color: #ffffff;">
+          Nexon
+          </a>
+          selects Supernets to power the blockchain gaming ecosystem.
+          The first stable release is out.
           <a href="/docs/supernets" class="announcement-link" style="color: #ffffff;">
-            The first stable release is out. Get started!
+          Get started!
           </a>
         </div>
       `,

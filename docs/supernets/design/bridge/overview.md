@@ -52,3 +52,5 @@ The bridge can exist in one of three states:
 ### Token Standards: Supporting a Range of Assets
 
 The bridge is compatible with various token standards, including `ERC20`, `ERC721`, and others, enabling a wide range of assets to be transferred between chains.
+
+## Deposit and withdrawal workflow

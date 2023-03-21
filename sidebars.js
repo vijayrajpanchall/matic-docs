@@ -1271,7 +1271,7 @@ module.exports = {
         "supernets/operate/supernets-install",
         "supernets/operate/supernets-local-deploy",
         "supernets/operate/supernets-local-deploy-supernet",
-        "supernets/operate/supernets-deploy-bridge",
+        "supernets/operate/supernets-bridge",
         {
           type: "category",
           label: "Modules",

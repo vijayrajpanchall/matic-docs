@@ -31,7 +31,7 @@ export const firstRow = [
     },
     {
         title: "Regenesis to PolyBFT",
-        linkUrl: "/docs/maintain/govern/pips/",
+        linkUrl: "/docs/supernets/operate/supernets-ibft-to-polybft",
         imageUrl: "/img/supernets/supernets-logo.png",
         description: "Discover how to migrate from a client running IBFT consensus to PolyBFT consensus."
     },
