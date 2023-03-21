@@ -14,60 +14,9 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import {useState} from 'react';
 
-export const JsonRpcTerminal = (props) => {
-  const [value, setValue] = useState("");
-  const { method, params, network } = props;
-  return (
-    <div>
-      <div>
-        {value != "" ? <pre className="json_rpc_terminal">{value}</pre> : null}
-      </div>
-      <div>
-        {value == "" ? (
-          <button
-            className="json_rpc_terminal_button"
-            onClick={() => {
-              fetch(network, {
-                method: "POST",
-                headers: {
-                  Accept: "application/json",
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                  jsonrpc: "2.0",
-                  method: method,
-                  params: params,
-                  id: 1,
-                }),
-              })
-                .then((res) => res.json())
-                .then((response) => {
-                  setValue(JSON.stringify(response));
-                });
-            }}
-          >
-            Run command
-          </button>
-        ) : (
-          <button
-            className="json_rpc_terminal_button"
-            onClick={() => {
-              setValue("");
-            }}
-          >
-            Clear Terminal
-          </button>
-        )}
-      </div>
-    </div>
-  );
-};
-
 ## eth_chainId
 
 Returns the currently configured chain id, a value used in replay-protected transaction signing as introduced by EIP-155.
-
----
 
 <h4><i>Parameters:</i></h4>
 
@@ -79,20 +28,13 @@ Returns the currently configured chain id, a value used in replay-protected tran
 
 <h4><i>Example:</i></h4>
 
-Run the command and see live results from our testnet.
-
-
 ````bash
-curl  https://rpc.poa.psdk.io:8545 -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_chainId","params":[],"id":1}'
+curl  https://rpc-endpoint.io:8545 -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_chainId","params":[],"id":1}'
 ````
-
-<JsonRpcTerminal method="eth_chainId" params={[]} network="https://rpc.poa.psdk.io:8545"/>
 
 ## eth_syncing
 
 Returns information about the sync status of the node
-
----
 
 <h4><i>Parameters:</i></h4>
 
@@ -109,20 +51,13 @@ Returns information about the sync status of the node
 
 <h4><i>Example:</i></h4>
 
-Run the command and see live results from our testnet.
-
-
 ````bash
-curl  https://rpc.poa.psdk.io:8545 -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_syncing","params":[],"id":1}'
+curl  https://rpc-endpoint.io:8545 -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_syncing","params":[],"id":1}'
 ````
-
-<JsonRpcTerminal method="eth_syncing" params={[]} network="https://rpc.poa.psdk.io:8545"/>
 
 ## eth_getBlockByNumber
 
 Returns block information by number.
-
----
 
 <h4><i>Parameters:</i></h4>
 
@@ -154,20 +89,13 @@ Object - A block object, or null when no block was found:
 
 <h4><i>Example:</i></h4>
 
-Run the command and see live results from our testnet.
-
-
 ````bash
-curl  https://rpc.poa.psdk.io:8545 -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_getBlockByNumber","params":["latest", true],"id":1}'
+curl  https://rpc-endpoint.io:8545 -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_getBlockByNumber","params":["latest", true],"id":1}'
 ````
-
-<JsonRpcTerminal method="eth_getBlockByNumber" params={["latest", true]} network="https://rpc.poa.psdk.io:8545"/>
 
 ## eth_getBlockByHash
 
 Returns block information by hash.
-
----
 
 <h4><i>Parameters:</i></h4>
 
@@ -200,14 +128,12 @@ Returns block information by hash.
 <h4><i>Example:</i></h4>
 
 ````bash
-curl  https://rpc.poa.psdk.io:8545 -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_getBlockByHash","params":["0xdc0818cf78f21a8e70579cb46a43643f78291264dda342ae31049421c82d21ae",false],"id":1}'
+curl  https://rpc-endpoint.io:8545 -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_getBlockByHash","params":["0xdc0818cf78f21a8e70579cb46a43643f78291264dda342ae31049421c82d21ae",false],"id":1}'
 ````
 
 ## eth_blockNumber
 
 Returns the number of the most recent block.
-
----
 
 <h4><i>Parameters:</i></h4>
 
@@ -219,14 +145,9 @@ None
 
 <h4><i>Example:</i></h4>
 
-Run the command and see live results from our testnet.
-
-
 ````bash
-curl  https://rpc.poa.psdk.io:8545 -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}'
+curl  https://rpc-endpoint.io:8545 -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}'
 ````
-
-<JsonRpcTerminal method="eth_blockNumber" params={[]} network="https://rpc.poa.psdk.io:8545"/>
 
 ## eth_gasPrice
 
@@ -246,20 +167,13 @@ None
 
 <h4><i>Example:</i></h4>
 
-Run the command and see live results from our testnet.
-
-
 ````bash
-curl  https://rpc.poa.psdk.io:8545 -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_gasPrice","params":[],"id":1}'
+curl  https://rpc-endpoint.io:8545 -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_gasPrice","params":[],"id":1}'
 ````
-
-<JsonRpcTerminal method="eth_gasPrice" params={[]} network="https://rpc.poa.psdk.io:8545"/>
 
 ## eth_getBalance
 
 Returns the balance of the account of the given address.
-
----
 
 <h4><i>Parameters:</i></h4>
 
@@ -273,14 +187,12 @@ Returns the balance of the account of the given address.
 <h4><i>Example:</i></h4>
 
 ````bash
-curl  https://rpc.poa.psdk.io:8545 -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_getBalance","params":["0x407d73d8a49eeb85d32cf465507dd71d507100c1", "latest"],"id":1}'
+curl  https://rpc-endpoint.io:8545 -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_getBalance","params":["0x407d73d8a49eeb85d32cf465507dd71d507100c1", "latest"],"id":1}'
 ````
 
 ## eth_sendRawTransaction
 
 Creates new message call transaction or a contract creation for signed transactions.
-
----
 
 <h4><i>Parameters:</i></h4>
 
@@ -293,14 +205,12 @@ Creates new message call transaction or a contract creation for signed transacti
 <h4><i>Example:</i></h4>
 
 ````bash
-curl  https://rpc.poa.psdk.io:8545 -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_sendRawTransaction","params":["0xd46e8dd67c5d32be8d46e8dd67c5d32be8058bb8eb970870f072445675058bb8eb970870f072445675"],"id":1}'
+curl  https://rpc-endpoint.io:8545 -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_sendRawTransaction","params":["0xd46e8dd67c5d32be8d46e8dd67c5d32be8058bb8eb970870f072445675058bb8eb970870f072445675"],"id":1}'
 ````
 
 ## eth_getTransactionByHash
 
 Returns the information about a transaction requested by transaction hash.
-
----
 
 <h4><i>Parameters:</i></h4>
 
@@ -328,7 +238,7 @@ Returns the information about a transaction requested by transaction hash.
 
 
 ````bash
-curl  https://rpc.poa.psdk.io:8545 -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_getTransactionByHash","params":["0x88df016429689c079f3b2f6ad39fa052532c56795b733da78a91ebe6a713944b"],"id":1}'
+curl  https://rpc-endpoint.io:8545 -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_getTransactionByHash","params":["0x88df016429689c079f3b2f6ad39fa052532c56795b733da78a91ebe6a713944b"],"id":1}'
 ````
 
 ## eth_getTransactionReceipt
@@ -336,8 +246,6 @@ curl  https://rpc.poa.psdk.io:8545 -X POST -H "Content-Type: application/json" -
 Returns the receipt of a transaction by transaction hash.
 
 Note That the receipt is not available for pending transactions.
-
----
 
 <h4><i>Parameters:</i></h4>
 
@@ -366,14 +274,12 @@ It also returns either :
 <h4><i>Example:</i></h4>
 
 ````bash
-curl  https://rpc.poa.psdk.io:8545 -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_getTransactionReceipt","params":["0xb903239f8543d04b5dc1ba6579132b143087c68db1b2168786408fcbce568238"],"id":1}'
+curl  https://rpc-endpoint.io:8545 -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_getTransactionReceipt","params":["0xb903239f8543d04b5dc1ba6579132b143087c68db1b2168786408fcbce568238"],"id":1}'
 ````
 
 ## eth_getTransactionCount
 
 Returns the number of transactions sent from an address.
-
----
 
 <h4><i>Parameters:</i></h4>
 
@@ -387,14 +293,12 @@ Returns the number of transactions sent from an address.
 <h4><i>Example:</i></h4>
 
 ````bash
-curl  https://rpc.poa.psdk.io:8545 -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_getTransactionCount","params":["0x407d73d8a49eeb85d32cf465507dd71d507100c1","latest"],"id":1}'
+curl  https://rpc-endpoint.io:8545 -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_getTransactionCount","params":["0x407d73d8a49eeb85d32cf465507dd71d507100c1","latest"],"id":1}'
 ````
 
 ## eth_getBlockTransactionCountByNumber
 
 Returns the number of transactions in a block matching the given block number.
-
----
 
 <h4><i>Parameters:</i></h4>
 
@@ -406,19 +310,13 @@ Returns the number of transactions in a block matching the given block number.
 
 <h4><i>Example:</i></h4>
 
-Run the command and see live results from our testnet.
-
 ````bash
-curl  https://rpc.poa.psdk.io:8545 -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_getBlockTransactionCountByNumber","params":["latest"],"id":1}'
+curl  https://rpc-endpoint.io:8545 -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_getBlockTransactionCountByNumber","params":["latest"],"id":1}'
 ````
-
-<JsonRpcTerminal method="eth_getBlockTransactionCountByNumber" params={[]} network="https://rpc.poa.psdk.io:8545"/>
 
 ## eth_getLogs
 
 Returns an array of all logs matching a given filter object.
-
----
 
 <h4><i>Parameters:</i></h4>
 <b> Object </b>  - The filter options:
@@ -436,14 +334,12 @@ Returns an array of all logs matching a given filter object.
 <h4><i>Example:</i></h4>
 
 ````bash
-curl  https://rpc.poa.psdk.io:8545 -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_getLogs","params":[{"topics": ["0x000000000000000000000000a94f5374fce5edbc8e2a8697c15331677e6ebf0b"]}],"id":1}'
+curl  https://rpc-endpoint.io:8545 -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_getLogs","params":[{"topics": ["0x000000000000000000000000a94f5374fce5edbc8e2a8697c15331677e6ebf0b"]}],"id":1}'
 ````
 
 ## eth_getCode
 
 Returns code at a given address.
-
----
 
 <h4><i>Parameters:</i></h4>
 
@@ -457,14 +353,12 @@ Returns code at a given address.
 <h4><i>Example:</i></h4>
 
 ````bash
-curl  https://rpc.poa.psdk.io:8545 -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_getCode","params":["0xa94f5374fce5edbc8e2a8697c15331677e6ebf0b", "0x2"],"id":1}'
+curl  https://rpc-endpoint.io:8545 -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_getCode","params":["0xa94f5374fce5edbc8e2a8697c15331677e6ebf0b", "0x2"],"id":1}'
 ````
 
 ## eth_call
 
 Executes a new message call immediately without creating a transaction on the blockchain.
-
----
 
 <h4><i>Parameters:</i></h4>
 <b> Object </b>  - The transaction call object
@@ -484,14 +378,12 @@ Executes a new message call immediately without creating a transaction on the bl
 <h4><i>Example:</i></h4>
 
 ````bash
-curl  https://rpc.poa.psdk.io:8545 -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_call","params":[{see above}],"id":1}'
+curl  https://rpc-endpoint.io:8545 -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_call","params":[{see above}],"id":1}'
 ````
 
 ## eth_getStorageAt
 
 Returns the value from a storage position at a given address.
-
----
 
 <h4><i>Parameters:</i></h4>
 
@@ -506,14 +398,12 @@ Returns the value from a storage position at a given address.
 <h4><i>Example:</i></h4>
 
 ````bash
-curl  https://rpc.poa.psdk.io:8545 -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_getStorageAt","params":["0x295a70b2de5e3953354a6a8344e616ed314d7251", "0x0", "latest"],"id":1}'
+curl  https://rpc-endpoint.io:8545 -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_getStorageAt","params":["0x295a70b2de5e3953354a6a8344e616ed314d7251", "0x0", "latest"],"id":1}'
 ````
 
 ## eth_estimateGas
 
 Generates and returns an estimate of how much gas is necessary to allow the transaction to complete. The transaction will not be added to the blockchain. Note that the estimate may be significantly more than the amount of gas actually used by the transaction, for a variety of reasons including EVM mechanics and node performance.
-
----
 
 <h4><i>Parameters:</i></h4>
 
@@ -536,7 +426,7 @@ Expect that all properties are optional.
 <h4><i>Example:</i></h4>
 
 ````bash
-curl  https://rpc.poa.psdk.io:8545 -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_estimateGas","params":[{see above}],"id":1}'
+curl  https://rpc-endpoint.io:8545 -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_estimateGas","params":[{see above}],"id":1}'
 ````
 
 ## eth_newFilter
@@ -544,8 +434,6 @@ curl  https://rpc.poa.psdk.io:8545 -X POST -H "Content-Type: application/json" -
 Creates a filter object, based on filter options.
 To get all matching logs for specific filter, call eth_getFilterLogs.
 To check if the state has changed, call eth_getFilterChanges.
-
----
 
 <h4><i>Parameters:</i></h4>
 <b> Object </b> - The filter options:
@@ -562,15 +450,13 @@ To check if the state has changed, call eth_getFilterChanges.
 <h4><i>Example:</i></h4>
 
 ````bash
-curl  https://rpc.poa.psdk.io:8545 -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_newFilter","params":[{"topics":["0x12341234"]}],"id":1}'
+curl  https://rpc-endpoint.io:8545 -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_newFilter","params":[{"topics":["0x12341234"]}],"id":1}'
 ````
 
 ## eth_newBlockFilter
 
 Creates a filter in the node, to notify when a new block arrives.
 To check if the state has changed, call eth_getFilterChanges.
-
----
 
 <h4><i>Parameters:</i></h4>
 
@@ -582,13 +468,11 @@ None
 
 <h4><i>Example:</i></h4>
 
-Run the command and see live results from our testnet.
-
 ````bash
-curl  https://rpc.poa.psdk.io:8545 -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_newBlockFilter","params":[],"id":1}'
+curl  https://rpc-endpoint.io:8545 -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_newBlockFilter","params":[],"id":1}'
 ````
 
-<JsonRpcTerminal method="eth_newBlockFilter" params={[]} network="https://rpc.poa.psdk.io:8545"/>
+<JsonRpcTerminal method="eth_newBlockFilter" params={[]} network="https://rpc-endpoint.io:8545"/>
 
 ## eth_getFilterLogs
 
@@ -621,14 +505,12 @@ These 2 methods will return the same results for same filter options:
 <h4><i>Example:</i></h4>
 
 ````bash
-curl  https://rpc.poa.psdk.io:8545 -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_getFilterLogs","params":["0x16"],"id":1}'
+curl  https://rpc-endpoint.io:8545 -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_getFilterLogs","params":["0x16"],"id":1}'
 ````
 
 ## eth_getFilterChanges
 
 Polling method for a filter, which returns an array of logs that occurred since the last poll.
-
----
 
 <h4><i>Parameters:</i></h4>
 
@@ -652,15 +534,13 @@ Polling method for a filter, which returns an array of logs that occurred since 
 <h4><i>Example:</i></h4>
 
 ````bash
-curl  https://rpc.poa.psdk.io:8545 -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_getFilterChanges","params":["0x16"],"id":1}'
+curl  https://rpc-endpoint.io:8545 -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_getFilterChanges","params":["0x16"],"id":1}'
 ````
 
 ## eth_uninstallFilter
 
 Uninstalls a filter with a given id. Should always be called when a watch is no longer needed.
 Additionally, filters timeout when they aren’t requested with eth_getFilterChanges for some time.
-
----
 
 <h4><i>Parameters:</i></h4>
 
@@ -673,14 +553,12 @@ Additionally, filters timeout when they aren’t requested with eth_getFilterCha
 <h4><i>Example:</i></h4>
 
 ````bash
-curl  https://rpc.poa.psdk.io:8545 -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_uninstallFilter","params":["0xb"],"id":1}'
+curl  https://rpc-endpoint.io:8545 -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_uninstallFilter","params":["0xb"],"id":1}'
 ````
 
 ## eth_unsubscribe
 
 Subscriptions are cancelled with a regular RPC call with eth_unsubscribe as a method and the subscription id as the first parameter. It returns a bool indicating if the subscription was cancelled successfully.
-
----
 
 <h4><i>Parameters:</i></h4>
 
@@ -693,5 +571,5 @@ Subscriptions are cancelled with a regular RPC call with eth_unsubscribe as a me
 <h4><i>Example:</i></h4>
 
 ````bash
-curl  https://rpc.poa.psdk.io:8545 -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_unsubscribe","params":["0x9cef478923ff08bf67fde6c64013158d"],"id":1}'
+curl  https://rpc-endpoint.io:8545 -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_unsubscribe","params":["0x9cef478923ff08bf67fde6c64013158d"],"id":1}'
 ````
