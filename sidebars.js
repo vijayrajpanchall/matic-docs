@@ -1189,6 +1189,7 @@ module.exports = {
       value: 'Polygon Supernets',
       className: 'sidebar-title',
     },
+    "supernets/index",
     {
       type: "category",
       label: "Introduction",
