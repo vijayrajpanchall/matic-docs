@@ -7,6 +7,11 @@
 
 module.exports = {
   basics: [
+    {
+      type: 'html',
+      value: 'Learning Hub',
+      className: 'sidebar-title',
+    },
     "home/new-to-polygon",
     {
       type: "category",
@@ -54,6 +59,11 @@ module.exports = {
 
   govern: [
     {
+      type: 'html',
+      value: 'Polygon Governance',
+      className: 'sidebar-title',
+    },
+    {
       type: "category",
       label: "Polygon Improvement Proposals (PIPs)",
       link: {
@@ -98,6 +108,11 @@ module.exports = {
   ],
 
   develop: [
+    {
+      type: 'html',
+      value: 'Developer Hub',
+      className: 'sidebar-title',
+    },
     "develop/getting-started",
     "develop/developer-resources",
     {
@@ -505,6 +520,11 @@ module.exports = {
   ],
 
   maticjs: [
+    {
+      type: 'html',
+      value: 'MaticJS SDK',
+      className: 'sidebar-title',
+    },
     "develop/ethereum-polygon/matic-js/get-started",
     "develop/ethereum-polygon/matic-js/api-architecture",
     "develop/ethereum-polygon/matic-js/installation",
@@ -656,6 +676,11 @@ module.exports = {
   ],
 
   pos: [
+    {
+      type: 'html',
+      value: 'Polygon PoS',
+      className: 'sidebar-title',
+    },
     "pos/polygon-architecture",
     {
       type: "category",
@@ -767,6 +792,11 @@ module.exports = {
     },
   ],
   miden: [
+    {
+      type: 'html',
+      value: 'Polygon Miden',
+      className: 'sidebar-title',
+    },
     {
       type: "category",
       label: "Miden VM",
@@ -885,6 +915,11 @@ module.exports = {
   ],
 
   zkEVM: [
+    {
+      type: 'html',
+      value: 'Polygon zkEVM',
+      className: 'sidebar-title',
+    },
     "zkEVM/introduction",
     "zkEVM/architecture",
     {
@@ -963,7 +998,7 @@ module.exports = {
       link: {
         type: "generated-index",
       },
-      collapsed: false,
+      collapsed: true,
       items: [
         "zkEVM/zkProver/overview",
         {
@@ -1049,7 +1084,7 @@ module.exports = {
       link: {
         type: "generated-index",
       },
-      collapsed: false,
+      collapsed: true,
       items: [
         "zkEVM/zkASM/introduction",
         "zkEVM/zkASM/basic-syntax",
@@ -1062,7 +1097,7 @@ module.exports = {
       link: {
         type: "generated-index",
       },
-      collapsed: false,
+      collapsed: true,
       items: [
         "zkEVM/PIL/introduction",
         "zkEVM/PIL/hello-world-examples",
@@ -1091,6 +1126,11 @@ module.exports = {
   // #####################################################################
 
   polygonid: [
+    {
+      type: 'html',
+      value: 'Polygon ID',
+      className: 'sidebar-title',
+    },
     "polygonid/overview",
     "polygonid/issuer/issuer-overview",
     {
@@ -1144,6 +1184,11 @@ module.exports = {
   // #####################################################################
 
   supernets: [
+    {
+      type: 'html',
+      value: 'Polygon Supernets',
+      className: 'sidebar-title',
+    },
     {
       type: "category",
       label: "Introduction",

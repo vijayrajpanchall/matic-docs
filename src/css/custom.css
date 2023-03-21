@@ -1719,3 +1719,13 @@ strong {
   border-left-color: #464449;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   }
+
+/* sidebar-title */
+
+.sidebar-title {
+  color: #ad7dff;
+  font-size: 1.25rem;
+  letter-spacing: 0.04rem;
+  margin: 0.7rem;
+  font-weight: bold;
+}

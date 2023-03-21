@@ -1,7 +1,7 @@
 ---
 id: introduction
 title: Polygon zkEVM Documentation
-sidebar_label: Polygon zkEVM
+sidebar_label: Introduction
 description: Introduction to the Polygon zkEVM developer documentation
 keywords:
   - docs
