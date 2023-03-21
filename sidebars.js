@@ -1278,7 +1278,7 @@ module.exports = {
           link: {
             type: "generated-index",
           },
-          collapsed: false,
+          collapsed: true,
           items: [
             "supernets/modules/access-control",
             "supernets/modules/staking",
@@ -1298,6 +1298,7 @@ module.exports = {
       link: {
         type: "generated-index",
       },
+      collapsed: true,
       items: [
         "supernets/api/json-rpc-eth",
         "supernets/api/json-rpc-net",

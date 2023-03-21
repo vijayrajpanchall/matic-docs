@@ -1729,3 +1729,11 @@ strong {
   margin: 0.7rem;
   font-weight: bold;
 }
+
+.tabs-frame {
+  position: absolute;
+  top: -50px;
+  width: 500px;
+  height: 550px;
+}
+
