@@ -71,7 +71,7 @@ polygon-edge genesis --consensus polybft --validator-set-size=4 \
 polygon-edge server --data-dir ./test-chain-1 \
 --chain ./new-genesis/genesis.json \
 --grpc-address :10000 \
---libp2p :10001 \
+--libp2p :30301 \
 --jsonrpc :10002 \
 --seal
 
@@ -79,7 +79,7 @@ polygon-edge server --data-dir ./test-chain-1 \
 polygon-edge server --data-dir ./test-chain-2 \
 --chain ./new-genesis/genesis.json \
 --grpc-address :20000 \
---libp2p :20001 \
+--libp2p :30302 \
 --jsonrpc :20002 \
 --seal
 
@@ -87,7 +87,7 @@ polygon-edge server --data-dir ./test-chain-2 \
 polygon-edge server --data-dir ./test-chain-3 \
 --chain ./new-genesis/genesis.json \
 --grpc-address :30000 \
---libp2p :30001 \
+--libp2p :30303 \
 --jsonrpc :30002 \
 --seal
 
@@ -95,7 +95,7 @@ polygon-edge server --data-dir ./test-chain-3 \
 polygon-edge server --data-dir ./test-chain-4 \
 --chain ./new-genesis/genesis.json \
 --grpc-address :40000 \
---libp2p :40001 \
+--libp2p :30304 \
 --jsonrpc :40002 \
 --seal
 ```
@@ -344,7 +344,7 @@ After creating the genesis file, you need to start the servers for each node to 
 polygon-edge server --data-dir ./test-chain-1 \
 --chain ./new-genesis/genesis.json \
 --grpc-address :10000 \
---libp2p :10001 \
+--libp2p :30301 \
 --jsonrpc :10002 \
 --seal
 ```
