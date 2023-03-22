@@ -64,7 +64,7 @@ If you have any questions or are interested in using Supernets in a production e
 
 :::
 
-## Unstoppable layer 3 networks
+## Unstoppable Layer 2 & Layer 3 Networks
 
 Supernets are pioneering unstoppable networks for the internet, where decentralized and secure applications can thrive.
 

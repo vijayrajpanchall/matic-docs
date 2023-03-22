@@ -52,9 +52,9 @@ The proposer selection algorithm still needs to be determined. It will resemble 
 where x, y, and z are input parameters related to the s-election, the "Round #" is the current
 Round Number of the system, and "validator n" is the selected proposer.
 
-  ![bridge](/img/supernets/val-select.excalidraw.png)
-
-:::
+<div align="center">
+  <img src="/img/supernets/val-select.excalidraw.png" alt="validator selection" width="50%" height="auto" />
+</div>
 
 </details>
 

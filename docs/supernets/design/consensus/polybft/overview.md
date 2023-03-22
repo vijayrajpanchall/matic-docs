@@ -12,7 +12,13 @@ keywords:
   - pos
 ---
 
-This document presents an overview of Polygon Byzantine Fault Tolerance (PolyBFT), the consensus mechanism of Polygon Supernets.
+This document provides an overview of Polygon Byzantine Fault Tolerance (PolyBFT), the consensus mechanism of Polygon Supernets.
+
+:::caution In active development
+
+PolyBFT is currently in active development and subject to change. New features will be rolled out periodically as the code undergoes audits and improvements. It is not recommended to use PolyBFT in a production environment until it has been thoroughly tested and stabilized.
+
+:::
 
 ---
 
@@ -37,6 +43,6 @@ PolyBFT's consensus protocol is implemented through a set of core smart contract
 
 ## Bridge
 
-The bridge transfers assets and data between a Supernet (layer 2) and an external rootchain (layer 1), making it a critical component of the network's interoperability. Two predicate contracts, one on the childchain and one on the rootchain, implement the core bridge functionality and use the associated core contracts to deposit, withdraw, and verify cross-chain bridge transactions. The diagram below illustrates how the core contracts fit into the system design.
+The bridge transfers assets and data between a Supernet (childchain) and an external EVM-compatible blockchain (rootchain), making it a critical component of the network's interoperability. Two predicate contracts, one on the childchain and one on the rootchain, implement the core bridge functionality and use the associated core contracts to deposit, withdraw, and verify cross-chain bridge transactions. The diagram below illustrates how the core contracts fit into the overall smart contract system design.
 
 ![bridge](/img/supernets/contracts-bridge.excalidraw.png)
