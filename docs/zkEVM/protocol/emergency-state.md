@@ -45,7 +45,7 @@ function activateEmergencyState(uint64 sequencedBatchNum) external
 
 Additionally, anyone can use the `proveNonDeterministicPendingState` function to trigger the emergency state, but only if they can prove that some pending state is non-deterministic.
 
-```pil
+```
 function proveNonDeterministicPendingState( 
    uint64 initPendingStateNum , 
    uint64 finalPendingStateNum ,
@@ -65,7 +65,7 @@ If a soundness vulnerability is exploited, the Trusted Aggregator has the abilit
 
 To initiate the override, use the `overridePendingState` function. Because the Trusted Aggregator is a trusted entity in the system, only the L2 state root provided by the Trusted Aggregator is considered valid for consolidation in the event of a non-deterministic state transition.
 
-```pil
+```
 function overridePendingState( 
    uint64 initPendingStateNum , 
    uint64 finalPendingStateNum , 
