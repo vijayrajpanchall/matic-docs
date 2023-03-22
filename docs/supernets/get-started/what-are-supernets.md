@@ -27,7 +27,7 @@ Before diving into the documentation, please keep the following points in mind:
 
 - **Polygon Edge serves as a consensus client implementation for Polygon Supernets, much like how Geth serves as a client implementation for Ethereum.**
 
-Geth and Edge are client implementations for Ethereum and Supernet blockchains, respectively. They serve as intermediaries between nodes and their respective blockchains, allowing users to interact with the network and take advantage of its benefits. To draw an analogy, Geth and Edge are to Ethereum and Supernets what web browsers are to the internet, enabling users to access and interact with the network.
+Both geth and Edge serve as intermediaries between nodes and their respective blockchains, allowing users to interact with the network and take advantage of its benefits. To draw an analogy, Geth and Edge are to Ethereum and Supernets what web browsers are to the internet, enabling users to access and interact with the network.
 
 :::
 
@@ -35,17 +35,19 @@ Geth and Edge are client implementations for Ethereum and Supernet blockchains, 
 
 ## Introduction
 
+In simple terms, a **Supernet refers to an application-specific chain that operates on the Polygon Edge consensus client with PolyBFT consensus, in bridge mode (and utilizes the transaction relayer), with stake on the associated rootchain (i.e. PoS mainnet), and employs on-chain governance mechanism**.
+
 The following table offers a comprehensive overview on what Supernets are.
 
 | Supernets are | Description |
 |-----------|-------------|
 | Application-specific blockchain networks designed for specific use cases. | Appchains are customizable blockchain networks that developers can tailor to meet specific enterprise or application use cases. With appchains, developers can create high-performance blockchain networks that are fast and low-cost. |
-| The next phase of Polygon PoS mainnet and Ethereum scaling. | Supernets empower projects and enterprises to create highly scalable layer 3 blockchain networks that meet their specific block space requirements while inheriting the security and integrity of the Polygon PoS mainnet and Ethereum mainnet. |
-| Modular and complex-minimized blockchain development. | Supernets offer a modular framework that simplifies blockchain development, providing developers with the tools necessary to create customizable blockchain networks that are scalable, secure, and interoperable. Developers can use the Supernets package to create high-performance blockchain networks with advanced capabilities without worrying about complex integrations or intermediaries. |
+| The next phase of Polygon PoS and Ethereum scaling. | Supernets empower projects and enterprises to create highly scalable layer 3 blockchain networks that meet their specific block space requirements while inheriting the security and integrity of the Polygon PoS and Ethereum mainnet. |
+| Modular and complex-minimized blockchain development. | Supernets offer a modular framework that simplifies blockchain development, providing developers with the tools necessary to create customizable blockchain networks that are scalable, secure, and interoperable. Developers can use the Supernets stack to create high-performance blockchain networks with advanced capabilities without worrying about complex integrations or intermediaries. |
 | Customizable blockchain networks for reliable business logic. | A customizable virtual machine provides full Ethereum Virtual Machine (EVM) support out of the box, enabling developers to tailor the virtual machine to their specific needs and requirements. This feature includes customizing gas limits, adding new opcodes, and integrating with other technologies. |
-| The most supported blockchain infrastructure in the web3 space. | The Supernets ecosystem includes the most extensive premium service providers offering various node and deployment infrastructure, indexers, explorers, oracles, and many other world-class tools necessary for building and deploying Supernets and their associated applications. |
-| Adaptive and compliant blockchain networks that thoroughly reflect their maintainers. | Supernets feature a decentralized on-chain governance mechanism that enables community-driven decision-making and management of the blockchain. This mechanism supports hybrid governance models and allows for the design of permissioned networks with varying degrees of sovereignty based on user and maintainer needs, including the ability to allowlist validators at the governance layer and allowlist network admins at the runtime layer. |
-| Interoperable and multichain driven | A native bridging solution that enables the seamless transfer of assets from various blockchains back to the Polygon ecosystem. This bridging solution allows developers to customize bridge plugins to meet specific requirements, facilitating interoperability between blockchains. |
+| The most supported blockchain infrastructure in the web3 space. | The Supernets ecosystem includes the most extensive suite of premium service providers, who offer various node and deployment infrastructure, indexers, explorers, oracles, and many other world-class tools necessary for building and deploying Supernets and their associated applications. |
+| Adaptive and compliant blockchain networks that thoroughly reflect their maintainers. | Supernets feature an on-chain governance mechanism that enables community-driven decision making and management of the blockchain. This mechanism supports hybrid governance models and allows for the design of either permissionless networks or permissioned networks with varying degrees of sovereignty based on user and maintainer needs, including the ability to allowlist validators and network admins. |
+| Interoperable and multichain driven | A native bridging solution enables the seamless transfer of assets from various EVM-compatible blockchains back to the Polygon ecosystem. This bridging solution allows developers to customize bridge plugins to meet specific requirements, facilitating interoperability between blockchains and different layers. |
 
 :::caution In active development
 
@@ -64,17 +66,13 @@ If you have any questions or are interested in using Supernets in a production e
 
 ## Unstoppable layer 3 networks
 
-Supernets are at the forefront of shaping the next generation of the web, where unstoppable networks hold the key to enabling secure, decentralized, and efficient applications to thrive. These networks must be resilient and secure, and scalable to support the growing demands of the decentralized ecosystem.
+Supernets are pioneering unstoppable networks for the internet, where decentralized and secure applications can thrive.
 
 <div align="center">
   <img src="/img/supernets/supernets-together.excalidraw.png" alt="bridge" width="90%" height="40%" />
 </div>
 
-The diagram above illustrates the interconnectivity of Supernets with the Polygon PoS network, which is ultimately secured and supported by the security properties of Ethereum.
-
-By harnessing the power of blockchain technology, Supernets offer a robust foundation for building unstoppable networks that can withstand adversarial conditions, resist censorship, and scale to accommodate the increasing demand for processing power, data storage, and transaction throughput.
-
-### Reinforcing network resilience, security, and scalability
+The diagram above demonstrates how Supernets are interconnected with the Polygon PoS network, which benefits from the security properties of Ethereum. By leveraging blockchain technology, Supernets provide a strong foundation for building decentralized and blockchain-based solutions that can withstand adversarial conditions, resist censorship, and scale to meet the increasing demand for processing power, data storage, and transaction throughput.
 
 Supernets employ a multi-faceted approach that leverages a combination of complementary scaling solutions to achieve maximum scalability. These solutions include layer-2 scaling techniques, parallelization, and, eventually, ZK technology.
 
@@ -84,11 +82,11 @@ Supernets employ a multi-faceted approach that leverages a combination of comple
 
 By integrating these methods, Supernets can efficiently accommodate the increasing demand for processing power, data storage, and transaction throughput as the number of users and applications on the network grows.
 
-## Implementation partners and general services
+## Supernets Program
 
-### Service providers
+### Implementation partners and service providers
 
-The Supernets package offers a range of service providers that can assist with various aspects of blockchain development, deployment, and maintenance. These include:
+To elaborate further, a Supernets program offers a range of service providers that can assist with various aspects of blockchain development, deployment, and maintenance. These include:
 
 - **Node Providers**: These providers offer node infrastructure services that support the operation and maintenance of Supernets-based networks. Node providers can help ensure network stability, security, and scalability by providing reliable and optimized node infrastructure.
 
@@ -103,6 +101,12 @@ The Supernets package offers a range of service providers that can assist with v
 - **KYC Providers**: These providers offer Know Your Customer (KYC) and Anti-Money Laundering (AML) compliance services, which can help ensure that Supernets-based networks comply with regulatory requirements and mitigate risk for network participants.
 
 - **Fiat On-Ramps**: These services bridge fiat currencies and digital assets, enabling users to purchase and use digital assets on Supernets-based networks. Fiat on-ramps can help increase accessibility and adoption of Supernets-based networks.
+
+:::note Services will become available shortly
+
+As partnerships develop and the ecosystem comes to life, new services will be ready for use. These services will become available shortly, and tutorials and other resources will be provided to help users make the most of them. Keep an eye out for updates as the ecosystem continues to grow and evolve.
+
+:::
 
 ### Infra-as-a-Service
 
