@@ -1,38 +1,38 @@
 export const firstRow = [
     {
-        title: "Why Supernets",
-        linkUrl: "/docs/supernets/get-started/why-supernets",
+        title: "What are Supernets",
+        linkUrl: "/docs/supernets/get-started/what-are-supernets",
         imageUrl: "/img/supernets/supernets-logo.png",
-        description: "Discover how Supernets provide infrastructure to reshape the next generation of the web."
+        description: "Discover how Supernets provide infrastructure to reshape the web."
     },
     {
-        title: "PolyBFT",
+        title: "PolyBFT Consensus",
         linkUrl: "/docs/category/polybft-consensus",
         imageUrl: "/img/supernets/supernets-logo.png",
-        description: "Explore the capabilities of the Edge client's new consensus mechanism, PolyBFT."
+        description: "Explore the capabilities of the new consensus mechanism."
     },
     {
-        title: "Native cross-chain bridge",
+        title: "Native Cross-Chain Bridge",
         linkUrl: "/docs/category/cross-chain-bridge",
         imageUrl: "/img/supernets/supernets-logo.png",
-        description: "Explore the new in-built bridging mechanism for the Edge client."
+        description: "Explore the new in-built bridging mechanism."
     },
     {
         title: "Native Gas Token",
         linkUrl: "/docs/supernets/design/assets/erc/erc20",
         imageUrl: "/img/supernets/supernets-logo.png",
-        description: "Learn about the most powerful blockchain development framework."
+        description: "Learn about the token standards available on Supernets."
     },
     {
         title: "Deploy a Supernet",
         linkUrl: "/docs/supernets/operate/supernets-local-deploy-supernet",
         imageUrl: "/img/supernets/supernets-logo.png",
-        description: "Start building by deploying a childchain and connecting it to the Mumbai PoS testnet."
+        description: "Start building by deploying a childchain and connecting it to the testnet."
     },
     {
         title: "Regenesis to PolyBFT",
         linkUrl: "/docs/supernets/operate/supernets-ibft-to-polybft",
         imageUrl: "/img/supernets/supernets-logo.png",
-        description: "Discover how to migrate from a client running IBFT consensus to PolyBFT consensus."
+        description: "Discover how to migrate from IBFT to PolyBFT."
     },
 ];
