@@ -37,7 +37,7 @@ The `EIP1559Burn` contract is an additional feature on the Polygon Supernets tha
 
 ## Differences Between ChildERC20 and NativeERC20
 
-The main difference between ChildERC20 and NativeERC20 is their deployment and management. `ChildERC20` is deployed on the Polygon network's childchain and is used as a token standard for creating fungible tokens on the childchain. In contrast, `NativeERC20` is deployed on the network's rootchain and is used as the native token on the network.
+The main difference between ChildERC20 and NativeERC20 is their deployment and management. `ChildERC20` is deployed on the childchain and is used as a token standard for creating fungible tokens on the childchain. In contrast, `NativeERC20` is deployed on the rootchain and is used as the native token on the network.
 
 `ChildERC20` tokens are managed through the ERC20Predicate contract, while NativeERC20 is managed through the System contract. `ChildERC20` tokens can be transferred between the Polygon and Ethereum networks through the ERC20Predicate contract, while `NativeERC20` tokens can be managed through the NativeBridge contract.
 

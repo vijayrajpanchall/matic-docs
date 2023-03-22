@@ -1,11 +1,5 @@
 export const firstRow = [
     {
-        title: "What are Supernets",
-        linkUrl: "/docs/category/deploying-contracts",
-        imageUrl: "/img/supernets/supernets-logo.png",
-        description: "Learn about the most powerful blockchain development framework."
-    },
-    {
         title: "Why Supernets",
         linkUrl: "/docs/supernets/get-started/why-supernets",
         imageUrl: "/img/supernets/supernets-logo.png",
@@ -22,6 +16,12 @@ export const firstRow = [
         linkUrl: "/docs/category/cross-chain-bridge",
         imageUrl: "/img/supernets/supernets-logo.png",
         description: "Explore the new in-built bridging mechanism for the Edge client."
+    },
+    {
+        title: "Native Gas Token",
+        linkUrl: "/docs/category/deploying-contracts",
+        imageUrl: "/img/supernets/supernets-logo.png",
+        description: "Learn about the most powerful blockchain development framework."
     },
     {
         title: "Deploy a Supernet",

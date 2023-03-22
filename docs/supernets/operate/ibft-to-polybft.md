@@ -24,6 +24,16 @@ This document describes the process for regenesis from an exisiting chain that u
 
 ### Create cluster
 
+Setting up a local IBFT consensus cluster for development purposes is an important step in creating a robust development environment.
+A dedicated script is provided as part of the client to facilitates the cluster setup:
+
+- Key generation: It creates cryptographic keys for validators that will participate in the consensus process, ensuring secure communication and data integrity.
+- Network configuration: The script sets up the network parameters, such as the ports and IP addresses, to establish a local test network.
+- Data directories: It prepares the necessary file structures and data directories.
+- Genesis block creation: The script generates the genesis block.
+
+Create an IBFT cluster:
+
 ```bash
 scripts/cluster ibft
 ```

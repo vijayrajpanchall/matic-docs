@@ -33,7 +33,7 @@ Geth and Edge are client implementations for Ethereum and Supernet blockchains, 
 
 ## Introduction
 
-Supernets are blockchain infrastructure that provide a modular framework for building fast, scalable, and secure blockchains with advanced features and capabilities. They are designed to be next-generation blockchain networks that can support a wide range of use cases. The Supernet initiative is poised to bring about a mass-scale adoption of blockchain technology by delivering a seamless user experience to the masses. By harnessing the power of web3, Supernets are paving the way for the next generation of decentralized applications that are secure, scalable, and compliant.
+Supernets are a blockchain infrastructure that provide a modular framework for building fast, scalable, and secure blockchains with advanced features and capabilities. They are designed to be next-generation blockchain networks that can support a wide range of use cases. The Supernet initiative is poised to bring about a mass-scale adoption of blockchain technology by delivering a seamless user experience to the masses. By harnessing the power of web3, Supernets are paving the way for the next generation of decentralized applications that are secure, scalable, and compliant.
 
 The sections below offer different prespectives on how to understand Supernets.
 
