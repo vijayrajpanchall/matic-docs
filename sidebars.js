@@ -87,25 +87,26 @@ module.exports = {
   operatepos: [
     "operate/technical-requirements",
     "operate/snapshot-instructions-heimdall-bor",
-    "operate/network-rpc-endpoints",
-    "operate/access-node-alchemy",
-    "operate/full-node-deployment",
-    "operate/full-node-binaries",
-    "operate/full-node-docker",
-    "operate/full-node",
     {
       type: "category",
-      label: "Erigon's Archive Node",
+      label: "Run a Full Node",
       link: {
         type: "generated-index",
       },
+      collapsed: false,
       items: [
-        "operate/erigon/client-setup",
-        "operate/erigon/archive-node-ansible",
-        "operate/erigon/archive-node-binaries",
+        "operate/full-node-deployment",
+        "operate/full-node-binaries",
+        "operate/full-node-docker",
+        "operate/full-node",
       ],
     },
-  ],
+    "operate/network-rpc-endpoints",
+    "operate/default-ports",
+    /*"operate/access-node-alchemy",*/
+    "operate/archive-node",
+    "operate/erigon-client",
+],
 
   develop: [
     {

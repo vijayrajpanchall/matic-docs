@@ -1,21 +1,20 @@
 ---
 id: network-rpc-endpoints
 title: Network Endpoints
-sidebar_label: Endpoints
-description: Network endpoints for Polyon PoS mainnet and testnet
+sidebar_label: Network Endpoints
+description: Network endpoints for Polyon PoS Mainnet and Mumbai Testnet.
 keywords:
   - docs
   - polygon
-  - matic
   - remote procedure call
   - network endpoints
   - rpcs
   - http
   - websocket
   - wss
-image: https://wiki.polygon.technology/img/polygon-logo.png
-slug: endpoints
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 

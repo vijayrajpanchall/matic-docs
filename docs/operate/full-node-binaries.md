@@ -1,6 +1,7 @@
 ---
 id: full-node-binaries
-title: Run a full node with Binaries
+title: Run a Full Node using Binaries
+sidebar_label: Using Binaries
 description: Deploy a Full Polygon Node using binaries
 keywords:
   - docs
@@ -10,7 +11,7 @@ keywords:
   - binaries
   - deploy
   - run full node
-image: https://wiki.polygon.technology/img/polygon-logo.png
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
 import Tabs from '@theme/Tabs';

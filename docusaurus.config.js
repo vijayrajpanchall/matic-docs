@@ -214,10 +214,6 @@ module.exports = {
             from:'/docs/develop/network-details/snapshot-instructions-heimdall-bor'
           },
           {
-            to:'/docs/operate/endpoints',
-            from:'/docs/develop/network-details/endpoints'
-          },
-          {
             to:'/docs/operate/access-node-alchemy',
             from:'/docs/develop/network-details/access-node-alchemy'
           },

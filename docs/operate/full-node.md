@@ -1,6 +1,7 @@
 ---
 id: full-node
-title: Run a full node with Packages
+title: Run a Full Node using Packages
+sidebar_label: Using Packages
 description: Learn how to run a full node on the Polygon network using utility scripts.
 keywords:
   - docs
@@ -9,7 +10,7 @@ keywords:
   - mainnet
   - heimdall
   - bor
-image: https://matic.network/banners/matic-network-16x9.png
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
@@ -56,7 +57,7 @@ You have to follow the exact outlined sequence of actions, otherwise you will ru
     curl -L https://raw.githubusercontent.com/maticnetwork/install/main/heimdall.sh | bash
     ```
 
-    or install a specific version, node type (`sentry` or `validator`), and network (`mainnet` or `mumbai`). All release versions can be found on
+    or install a specific version, node type (`sentry` or `validator`), and network (`mainnet` or `testnet`). All release versions can be found on
     [Heimdall GitHub repository](https://github.com/maticnetwork/heimdall/releases).
 
     ```shell
@@ -73,7 +74,7 @@ You have to follow the exact outlined sequence of actions, otherwise you will ru
     curl -L https://raw.githubusercontent.com/maticnetwork/install/main/bor.sh | bash
     ```
 
-    or install a specific version, node type (`sentry` or `validator`), and network (`mainnet` or `mumbai`). All release versions could be found on
+    or install a specific version, node type (`sentry` or `validator`), and network (`mainnet` or `testnet`). All release versions could be found on
     [Bor Github repository](https://github.com/maticnetwork/bor/releases).
 
     ```shell
@@ -99,13 +100,13 @@ config files and chain data on your node, please skip the [Configure Heimdall](#
 
 - Initialize Heimdall configs
 
-    ```shell
-    # For mainnet
-    sudo -u heimdall heimdalld init --chain=mainnet --home /var/lib/heimdall
+```shell
+# For mainnet
+sudo -u heimdall heimdalld init --chain=mainnet --home /var/lib/heimdall
 
-    # For testnet
-    sudo -u heimdall heimdalld init --chain=mumbai --home /var/lib/heimdall
-    ```
+# For testnet
+sudo -u heimdall heimdalld init --chain=mumbai --home /var/lib/heimdall
+```
 
 - You will need to add a few details in the `config.toml` file. To open the `config.toml` file run the following command `vi /var/lib/heimdall/config/config.toml`
 
@@ -120,34 +121,90 @@ config files and chain data on your node, please skip the [Configure Heimdall](#
 
     Make sure you keep the proper formatting when you make the changes above.
 
-- Configure seeds and bootnodes for Bor
+### Upgrade from 0.2.x to 0.3.x
 
-    - Open the `config.toml` using below command:
+Bor 0.3.0 and Heimdall 0.3.0 uses new CLIs and path standards. It is recommended to set up everything from a new machine.
+However, if you still want to perform upgrade on existing node, you need to follow one-time migration steps
+outlined below. If you are installing everything from a new machine, you can skip this section and continue to [Configure service files](#configure-service-files-for-bor-and-heimdall).
 
-    ```bash
-    sed -i 's|.*\[p2p.discovery\]|  \[p2p.discovery\] |g' /var/lib/bor/config.toml
+- Stop existing Heimdall and Bor services:
+
+    ```shell
+    sudo service bor stop
+    sudo service heimdalld stop
+    sudo service heimdalld-rest-server stop
+    sudo service heimdalld-bridge stop
     ```
 
-    - Edit the seeds for Mainnet or Mumbai Testnet accordingly:
-    
-    ```bash title="For Mainnet"
-    sed -i 's|.*bootnodes =.*|    bootnodes = ["enode://0cb82b395094ee4a2915e9714894627de9ed8498fb881cec6db7c65e8b9a5bd7f2f25cc84e71e89d0947e51c76e85d0847de848c7782b13c0255247a6758178c@44.232.55.71:30303","enode://88116f4295f5a31538ae409e4d44ad40d22e44ee9342869e7d68bdec55b0f83c1530355ce8b41fbec0928a7d75a5745d528450d30aec92066ab6ba1ee351d710@159.203.9.164:30303","enode://4be7248c3a12c5f95d4ef5fff37f7c44ad1072fdb59701b2e5987c5f3846ef448ce7eabc941c5575b13db0fb016552c1fa5cca0dda1a8008cf6d63874c0f3eb7@3.93.224.197:30303","enode://32dd20eaf75513cf84ffc9940972ab17a62e88ea753b0780ea5eca9f40f9254064dacb99508337043d944c2a41b561a17deaad45c53ea0be02663e55e6a302b2@3.212.183.151:30303"]|g' /var/lib/bor/config.toml
+- Create a backup folder in case something went wrong:
+
+    ```shell
+    mkdir ./backup
+    mkdir ./backup/bin
+    mkdir -p ./backup/go/bin
     ```
 
-    ```bash title="For Mumbai Testnet"
-    sed -i 's|.*bootnodes =.*|    bootnodes = ["enode://320553cda00dfc003f499a3ce9598029f364fbb3ed1222fdc20a94d97dcc4d8ba0cd0bfa996579dcc6d17a534741fb0a5da303a90579431259150de66b597251@54.147.31.250:30303","enode://f0f48a8781629f95ff02606081e6e43e4aebd503f3d07fc931fad7dd5ca1ba52bd849a6f6c3be0e375cf13c9ae04d859c4a9ae3546dc8ed4f10aa5dbb47d4998@34.226.134.117:30303"]|g' /var/lib/bor/config.toml
+- Move old binaries:
+
+    ```shell
+    sudo mv /usr/bin/bor ./backup/bin
+    sudo mv /usr/bin/heimdalld ./backup/bin
+    sudo mv /usr/bin/heimdallcli ./backup/bin
+    sudo mv /usr/bin/bridge ./backup/bin
+    sudo mv $(go env GOPATH)/bin/bor ./backup/go/bin
+    sudo mv $(go env GOPATH)/bin/heimdalld ./backup/go/bin
+    sudo mv $(go env GOPATH)/bin/heimdallcli ./backup/go/bin
+    sudo mv $(go env GOPATH)/bin/bridge ./backup/go/bin
     ```
 
-    - Finally, run the command: ```chown bor /var/lib/bor```
+- Move old service files:
 
-### Update service config user permission
+    ```shell
+    sudo mv /etc/systemd/system/bor.service ./backup
+    sudo mv /etc/systemd/system/heimdalld.service ./backup
+    sudo mv /etc/systemd/system/heimdalld-rest-server.service ./backup
+    sudo mv /etc/systemd/system/heimdalld-bridge.service ./backup
+    ```
+
+- Migrate heimdall and bor directory to `/var/lib` and change ownership:
+    ```shell
+    sudo mv ~/.heimdalld /var/lib/heimdall
+    sudo mv ~/.bor /var/lib/bor
+    sudo chown -R heimdall /var/lib/heimdall
+    sudo chown -R bor /var/lib/bor
+    ```
+
+    In case data copying is too slow or original data folder is mounted on a different device, you can create symlinks
+
+    ```shell
+    sudo chown -R heimdall ~/.bor
+    sudo chown -R bor ~/.heimdalld
+    sudo rm -rf /var/lib/heimdall
+    sudo ln -nfs ~/.heimdalld /var/lib/heimdall
+    sudo ln -nfs ~/.bor /var/lib/bor
+    sudo chown -R heimdall /var/lib/heimdall
+    sudo chown -R bor /var/lib/bor
+    ```
+
+- Copy configurations in `node/bor/start.sh` to bor configuration file `/var/lib/bor/config.toml`. Note that some
+  flags are renamed in the new CLI, you can find the documentation for new CLI [here](https://github.com/maticnetwork/bor/tree/master/docs/cli) and sample configuration file in [launch repository](https://github.com/maticnetwork/launch).
+
+  You can use [this util script](https://github.com/maticnetwork/bor/blob/develop/scripts/getconfig.sh) to convert `start.sh` to a `config.toml` file on your host. Example usage:
 
 ```bash
-# Heimdall
-sed -i 's/User=heimdall/User=root/g' /lib/systemd/system/heimdalld.service
+    $ git clone https://github.com/maticnetwork/bor.git
+    $ cd bor/scripts
+    $ BOR_DIR=/var/lib/bor ./getconfig.sh
+    * Path to start.sh: /home/ubuntu/node/bor/start.sh
+    * Your validator address (e.g. 0xca67a8D767e45056DC92384b488E9Af654d78DE2), or press Enter to skip if running a sentry node: 0xca67a8D767e45056DC92384b488E9Af654d78DE2
+    Thank you, your inputs are:
+    Path to start.sh: /home/ubuntu/node/bor/start.sh
+    Address: 0xca67a8D767e45056DC92384b488E9Af654d78DE2
+    Path to the config file: /home/ubuntu/node/bor/start-config.toml
+    ...
 
-# Bor
-sed -i 's/User=bor/User=root/g' /lib/systemd/system/bor.service
+    $ sudo cp /home/ubuntu/node/bor/start-config.toml /var/lib/bor/config.toml
+    $ sudo chown bor /var/lib/bor/config.toml
 ```
 
 ### Configure service files for bor and heimdall

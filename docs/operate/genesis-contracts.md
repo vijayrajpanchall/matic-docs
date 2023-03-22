@@ -7,12 +7,12 @@ keywords:
   - matic
   - polygon
   - genesis contracts
-image: https://wiki.polygon.technology/img/polygon-logo.png
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Here you will find a list of contracts deployed on Polygon together with their initial address, that is, their location on the blockchain.
+Here you will find a list of contracts deployed on Polygon together with their initial address, that is, their location on the blockchain. 
 
 <Tabs
   defaultValue="mainnet"
