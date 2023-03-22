@@ -68,7 +68,7 @@ It is the first zero-knowledge scaling solution that is fully equivalent to an E
 
 ## Benefits of Polygon zkEVM
 
-- Ethereum-equivalence
+- EVM-equivalence
 - Ethereum security
 - ZKP-powered scalability
 
