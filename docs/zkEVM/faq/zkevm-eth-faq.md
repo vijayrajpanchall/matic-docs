@@ -2,7 +2,7 @@
 id: zkevm-eth-faq
 title: zkEVM and EVM Equivalence FAQs
 sidebar_label: EVM Equivalence
-description: This document compiles some of the frequently asked questions related to the Polygon zkEVM and its Ethereum equivalence.
+description: This document compiles some of the frequently asked questions related to the Polygon zkEVM and its EVM equivalence.
 keywords:
   - docs
   - zk rollups
@@ -13,7 +13,7 @@ keywords:
 image: https://wiki.polygon.technology/img/thumbnail/polygon-zkevm.png
 ---
 
-This document compiles some of the frequently asked questions related to the Polygon zkEVM's equivalence with EVM. For more details, check out [this documentation](/zkEVM/protocol/evm-diff.md).
+This document compiles some of the frequently asked questions related to the Polygon zkEVM's equivalence with EVM. For more details, check out [this documentation](/zkEVM/protocol/evm-differences.md).
 
 ---
 
