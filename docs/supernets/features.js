@@ -19,7 +19,7 @@ export const firstRow = [
     },
     {
         title: "Native Gas Token",
-        linkUrl: "/docs/category/deploying-contracts",
+        linkUrl: "/docs/supernets/design/assets/erc/erc20",
         imageUrl: "/img/supernets/supernets-logo.png",
         description: "Learn about the most powerful blockchain development framework."
     },
