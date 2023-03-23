@@ -1,7 +1,7 @@
 ---
 id: supernets-bridge
-title: Using the Native Bridge
-sidebar_label: Using the native bridge
+title: Use the Native Bridge
+sidebar_label: Use the native bridge
 description: "Learn how to use the native cross-chain bridge."
 keywords:
   - docs

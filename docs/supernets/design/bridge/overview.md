@@ -18,6 +18,8 @@ This document provides an overview of the native cross-chain bridge in Supernets
 
 The bridge is in active development and the content in this section is subject to change.
 
+The bridge should not yet be used in production environments.
+
 :::
 
 ---

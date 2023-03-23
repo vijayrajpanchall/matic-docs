@@ -14,12 +14,6 @@ keywords:
 
 This document provides an overview on the rootchain bridging predicate.
 
-:::caution In active development
-
-The bridge is in active development and the content in this section is subject to change.
-
-:::
-
 ---
 
 The `RootERC20Predicate` contract is responsible for bridging ERC20 tokens between a childchain and a rootchain.

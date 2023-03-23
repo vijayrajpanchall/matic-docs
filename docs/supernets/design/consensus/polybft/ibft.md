@@ -45,24 +45,28 @@ PolyBFT limits network participation to around 100 validators, and a variable am
 
 The `n` block period to define one epoch is determined by governance, and until then, validators will remain the same. At the end of the epoch, a special state transaction to validatorSetManagementContract is emitted, notifying the system about the validators' uptime during the epoch. It is up to the smart contract to reward validators by their uptime and update the validator set for the next epoch. There is a function getValidatorSet which returns the current validator set at any time.
 
-<details>
+:::caution Proposer selection algorithm - Section is being updated
+
+The proposer selection algorithm is Tendermint-based.
+
+<!-- <details>
 <summary>Proposer selection algorithm</summary>
 
-The proposer selection algorithm still needs to be determined. It will resemble the following diagram,
-where x, y, and z are input parameters related to the s-election, the "Round #" is the current
-Round Number of the system, and "validator n" is the selected proposer.
-
-<div align="center">
-  <img src="/img/supernets/val-select.excalidraw.png" alt="validator selection" width="50%" height="auto" />
-</div>
-
 </details>
+
+-->
+
+:::
 
 ### Staking
 
 Staking is managed by staking contracts on the Polygon network. The staking module on Polygon validates staked tokens and is independent of Ethereum's security. In principle, the network is secured by the rootchain and Ethereum. Transaction checkpoints still occur on Ethereum, but Ethereum does not validate staking on Polygon.
 
 At the end of each epoch, a reward calculation occurs to reward validators who actively participated in that epoch.
+
+:::caution Staking details and rewards - Section is being updated
+
+:::
 
 ## Benefits
 

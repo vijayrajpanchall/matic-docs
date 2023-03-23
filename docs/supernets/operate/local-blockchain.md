@@ -13,6 +13,9 @@ keywords:
   - modular
 ---
 
+:::caution Document is being updated
+:::
+
 This document outlines how to deploy a local blockchain with PolyBFT consensus. In other words, a local Supernet is in non-bridge mode.
 
 :::info Fast-track guide

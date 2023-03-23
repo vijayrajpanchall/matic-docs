@@ -1,7 +1,7 @@
 ---
 id: access-control
-title: How to Allowlist Validators
-sidebar_label: How to Allowlist Validators
+title: Validators Access Control
+sidebar_label: Validators access control
 description: "Learn about the access control module and how to allowlist validators."
 keywords:
   - docs

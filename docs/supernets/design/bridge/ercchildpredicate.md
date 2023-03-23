@@ -14,12 +14,6 @@ keywords:
 
 This document provides an overview on the childchain bridging predicate.
 
-:::caution In active development
-
-The bridge is in active development and the content in this section is subject to change.
-
-:::
-
 ---
 
 A core contract called `ChildERC20Predicate` enables deposits and withdrawals of ERC20 tokens between an arbitrary rootchain and childchain.
