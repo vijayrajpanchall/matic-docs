@@ -18,7 +18,7 @@ import {useState} from 'react';
 
 Executes all transactions in the block specified by number with a tracer and returns the tracing result.
 
-<h4><i>Parameters:</i></h4>
+### Parameters
 
 * <b>QUANTITY|TAG </b> - integer of a block number, or the string "latest"
 * <b> Object </b> - The tracer options:
@@ -29,7 +29,8 @@ Executes all transactions in the block specified by number with a tracer and ret
   +  <b>  enableReturnData: Boolean </b> - (optional, default: false) The flag indicating enabling return data capture.
   +  <b>  timeOut: String </b> - (optional, default: "5s") The timeout for cancellation of execution.
 
-<h4><i>Returns:</i></h4>
+### Returns
+
 <b> Array </b> - Array of trace objects with the following fields:
 
   * <b> failed: Boolean </b> - the tx is successful or not
@@ -48,7 +49,7 @@ Executes all transactions in the block specified by number with a tracer and ret
     + <b> storage: Object </b> - mapping of the current storage
     + <b> refund: QUANTITY </b> - the total of current refund value
 
-<h4><i>Example:</i></h4>
+### Example
 
 ````bash
 curl  https://rpc-endpoint.io:8545 -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"debug_traceBlockByNumber","params":["latest"],"id":1}'
@@ -58,17 +59,16 @@ curl  https://rpc-endpoint.io:8545 -X POST -H "Content-Type: application/json" -
 
 Executes all transactions in the block specified by block hash with a tracer and returns the tracing result.
 
-<h4><i>Parameters:</i></h4>
+### Parameters
 
 * <b> DATA , 32 Bytes </b> - Hash of a block.
 * <b> Object </b> - The tracer options. See debug_traceBlockByNumber for more details.
 
-<h4><i>Returns:</i></h4>
+### Returns
+
 <b> Array </b> - Array of trace objects. See debug_traceBlockByNumber for more details.
 
-<h4><i>Example:</i></h4>
-
-
+### Example
 
 ````bash
 curl  https://rpc-endpoint.io:8545 -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"debug_traceBlockByHash","params":["0xdc0818cf78f21a8e70579cb46a43643f78291264dda342ae31049421c82d21ae"],"id":1}'
@@ -78,15 +78,16 @@ curl  https://rpc-endpoint.io:8545 -X POST -H "Content-Type: application/json" -
 
 Executes all transactions in the block given from the first argument with a tracer and returns the tracing result.
 
-<h4><i>Parameters:</i></h4>
+### Parameters
 
 * <b> DATA </b> - RLP Encoded block bytes
 * <b> Object </b> - The tracer options. See debug_traceBlockByNumber for more details.
 
-<h4><i>Returns:</i></h4>
+### Returns
+
 <b> Array </b> - Array of trace objects. See debug_traceBlockByNumber for more details.
 
-<h4><i>Example:</i></h4>
+### Example
 
 ````bash
 curl  https://rpc-endpoint.io:8545 -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"debug_traceBlock","params":["0xf9...."],"id":1}'
@@ -96,15 +97,16 @@ curl  https://rpc-endpoint.io:8545 -X POST -H "Content-Type: application/json" -
 
 Executes the transaction specified by transaction hash with a tracer and returns the tracing result.
 
-<h4><i>Parameters:</i></h4>
+### Parameters
 
 * <b> DATA , 32 Bytes </b> - Hash of a transaction.
 * <b> Object </b> - The tracer options. See debug_traceBlockByNumber for more details.
 
-<h4><i>Returns:</i></h4>
+### Returns
+
 <b> Object </b> - Trace object. See debug_traceBlockByNumber for more details.
 
-<h4><i>Example:</i></h4>
+### Example
 
 ````bash
 curl  https://rpc-endpoint.io:8545 -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"debug_traceTransaction","params":["0xdc0818cf78f21a8e70579cb46a43643f78291264dda342ae31049421c82d21ae"],"id":1}'
@@ -114,7 +116,7 @@ curl  https://rpc-endpoint.io:8545 -X POST -H "Content-Type: application/json" -
 
 Executes a new message call with a tracer and returns the tracing result.
 
-<h4><i>Parameters:</i></h4>
+### Parameters
 
 * <b> Object </b>  - The transaction call object
 
@@ -128,10 +130,11 @@ Executes a new message call with a tracer and returns the tracing result.
 * <b> QUANTITY|TAG </b> - integer block number, or the string "latest"
 * <b> Object </b> - The tracer options. See debug_traceBlockByNumber for more details.
 
-<h4><i>Returns:</i></h4>
+### Returns
+
 <b> Object </b> - Trace object. See debug_traceBlockByNumber for more details.
 
-<h4><i>Example:</i></h4>
+### Example
 
 ````bash
 curl  https://rpc-endpoint.io:8545 -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"debug_traceCall","params":[{"to": "0x1234", "data": "0x1234"}, "latest", {}],"id":1}'

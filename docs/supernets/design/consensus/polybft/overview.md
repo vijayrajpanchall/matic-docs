@@ -44,5 +44,3 @@ PolyBFT's consensus protocol is implemented through a set of core smart contract
 ## Bridge
 
 The bridge transfers assets and data between a Supernet (childchain) and an external EVM-compatible blockchain (rootchain), making it a critical component of the network's interoperability. Two predicate contracts, one on the childchain and one on the rootchain, implement the core bridge functionality and use the associated core contracts to deposit, withdraw, and verify cross-chain bridge transactions. The diagram below illustrates how the core contracts fit into the overall smart contract system design.
-
-![bridge](/img/supernets/contracts-bridge.excalidraw.png)

@@ -35,7 +35,7 @@ Both geth and Edge serve as intermediaries between nodes and their respective bl
 
 ## Introduction
 
-In simple terms, a **Supernet refers to an application-specific chain that operates on the Polygon Edge consensus client with PolyBFT consensus, in bridge mode (and utilizes the transaction relayer), with stake on the associated rootchain (i.e. PoS mainnet), and employs on-chain governance mechanism**.
+In simple terms, a **Supernet refers to an application-specific chain that operates on the Polygon Edge consensus client with PolyBFT consensus, in bridge mode (and utilizes the transaction relayer), with stake on the associated rootchain (i.e. PoS mainnet), and employs the on-chain governance mechanism**.
 
 The following table offers a comprehensive overview on what Supernets are.
 
@@ -56,7 +56,8 @@ The following table offers a comprehensive overview on what Supernets are.
 At present, the following components are available:
 
 - Smart contract and validator allowlisting.
-- Deposits and withdrawals using the native bridge.
+- Transfers of ERC20 tokens and arbitrary message passing using the native bridge.
+- Migration support from older versions of the consensus client that use IBFT consensus.
 
 Additional components, including on-chain governance and creating a full production instance with MATIC staked, are currently in progress.
 

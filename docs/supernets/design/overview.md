@@ -23,7 +23,8 @@ This document provides an architectural overview of Polygon Supernets.
 At present, the following components are available:
 
 - Smart contract and validator allowlisting.
-- Deposits and withdrawals using the native bridge.
+- Transfers of ERC20 tokens and arbitrary message passing using the native bridge.
+- Migration support from older versions of the consensus client that use IBFT consensus.
 
 Additional components, including on-chain governance and creating a full production instance with MATIC staked, are currently in progress.
 

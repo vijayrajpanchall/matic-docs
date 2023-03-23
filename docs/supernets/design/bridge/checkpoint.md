@@ -34,12 +34,11 @@ Checkpointing is the process of recording and committing a snapshot of the state
 
 A `CheckpointManager` contract responsible for managing checkpoints in the network.
 
-The checkpoints represent a snapshot of the childchain state, which is periodically checkpointed to the rootchain by the validators.
-The checkpoints are used as a reference point for the rootchain to verify the integrity and accuracy of the data on the childchain.
+The checkpoints represent a snapshot of the childchain state, which is periodically checkpointed to the rootchain by the validators. The checkpoints are used as a reference point for the rootchain to verify the integrity and accuracy of the data on the childchain.
 
 The contract has several functions to facilitate the management of checkpoints, such as submitting a new checkpoint with metadata, verifying signatures, and getting the event root by block number or epoch. The contract also has a mapping to store the checkpoints and the current validator set, and an array to keep track of the checkpoint block numbers.
 
-The contract uses a Merkle tree to efficiently prove the membership of an event in the childchain state. The tree is constructed using the event roots of each checkpoint, and the membership proofs can be verified using the Merkle proofs provided by the users.
+The contract uses a Merkle tree to efficiently prove the membership of an event in the childchain state. The tree is constructed using the hashed exit events sent by the L2StateSender, which the Edge client saves to its local storage after their transactions are executed. The membership proofs can be verified using the Merkle proofs provided by the users.
 
 The contract also implements a BLS signature scheme to verify the signatures submitted by the validators. The validators' signatures are aggregated, and the contract checks whether the required voting power threshold is met to accept the checkpoint.
 
@@ -51,13 +50,13 @@ The contract also implements a BLS signature scheme to verify the signatures sub
 <details>
 <summary>Details of the checkpoint</summary>
 
-To elaborate, the root of the Merkle tree is a hash value that represents the entire state of the childchain at a specific point in time. This state includes all of the transactions and other changes that have occurred on the childchain up to that point.
+To elaborate, the root of the Merkle tree is a hash value that represents a specific subset of the childchain state at a specific point in time. This state includes only the exit events sent by the L2StateSender contract. When a user wants to exit the L2 chain (transfer their tokens from L2 to L1), their exit transaction is included in this Merkle tree.
 
 When a checkpoint is made, the root of the Merkle tree is included as part of the checkpoint, along with other metadata. This checkpoint is then sent to the rootchain where it is verified and stored by the validators.
 
-Later, when a user wants to verify a particular event or state on the childchain, they can provide a Merkle proof, which is a cryptographic proof that demonstrates the inclusion of a particular event or state in the Merkle tree. The Merkle proof can be verified by the rootchain using the root of the Merkle tree, which was included in the checkpoint.
+Later, when a user wants to verify a particular exit event on the childchain, they can provide a Merkle proof, which is a cryptographic proof that demonstrates the inclusion of a particular exit event in the Merkle tree. The Merkle proof can be verified by the rootchain using the root of the Merkle tree, which was included in the checkpoint.
 
-In short, the root of the Merkle tree is a compact representation of the entire state of the childchain at a specific point in time, which is included in checkpoints and used for verification purposes.
+In short, the root of the Merkle tree is a compact representation of the exit events on the childchain at a specific point in time, which is included in checkpoints and used for verification purposes.
 
 </details>
 

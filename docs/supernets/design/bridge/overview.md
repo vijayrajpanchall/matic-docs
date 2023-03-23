@@ -24,10 +24,15 @@ The bridge is in active development and the content in this section is subject t
 
 ## Overview
 
-Polygon Supernets incorporates a built-in two-way bridging mechanism that facilitates arbitrary message passing between a Supernet (also referred to as `childchain`) and another proof-of-stake blockchain (referred to as `rootchain`). This transfer process can occur without the need for mapping.
+Polygon Supernets incorporate a built-in two-way bridging mechanism that facilitates arbitrary message passing between a Supernet (also referred to as childchain) and another EVM-compatible PoS blockchain (referred to as rootchain). With this feature, messages can consist of any data type (arbitrary bytes), and the bridge operates as an extension of PolyBFT and can be enabled or disabled as needed.
 
-> Messages can consist of any data type (arbitrary bytes).
-> The bridge operates as an extension of PolyBFT and can be enabled or disabled as needed.
+To further visualize the concept of bridging between different blockchain levels, take a look at the following diagram:
+
+<div>
+  <img src="/img/supernets/l1-l2-l3.excalidraw.png" alt="bridge" style={{display: 'block', margin: '0 auto', width: '290px', height: 'auto', objectFit: 'contain'}}/>
+</div>
+
+This diagram provides a visual representation of how messages can be passed between different blockchain layers, allowing for seamless communication and coordination between various components of the network.
 
 ### StateSync: Real-Time Synchronization
 

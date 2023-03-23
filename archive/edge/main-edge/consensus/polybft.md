@@ -201,7 +201,7 @@ validator set in the PolyBFT does not update on each block but is fixed during  
 an `epoch`.
 
 > The `n` block period to define one epoch is to be determined by governance. Until then, validators will
-> remain the same. At the end of the epoch, a special `state transaction` to `validatorSetManagementContract`
+> remain the same. At the end of the epoch, a special `state transaction` to `ChildValidatorSet`
 > is emitted, notifying the system about validators’ uptime during the `epoch`. It is up to the smart contract
 > to reward validators by their uptime and **update the validator set** for the next `epoch`. There is a
 > function `getValidatorSet` which returns the current validator set at any time.

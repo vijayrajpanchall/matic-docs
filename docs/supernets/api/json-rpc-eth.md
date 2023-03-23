@@ -18,15 +18,16 @@ import {useState} from 'react';
 
 Returns the currently configured chain id, a value used in replay-protected transaction signing as introduced by EIP-155.
 
-<h4><i>Parameters:</i></h4>
+### Parameters
 
 * None
 
-<h4><i>Returns:</i></h4>
+### Returns
+
 
 * <b> QUANTITY </b> - big integer of the current chain id.
 
-<h4><i>Example:</i></h4>
+### Example
 
 ````bash
 curl  https://rpc-endpoint.io:8545 -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_chainId","params":[],"id":1}'
@@ -36,11 +37,12 @@ curl  https://rpc-endpoint.io:8545 -X POST -H "Content-Type: application/json" -
 
 Returns information about the sync status of the node
 
-<h4><i>Parameters:</i></h4>
+### Parameters
 
 * None
 
-<h4><i>Returns:</i></h4>
+### Returns
+
 
 *<b> Boolean (FALSE) </b> - if the node isn't syncing (which means it has fully synced)
 
@@ -49,7 +51,7 @@ Returns information about the sync status of the node
   *  <b>currentBlock: QUANTITY </b> - The current block, same as eth_blockNumber
   *  <b>highestBlock: QUANTITY </b> - The estimated highest block
 
-<h4><i>Example:</i></h4>
+### Example
 
 ````bash
 curl  https://rpc-endpoint.io:8545 -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_syncing","params":[],"id":1}'
@@ -59,12 +61,13 @@ curl  https://rpc-endpoint.io:8545 -X POST -H "Content-Type: application/json" -
 
 Returns block information by number.
 
-<h4><i>Parameters:</i></h4>
+### Parameters
 
 *  <b>QUANTITY|TAG </b> - integer of a block number, or the string "latest"
 *  <b> Boolean </b> - If true it returns the full transaction objects, if false only the hashes of the transactions.
 
-<h4><i>Returns:</i></h4>
+### Returns
+
 Object - A block object, or null when no block was found:
 
 *  <b> number: QUANTITY </b> - the block number.
@@ -87,7 +90,7 @@ Object - A block object, or null when no block was found:
 *  <b> transactions: Array </b> - Array of transaction objects, or 32 Bytes transaction hashes depending on the last given parameter.
 *  <b> uncles: Array </b> - Array of uncle hashes.
 
-<h4><i>Example:</i></h4>
+### Example
 
 ````bash
 curl  https://rpc-endpoint.io:8545 -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_getBlockByNumber","params":["latest", true],"id":1}'
@@ -97,12 +100,13 @@ curl  https://rpc-endpoint.io:8545 -X POST -H "Content-Type: application/json" -
 
 Returns block information by hash.
 
-<h4><i>Parameters:</i></h4>
+### Parameters
 
 * <b> DATA , 32 Bytes </b> - Hash of a block.
 * <b> Boolean </b> - If true it returns the full transaction objects, if false only the hashes of the transactions.
 
-<h4><i>Returns:</i></h4>
+### Returns
+
 <b> Object </b>  - A block object, or null when no block was found:
 
 *  <b> number: QUANTITY </b> - the block number.
@@ -125,7 +129,7 @@ Returns block information by hash.
 *  <b> transactions: Array </b> - Array of transaction objects, or 32 Bytes transaction hashes depending on the last given parameter.
 *  <b> uncles: Array </b> - Array of uncle hashes.
 
-<h4><i>Example:</i></h4>
+### Example
 
 ````bash
 curl  https://rpc-endpoint.io:8545 -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_getBlockByHash","params":["0xdc0818cf78f21a8e70579cb46a43643f78291264dda342ae31049421c82d21ae",false],"id":1}'
@@ -135,15 +139,16 @@ curl  https://rpc-endpoint.io:8545 -X POST -H "Content-Type: application/json" -
 
 Returns the number of the most recent block.
 
-<h4><i>Parameters:</i></h4>
+### Parameters
 
 None
 
-<h4><i>Returns:</i></h4>
+### Returns
+
 
 *  <b> QUANTITY </b> - integer of the current block number the client is on.
 
-<h4><i>Example:</i></h4>
+### Example
 
 ````bash
 curl  https://rpc-endpoint.io:8545 -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}'
@@ -157,15 +162,16 @@ this endpoint will return the value defined by this flag as minimum gas price.
 
 ---
 
-<h4><i>Parameters:</i></h4>
+### Parameters
 
 None
 
-<h4><i>Returns:</i></h4>
+### Returns
+
 
 *  <b> QUANTITY </b> - integer of the current gas price in wei.
 
-<h4><i>Example:</i></h4>
+### Example
 
 ````bash
 curl  https://rpc-endpoint.io:8545 -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_gasPrice","params":[],"id":1}'
@@ -175,16 +181,17 @@ curl  https://rpc-endpoint.io:8545 -X POST -H "Content-Type: application/json" -
 
 Returns the balance of the account of the given address.
 
-<h4><i>Parameters:</i></h4>
+### Parameters
 
 *  <b> DATA, 20 Bytes </b> - address to check for balance.
 *  <b> QUANTITY|TAG </b> - integer block number, or the string "latest"
 
-<h4><i>Returns:</i></h4>
+### Returns
+
 
 *  <b> QUANTITY </b> - integer of the current balance in wei.
 
-<h4><i>Example:</i></h4>
+### Example
 
 ````bash
 curl  https://rpc-endpoint.io:8545 -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_getBalance","params":["0x407d73d8a49eeb85d32cf465507dd71d507100c1", "latest"],"id":1}'
@@ -194,15 +201,16 @@ curl  https://rpc-endpoint.io:8545 -X POST -H "Content-Type: application/json" -
 
 Creates new message call transaction or a contract creation for signed transactions.
 
-<h4><i>Parameters:</i></h4>
+### Parameters
 
 *  <b> DATA </b> - The signed transaction data.
 
-<h4><i>Returns:</i></h4>
+### Returns
+
 
 *  <b> DATA, 32 Bytes </b> - the transaction hash, or the zero hash if the transaction is not yet available.
 
-<h4><i>Example:</i></h4>
+### Example
 
 ````bash
 curl  https://rpc-endpoint.io:8545 -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_sendRawTransaction","params":["0xd46e8dd67c5d32be8d46e8dd67c5d32be8058bb8eb970870f072445675058bb8eb970870f072445675"],"id":1}'
@@ -212,11 +220,12 @@ curl  https://rpc-endpoint.io:8545 -X POST -H "Content-Type: application/json" -
 
 Returns the information about a transaction requested by transaction hash.
 
-<h4><i>Parameters:</i></h4>
+### Parameters
 
 *  <b> DATA, 32 Bytes </b> - hash of a transaction
 
-<h4><i>Returns:</i></h4>
+### Returns
+
 <b> Object </b> - A transaction object, or null when no transaction was found:
 
 *  <b>  blockHash: DATA, 32 Bytes </b> - hash of the block where this transaction was in.
@@ -234,9 +243,7 @@ Returns the information about a transaction requested by transaction hash.
 *  <b>  r: DATA, 32 Bytes </b> - ECDSA signature r
 *  <b>  s: DATA, 32 Bytes </b> - ECDSA signature s
 
-<h4><i>Example:</i></h4>
-
-
+### Example
 ````bash
 curl  https://rpc-endpoint.io:8545 -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_getTransactionByHash","params":["0x88df016429689c079f3b2f6ad39fa052532c56795b733da78a91ebe6a713944b"],"id":1}'
 ````
@@ -247,11 +254,12 @@ Returns the receipt of a transaction by transaction hash.
 
 Note That the receipt is not available for pending transactions.
 
-<h4><i>Parameters:</i></h4>
+### Parameters
 
 *  <b> DATA, 32 Bytes </b> - hash of a transaction
 
-<h4><i>Returns:</i></h4>
+### Returns
+
 <b> Object </b>  - A transaction receipt object, or null when no receipt was found:
 
 *  <b> transactionHash : DATA, 32 Bytes </b> - hash of the transaction.
@@ -271,7 +279,7 @@ It also returns either :
 *  <b> root  : DATA 32 bytes </b> - post-transaction stateroot (pre Byzantium)
 *  <b>status: QUANTITY </b> - either 1 (success) or 0 (failure)
 
-<h4><i>Example:</i></h4>
+### Example
 
 ````bash
 curl  https://rpc-endpoint.io:8545 -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_getTransactionReceipt","params":["0xb903239f8543d04b5dc1ba6579132b143087c68db1b2168786408fcbce568238"],"id":1}'
@@ -281,16 +289,17 @@ curl  https://rpc-endpoint.io:8545 -X POST -H "Content-Type: application/json" -
 
 Returns the number of transactions sent from an address.
 
-<h4><i>Parameters:</i></h4>
+### Parameters
 
 *  <b>  DATA, 20 Bytes </b> - address.
 *  <b>  QUANTITY|TAG </b> - integer block number, or the string "latest"
 
-<h4><i>Returns:</i></h4>
+### Returns
+
 
 *  <b>  QUANTITY </b> - integer of the number of transactions send from this address.
 
-<h4><i>Example:</i></h4>
+### Example
 
 ````bash
 curl  https://rpc-endpoint.io:8545 -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_getTransactionCount","params":["0x407d73d8a49eeb85d32cf465507dd71d507100c1","latest"],"id":1}'
@@ -300,15 +309,16 @@ curl  https://rpc-endpoint.io:8545 -X POST -H "Content-Type: application/json" -
 
 Returns the number of transactions in a block matching the given block number.
 
-<h4><i>Parameters:</i></h4>
+### Parameters
 
 *  <b>  QUANTITY|TAG </b> - integer of a block number, or the string "latest"
 
-<h4><i>Returns:</i></h4>
+### Returns
+
 
 *  <b>  QUANTITY </b> - integer of the number of transactions in this block.
 
-<h4><i>Example:</i></h4>
+### Example
 
 ````bash
 curl  https://rpc-endpoint.io:8545 -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_getBlockTransactionCountByNumber","params":["latest"],"id":1}'
@@ -318,7 +328,7 @@ curl  https://rpc-endpoint.io:8545 -X POST -H "Content-Type: application/json" -
 
 Returns an array of all logs matching a given filter object.
 
-<h4><i>Parameters:</i></h4>
+### Parameters
 <b> Object </b>  - The filter options:
 
 *  <b> fromBlock: QUANTITY|TAG </b> - (optional, default: "latest") Integer block number, or "latest" for the last mined block
@@ -327,11 +337,12 @@ Returns an array of all logs matching a given filter object.
 *  <b> topics: Array of DATA </b> - (optional) Array of 32 Bytes DATA topics. Topics are order-dependent. Each topic can also be an array of DATA with “or” options.
 *  <b> blockhash: DATA, 32 Bytes </b> - (optional, future) With the addition of EIP-234, blockHash will be a new filter option which restricts the logs returned to the single block with the 32-byte hash blockHash. Using blockHash is equivalent to fromBlock = toBlock = the block number with hash blockHash. If blockHash is present in the filter criteria, then neither fromBlock nor toBlock is allowed.
 
-<h4><i>Returns:</i></h4>
+### Returns
+
 
 *  <b> QUANTITY </b> - integer of the number of transactions send from this address.
 
-<h4><i>Example:</i></h4>
+### Example
 
 ````bash
 curl  https://rpc-endpoint.io:8545 -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_getLogs","params":[{"topics": ["0x000000000000000000000000a94f5374fce5edbc8e2a8697c15331677e6ebf0b"]}],"id":1}'
@@ -341,16 +352,17 @@ curl  https://rpc-endpoint.io:8545 -X POST -H "Content-Type: application/json" -
 
 Returns code at a given address.
 
-<h4><i>Parameters:</i></h4>
+### Parameters
 
 *  <b>  DATA, 20 Bytes </b> - address
 *  <b>  QUANTITY|TAG </b> - integer block number, or the string "latest"
 
-<h4><i>Returns:</i></h4>
+### Returns
+
 
 *  <b>  DATA </b> - the code from the given address.
 
-<h4><i>Example:</i></h4>
+### Example
 
 ````bash
 curl  https://rpc-endpoint.io:8545 -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_getCode","params":["0xa94f5374fce5edbc8e2a8697c15331677e6ebf0b", "0x2"],"id":1}'
@@ -360,7 +372,7 @@ curl  https://rpc-endpoint.io:8545 -X POST -H "Content-Type: application/json" -
 
 Executes a new message call immediately without creating a transaction on the blockchain.
 
-<h4><i>Parameters:</i></h4>
+### Parameters
 <b> Object </b>  - The transaction call object
 
 *  <b>  from: DATA, 20 Bytes </b> - (optional) The address the transaction is sent from.
@@ -371,11 +383,12 @@ Executes a new message call immediately without creating a transaction on the bl
 *  <b>  data: DATA </b> - (optional) Hash of the method signature and encoded parameters. For details see Ethereum Contract ABI in the Solidity documentation
 *  <b>  QUANTITY|TAG </b> - integer block number, or the string "latest", see the default block paramete
 
-<h4><i>Returns:</i></h4>
+### Returns
+
 
 *  <b>  DATA </b> - the return value of executed contract.
 
-<h4><i>Example:</i></h4>
+### Example
 
 ````bash
 curl  https://rpc-endpoint.io:8545 -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_call","params":[{see above}],"id":1}'
@@ -385,17 +398,18 @@ curl  https://rpc-endpoint.io:8545 -X POST -H "Content-Type: application/json" -
 
 Returns the value from a storage position at a given address.
 
-<h4><i>Parameters:</i></h4>
+### Parameters
 
 *  <b>  DATA, 20 Bytes </b> - address of the storage.
 *  <b>  QUANTITY </b> - integer of the position in the storage.
 *  <b>  QUANTITY|TAG </b> - integer block number, or the string "latest"
 
-<h4><i>Returns:</i></h4>
+### Returns
+
 
 *  <b>  DATA </b> - the value at this storage position.
 
-<h4><i>Example:</i></h4>
+### Example
 
 ````bash
 curl  https://rpc-endpoint.io:8545 -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_getStorageAt","params":["0x295a70b2de5e3953354a6a8344e616ed314d7251", "0x0", "latest"],"id":1}'
@@ -405,7 +419,7 @@ curl  https://rpc-endpoint.io:8545 -X POST -H "Content-Type: application/json" -
 
 Generates and returns an estimate of how much gas is necessary to allow the transaction to complete. The transaction will not be added to the blockchain. Note that the estimate may be significantly more than the amount of gas actually used by the transaction, for a variety of reasons including EVM mechanics and node performance.
 
-<h4><i>Parameters:</i></h4>
+### Parameters
 
 Expect that all properties are optional.
 
@@ -419,11 +433,12 @@ Expect that all properties are optional.
 *  <b>  data: DATA </b>  - Hash of the method signature and encoded parameters. For details see Ethereum Contract ABI in the Solidity documentation
 *  <b>  QUANTITY|TAG </b>  - integer block number, or the string "latest", see the default block paramete
 
-<h4><i>Returns:</i></h4>
+### Returns
+
 
 *  <b>  QUANTITY </b> - the amount of gas used.
 
-<h4><i>Example:</i></h4>
+### Example
 
 ````bash
 curl  https://rpc-endpoint.io:8545 -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_estimateGas","params":[{see above}],"id":1}'
@@ -435,7 +450,7 @@ Creates a filter object, based on filter options.
 To get all matching logs for specific filter, call eth_getFilterLogs.
 To check if the state has changed, call eth_getFilterChanges.
 
-<h4><i>Parameters:</i></h4>
+### Parameters
 <b> Object </b> - The filter options:
 
 *  <b>  fromBlock: QUANTITY|TAG </b> - (optional, default: "latest") Integer block number, or "latest" for the last mined block
@@ -443,11 +458,12 @@ To check if the state has changed, call eth_getFilterChanges.
 *  <b>  address: DATA|Array, 20 Bytes </b> - (optional) Contract address or a list of addresses from which logs should originate.
 *  <b>  topics: Array of DATA </b> - (optional) Array of 32 Bytes DATA topics. Topics are order-dependent. Each topic can also be an array of DATA with “or” options.
 
-<h4><i>Returns:</i></h4>
+### Returns
+
 
 *  <b> QUANTITY </b> - A filter id.
 
-<h4><i>Example:</i></h4>
+### Example
 
 ````bash
 curl  https://rpc-endpoint.io:8545 -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_newFilter","params":[{"topics":["0x12341234"]}],"id":1}'
@@ -458,15 +474,16 @@ curl  https://rpc-endpoint.io:8545 -X POST -H "Content-Type: application/json" -
 Creates a filter in the node, to notify when a new block arrives.
 To check if the state has changed, call eth_getFilterChanges.
 
-<h4><i>Parameters:</i></h4>
+### Parameters
 
 None
 
-<h4><i>Returns:</i></h4>
+### Returns
+
 
 1. QUANTITY - A filter id.
 
-<h4><i>Example:</i></h4>
+### Example
 
 ````bash
 curl  https://rpc-endpoint.io:8545 -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_newBlockFilter","params":[],"id":1}'
@@ -484,11 +501,12 @@ These 2 methods will return the same results for same filter options:
 2. eth_newFilter with params [options], getting a [filterId] back, then calling eth_getFilterLogs with [filterId]
 :::
 
-<h4><i>Parameters:</i></h4>
+### Parameters
 
 *  <b>  QUANTITY </b> - the filter id.
 
-<h4><i>Returns:</i></h4>
+### Returns
+
 <b> Array </b> - Array of log objects, or an empty array
 
 *  For filters created with eth_newFilter logs are objects with the following params:
@@ -502,7 +520,7 @@ These 2 methods will return the same results for same filter options:
     * <b> data: DATA </b> - contains one or more 32 Bytes non-indexed arguments of the log.
     * <b> topics: Array of DATA </b> - Array of 0 to 4 32 Bytes DATA of indexed log arguments. (In solidity: The first topic is the hash of the signature of the event (e.g. Deposit(address,bytes32,uint256)), except you declared the event with the anonymous specifier.)
 
-<h4><i>Example:</i></h4>
+### Example
 
 ````bash
 curl  https://rpc-endpoint.io:8545 -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_getFilterLogs","params":["0x16"],"id":1}'
@@ -512,11 +530,12 @@ curl  https://rpc-endpoint.io:8545 -X POST -H "Content-Type: application/json" -
 
 Polling method for a filter, which returns an array of logs that occurred since the last poll.
 
-<h4><i>Parameters:</i></h4>
+### Parameters
 
 *  <b>  QUANTITY </b> - the filter id.
 
-<h4><i>Returns:</i></h4>
+### Returns
+
 <b> Array </b> - Array of log objects, or an empty array if nothing has changed since last poll.
 
 *  For filters created with eth_newBlockFilter the return are block hashes (DATA, 32 Bytes), e.g. ["0x3454645634534..."].
@@ -531,7 +550,7 @@ Polling method for a filter, which returns an array of logs that occurred since 
     * <b> data: DATA </b> - contains one or more 32 Bytes non-indexed arguments of the log.
     * <b> topics: Array of DATA </b> - Array of 0 to 4 32 Bytes DATA of indexed log arguments. (In solidity: The first topic is the hash of the signature of the event (e.g. Deposit(address,bytes32,uint256)), except you declared the event with the anonymous specifier.)
 
-<h4><i>Example:</i></h4>
+### Example
 
 ````bash
 curl  https://rpc-endpoint.io:8545 -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_getFilterChanges","params":["0x16"],"id":1}'
@@ -542,15 +561,16 @@ curl  https://rpc-endpoint.io:8545 -X POST -H "Content-Type: application/json" -
 Uninstalls a filter with a given id. Should always be called when a watch is no longer needed.
 Additionally, filters timeout when they aren’t requested with eth_getFilterChanges for some time.
 
-<h4><i>Parameters:</i></h4>
+### Parameters
 
 *  <b> QUANTITY </b> - The filter id.
 
-<h4><i>Returns:</i></h4>
+### Returns
+
 
 *  <b> Boolean </b> - true if the filter was successfully uninstalled, otherwise false.
 
-<h4><i>Example:</i></h4>
+### Example
 
 ````bash
 curl  https://rpc-endpoint.io:8545 -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_uninstallFilter","params":["0xb"],"id":1}'
@@ -560,15 +580,16 @@ curl  https://rpc-endpoint.io:8545 -X POST -H "Content-Type: application/json" -
 
 Subscriptions are cancelled with a regular RPC call with eth_unsubscribe as a method and the subscription id as the first parameter. It returns a bool indicating if the subscription was cancelled successfully.
 
-<h4><i>Parameters:</i></h4>
+### Parameters
 
 *  <b> SUBSCRIPTION ID </b>
 
-<h4><i>Returns:</i></h4>
+### Returns
+
 
 *  <b>UNSUBSCRIBED FLAG </b> - true if the subscription was cancelled successful.
 
-<h4><i>Example:</i></h4>
+### Example
 
 ````bash
 curl  https://rpc-endpoint.io:8545 -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_unsubscribe","params":["0x9cef478923ff08bf67fde6c64013158d"],"id":1}'
