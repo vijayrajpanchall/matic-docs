@@ -1106,6 +1106,13 @@ module.exports = {
         "zkEVM/PIL/pil-config",
         "zkEVM/PIL/cyclic-nature",
         "zkEVM/PIL/pil-arguments",
+        "zkEVM/PIL/connect-programs",
+        "zkEVM/PIL/public-values",
+        "zkEVM/PIL/permutation-arg",
+        "zkEVM/PIL/connect-arg",
+        "zkEVM/PIL/pil-plonk",
+        "zkEVM/PIL/filling-polynomial",
+        "zkEVM/PIL/generate-proof",
       ],
     },
     {
