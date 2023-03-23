@@ -54,10 +54,6 @@ The best reference is Vitalik Buterin's neutral and comprehensive analysis of zk
 
 However, the one big difference between Polygon zkEVM and other projects is zkEVM's efficient prover and the significant ethereum equivalence. Regarding the design of the prover/verification component: other projects use an arithmetic circuit approach while the Polygon zkEVM zkProver uses State Machine approach.
 
-### Is Polygon zkEVM open source?
-
-Yes, Polygon zkEVM will be fully open sourced with a **AGPLv3 open source license**.
-
 ### Does Polygon zkEVM have a separate token?
 
 No. **ETH will be used for gas fees**. It is expected that MATIC will be used for staking and governance in Polygon zkEVM in the future.
