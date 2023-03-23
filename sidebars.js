@@ -1339,5 +1339,6 @@ module.exports = {
       ],
     },
     "supernets/supernets-faq",
+    "supernets/supernets-changelog",
   ],
 };
