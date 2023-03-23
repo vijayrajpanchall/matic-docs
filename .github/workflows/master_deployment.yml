@@ -43,6 +43,7 @@ jobs:
       # Install dependencies and build
       - name: Install dependencies and build
         run: |
+          export NODE_OPTIONS=--max-old-space-size=4096
           yarn install --frozen-lockfile
           yarn build --locale ${{ matrix.locale }}
 
