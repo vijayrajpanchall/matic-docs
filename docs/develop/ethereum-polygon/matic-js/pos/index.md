@@ -6,9 +6,9 @@ keywords:
 description: 'POSClient allows you to interact with POS Bridge.'
 ---
 
-`maticjs` provides `POSClient` to interact with **POS** Bridge.
+MaticJS provides `POSClient` to interact with the **PoS Bridge**.
 
-```
+```js
 import { POSClient,use } from "@maticnetwork/maticjs"
 
 const posClient = new POSClient();
@@ -19,17 +19,16 @@ await posClient.init({
     parent: {
       provider: <parent provider>,
       defaultConfig: {
-            from: <from address>
+        from: <from address>
       }
     },
     child: {
       provider: <child provider>,
       defaultConfig: {
-            from: <from address>
+        from: <from address>
       }
     }
 });
-
 ```
 
-Once `POSClient` is initiated, you can interact with all available APIS.
+Once the `POSClient` is initiated, you can interact with all available APIs.
