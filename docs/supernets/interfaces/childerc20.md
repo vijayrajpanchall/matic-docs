@@ -11,7 +11,7 @@ keywords:
   - interface
 ---
 
-The `IChildERC20` interface extends the `IERC20MetadataUpgradeable` interface to provide additional token functionality on a sidechain or layer 2 solution. This guide explains how to interact with the interface and its methods.
+The `IChildERC20` interface extends the `IERC20MetadataUpgradeable` interface to provide additional token functionality on a childchain or layer 2 solution. This guide explains how to interact with the interface and its methods.
 
 ## Overview
 
@@ -49,7 +49,7 @@ address rootTokenAddress = childToken.rootToken();
 
 ## Minting and Burning Tokens
 
-The `mint` and `burn` functions can only be called by the predicate address, which typically represents a bridge contract responsible for managing the token's supply between the main chain and the sidechain.
+The `mint` and `burn` functions can only be called by the predicate address, which typically represents a bridge contract responsible for managing the token's supply between the main chain and the childchain.
 
 ### Minting Tokens
 

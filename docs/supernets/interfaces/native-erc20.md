@@ -11,7 +11,7 @@ keywords:
   - interface
 ---
 
-The `INativeERC20` interface represents a native ERC20 token on the L2 side of the Polygon network. It allows the minting and burning of tokens under the control of a predicate address. This user guide will explain how to interact with the functions provided by the `INativeERC20` interface.
+The `INativeERC20` interface represents a native ERC20 token on the L2 side of the childchain. It allows the minting and burning of tokens under the control of a predicate address. This user guide will explain how to interact with the functions provided by the `INativeERC20` interface.
 
 ## Functions
 
@@ -93,4 +93,4 @@ To burn tokens from an address, the predicate should call the burn() function wi
 INativeERC20.instance.burn(account, amount);
 ```
 
-These functions enable interaction with native ERC20 tokens on the L2 side of the Polygon network. Developers can use these functions to mint, burn, and retrieve information about native ERC20 tokens.
+These functions enable interaction with native ERC20 tokens on the L2 side of the childchain. Developers can use these functions to mint, burn, and retrieve information about native ERC20 tokens.

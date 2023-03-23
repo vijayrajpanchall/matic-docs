@@ -143,7 +143,7 @@ This tutorial will teach you how to set up a local Supernet. This tutorial will 
 - How to create a genesis file and chain configuration.
 - How to deploy and initialize rootchain contracts.
 - How to fund validators on rootchain.
-- How to run (sidechain) cluster, consisting of multiple PolyBFT nodes.
+- How to run (childchain) cluster, consisting of multiple PolyBFT nodes.
 
 ### Learning outcomes
 
@@ -174,7 +174,7 @@ The tutorial will cover the following steps:
 3. Deploy and initialize rootchain contracts.
 4. Generate the genesis file and chain configuration
 5. Fund validators on rootchain.
-6. Run (sidechain) cluster, consisting of multiple PolyBFT nodes.
+6. Run (childchain) cluster, consisting of multiple PolyBFT nodes.
 
 The diagram below illustrates a standard Supernet deployment in bridge mode.
 
@@ -198,7 +198,6 @@ Supernets already come pre-compiled with the core contracts submodule. Optionall
 
 ### 1. Initialize PolyBFT consensus
 
-PolyBFT is a consensus protocol used in the Polygon network that uses a validator set to achieve consensus.
 > If you need to become more familiar with PolyBFT or consensus protocols in general, you can check out the System Design documents (link to the relevant section) for more information.
 
 To initialize PolyBFT consensus, we need to generate the necessary secrets for each node. This is done using the polygon-edge `polybft-secrets` command with the following options:
@@ -602,7 +601,7 @@ With the genesis configuration file generated, we can proceed to the final step:
 
 ### 5. Fund validators on rootchain
 
-Before starting the validator nodes on the sidechain, we need to fund them on the rootchain network. This is necessary for validators to be able to send transactions to Ethereum, as they need to have enough funds to cover the gas fees.
+Before starting the validator nodes on the childchain, we need to fund them on the rootchain network. This is necessary for validators to be able to send transactions to Ethereum, as they need to have enough funds to cover the gas fees.
 
 To fund the validators, we can use the polygon-edge rootchain fund command with the following options:
 
@@ -637,11 +636,11 @@ Transaction (hash)  = 0xd51e7f8b69071f88b5f7870c31c6942ed78c5c48f88594ed135f096b
 
 </details>
 
-### 6. Run sidechain cluster
+### 6. Run childchain cluster
 
-Now that we have set up the rootchain and created the chain configuration, we can run the sidechain cluster. In this example, we'll run a sidechain cluster of four Edge clients.
+Now that we have set up the rootchain and created the chain configuration, we can run the childchain cluster. In this example, we'll run a childchain cluster of four Edge clients.
 
-To run a sidechain cluster, we'll use the polygon-edge server command with the following options:
+To run a childchain cluster, we'll use the polygon-edge server command with the following options:
 
 - `--data-dir`: specifies the data directory for the blockchain network
 - `--chain`: specifies the chain configuration file for the blockchain network
@@ -686,8 +685,8 @@ Transaction (hash)  = 0xd51e7f8b69071f88b5f7870c31c6942ed78c5c48f88594ed135f096b
 
 ## Next Steps
 
-Congratulations on successfully deploying a local Supernet! This is a crucial step towards creating a fully functional Supernet that acts as a sidechain to PoS mainnet.
+Congratulations on successfully deploying a local Supernet! This is a crucial step towards creating a fully functional Supernet that acts as a childchain to PoS mainnet.
 
 To continue your Supernet journey, you can learn how to stake on the mainnet to earn rewards and support network security. Check out our staking guide here for more information.
 
-You can also explore how to transact cross-chain between the rootchain and sidechain using the native bridge. The cross-chain bridge guide here will walk you through the process.
+You can also explore how to transact cross-chain between the rootchain and childchain using the native bridge. The cross-chain bridge guide here will walk you through the process.

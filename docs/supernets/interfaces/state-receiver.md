@@ -11,7 +11,7 @@ keywords:
   - interface
 ---
 
-The `IStateReceiver` interface is designed to handle state updates received from a higher-level entity, typically on the L2 side of the Polygon network. This user guide will explain how to interact with the functions provided by the `IStateReceiver` interface.
+The `IStateReceiver` interface is designed to handle state updates received from a higher-level entity, typically on the L2 side of the childchain. This user guide will explain how to interact with the functions provided by the `IStateReceiver` interface.
 
 ## Functions
 

@@ -157,7 +157,6 @@ The diagram below illustrates a standard Supernet deployment in bridge mode.
 
 ### 1. Initialize PolyBFT consensus
 
-PolyBFT is a consensus protocol used in the Polygon network that uses a validator set to achieve consensus.
 > If you need to become more familiar with PolyBFT or consensus protocols in general, you can check out the [system design documents](/docs/category/system-design) for more information.
 
 To initialize the PolyBFT consensus, we need to generate the necessary secrets for each node. This is done using the polygon-edge `polybft-secrets` command with the following options:
@@ -364,6 +363,6 @@ Repeat the above command for each node, replacing the --data-dir and port number
 
 ## Next Steps
 
-Congratulations on successfully deploying a local blockchain with PolyBFT consensus! This is a crucial step towards creating a fully functional Supernet that acts as a sidechain to PoS mainnet.
+Congratulations on successfully deploying a local blockchain with PolyBFT consensus! This is a crucial step towards creating a fully functional Supernet that acts as a childchain to PoS mainnet.
 
 To continue your Supernet journey, try deploying a [local Supernet in bridge-mode using a demo Geth instance](/docs/supernets/operate/supernets-local-deploy-supernet).

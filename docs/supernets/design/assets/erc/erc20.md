@@ -25,15 +25,15 @@ Polygon Supernets offer two token standards for creating fungible tokens on the 
 
 ## ChildERC20
 
-`ChildERC20` is a token standard that allows developers to create fungible tokens on the Polygon network's childchain. It is based on the ERC-20 standard and offers similar functionality. To create a new ChildERC20 token, developers can use the `ChildERC20` contract as a template and deploy it on the childchain. The contract requires a name, symbol, and number of decimals to determine the minimum unit of the token.
+`ChildERC20` is a token standard that allows developers to create fungible tokens on the childchain. It is based on the ERC-20 standard and offers similar functionality. To create a new ChildERC20 token, developers can use the `ChildERC20` contract as a template and deploy it on the childchain. The contract requires a name, symbol, and number of decimals to determine the minimum unit of the token.
 
-`ChildERC20` tokens are minted and burned on the childchain through the corresponding `ERC20Predicate` contract. This ensures that the supply of tokens on the Ethereum network and the Polygon network remains in sync. The ERC20Predicate contract also allows for the transfer of tokens between the two networks.
+`ChildERC20` tokens are minted and burned on the childchain through the corresponding `ERC20Predicate` contract. This ensures that the supply of tokens on the rootchain and the childchain remains in sync. The ERC20Predicate contract also allows for the transfer of tokens between the two networks.
 
 ## NativeERC20
 
-`NativeERC20` is the native token contract used on Polygon Supernets. It is designed for the Polygon network and offers fast and inexpensive transactions. `NativeERC20` is deployed on the network's rootchain and is managed through the System contract. It can be minted and burned by the Predicate contract.
+`NativeERC20` is the native token contract used on Polygon Supernets. It is designed for the childchain and offers fast and inexpensive transactions. `NativeERC20` is deployed on the network's rootchain and is managed through the System contract. It can be minted and burned by the Predicate contract.
 
-`NativeERC20Mintable` is the contract used to create and manage NativeMintable tokens, which are non-fungible tokens that represent assets on the Polygon network. These tokens can be managed through the NativeBridge contract and transferred between the Polygon and Ethereum networks. `NativeERC20` offers similar functionality to the ERC-20 standard, including the ability to transfer tokens between addresses, approve others to spend tokens on your behalf, and check your balance.
+`NativeERC20Mintable` is the contract used to create and manage NativeMintable tokens, which are non-fungible tokens that represent assets on the childchain. These tokens can be managed through the NativeBridge contract and transferred between the Polygon and Ethereum networks. `NativeERC20` offers similar functionality to the ERC-20 standard, including the ability to transfer tokens between addresses, approve others to spend tokens on your behalf, and check your balance.
 
 ### EIP1559Burn
 
@@ -47,4 +47,4 @@ The main difference between ChildERC20 and NativeERC20 is their deployment and m
 
 Despite these differences, both standards offer similar functionality based on the ERC-20 standard. `ChildERC20` provides a simple and familiar way to create and manage tokens on Polygon's childchain, while `NativeERC20` serves as the network's native token on the rootchain. Both standards allow for the transfer of tokens between addresses, approval for others to spend tokens on your behalf, and the ability to check your balance.
 
-Developers and users can choose between `ChildERC20` and `NativeERC20` based on their specific needs and use cases. `ChildERC20` offers a way to create and manage tokens on the childchain, while `NativeERC20` serves as the native token on the rootchain. Both standards offer similar functionality based on the ERC-20 standard and can be used to create fungible tokens on the Polygon network.
+Developers and users can choose between `ChildERC20` and `NativeERC20` based on their specific needs and use cases. `ChildERC20` offers a way to create and manage tokens on the childchain, while `NativeERC20` serves as the native token on the rootchain. Both standards offer similar functionality based on the ERC-20 standard and can be used to create fungible tokens on the childchain.
