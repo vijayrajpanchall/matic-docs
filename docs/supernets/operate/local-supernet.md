@@ -67,20 +67,21 @@ This document a full deployment of a testnet childchain in bridge mode, either u
     polygon-edge rootchain server
     ```
 
-   Deploy rootchain contracts on the Geth instance:
+   Deploy rootchain contracts on the rootchain instance:
 
    ```bash
-   polygon-edge rootchain init-contracts --manifest ./manifest.json --contracts-path ./core-contracts/artifacts \
-   --json-rpc http://127.0.0.1:8545 --admin-key <hex_encoded_private_key>
-   ```
+    polygon-edge rootchain init-contracts
+    --data-dir <local_storage_secrets_path> | [--config <cloud_secrets_manager_config_path>]
+    [--manifest ./manifest.json]
+    [--json-rpc http://127.0.0.1:8545]
+    [--test]
+    ```
 
 4. Create a genesis file:
 
    ```bash
-    polygon-edge genesis --dir ./genesis.json --consensus polybft --block-gas-limit 10000000 --epoch-size 10 \
-    --bridge-json-rpc http://127.0.0.1:8545 \
-    --contracts-path ./core-contracts/artifacts \
-    --manifest ./manifest.json
+    polygon-edge genesis --block-gas-limit 10000000 --epoch-size 10
+    [--consensus polybft] [--bridge-json-rpc <rootchain_ip_address>] [--manifest ./manifest.json]
     ```
 
 5.  Fund validators on rootchain:
@@ -310,7 +311,6 @@ This will start the rootchain server on the default JSON-RPC port of 8545. Once 
 Now that we have started the rootchain, we can deploy and initialize the rootchain smart contracts. This is done using the polygon-edge `rootchain init-contracts` command with the following options:
 
 - `--manifest`: specifies the path to the manifest file generated in the previous step
-- `--contracts-path`: specifies the path to the smart contract artifacts for the rootchain contracts
 - `--json-rpc`: specifies the endpoint for the JSON-RPC API of the Ethereum client that is used to deploy the contracts
 - `--admin-key`: specifies the private key of the admin account that will be used to deploy the contracts
 
@@ -451,16 +451,13 @@ We'll use the polygon-edge genesis command to generate the genesis configuration
 - `--block-gas-limit`: specifies the maximum gas limit for each block
 - `--epoch-size`: specifies the number of blocks in each epoch
 - `--bridge-json-rpc`: specifies the rootchain JSON-RPC endpoint
-- `--contracts-path`: specifies the path to the rootchain contract artifacts directory
 - `--manifest`: specifies the path to the manifest file generated in the previous step
 
 Here's an example command for generating the genesis file:
 
 ```bash
-polygon-edge genesis --dir ./genesis.json --consensus polybft --block-gas-limit 10000000 --epoch-size 10 \
-    --bridge-json-rpc http://127.0.0.1:8545 \
-    --contracts-path ./core-contracts/artifacts \
-    --manifest ./manifest.json
+    polygon-edge genesis --block-gas-limit 10000000 --epoch-size 10
+    [--consensus polybft] [--bridge-json-rpc <rootchain_ip_address>] [--manifest ./manifest.json]
 ```
 
 You will see:

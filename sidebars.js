@@ -87,26 +87,25 @@ module.exports = {
   operatepos: [
     "operate/technical-requirements",
     "operate/snapshot-instructions-heimdall-bor",
+    "operate/network-rpc-endpoints",
+    "operate/access-node-alchemy",
+    "operate/full-node-deployment",
+    "operate/full-node-binaries",
+    "operate/full-node-docker",
+    "operate/full-node",
     {
       type: "category",
-      label: "Run a Full Node",
+      label: "Erigon's Archive Node",
       link: {
         type: "generated-index",
       },
-      collapsed: false,
       items: [
-        "operate/full-node-deployment",
-        "operate/full-node-binaries",
-        "operate/full-node-docker",
-        "operate/full-node",
+        //"operate/erigon/client-setup",
+        //"operate/erigon/archive-node-ansible",
+        //"operate/erigon/archive-node-binaries",
       ],
     },
-    "operate/network-rpc-endpoints",
-    "operate/default-ports",
-    /*"operate/access-node-alchemy",*/
-    "operate/archive-node",
-    "operate/erigon-client",
-],
+  ],
 
   develop: [
     {
@@ -543,7 +542,7 @@ module.exports = {
     },
     {
       type: "category",
-      label: "PoS Network",
+      label: "PoS Chain",
       link: {
         type: "generated-index",
       },
@@ -626,18 +625,6 @@ module.exports = {
         "develop/ethereum-polygon/matic-js/pos/is-deposited",
         "develop/ethereum-polygon/matic-js/pos/deposit-ether",
       ],
-    },
-    {
-      type: "category",
-      label: "zkEVM Network",
-      link: {
-        type: "generated-index",
-      },
-      items: [
-        "develop/ethereum-polygon/matic-js/zkevm/initialize-zkevm",
-        "develop/ethereum-polygon/matic-js/zkevm/zkevm-client-erc20",
-        "develop/ethereum-polygon/matic-js/zkevm/common-methods",
-      ]
     },
     "develop/ethereum-polygon/matic-js/fx-portal",
     "develop/ethereum-polygon/matic-js/set-proof-api",
@@ -1118,13 +1105,6 @@ module.exports = {
         "zkEVM/PIL/pil-config",
         "zkEVM/PIL/cyclic-nature",
         "zkEVM/PIL/pil-arguments",
-        "zkEVM/PIL/connect-programs",
-        "zkEVM/PIL/public-values",
-        "zkEVM/PIL/permutation-arg",
-        "zkEVM/PIL/connect-arg",
-        "zkEVM/PIL/pil-plonk",
-        "zkEVM/PIL/filling-polynomial",
-        "zkEVM/PIL/generate-proof",
       ],
     },
     {
@@ -1305,6 +1285,23 @@ module.exports = {
         "supernets/operate/supernets-local-deploy",
         "supernets/operate/supernets-local-deploy-supernet",
         "supernets/operate/supernets-bridge",
+        {
+          type: "category",
+          label: "Interfaces",
+          link: {
+            type: "generated-index",
+          },
+          collapsed: true,
+          items: [
+            "supernets/interfaces/native-erc20",
+            "supernets/interfaces/childerc20",
+            "supernets/interfaces/childerc20-predicate",
+            "supernets/interfaces/checkpoint-manager",
+            "supernets/interfaces/exit-helper",
+            "supernets/interfaces/state-receiver",
+            "supernets/interfaces/state-sender",
+          ],
+        },
         {
           type: "category",
           label: "Modules",
