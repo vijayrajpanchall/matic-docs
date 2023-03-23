@@ -19,16 +19,16 @@ This document compiles some of the frequently asked questions related to the Pol
 
 ### For anyone not familiar, what is Polygon zkEVM?
 
-Polygon zkEVM is the leading zero knowledge scaling solution that’s equivalent with the Ethereum Virtual Machine, this means that most of the existing smart contracts, developer tools, and wallets work seamlessly. 
+Polygon zkEVM is the leading zero knowledge scaling solution that is equivalent with the Ethereum Virtual Machine. This means that most of the existing smart contracts, developer tools, and wallets work seamlessly. 
 
-Polygon zkEVM harnesses the power of ZK proofs to reduce transaction cost and increase throughput, all while inheriting the security of Ethereum L1.
+Polygon zkEVM harnesses the power of Zero Knowledge proofs to reduce transaction cost and increase throughput, all while inheriting the security of Ethereum L1.
 
 ### What are the main features of Polygon zkEVM?
 
-- Ethereum-equivalence: Most Ethereum smart contracts, wallets, tools, etc. work on Polygon zkEVM seamlessly. 
-- Inherits Ethereum security
-- Lower cost compared to L1 and better finality than other L2 solutions like Optimistic Rollups
-- ZKP-powered scalability, and aiming at similar throughput to PoS
+- **EVM-equivalence**: Most Ethereum smart contracts, wallets, and tools work seamlessly on Polygon zkEVM
+- Inherits **security from Ethereum**
+- Lower cost compared to L1 and **better finality than other L2 solutions** like Optimistic Rollups
+- **ZKP-powered scalability**, and aiming at similar throughput to PoS
 
 ### What kind of gas fee reduction can users expect from Polygon zkEVM?
 
@@ -56,7 +56,7 @@ However, the one big difference between Polygon zkEVM and other projects is zkEV
 
 ### Is Polygon zkEVM open source?
 
-Yes, Polygon zkEVM will be fully open sourced with a AGPLv3 open source license.
+Yes, Polygon zkEVM will be fully open sourced with a **AGPLv3 open source license**.
 
 ### Does Polygon zkEVM have a separate token?
 
@@ -66,23 +66,23 @@ It is important to note that we also plan to implement Account Abstraction via E
 
 ### What types of dApps can be deployed on Polygon zkEVM?
 
-Any dApp that is compatible with EVM can be deployed, except for those which require a specific precomplied that is currently not supported by zkEVM. For more details related to supported precompiled contracts, check out [this document](/zkEVM/protocol/evm-differences.md).
+Any dApp that is compatible with EVM can be deployed, except for those which require a specific precompiled contract that is currently not supported by zkEVM. For more details related to supported precompiled contracts, check out [this document](/zkEVM/protocol/evm-differences.md).
 
 ### Can this Layer 2 zkEVM work with other chains?
 
-At the moment, the answer is No. Aspirationally, the goal in the future is to build one of many chains that allow for users' assets to move from layer 2 (L2) to layer 2. With that being said, users will not be able to utilize this functionality at launch, but L2 to L2 movement is something road mapped for the future.
+**At the moment, the answer is No**. Aspirationally, the goal in the future is to build one of many chains that allow for users' assets to move from layer 2 (L2) to layer 2. With that being said, users will not be able to utilize this functionality at launch, but L2 to L2 movement is included in our future roadmap.
 
 ### What are some of the main use cases for Polygon zkEVM?
 
 **DeFi Applications**: Because of Polygon zkEVM’s high security and censorship resistance nature, it's a good fit for DeFi applications. zkRollups don’t have to wait for long periods for deposits and withdrawals; Polygon zkEVM offers better capital efficiency for DeFi dApps/users.
 
-**NFT, Gamefi, and Enterprise Applications**: Low gas cost, high transaction speed, and greater level of security coupled with Ethereum composability is attractive to blue chip NFTs, Gamefi, and Enterprise applications.
+**NFT, Gamefi, and Enterprise Applications**: Low gas cost, high transaction speed, and greater level of security coupled with Ethereum composability is attractive to blue chip NFTs, GameFi, and Enterprise applications.
 
 **Payments**: Users interested in transacting with each other in real-time within a near-instantaneous and low fee environment will appreciate the value Polygon zkEVM provides.
 
 ### Once Polygon zkEVM comes out, will it replace Polygon PoS?
 
-No, that is not the aim. Builders can use either of the solutions based on their needs. No matter where the solution is deployed, this multichain approach will makes it easier for interoperability. 
+**No, that is not our aim**. Builders can use either of the solutions based on their needs. No matter where the solution is deployed, this multichain approach will makes it easier for interoperability. 
 
 ### When Polygon zkEVM publishes a proof on L1, how can someone trust that that proof is accurate and includes all the transactions it claims it does?
 
@@ -94,7 +94,7 @@ Yes, any language that gets compiled to EVM opcode should work with Polygon zkEV
 
 ### What is an RPC node?
 
-RPC (Remote Procedure Call) is a JSON-RPC interface compatible with Ethereum. It enables integration of Polygon zkEVM with existing tools, such as Metamask, Etherscan, and Infura. It adds transactions to the pool and interacts with the state using read-only methods.
+**RPC (Remote Procedure Call)** is a JSON-RPC interface compatible with Ethereum. It enables integration of Polygon zkEVM with existing tools, such as Metamask, Etherscan, and Infura. It adds transactions to the pool and interacts with the state using read-only methods.
 
 Additionally, for a software application to interact with the Ethereum blockchain (by reading blockchain data and/or sending transactions to the network), it must connect to an Ethereum node. It works the same way as other nodes such as geth.
 

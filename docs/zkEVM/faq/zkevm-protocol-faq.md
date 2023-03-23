@@ -61,12 +61,11 @@ Once the transaction is deemed valid, the Sequencer applies the transaction to t
 
 **In case the user needs to withdraw funds**, he/she needs to wait for the Prover to convert the implicit state to explicit state. We call this last state as the **Consolidated or Verified State**.
 
-
 ### Are Sequencers and Provers in-house or external? How do you ensure that your Sequencers and Provers maintain decentralization?
 
-Polygon zkEVM's Sequencer will be centralized during early stages. We have a roadmap to decentralize the sequencer in future releases.
+Polygon zkEVM's **Sequencer will be centralized during early stages**. We have a roadmap to decentralize the sequencer in future releases.
 
-Likewise, the Prover is also centralized at the beginning but the vision is to enable a Provers market. Provers cannot do much but generate proofs. To have a decentralized system of Provers is much more critical (and difficult) than the Sequencer.
+Likewise, the **Prover is also centralized at the beginning** but the vision is to enable a Provers market. Provers cannot do much but generate proofs. To have a decentralized system of Provers is much more critical (and difficult) than the Sequencer.
 
 ### Can a zknode serve as both Sequencer and Aggregator? If not, how is it determined what role a node can play?
 
@@ -97,4 +96,3 @@ It can be triggered by the owner of a smart contract or, in the case of Polygon 
 **Polygon zkEVM Security Council** is a multisig and it has decision oversight on the security of Polygon zkEVM during its initial phase. The Security Council has the responsibilty to halt the system in case an Emergency State is triggered. 
 
 The **Security Council multisig is formed by a group of well known Ethereum developers and researchers**.
-
