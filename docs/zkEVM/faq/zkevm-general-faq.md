@@ -58,7 +58,7 @@ However, the one big difference between Polygon zkEVM and other projects is zkEV
 
 No. **ETH will be used for gas fees**. It is expected that MATIC will be used for staking and governance in Polygon zkEVM in the future.
 
-It is important to note that we also plan to implement Account Abstraction via ERC-4337 once this is implemented in Ethereum. This will allow to pay fees with any token transparently from the user perspective.
+It is also important to note that Polygon **zkEVM supports Account Abstraction via ERC-4337**, which will allow to pay fees with any token transparently from a user's perspective.
 
 ### What types of dApps can be deployed on Polygon zkEVM?
 
