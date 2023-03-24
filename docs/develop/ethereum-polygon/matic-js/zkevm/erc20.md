@@ -56,7 +56,7 @@ const balance = await erc20Token.getBalance(<user Address>);
 
 ### approve
 
-The `approve` method can approve the required amount on the root and child token. It is needed in order to deposit the amount on the zkEVM network.
+The `approve` method can approve the required amount on the root and child token. It is needed for both deposit and withdrawal on the zkEVM network. Some tokens require this method during withdrawal while others require it during deposit.
 
 ```js
 const erc20Token = zkEvmClient.erc20(<root token address>, true); // root token
@@ -72,7 +72,7 @@ const receipt = await result.getReceipt();
 
 The address on which approval is given is called the `spenderAddress`. It is a third-party user or a smart contract which can transfer your token on your behalf.
 
-By default `spenderAddress` value is an ERC20 predicate address. You can specify `spenderAddress` value manually.
+By default, `spenderAddress` value is the `PolygonZkEVMBridge` contract address. You can specify `spenderAddress` value manually.
 
 ```js
 // approve 1000 amount
@@ -152,7 +152,7 @@ const receipt = await result.getReceipt();
 
 ### deposit
 
-`deposit` method can be used to deposit the required amount from root token to child token.
+`deposit` method can be used to deposit the required amount from root chain to the child chain. We recommend users to store the transaction hash in order to be able to call `depositClaim` using that `txHash`.
 
 ```js
 const erc20Token = zkEvmClient.erc20(<root token address>, true); // root token
@@ -166,7 +166,7 @@ const receipt = await result.getReceipt();
 
 ### depositEther
 
-`depositEther` method can be used to deposit required amount of **ether** from ethereum to polygon.
+`depositEther` method can be used to deposit required amount of **ether** from Ethereum to zkEVM.
 
 ```js
 // ether address = 0x0000000000000000000000000000000000000000
@@ -179,6 +179,8 @@ const receipt = await result.getReceipt();
 ```
 
 ### depositWithPermit
+
+`depositWithPermit` method can be used to deposit required amount of tokens from Ethereum to zkEVM along with the permit, so that user doesn't have to do multiple transactions for `approve` and `deposit`.
 
 ```js
 const erc20Token = zkEvmClient.erc20(<root token address>, true); // root token
@@ -206,7 +208,7 @@ const receipt = await result.getReceipt();
 
 ### withdraw
 
-`withdraw` method can be used to initiate the withdrawal process which burns the specified amount on the zkEVM network.
+`withdraw` method can be used to initiate the withdrawal process which transfers tokens from zkEVM network to Ethereum.
 
 ```js
 const erc20Token = zkEvmClient.erc20(<child token address>); // child token
@@ -221,7 +223,7 @@ The received transaction hash will be used to exit the withdraw process. So we r
 
 ### withdrawExit
 
-`withdrawExit` method can be used to exit the withdrawal process by using the transaction hash from `withdraw` method. Note that `withdraw` transaction must be checkpointed in order to exit the withdrawal process.
+`withdrawExit` method can be used to exit the withdrawal process by using the transaction hash from `withdraw` method. Note that the validity proof of `withdraw` transaction must be submitted in order to exit the withdrawal process.
 
 ```js
 const erc20Token = zkEvmClient.erc20(<root token address>, true); // root token
@@ -231,4 +233,3 @@ const result = await erc20Token.withdrawExit(<transaction hash>);
 const txHash = await result.getTransactionHash();
 const receipt = await result.getReceipt();
 ```
-
