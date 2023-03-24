@@ -20,7 +20,7 @@ A zkNode is the software needed to run a zkEVM node. It is a client that the net
 
 The zkNode architecture is modular in nature. You can check out the below diagram for more clarity.
 
-![Figure 3: zkEVM zkNode Diagram](figures/fig3-zkNode-arch.png)
+![zkEVM zkNode Diagram](figures/fig3-zkNode-arch.png)
 
 ## Sequencers
 

@@ -101,6 +101,4 @@ PIL-STARK is, all-in-all, a specific implementation of a STARK that can be used 
 
 The actual implementation of PIL-STARK uses recursion. That is, hundreds of STARK proofs are proved with another STARK proof, and these STARK proofs of other STARK proofs are also proved with a single STARK proof. This achieves exponential scalability than it would otherwise be possible.
 
-The code for implementing PIL-STARK is found in the zkEVM repository [here](https://github.com/0xPolygonHermez/pil-stark). The overall picture of the PIL-STARK process is seen by putting together the above three diagrams as below.
-
-![pil-stark-basic-diagram](figures/fib16-pil-stark-basic-diagram.png)
+The code for implementing PIL-STARK is found in the zkEVM repository [here](https://github.com/0xPolygonHermez/pil-stark).

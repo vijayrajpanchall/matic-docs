@@ -209,6 +209,6 @@ $$
 \big(1 − R(X)\big) · [Q(X\cdot \omega) − (P(X) · Q(X))] = \bigg\lvert_H\ 0\text{ }\\
 \big(P(\omega^{\mathtt{1023}}) - \mathcal{K} \big)\cdot R(X) = 0\quad\text{ }\text{ }
 $$
-Anyone who knows the three polynomials and the correct initial conditions, say $A_0 = 234$ and $B_0 = 135$, can simply run the mFibonacci SM code to compute $A_{\mathtt{1023}} = P(\omega^{\mathtt{1023}})$. See Figure 6 below for the .js code.
+Anyone who knows the three polynomials and the correct initial conditions, say $A_0 = 234$ and $B_0 = 135$, can simply run the mFibonacci SM code to compute $A_{\mathtt{1023}} = P(\omega^{\mathtt{1023}})$. See below figure for the JS code.
 
 ![Code Example of the mFibonacci SM's Computation Trace](figures/fib8-code-eg-exec-trace.png)
