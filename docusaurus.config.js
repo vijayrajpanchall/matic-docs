@@ -745,15 +745,41 @@ module.exports = {
           ]
         },
         {
+          label: "FAQs",
+          position: "right",
+          items: [
+                  {
+                    to: '/docs/faq/general-faq/',
+                    label: 'PoS FAQ',
+                    target: '_self',
+                    rel: null,
+                  },
+                  {
+                    to: '/docs/supernets/supernets-faq',
+                    label: 'Supernet FAQ',
+                    target: '_self',
+                    rel: null,
+                  },
+                  {
+                    to: '/docs/zkEVM/faq/zkevm-general-faq',
+                    label: 'zkEVM FAQ',
+                    target: '_self',
+                    rel: null,
+                  },
+                ],
+        },
+        {
           href: "https://github.com/maticnetwork",
           position: "right",
           className: "header-github-link",
           "aria-label": "GitHub repository",
         },
+        /* let's disable this till we launch translations again
         {
           type: 'localeDropdown',
           position: 'right',
         },
+        */
       ],
     },
   },
