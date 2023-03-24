@@ -553,7 +553,7 @@ module.exports = {
                     rel: null,
                   },
                   {
-                    href: '/docs/zkEVM/introduction/',
+                    href: '/docs/zkEVM',
                     label: 'zkEVM',
                     target: '_self',
                     rel: null,

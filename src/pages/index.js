@@ -142,8 +142,6 @@ function ImproveWiki({docUrl, translationRecruitingLink}) {
 }
 
 function smoothScrollTo(target) {
-  const context = useDocusaurusContext();
-  const { siteConfig = {} } = context;
   const element = document.querySelector(target);
   if (element) {
     window.scrollTo({
@@ -285,7 +283,7 @@ function Home() {
                   <div class="padding-bottom padding-small"></div>
                   <p class="description-text">Unlock Ethereum scalability while maintaining security with the first ZK-rollup that offers EVM equivalence with fast transactions at near-zero gas cost today.</p>
                   <div class="padding-bottom custom-padding"></div>
-                  <Buttonizer docsUrl={'docs/zkEVM/introduction'} linkUrl={'docs/zkEVM/develop'} />
+                  <Buttonizer docsUrl={'docs/zkEVM/'} linkUrl={'docs/zkEVM/develop'} />
                 </div>
                 <div class="tabs_animation-wrapper">
                   <div class="tabs_animation-embed pb_video_embed w-embed w-iframe">

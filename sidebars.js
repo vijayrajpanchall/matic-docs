@@ -920,6 +920,7 @@ module.exports = {
       value: 'Polygon zkEVM',
       className: 'sidebar-title',
     },
+    "zkEVM/index",
     "zkEVM/introduction",
     "zkEVM/architecture",
     {
