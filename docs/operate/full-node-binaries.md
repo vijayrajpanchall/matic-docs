@@ -20,7 +20,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 This tutorial guides you through starting and running a full node using binaries. For the system requirements, see the [Minimum Technical Requirements](technical-requirements.md) guide.
 
-:::tip
+:::tip Snapshots
 
 Steps in this guide involve waiting for the Heimdall and Bor services to fully sync. This process takes several days to complete.
 

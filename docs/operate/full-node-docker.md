@@ -17,31 +17,12 @@ The Polygon team distributes official Docker images which can be used to run nod
 
 :::tip Snapshots
 
-You’ll find that syncing from scratch can take a very long time. If you’d like to speed the process up, you can follow the instructions listed here: [<ins>Snapshot Instructions for Heimdall and Bor</ins>](/docs/operate/snapshot-instructions-heimdall-bor)
+Steps in this guide involve waiting for the Heimdall and Bor services to sync fully. This process takes several days to complete.
 
-This will be the most up to date instructions, but roughly you can do something like the steps below:
-```bash
-# stop your containers at this point. Since you're importing a snapshot you don't need to run them anymore
-aria2c -x6 -s6 https://matic-blockchain-snapshots.s3-accelerate.amazonaws.com/matic-mainnet/heimdall-snapshot-2022-07-06.tar.gz
-tar xzf heimdall-snapshot-2022-07-06.tar.gz -C /mnt/data/heimdall/data/
+Alternatively, you can use a maintained snapshot, reducing the sync time to a few hours. For detailed instructions, see [<ins>Snapshot Instructions for Heimdall and Bor</ins>](/docs/operate/snapshot-instructions-heimdall-bor).
 
-aria2c -x6 -s6 https://matic-blockchain-snapshots.s3-accelerate.amazonaws.com/matic-mainnet/bor-fullnode-snapshot-2022-07-01.tar.gz
-tar xzf bor-fullnode-snapshot-2022-07-01.tar.gz -C /mnt/data/bor/bor/chaindata
-# at this point, you can start your containers back up. Pay attention to the logs to make sure everything looks good
-```
+For snapshot download links, see the [<ins>Polygon Chains Snapshots</ins>](https://snapshot.polygon.technology/) page.
 
-The `aria2c` method is used for downloading snapshots faster.
-There is an alternate way where the downloaded snapshots can be directly extracted without any intervention.
-
-**Steps for that:**
-
-```bash title="For Heimdall"
-wget -c https://matic-blockchain-snapshots.s3-accelerate.amazonaws.com/matic-mainnet/heimdall-snapshot-2022-11-30.tar.gz -O - | tar -xzf - -C ~/.heimdalld/data/
-```
-
-```bash title="For Bor"
-wget -c https://matic-blockchain-snapshots.s3-accelerate.amazonaws.com/matic-mainnet/bor-fullnode-snapshot-2022-11-21.tar.gz  -O - | tar -xzf - -C ~/.bor/data/bor/chaindata
-```
 :::
 
 ## Prerequisites
@@ -498,18 +479,3 @@ When you run this command, it will give you a result like:
 ```
 
 This will indicate the `currentBlock` that’s been synced and also the `highestBlock` that we’re aware of. If the node is already synced, we should get `false`.
-
-## Snapshots
-You’ll find that syncing from scratch can take a very long time. If you’d like to speed the process up, you can follow the instructions listed here: [https://docs.polygon.technology/docs/operate/snapshot-instructions-heimdall-bor/](https://docs.polygon.technology/docs/operate/snapshot-instructions-heimdall-bor/)
-
-This will be the most up to date instructions, but roughly you can do something like the steps below:
-
-```bash
-# stop your containers at this point. Since you're importing a snapshot you don't need to run them anymore
-aria2c -x6 -s6 https://matic-blockchain-snapshots.s3-accelerate.amazonaws.com/matic-mainnet/heimdall-snapshot-2022-07-06.tar.gz
-tar xzf heimdall-snapshot-2022-07-06.tar.gz -C /mnt/data/heimdall/data/
-
-aria2c -x6 -s6 https://matic-blockchain-snapshots.s3-accelerate.amazonaws.com/matic-mainnet/bor-fullnode-snapshot-2022-07-01.tar.gz
-tar xzf bor-fullnode-snapshot-2022-07-01.tar.gz -C /mnt/data/bor/bor/chaindata
-# At this point, you can start your containers back up. Pay attention to the logs to make sure everything looks good
-```

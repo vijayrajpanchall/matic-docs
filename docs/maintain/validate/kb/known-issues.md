@@ -135,20 +135,7 @@ This is because your Go Version is slightly outdated.
 **Solution:**
 The recommended Go version is 1.15.x and above.
 
-### 9. Issue: Sentry Bor is still struggling with 'Looking for peers' and Peers are not succeeding
-
-**Description:**
-This could happen when Bor has lost connectivity with other peers.
-
-**Solution:**
-
-- Check the `[start.sh](http://start.sh)` file (~/node/bor/start.sh) and it should show you your bootnodes.
-- Check if the bootnodes are entered correctly without any formatting issues.
-- If you have made any changes to the file, then please restart your Bor service and check if the issue is resolved.
-
-If none of this works, then please contact the **Polygon Support Team** immediately for assistance.
-
-### 10. Error: (in Bor) "Failed to prepare header mining at block 0"
+### 9. Error: (in Bor) "Failed to prepare header mining at block 0"
 
 **Description:**
 This happens because of a formatting issue in your `static-nodes.json` file (/var/lib/bor/data/bor/static-nodes.json).
@@ -158,7 +145,7 @@ This happens because of a formatting issue in your `static-nodes.json` file (/va
 - Ensure there are no space and no additional characters like < / > .
 - If you have made any changes to the file then please restart your Bor service and you should see logs printing.
 
-### 11. Error: "30303" or invalid command
+### 10. Error: "30303" or invalid command
 
 **Description:**
 This is because you haven’t created the bor keystore and the password file for it.
@@ -167,14 +154,14 @@ This is because you haven’t created the bor keystore and the password file for
 
 Ensure that you follow all the steps from the guide setup.
 
-### 12. Error: Impossible reorg, please file an issue
+### 11. Error: Impossible reorg, please file an issue
 
 **Description:**
 Let these logs be. Your node should ideally not suffer because of this and the issue should be automatically resolved.
 
 If your node is suffering because of this, please contact the support team immdiately.
 
-### 13. Error: "Host not found" while setting up a node using Ansible
+### 12. Error: "Host not found" while setting up a node using Ansible
 
 **Description:**
 This could be because your `inventory.yml` file may have some formatting issues.
@@ -182,7 +169,7 @@ This could be because your `inventory.yml` file may have some formatting issues.
 **Solution:**
 Correct them with proper indentation and then try again.
 
-### 14. Issue: "Dialling failed" in Heimdall
+### 13. Issue: "Dialling failed" in Heimdall
 
 **Description:**
 This is related to connectivity and more specifically a port related problem.
@@ -195,7 +182,7 @@ This is related to connectivity and more specifically a port related problem.
 - Try adding additional peers in vi /var/lib/heimdall/config/config.toml
 - Set `max_open_connection` parameter to 100.
 
-### 15. Issue: Looking for Peers or Stopping Peer for error
+### 14. Issue: Looking for Peers or Stopping Peer for error
 
 **Solution:**
 
@@ -244,7 +231,7 @@ Follow the below steps for adding additional peers in  `vi /var/lib/heimdall/con
     sudo service heimdalld start
     ```
 
-### 16. Error: Error while fetching data from URL
+### 15. Error: Error while fetching data from URL
 
 **Error sample:**
 
@@ -259,14 +246,14 @@ module=span service=processor lastSpanId=2862
 
 Then the Heimdall Bridge needs a restart.
 
-### 17. Error: no contract code at the given address
+### 16. Error: no contract code at the given address
 
 **Solution**
 
 1. Get the right configs from Github and copy them to `/var/lib/heimdall/config` and
 2.  Please reset heimdall using `heimdalld unsafe-reset-all`.
 
-### 18. Issue: Problems in starting Bor
+### 17. Issue: Problems in starting Bor
 
 **Issue:**
 Address is required as an argument.
@@ -278,7 +265,7 @@ You have to add address.
 /etc/matic/metadata
 ```
 
-### 19. Error: Failed to unlock account (0x...) No key for given address or file
+### 18. Error: Failed to unlock account (0x...) No key for given address or file
 
 **Description:**
 
@@ -325,7 +312,7 @@ Kill Bor process
     /var/lib/bor/password.txt
     ```
 
-### 20. Consequences of validator missing a checkpoint and points to investigate from our side
+### 19. Consequences of validator missing a checkpoint and points to investigate from our side
 
 - Economics
     - Bad reputation for Validator
@@ -333,7 +320,7 @@ Kill Bor process
 - Investigation
     - Ask for recent logs
 
-### 21. Error: dpkg: error processing archive matic-heimdall-xxxxxxxxxx
+### 20. Error: dpkg: error processing archive matic-heimdall-xxxxxxxxxx
 
 **Sample:**
 
@@ -345,7 +332,7 @@ Kill Bor process
 
 This occurs mainly because of a previous installation of Matic on machine. To resolve you can run: `sudo dpkg -r matic-node`
 
-### 22. Issue: Tendermint was rest without resetting application's data
+### 21. Issue: Tendermint was rest without resetting application's data
 
 **Solution:**
 
@@ -359,7 +346,7 @@ This occurs mainly because of a previous installation of Matic on machine. To re
     $ rm -rf $HEIMDALLDIR/bridge
     ```
 
-### 23. Error: "Wrong Block.Header.AppHash."
+### 22. Error: "Wrong Block.Header.AppHash."
 
 **Description:**
 This error usually occurs due to Infura requests getting exhausted. When you setup a node on Matic, you add an Infura Key to the Config file (Heimdall). By default you are allowed 100k Requests per day, if this limit is crossed, then you would face such problems.
@@ -367,14 +354,14 @@ This error usually occurs due to Infura requests getting exhausted. When you set
 **Solution**
 To resolve this you can create a new API key and add it to the `config.toml` file.
 
-### 24. Issue: Bor crashed
+### 23. Issue: Bor crashed
 
 **Solution:**
 
 - Try upgrading to double the amount of RAM
 - For example, their current RAM capacity is 16GB, it can be upgraded to 32GB
 
-### 25. Error: err="insufficient funds for gas * price + value"
+### 24. Error: err="insufficient funds for gas * price + value"
 
 **Description:**
 
@@ -383,7 +370,7 @@ These logs throw up when there is no enough ETH in your signer wallet.
 **Solution:**
 It is recommended to have 1 ETH in your signer wallet but can keep .5 to .75 in case you check it often enough.
 
-### 26. Heimdall:  No staking sequence exists: %s %s             module=staking
+### 25. Heimdall:  No staking sequence exists: %s %s             module=staking
 
 
 If the following logs are found on a large frequency on Heimdall then this issue is related to the bridge service resetting the bridge directory fixes this issue.
@@ -394,7 +381,7 @@ mv /var/lib/rabbitmq/mnesia /var/lib/rabbitmq/mnesia-old
 sudo service rabbitmq-server start
 ```
 
-### 27. Retrying again in 5 seconds to fetch data from Heimdall path=bor/span/1
+### 26. Retrying again in 5 seconds to fetch data from Heimdall path=bor/span/1
 
 These logs in Bor mean that it cannot connect to Heimdall.
 
@@ -431,13 +418,13 @@ wget -c <Snapshot URL>
 tar -xzvf <snapshot file> -C <HEIMDALL_DATA_DIRECTORY>
 ```
 
-### 28. etherbase missing: etherbase must be explicitly specified
+### 27. etherbase missing: etherbase must be explicitly specified
 
 To fix this issue, the signer address that is used to mine must be added inside `miner.etherbase` section in the `config.toml` file.
 
 
 
-### 29. Steps to Prune the node
+### 28. Steps to Prune the node
 
 Please use the below steps:
 

@@ -28,7 +28,10 @@ You must always run the sentry node and the validator node on separate machines.
 
 :::info
 
-For Amazon Web Services (AWS), the equivalent of the minimum requirements instances are **m5d.2xlarge** or **r5.xlarge** with unlimited credits selected.
+For Amazon Web Services (AWS), the equivalent of the minimum requirements instances are, **with unlimited credits selected**:
+
+- For Sentry: **c5.2xlarge**
+- For Validator node: **c5.4xlarge**
 
 :::
 

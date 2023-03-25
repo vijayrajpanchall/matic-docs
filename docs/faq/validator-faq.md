@@ -170,39 +170,32 @@ go run scripts/json2wal/main.go wal.json $WALFILE
 
 ## Bor shows 'Looking for peers' and cannot find peers
 
-This could happen when Bor has lost connectivity with other peers. In the case of the validator, this occurs when the connectivity with the sentry has failed
+This could happen when Bor has lost connectivity with other peers. In the case of the validator, this occurs when the connectivity with the sentry has failed.
 
-**Solution**
+1. Open the file `~/var/lib/bor/config.toml` on your Sentry node.
 
-1. Create the file `~/node/bor/bor_config.toml` on your sentry node with the following content:
+2. Add the Trusted nodes, Static Nodes, and 
 
-    ```bash
-    [Node.P2P]
-    TrustedNodes = ["enode://<enode_id_of_validator_node>"]
-    ```
+```
+[Node.P2P]
 
-2. This is also a good time to move the list of static nodes you had configured earlier in `~/.bor/data/bor/static-nodes.json` as this file is being deprecated in the upcoming version of Bor. So your `~/node/bor/bor_config.toml`  file will look somewhat like:
+TrustedNodes = ["enode://<enode_id_of_validator_node>"]
 
-    ```bash
-    [Node.P2P]
-    StaticNodes = ["enode://static_node_enode1@ip:port", "enode://static_node_enode2@ip:port", ... ]
-    TrustedNodes = ["enode://<enode_id_of_validator_node>"]
-    ```
+[Node.P2P]
+BootNodes= ["enode://static_node_enode1@ip:port", "enode://static_node_enode2@ip:port", ... ]
 
-3. In `~/node/bor/start.sh`, add the following line in the Bor invocation command, along with the remaining flags that are already present:
+StaticNodes = ["enode://static_node_enode1@ip:port", "enode://static_node_enode2@ip:port", ... ]
 
-    ```bash
-    --config ~/node/bor/bor_config.toml \
-    ```
+TrustedNodes = ["enode://<enode_id_of_validator_node>"]
+```
 
-    Please note the `\` at the end of the line if this is not the last line of the bor invocation command.
+3. Now restart Bor: `sudo service bor restart`
 
-4. Now restart Bor: `sudo service bor restart`
-5. Follow the same steps on your validator node and instead of `enode_id_of_validator_node`, you need to provide the `enode_id_of_sentry_node` in `TrustedNodes`
+Follow the same steps on your validator node and instead of `enode_id_of_validator_node`, you need to provide the `enode_id_of_sentry_node` in TrustedNodes.
 
 :::note
 
-If the above steps didn’t work then please reach out to the Validator Team for assistance. This might be an issue with the genesis file.
+Bootnodes & Static Nodes **can use the same values, are not required on the validator and apply only for sentry and full nodes.**
 
 :::
 

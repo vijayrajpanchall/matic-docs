@@ -21,7 +21,7 @@ This tutorial guides you through starting and running a full node using Ansible.
 An [Ansible playbook](https://docs.ansible.com/ansible/latest/user_guide/playbooks_intro.html) is used to
 configure and manage a full node. See the [Minimum Technical Requirements](technical-requirements.md) guide for the system requirements.
 
-:::tip
+:::tip Snapshots
 
 Steps in this guide involve waiting for the Heimdall and Bor services to sync fully. This process takes several days to complete.
 
