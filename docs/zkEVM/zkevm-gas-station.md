@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 
 The goal of **Polygon zkEVM Gas Station** is to provide dApp developers with gas pricing suggestions so they can use it before sending transactions to the **Polygon zkEVM** network. The prediction method is modelled after the [Polygon Gas Station](/develop/tools/polygon-gas-station.md) but is unique in its own ways.
 
-Polygon zkEVM Gas Station is currently **deployed on the Blueberry testnet of zkEVM**, where it analyzes recent 1500 transactions and recommends gas price.
+Polygon zkEVM Gas Station is currently **deployed on the zkEVM Mainnet Beta and Blueberry testnet**, where it analyzes recent 1500 transactions and recommends gas price.
 
 ## Usage
 

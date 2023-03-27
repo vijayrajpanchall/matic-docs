@@ -15,7 +15,7 @@ keywords:
 image: https://wiki.polygon.technology/img/thumbnail/polygon-zkevm.png
 ---
 
-Polygon zkEVM is now available on the public testnet for developers to launch smart contracts, execute transactions, and experiment with the network. This tutorial extends the exploration by allowing developers to **launch their own node on the zkEVM Public Testnet**.
+Polygon zkEVM is now available on the Mainnet Beta for developers to launch smart contracts, execute transactions, and experiment with the network. This tutorial extends the exploration by allowing developers to **launch their own node on the zkEVM Public Testnet**.
 
 Before we begin, this document is fairly technical and requires prior exposure to **Docker** and **CLI**. Post spinning up your zkNode instance, **you will be able to run the Synchronizer and utilize the JSON-RPC interface**.
 

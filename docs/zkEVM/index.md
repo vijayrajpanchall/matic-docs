@@ -24,10 +24,17 @@ Polygon zkEVM Mainnet Beta is provided on an **AS-IS** and **AS-AVAILABLE** basi
 
 ---
 
-### Polygon zkEVM Risk Disclosures
+## Polygon zkEVM Status
+
+You can check the live status of Polygon zkEVM network using the following links for Mainnet Beta and Public Testnet.
+
+- **Mainnet Beta &rarr;** https://status.zkevm-rpc.com
+- **Public Testnet &rarr;** https://status.zkevm-test.net
+
+## Polygon zkEVM Risk Disclosures
 
 <details>
-<summary>Attack Vectors/Security</summary>
+<summary><b>Attack Vectors/Security</b></summary>
 
 - This is a **Mainnet Beta** and **not a Mainnet release of Polygon zkEVM**, [<ins>security audits</ins>](https://polygon.technology/blog/polygon-zkevm-results-of-hexens-security-audit) and assessments are ongoing. Your data and crypto-assets may be at risk as a result of bugs or otherwise.
 
@@ -38,14 +45,14 @@ Polygon zkEVM Mainnet Beta is provided on an **AS-IS** and **AS-AVAILABLE** basi
 </details>
 
 <details>
-<summary>Network Availability/Performance</summary>
+<summary><b>Network Availability/Performance</b></summary>
 
 As this is a Mainnet Beta, Polygon zkEVM may be slow or unavailable from time to time without notice, which could result in unexpected loss of use or data or crypto-assets. Before engaging in high value transactions, be mindful that there may be time delays before transactions are finalized.
 
 </details>
 
 <details>
-<summary>Decentralization Progress</summary>
+<summary><b>Decentralization Progress</b></summary>
 
 Polygon Labs is in the process of further decentralizing Polygon zkEVM. This refers to the process of gradually increasing decentralization of the system over time.
 
@@ -60,14 +67,14 @@ Polygon Labs is in the process of further decentralizing Polygon zkEVM. This ref
 </details>
 
 <details>
-<summary>Gas Fees</summary>
+<summary><b>Gas Fees</b></summary>
 
 If the gas fees associated with a proposed transaction are too low, it is possible that such transaction will not be sequenced and that those fees may be lost.
 
 </details>
 
 <details>
-<summary>Security Audits</summary>
+<summary><b>Security Audits</b></summary>
 
 - Polygon Labs’ implementation of Polygon zkEVM has been carefully constructed, was audited by several internal and external parties, and is continuously being reviewed and tested against engineering best practices. It is, however, unlikely that all potential bugs or vulnerabilities were identified through these audits and thus there may be undiscovered vulnerabilities that may put user funds at risk. Users should consider this risk when deciding how much value to place onto the Polygon zkEVM Mainnet Beta. To see the audit reports, see [<ins>here</ins>](https://github.com/0xPolygonHermez/zkevm-rom/blob/main/audits/Hexens_Polygon_zkEVM_PUBLIC_27.02.23.pdf).
 
@@ -76,7 +83,7 @@ If the gas fees associated with a proposed transaction are too low, it is possib
 </details>
 
 <details>
-<summary>Prover Infrastructure</summary>
+<summary><b>Prover Infrastructure</b></summary>
 
 - Currently the Polygon zkEVM zkProver does not run on ARM-powered Macs. For Windows users, using WSL/WSL2 is not recommended. Apple M1 chips are not supported for now, since some optimizations on the zkProver require specific Intel instructions. This means some non-M1 computers won't work regardless of the OS, for example: AMD.
 

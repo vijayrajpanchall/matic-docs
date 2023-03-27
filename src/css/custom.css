@@ -1736,3 +1736,9 @@ strong {
   width: 520px;
   height: 550px;
 }
+
+code {
+  color: #DEE2E9;
+  background-color: #2F353F;
+  border-color: #69717E;
+}

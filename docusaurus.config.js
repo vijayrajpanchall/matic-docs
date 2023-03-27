@@ -251,15 +251,9 @@ module.exports = {
       id: 'banner',
       content: `
         <div class="announcement-bar">
-          Supercharge with Supernets:
-          <a href="https://www.nexon.com/main/en" class="announcement-link" style="color: #ffffff;">
-          Nexon
-          </a>
-          selects Supernets to power the blockchain gaming ecosystem.
-          The first stable release is out.
-          <a href="/docs/supernets" class="announcement-link" style="color: #ffffff;">
-          Get started!
-          </a>
+          Infinitely scaling Ethereum with Zero-Knowledge technology. 
+            Polygon zkEVM Mainnet Beta is now Live! 
+            <a href="/docs/zkEVM/develop" class="announcement-link" style="color: #ffffff;">Start Building</a>
         </div>
       `,
       textColor: '#ffffff',

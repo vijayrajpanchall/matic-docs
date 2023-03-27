@@ -33,7 +33,7 @@ The ZK-Rollup executes smart contracts transparently, by publishing zero-knowled
 - Running a local zkNode
 - Participating in the zkEVM Testnet and build on the Mainnet
 
-The documentation cascades into the finer details of zkEVM's sub-components, including the **zero-knowledge Prover (zkProver)**, the **State Machines** used in the zkProver, the **Layer X &harr; Layer Y** bridge smart contract, and the special toolings that enable the Polygon zkEVM to achieve its objectives.
+The documentation cascades into the finer details of zkEVM's sub-components, including the **zero-knowledge Prover (zkProver)**, the **State Machines** used in the zkProver, the **zkEVM Bridge smart contract**, and the special toolings that enable the Polygon zkEVM to achieve its objectives.
 
 ## Scaling Ethereum with zkEVM
 

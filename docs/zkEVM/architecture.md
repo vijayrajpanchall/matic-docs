@@ -56,11 +56,13 @@ The strategic implementation of the contract-based consensus promises to ensure 
 - Attains an **acceptable degree of decentralization**
 - Is **protected from malicious attacks**, especially by validators
 - Maintains a fair balance between overall validation effort and network value
-​
 
 :::tip Good to Know
+
 Possibilities of coupling the Consensus Contract (previously called Proof of Efficiency or PoE) with a PoS (Proof of Stake) are currently being explored. A detailed description is published on the [<ins>Ethereum Research</ins>](https://ethresear.ch/t/proof-of-efficiency-a-new-consensus-mechanism-for-zk-rollups/11988) website.
+
 :::
+
 ### On-Chain Data Availability
 ​
 A **Full ZK-Rollup** schema requires the publication of both **the data** (which users need to reconstruct the full state) and **the validity proofs** (zero-knowledge proofs) on-chain. However, given the Ethereum configuration, publishing data on-chain incurs gas prices, which is an issue with Layer 1. This makes deciding between a Full ZK-Rollup configuration and a Hybrid configuration challenging.
@@ -78,7 +80,7 @@ The underlying protocol in zkEVM ensures that the state transitions are correct 
 ​
 :::info
 ​
-The **Consensus Contract** is currently deployed on the Goerli testnet. It is available [<ins>here</ins>](https://goerli.etherscan.io/address/0xa997cfD539E703921fD1e3Cf25b4c241a27a4c7A).
+The **Consensus Contract** is currently deployed on both [<ins>Ethereum Mainnet</ins>](https://etherscan.io/address/0x5132A183E9F3CB7C848b0AAC5Ae0c4f0491B7aB2) and [<ins>Goerli Testnet</ins>](https://goerli.etherscan.io/address/0xa997cfD539E703921fD1e3Cf25b4c241a27a4c7A).
 ​
 :::
 ​

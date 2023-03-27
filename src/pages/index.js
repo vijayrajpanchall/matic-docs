@@ -279,7 +279,7 @@ function Home() {
 
               <div class="tabs-element reverse">
                 <div class="tabs-content">
-                  <h4 class="text-weight-medium">Polygon zkEVM <span class="solution-status">Testnet</span></h4>
+                  <h4 class="text-weight-medium">Polygon zkEVM <span class="solution-status">Mainnet Beta</span></h4>
                   <div class="padding-bottom padding-small"></div>
                   <p class="description-text">Unlock Ethereum scalability while maintaining security with the first ZK-rollup that offers EVM equivalence with fast transactions at near-zero gas cost today.</p>
                   <div class="padding-bottom custom-padding"></div>
