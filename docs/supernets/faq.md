@@ -31,7 +31,7 @@ The releases of the Edge client, **starting from version 0.7.x and beyond,
 are related explicitly to Supernets, while versions 0.6.x and below are
 for the older versions of the Polygon Edge client**.
 
-However, it's important to note that **as of [v0.8.0](https://github.com/0xPolygon/polygon-edge/releases/tag/v0.8.0), the legacy Edge client will no longer be supported by Polygon Labs**. The **Edge documentation on the Polygon Wiki will also be archived**. Developers are encouraged to build with Polygon Supernets for support.
+However, it's important to note that **as of [v0.8.0](https://github.com/0xPolygon/./polygon-edge/releases/tag/v0.8.0), the legacy Edge client will no longer be supported by Polygon Labs**. The **Edge documentation on the Polygon Wiki will also be archived**. Developers are encouraged to build with Polygon Supernets for support.
 
 :::
 
@@ -78,7 +78,7 @@ As the Supernets ecosystem evolves, the bridge will support additional assets, e
 
 The mainnet launch for Supernets is currently **targeted for Q2 2023, subject to the completion of an ongoing audit**. While we are working hard to ensure that the platform is launched as soon as possible, we are also committed to ensuring that the platform is fully tested and secure before release.
 
-In the meantime, the **first stable release is available, [v0.8.0](https://github.com/0xPolygon/polygon-edge/releases/tag/v0.8.0), for developers and users to test and experiment. The test release serves as a valuable testing ground for developers to build and test their applications on the platform, and for users to get a sense of the functionality and capabilities of the platform.
+In the meantime, the **first stable release is available, [v0.8.0](https://github.com/0xPolygon/./polygon-edge/releases/tag/v0.8.0), for developers and users to test and experiment. The test release serves as a valuable testing ground for developers to build and test their applications on the platform, and for users to get a sense of the functionality and capabilities of the platform.
 
 The ongoing audit is a critical step in the launch process, as it helps to identify any potential vulnerabilities or issues that could impact the security or functionality of the platform. The audit is expected to take several weeks, after which we will have a better idea of the timeline for the mainnet launch.
 

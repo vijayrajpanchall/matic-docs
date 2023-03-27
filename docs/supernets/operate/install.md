@@ -17,7 +17,7 @@ We recommend that you refer to the installation method that is most applicable t
 
 :::info Latest release: v0.8.0
 
-**The lateststable release is [v0.8.0](https://github.com/0xPolygon/polygon-edge/releases/tag/v0.8.0), which is the first stable release.**
+**The latest stable release is [v0.8.0](https://github.com/0xPolygon/polygon-edge/releases/tag/v0.8.0), which is the first stable release.**
 
 :::
 
@@ -31,18 +31,16 @@ To access the pre-built releases, visit the [GitHub Releases](https://github.com
 
 If you prefer to use Docker, you can access the official Docker images hosted under the [hub.docker.com registry](https://hub.docker.com/r/0xpolygon/polygon-edge) using the following command:
 
-```bash
-docker pull 0xpolygon/polygon-edge:latest
-```
+  ```bash
+  docker pull 0xpolygon/polygon-edge:latest
+  ```
 
 ## Build from source
 
 To build from source, make sure that you have Go >=1.18 installed and properly configured before using go install. The stable branch is the branch of the latest release. Use the following commands to build from source:
 
-```bash
-git clone https://github.com/0xPolygon/polygon-edge.git
-cd polygon-edge/
-make build polygon-edge main.go
-# mv the compiled binary to your execution path
-sudo mv polygon-edge <execution-path>
-```
+  ```bash
+  git clone https://github.com/0xPolygon/polygon-edge.git
+  cd polygon-edge/
+  go build -o polygon-edge .
+  ```
