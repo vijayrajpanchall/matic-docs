@@ -16,7 +16,7 @@ import Welcome from "./landing.js";
 
 :::info Before We Begin
 
-Polygon zkEVM Mainnet Beta is provided on an **AS-IS** and **AS-AVAILABLE** basis. The documentation contains statements about technical specifications, some of which may relate to future versions of Polygon zkEVM rather than its current implementation.
+Polygon zkEVM Mainnet Beta is provided on an **AS-IS** and **AS-AVAILABLE** basis. The documentation contains statements about technical specifications, some of which may relate to future versions of Polygon zkEVM rather than its current implementation. Please read the [<ins>zkEVM Risk Disclosures</ins>](#polygon-zkevm-risk-disclosures) section.
 
 :::
 
@@ -51,7 +51,7 @@ Polygon Labs is in the process of further decentralizing Polygon zkEVM. This ref
 
 - The Mainnet Beta will have some centralized features, such as the Sequencer and Aggregator (Prover), that Polygon Labs currently maintains in an effort to provide greater security at this time. **The Sequencer has the ability to delay the inclusion of a transaction and otherwise reorder transactions**.
 
-- Security of Polygon zkEVM Mainnet Beta is a continuous process. This process includes responding to security concerns, which depends on the Security Council. **The Security Council consists of 7 individuals who are empowered to upgrade Polygon zkEVM Mainnet Beta** without a timelock to respond to urgent security issues. If members of the Council behave maliciously or collude, then the integrity of the system may be compromised including network upgrades that may result in loss of crypto-assets.
+- Security of Polygon zkEVM Mainnet Beta is a continuous process. This process includes responding to security concerns, which depends on the Security Council. **The Security Council consists of 8 individuals who are empowered to upgrade Polygon zkEVM Mainnet Beta** without a timelock to respond to urgent security issues. If members of the Council behave maliciously or collude, then the integrity of the system may be compromised including network upgrades that may result in loss of crypto-assets.
 
 - As the Sequencer and Aggregator are centralized for Mainnet Beta, there are risks for potential network downtime and outages, including those that are outside the control of Polygon Labs.
 
