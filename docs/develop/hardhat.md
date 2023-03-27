@@ -112,7 +112,7 @@ require("@nomiclabs/hardhat-ethers");
 require("@nomiclabs/hardhat-etherscan");
 
 module.exports = {
-  defaultNetwork: "matic",
+  defaultNetwork: "polygon_mumbai",
   networks: {
     hardhat: {
     },
