@@ -11,6 +11,7 @@ export function Glossary ({text, definition}) {
       <span className="tooltip-block">
         <p disabled style={{ pointerEvents: 'none' }}>
           {text}
+        <div className="arrow" data-popper-arrow></div>
         </p>
       </span>
     </OverlayTrigger>
