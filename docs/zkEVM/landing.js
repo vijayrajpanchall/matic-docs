@@ -2,6 +2,20 @@ import * as React from "react";
 import Link from "@docusaurus/Link";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import { firstRow } from "./features";
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip';
+
+export function Glossary ({text, definition}) {
+  return (
+    <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">{definition}</Tooltip>}>
+      <span className="tooltip-block">
+        <p disabled style={{ pointerEvents: 'none' }}>
+          {text}
+        </p>
+      </span>
+    </OverlayTrigger>
+  );
+};
 
 export function FirstRow({ title, status, description, linkUrl, imageUrl }) {
   return (
@@ -20,7 +34,7 @@ export function FirstRow({ title, status, description, linkUrl, imageUrl }) {
   );
 };
 
-export default function Welcome () {
+export function Welcome () {
   const context = useDocusaurusContext();
   return (
       <div className="bootstrap-wrapper">
