@@ -1745,7 +1745,8 @@ code {
 
 .tooltip-block{
   display: inline-block;
-  color: #f00;
+  color: var(--ifm-link-color);
+  font-weight: bold;
 }
 
 .bs-tooltip-top {
