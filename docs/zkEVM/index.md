@@ -16,6 +16,8 @@ import { Welcome, Glossary } from "./landing.js";
 
 :::info Before We Begin
 
+<Glossary text="Some text" definition="And here goes the definition And here goes the definition And here goes the definition And here goes the definition And here goes the definition And here goes the definition And here goes the definition"/>
+
 Polygon zkEVM Mainnet Beta is provided on an **AS-IS** and **AS-AVAILABLE** basis. The documentation contains statements about technical specifications, some of which may relate to future versions of Polygon zkEVM rather than its current implementation. Please read the [<ins>zkEVM Risk Disclosures</ins>](#polygon-zkevm-risk-disclosures) section.
 
 :::
@@ -26,7 +28,9 @@ Polygon zkEVM Mainnet Beta is provided on an **AS-IS** and **AS-AVAILABLE** basi
 
 ## Polygon zkEVM Status
 
-You can check the live status of Polygon zkEVM network using the following links for Mainnet Beta and Public Testnet. <Glossary text="Some text" definition="And here goes the definition"/>
+<Glossary text="Some text" definition="And here goes the definition"/>
+
+You can check the live status of Polygon zkEVM network using the following links for Mainnet Beta and Public Testnet. <Glossary text="Some text" definition="And here goes the definition And here goes the definition And here goes the definition And here goes the definition And here goes the definition And here goes the definition And here goes the definition"/>
 
 - **Mainnet Beta &rarr;** https://status.zkevm-rpc.com
 - **Public Testnet &rarr;** https://status.zkevm-test.net

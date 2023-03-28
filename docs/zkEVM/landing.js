@@ -4,11 +4,22 @@ import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import { firstRow } from "./features";
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
+import Popover from 'react-bootstrap/Popover';
 
 export function Glossary ({text, definition}) {
+
+  const popover = (
+    <Popover>
+      <Popover.Header as="h3">{text}</Popover.Header>
+      <Popover.Body>
+        {definition}
+      </Popover.Body>
+    </Popover>
+  );
+
   return (
-    <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">{definition}</Tooltip>}>
-      <span className="tooltip-block">
+    <OverlayTrigger trigger="hover" placement="auto" overlay={popover}>
+      <span className="popover-block">
         <p disabled style={{ pointerEvents: 'none' }}>
           {text}
         <div className="arrow" data-popper-arrow></div>

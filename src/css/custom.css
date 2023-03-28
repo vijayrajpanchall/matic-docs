@@ -1764,3 +1764,38 @@ code {
 .tooltip[data-show] {
   display: block;
 }
+
+.popover-block{
+  display: inline-block;
+  color: var(--ifm-link-color);
+  font-weight: bold;
+}
+
+.bs-popover-top{
+  background-color: #2F353F;
+  border-color: #d6d6d6;
+  color: white;
+  padding: 4px 8px;
+  font-weight: 500;
+  font-size: var(--ifm-code-font-size);
+  border: 0.1rem solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--ifm-code-border-radius);
+  vertical-align: middle;
+  max-width: 25%;
+}
+
+.bs-popover-top:after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -10px;
+    border-width: 10px;
+    border-style: solid;
+    border-radius: var(--ifm-code-border-radius);
+    border-color: #2F353F transparent transparent transparent;
+}
+
+.popover[data-show] {
+  display: block;
+}
