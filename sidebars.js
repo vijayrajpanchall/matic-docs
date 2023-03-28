@@ -133,6 +133,7 @@ module.exports = {
           items: [
             "develop/wallets/polygon-web-wallet/web-wallet-v3-guide",
             "faq/adding-a-custom-token",
+            "zkEVM/wallet/usage-guide",
           ],
         },
         {
