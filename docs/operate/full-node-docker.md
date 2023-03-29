@@ -172,7 +172,7 @@ Now we need to make a few updates before starting Heimdall. First we’re going 
 sudo emacs /mnt/data/heimdall/config/config.toml
 ```
 
-If you don’t have a list of seeds, you can find one in the documentation for setting up a full node. In our case, our file has these three lines:
+If you don’t have a list of seeds, you can find one [in this section](#seed-nodes-and-bootnodes). In our case, our file has these three lines:
 
 ```
 # A custom human readable name for this node

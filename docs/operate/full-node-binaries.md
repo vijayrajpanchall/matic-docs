@@ -93,14 +93,14 @@ That will install the `heimdalld` and `heimdallcli` binaries. Verify the install
 heimdalld version --long
 ```
 
-### Configure heimdall seeds (mainnet)
+### Configure heimdall seeds (Mainnet)
 
 ```bash
 sed -i 's|^seeds =.*|seeds = "2a53a15ffc70ad41b6876ecbe05c50a66af01e20@3.211.248.31:26656,6f829065789e5b156cbbf076f9d133b4d7725847@3.212.183.151:26656,7285a532bad665f051c0aadc31054e2e61ca2b3d@3.93.224.197:26656,0b431127d21c8970f1c353ab212be4f1ba86c3bf@184.73.124.158:26656,f4f605d60b8ffaaf15240564e58a81103510631c@159.203.9.164:26656,31b79cf4a628a4619e8e9ae95b72e4354c5a5d90@44.232.55.71:26656,a385dd467d11c4cdb0be8b51d7bfb0990f49abc3@35.199.4.13:26656,daad548c0a163faae1d8d58425f97207acf923fd@35.230.116.151:26656,81c76e82fcc3dc9a0a1554a3edaa09a632795ea8@35.221.13.28:26656"|g' /var/lib/heimdall/config/config.toml
 chown heimdall /var/lib/heimdall
 ```
 
-### Configure heimdall seeds (mumbai)
+### Configure heimdall seeds (Mumbai)
 
 ```bash
 sed -i 's|^seeds =.*|seeds = "e72c0466a02ea43b2198bd3a9454b87a3ef0d77e@54.147.31.250:26656,b302d1ddb21102e794b524d05152a7834da05bd1@34.226.134.117:26656,9dfc12d9f39257cefc3d57a4d7302586e59a994e@18.213.200.99:26656"|g' /var/lib/heimdall/config/config.toml
