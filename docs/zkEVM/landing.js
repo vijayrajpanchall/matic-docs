@@ -2,31 +2,6 @@ import * as React from "react";
 import Link from "@docusaurus/Link";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import { firstRow } from "./features";
-import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
-import Popover from 'react-bootstrap/Popover';
-
-export function Glossary ({text, definition}) {
-
-  const popover = (
-    <Popover>
-      <Popover.Header as="h3">{text}</Popover.Header>
-      <Popover.Body>
-        {definition}
-      </Popover.Body>
-    </Popover>
-  );
-
-  return (
-    <OverlayTrigger trigger="hover" placement="top" overlay={popover}>
-      <span className="popover-block">
-        <p disabled style={{ pointerEvents: 'none' }}>
-          {text}
-        <div className="arrow" data-popper-arrow></div>
-        </p>
-      </span>
-    </OverlayTrigger>
-  );
-};
 
 export function FirstRow({ title, status, description, linkUrl, imageUrl }) {
   return (
@@ -45,7 +20,7 @@ export function FirstRow({ title, status, description, linkUrl, imageUrl }) {
   );
 };
 
-export function Welcome () {
+export default function Welcome () {
   const context = useDocusaurusContext();
   return (
       <div className="bootstrap-wrapper">

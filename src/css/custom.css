@@ -1743,27 +1743,7 @@ code {
   border-color: #69717E;
 }
 
-.tooltip-block{
-  display: inline-block;
-  color: var(--ifm-link-color);
-  font-weight: bold;
-}
-
-.bs-tooltip-top {
-  background-color: #2F353F;
-  border-color: #d6d6d6;
-  color: white;
-  padding: 4px 8px;
-  font-weight: 500;
-  font-size: var(--ifm-code-font-size);
-  border: 0.1rem solid rgba(255, 255, 255, 0.1);
-  border-radius: var(--ifm-code-border-radius);
-  vertical-align: middle;
-}
-
-.tooltip[data-show] {
-  display: block;
-}
+/* Tooltip and Popover styles */
 
 .popover-block{
   display: inline-block;
@@ -1771,31 +1751,23 @@ code {
   font-weight: bold;
 }
 
-.bs-popover-top{
-  background-color: #2F353F;
-  border-color: #d6d6d6;
-  color: white;
-  padding: 4px 8px;
-  font-weight: 500;
-  font-size: var(--ifm-code-font-size);
-  border: 0.1rem solid rgba(255, 255, 255, 0.1);
-  border-radius: var(--ifm-code-border-radius);
-  vertical-align: middle;
-  max-width: 25%;
+.popover-header{
+  padding: 8px 8px;
+  margin-bottom: 0;
+  color: #fff;
+  font: 500 var(--ifm-h4-font-size) / var(--ifm-heading-line-height) var(--ifm-heading-font-family);
+  text-overflow: ellipsis;
+  border-bottom: 0.05rem solid #a8a8a8;
 }
 
-.bs-popover-top:after {
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    margin-left: -10px;
-    border-width: 10px;
-    border-style: solid;
-    border-radius: var(--ifm-code-border-radius);
-    border-color: #2F353F transparent transparent transparent;
+.popover-body {
+  padding: 8px 8px;
+  font: 400 1rem / 1.25rem var(--ifm-heading-font-family);
+  color: #fff;
 }
 
-.popover[data-show] {
-  display: block;
+/*works for both popover and tooltip*/
+[role="tooltip"]{
+  border-radius: 0.35rem;
+  background-color: #424874;
 }

@@ -786,6 +786,11 @@ module.exports = {
       crossorigin: "anonymous",
     },
   ],
+
+  scripts: [
+    "./src/theme/Popover/index.js"
+  ],
+
   presets: [
     [
       "@docusaurus/preset-classic",
