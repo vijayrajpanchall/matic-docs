@@ -1,7 +1,7 @@
 ---
 id: supernets-local-deploy-supernet
-title: Deploy a local Supernet (bridge mode)
-sidebar_label: Deploy a local Supernet (bridge mode)
+title: Deploy a Local Supernet in Bridge Mode
+sidebar_label: Deploy in bridge mode
 description: "An introduction to Polygon Supernets."
 keywords:
   - docs
@@ -25,7 +25,9 @@ This document a full deployment of a testnet childchain in bridge mode, either u
 > Supernets already come pre-compiled with the core contracts submodule. Optionally, you may run:
 
   > ```bash
-  > npm install compile-core-contracts
+  > git submodule init
+  > git submodule update
+  > make compile-core-contracts
   > ```
 
 1. Generate private keys:
@@ -182,25 +184,28 @@ The tutorial will cover the following steps:
 5. Fund validators on rootchain.
 6. Run (childchain) cluster, consisting of multiple PolyBFT nodes.
 
-The diagram below illustrates a standard Supernet deployment in bridge mode.
+:::info Before you begin
+
+<details>
+<summary>Before starting, please consider the following points.</summary>
+
+- If you are new to testing out Supernets and the latest stable release, we recommend beginning with a demo deployment using a demo geth instance located at
+  **http://127.0.0.1:8545** as the **JSON-RPC endpoint**.
+- You can specify any available **rootchain JSON-RPC endpoint** for a demo instance or the Mumbai testnet.
+- To fulfill the requirements of IBFT 2.0, at least three validators must be running so at least two-thirds of the network can reach consensus.
+- It is possible to run a childchain node in "relayer" mode. The relayer allows automatic execution of deposit events on behalf of users.
+- When generating a new childchain instance (i.e. launching a new blockchain network with PolyBFT consensus), the initial supply of tokens can be created through premining or minting.
+  Premining involves generating and distributing tokens to specific addresses before the network launch, and specifying the premine address at genesis. Minting involves creating new tokens in response to certain conditions or events, such as the completion of a particular task or the issuance of a new asset. This can be done through the [childchain contracts](/docs/category/interfaces/).
+- When running a childchain instance in bridge mode, the core contracts can be used to create and manage native tokens on the childchain, or to enable the bridging
+  of tokens between the childchain and rootchain.
+
+- The diagram below illustrates a standard Supernet deployment in bridge mode. The manifest.json acts as an intermediary file to create the initial chain as well as specify application-specific configurations. It is used to generate the genesis.json and the initial state of the rootchain contracts.
 
 <div align="center">
   <img src="/img/supernets/supernets-setup.excalidraw.png" alt="bridge" width="110%" height="40%" />
 </div>
 
-:::info Before you begin
-
-Before starting, please consider the following:
-
-- If you are new to testing out Supernets and the latest stable release, we recommend beginning with a demo deployment using a demo geth instance located at
-  **http://127.0.0.1:8545** as the JSON-RPC IP.
-- You can specify any available JSON-RPC endpoint for a demo instance or the Mumbai testnet.
-- To fulfill the requirements of IBFT 2.0, at least three validators must be running so at least two-thirds of the network can reach consensus.
-- It is possible to run a childchain node in "relayer" mode. The relayer allows automatic execution of deposit events on behalf of users.
-- When generating a new childchain instance (i.e. launching a new blockchain network), the initial supply of tokens can be created through premining or minting.
-  Premining involves generating and distributing tokens to specific addresses before the network launch, and specifying the premine address at genesis. Minting involves creating new tokens in response to certain conditions or events, such as the completion of a particular task or the issuance of a new asset. This can be done through the [childchain contracts](/docs/category/interfaces/).
-- When running a childchain instance in bridg mode, the core contracts can be used to create and manage native tokens on the childchain, or to enable the bridging
-  of tokens between the childchain and rootchain.
+</details>
 
 :::
 
@@ -211,7 +216,9 @@ Before starting, please consider the following:
 Supernets already come pre-compiled with the core contracts submodule. Optionally, you may run:
 
    ```bash
-   npm install compile-core-contracts
+   git submodule init
+   git submodule update
+   make compile-core-contracts
    ```
 
    > Retrieve secrets output: `./polygon-edge secrets output --data-dir test-chain-X`.

@@ -109,13 +109,11 @@ As partnerships develop and the ecosystem comes to life, new services will be re
 
 :::
 
-### Infra-as-a-Service
+### Simple deployments
 
-Supernets offers Infrastructure-as-a-Service (IaaS) capabilities that enable easy and fast deployment of blockchain networks. With one-click deployments and Terraform scripts, developers can quickly and easily set up a childchain.
+Supernets provide hassle-free deployment for blockchain networks with Terraform scripts "one-click" deployments, allowing developers to seamlessly set up a childchain.
 
-In addition, Supernets provides options for bootstrapping a chain with proven Polygon validators. This flexibility allows developers and enterprises to focus on their application requirements where they can avoid the complexity and cost of setting up and maintaining their own node infrastructure.
-
-:::note Terraform scripts will be available shortly
+:::note One-click deployments will be available shortly
 
 :::
 

@@ -1,7 +1,7 @@
 ---
 id: supernets-local-deploy
-title: Deploy a local blockchain (non-bridge mode)
-sidebar_label: Deploy a local blockchain (non-bridge mode)
+title: Deploy a Local Supernet
+sidebar_label: Deploy a local Supernet
 description: "Learn how to deploy a local blockchain using the new Edge client with PolyBFT consensus."
 keywords:
   - docs
@@ -21,6 +21,14 @@ This document outlines how to deploy a local blockchain with PolyBFT consensus.
 
 <details>
 <summary>Deploy a local blockchain</summary>
+
+> Supernets already come pre-compiled with the core contracts submodule. Optionally, you may run:
+
+  > ```bash
+  > git submodule init
+  > git submodule update
+  > make compile-core-contracts
+  > ```
 
 1. Initialize PolyBFT consensus:
 
@@ -158,6 +166,20 @@ The diagram below illustrates a standard Supernet deployment in bridge mode.
 </div>
 
 ## Genesis workflow
+
+:::info Pre-compiled core contracts
+
+Supernets already come pre-compiled with the core contracts submodule. Optionally, you may run:
+
+   ```bash
+   git submodule init
+   git submodule update
+   make compile-core-contracts
+   ```
+
+   > Retrieve secrets output: `./polygon-edge secrets output --data-dir test-chain-X`.
+
+:::
 
 ### 1. Initialize PolyBFT consensus
 
