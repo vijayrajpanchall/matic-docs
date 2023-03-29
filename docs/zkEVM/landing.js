@@ -3,7 +3,6 @@ import Link from "@docusaurus/Link";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import { firstRow } from "./features";
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
-import Tooltip from 'react-bootstrap/Tooltip';
 import Popover from 'react-bootstrap/Popover';
 
 export function Glossary ({text, definition}) {
@@ -18,7 +17,7 @@ export function Glossary ({text, definition}) {
   );
 
   return (
-    <OverlayTrigger trigger="hover" placement="auto" overlay={popover}>
+    <OverlayTrigger trigger="hover" placement="top" overlay={popover}>
       <span className="popover-block">
         <p disabled style={{ pointerEvents: 'none' }}>
           {text}

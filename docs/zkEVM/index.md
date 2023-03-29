@@ -16,7 +16,7 @@ import { Welcome, Glossary } from "./landing.js";
 
 :::info Before We Begin
 
-<Glossary text="Some text" definition="And here goes the definition And here goes the definition And here goes the definition And here goes the definition And here goes the definition And here goes the definition And here goes the definition"/>
+<Glossary var="some_text"/>
 
 Polygon zkEVM Mainnet Beta is provided on an **AS-IS** and **AS-AVAILABLE** basis. The documentation contains statements about technical specifications, some of which may relate to future versions of Polygon zkEVM rather than its current implementation. Please read the [<ins>zkEVM Risk Disclosures</ins>](#polygon-zkevm-risk-disclosures) section.
 
