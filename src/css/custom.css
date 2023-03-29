@@ -1768,6 +1768,9 @@ code {
 
 /*works for both popover and tooltip*/
 [role="tooltip"]{
-  border-radius: 0.35rem;
-  background-color: #424874;
+  border-radius: 0.25rem;
+  border: 0.1rem solid rgba(0, 0, 0, 0.1);
+  color: #DEE2E9;
+  background-color: #2F353F;
+  border-color: #69717E;
 }
