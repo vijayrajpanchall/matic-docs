@@ -29,7 +29,7 @@ This function sets the values for the predicate, rootToken, name, symbol, and de
 
 #### Usage
 
-To initialize the INativeERC20 instance, call the initialize() function with the required parameters:
+To initialize the INativeERC20 instance, call the `initialize()` function with the required parameters:
 
 ```solidity
 INativeERC20.instance.initialize(predicate, rootToken, name, symbol, decimals);
@@ -41,7 +41,7 @@ This function returns the predicate address controlling the child token.
 
 #### Usage
 
-To get the predicate address, call the predicate() function:
+To get the predicate address, call the `predicate()` function:
 
 ```solidity
 const predicateAddress = INativeERC20.instance.predicate();
@@ -70,7 +70,7 @@ This function mints an amount of tokens to a particular address. The predicate a
 
 #### Usage
 
-To mint tokens to an address, the predicate should call the mint() function with the required parameters:
+To mint tokens to an address, the predicate should call the `mint()` function with the required parameters:
 
 ```solidity
 INativeERC20.instance.mint(account, amount);
@@ -87,7 +87,7 @@ This function burns an amount of tokens from a particular address. The predicate
 
 #### Usage
 
-To burn tokens from an address, the predicate should call the burn() function with the required parameters:
+To burn tokens from an address, the predicate should call the `burn()` function with the required parameters:
 
 ```solidity
 INativeERC20.instance.burn(account, amount);

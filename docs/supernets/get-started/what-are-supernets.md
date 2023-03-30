@@ -1,6 +1,6 @@
 ---
 id: what-are-supernets
-title: What are Supernets?
+title: What are Polygon Supernets?
 sidebar_label: What are Supernets
 description: "An introduction to Polygon Supernets."
 keywords:
@@ -109,7 +109,7 @@ As partnerships develop and the ecosystem comes to life, new services will be re
 
 :::
 
-### Simple deployments
+### Easy deployments
 
 Supernets provide hassle-free deployment for blockchain networks with Terraform scripts "one-click" deployments, allowing developers to seamlessly set up a childchain.
 

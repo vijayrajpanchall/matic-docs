@@ -1326,13 +1326,79 @@ module.exports = {
           },
           collapsed: true,
           items: [
-            "supernets/interfaces/native-erc20",
-            "supernets/interfaces/childerc20",
-            "supernets/interfaces/childerc20-predicate",
-            "supernets/interfaces/checkpoint-manager",
-            "supernets/interfaces/exit-helper",
-            "supernets/interfaces/state-receiver",
-            "supernets/interfaces/state-sender",
+            {
+              type: "category",
+              label: "ERC20",
+              link: {
+                type: "generated-index",
+              },
+              items: [
+                "supernets/interfaces/erc20/native-erc20",
+                "supernets/interfaces/erc20/childerc20",
+                "supernets/interfaces/erc20/childerc20-predicate",
+                "supernets/interfaces/erc20/rooterc20-predicate",
+              ],
+            },
+            {
+              type: "category",
+              label: "ERC1155",
+              link: {
+                type: "generated-index",
+              },
+              items: [
+                "supernets/interfaces/erc1155/childerc1155",
+                "supernets/interfaces/erc1155/childerc1155-predicate",
+                "supernets/interfaces/erc1155/rooterc1155-predicate",
+              ],
+            },
+            {
+              type: "category",
+              label: "ERC721",
+              link: {
+                type: "generated-index",
+              },
+              items: [
+                "supernets/interfaces/erc721/childerc721",
+                "supernets/interfaces/erc721/childerc721-predicate",
+                "supernets/interfaces/erc721/rooterc721-predicate",
+              ],
+            },
+            {
+              type: "category",
+              label: "Network",
+              link: {
+                type: "generated-index",
+              },
+              items: [
+                "supernets/interfaces/network/checkpoint-manager",
+                "supernets/interfaces/network/exit-helper",
+                "supernets/interfaces/network/state-receiver",
+                "supernets/interfaces/network/state-sender",
+              ],
+            },
+            {
+              type: "category",
+              label: "Validators",
+              link: {
+                type: "generated-index",
+              },
+              items: [
+                "supernets/interfaces/validators/validator",
+                "supernets/interfaces/validators/validator-set-base",
+                "supernets/interfaces/validators/root-validator-set",
+              ],
+            },
+            {
+              type: "category",
+              label: "Cryptography",
+              link: {
+                type: "generated-index",
+              },
+              items: [
+                "supernets/interfaces/cryptography/bls",
+                "supernets/interfaces/cryptography/bn256g2",
+              ],
+            },
           ],
         },
         {

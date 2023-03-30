@@ -1,6 +1,6 @@
 ---
 id: supernets-local-deploy
-title: Deploy a Local Supernet
+title: Deploy a Local Polygon Supernet
 sidebar_label: Deploy a local Supernet
 description: "Learn how to deploy a local blockchain using the new Edge client with PolyBFT consensus."
 keywords:
@@ -14,6 +14,12 @@ keywords:
 ---
 
 This document outlines how to deploy a local blockchain with PolyBFT consensus.
+
+:::note This guide uses Ubuntu version 20.04 LTS.
+
+OS-specific instructions will be added shortly.
+
+:::
 
 :::info Fast-track guide
 
@@ -136,13 +142,15 @@ Before starting this tutorial, you should understand the basics of blockchain te
 
 Ensure you have the following system prerequisites:
 
-- Go programming language (version 1.15 or later).
+- Go programming language (version >= 1.15 and <= 1.19).
   To install Go, run the following command in your terminal:
 
   ```bash
   sudo apt-get update
   sudo apt-get install golang
   ```
+
+  Or, use a package manager like [Snapcraft](https://snapcraft.io/go) for Linux, [Homebrew](https://formulae.brew.sh/formula/go) for Mac, and [Chocolatey](https://community.chocolatey.org/packages/golang) for Windows.
 
 - At least 8 GB of RAM, 4 CPU cores, and sufficient disk space to store the childchain data.
   Check out the [minimum hardware configuration](/docs/supernets/operate/system.md) for more information.
@@ -352,16 +360,13 @@ Once the secrets have been generated, we can create a genesis file with the spec
 
 This command generates a genesis file with the following parameters:
 
-- `--consensus polybft`: specifies that we are using the PolyBFT consensus protocol.
-- `--validator-set-size=4`: specifies the size of the validator set.
-- `--block-gas-limit`: specifies the block gas limit.
-
-> The epoch size sets the number of blocks in an epoch. An epoch is a period of time during which the validator set is fixed, and a new validator set is selected at the beginning of the next epoch. A shorter epoch size can increase the responsiveness of the network and reduce the time required to update the validator set. However, it can also increase the overhead of validator set updates and reduce the security of the network. A longer epoch size can help mitigate these issues but may also reduce the responsiveness of the network.
-
-- `--premine`: specifies the premine address and amount.
-- `--epoch-size`: specifies the epoch size.
-
-> The epoch size sets the number of blocks in an epoch. An epoch is a period of time during which the validator set is fixed, and a new validator set is selected at the beginning of the next epoch. A shorter epoch size can increase the responsiveness of the network and reduce the time required to update the validator set. However, it can also increase the overhead of validator set updates and reduce the security of the network. A longer epoch size can help mitigate these issues but may also reduce the responsiveness of the network.
+| Flag | Description | Example |
+| --- | --- | --- |
+| `--consensus` | Specifies that we are using the PolyBFT consensus protocol. | `--consensus polybft` |
+| `--validator-set-size` | Specifies the size of the validator set. | `--validator-set-size=4` |
+| `--block-gas-limit` | Specifies the block gas limit. | `--block-gas-limit 60000000` |
+| `--premine` | Specifies the premine address and amount. | `--premine 0x85da99c8a7c2c95964c8efd687e95e632fc533d6:1000000000000000000000000000` |
+| `--epoch-size` | Specifies the epoch size. | `--epoch-size 10` |
 
 After executing this command, a **genesis.json** file will be created in the current working directory containing the configuration for the PolyBFT network.
 
@@ -403,13 +408,15 @@ After creating the genesis file, you need to start the servers for each node to 
    --seal
    ```
 
-- `./polygon-edge server`: starts the server process.
-- `--data-dir`: specifies the data directory for the node.
-- `--chain`: specifies the location of the newly created genesis file.
-- `--grpc-address`: specifies the address for the gRPC server to listen on.
-- `--libp2p`: specifies the address for the libp2p server to listen on.
-- `--jsonrpc`: specifies the address for the JSON-RPC server to listen on.
-- `--seal`: starts the node in seal mode.
+| Flag | Description | Example |
+| ------ | ----------- | ------- |
+| `./polygon-edge server` | Starts the server process. | `./polygon-edge server` |
+| `--data-dir` | Specifies the data directory for the node. | `--data-dir ./test-chain-1` |
+| `--chain` | Specifies the location of the newly created genesis file. | `--chain ./new-genesis/genesis.json` |
+| `--grpc-address` | Specifies the address for the gRPC server to listen on. | `--grpc-address :10000` |
+| `--libp2p` | Specifies the address for the libp2p server to listen on. | `--libp2p :30301` |
+| `--jsonrpc` | Specifies the address for the JSON-RPC server to listen on. | `--jsonrpc :10002` |
+| `--seal` | Starts the node in seal mode. | `--seal` |
 
 Repeat the above command for each node, replacing the --data-dir and port numbers with the appropriate values.
 

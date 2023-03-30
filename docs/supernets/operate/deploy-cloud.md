@@ -1,7 +1,7 @@
 ---
 id: supernets-setup-dev-env
 title: Deploying Polygon Supernets on AWS with Terraform
-sidebar_label: Deploying Polygon Supernets on AWS with Terraform
+sidebar_label: Deploying Supernets on AWS with Terraform
 description: "An introduction to Polygon Supernets."
 keywords:
   - docs
@@ -18,6 +18,12 @@ keywords:
 This tutorial will teach you to set up a devnet for Polygon Supernets on AWS using Terraform and Ansible.
 You will also learn how to configure the nodes using an Ansible playbook.
 
+:::note This guide uses Ubuntu version 20.04 LTS.
+
+OS-specific instructions will be added shortly.
+
+:::
+
 :::info Fast-track guide
 
 **Here's the fast-track guide if you're looking for a quick guide on the essential commands needed to set up a devnet with AWS.**
@@ -27,19 +33,49 @@ You will also learn how to configure the nodes using an Ansible playbook.
 
 1. Clone the devnet repository:
 
-    Run `git clone git@github.com:maticnetwork/terraform-polygon-supernets.git`.
+    ```bash
+    git clone git@github.com:maticnetwork/terraform-polygon-supernets.git`.
+    ```
 
-1. Terraform templates:
+2. Terraform templates:
 
-   - Initialize the Terraform environment by running `terraform init`.
-   - Preview the changes that will be made to your infrastructure by running `terraform plan`.
-   - Apply the changes to your infrastructure by running `terraform apply`.
+   - Initialize the Terraform environment by running:
 
-2. Ansible playbook:
+    ```bash
+    terraform init
+    ```
 
-   - To generate an Ansible inventory file, run `ansible -inventory --graph --inventory inventory/aws_ec2.yml`.
-   - To test that Ansible can connect to the EC2 instances, run `ansible all -m ping -i inventory/aws_ec2.yml`.
-   - Provision the EC2 instances using `ansible-playbook -i inventory/aws_ec2.yml site.yml`.
+   - Preview the changes that will be made to your infrastructure by running:
+
+     ```bash
+     terraform plan
+     ```
+
+   - Apply the changes to your infrastructure by running:
+
+     ```bash
+     terraform apply
+     ```
+
+3. Ansible playbook:
+
+   - To generate an Ansible inventory file, run:
+
+     ```bash
+     ansible -inventory --graph --inventory inventory/aws_ec2.yml
+     ```
+
+   - To test that Ansible can connect to the EC2 instances, run:
+
+     ```bash
+     ansible all -m ping -i inventory/aws_ec2.yml
+     ```
+
+   - Provision the EC2 instances using:
+
+     ```bash
+     ansible-playbook -i inventory/aws_ec2.yml site.yml
+     ```
 
 </details>
 
@@ -93,7 +129,8 @@ The tutorial will cover the following steps:
 4. Test the devnet deployment.
 5. Optional: destroy the setup
 
-:::info Summary of deployed resources
+<details>
+<summary> Summary of deployed resources </summary>
 
 - A VPC with multiple subnets across different availability zones.
 - Internet Gateway to allow public access to the VPC.
@@ -107,15 +144,16 @@ The tutorial will cover the following steps:
 - S3 buckets to store blockchain data.
 - Lambda functions to manage the blockchain.
 - API Gateway to manage the API endpoints for accessing the blockchain.
-:::
+
+</details>
 
 ## Configure a devnet
 
 Before you get started, start by cloning Polygon devnet repository to your local machine.
 
-```shell
-git clone git@github.com:maticnetwork/terraform-polygon-supernets.git
-```
+  ```shell
+  git clone git@github.com:maticnetwork/terraform-polygon-supernets.git
+  ```
 
 ### 1. Set up AWS credentials
 
@@ -127,7 +165,11 @@ Using Terraform makes it easy to set up a devnet deployment on AWS. The first st
 
 :::info Terraform templates
 
-The repository provides Terraform templates to set up the following components:
+The repository provides Terraform templates to set up each key system component.
+Each component is defined in its directory within the modules directory.
+
+<details>
+<summary>Terraform template components</summary>
 
 - `dns`: creates the DNS records for the nodes
 - `ebs`: creates Elastic Block Store (EBS) volumes and attaches them to nodes
@@ -137,9 +179,11 @@ The repository provides Terraform templates to set up the following components:
 - `securitygroups`: creates the security groups for the nodes and jumpbox
 - `ssm`: creates the EC2 System Manager for the nodes and jumpbox
 
-Each component is defined in its directory within the modules directory. Each directory contains a `main.tf` file, defining the resources for that component.
+Each directory contains a `main.tf` file, defining the resources for that component.
 
-The `main.tf` file at the root of the repository ties all these components together. It specifies the desired state of the infrastructure to be created on AWS and references the modules defined in the `modules` directory. It also includes provider configuration and local variables used throughout the templates.
+</details>
+
+- The `main.tf` file at the root of the repository ties all these components together. It specifies the desired state of the infrastructure to be created on AWS and references the modules defined in the `modules` directory. It also includes provider configuration and local variables used throughout the templates.
 
 <details>
 <summary>main.tf</summary>
@@ -279,7 +323,7 @@ provider "aws" {
 
 </details>
 
-The `outputs.tf` file at the repository's root defines the values to be outputted by Terraform after it applies the configuration in `main.tf`. This can include IP addresses, DNS names, and other essential values needed for further configuration or testing.
+- The `outputs.tf` file at the repository's root defines the values to be outputted by Terraform after it applies the configuration in `main.tf`. This can include IP addresses, DNS names, and other essential values needed for further configuration or testing.
 
 <details>
 <summary>outputs.tf</summary>
@@ -306,9 +350,8 @@ output "base_id" {
 ```
 
 </details>
-:::
 
-The table below includes all the configurable variables.
+- The following table includes all the configurable input variables.
 
 <details>
 <summary>Inputs</summary>
@@ -357,25 +400,27 @@ The table below includes all the configurable variables.
 
 </details>
 
+:::
+
 To initialize the working directory with the necessary plugins and modules, run the following command:
 
-```shell
-terraform init
-```
+  ```shell
+  terraform init
+  ```
 
 To generate an execution plan to show the changes that Terraform will make to the infrastructure, run the following command:
 
-```shell
-terraform plan
-```
+  ```shell
+  terraform plan
+  ```
 
 During this step, Terraform will ask for any variables that have not been set, such as `datadog_app_key`, `datadog_api_key`, and `explorer_rds_master_password`. Make sure to provide values for these variables when prompted.
 
 Once you have reviewed the plan and are ready to proceed, run the following command:
 
-```shell
-terraform apply
-```
+  ```shell
+  terraform apply
+  ```
 
 During this step, Terraform will once again ask for any required variables that have not been set. Make sure to provide values for these variables when prompted.
 
@@ -482,23 +527,23 @@ hostnames:
 
 After Terraform creates the EC2 instances, you must provision them using Ansible. To generate an Ansible inventory file, run the following command:
 
-```shell
-ansible -inventory --graph --inventory inventory/aws_ec2.yml
-```
+  ```shell
+  ansible -inventory --graph --inventory inventory/aws_ec2.yml
+  ```
 
 This will create an Ansible inventory file called inventory/aws_ec2.yml. To test that Ansible can connect to the EC2 instances, run the following command:
 
-```shell
-ansible all -m ping -i inventory/aws_ec2.yml
-```
+  ```shell
+  ansible all -m ping -i inventory/aws_ec2.yml
+  ```
 
 This should return pong for each EC2 instance.
 
 Next, run the following command to provision the EC2 instances:
 
-```shell
-ansible-playbook -i inventory/aws_ec2.yml site.yml
-```
+  ```shell
+  ansible-playbook -i inventory/aws_ec2.yml site.yml
+  ```
 
 This will configure the nodes with the necessary software and configuration files.
 
@@ -514,7 +559,7 @@ To test the deployment, you can use the following steps:
   curl  https://rpc.my-awsome-blockchain.com -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_chainId","params":[],"id":1}'
   ```
 
-### 5. Destroy procedure
+### 5. Optional: Destroy procedure
 
 :::warning Destroying configuration
 
@@ -523,9 +568,9 @@ The following procedure will permanently delete your entire infrastructure deplo
 
 If you need to remove the entire infrastructure, run the following command:
 
-```terraform
-terraform destroy
-```
+  ```terraform
+  terraform destroy
+  ```
 
 Additionally, you must **manually remove secrets stored in AWS Parameter Store for the region the deployment took place**.
 
@@ -537,5 +582,5 @@ Here are some next steps you might want to take:
 
 - Customize your deployment by modifying the Terraform and Ansible configuration files to suit your needs.
 - Explore more advanced Terraform and Ansible features to automate further and optimize your blockchain infrastructure.
-- When done testing, destroy your infrastructure to avoid incurring unnecessary costs. To do so, `terraform destroy` in the same directory
-  where you ran terraform apply.
+- When done testing and if you have not already done so, destroy your infrastructure to avoid incurring unnecessary costs. To do so, `terraform destroy` in the same
+  directory where you ran terraform apply.

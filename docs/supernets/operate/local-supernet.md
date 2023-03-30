@@ -1,6 +1,6 @@
 ---
 id: supernets-local-deploy-supernet
-title: Deploy a Local Supernet in Bridge Mode
+title: Deploy a Local Polygon Supernet in Bridge Mode
 sidebar_label: Deploy in bridge mode
 description: "An introduction to Polygon Supernets."
 keywords:
@@ -14,6 +14,12 @@ keywords:
 ---
 
 This document a full deployment of a testnet childchain in bridge mode, either using a demo geth instance or the Mumbai PoS testnet as the rootchain.
+
+:::note This guide uses Ubuntu version 20.04 LTS.
+
+OS-specific instructions will be added shortly.
+
+:::
 
 :::info Fast-track guide
 
@@ -159,13 +165,15 @@ Before starting this tutorial, you should understand the basics of blockchain te
 
 Ensure you have the following system prerequisites:
 
-- Go programming language (version 1.15 or later).
+- Go programming language (version >= 1.15 and <= 1.19)
   To install Go, run the following command in your terminal:
 
   ```bash
   sudo apt-get update
   sudo apt-get install golang
   ```
+
+ Or, use a package manager like [Snapcraft](https://snapcraft.io/go) for Linux, [Homebrew](https://formulae.brew.sh/formula/go) for Mac, and [Chocolatey](https://community.chocolatey.org/packages/golang) for Windows.
 
 - At least 8 GB of RAM, 4 CPU cores, and sufficient disk space to store the childchain data.
   Check out the [minimum hardware configuration](/docs/supernets/operate/system.md) for more information.
@@ -187,7 +195,7 @@ The tutorial will cover the following steps:
 :::info Before you begin
 
 <details>
-<summary>Before starting, please consider the following points.</summary>
+<summary>Please consider the following points.</summary>
 
 - If you are new to testing out Supernets and the latest stable release, we recommend beginning with a demo deployment using a demo geth instance located at
   **http://127.0.0.1:8545** as the **JSON-RPC endpoint**.
@@ -220,8 +228,6 @@ Supernets already come pre-compiled with the core contracts submodule. Optionall
    git submodule update
    make compile-core-contracts
    ```
-
-   > Retrieve secrets output: `./polygon-edge secrets output --data-dir test-chain-X`.
 
 :::
 

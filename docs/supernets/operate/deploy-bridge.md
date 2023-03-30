@@ -66,9 +66,9 @@ $ ./polygon-edge bridge deposit-erc20 \
 
 ```bash
 $ ./polygon-edge bridge withdraw-erc20 \
-      --data-dir <child chain account data directory> [--config <child chain account config path>] \
+      --data-dir <child chain account data directory> [--config <childchain account config path>] \
       --amounts <amounts to withdraw>
-      --receivers <list of receiving accounts addresses on the root chain> \
+      --receivers <list of receiving accounts addresses on the rootchain> \
       --json-rpc <JSON RPC endpoint of one of the child chain validators> \
       [--child-token <address of child ERC20 token>]
       [--child-predicate <address of child ERC20 predicate>]
