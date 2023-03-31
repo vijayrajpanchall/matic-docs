@@ -24,7 +24,7 @@ For the system requirements, see [Minimum Technical Requirements](technical-requ
 
 Steps in this guide involve waiting for the Heimdall and Bor services to fully sync. This process takes several days to complete.
 
-Alternatively, you can use a maintained snapshot, which will reduce the sync time to a few hours. For detailed instructions, see [<ins>Snapshot Instructions for Heimdall and Bor</ins>](/docs/operate/snapshot-instructions-heimdall-bor).
+Please use snapshots for faster syncing without having to sync over the network. For detailed instructions, see [<ins>Snapshot Instructions for Heimdall and Bor</ins>](/operate/snapshot-instructions-heimdall-bor.md).
 
 For snapshot download links, see the [<ins>Polygon Chains Snapshots</ins>](https://snapshot.polygon.technology/) page.
 
