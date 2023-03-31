@@ -1742,3 +1742,31 @@ code {
   background-color: #2F353F;
   border-color: #69717E;
 }
+
+details {
+  background-color: #2a3d4f;
+  border: 1px solid #455563;
+  padding: 0.5em;
+  border-radius: 4px;
+  margin-bottom: 1em;
+}
+
+details[open] {
+  background-color: #2a3d4f;
+}
+
+details:hover {
+  background-color: #2a3d4f;
+  color: #fff;
+}
+
+summary {
+  font-weight: bold;
+  cursor: pointer;
+  color: #fff;
+}
+
+summary:hover {
+  color: #fff;
+  background-color: #2a3d4f;
+}

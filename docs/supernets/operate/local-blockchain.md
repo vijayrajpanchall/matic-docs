@@ -28,13 +28,13 @@ OS-specific instructions will be added shortly.
 <details>
 <summary>Deploy a local blockchain</summary>
 
-> Supernets already come pre-compiled with the core contracts submodule. Optionally, you may run:
+0. Supernets already come pre-compiled with the core contracts submodule. Optionally, you may run:
 
-  > ```bash
-  > git submodule init
-  > git submodule update
-  > make compile-core-contracts
-  > ```
+  ```bash
+  git submodule init
+  git submodule update
+  make compile-core-contracts
+  ```
 
 1. Initialize PolyBFT consensus:
 
@@ -167,13 +167,16 @@ The tutorial will cover the following steps:
 3. Create a genesis file.
 4. Start the node servers.
 
+<details>
+<summary>Before you get started.</summary>
+
 The diagram below illustrates a standard Supernet deployment in bridge mode.
 
 <div align="center">
   <img src="/img/supernets/supernets-setup-non.excalidraw.png" alt="bridge" width="80%" height="40%" />
 </div>
 
-## Genesis workflow
+</details>
 
 :::info Pre-compiled core contracts
 
@@ -185,20 +188,24 @@ Supernets already come pre-compiled with the core contracts submodule. Optionall
    make compile-core-contracts
    ```
 
-   > Retrieve secrets output: `./polygon-edge secrets output --data-dir test-chain-X`.
-
 :::
 
-### 1. Initialize PolyBFT consensus
+## 1. Initialize PolyBFT consensus
 
 > If you need to become more familiar with PolyBFT or consensus protocols in general, you can check out the [system design documents](/docs/category/system-design) for more information.
 
 To initialize the PolyBFT consensus, we need to generate the necessary secrets for each node. This is done using the `./polygon-edge polybft-secrets` command with the following options:
 
-- `--data-dir`: specifies the data directory for the blockchain network
-- `--num`: specifies the number of validator nodes to create
+<details>
+<summary>Flags</summary>
 
-Additionally, we'll use the `--insecure` flag for testing as it skips the confirmation prompt and can potentially cause unintended consequences.
+| Flag | Description | Example |
+|------|-------------|---------|
+| `--data-dir` | Specifies the data directory for the blockchain network | `--data-dir ./data` |
+| `--num` | Specifies the number of validator nodes to create | `--num 4` |
+| `--insecure` | Skips the confirmation prompt and can potentially cause unintended consequences | `--insecure` |
+
+</details>
 
 :::warning INSECURE LOCAL SECRETS - SHOULD NOT BE RUN IN PRODUCTION
 
@@ -233,7 +240,7 @@ To create a fully functional PolyBFT cluster, it is recommended to have **at lea
 
 :::
 
-#### Retrieving secrets output
+### Retrieving secrets output
 
 The secrets output can be retrieved again if needed by running the following command:
 
@@ -243,37 +250,29 @@ The secrets output can be retrieved again if needed by running the following com
 
 > In a production environment, it is recommended to keep the validator secrets secure and only to retrieve them when necessary. The secrets should not be shared or made public as they can be used to compromise the security of the blockchain network.
 
-### Configure bootnodes
+<details>
+<summary>Assemble bootnodes</summary>
 
-To ensure successful connectivity, a node needs to know which bootnode server to connect to to obtain information about all the remaining nodes on the network. The bootnode is also referred to as the rendezvous server in P2P terminology.
+To ensure successful connectivity, a node needs to know which bootnode server to connect to obtain information about all the remaining nodes on the network. The bootnode is also referred to as the [rendezvous server](https://docs.libp2p.io/concepts/discovery-routing/rendezvous/).
 
 This tutorial will designate the first and second nodes as bootnodes for all other nodes. In this scenario, nodes connecting to node 1 or 2 will receive information on how to connect to each other through the mutually contacted bootnode.
 
-To specify the bootnode, we need to conform to the multiaddr format, which is as follows:
+To specify the bootnode, we need to conform to the multiaddr format: `/ip4/<ip_address>/tcp/<port>/p2p/<node_id>`.
 
-  ```bash
-  /ip4/<ip_address>/tcp/<port>/p2p/<node_id>
-  ```
+Since we are running on localhost, it is safe to assume that the ip_address is 127.0.0.1. If you are not running on your localhost, please update accordingly.
 
-Since we are running on localhost, it is safe to assume that the ip_address is 127.0.0.1.
-
-For the port, we will use `30301` for the first node and `30302` for the second node. Since these are the ports, we will configure the libp2p server for node 1 and node 2 to listen on later.
+For the port, we will use `30301` for the first node and `30302` for the second node; since these are the ports, we will configure the libp2p server for node 1 and node 2 to listen on later.
 
 We will use the Node ID of the first node for the first bootnode and the Node ID of the second node for the second bootnode.
 
 After the assembly, the multiaddr connection string to node 1, which we will use as the bootnode will look something like this:
 
-  ```bash
-  /ip4/127.0.0.1/tcp/30301/p2p/16Uiu2HAmJxxH1tScDX2rLGSU9exnuvZKNM9SoK3v315azp68DLPW
-  ```
+- Node 1: `/ip4/127.0.0.1/tcp/30301/p2p/16Uiu2HAmJxxH1tScDX2rLGSU9exnuvZKNM9SoK3v315azp68DLPW`
+- Node 2: `/ip4/127.0.0.1/tcp/30302/p2p/16Uiu2HAmS9Nq4QAaEiogE4ieJFUYsoH28magT7wSvJPpfUGBj3Hq`
 
-Similarly, we construct the multiaddr for the second bootnode as shown below:
+</details>
 
-  ```bash
-  /ip4/127.0.0.1/tcp/30302/p2p/16Uiu2HAmS9Nq4QAaEiogE4ieJFUYsoH28magT7wSvJPpfUGBj3Hq
-  ```
-
-### 2. Generate manifest file
+## 2. Generate manifest file
 
 The manifest file contains public validator information as well as bridge configuration. It is an intermediary file later used for genesis specification generation and rootchain contracts deployment.
 
@@ -283,25 +282,29 @@ Option 1: All the validators' information is present in the local storage of a s
 
   ```bash
   ./polygon-edge manifest \
-      --validators-path ./ \
-      --validators-prefix test-chain- \
-      --path ./manifest.json \
-      --premine-validators 100
+    --validators-path ./
+    --validators-prefix test-chain-
+    --path ./manifest.json
+    --premine-validators 100
   ```
 
 In this example, we assume that the secrets have been generated in the ./test-chain- directories and the validator information can be found in files with the prefix test-chain-. The `--premine-validators` option is used to specify the number of validators to pre-fund on the chain. In this case, we are pre-funding 100 validators.
 
-Option 2: Validator information is scaffolded on multiple hosts, and therefore we supply necessary information using the --validators flag. Validator information needs to be supplied in the strictly following format: "[p2p node id]:[public ECDSA address]:[public BLS key]".
+**Option 2**: Validator information is scaffolded on multiple hosts, and therefore we supply necessary information using the `--validators` flag. Validator information needs to be supplied in the strictly following format:
+
+`<p2p node id>:<public ECDSA address>:<public BLS key>`.
 
   ```bash
   ./polygon-edge manifest \
-      --validators 16Uiu2HAmTkqGixWVxshMbbgtXhTUP8zLCZZiG1UyCNtxLhCkZJuv:DcBe0024206ec42b0Ef4214Ac7B71aeae1A11af0:1cf134e02c6b2afb2ceda50bf2c9a01da367ac48f7783ee6c55444e1cab418ec0f52837b90a4d8cf944814073fc6f2bd96f35366a3846a8393e3cb0b19197cde23e2b40c6401fa27ff7d0c36779d9d097d1393cab6fc1d332f92fb3df850b78703b2989d567d1344e219f0667a1863f52f7663092276770cf513f9704b5351c4 \
-      --validators 16Uiu2HAm1kVEh4uVw41WuhDfreCaVuj3kiWZy44kbnJrZnwnMKDW:2da750eD4AE1D5A7F7c996Faec592F3d44060e90:088d92c25b5f278750534e8a902da604a1aa39b524b4511f5f47c3a386374ca3031b667beb424faef068a01cee3428a1bc8c1c8bab826f30a1ee03fbe90cb5f01abcf4abd7af3bbe83eaed6f82179b9cbdc417aad65d919b802d91c2e1aaefec27ba747158bc18a0556e39bfc9175c099dd77517a85731894bbea3d191a622bc \
+      --validators /ip4/127.0.0.1/tcp/30301/p2p/16Uiu2HAmJxxH1tScDX2rLGSU9exnuvZKNM9SoK3v315azp68DLPW:0xDcBe0024206ec42b0Ef4214Ac7B71aeae1A11af0:1cf134e02c6b2afb2ceda50bf2c9a01da367ac48f7783ee6c55444e1cab418ec0f52837b90a4d8cf944814073fc6f2bd96f35366a3846a8393e3cb0b19197cde23e2b40c6401fa27ff7d0c36779d9d097d1393cab6fc1d332f92fb3df850b78703b2989d567d1344e219f0667a1863f52f7663092276770cf513f9704b5351c4:11b18bde524f4b02258a8d196b687f8d8e9490d536718666dc7babca14eccb631c238fb79aa2b44a5a4dceccad2dd797f537008dda185d952226a814c1acf7c2 \
+      --validators /ip4/127.0.0.1/tcp/30302/p2p/16Uiu2HAmS9Nq4QAaEiogE4ieJFUYsoH28magT7wSvJPpfUGBj3Hq:0x2da750eD4AE1D5A7F7c996Faec592F3d44060e90:088d92c25b5f278750534e8a902da604a1aa39b524b4511f5f47c3a386374ca3031b667beb424faef068a01cee3428a1bc8c1c8bab826f30a1ee03fbe90cb5f01abcf4abd7af3bbe83eaed6f82179b9cbdc417aad65d919b802d91c2e1aaefec27ba747158bc18a0556e39bfc9175c099dd77517a85731894bbea3d191a622bc:08dc3006352fdc01b331907fd3a68d4d68ed40329032598c1c0faa260421d66720965ace3ba29c6d6608ec1facdbf4624bca72df36c34afd4bdd753c4dfe049c \
       --path ./manifest.json \
       --premine-validators 100
   ```
 
-In this example, we provide validator information using the --validators flag. We are supplying information for two validators, and each validator is specified using the following format: [p2p node id]:[public ECDSA address]:[public BLS key].
+In this example, we provide validator information using the `--validators` flag. We are supplying information for two validators, and each validator is specified using the following format:
+
+`<p2p node id>:<public ECDSA address>:<public BLS key>`.
 
 <details>
 <summary>manifest.json example </summary>
@@ -345,7 +348,7 @@ In this example, we provide validator information using the --validators flag. W
 
 </details>
 
-### 3. Create a genesis file
+## 3. Create a genesis file
 
 Once the secrets have been generated, we can create a genesis file with the specified parameters using the command:
 
@@ -360,6 +363,9 @@ Once the secrets have been generated, we can create a genesis file with the spec
 
 This command generates a genesis file with the following parameters:
 
+<details>
+<summary>Flags</summary>
+
 | Flag | Description | Example |
 | --- | --- | --- |
 | `--consensus` | Specifies that we are using the PolyBFT consensus protocol. | `--consensus polybft` |
@@ -368,11 +374,28 @@ This command generates a genesis file with the following parameters:
 | `--premine` | Specifies the premine address and amount. | `--premine 0x85da99c8a7c2c95964c8efd687e95e632fc533d6:1000000000000000000000000000` |
 | `--epoch-size` | Specifies the epoch size. | `--epoch-size 10` |
 
+</details>
+
 After executing this command, a **genesis.json** file will be created in the current working directory containing the configuration for the PolyBFT network.
 
-### 4. Start the clients
+## 4. Start the clients
 
 After creating the genesis file, you need to start the servers for each node to begin running the network.
+
+<details>
+<summary>Flags</summary>
+
+| Flag | Description | Example |
+| ------ | ----------- | ------- |
+| `--data-dir` | Specifies the data directory for the node. | `--data-dir ./test-chain-1` |
+| `--chain` | Specifies the location of the newly created genesis file. | `--chain ./new-genesis/genesis.json` |
+| `--grpc-address` | Specifies the address for the gRPC server to listen on. | `--grpc-address :10000` |
+| `--libp2p` | Specifies the address for the libp2p server to listen on. | `--libp2p :30301` |
+| `--jsonrpc` | Specifies the address for the JSON-RPC server to listen on. | `--jsonrpc :10002` |
+| `--seal` (optional) | Starts the node in seal mode. | -- |
+| `--log-level` (optional) | Specifies the log level for the node | -- |
+
+</details>
 
   ```bash
    # Node 1
@@ -407,16 +430,6 @@ After creating the genesis file, you need to start the servers for each node to 
    --jsonrpc :40002 \
    --seal
    ```
-
-| Flag | Description | Example |
-| ------ | ----------- | ------- |
-| `./polygon-edge server` | Starts the server process. | `./polygon-edge server` |
-| `--data-dir` | Specifies the data directory for the node. | `--data-dir ./test-chain-1` |
-| `--chain` | Specifies the location of the newly created genesis file. | `--chain ./new-genesis/genesis.json` |
-| `--grpc-address` | Specifies the address for the gRPC server to listen on. | `--grpc-address :10000` |
-| `--libp2p` | Specifies the address for the libp2p server to listen on. | `--libp2p :30301` |
-| `--jsonrpc` | Specifies the address for the JSON-RPC server to listen on. | `--jsonrpc :10002` |
-| `--seal` | Starts the node in seal mode. | `--seal` |
 
 Repeat the above command for each node, replacing the --data-dir and port numbers with the appropriate values.
 
