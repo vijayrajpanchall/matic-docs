@@ -15,10 +15,9 @@ keywords:
 image: https://wiki.polygon.technology/img/thumbnail/polygon-miden.png
 ---
 
-In this section, we describe the AIR constraints for Miden VM field operations (i.e., arithmetic operations over field elements).
+In this section we describe the AIR constraints for Miden VM field operations (i.e., arithmetic operations over field elements).
 
 ## ADD
-
 Assume $a$ and $b$ are the elements at the top of the stack. The `ADD` operation computes $c \leftarrow (a + b)$. The diagram below illustrates this graphically.
 
 ![add](../../assets/design/stack/field_operations/ADD.png)
@@ -33,7 +32,6 @@ The effect on the rest of the stack is:
 * **Left shift** starting from position $2$.
 
 ## NEG
-
 Assume $a$ is the element at the top of the stack. The `NEG` operation computes $b \leftarrow (-a)$. The diagram below illustrates this graphically.
 
 ![neg](../../assets/design/stack/field_operations/NEG.png)
@@ -48,7 +46,6 @@ The effect on the rest of the stack is:
 * **No change** starting from position $1$.
 
 ## MUL
-
 Assume $a$ and $b$ are the elements at the top of the stack. The `MUL` operation computes $c \leftarrow (a \cdot b)$. The diagram below illustrates this graphically.
 
 ![mul](../../assets/design/stack/field_operations/MUL.png)
@@ -63,7 +60,6 @@ The effect on the rest of the stack is:
 * **Left shift** starting from position $2$.
 
 ## INV
-
 Assume $a$ is the element at the top of the stack. The `INV` operation computes $b \leftarrow (a^{-1})$. The diagram below illustrates this graphically.
 
 ![inv](../../assets/design/stack/field_operations/INV.png)
@@ -80,7 +76,6 @@ The effect on the rest of the stack is:
 * **No change** starting from position $1$.
 
 ## INCR
-
 Assume $a$ is the element at the top of the stack. The `INCR` operation computes $b \leftarrow (a+1)$. The diagram below illustrates this graphically.
 
 ![incr](../../assets/design/stack/field_operations/INCR.png)
@@ -95,7 +90,6 @@ The effect on the rest of the stack is:
 * **No change** starting from position $1$.
 
 ## NOT
-
 Assume $a$ is a binary value at the top of the stack. The `NOT` operation computes $b \leftarrow (\lnot a)$. The diagram below illustrates this graphically.
 
 ![not](../../assets/design/stack/field_operations/NOT.png)
@@ -116,7 +110,6 @@ The effect on the rest of the stack is:
 * **No change** starting from position $1$.
 
 ## AND
-
 Assume $a$ and $b$ are binary values at the top of the stack. The `AND` operation computes $c \leftarrow (a \land b)$. The diagram below illustrates this graphically.
 
 ![and](../../assets/design/stack/field_operations/AND.png)
@@ -137,7 +130,6 @@ The effect on the rest of the stack is:
 * **Left shift** starting from position $2$.
 
 ## OR
-
 Assume $a$ and $b$ are binary values at the top of the stack. The `OR` operation computes $c \leftarrow (a \lor b)$ The diagram below illustrates this graphically.
 
 ![or](../../assets/design/stack/field_operations/OR.png)
@@ -158,7 +150,6 @@ The effect on the rest of the stack is:
 * **Left shift** starting from position $2$.
 
 ## EQ
-
 Assume $a$ and $b$ are the elements at the top of the stack. The `EQ` operation computes $c$ such that $c = 1$ if $a = b$, and $0$ otherwise. The diagram below illustrates this graphically.
 
 ![eq](../../assets/design/stack/field_operations/EQ.png)
@@ -181,7 +172,6 @@ The effect on the rest of the stack is:
 * **Left shift** starting from position $2$.
 
 ## EQZ
-
 Assume $a$ is the element at the top of the stack. The `EQZ` operation computes $b$ such that $b = 1$ if $a = 0$, and $0$ otherwise. The diagram below illustrates this graphically.
 
 ![eqz](../../assets/design/stack/field_operations/EQZ.png)
@@ -204,7 +194,6 @@ The effect on the rest of the stack is:
 * **No change** starting from position $1$.
 
 ## EXPACC
-
 The `EXPACC` operation pops top $4$ elements from the top of the stack, performs a single round of exponent aggregation, and pushes the resulting $4$ values onto the stack. The diagram below illustrates this graphically.
 
 ![expacc](../../assets/design/stack/field_operations/EXPACC.png)
@@ -245,7 +234,6 @@ The effect on the rest of the stack is:
 * **No change** starting from position $4$.
 
 ## EXT2MUL
-
 The `EXT2MUL` operation pops top $4$ values from the top of the stack, performs mulitplication between the two extension field elements, and pushes the resulting $4$ values onto the stack. The diagram below illustrates this graphically.
 
 ![ext2mul](../../assets/design/stack/field_operations/EXT2MUL.png)

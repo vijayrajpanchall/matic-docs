@@ -37,5 +37,4 @@ StarkWare's STARK Math blog series:
 * [A Framework for Efficient STARKs](https://medium.com/starkware/a-framework-for-efficient-starks-19608ba06fbe)
 
 StarkWare's STARK tutorial:
- * [STARK 101](https://starkware.co/stark-101/)
- 
+* [STARK 101](https://starkware.co/stark-101/)

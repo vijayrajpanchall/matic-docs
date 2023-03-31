@@ -15,10 +15,10 @@ keywords:
 image: https://wiki.polygon.technology/img/thumbnail/polygon-miden.png
 ---
 
-In this section, we describe the AIR constraints for Miden VM system operations.  
+In this section we describe the AIR constraints for Miden VM system operations.
 
 ## NOOP
-The `NOOP` operation advances the cycle counter but does not change the state of the operand stack (i.e., the depth of the stack and the values on the stack remain the same). 
+The `NOOP` operation advances the cycle counter but does not change the state of the operand stack (i.e., the depth of the stack and the values on the stack remain the same).
 
 The `NOOP` operation does not impose any constraints besides the ones needed to ensure that the entire state of the stack is copied over. This constraint looks like so:
 
