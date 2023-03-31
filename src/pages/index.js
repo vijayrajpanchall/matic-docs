@@ -303,7 +303,7 @@ function Home() {
                   <div class="padding-bottom padding-small"></div>
                   <p class="description-text">Build advanced dApps with client-side proving with the first decentralized rollup that leverages execution proofs of concurrent, local transactions.</p>
                   <div class="padding-bottom custom-padding"></div>
-                  <Buttonizer docsUrl={'docs/miden/intro/main'} linkUrl={'docs/miden/user_docs/main'} />
+                  <Buttonizer docsUrl={'docs/miden'} linkUrl={'docs/miden/user_docs/main'} />
                 </div>
               </div>
             </TabItem>

@@ -811,6 +811,7 @@ module.exports = {
       value: 'Polygon Miden',
       className: 'sidebar-title',
     },
+    "miden/index",
     {
       type: "category",
       label: "Miden VM",

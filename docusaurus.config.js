@@ -524,7 +524,7 @@ module.exports = {
                   },
                   {
                     href: '/docs/miden/user_docs/usage',
-                    label: 'Deploy a Miden VM',
+                    label: 'Run a Miden VM',
                     target: '_self',
                     rel: null,
                   },
@@ -553,7 +553,7 @@ module.exports = {
                     rel: null,
                   },
                   {
-                    href: '/docs/miden/intro/main',
+                    href: '/docs/miden',
                     label: 'Miden',
                     target: '_self',
                     rel: null,
