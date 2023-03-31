@@ -647,6 +647,12 @@ module.exports = {
               "rel": null
             },
             {
+              "href": "https://platform.arkhamintelligence.com/",
+              "label": "Arkham",
+              "target": "_blank",
+              "rel": null
+            },
+            {
               "href": "https://blastapi.io/",
               "label": "Blast (Bware Labs)",
               "target": "_blank",
