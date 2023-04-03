@@ -1235,7 +1235,7 @@ module.exports = {
       collapsed: false,
       items: [
         "supernets/get-started/what-are-supernets",
-        "supernets/get-started/why-supernets",,
+        "supernets/get-started/why-supernets",
       ],
     },
     {
@@ -1303,6 +1303,7 @@ module.exports = {
       },
       collapsed: false,
       items: [
+        "supernets/operate/supernets-quick-start",
         "supernets/operate/supernets-requirements",
         "supernets/operate/supernets-install",
         {
