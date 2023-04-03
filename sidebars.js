@@ -1179,7 +1179,7 @@ module.exports = {
         "polygonid/verifier/verifier-overview",
         {
           type: "category",
-          label: "Off-chain verification",
+          label: "Verifier SDK - Off-chain verification",
           link: {
             type: "generated-index",
           },
@@ -1204,7 +1204,7 @@ module.exports = {
         },
         {
           type: "category",
-          label: "On-chain verification",
+          label: "Verifier SDK - On-chain verification",
           link: {
             type: "generated-index",
           },
