@@ -26,7 +26,7 @@ There are several ways to identify an area where you can contribute to the Wiki:
   saying “I want to help contribute to the Polygon Wiki”. They’ll work with you to find
   an area for you to contribute.
 - If you have a specific contribution in mind but are unsure about it, confirm whether
-  the contribution is appropriate by contacting one of the [Wiki maintainers](/docs/contribute/community-maintainers)directly.
+  the contribution is appropriate by contacting one of the [Wiki maintainers](/docs/contribute/community-maintainers) directly.
 - If you do not have a specific contribution in mind, you can also browse the issues
   labelled as `help wanted` on the [Polygon GitHub repos](https://github.com/maticnetwork).
 - Issues that additionally have the `good first issue` label are considered ideal for
@@ -72,7 +72,7 @@ Try writing your commit message by targeting user functionality as often as you 
 
 :::note Example
 
-This is a standard git log `--oneline` to show how these information could be stored:
+This is a standard git log `--oneline` to show how this information could be stored:
 
 ```
 * 5a39f73 fix: encoding issues with non-ascii chars.
