@@ -68,13 +68,13 @@ OS-specific instructions will be added shortly.
 
 3. Deploy and initialize rootchain contracts:
 
-   Start rootchain server:
+   In a new session, start rootchain server (**only for demo instance**).
 
     ```bash
     ./polygon-edge rootchain server
     ```
 
-   Deploy rootchain contracts on the rootchain instance:
+   Deploy rootchain contracts on the rootchain instance in the original session:
 
    ```bash
     ./polygon-edge rootchain init-contracts
@@ -389,7 +389,7 @@ In this example, we provide validator information using the `--validators` flag.
 
 ### Configure the rootchain
 
-The rootchain server is a Geth instance running in dev mode, which simulates the Ethereum network. This is needed to deploy and initialize the rootchain smart contracts.
+The rootchain server is a Geth instance running in dev mode, which simulates the Ethereum network. This is needed to deploy and initialize the rootchain smart contracts. **This is only needed if you are running the demo instance.**
 
   ```bash
   ./polygon-edge rootchain server
@@ -643,8 +643,7 @@ You will see the following output:
 
 </details>
 
-This command generates the genesis configuration file for the PolyBFT network and outputs it to a file called genesis.json.
-With the genesis configuration file generated, we can proceed to the final step: starting the node servers.
+This command generates the genesis configuration file for the PolyBFT network and outputs it to a file called genesis.json. With the genesis configuration file generated, we can proceed to the final step: starting the node servers.
 
 ## 5. Fund validators on rootchain
 

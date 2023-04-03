@@ -1342,30 +1342,6 @@ module.exports = {
             },
             {
               type: "category",
-              label: "ERC1155",
-              link: {
-                type: "generated-index",
-              },
-              items: [
-                "supernets/interfaces/erc1155/childerc1155",
-                "supernets/interfaces/erc1155/childerc1155-predicate",
-                "supernets/interfaces/erc1155/rooterc1155-predicate",
-              ],
-            },
-            {
-              type: "category",
-              label: "ERC721",
-              link: {
-                type: "generated-index",
-              },
-              items: [
-                "supernets/interfaces/erc721/childerc721",
-                "supernets/interfaces/erc721/childerc721-predicate",
-                "supernets/interfaces/erc721/rooterc721-predicate",
-              ],
-            },
-            {
-              type: "category",
               label: "Network",
               link: {
                 type: "generated-index",
