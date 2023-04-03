@@ -9,6 +9,7 @@ keywords:
   - edge
   - supernets
   - quick
+  - deploy
   - cluster
 ---
 
@@ -41,7 +42,7 @@ Start by cloning the repository and building the Edge binaries:
   go build -o polygon-edge .
   ```
 
-## 2. Use the cluster script to start a local network
+## 2. Use the deployment script to start a local network
 
 The script is available under the "scripts" directory of the client.
 These are the optional configuration parameters you can pass to the script:
@@ -70,7 +71,7 @@ These are the optional configuration parameters you can pass to the script:
 To run the Supernets test environment locally, use the following command:
 
   ```bash
-  ./cluster polybft
+  ./deploy.sh polybft
   ```
 
 After running the command, the test network will be initialized with PolyBFT consensus engine and the genesis file will be created. Then, the four validators will start running, and their log outputs will be displayed in the terminal.
@@ -80,18 +81,18 @@ By default, this will start a Supernets network with PolyBFT consensus engine, f
 The nodes will continue to run until stopped manually. To stop the network, use the following command or simply press CTRL/Command C in the terminal window:
 
   ```bash
-  ./cluster polybft stop
+  ./deploy.sh polybft stop
   ```
 
 If you want to destroy the environment, use the following command:
 
   ```bash
-  ./cluster polybft destroy
+  ./deploy.sh polybft destroy
   ```
 
-## 3. (Optional) Explanation of the cluster script
+## 3. (Optional) Explanation of the deployment script
 
-The cluster script is a wrapper script for starting a Supernets test network with PolyBFT consensus engine. It offers the following functionality:
+The deployment script is a wrapper script for starting a Supernets test network with PolyBFT consensus engine. It offers the following functionality:
 
 - Initialize the network with either IBFT or PolyBFT consensus engine.
 - Create the genesis file for the test network.
@@ -103,7 +104,7 @@ The cluster script is a wrapper script for starting a Supernets test network wit
 For reference, it is included below.
 
 <details>
-<summary>cluster</summary>
+<summary>deploy.sh</summary>
 
 ```sh
 #!/usr/bin/env bash
