@@ -104,8 +104,18 @@ module.exports = {
     "operate/network-rpc-endpoints",
     "operate/default-ports",
     /*"operate/access-node-alchemy",*/
-    "operate/archive-node",
-    "operate/erigon-client",
+    {
+      type: "category",
+      label: "Setup Archive Node",
+      link: {
+        type: "generated-index",
+      },
+      collapsed: false,
+      items: [
+        "operate/archive-node",
+        "operate/erigon-client",
+      ],
+    },
   ],
 
   develop: [

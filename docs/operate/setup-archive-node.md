@@ -1,8 +1,8 @@
 ---
 id: archive-node
-title: Setup an Archive Node
-sidebar_label: Set up an Archive Node
-description: Using binaries to set up an archive node
+title: Setup an Archive Node Using Binaries/Ansible
+sidebar_label: Using Binaries/Ansible
+description: Using binaries or ansible to set up an archive node.
 keywords:
   - erigon
   - archive
