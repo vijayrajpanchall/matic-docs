@@ -9,7 +9,7 @@ keywords:
   - api3
   - oracle
   - off-chain data
-image: https://wiki.polygon.technology/img/polygon-logo.png
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
@@ -24,6 +24,8 @@ An [Airnode](https://docs.api3.org/airnode) is a **first-party oracle** that pus
 
 An on-chain smart contract makes a request in the [**RRP protocol contract (AirnodeRrpV0.sol)**](https://docs.api3.org/airnode/v0.9/concepts/) that adds the request to the event logs. The Airnode then accesses the event logs, fetches the API data and performs a callback to the requester with the requested data.
 
+> <img src={useBaseUrl("img/api3/airnode1.png")} width="700"/>
+
 ## Requesting off-chain data by calling an Airnode
 
 Requesting off-chain data essentially involves triggering an Airnode and getting its response
@@ -35,6 +37,8 @@ The requester calling an Airnode primarily focuses on two tasks:
 
 - **Make the request**
 - **Accept and decode the response**
+
+> <img src={useBaseUrl("img/api3/airnode2.png")} width="600"/>
 
 Here is an example of a basic requester contract to request data from an Airnode:
 
@@ -66,7 +70,7 @@ contract Requester is RrpRequesterV0 {
         address sponsor,
         address sponsorWallet,
         bytes calldata parameters
-
+        
     ) external {
         bytes32 requestId = airnodeRrp.makeFullRequest(
             airnode,
@@ -95,6 +99,11 @@ contract Requester is RrpRequesterV0 {
 
 The `_rrpAddress` is the main `airnodeRrpAddress`. The RRP Contracts have already been deployed on-chain. You can check the address for Polygon [here](https://docs.api3.org/airnode/v0.9/reference/airnode-addresses.html). You can also try [**deploying it on Remix**](https://remix.ethereum.org/#url=https://github.com/vanshwassan/RemixContracts/blob/master/contracts/Requester.sol&optimize=false&runs=200&evmVersion=null&version=soljson-v0.8.9+commit.e5eed63a.js)
 
+|         Contract         |                     Addresses                    |
+|:------------------------:|:------------------------------------------------:|
+| AirnodeRrpV0 |   `0xa0AD79D995DdeeB18a14eAef56A549A04e3Aa1Bd`    |
+
+
 ### Request parameters
 
 The `makeRequest()` function expects the following parameters to make a valid request.
@@ -111,14 +120,127 @@ The callback to the **Requester** contains two parameters:
 - [`requestId`](https://docs.api3.org/airnode/v0.9/concepts/request.html#requestid): First acquired when making the request and passed here as a reference to identify the request for which the response is intended.
 - `data`: In case of a successful response, this is the requested data which has been encoded and contains a timestamp in addition to other response data. Decode it using the `decode()` function from the `abi` object.
 
-## Using API3 QRNG
+## Using dAPIs - API3 Datafeeds
+
+[dAPIs](https://docs.api3.org/dapis/) are continuously updated streams of off-chain data, such as the latest cryptocurrency, stock and commodity prices. They can power various decentralized applications such as DeFi lending, synthetic assets, stablecoins, derivatives, NFTs and more.
+
+The data feeds are continuously updated by [first-party oracles](https://dapi-docs.api3.org/explore/introduction/first-party.html) using signed data. dApp owners can read the on-chain value of any dAPI in realtime.
+
+Due to being composed of first-party data feeds, dAPIs offer security, transparency, cost-efficiency and scalability in a turn-key package.
+
+The [API3 Market](https://market.api3.org/dapis) enables users to connect to a dAPI and access the associated data feed services.
+
+> <img src={useBaseUrl("img/api3/SS4.png")} width="700"/>
+
+[*To know more about how dAPIs work, click here*](https://dapi-docs.api3.org/explore/dapis/what-are-dapis.html)
+
+<!-- ### Types of dAPIs
+
+#### Self-funded dAPIs
+Self-funded dAPIs offer developers the opportunity to experience data feeds with
+minimal up-front commitment, providing a low-risk option prior to using a
+managed dAPIs.
+
+#### Managed dAPIs
+Managed dAPIs are sourced from multiple first-party oracles and aggregated using
+a median function. Compared to self-funded dAPIs, Managed dAPIs are monetized,
+as API3 requires payment in USDC on Ethereum Mainnet to operate them. -->
+
+### Subscribing to self-funded dAPIs
+
+With self-funded dAPIs, you can fund the dAPI with your own funds. The amount of gas you supply will determine how long your dAPI will be available for use. If you run out of gas, you can fund the dAPI again to keep it available for use.
+
+#### Exploring and selecting your dAPI
+
+The [API3 Market](https://market.api3.org/dapis) provides a list of all the dAPIs available across multiple chains including testnets. You can filter the list by chains and data providers. You can also search for a specific dAPI by name. Once selected you will land on the details page where you can find more information about the dAPI.
+
+#### Funding a sponsor wallet
+
+Once you have selected your dAPI, you can activate it by using the [API3 Market](https://market.api3.org/) to send Matic to the `sponsorWallet`. Make sure your:
+
+- Wallet is connected to the Market and is the same network as the dAPI you are funding.
+- Balance of the wallet should be greater than the amount you are sending to the `sponsorWallet`.
+
+> <img src={useBaseUrl("img/api3/market1.png")} width="500"/>
+
+To fund the dAPI, you need to click on the **Fund Gas** button. Depending upon if a proxy contract is already deployed, you will see a different UI.
+
+> <img src={useBaseUrl("img/api3/market2.png")} width="700"/>
+
+Use the gas estimator to select how much gas is needed by the dAPI. Click on **Send Matic** to send the entered amount to the sponsor wallet of the respective dAPI.
+
+> <img src={useBaseUrl("img/api3/market3.png")} width="500"/>
+
+Once the transaction is broadcasted & confirmed on the blockchain a transaction confirmation screen will appear.
+
+> <img src={useBaseUrl("img/api3/market4.png")} width="500"/>
+
+#### Deploying a proxy contract to access the dAPI
+
+Smart contracts can interact and read values from contracts that are already deployed on the blockchain. By deploying a proxy contract via the API3 Market, a dApp can interact and read values from a dAPI like ETH/USD.
+
+:::info Note
+If a proxy is already deployed for a self-funded dAPI, the dApp can read the dAPI without having to deploy a proxy contract. They do this by using the address of the already deployed proxy contract which will be visible on the API3 Market.
+:::
+
+If you are deploying a proxy contract during the funding process, clicking on the **Get proxy** button will initiate a transaction to your MetaMask that will deploy a proxy contract.
+
+> <img src={useBaseUrl("img/api3/market5.png")} width="400"/>
+
+Once the transaction is broadcasted and confirmed on the blockchain, the proxy contract address will be shown on the UI.
+
+> <img src={useBaseUrl("img/api3/market6.png")} width="500"/>
+
+### Reading from a self-funded dAPI
+
+Here's an example of a basic contract that reads from a self-funded dAPI.
+
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity 0.8.17;
+
+import "@openzeppelin/contracts/access/Ownable.sol";
+import "@api3/contracts/v0.8/interfaces/IProxy.sol";
+
+contract DataFeedReaderExample is Ownable {
+    // This contract reads from a single proxy. Your contract can read from multiple proxies.
+    address public proxy;
+
+    // Updating the proxy address is a security-critical action. In this example, only
+    // the owner is allowed to do so.
+    function setProxy(address _proxy) public onlyOwner {
+        proxy = _proxy;
+    }
+
+    function readDataFeed()
+        external
+        view
+        returns (int224 value, uint256 timestamp)
+    {
+        (value, timestamp) = IProxy(proxy).read();
+        // If you have any assumptions about `value` and `timestamp`, make sure
+        // to validate them right after reading from the proxy.
+    }
+}
+
+```
+
+- `setProxy()` is used to set the address of the dAPI Proxy Contract.
+
+- `readDataFeed()` is a view function that returns the latest price of the set dAPI.
+
+You can read more about dAPIs [here](https://dapi-docs.api3.org/). 
+
+### [Try deploying it on Remix!](https://remix.ethereum.org/#url=https://gist.githubusercontent.com/vanshwassan/1ec4230956a78c73a00768180cba3649/raw/176b4a3781d55d6fb2d2ad380be0c26f412a7e3c/DapiReader.sol)
+
+## Using API3 QRNG 
 
 [API3 QRNG](https://docs.api3.org/qrng/) is a public utility we provide with the courtesy of [Australian National University (ANU)](https://www.anu.edu.au/). It is powered by an Airnode hosted by [ANU Quantum Random Numbers](https://quantumnumbers.anu.edu.au/), meaning that it is a first-party service.
 It is served as a public good and is free of charge (apart from the gas costs), and it **provides ‘true’ quantum randomness** via an easy-to-use solution when requiring RNG on-chain.
 
 To request randomness on-chain, the requester submits a request for a random number to `AirnodeRrpV0`. The ANU Airnode gathers the request from the `AirnodeRrpV0` protocol contract, retrieves the random number off-chain, and sends it back to `AirnodeRrpV0`. Once received, it performs a callback to the requester with the random number.
 
-### QRNG Getting Started
+### QRNG Getting Started 
 
 Here is an example of a basic `QrngRequester` that requests a random number:
 
@@ -137,7 +259,7 @@ contract RemixQrngExample is RrpRequesterV0 {
     mapping(bytes32 => bool) public waitingFulfillment;
 
     // These are for Remix demonstration purposes, their use is not practical.
-    struct LatestRequest {
+    struct LatestRequest { 
       bytes32 requestId;
       uint256 randomNumber;
     }
@@ -198,18 +320,21 @@ You can read more about API3 QRNG [here](https://docs.api3.org/qrng/).
 
 ### [Try deploying it on Remix!](https://remix.ethereum.org/#url=https://github.com/vanshwassan/RemixContracts/blob/master/contracts/QrngRequester.sol&optimize=false&runs=200&evmVersion=null&version=soljson-v0.8.9+commit.e5eed63a.js)
 
- ## Decentralized price feeds
-[dAPIs](https://docs.api3.org/dapis/) are decentralized price feeds engrained with risk protection. Using a first-party architecture dAPIs provide a transparent, secure, and scalable price feed solution.
-
-Developers can access dAPIs through the [API3 Market](https://bit.ly/api3marketpolywiki), where data feeds are easily searched, monitored, and consumed.
-
-You can read more about dAPIs [here](https://docs.api3.org/dapis/).
-
-## ChainAPI
+## ChainAPI 
 
 [ChainAPI](https://chainapi.com/) is the Web3 data integration platform that provides businesses with all the tools they need to connect their data to blockchain-based applications.
 API providers can follow a simple GUI-based integration and deployment flow and start running their first-party Airnode without writing a single line of code.
 
-If you have a REST API, you can easily deploy your own Airnode using [ChainAPI](https://chainapi.com) to Polygon.
+If you have a REST API, you can easily deploy your own Airnode using [ChainAPI](https://chainapi.com) to Polygon. 
 
 Check out the API3 Docs [here](https://docs.api3.org).
+
+## Additional Resources
+
+Here are some additional developer resources
+
+- [API3 Docs](https://docs.api3.org/)
+- [dAPI Docs](https://dapi-docs.api3.org/)
+- [QRNG Docs](https://docs.api3.org/qrng/)
+- [Github](https://github.com/api3dao/)
+- [Medium](https://medium.com/api3)
