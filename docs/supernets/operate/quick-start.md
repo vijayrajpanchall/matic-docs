@@ -42,6 +42,8 @@ Start by cloning the repository and building the Edge binaries:
   go build -o polygon-edge .
   ```
 
+> Note that the default branch for the source code is `develop`.
+
 ## 2. Use the deployment script to start a local network
 
 The script is available under the "scripts" directory of the client.
@@ -52,7 +54,6 @@ These are the optional configuration parameters you can pass to the script:
 
 | Flag | Description | Default Value |
 |------|-------------|---------------|
-| --consensus | Consensus algorithm used to validate transactions. | polybft |
 | --validator-set-size | Number of validators in the network. | 4 |
 | --bridge-json-rpc | JSON-RPC endpoint for the bridge. | http://127.0.0.1:8545 |
 | --block-gas-limit | Maximum gas allowed for a block. | 10000000 |
@@ -71,23 +72,23 @@ These are the optional configuration parameters you can pass to the script:
 To run the Supernets test environment locally, use the following command:
 
   ```bash
-  ./deploy.sh polybft
+  ./scripts/cluster polybft
   ```
 
 After running the command, the test network will be initialized with PolyBFT consensus engine and the genesis file will be created. Then, the four validators will start running, and their log outputs will be displayed in the terminal.
 
 By default, this will start a Supernets network with PolyBFT consensus engine, four validators, and premine of 1 billion tokens at address `0x85da99c8a7c2c95964c8efd687e95e632fc533d6`.
 
-The nodes will continue to run until stopped manually. To stop the network, use the following command or simply press CTRL/Command C in the terminal window:
+The nodes will continue to run until stopped manually. To stop the network, open a new session and use the following command, or, simply press CTRL/Command C in the terminal window:
 
   ```bash
-  ./deploy.sh polybft stop
+  ./scripts/cluster polybft stop
   ```
 
 If you want to destroy the environment, use the following command:
 
   ```bash
-  ./deploy.sh polybft destroy
+  ./scripts/cluster polybft destroy
   ```
 
 ## 3. (Optional) Explanation of the deployment script
@@ -104,7 +105,7 @@ The deployment script is a wrapper script for starting a Supernets test network 
 For reference, it is included below.
 
 <details>
-<summary>deploy.sh</summary>
+<summary>cluster</summary>
 
 ```sh
 #!/usr/bin/env bash
