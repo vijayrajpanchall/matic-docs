@@ -17,9 +17,9 @@ This document compiles some of the frequently asked questions related to the Pol
 
 ---
 
-### What is the difference betweeen EVM Compatibility and EVM Equivalence?
+### What is the difference between EVM Compatibility and EVM Equivalence?
 
-The ultimate goal is not **compatibility**. The ultimate goal is **equivalence**. **Solutions that are compatible enable most of existing apps to work, but sometimes with code changes**. Additionally, compatibility may lead to the breaking of developer toolings.
+The ultimate goal is not **compatibility**. The ultimate goal is **equivalence**. **Solutions that are compatible enable most existing apps to work, but sometimes with code changes**. Additionally, compatibility may lead to the breaking of developer toolings.
 
 **Polygon zkEVM strives for EVM Equivalence because it means that most applications, tools, and infrastructure built on Ethereum can immediately port over to Polygon zkEVM with limited to no changes needed**. Things are designed to work 100% on day one. This is critical because:
 
@@ -33,7 +33,7 @@ The ultimate goal is not **compatibility**. The ultimate goal is **equivalence**
 
 Ethereum isn’t just a blockchain. It’s a rich ecosystem of smart contracts, developer tools, infrastructure, and wallets. It’s a vibrant community of developers, auditors, and users.
 
-The best way to scale Ethereum is to strive to maintain equivalence with this ecosystem. Polygon zkEVM will give users and developers almost identical experience to Ethereum L1 with a significant scalability improvement.
+The best way to scale Ethereum is to strive to maintain equivalence with this ecosystem. Polygon zkEVM will give users and developers an almost identical experience to Ethereum L1 with a significant scalability improvement.
 
 ### What EVM opcodes are different on Polygon zkEVM?
 
@@ -65,7 +65,7 @@ Polygon zkEVM handles events and logging in a similar way to other EVMs, by emit
 
 ### How similar are Polygon zkEVM error messages with Ethereum?
 
-Polygon zkEVM has a high level of compatibility with Ethereum errors. You need to bear in mind that Polygon zkEVM has more constraints than Ethereum and also uses different concepts (for example, batches instead of blocks). Therefore, it will give more types of errors with more precision (example, the concept of gas in Polygon zkEVM is more broken down).
+Polygon zkEVM has a high level of compatibility with Ethereum errors. You need to bear in mind that Polygon zkEVM has more constraints than Ethereum and also uses different concepts (for example, batches instead of blocks). Therefore, it will give more types of errors with more precision (for example, the concept of gas in Polygon zkEVM is more broken down).
 
 ### Can Chainlink use their token (ERC677) in Polygon zkEVM?
 

@@ -12,6 +12,8 @@ keywords:
 image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
 ## What are PIPs?
 
 Polygon Improvement Proposals (PIPs) describe standards for the Polygon ecosystem
@@ -68,8 +70,9 @@ and [PIP-8](https://forum.polygon.technology/t/pip-8-pip-classification-workflow
 ### What does the PIP process look like?
 
 Take a look at the flowchart that explains how the PIP process works.
-
-![image](https://user-images.githubusercontent.com/125366298/221843635-0ca4dd43-10cc-4e4f-8cf4-6b4dcc3e0f98.png)
+<div align="center">
+  <img src={useBaseUrl("img/pip/pip-diagram.png")} width="1000"  />
+</div>
 
 ### What are the types of PIPs?
 

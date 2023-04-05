@@ -29,6 +29,9 @@ To access the pre-built releases, visit the [GitHub Releases](https://github.com
 
 ## Docker image
 
+To use Docker, you will need to have it installed on your system. If you haven't already installed Docker, you can follow the instructions on the
+[official Docker website](https://www.docker.com/) for your operating system.
+
 If you prefer to use Docker, you can access the official Docker images hosted under the [hub.docker.com registry](https://hub.docker.com/r/0xpolygon/polygon-edge) using the following command:
 
   ```bash

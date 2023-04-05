@@ -104,8 +104,18 @@ module.exports = {
     "operate/network-rpc-endpoints",
     "operate/default-ports",
     /*"operate/access-node-alchemy",*/
-    "operate/archive-node",
-    "operate/erigon-client",
+    {
+      type: "category",
+      label: "Setup Archive Node",
+      link: {
+        type: "generated-index",
+      },
+      collapsed: false,
+      items: [
+        "operate/archive-node",
+        "operate/erigon-client",
+      ],
+    },
   ],
 
   develop: [
@@ -811,6 +821,7 @@ module.exports = {
       value: 'Polygon Miden',
       className: 'sidebar-title',
     },
+    "miden/index",
     {
       type: "category",
       label: "Miden VM",
@@ -1234,7 +1245,7 @@ module.exports = {
       collapsed: false,
       items: [
         "supernets/get-started/what-are-supernets",
-        "supernets/get-started/why-supernets",,
+        "supernets/get-started/why-supernets",
       ],
     },
     {
@@ -1302,9 +1313,21 @@ module.exports = {
       },
       collapsed: false,
       items: [
+        "supernets/operate/supernets-quick-start",
         "supernets/operate/supernets-requirements",
         "supernets/operate/supernets-install",
-        "supernets/operate/supernets-local-deploy",
+        {
+          type: "category",
+          label: "Deploy in non-bridge mode",
+          link: {
+            type: "generated-index",
+          },
+          collapsed: true,
+          items: [
+            "supernets/operate/supernets-local-deploy",
+            "supernets/operate/supernets-setup-dev-env",
+          ],
+        },
         "supernets/operate/supernets-local-deploy-supernet",
         "supernets/operate/supernets-bridge",
         {
@@ -1315,13 +1338,55 @@ module.exports = {
           },
           collapsed: true,
           items: [
-            "supernets/interfaces/native-erc20",
-            "supernets/interfaces/childerc20",
-            "supernets/interfaces/childerc20-predicate",
-            "supernets/interfaces/checkpoint-manager",
-            "supernets/interfaces/exit-helper",
-            "supernets/interfaces/state-receiver",
-            "supernets/interfaces/state-sender",
+            {
+              type: "category",
+              label: "ERC20",
+              link: {
+                type: "generated-index",
+              },
+              items: [
+                "supernets/interfaces/erc20/native-erc20",
+                "supernets/interfaces/erc20/childerc20",
+                "supernets/interfaces/erc20/childerc20-predicate",
+                "supernets/interfaces/erc20/rooterc20-predicate",
+              ],
+            },
+            {
+              type: "category",
+              label: "Network",
+              link: {
+                type: "generated-index",
+              },
+              items: [
+                "supernets/interfaces/network/checkpoint-manager",
+                "supernets/interfaces/network/exit-helper",
+                "supernets/interfaces/network/state-receiver",
+                "supernets/interfaces/network/state-sender",
+              ],
+            },
+            {
+              type: "category",
+              label: "Validators",
+              link: {
+                type: "generated-index",
+              },
+              items: [
+                "supernets/interfaces/validators/validator",
+                "supernets/interfaces/validators/validator-set-base",
+                "supernets/interfaces/validators/root-validator-set",
+              ],
+            },
+            {
+              type: "category",
+              label: "Cryptography",
+              link: {
+                type: "generated-index",
+              },
+              items: [
+                "supernets/interfaces/cryptography/bls",
+                "supernets/interfaces/cryptography/bn256g2",
+              ],
+            },
           ],
         },
         {

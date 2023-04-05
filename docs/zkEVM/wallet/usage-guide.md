@@ -55,23 +55,9 @@ Please allow a few moments for your transaction to be processed. Once completed,
 <img src={useBaseUrl("img/zkevm/transaction-history.jpg")} width="1000" height="1000"/>
 </div>
 
-:::tip Connecting to zkEVM
+:::tip Quick Connect
 
-You will be prompted to add the Polygon zkEVM network to Metamask.
-
-<div align="center">
-<img src={useBaseUrl("img/zkevm/zkwallet0.jpg")} width="500" height="500"/>
-</div>
-
-If, for any reason, that does not occur, you can manually enter the following chain details into the Metamask settings:
-
-| Network | RPC URL | ChainID | Block Explorer URL |
-| ------- | ------------------------------- | ---------------------- | --------------------- |
-| Polygon zkEVM | `https://zkevm-rpc.com` | `1101` | `https://zkevm.polygonscan.com/` |
-| zkEVM Testnet | `https://rpc.public.zkevm-test.net` | `1442` | `https://testnet-zkevm.polygonscan.com` |
-
-Make sure the currency symbol is set to **ETH**.
-
+You can **add zkEVM Network to your MetaMask wallet** instantly by clicking the **Add to Wallet** button in the Wallet Suite interface.
 
 :::
 

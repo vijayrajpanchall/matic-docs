@@ -40,18 +40,18 @@ In order to add the **Polygon zkEVM** network to your wallet, you will need to e
 
 :::tip Quick Connect
 
-You can also click on the **Add to MetaMask** button on the Polygon zkEVM Bridge interface to instantly add the network to your MetaMask wallet.
+You can **add zkEVM Network to your MetaMask wallet** instantly by clicking the **Add to Wallet** button in the Wallet Suite interface.
 
 :::
 
 ### Bridge Assets to zkEVM
 
-For moving assets across chains (L1 &harr; zkEVM), you will need to use the zkEVM Bridge. The bridge interface is available for both [Mainnet Beta](https://bridge.zkevm-rpc.com/login) and [Testnet](https://public.zkevm-test.net/). The Bridge API (for developers) is available at [https://bridge-api.public.zkevm-test.net/](https://bridge-api.public.zkevm-test.net/)
+For moving assets across chains (L1 &harr; zkEVM), you will need to use the zkEVM Bridge. The bridge interface is available for both **Mainnet Beta** and **Testnet** in the [Polygon Wallet Suite](https://wallet.polygon.technology/zkEVM/bridge). Also, bridging can be done with the help of [MaticJS](https://wiki.polygon.technology/docs/develop/ethereum-polygon/matic-js/zkevm/initialize-zkevm/) SDK.
 
 Check out this video guide on **how to bridge tokens from L1 to the zkEVM Testnet**. The same video will apply to the zkEVM Mainnet Beta.
 
-<video autoplay width="100%" height="100%" controls="true" >
-  <source type="video/mp4" src="/img/zkevm/zkEVM-Bridge.mov"></source>
+<video loop autoplay width="100%" height="100%" controls="true" >
+  <source type="video/mp4" src="/img/zkevm/zkevmwallettestnet.mp4"></source>
   <p>Your browser does not support the video element.</p>
 </video>
 

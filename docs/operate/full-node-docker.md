@@ -19,7 +19,7 @@ The Polygon team distributes official Docker images which can be used to run nod
 
 Steps in this guide involve waiting for the Heimdall and Bor services to sync fully. This process takes several days to complete.
 
-Alternatively, you can use a maintained snapshot, reducing the sync time to a few hours. For detailed instructions, see [<ins>Snapshot Instructions for Heimdall and Bor</ins>](/docs/operate/snapshot-instructions-heimdall-bor).
+Please use snapshots for faster syncing without having to sync over the network. For detailed instructions, see [<ins>Snapshot Instructions for Heimdall and Bor</ins>](/operate/snapshot-instructions-heimdall-bor.md).
 
 For snapshot download links, see the [<ins>Polygon Chains Snapshots</ins>](https://snapshot.polygon.technology/) page.
 
@@ -172,7 +172,7 @@ Now we need to make a few updates before starting Heimdall. First we’re going 
 sudo emacs /mnt/data/heimdall/config/config.toml
 ```
 
-If you don’t have a list of seeds, you can find one in the documentation for setting up a full node. In our case, our file has these three lines:
+If you don’t have a list of seeds, you can find one [in this section](#seed-nodes-and-bootnodes). In our case, our file has these three lines:
 
 ```
 # A custom human readable name for this node

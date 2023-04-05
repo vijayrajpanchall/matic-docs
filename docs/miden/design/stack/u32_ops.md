@@ -14,7 +14,7 @@ keywords:
 image: https://wiki.polygon.technology/img/thumbnail/polygon-miden.png
 ---
 
-In this section, we describe semantics and AIR constraints of operations over u32 values (i.e., 32-bit unsigned integers) as they are implemented in Miden VM.
+In this section we describe semantics and AIR constraints of operations over u32 values (i.e., 32-bit unsigned integers) as they are implemented in Miden VM.
 
 ### Range checks
 Most operations described below require some number of 16-bit range checks (i.e., verifying that the value of a field element is smaller than $2^{16}$). The number of required range checks varies between $2$ and $4$, depending on the operation. However, to simplify the constraint system, we force each relevant operation to consume exactly $4$ range checks.
@@ -28,7 +28,7 @@ $$
 The above is just a partial constraint as it does not show the range checker's part of the constraint, which multiplies the required values into the bus column. It also omits the [selector flag](./op_constraints.md#operation-flags) which is used to turn this constraint on only when executing relevant operations.
 
 ### Checking element validity
-Another primitive which is required by most of the operations described below is checking whether four 16-bit values form a valid field element. Assume $t_0$, $t_1$, $t_2$, and $t_3$ are known to be 16-bit values, and we want to verify that $2^{48} \cdot t_3 + 2^{32} \cdot t_2 + 2^{16} \cdot t_1 + t_0$ is a valid field element. 
+Another primitive which is required by most of the operations described below is checking whether four 16-bit values form a valid field element. Assume $t_0$, $t_1$, $t_2$, and $t_3$ are known to be 16-bit values, and we want to verify that $2^{48} \cdot t_3 + 2^{32} \cdot t_2 + 2^{16} \cdot t_1 + t_0$ is a valid field element.
 
 For simplicity, let's denote:
 

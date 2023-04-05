@@ -14,14 +14,13 @@ keywords:
 image: https://wiki.polygon.technology/img/thumbnail/polygon-miden.png
 ---
 
-In this section, we describe the AIR constraints for Miden VM cryptographic operations.
+In this section we describe the AIR constraints for Miden VM cryptographic operations.
 
 Cryptographic operations in Miden VM are performed by the [Hash chiplet](../chiplets/hasher.md). Communication between the stack and the hash chiplet is accomplished via the chiplet bus $b_{chip}$. To make requests to and to read results from the chiplet bus we need to divide its current value by the value representing the request.
 
 Thus, to describe AIR constraints for the cryptographic operations, we need to define how to compute these input and output values within the stack. We do this in the following sections.
 
 ## HPERM
-
 The `HPERM` operation applies Rescue Prime Optimized permutation to the top $12$ elements of the stack. The stack is assumed to be arranged so that the $8$ elements of the rate are at the top of the stack. The capacity word follows, with the number of elements to be hashed at the deepest position in stack. The diagram below illustrates this graphically.
 
 ![hperm](../../assets/design/stack/crypto_ops/HPERM.png)
@@ -52,7 +51,6 @@ The effect of this operation on the rest of the stack is:
 * **No change** starting from position $12$.
 
 ## MPVERIFY
-
 The `MPVERIFY` operation verifies that a Merkle path from the specified node resolves to the specified root. This operation can be used to prove that the prover knows a path in the specified Merkle tree which starts with the specified node.
 
 Prior to the operation, the stack is expected to be arranged as follows (from the top):
@@ -91,9 +89,8 @@ The effect of this operation on the rest of the stack is:
 * **No change** starting from position $0$.
 
 ## MRUPDATE
-
 The `MRUPDATE` operation computes a new root of a Merkle tree where a node at the specified position is updated to the specified value.
-    
+
 The stack is expected to be arranged as follows (from the top):
 - old value of the node, 4 element ($V$ in the below image)
 - depth of the node, 1 element ($d$ in the below image)
@@ -139,7 +136,6 @@ The effect of this operation on the rest of the stack is:
 * **No change** for positions starting from $4$.
 
 ## FRIE2F4
-
 The `FRIE2F4` operation performs FRI layer folding by a factor of 4 for FRI protocol executed in a degree 2 extension of the base field. It also performs several computations needed for checking correctness of the folding from the previous layer as well as simplifying folding of the next FRI layer.
 
 The stack for the operation is expected to be arranged as follows:
@@ -164,6 +160,8 @@ At the high-level, the operation does the following:
 - Shifts the stack by $1$ to the left. This moves an element from the stack overflow table into the last position on the stack top.
 
 To keep the degree of the constraints low, a number of intermediate values are used. Specifically, the operation relies on all $6$ helper registers, and also uses the first $10$ elements of the stack at the next state for degree reduction purposes. Thus, once the operation has been executed, the top $10$ elements of the stack can be considered to be "garbage".
+
+> TODO: add detailed constraint descriptions. See discussion [here](https://github.com/0xPolygonMiden/miden-vm/issues/567#issuecomment-1398088792).
 
 The effect on the rest of the stack is:
 * **Left shift** starting from position $16$.
