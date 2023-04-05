@@ -1743,8 +1743,7 @@ code {
   border-color: #69717E;
 }
 
-/* Tooltip and Popover styles */
-
+/* Popover and Tooltip styles */
 .popover-block{
   display: inline-block;
   color: var(--ifm-link-color);
@@ -1757,9 +1756,14 @@ code {
   text-overflow: ellipsis;
 }
 
-.popover-body {
+.popover-body{
   padding: 0px 6px 6px 6px;
   font: 450 0.875rem / 1.15rem var(--ifm-heading-font-family);
+}
+
+.tooltip-inner {
+  padding: 8px 8px;
+  font: 450 0.875rem / 1.15rem var(--ifm-heading-font-family); 
 }
 
 /*works for both popover and tooltip*/
@@ -1781,29 +1785,37 @@ code {
   background: inherit;
 }
 
-.popover-arrow {
+.tooltip-arrow,
+.tooltip-arrow::before {
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  background: inherit;
+}
+
+.popover-arrow, .tooltip-arrow {
   visibility: hidden;
 }
 
-.popover-arrow::before {
+.popover-arrow::before, .tooltip-arrow::before {
   visibility: visible;
   content: '';
   transform: rotate(45deg);
 }
 
-.popover[data-popper-placement^='top'] > .popover-arrow {
+.popover[data-popper-placement^='top'] > .popover-arrow, .tooltip[data-popper-placement^='top'] > .tooltip-arrow {
   bottom: -6px;
 }
 
-.popover[data-popper-placement^='bottom'] > .popover-arrow {
+.popover[data-popper-placement^='bottom'] > .popover-arrow, .tooltip[data-popper-placement^='bottom'] > .tooltip-arrow {
   top: -6px;
 }
 
-.popover[data-popper-placement^='left'] > .popover-arrow {
+.popover[data-popper-placement^='left'] > .popover-arrow, .tooltip[data-popper-placement^='left'] > .tooltip-arrow {
   right: -6px;
 }
 
-.popover[data-popper-placement^='right'] > .popover-arrow {
+.popover[data-popper-placement^='right'] > .popover-arrow, .tooltip[data-popper-placement^='right'] > .tooltip-arrow {
   left: -6px;
 }
 

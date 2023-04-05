@@ -33,9 +33,9 @@ export default function Glossary ({type, text, definition}) {
         );
 
         return (
-            <OverlayTrigger trigger="hover" placement="top" overlay={tooltip}>
+            <OverlayTrigger trigger="hover" placement="auto-start" overlay={tooltip}>
                 <span className="popover-block">
-                    <p disabled style={{ pointerEvents: 'none' }}>
+                    <p disabled style={{ pointerEvents: 'none', margin: '0px' }}>
                     {text}
                     </p>
                 </span>

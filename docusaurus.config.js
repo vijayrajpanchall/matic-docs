@@ -793,10 +793,6 @@ module.exports = {
     },
   ],
 
-  scripts: [
-    "./src/theme/Popover/index.js"
-  ],
-
   presets: [
     [
       "@docusaurus/preset-classic",

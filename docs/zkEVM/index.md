@@ -13,15 +13,12 @@ image: https://wiki.polygon.technology/img/thumbnail/polygon-zkevm.png
 ---
 
 import Welcome from "./landing.js";
-import Glossary from "@theme/Popover";
 
 :::info Before We Begin
 
 Polygon zkEVM Mainnet Beta is provided on an **AS-IS** and **AS-AVAILABLE** basis. The documentation contains statements about technical specifications, some of which may relate to future versions of Polygon zkEVM rather than its current implementation. Please read the [<ins>zkEVM Risk Disclosures</ins>](#polygon-zkevm-risk-disclosures) section.
 
 :::
-
-
 
 <Welcome/>
 
