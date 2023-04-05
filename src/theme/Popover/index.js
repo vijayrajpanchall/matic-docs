@@ -7,7 +7,7 @@ export default function Glossary ({type, text, definition}) {
     if (type == 'popover') {
         const popover = (
             <Popover>
-            <Popover.Header as="h3">{text}</Popover.Header>
+            <Popover.Header as="h3">💡 {text}</Popover.Header>
             <Popover.Body>
                 {definition}
             </Popover.Body>
@@ -17,8 +17,8 @@ export default function Glossary ({type, text, definition}) {
         return (
             <OverlayTrigger trigger="hover" placement="auto-start" overlay={popover}>
             <span className="popover-block">
-                <p disabled style={{ pointerEvents: 'none' }}>
-                {text}
+                <p disabled style={{ pointerEvents: 'none', margin: '0px' }}>
+                    {text}
                 </p>
             </span>
             </OverlayTrigger>
@@ -33,7 +33,7 @@ export default function Glossary ({type, text, definition}) {
         );
 
         return (
-            <OverlayTrigger trigger="click" placement="top" overlay={tooltip}>
+            <OverlayTrigger trigger="hover" placement="top" overlay={tooltip}>
                 <span className="popover-block">
                     <p disabled style={{ pointerEvents: 'none' }}>
                     {text}
@@ -46,11 +46,13 @@ export default function Glossary ({type, text, definition}) {
 
 
 /* Uses
-Import the module on pages you want to include the Popover/Tooltip:
+-> Import the module on pages you want to include the Popover/Tooltip:
 import Glossary from "@theme/Popover";
 
-Use the modules as follows:
+-> Use the modules as follows:
 <Glossary type="tooltip/popover" text="Some text" definition="Here is the definition."/>
 
+-> Note:
 If the type is not predefined, the glossary element will throw a tooltip by default.
+Also, the Glossary element should not be called at the beginning or ending of a paragraph. It'll break some of the markdown fx.
 */

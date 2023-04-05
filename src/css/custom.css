@@ -965,7 +965,7 @@ html[data-theme='dark'] .header-github-link:before {
 }
 
 [data-theme="dark"] {
-  background-color: #121212;
+  background-color: #000;
 }
 
 [data-theme="dark"] .navbar .nav-link {
@@ -1748,29 +1748,61 @@ code {
 .popover-block{
   display: inline-block;
   color: var(--ifm-link-color);
-  font-weight: bold;
 }
 
 .popover-header{
-  padding: 8px 8px;
+  padding: 6px 6px;
   margin-bottom: 0;
-  color: #fff;
-  font: 500 var(--ifm-h4-font-size) / var(--ifm-heading-line-height) var(--ifm-heading-font-family);
+  font: 600 1rem / var(--ifm-heading-line-height) var(--ifm-heading-font-family);
   text-overflow: ellipsis;
-  border-bottom: 0.05rem solid #a8a8a8;
 }
 
 .popover-body {
-  padding: 8px 8px;
-  font: 400 1rem / 1.25rem var(--ifm-heading-font-family);
-  color: #fff;
+  padding: 0px 6px 6px 6px;
+  font: 450 0.875rem / 1.15rem var(--ifm-heading-font-family);
 }
 
 /*works for both popover and tooltip*/
 [role="tooltip"]{
-  border-radius: 0.25rem;
+  border-radius: 0.35rem;
   border: 0.1rem solid rgba(0, 0, 0, 0.1);
-  color: #DEE2E9;
-  background-color: #2F353F;
+  color: #fff;
+  background-color: #895aff;
   border-color: #69717E;
+  max-width: 15%;
+  box-shadow: 0 0 5px 2px #c7b2fa;
+}
+
+.popover-arrow,
+.popover-arrow::before {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: inherit;
+}
+
+.popover-arrow {
+  visibility: hidden;
+}
+
+.popover-arrow::before {
+  visibility: visible;
+  content: '';
+  transform: rotate(45deg);
+}
+
+.popover[data-popper-placement^='top'] > .popover-arrow {
+  bottom: -6px;
+}
+
+.popover[data-popper-placement^='bottom'] > .popover-arrow {
+  top: -6px;
+}
+
+.popover[data-popper-placement^='left'] > .popover-arrow {
+  right: -6px;
+}
+
+.popover[data-popper-placement^='right'] > .popover-arrow {
+  left: -6px;
 }
