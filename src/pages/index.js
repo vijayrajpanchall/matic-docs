@@ -255,7 +255,7 @@ function Home() {
               </section>
             </div>
             <section id="polygon-protocols" className="row container-fluid justify-content-center">
-            <Tabs defaultValue="public" values={[
+            <Tabs className="tabs-lp" defaultValue="public" values={[
                 {label: 'Public Chains', value: 'public'},
                 {label: 'App Specific Chains', value: 'app-specific'},
                 {label: 'Decentralized Identity', value: 'identity'},
