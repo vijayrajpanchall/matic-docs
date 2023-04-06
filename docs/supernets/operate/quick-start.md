@@ -15,20 +15,9 @@ keywords:
 
 This document provides a quick start guide to help users set up a Supernet with the PolyBFT consensus engine using the Edge consensus client's script.
 
-Before getting started, ensure you have Go programming language installed on your system (version >= 1.15 and <= 1.19). To install Go, run the following command in your terminal:
-
-  ```bash
-  sudo apt-get update
-  sudo apt-get install golang
-  ```
+Before getting started, ensure you have Go programming language installed on your system (version >= 1.15 and <= 1.19). To install Go, run the following command in your terminal: `sudo apt-get install golang`
 
 Or, use a package manager like [Snapcraft](https://snapcraft.io/go) for Linux, [Homebrew](https://formulae.brew.sh/formula/go) for Mac, and [Chocolatey](https://community.chocolatey.org/packages/golang) for Windows.
-
-:::note This guide uses Ubuntu version 20.04 LTS.
-
-OS-specific instructions will be added shortly.
-
-:::
 
 ---
 
@@ -39,7 +28,7 @@ Start by cloning the repository and building the Edge binaries:
   ```bash
   git clone https://github.com/0xPolygon/polygon-edge.git
   cd polygon-edge/
-  go build -o polygon-edge .
+  go build -o polygon-edge
   ```
 
 > Note that the default branch for the source code is `develop`.

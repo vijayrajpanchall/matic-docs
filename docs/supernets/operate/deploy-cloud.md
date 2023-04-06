@@ -1,7 +1,7 @@
 ---
 id: supernets-setup-dev-env
-title: Deploying Polygon Supernets on AWS with Terraform
-sidebar_label: Deploying Supernets on AWS with Terraform
+title: Deploying Polygon Supernets with Terraform
+sidebar_label: Cloud deployment
 description: "An introduction to Polygon Supernets."
 keywords:
   - docs
@@ -13,73 +13,36 @@ keywords:
   - modular
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+This document walks through the set up and configuration of a childchain devnet using AWS with Terraform.
+
+<!-- ===================================================================================================================== -->
+<!-- ===================================================================================================================== -->
+<!-- ===================================================== GUIDE TABS ==================================================== -->
+<!-- ===================================================================================================================== -->
+<!-- ===================================================================================================================== -->
+
+<Tabs
+defaultValue="aws-cloud"
+values={[
+{ label: 'AWS deployment', value: 'aws-cloud', },
+{ label: 'Fast Track', value: 'fast', },
+{ label: 'Troubleshoot', value: 'troubleshoot', },
+]
+}>
+
+<!-- ===================================================================================================================== -->
+<!-- ==================================================== AWS GUIDE ====================================================== -->
+<!-- ===================================================================================================================== -->
+
+<TabItem value="aws-cloud">
+
 ## Overview
 
 This tutorial will teach you to set up a devnet for Polygon Supernets on AWS using Terraform and Ansible.
 You will also learn how to configure the nodes using an Ansible playbook.
-
-:::note This guide uses Ubuntu version 20.04 LTS.
-
-OS-specific instructions will be added shortly.
-
-:::
-
-:::info Fast-track guide
-
-**Here's the fast-track guide if you're looking for a quick guide on the essential commands needed to set up a devnet with AWS.**
-
-<details>
-<summary>Setup a devnet</summary>
-
-1. Clone the devnet repository:
-
-    ```bash
-    git clone git@github.com:maticnetwork/terraform-polygon-supernets.git`.
-    ```
-
-2. Terraform templates:
-
-   - Initialize the Terraform environment by running:
-
-    ```bash
-    terraform init
-    ```
-
-   - Preview the changes that will be made to your infrastructure by running:
-
-     ```bash
-     terraform plan
-     ```
-
-   - Apply the changes to your infrastructure by running:
-
-     ```bash
-     terraform apply
-     ```
-
-3. Ansible playbook:
-
-   - To generate an Ansible inventory file, run:
-
-     ```bash
-     ansible -inventory --graph --inventory inventory/aws_ec2.yml
-     ```
-
-   - To test that Ansible can connect to the EC2 instances, run:
-
-     ```bash
-     ansible all -m ping -i inventory/aws_ec2.yml
-     ```
-
-   - Provision the EC2 instances using:
-
-     ```bash
-     ansible-playbook -i inventory/aws_ec2.yml site.yml
-     ```
-
-</details>
-
-:::
 
 ## What you'll learn
 
@@ -584,3 +547,64 @@ Here are some next steps you might want to take:
 - Explore more advanced Terraform and Ansible features to automate further and optimize your blockchain infrastructure.
 - When done testing and if you have not already done so, destroy your infrastructure to avoid incurring unnecessary costs. To do so, `terraform destroy` in the same
   directory where you ran terraform apply.
+
+</TabItem>
+<TabItem value="fast">
+
+## Fast track guide
+
+**Here's the fast-track guide if you're looking for a quick guide on the essential commands needed to set up a devnet with AWS.**
+
+### 1. Clone the devnet repository
+
+  ```bash
+  git clone git@github.com:maticnetwork/terraform-polygon-supernets.git
+  ```
+
+### 2. Terraform templates
+
+   - Initialize the Terraform environment by running:
+
+    ```bash
+    terraform init
+    ```
+
+   - Preview the changes that will be made to your infrastructure by running:
+
+     ```bash
+     terraform plan
+     ```
+
+   - Apply the changes to your infrastructure by running:
+
+     ```bash
+     terraform apply
+     ```
+
+### 3. Ansible playbook
+
+   - To generate an Ansible inventory file, run:
+
+     ```bash
+     ansible -inventory --graph --inventory inventory/aws_ec2.yml
+     ```
+
+   - To test that Ansible can connect to the EC2 instances, run:
+
+     ```bash
+     ansible all -m ping -i inventory/aws_ec2.yml
+     ```
+
+   - Provision the EC2 instances using:
+
+     ```bash
+     ansible-playbook -i inventory/aws_ec2.yml site.yml
+     ```
+
+</TabItem>
+<TabItem value="troubleshoot">
+
+Coming soon!
+
+</TabItem>
+</Tabs>

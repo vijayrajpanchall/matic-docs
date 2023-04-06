@@ -1316,19 +1316,8 @@ module.exports = {
         "supernets/operate/supernets-quick-start",
         "supernets/operate/supernets-requirements",
         "supernets/operate/supernets-install",
-        {
-          type: "category",
-          label: "Deploy in non-bridge mode",
-          link: {
-            type: "generated-index",
-          },
-          collapsed: true,
-          items: [
-            "supernets/operate/supernets-local-deploy",
-            "supernets/operate/supernets-setup-dev-env",
-          ],
-        },
         "supernets/operate/supernets-local-deploy-supernet",
+        "supernets/operate/supernets-setup-dev-env",
         "supernets/operate/supernets-bridge",
         {
           type: "category",
