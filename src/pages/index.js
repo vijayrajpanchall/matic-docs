@@ -255,13 +255,6 @@ function Home() {
               </section>
             </div>
             <section id="polygon-protocols" className="row container-fluid justify-content-center">
-            <Tabs className="tabs-lp" defaultValue="public" values={[
-                {label: 'Public Chains', value: 'public'},
-                {label: 'App Specific Chains', value: 'app-specific'},
-                {label: 'Decentralized Identity', value: 'identity'},
-              ]}>
-
-            <TabItem value="public">
               <div class="tabs-element">
                 <div class="tabs_animation-wrapper">
                   <div class="tabs_animation-embed pb_video_embed w-embed w-iframe">
@@ -292,24 +285,7 @@ function Home() {
                 </div>
               </div>
 
-              <div class="tabs-element">
-                <div class="tabs_animation-wrapper">
-                  <div class="tabs_animation-embed pb_video_embed w-embed w-iframe">
-                    <iframe src="https://player.vimeo.com/video/791153877?h=a0b62c3daa&badge=0&autopause=0&player_id=0&app_id=58479&loop=1&autoplay=1&background=1" frameborder="0" allow="autoplay" class="tabs-frame" title="Hero" data-ready="true"></iframe>
-                  </div>
-                </div>
-                <div class="tabs-content">
-                  <h4 class="text-weight-medium">Polygon Miden <span class="solution-status">Coming Soon</span></h4>
-                  <div class="padding-bottom padding-small"></div>
-                  <p class="description-text">Build advanced dApps with client-side proving with the first decentralized rollup that leverages execution proofs of concurrent, local transactions.</p>
-                  <div class="padding-bottom custom-padding"></div>
-                  <Buttonizer docsUrl={'docs/miden'} linkUrl={'docs/miden/user_docs/main'} />
-                </div>
-              </div>
-            </TabItem>
-
-            <TabItem value="app-specific">
-              <div class="tabs-element">
+              <div class="tabs-element reverse">
                 <div class="tabs_animation-wrapper">
                   <div class="tabs_animation-embed pb_video_embed w-embed w-iframe">
                     <iframe src="https://player.vimeo.com/video/791153912?h=a0b62c3daa&badge=0&autopause=0&player_id=0&app_id=58479&loop=1&autoplay=1&background=1" frameborder="0" allow="autoplay" class="tabs-frame" title="Hero" data-ready="true"></iframe>
@@ -323,26 +299,21 @@ function Home() {
                   <Buttonizer docsUrl={'docs/supernets'} linkUrl={'docs/category/build-a-supernet'} />
                 </div>
               </div>
-            </TabItem>
 
-            <TabItem value="identity">
               <div class="tabs-element">
+                <div class="tabs-content">
+                  <h4 class="text-weight-medium">Polygon Miden <span class="solution-status">Coming Soon</span></h4>
+                  <div class="padding-bottom padding-small"></div>
+                  <p class="description-text">Build advanced dApps with client-side proving with the first decentralized rollup that leverages execution proofs of concurrent, local transactions.</p>
+                  <div class="padding-bottom custom-padding"></div>
+                  <Buttonizer docsUrl={'docs/miden'} linkUrl={'docs/miden/user_docs/main'} />
+                </div>
                 <div class="tabs_animation-wrapper">
                   <div class="tabs_animation-embed pb_video_embed w-embed w-iframe">
-                    <iframe src="https://player.vimeo.com/video/791153864?h=a0b62c3daa&badge=0&autopause=0&player_id=0&app_id=58479&loop=1&autoplay=1&background=1" frameborder="0" allow="autoplay" class="tabs-frame" title="Hero" data-ready="true"></iframe>
+                    <iframe src="https://player.vimeo.com/video/791153877?h=a0b62c3daa&badge=0&autopause=0&player_id=0&app_id=58479&loop=1&autoplay=1&background=1" frameborder="0" allow="autoplay" class="tabs-frame" title="Hero" data-ready="true"></iframe>
                   </div>
                 </div>
-                <div class="tabs-content">
-                  <h4 class="text-weight-medium">Polygon ID  <span class="solution-status">Live</span></h4>
-                  <div class="padding-bottom padding-small"></div>
-                  <p class="description-text">Build trusted and secure relationships between users and dApps, following the principles of self sovereign identity and privacy by default.</p>
-                  <div class="padding-bottom custom-padding"></div>
-                  <Buttonizer docsUrl={'docs/polygonid/overview'} linkUrl={'docs/polygonid/verifier/on-chain-verification/overview'} />
-                </div>
               </div>
-            </TabItem>
-
-          </Tabs>
           </section>
           </div>
 
