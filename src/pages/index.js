@@ -318,7 +318,7 @@ function Home() {
           </div>
 
           <div className="row">
-          <div className="index-page">
+          <div className="index-page exclude">
           <section className="section container-fluid">
             <div className="row justify-content-center">
               <div className="col-lg-8">
