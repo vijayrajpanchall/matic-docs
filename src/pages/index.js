@@ -255,13 +255,13 @@ function Home() {
               </section>
             </div>
             <section id="polygon-protocols" className="row container-fluid justify-content-center">
-              <div class="tabs-element">
-                <div class="tabs_animation-wrapper">
-                  <div class="tabs_animation-embed pb_video_embed w-embed w-iframe">
-                    <iframe src="https://player.vimeo.com/video/791153898?h=a0b62c3daa&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;loop=1&amp;autoplay=1&amp;background=1" frameborder="0" allow="autoplay" class="tabs-frame" title="Hero" data-ready="true"></iframe>
+              <div class="lp-element">
+                <div class="lp_animation-wrapper">
+                  <div class="lp_animation-embed pb_video_embed w-embed w-iframe">
+                    <iframe src="https://player.vimeo.com/video/791153898?h=a0b62c3daa&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;loop=1&amp;autoplay=1&amp;background=1" frameborder="0" allow="autoplay" class="lp-frame" title="Hero" data-ready="true"></iframe>
                   </div>
                 </div>
-                <div class="tabs-content">
+                <div class="lp-content">
                   <h4 class="text-weight-medium">Polygon PoS <span class="solution-status">Live</span></h4>
                   <div class="padding-bottom padding-small"></div>
                   <p class="description-text">Support the most widely used Ethereum scaling ecosystem that offers EVM compatibility and an ultimate user experience with fast transactions at near-zero gas fees today.</p>
@@ -270,28 +270,28 @@ function Home() {
                 </div>
               </div>
 
-              <div class="tabs-element reverse">
-                <div class="tabs-content">
+              <div class="lp-element reverse">
+                <div class="lp-content">
                   <h4 class="text-weight-medium">Polygon zkEVM <span class="solution-status">Mainnet Beta</span></h4>
                   <div class="padding-bottom padding-small"></div>
                   <p class="description-text">Unlock Ethereum scalability while maintaining security with the first ZK-rollup that offers EVM equivalence with fast transactions at near-zero gas cost today.</p>
                   <div class="padding-bottom custom-padding"></div>
                   <Buttonizer docsUrl={'docs/zkEVM/'} linkUrl={'docs/zkEVM/develop'} />
                 </div>
-                <div class="tabs_animation-wrapper">
-                  <div class="tabs_animation-embed pb_video_embed w-embed w-iframe">
-                    <iframe src="https://player.vimeo.com/video/791153931?h=a0b62c3daa&badge=0&autopause=0&player_id=0&app_id=58479&loop=1&autoplay=1&background=1" frameborder="0" allow="autoplay" class="tabs-frame" title="Hero" data-ready="true"></iframe>
+                <div class="lp_animation-wrapper">
+                  <div class="lp_animation-embed pb_video_embed w-embed w-iframe">
+                    <iframe src="https://player.vimeo.com/video/791153931?h=a0b62c3daa&badge=0&autopause=0&player_id=0&app_id=58479&loop=1&autoplay=1&background=1" frameborder="0" allow="autoplay" class="lp-frame" title="Hero" data-ready="true"></iframe>
                   </div>
                 </div>
               </div>
 
-              <div class="tabs-element reverse">
-                <div class="tabs_animation-wrapper">
-                  <div class="tabs_animation-embed pb_video_embed w-embed w-iframe">
-                    <iframe src="https://player.vimeo.com/video/791153912?h=a0b62c3daa&badge=0&autopause=0&player_id=0&app_id=58479&loop=1&autoplay=1&background=1" frameborder="0" allow="autoplay" class="tabs-frame" title="Hero" data-ready="true"></iframe>
+              <div class="lp-element reverse">
+                <div class="lp_animation-wrapper">
+                  <div class="lp_animation-embed pb_video_embed w-embed w-iframe">
+                    <iframe src="https://player.vimeo.com/video/791153912?h=a0b62c3daa&badge=0&autopause=0&player_id=0&app_id=58479&loop=1&autoplay=1&background=1" frameborder="0" allow="autoplay" class="lp-frame" title="Hero" data-ready="true"></iframe>
                   </div>
                 </div>
-                <div class="tabs-content">
+                <div class="lp-content">
                   <h4 class="text-weight-medium">Polygon Supernets <span class="solution-status">Testnet</span></h4>
                   <div class="padding-bottom padding-small"></div>
                   <p class="description-text">Build app-chains powered by an industry-leading technology and ecosystem around Polygon.</p>
@@ -300,17 +300,17 @@ function Home() {
                 </div>
               </div>
 
-              <div class="tabs-element">
-                <div class="tabs-content">
+              <div class="lp-element">
+                <div class="lp-content">
                   <h4 class="text-weight-medium">Polygon Miden <span class="solution-status">Coming Soon</span></h4>
                   <div class="padding-bottom padding-small"></div>
                   <p class="description-text">Build advanced dApps with client-side proving with the first decentralized rollup that leverages execution proofs of concurrent, local transactions.</p>
                   <div class="padding-bottom custom-padding"></div>
                   <Buttonizer docsUrl={'docs/miden'} linkUrl={'docs/miden/user_docs/main'} />
                 </div>
-                <div class="tabs_animation-wrapper">
-                  <div class="tabs_animation-embed pb_video_embed w-embed w-iframe">
-                    <iframe src="https://player.vimeo.com/video/791153877?h=a0b62c3daa&badge=0&autopause=0&player_id=0&app_id=58479&loop=1&autoplay=1&background=1" frameborder="0" allow="autoplay" class="tabs-frame" title="Hero" data-ready="true"></iframe>
+                <div class="lp_animation-wrapper">
+                  <div class="lp_animation-embed pb_video_embed w-embed w-iframe">
+                    <iframe src="https://player.vimeo.com/video/791153877?h=a0b62c3daa&badge=0&autopause=0&player_id=0&app_id=58479&loop=1&autoplay=1&background=1" frameborder="0" allow="autoplay" class="lp-frame" title="Hero" data-ready="true"></iframe>
                   </div>
                 </div>
               </div>
