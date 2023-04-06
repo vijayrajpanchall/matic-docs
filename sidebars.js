@@ -1242,7 +1242,7 @@ module.exports = {
       link: {
         type: "generated-index",
       },
-      collapsed: false,
+      collapsed: true,
       items: [
         "supernets/get-started/what-are-supernets",
         "supernets/get-started/why-supernets",
@@ -1254,7 +1254,7 @@ module.exports = {
       link: {
         type: "generated-index",
       },
-      collapsed: false,
+      collapsed: true,
       items: [
         "supernets/design/overview",
         {
@@ -1311,7 +1311,7 @@ module.exports = {
       link: {
         type: "generated-index",
       },
-      collapsed: false,
+      collapsed: true,
       items: [
         "supernets/operate/supernets-quick-start",
         "supernets/operate/supernets-requirements",

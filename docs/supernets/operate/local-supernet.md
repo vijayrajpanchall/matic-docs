@@ -16,7 +16,11 @@ keywords:
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-This document outlines how to deploy a local blockchain with PolyBFT consensus.
+This document outlines how to deploy a local blockchain with PolyBFT consensus. With this setup, you have the flexibility to choose whether to run in non-bridge mode or bridge mode. In non-bridge mode, you can deploy a standalone blockchain that runs independently without any cross-chain capabilities. On the other hand, bridge mode requires you to connect to a rootchain and initialize the rootchain contracts for cross-chain capabilities.
+
+To get started, the tabs below have guides on both modes, along with fast track guides that provide just the commands required for each mode. Additionally, a troubleshoot guide will be published shortly to help you with any issues that may arise during the setup.
+
+In general, the tutorials will use Polygon's polygon-edge binary to start multiple nodes on your local machine and create a custom blockchain environment with PolyBFT consensus.
 
 <!-- ===================================================================================================================== -->
 <!-- ===================================================================================================================== -->
@@ -41,21 +45,10 @@ values={[
 
 <TabItem value="non-bridge">
 
-## Overview
-
-This tutorial will teach you how to set up a local blockchain using PolyBFT. The tutorial will use Polygon's `polygon-edge` binary to start multiple nodes on your local machine and create a custom blockchain environment with PolyBFT consensus.
-
 ## What you'll learn
 
 - How to set up a local blockchain with the Edge client using PolyBFT consensus.
 - How to start configuring a custom blockchain environment with PolyBFT consensus.
-
-### Learning outcomes
-
-By the end of this tutorial, you will be able to:
-
-- Understand the basic configuration of a local blockchain.
-- Start a local blockchain environment with the Polygon Edge client.
 - Understand the key parameters required for configuring PolyBFT consensus.
 
 ## Prerequisites
@@ -66,10 +59,12 @@ Ensure you have the following system prerequisites:
 
 - Go programming language (version >= 1.15 and <= 1.19).
 
-  > To install Go, run the following command in your terminal: `sudo apt-get install golang`
+  > To install Go, run the following command in your terminal (we are using 1.18 in this example): `sudo apt-get install golang-1.18`
   > Or, use a package manager like [Snapcraft](https://snapcraft.io/go) for Linux, [Homebrew](https://formulae.brew.sh/formula/go) for Mac, and [Chocolatey](https://community.chocolatey.org/packages/golang) for Windows.
 
 - At least 8 GB of RAM, 4 CPU cores, and sufficient disk space to store the childchain data.
+- Docker installed on your system to run the geth instance. You can follow the installation instructions
+  for your operating system from the [official Docker documentation](https://www.docker.com/).
   Check out the [minimum hardware configuration](/docs/supernets/operate/system.md) for more information.
 - A stable internet connection.
 - Firewalls or other network security measures should not block network ports used by Polygon Edge.
@@ -107,7 +102,7 @@ The diagram below illustrates a standard Supernet deployment in bridge mode.
 >    make compile-core-contracts
 >   ```
 
-## 1. Initialize PolyBFT consensus
+### 1. Initialize PolyBFT Consensus
 
 > If you need to become more familiar with PolyBFT or consensus protocols in general, you can check out the [system design documents](/docs/category/system-design) for more information.
 
@@ -134,7 +129,8 @@ To initialize the PolyBFT consensus, we need to generate the necessary secrets f
   ./polygon-edge polybft-secrets --insecure --data-dir test-chain- --num 4
   ```
 
-You should see an output for each validator similar to:
+<details>
+<summary>Output example</summary>
 
 ```bash
 Public key (address) = 0xae3dA71AF168d86bF2A0C64748B56ee49e2105FD
@@ -142,6 +138,8 @@ BLS Public key       = 2a4fa1b7aeb6d11b6d24d5c2baa6c2a5da735a66edf37bdadc51b6d59
 BLS Signature        = 1d65de8e967fe36af83c048619d066593707986deb76326e210035c184c7500020627a44cfe39dfe4669aa2a665d96a20c56a521321ec30efdcc222fb8262ac5
 Node ID              = 16Uiu2HAmUjMXX6vTvMEMtywPUpiUtJxuDPWrk1f1zdMHNqZrkKHB
 ```
+
+</details>
 
 Each command will print the validator key, BLS public key, BLS signature, and the node ID. You will need the node ID of the first node for the next step.
 
@@ -159,7 +157,7 @@ To create a fully functional PolyBFT cluster, it is recommended to have **at lea
 
 :::
 
-### Retrieving secrets output
+#### Retrieving secrets output
 
 The secrets output can be retrieved again if needed by running the following command:
 
@@ -191,7 +189,7 @@ After the assembly, the multiaddr connection string to node 1, which we will use
 
 </details>
 
-## 2. Generate manifest file
+### 2. Generate manifest file
 
 The manifest file contains public validator information as well as bridge configuration. It is an intermediary file later used for genesis specification generation and rootchain contracts deployment.
 
@@ -267,7 +265,7 @@ In this example, we provide validator information using the `--validators` flag.
 
 </details>
 
-## 3. Create a genesis file
+### 3. Create a Genesis File
 
 Once the secrets have been generated, we can create a genesis file with the specified parameters using the command:
 
@@ -436,7 +434,7 @@ You will see the following output:
 
 With the genesis configuration file generated, we can proceed to the final step: starting the node servers.
 
-## 4. Start the clients
+### 4. Start the Clients
 
 After creating the genesis file, you need to start the servers for each node to begin running the network.
 
@@ -505,10 +503,6 @@ To continue your Supernet journey, try deploying a [local Supernet in bridge-mod
 
 <TabItem value="bridge">
 
-## Overview
-
-This tutorial will teach you how to set up a local Supernet. This tutorial will guide you through setting up a local testing environment for PolyBFT consensus and configuring its native support for running bridges, enabling cross-chain transactions with Ethereum-compatible blockchains.
-
 ## What you'll learn
 
 - How to build and initialize a PolyBFT network with multiple nodes.
@@ -517,13 +511,6 @@ This tutorial will teach you how to set up a local Supernet. This tutorial will 
 - How to fund validators on rootchain.
 - How to run (childchain) cluster, consisting of multiple PolyBFT nodes.
 
-### Learning outcomes
-
-By the end of this tutorial, you will be able to:
-
-- Understand the steps to set up a PolyBFT network.
-- Create a local Supernet and test it with multiple nodes.
-
 ## Prerequisites
 
 Before starting this tutorial, you should understand the basics of blockchain technology and be familiar with command-line interfaces. It would help if you also had the `polygon-edge` binary installed on your machine. Check out the [installation guide](/docs/supernets/operate/supernets-install) for more information if you haven't already.
@@ -531,7 +518,7 @@ Before starting this tutorial, you should understand the basics of blockchain te
 Ensure you have the following system prerequisites:
 
 - Go programming language (version >= 1.15 and <= 1.19)
-   > To install Go, run the following command in your terminal: `sudo apt-get install golang`
+   > To install Go, run the following command in your terminal (we are using 1.18 in this example): `sudo apt-get install golang-1.18`
    > Or, use a package manager like [Snapcraft](https://snapcraft.io/go) for Linux, [Homebrew](https://formulae.brew.sh/formula/go) for Mac, and [Chocolatey](https://> community.chocolatey.org/packages/golang) for Windows.
 
 - At least 8 GB of RAM, 4 CPU cores, and sufficient disk space to store the childchain data.
@@ -612,7 +599,8 @@ To initialize PolyBFT consensus, we need to generate the necessary secrets for e
   ./polygon-edge polybft-secrets --insecure --data-dir test-chain- --num 4
   ```
 
-You should see an output for each validator similar to:
+<details>
+<summary>Output example</summary>
 
   ```bash
   Public key (address) = 0xae3dA71AF168d86bF2A0C64748B56ee49e2105FD
@@ -620,6 +608,8 @@ You should see an output for each validator similar to:
   BLS Signature        = 1d65de8e967fe36af83c048619d066593707986deb76326e210035c184c7500020627a44cfe39dfe4669aa2a665d96a20c56a521321ec30efdcc222fb8262ac5
   Node ID              = 16Uiu2HAmUjMXX6vTvMEMtywPUpiUtJxuDPWrk1f1zdMHNqZrkKHB
   ```
+
+</details>
 
 Each command will print the validator key, BLS public key, BLS signature, and the node ID. You will need the node ID of the first node for the next step.
 
@@ -667,7 +657,7 @@ After the assembly, the multiaddr connection string to node 1, which we will use
 
 </details>
 
-### 2. Generate manifest file
+### 2. Generate the Manifest File
 
 The manifest file contains public validator information as well as bridge configuration. It is an intermediary file that is later used for genesis specification generation and rootchain contracts deployment.
 
@@ -940,7 +930,7 @@ Transaction (hash) = 0xcae650c1768ffe92959cd166bb6bacb5ce97be08450666141e3754ede
 
 <br/>
 
-### 4. Create chain configuration and generate a genesis file
+### 4. Generate the genesis file
 
 Now that the rootchain contracts have been deployed and initialized, we can create the chain configuration for the PolyBFT network. The chain configuration specifies the parameters for the blockchain network, including the consensus mechanism, the block gas limit, and the epoch size.
 
@@ -1103,7 +1093,7 @@ You will see the following output:
 
 This command generates the genesis configuration file for the PolyBFT network and outputs it to a file called genesis.json. With the genesis configuration file generated, we can proceed to the final step: starting the node servers.
 
-### 5. Fund validators on rootchain
+### 5. Fund validators on the rootchain
 
 Before starting the validator nodes on the childchain, we need to fund them on the rootchain network. This is necessary for validators to be able to send transactions to Ethereum, as they need to have enough funds to cover the gas fees.
 

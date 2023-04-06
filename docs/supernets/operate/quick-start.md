@@ -15,9 +15,9 @@ keywords:
 
 This document provides a quick start guide to help users set up a Supernet with the PolyBFT consensus engine using the Edge consensus client's script.
 
-Before getting started, ensure you have Go programming language installed on your system (version >= 1.15 and <= 1.19). To install Go, run the following command in your terminal: `sudo apt-get install golang`
-
-Or, use a package manager like [Snapcraft](https://snapcraft.io/go) for Linux, [Homebrew](https://formulae.brew.sh/formula/go) for Mac, and [Chocolatey](https://community.chocolatey.org/packages/golang) for Windows.
+> Before getting started, ensure you have Go programming language installed on your system (version >= 1.15 and <= 1.19). To install Go, run the following
+> command in your terminal (we are using 1.18 in this example): `sudo apt-get install golang-1.18`
+> Or, use a package manager like [Snapcraft](https://snapcraft.io/go) for Linux, [Homebrew](https://formulae.brew.sh/formula/go) for Mac, and [Chocolatey](https://community.chocolatey.org/packages/golang) for Windows.
 
 ---
 

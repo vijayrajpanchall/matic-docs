@@ -1817,7 +1817,7 @@ pre[class*="language-"] {
   border-radius: 5px;
   padding: 1em;
   overflow: auto;
-  font-size: 1rem;
+  font-size: 0.9rem;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   border: 2px solid rgba(255, 255, 255, 0.2);
 }

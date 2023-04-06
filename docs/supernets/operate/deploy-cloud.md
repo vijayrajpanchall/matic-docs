@@ -16,7 +16,11 @@ keywords:
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-This document walks through the set up and configuration of a childchain devnet using AWS with Terraform.
+This document provides a complete walkthrough for setting up and configuring a childchain devnet on AWS using Terraform. The AWS deployment tab contains detailed instructions for deploying a devnet on AWS, and there is also a fast track guide for quick reference.
+
+The tutorials will teach you how to set up a devnet for Polygon Supernets on AWS using Terraform and Ansible. This involves creating a VPC, subnets, security groups, and EC2 instances, and configuring the nodes using an Ansible playbook.
+
+Additionally, a troubleshoot guide will be published shortly to help you with any issues that may arise during the setup, and we plan to add similar guides for other cloud providers in the future.
 
 <!-- ===================================================================================================================== -->
 <!-- ===================================================================================================================== -->
@@ -39,24 +43,11 @@ values={[
 
 <TabItem value="aws-cloud">
 
-## Overview
-
-This tutorial will teach you to set up a devnet for Polygon Supernets on AWS using Terraform and Ansible.
-You will also learn how to configure the nodes using an Ansible playbook.
-
 ## What you'll learn
 
 - How to deploy a devnet cloud deployment on AWS using Terraform.
 - How to configure EC2 instances for Supernet nodes.
 - How to run and manage a PolyBFT network on AWS.
-
-### Learning outcomes
-
-By the end of this tutorial, you will be able to:
-
-- Set up a devnet cloud deployment on AWS using Terraform.
-- Configure Supernet nodes with Ansible.
-- Deploy the associated node resources to manage the Supernet.
 
 ## Prerequisites
 
