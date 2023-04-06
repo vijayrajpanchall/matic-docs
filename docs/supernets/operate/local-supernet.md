@@ -22,6 +22,14 @@ To get started, the tabs below have guides on both modes, along with fast track 
 
 In general, the tutorials will use Polygon's polygon-edge binary to start multiple nodes on your local machine and create a custom blockchain environment with PolyBFT consensus.
 
+:::caution Supernets are in active development and not recommended for production use
+
+In their current state, these guides are intended for testing purposes only. The software is subject to change and is still undergoing audits. Using Supernets in production may result in unexpected behavior and loss of funds. Please exercise caution and follow best practices when working with Supernets.
+
+Please note that Supernets will be considered production ready upon the release of version 1.0.
+
+:::
+
 <!-- ===================================================================================================================== -->
 <!-- ===================================================================================================================== -->
 <!-- ===================================================== GUIDE TABS ==================================================== -->
@@ -197,10 +205,10 @@ There are two ways to provide validators information:
 
   ```bash
   ./polygon-edge manifest \
-    --validators-path ./
-    --validators-prefix test-chain-
-    --path ./manifest.json
-    --premine-validators 100
+  --validators-path ./ \
+  --validators-prefix test-chain- \
+  --path ./manifest.json \
+  --premine-validators 100
   ```
 
 In this example, we assume that the secrets have been generated in the `./test-chain-` directories and the validator information can be found in files with the prefix test-chain-. The `--premine-validators` option is used to specify the number of validators to pre-fund on the chain. In this case, we are pre-funding 100 validators.
@@ -265,14 +273,16 @@ In this example, we provide validator information using the `--validators` flag.
 
 Once the secrets have been generated, we can create a genesis file with the specified parameters using the command:
 
-  ```bash
-    ./polygon-edge genesis \
+   ```bash
+   ./polygon-edge genesis \
     --block-gas-limit 10000000 \
     --epoch-size 10 \
+    --mintable-native-token
     --consensus polybft \
+    --premine <premine_address>:<premine_amount> \
     --bridge-json-rpc http://127.0.0.1:8545 \
     --manifest ./manifest.json
-  ```
+   ```
 
 This command generates a genesis file with the following parameters:
 
@@ -440,7 +450,7 @@ After creating the genesis file, you need to start the servers for each node to 
 | Flag | Description | Example |
 | ------ | ----------- | ------- |
 | `--data-dir` | Specifies the data directory for the node. | `--data-dir ./test-chain-1` |
-| `--chain` | Specifies the location of the newly created genesis file. | `--chain ./new-genesis/genesis.json` |
+| `--chain` | Specifies the location of the newly created genesis file. | `--chain ./genesis.json` |
 | `--grpc-address` | Specifies the address for the gRPC server to listen on. | `--grpc-address :10000` |
 | `--libp2p` | Specifies the address for the libp2p server to listen on. | `--libp2p :30301` |
 | `--jsonrpc` | Specifies the address for the JSON-RPC server to listen on. | `--jsonrpc :10002` |
@@ -452,7 +462,7 @@ After creating the genesis file, you need to start the servers for each node to 
   ```bash
    # Node 1
    ./polygon-edge server --data-dir ./test-chain-1 \
-   --chain ./new-genesis/genesis.json \
+   --chain ./genesis.json \
    --grpc-address :10000 \
    --libp2p :30301 \
    --jsonrpc :10002 \
@@ -460,7 +470,7 @@ After creating the genesis file, you need to start the servers for each node to 
 
    # Node 2
    ./polygon-edge server --data-dir ./test-chain-2 \
-   --chain ./new-genesis/genesis.json \
+   --chain ./genesis.json \
    --grpc-address :20000 \
    --libp2p :30302 \
    --jsonrpc :20002 \
@@ -468,7 +478,7 @@ After creating the genesis file, you need to start the servers for each node to 
 
    # Node 3
    ./polygon-edge server --data-dir ./test-chain-3 \
-   --chain ./new-genesis/genesis.json \
+   --chain ./genesis.json \
    --grpc-address :30000 \
    --libp2p :30303 \
    --jsonrpc :30002 \
@@ -476,7 +486,7 @@ After creating the genesis file, you need to start the servers for each node to 
 
    # Node 4
    ./polygon-edge server --data-dir ./test-chain-4 \
-   --chain ./new-genesis/genesis.json \
+   --chain ./genesis.json \
    --grpc-address :40000 \
    --libp2p :30304 \
    --jsonrpc :40002 \
@@ -933,7 +943,7 @@ Transaction (hash) = 0xcae650c1768ffe92959cd166bb6bacb5ce97be08450666141e3754ede
 
 Now that the rootchain contracts have been deployed and initialized, we can create the chain configuration for the PolyBFT network. The chain configuration specifies the parameters for the blockchain network, including the consensus mechanism, the block gas limit, and the epoch size.
 
-We'll use the `./polygon-edge genesis` command to generate the genesis configuration file. Here are the options we'll be using:
+We'll use the `./polygon-edge genesis` command to generate the genesis configuration file. For reference, here are the options we'll be using:
 
 <details>
 <summary>Flags</summary>
@@ -944,13 +954,15 @@ We'll use the `./polygon-edge genesis` command to generate the genesis configura
 | `--validator-set-size` | Specifies the size of the validator set. | `--validator-set-size=4` |
 | `--block-gas-limit` | Specifies the block gas limit. | `--block-gas-limit 60000000` |
 | `--premine` | Specifies the premine address and amount. | `--premine 0x85da99c8a7c2c95964c8efd687e95e632fc533d6:1000000000000000000000000000` |
+| `--mintable-native-token` | Specifies whether the native token is mintable. | `--mintable-native-token` |
 | `--epoch-size` | Specifies the epoch size. | `--epoch-size 10` |
 
 </details>
 
   ```bash
-  ./polygon-edge genesis --block-gas-limit 10000000 --epoch-size 10
-  [--consensus polybft] [--bridge-json-rpc <rootchain_ip_address>] [--manifest ./manifest.json]
+  ./polygon-edge genesis --block-gas-limit 10000000 --epoch-size 10 --mintable-native-token
+  [--consensus polybft] [--premine <premine_address>:<premine_amount>]
+  [--bridge-json-rpc <rootchain_ip_address>] [--manifest ./manifest.json]
   ```
 
 You will see the following output:
@@ -960,6 +972,8 @@ You will see the following output:
   **** POLYBFT CONSENSUS PROTOCOL IS IN EXPERIMENTAL PHASE AND IS NOT FULLY PRODUCTION READY. YOU ARE USING IT AT YOUR OWN RISK. ****
   Genesis written to ./genesis.json
   ```
+
+In this example, we've added the `--mintable-erc20-token` flag to enable the use of a mintable ERC20 token on the blockchain. We've also included the `--premine` flag to specify the premine address and amount.
 
 <details>
 <summary>genesis.json example </summary>
@@ -1159,7 +1173,7 @@ To run a childchain cluster, we'll use the `./polygon-edge server` command with 
 | Flag | Description | Example |
 | ------ | ----------- | ------- |
 | `--data-dir` | Specifies the data directory for the node. | `--data-dir ./test-chain-1` |
-| `--chain` | Specifies the location of the newly created genesis file. | `--chain ./new-genesis/genesis.json` |
+| `--chain` | Specifies the location of the newly created genesis file. | `--chain ./genesis.json` |
 | `--grpc-address` | Specifies the address for the gRPC server to listen on. | `--grpc-address :10000` |
 | `--libp2p` | Specifies the address for the libp2p server to listen on. | `--libp2p :30301` |
 | `--jsonrpc` | Specifies the address for the JSON-RPC server to listen on. | `--jsonrpc :10002` |
@@ -1265,7 +1279,9 @@ You can also explore how to transact cross-chain between the rootchain and child
    ./polygon-edge genesis \
     --block-gas-limit 10000000 \
     --epoch-size 10 \
+    --mintable-native-token
     --consensus polybft \
+    --premine <premine_address>:<premine_amount> \
     --bridge-json-rpc http://127.0.0.1:8545 \
     --manifest ./manifest.json
    ```
@@ -1275,7 +1291,7 @@ You can also explore how to transact cross-chain between the rootchain and child
    ```bash
    # Node 1
    ./polygon-edge server --data-dir ./test-chain-1 \
-   --chain ./new-genesis/genesis.json \
+   --chain ./genesis.json \
    --grpc-address :10000 \
    --libp2p :30301 \
    --jsonrpc :10002 \
@@ -1283,7 +1299,7 @@ You can also explore how to transact cross-chain between the rootchain and child
 
    # Node 2
    ./polygon-edge server --data-dir ./test-chain-2 \
-   --chain ./new-genesis/genesis.json \
+   --chain ./genesis.json \
    --grpc-address :20000 \
    --libp2p :30302 \
    --jsonrpc :20002 \
@@ -1291,7 +1307,7 @@ You can also explore how to transact cross-chain between the rootchain and child
 
    # Node 3
    ./polygon-edge server --data-dir ./test-chain-3 \
-   --chain ./new-genesis/genesis.json \
+   --chain ./genesis.json \
    --grpc-address :30000 \
    --libp2p :30303 \
    --jsonrpc :30002 \
@@ -1299,7 +1315,7 @@ You can also explore how to transact cross-chain between the rootchain and child
 
    # Node 4
    ./polygon-edge server --data-dir ./test-chain-4 \
-   --chain ./new-genesis/genesis.json \
+   --chain ./genesis.json \
    --grpc-address :40000 \
    --libp2p :30304 \
    --jsonrpc :40002 \
@@ -1376,8 +1392,9 @@ You can also explore how to transact cross-chain between the rootchain and child
 ### 4. Create a genesis file
 
    ```bash
-    ./polygon-edge genesis --block-gas-limit 10000000 --epoch-size 10
-    [--consensus polybft] [--bridge-json-rpc <rootchain_ip_address>] [--manifest ./manifest.json]
+    ./polygon-edge genesis --block-gas-limit 10000000 --epoch-size 10 --mintable-native-token
+    [--consensus polybft] [--premine <premine_address>:<premine_amount>]
+    [--bridge-json-rpc <rootchain_ip_address>] [--manifest ./manifest.json]
    ```
 
 ### 5. Fund validators on rootchain

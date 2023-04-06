@@ -19,6 +19,14 @@ This document provides a quick start guide to help users set up a Supernet with 
 > command in your terminal (we are using 1.18 in this example): `sudo apt-get install golang-1.18`
 > Or, use a package manager like [Snapcraft](https://snapcraft.io/go) for Linux, [Homebrew](https://formulae.brew.sh/formula/go) for Mac, and [Chocolatey](https://community.chocolatey.org/packages/golang) for Windows.
 
+:::caution Supernets are in active development and not recommended for production use
+
+In their current state, these guides are intended for testing purposes only. The software is subject to change and is still undergoing audits. Using Supernets in production may result in unexpected behavior and loss of funds. Please exercise caution and follow best practices when working with Supernets.
+
+Please note that Supernets will be considered production ready upon the release of version 1.0.
+
+:::
+
 ---
 
 ## 1. Clone and build Polygon Edge

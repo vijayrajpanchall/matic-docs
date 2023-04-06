@@ -22,6 +22,14 @@ The tutorials will teach you how to set up a devnet for Polygon Supernets on AWS
 
 Additionally, a troubleshoot guide will be published shortly to help you with any issues that may arise during the setup, and we plan to add similar guides for other cloud providers in the future.
 
+:::caution Supernets are in active development and not recommended for production use
+
+In their current state, these guides are intended for testing purposes only. The software is subject to change and is still undergoing audits. Using Supernets in production may result in unexpected behavior and loss of funds. Please exercise caution and follow best practices when working with Supernets.
+
+Please note that Supernets will be considered production ready upon the release of version 1.0.
+
+:::
+
 <!-- ===================================================================================================================== -->
 <!-- ===================================================================================================================== -->
 <!-- ===================================================== GUIDE TABS ==================================================== -->
