@@ -1750,23 +1750,20 @@ strong {
   border-left: 6px solid;
   margin: 1.5rem 0;
   padding: 1rem;
-  font-family: "Roboto", sans-serif;
   }
 
   .alert--secondary {
   background-color: #252526;
   border-left-color: #383838;
   color: #fff;
-  font-weight: bold;
-  font-family: "Roboto", sans-serif;
+  font-weight: 500;
   }
 
   .alert--info {
   background-color: #32324a;
   border-left-color: #464659;
   color: #fff;
-  font-weight: bold;
-  font-family: "Roboto", sans-serif;
+  font-weight: 500;
   }
 
   .alert--warning {
@@ -1875,10 +1872,10 @@ details[open] summary::before {
 }
 
 code {
-  background-color: #2B2D42;
+  background-color: #13171c;
   color: #F8F8F8;
   padding: 0.2em 0.4em;
-  border-radius: 4px;
+  border-radius: 0.5rem;
   white-space: nowrap;
   font-weight: normal;
 }
@@ -1896,18 +1893,14 @@ code:not(.language-text) {
 }
 
 .menu__list-item {
-  padding: 0.5rem;
+  padding: 0.25rem;
   font-weight: bold;
   color: #fff;
 }
 
-.menu__list-item.active {
-  background-color: #222;
-}
-
 .menu__list-item-icon {
-  font-size: 1.2rem;
-  margin-right: 0.5rem;
+  font-size: 1rem;
+  margin-right: 0.4rem;
   color: #fff;
 }
 
