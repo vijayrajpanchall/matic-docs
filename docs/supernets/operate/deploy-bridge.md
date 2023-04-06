@@ -36,20 +36,6 @@ Deployment guides for Polygon Supernets are forthcoming, with cloud deployment s
 If you haven't already, please follow the [deployment guide](/docs/supernets/operate/local-blockchain.md)
 before trying to run the commands to interact with the bridge.
 
-> ```bash
-> ./polygon-edge genesis --consensus polybft --block-gas-limit 10000000 --epoch-size 10 \
->       --bridge-json-rpc https://mumbai-rpc.com \
->       --manifest <path to the manifest file>
->       --premine 0x0000000000000000000000000000000000000000
-> ```
-
-> ```bash
-> $ ./polygon-edge server
->     --chain genesis.json [--data-dir <account secrets data directory> | --config <path to the account secrets config>] \
->     --libp2p <lib p2p ip address and port> --json-rpc <json rpc ip address and port> ... \
->     --num-block-confirmations 2
-> ```
-
 ## Deposit
 
 ```bash

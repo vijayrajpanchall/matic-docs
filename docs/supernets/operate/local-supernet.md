@@ -157,15 +157,13 @@ To create a fully functional PolyBFT cluster, it is recommended to have **at lea
 
 :::
 
-#### Retrieving secrets output
+> The secrets output can be retrieved again if needed by running the following command: `./polygon-edge secrets output --data-dir test-chain-X`
 
-The secrets output can be retrieved again if needed by running the following command:
+:::tip Key management
 
-  ```bash
-  ./polygon-edge secrets output --data-dir test-chain-X
-  ```
+In a production environment, it is recommended to keep the validator secrets secure and only to retrieve them when necessary. The secrets should not be shared or made public as they can be used to compromise the security of the blockchain network.
 
-> In a production environment, it is recommended to keep the validator secrets secure and only to retrieve them when necessary. The secrets should not be shared or made public as they can be used to compromise the security of the blockchain network.
+:::
 
 <details>
 <summary>Assemble bootnodes</summary>
@@ -195,7 +193,7 @@ The manifest file contains public validator information as well as bridge config
 
 There are two ways to provide validators information:
 
-Option 1: All the validators' information is present in the local storage of a single host, and therefore the directory is provided using the --validators-path flag and validators' folder prefix names using the --validators-prefix flag.
+**Option 1**: All the validators' information is present in the local storage of a single host, and therefore the directory is provided using the `--validators-path` flag and validators' folder prefix names using the `--validators-prefix` flag.
 
   ```bash
   ./polygon-edge manifest \
@@ -205,9 +203,9 @@ Option 1: All the validators' information is present in the local storage of a s
     --premine-validators 100
   ```
 
-In this example, we assume that the secrets have been generated in the ./test-chain- directories and the validator information can be found in files with the prefix test-chain-. The `--premine-validators` option is used to specify the number of validators to pre-fund on the chain. In this case, we are pre-funding 100 validators.
+In this example, we assume that the secrets have been generated in the `./test-chain-` directories and the validator information can be found in files with the prefix test-chain-. The `--premine-validators` option is used to specify the number of validators to pre-fund on the chain. In this case, we are pre-funding 100 validators.
 
-**Option 2**: Validator information is scaffolded on multiple hosts, and therefore we supply necessary information using the `--validators` flag. Validator information needs to be supplied in the strictly following format:
+**Option 2**: Validator information is scaffolded on multiple hosts, and therefore we supply necessary information using the `--validators` flag. Validator information needs to be supplied in the following format:
 
 `<p2p node id>:<public ECDSA address>:<public BLS key>`.
 
@@ -219,9 +217,7 @@ In this example, we assume that the secrets have been generated in the ./test-ch
       --premine-validators 100
   ```
 
-In this example, we provide validator information using the `--validators` flag. We are supplying information for two validators, and each validator is specified using the following format:
-
-`<p2p node id>:<public ECDSA address>:<public BLS key>`.
+In this example, we provide validator information using the `--validators` flag. We are supplying information for two validators.
 
 <details>
 <summary>manifest.json example </summary>
@@ -270,12 +266,12 @@ In this example, we provide validator information using the `--validators` flag.
 Once the secrets have been generated, we can create a genesis file with the specified parameters using the command:
 
   ```bash
-    ./polygon-edge genesis --consensus polybft --validator-set-size=4 \
+    ./polygon-edge genesis \
     --block-gas-limit 10000000 \
-    --premine 0x85da99c8a7c2c95964c8efd687e95e632fc533d6:1000000000000000000000 \
     --epoch-size 10 \
-    --bootnode /ip4/127.0.0.1/tcp/30301/p2p/16Uiu2HAmJxxH1tScDX2rLGSU9exnuvZKNM9SoK3v315azp68DLPW \
-    --bootnode /ip4/127.0.0.1/tcp/30302/p2p/16Uiu2HAmS9Nq4QAaEiogE4ieJFUYsoH28magT7wSvJPpfUGBj3Hq \
+    --consensus polybft \
+    --bridge-json-rpc http://127.0.0.1:8545 \
+    --manifest ./manifest.json
   ```
 
 This command generates a genesis file with the following parameters:
@@ -625,15 +621,13 @@ In order to create a fully functional PolyBFT cluster, it is recommended to have
 
 :::
 
-#### Retrieving secrets output
+> The secrets output can be retrieved again if needed by running the following command: `./polygon-edge secrets output --data-dir test-chain-X`
 
-The secrets output can be retrieved again if needed by running the following command:
+:::tip Key management
 
-  ```bash
-  ./polygon-edge secrets output --data-dir test-chain-X
-  ```
+In a production environment, it is recommended to keep the validator secrets secure and only to retrieve them when necessary. The secrets should not be shared or made public as they can be used to compromise the security of the blockchain network.
 
-> In a production environment, keeping the validator secrets secure and retrieving them when necessary is recommended. The secrets should not be shared or made public as they can be used to compromise the security of the blockchain network.
+:::
 
 <details>
 <summary>Assemble bootnodes</summary>
@@ -657,7 +651,7 @@ After the assembly, the multiaddr connection string to node 1, which we will use
 
 </details>
 
-### 2. Generate the Manifest File
+### 2. Generate the manifest file
 
 The manifest file contains public validator information as well as bridge configuration. It is an intermediary file that is later used for genesis specification generation and rootchain contracts deployment.
 
@@ -757,11 +751,16 @@ values={[
 
 #### Configure the rootchain
 
-The rootchain server is a Geth instance running in dev mode, which simulates the Ethereum network. This is needed to deploy and initialize the rootchain smart contracts. **This is only needed if you are running the demo instance.**
+The rootchain server is a Geth instance running in dev mode, which simulates the Ethereum network. This is needed to deploy and initialize the rootchain smart contracts.
+
+The following command starts `ethereum/client-go` container which is a Geth node.
 
   ```bash
   ./polygon-edge rootchain server
   ```
+
+<details>
+<summary>Output example</summary>
 
 You should see output similar to the following, indicating that the rootchain server is now running:
 
@@ -771,6 +770,8 @@ You should see output similar to the following, indicating that the rootchain se
   {"status":"Status: Image is up to date for ghcr.io/0xpolygon/go-ethereum-console:latest"}
   INFO [03-01|03:03:40.812] Starting Geth in ephemeral dev mode...
   ```
+
+</details>
 
 :::note Testing purposes only
 
@@ -795,10 +796,10 @@ Now that we have started the rootchain, we can deploy and initialize the rootcha
 
 </details>
 
-This command starts `ethereum/client-go` container which is Geth node, and deploys the rootchain bridge and the checkpoint manager contracts.
+This command starts `ethereum/client-go` container which is a Geth node, and deploys the rootchain bridge and the checkpoint manager contracts.
 
   ```bash
-  ./polygon-edge rootchain init-contracts --manifest ./manifest.json --path ./core-contracts/artifacts --json-rpc http://127.0.0.1:8545 --admin-key <hex_encoded_private_key>
+  ./polygon-edge rootchain init-contracts --manifest ./manifest.json --json-rpc http://127.0.0.1:8545
   ```
 
 > Note that the `--admin-key` option is optional, and if you omit it, the default account in your local Ethereum client will be used.
@@ -858,9 +859,7 @@ Transaction (hash) = 0xcae650c1768ffe92959cd166bb6bacb5ce97be08450666141e3754ede
 
 <TabItem value="mumbai">
 
-#### Initialize rootchain contracts
-
-Now that we have started the rootchain, we can deploy and initialize the rootchain smart contracts. This is done using the `polygon-edge rootchain init-contracts` command with the following options:
+We can now deploy and initialize the rootchain smart contracts. This is done using the `polygon-edge rootchain init-contracts` command with the following options:
 
 <details>
 <summary>Flags</summary>
@@ -869,15 +868,15 @@ Now that we have started the rootchain, we can deploy and initialize the rootcha
 | ---- | ----------- | ------- |
 | `--manifest` | Specifies the path to the manifest file | `--manifest ./manifest.json` |
 | `--json-rpc` | Specifies the endpoint for the JSON-RPC API of the Ethereum client | `--json-rpc http://localhost:8545` |
-| ` --deployer-key` | Specifies the private key of the admin account that will be used to deploy the contracts | ` --deployer-key <PRIVATE_KEY>` |
+| ` --admin-key` | Specifies the private key of the admin account that will be used to deploy the contracts | ` --admin-key <PRIVATE_KEY>` |
 
 </details>
 
   ```bash
-  ./polygon-edge rootchain init-contracts --manifest ./manifest.json --path ./core-contracts/artifacts --json-rpc <http://testnet-url-placeholder> --deployer-key <hex_encoded_private_key>
+  ./polygon-edge rootchain init-contracts --manifest ./manifest.json --json-rpc <http://testnet-url-placeholder>
   ```
 
-> Note that the `--deployer-key` option is optional, and if you omit it, the default account in your local Ethereum client will be used.
+> Note that the `--admin-key` option is optional, and if you omit it, the default account in your local Ethereum client will be used.
 
 You will start to see all the core contracts being deployed, such as:
 
@@ -1109,6 +1108,16 @@ To fund the validators, we can use the `polygon-edge rootchain fund` command wit
 
 </details>
 
+When you execute the command with the appropriate flags, it will do the following:
+
+1. Retrieve the account of the validator using the secrets manager.
+2. Send a transaction to fund the validator on the root chain with a value of 10,000 <$token>.
+3. Repeat steps 1 and 2 for each validator specified by the `--num` flag.
+
+:::info This command is for testing purposes only
+
+:::
+
 In this example, we are funding 4 validator nodes with the `--num` 4 option:
 
   ```bash
@@ -1230,35 +1239,35 @@ You can also explore how to transact cross-chain between the rootchain and child
 
 ### 2. Generate manifest file
 
-    **Option 1:**
+ **Option 1:**
 
-    ```bash
-    ./polygon-edge manifest \
-    --validators-path ./ \
-    --validators-prefix test-chain- \
-    --path ./manifest.json \
-    --premine-validators 100
-    ```
+ ```bash
+ ./polygon-edge manifest \
+ --validators-path ./ \
+ --validators-prefix test-chain- \
+ --path ./manifest.json \
+ --premine-validators 100
+ ```
 
-    **Option 2:**
+ **Option 2:**
 
-    ```bash
-    ./polygon-edge manifest \
-    --validators 16Uiu2HAmTkqGixWVxshMbbgtXhTUP8zLCZZiG1UyCNtxLhCkZJuv:DcBe0024206ec42b0Ef4214Ac7B71aeae1A11af0:1cf134e02c6b2afb2ceda50bf2c9a01da367ac48f7783ee6c55444e1cab418ec0f52837b90a4d8cf944814073fc6f2bd96f35366a3846a8393e3cb0b19197cde23e2b40c6401fa27ff7d0c36779d9d097d1393cab6fc1d332f92fb3df850b78703b2989d567d1344e219f0667a1863f52f7663092276770cf513f9704b5351c4 \
-    --validators 16Uiu2HAm1kVEh4uVw41WuhDfreCaVuj3kiWZy44kbnJrZnwnMKDW:2da750eD4AE1D5A7F7c996Faec592F3d44060e90:088d92c25b5f278750534e8a902da604a1aa39b524b4511f5f47c3a386374ca3031b667beb424faef068a01cee3428a1bc8c1c8bab826f30a1ee03fbe90cb5f01abcf4abd7af3bbe83eaed6f82179b9cbdc417aad65d919b802d91c2e1aaefec27ba747158bc18a0556e39bfc9175c099dd77517a85731894bbea3d191a622bc \
-    --path ./manifest.json \
-    --premine-validators 100
-    ```
+ ```bash
+ ./polygon-edge manifest \
+ --validators 16Uiu2HAmTkqGixWVxshMbbgtXhTUP8zLCZZiG1UyCNtxLhCkZJuv:DcBe0024206ec42b0Ef4214Ac7B71aeae1A11af0:1cf134e02c6b2afb2ceda50bf2c9a01da367ac48f7783ee6c55444e1cab418ec0f52837b90a4d8cf944814073fc6f2bd96f35366a3846a8393e3cb0b19197cde23e2b40c6401fa27ff7d0c36779d9d097d1393cab6fc1d332f92fb3df850b78703b2989d567d1344e219f0667a1863f52f7663092276770cf513f9704b5351c4 \
+ --validators 16Uiu2HAm1kVEh4uVw41WuhDfreCaVuj3kiWZy44kbnJrZnwnMKDW:2da750eD4AE1D5A7F7c996Faec592F3d44060e90:088d92c25b5f278750534e8a902da604a1aa39b524b4511f5f47c3a386374ca3031b667beb424faef068a01cee3428a1bc8c1c8bab826f30a1ee03fbe90cb5f01abcf4abd7af3bbe83eaed6f82179b9cbdc417aad65d919b802d91c2e1aaefec27ba747158bc18a0556e39bfc9175c099dd77517a85731894bbea3d191a622bc \
+ --path ./manifest.json \
+ --premine-validators 100
+ ```
 
 ### 3. Create a genesis file
 
    ```bash
-   ./polygon-edge genesis --consensus polybft --validator-set-size=4 \
-   --block-gas-limit 10000000 \
-   --premine 0x85da99c8a7c2c95964c8efd687e95e632fc533d6:1000000000000000000000 \
-   --epoch-size 10 \
-   --bootnode /ip4/127.0.0.1/tcp/30301/p2p/16Uiu2HAmJxxH1tScDX2rLGSU9exnuvZKNM9SoK3v315azp68DLPW \
-   --bootnode /ip4/127.0.0.1/tcp/30302/p2p/16Uiu2HAmS9Nq4QAaEiogE4ieJFUYsoH28magT7wSvJPpfUGBj3Hq \
+   ./polygon-edge genesis \
+    --block-gas-limit 10000000 \
+    --epoch-size 10 \
+    --consensus polybft \
+    --bridge-json-rpc http://127.0.0.1:8545 \
+    --manifest ./manifest.json
    ```
 
 ### 4. Start the clients
@@ -1323,37 +1332,37 @@ You can also explore how to transact cross-chain between the rootchain and child
    ./polygon-edge polybft-secrets --insecure --data-dir test-chain- --num 4
    ```
 
-    > Retrieve secrets output: `./polygon-edge secrets output --data-dir test-chain-X`.
+  > Retrieve secrets output: `./polygon-edge secrets output --data-dir test-chain-X`.
 
 ### 2. Generate manifest file
 
-    **Option 1:**
+  **Option 1:**
 
-    ```bash
-    ./polygon-edge manifest \
-    --validators-path ./ \
-    --validators-prefix test-chain- \
-    --path ./manifest.json \
-    --premine-validators 100
-    ```
+  ```bash
+  ./polygon-edge manifest \
+  --validators-path ./ \
+  --validators-prefix test-chain- \
+  --path ./manifest.json \
+  --premine-validators 100
+  ```
 
-    **Option 2:**
+  **Option 2:**
 
-    ```bash
-    ./polygon-edge manifest \
-    --validators 16Uiu2HAmTkqGixWVxshMbbgtXhTUP8zLCZZiG1UyCNtxLhCkZJuv:DcBe0024206ec42b0Ef4214Ac7B71aeae1A11af0:1cf134e02c6b2afb2ceda50bf2c9a01da367ac48f7783ee6c55444e1cab418ec0f52837b90a4d8cf944814073fc6f2bd96f35366a3846a8393e3cb0b19197cde23e2b40c6401fa27ff7d0c36779d9d097d1393cab6fc1d332f92fb3df850b78703b2989d567d1344e219f0667a1863f52f7663092276770cf513f9704b5351c4 \
-    --validators 16Uiu2HAm1kVEh4uVw41WuhDfreCaVuj3kiWZy44kbnJrZnwnMKDW:2da750eD4AE1D5A7F7c996Faec592F3d44060e90:088d92c25b5f278750534e8a902da604a1aa39b524b4511f5f47c3a386374ca3031b667beb424faef068a01cee3428a1bc8c1c8bab826f30a1ee03fbe90cb5f01abcf4abd7af3bbe83eaed6f82179b9cbdc417aad65d919b802d91c2e1aaefec27ba747158bc18a0556e39bfc9175c099dd77517a85731894bbea3d191a622bc \
-    --path ./manifest.json \
-    --premine-validators 100
-    ```
+  ```bash
+  ./polygon-edge manifest \
+  --validators 16Uiu2HAmTkqGixWVxshMbbgtXhTUP8zLCZZiG1UyCNtxLhCkZJuv:DcBe0024206ec42b0Ef4214Ac7B71aeae1A11af0:1cf134e02c6b2afb2ceda50bf2c9a01da367ac48f7783ee6c55444e1cab418ec0f52837b90a4d8cf944814073fc6f2bd96f35366a3846a8393e3cb0b19197cde23e2b40c6401fa27ff7d0c36779d9d097d1393cab6fc1d332f92fb3df850b78703b2989d567d1344e219f0667a1863f52f7663092276770cf513f9704b5351c4 \
+  --validators 16Uiu2HAm1kVEh4uVw41WuhDfreCaVuj3kiWZy44kbnJrZnwnMKDW:2da750eD4AE1D5A7F7c996Faec592F3d44060e90:088d92c25b5f278750534e8a902da604a1aa39b524b4511f5f47c3a386374ca3031b667beb424faef068a01cee3428a1bc8c1c8bab826f30a1ee03fbe90cb5f01abcf4abd7af3bbe83eaed6f82179b9cbdc417aad65d919b802d91c2e1aaefec27ba747158bc18a0556e39bfc9175c099dd77517a85731894bbea3d191a622bc \
+  --path ./manifest.json \
+  --premine-validators 100
+  ```
 
 ### 3. Initialize rootchain contracts
 
    In a new session, start rootchain server (**only for demo instance**).
 
-    ```bash
-    ./polygon-edge rootchain server
-    ```
+  ```bash
+  ./polygon-edge rootchain server
+  ```
 
    Deploy rootchain contracts on the rootchain instance in the original session:
 
@@ -1362,7 +1371,6 @@ You can also explore how to transact cross-chain between the rootchain and child
     --data-dir <local_storage_secrets_path> | [--config <cloud_secrets_manager_config_path>]
     [--manifest ./manifest.json]
     [--json-rpc http://127.0.0.1:8545]
-    [--test]
    ```
 
 ### 4. Create a genesis file
@@ -1374,6 +1382,7 @@ You can also explore how to transact cross-chain between the rootchain and child
 
 ### 5. Fund validators on rootchain
 
+  **This command is for testing purposes only.**
    ```bash
    ./polygon-edge rootchain fund --data-dir test-chain- --num 4
    ```
