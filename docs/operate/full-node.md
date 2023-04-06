@@ -57,7 +57,7 @@ You have to follow the exact outlined sequence of actions, otherwise you will ru
     curl -L https://raw.githubusercontent.com/maticnetwork/install/main/heimdall.sh | bash
     ```
 
-    or install a specific version, node type (`sentry` or `validator`), and network (`mainnet` or `testnet`). All release versions can be found on
+    or install a specific version, node type (`sentry` or `validator`), and network (`mainnet` or `mumbai`). All release versions can be found on
     [Heimdall GitHub repository](https://github.com/maticnetwork/heimdall/releases).
 
     ```shell
@@ -74,7 +74,7 @@ You have to follow the exact outlined sequence of actions, otherwise you will ru
     curl -L https://raw.githubusercontent.com/maticnetwork/install/main/bor.sh | bash
     ```
 
-    or install a specific version, node type (`sentry` or `validator`), and network (`mainnet` or `testnet`). All release versions could be found on
+    or install a specific version, node type (`sentry` or `validator`), and network (`mainnet` or `mumbai`). All release versions could be found on
     [Bor Github repository](https://github.com/maticnetwork/bor/releases).
 
     ```shell
