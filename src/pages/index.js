@@ -354,7 +354,7 @@ function Home() {
                 <h3 className="mt-0">Explore the Endless Possibilities of Polygon</h3>
                 <p className="lead">Polygon is an enterprise-ready blockchain platform that has emerged as the go-to solution for a growing number of businesses and development teams. With its scalable architecture, fast and low-cost transactions, and growing ecosystem, Polygon is the ideal platform for entrepreneurs, developers, and businesses alike to build and launch their blockchain solutions.</p>
                 <p className="lead">Explore the docs to learn more about how you can use Polygon to achieve your goals. <b>Stay tuned for the upcoming content!</b></p>
-                <p><a href="#polygon-use-cases" onClick={(e) => { e.preventDefault(); smoothScrollTo('#polygon-use-cases'); }}><b>Check it out ↓</b></a></p>
+                <p><a href="https://events.polygon.technology/blueprint-web3-games-guide" target="_blank"><b>Check out the Blueprint Gaming Guide</b></a></p>
               </div>
               <div className="col-lg-4 text-center pt-3 d-none d-lg-block">
                 <img style={{ maxWidth: '100%', maxHeight: '400px' }} src="img/header.svg" />
@@ -362,15 +362,6 @@ function Home() {
             </div>
           </section>
           </div>
-
-          <section id="polygon-use-cases" className="section container-fluid"></section>
-          <div className="row">
-            {thirdRow &&
-              thirdRow.length &&
-              thirdRow.map((props, idx) => (
-                <ThirdRow key={idx} {...props} />
-              ))}{" "}
-              </div>
           </div>
           <br />
           <br />
