@@ -337,7 +337,7 @@ function Home() {
                   <div class="padding-bottom padding-small"></div>
                   <p class="description-text">Build trusted and secure relationships between users and dApps, following the principles of self sovereign identity and privacy by default.</p>
                   <div class="padding-bottom custom-padding"></div>
-                  <Buttonizer docsUrl={'docs/polygonid/overview'} linkUrl={'docs/polygonid/verifier/on-chain-verification/overview'} />
+                  <Buttonizer docsUrl={'https://0xpolygonid.github.io/tutorials/'} linkUrl={'https://0xpolygonid.github.io/tutorials/verifier/on-chain-verification/overview/'} />
                 </div>
               </div>
             </TabItem>

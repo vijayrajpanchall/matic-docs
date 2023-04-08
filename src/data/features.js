@@ -64,7 +64,7 @@ export const secondRow = [
     },
     {
         title: "ID",
-        linkUrl: "docs/polygonid/overview",
+        linkUrl: "https://0xpolygonid.github.io/tutorials/",
         imageUrl: "img/id-logo.png",
         description: "Scalable blockchain-native identity and authentication solution with ZK-based privacy."
     },
@@ -86,7 +86,7 @@ export const thirdRow = [
     },
     {
         title: "Issue and verify claims",
-        linkUrl: "https://github.com/oceans404/generate-frontend-polygon-id-issuer",
+        linkUrl: "https://0xpolygonid.github.io/tutorials/issuer/issuer-overview/",
         imageUrl: "img/id-logo.png",
         description: "Learn how to generate your own claims website with Polygon ID."
     },

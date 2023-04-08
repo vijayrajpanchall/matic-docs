@@ -1171,6 +1171,7 @@ module.exports = {
 
   // #####################################################################
 
+  /* Polygon ID docs here: https://0xpolygonid.github.io/tutorials/
   polygonid: [
     {
       type: 'html',
@@ -1226,6 +1227,7 @@ module.exports = {
     "polygonid/contracts/overview",
     "polygonid/wallet/wallet-overview",
   ],
+*/
 
   // #####################################################################
 

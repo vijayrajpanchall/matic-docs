@@ -559,7 +559,7 @@ module.exports = {
                     rel: null,
                   },
                   {
-                    href: '/docs/polygonid/overview',
+                    href: 'https://0xpolygonid.github.io/tutorials/',
                     label: 'ID',
                     target: '_self',
                     rel: null,
