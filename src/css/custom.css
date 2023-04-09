@@ -1914,3 +1914,13 @@ code:not(.language-text) {
 .menu__list-item-title {
   display: none;
 }
+
+.custom-lp-h2 {
+  margin-top: 0;
+  font-size: 3rem;
+  font-weight: bold;
+  text-align: left;
+  text-transform: lowercase;
+  letter-spacing: 0.1em;
+  color: #6a23e7;
+}

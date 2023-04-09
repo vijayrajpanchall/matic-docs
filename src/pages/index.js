@@ -219,7 +219,7 @@ function Home() {
           <section className="section container-fluid">
             <div className="row justify-content-center">
               <div className="col-lg-8">
-                <h1 className="mt-0"><a href="https://polygon.technology" class="landing-page-link">Polygon</a> Wiki</h1>
+                <h1 className="mt-0"><a href="https://polygon.technology" class="landing-page-link">polygon</a> wiki</h1>
                 <h3 className="mt-0"> The official documentation for <a href="https://polygon.technology" class="landing-page-link">0xPolygon</a></h3>
                 <p className="lead">The <b>Polygon Wiki</b> is the source of truth for Polygon, providing comprehensive documentation, community resources, and guides for enthusiasts and developers interested in learning about or building on Polygon.</p>
                 <a href="docs/home/new-to-polygon/" style={{ color: '#ffffff' }}>
@@ -247,7 +247,7 @@ function Home() {
               <section className="section container-fluid">
                 <div className="row justify-content-center">
                   <div className="col-md-10">
-                    <h3 className="mt-0">Mass Scale for Mass Adaption</h3>
+                    <h2 class="custom-lp-h2">this is polygon</h2>
                     <p className="lead">By leveraging cutting-edge technologies like ZK cryptography and transaction rollups, Polygon is making blockchains more accessible and user-friendly than ever before and is at the forefront of mass adoption through various layer 2s and appchains.</p>
                     <p><a href="#polygon-protocol" onClick={(e) => { e.preventDefault(); smoothScrollTo('#polygon-protocols'); }}><b>Explore the Protocol Docs ↓</b></a></p>
                   </div>
@@ -351,7 +351,7 @@ function Home() {
           <section className="section container-fluid">
             <div className="row justify-content-center">
               <div className="col-lg-8">
-                <h3 className="mt-0">Explore the Endless Possibilities of Polygon</h3>
+                <h3 class="custom-lp-h2">Mass Scale for Mass Adaption</h3>
                 <p className="lead">Polygon is an enterprise-ready blockchain platform that has emerged as the go-to solution for a growing number of businesses and development teams. With its scalable architecture, fast and low-cost transactions, and growing ecosystem, Polygon is the ideal platform for entrepreneurs, developers, and businesses alike to build and launch their blockchain solutions.</p>
                 <p className="lead">Explore the docs to learn more about how you can use Polygon to achieve your goals. <b>Stay tuned for the upcoming content!</b></p>
                 <p><a href="https://events.polygon.technology/blueprint-web3-games-guide" target="_blank"><b>Check out the Blueprint Gaming Guide</b></a></p>
