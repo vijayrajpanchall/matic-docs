@@ -1316,14 +1316,32 @@ module.exports = {
       collapsed: true,
       items: [
         "supernets/operate/supernets-quick-start",
-        "supernets/operate/supernets-requirements",
-        "supernets/operate/supernets-install",
-        "supernets/operate/supernets-local-deploy-supernet",
-        "supernets/operate/supernets-setup-dev-env",
-        "supernets/operate/supernets-bridge",
+        {
+              type: "category",
+              label: "Setup & Installation",
+              link: {
+                type: "generated-index",
+              },
+              items: [
+                "supernets/operate/supernets-requirements",
+                "supernets/operate/supernets-install",
+              ],
+        },
         {
           type: "category",
-          label: "Interfaces",
+          label: "Launch a Local Private Supernet",
+          link: {
+            type: "generated-index",
+          },
+          items: [
+            "supernets/operate/supernets-local-deploy-supernet",
+            "supernets/operate/supernets-setup-dev-env",
+            "supernets/operate/supernets-bridge",
+          ],
+        },
+        {
+          type: "category",
+          label: "Supernet Interfaces",
           link: {
             type: "generated-index",
           },
@@ -1382,7 +1400,7 @@ module.exports = {
         },
         {
           type: "category",
-          label: "Modules",
+          label: "Childchain Modules",
           link: {
             type: "generated-index",
           },
@@ -1402,7 +1420,7 @@ module.exports = {
     },
     {
       type: "category",
-      label: "JSON RPC Commands",
+      label: "RPC API Reference",
       link: {
         type: "generated-index",
       },
