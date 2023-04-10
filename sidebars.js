@@ -1335,7 +1335,8 @@ module.exports = {
           },
           items: [
             "supernets/operate/supernets-local-deploy-supernet",
-            "supernets/operate/supernets-setup-dev-env",
+            "supernets/operate/terraform-polygon-supernets/supernets-setup-dev-env",
+            //"supernets/operate/supernets-setup-dev-env",
             "supernets/operate/supernets-bridge",
           ],
         },
