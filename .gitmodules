@@ -1,0 +1,6 @@
+[submodule "terraform-polygon-supernets"]
+	path = terraform-polygon-supernets
+	url = https://github.com/maticnetwork/terraform-polygon-supernets.git
+[submodule "docs/supernets/operate/terraform-polygon-supernets"]
+	path = docs/supernets/operate/terraform-polygon-supernets
+	url = https://github.com/maticnetwork/terraform-polygon-supernets.git

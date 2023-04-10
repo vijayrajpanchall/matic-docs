@@ -2,15 +2,15 @@
 id: supernets-setup-dev-env
 title: Deploying Polygon Supernets with Terraform
 sidebar_label: Cloud deployment
-description: "An introduction to Polygon Supernets."
+description: "Deploy a Supernet on AWS using Terraform scripts and Ansible."
 keywords:
   - docs
-  - Polygon
+  - polygon
   - edge
   - supernets
-  - childchain
-  - network
-  - modular
+  - aws
+  - terraform
+  - ansible
 ---
 
 import Tabs from '@theme/Tabs';
@@ -554,10 +554,19 @@ Here are some next steps you might want to take:
 
 **Here's the fast-track guide if you're looking for a quick guide on the essential commands needed to set up a devnet with AWS.**
 
-### 1. Clone the devnet repository
+### 1. Clone the devnet repository and navigate to the working directory:
 
   ```bash
   git clone git@github.com:maticnetwork/terraform-polygon-supernets.git
+  cd terraform-polygon-supernets
+  ```
+
+### 2. Configure AWS in your CLI:
+
+  ```bash
+  export AWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE
+  export AWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+  export AWS_DEFAULT_REGION=us-west-2
   ```
 
 ### 2. Terraform templates
