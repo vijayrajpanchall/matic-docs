@@ -16,19 +16,10 @@ keywords:
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-This document outlines how to deploy a local blockchain with PolyBFT consensus. With this setup, you have the flexibility to choose whether to run in non-bridge mode or bridge mode. In non-bridge mode, you can deploy a standalone blockchain that runs independently without any cross-chain capabilities. On the other hand, bridge mode requires you to connect to a rootchain and initialize the rootchain contracts for cross-chain capabilities.
-
-To get started, the tabs below have guides on both modes, along with fast track guides that provide just the commands required for each mode. Additionally, a troubleshoot guide will be published shortly to help you with any issues that may arise during the setup.
-
-In general, the tutorials will use Polygon's polygon-edge binary to start multiple nodes on your local machine and create a custom blockchain environment with PolyBFT consensus.
-
 :::caution Supernets are in active development and not recommended for production use
-
-In their current state, these guides are intended for testing purposes only. The software is subject to change and is still undergoing audits. Using Supernets in production may result in unexpected behavior and loss of funds. Please exercise caution and follow best practices when working with Supernets.
-
-Please note that Supernets will be considered production ready upon the release of version 1.0.
-
 :::
+
+This document explains how to set up a local blockchain with PolyBFT consensus. You can choose between non-bridge mode for a standalone blockchain, or bridge mode for cross-chain capabilities connected to a rootchain. The tabs below provide guides for both modes, including fast track guides with just the required commands. A troubleshoot guide will also be published soon. The tutorials use Polygon's polygon-edge binary to start multiple nodes on your machine and create a custom blockchain environment with PolyBFT consensus.
 
 <!-- ===================================================================================================================== -->
 <!-- ===================================================================================================================== -->
@@ -41,8 +32,6 @@ defaultValue="non-bridge"
 values={[
 { label: 'Non-bridge mode', value: 'non-bridge', },
 { label: 'Bridge mode', value: 'bridge', },
-{ label: 'Non-bridge Fast Track', value: 'non-bridge-fast', },
-{ label: 'Bridge Fast Track', value: 'bridge-fast', },
 { label: 'Troubleshoot', value: 'troubleshoot', },
 ]
 }>
@@ -52,6 +41,92 @@ values={[
 <!-- ===================================================================================================================== -->
 
 <TabItem value="non-bridge">
+
+<details>
+<summary>Fast track guide</summary>
+
+**Here's the fast-track guide if you're just looking for a quick guide on the essential commands needed to set up a local blockchain.**
+
+### 1. Initialize PolyBFT consensus
+
+   ```bash
+   ./polygon-edge polybft-secrets --insecure --data-dir test-chain- --num 4
+   ```
+
+   > Retrieve secrets output: `./polygon-edge secrets output --data-dir test-chain-X`
+
+### 2. Generate manifest file
+
+ **Option 1:**
+
+ ```bash
+ ./polygon-edge manifest \
+ --validators-path ./ \
+ --validators-prefix test-chain- \
+ --path ./manifest.json \
+ --premine-validators 100
+ ```
+
+ **Option 2:**
+
+ ```bash
+ ./polygon-edge manifest \
+ --validators 16Uiu2HAmTkqGixWVxshMbbgtXhTUP8zLCZZiG1UyCNtxLhCkZJuv:DcBe0024206ec42b0Ef4214Ac7B71aeae1A11af0:1cf134e02c6b2afb2ceda50bf2c9a01da367ac48f7783ee6c55444e1cab418ec0f52837b90a4d8cf944814073fc6f2bd96f35366a3846a8393e3cb0b19197cde23e2b40c6401fa27ff7d0c36779d9d097d1393cab6fc1d332f92fb3df850b78703b2989d567d1344e219f0667a1863f52f7663092276770cf513f9704b5351c4 \
+ --validators 16Uiu2HAm1kVEh4uVw41WuhDfreCaVuj3kiWZy44kbnJrZnwnMKDW:2da750eD4AE1D5A7F7c996Faec592F3d44060e90:088d92c25b5f278750534e8a902da604a1aa39b524b4511f5f47c3a386374ca3031b667beb424faef068a01cee3428a1bc8c1c8bab826f30a1ee03fbe90cb5f01abcf4abd7af3bbe83eaed6f82179b9cbdc417aad65d919b802d91c2e1aaefec27ba747158bc18a0556e39bfc9175c099dd77517a85731894bbea3d191a622bc \
+ --path ./manifest.json \
+ --premine-validators 100
+ ```
+
+### 3. Create a genesis file
+
+   ```bash
+   ./polygon-edge genesis \
+    --block-gas-limit 10000000 \
+    --epoch-size 10 \
+    --mintable-native-token
+    --consensus polybft \
+    --premine <premine_address>:<premine_amount> \
+    --bridge-json-rpc http://127.0.0.1:8545 \
+    --manifest ./manifest.json
+   ```
+
+### 4. Start the clients
+
+   ```bash
+   # Node 1
+   ./polygon-edge server --data-dir ./test-chain-1 \
+   --chain ./genesis.json \
+   --grpc-address :10000 \
+   --libp2p :30301 \
+   --jsonrpc :10002 \
+   --seal
+
+   # Node 2
+   ./polygon-edge server --data-dir ./test-chain-2 \
+   --chain ./genesis.json \
+   --grpc-address :20000 \
+   --libp2p :30302 \
+   --jsonrpc :20002 \
+   --seal
+
+   # Node 3
+   ./polygon-edge server --data-dir ./test-chain-3 \
+   --chain ./genesis.json \
+   --grpc-address :30000 \
+   --libp2p :30303 \
+   --jsonrpc :30002 \
+   --seal
+
+   # Node 4
+   ./polygon-edge server --data-dir ./test-chain-4 \
+   --chain ./genesis.json \
+   --grpc-address :40000 \
+   --libp2p :30304 \
+   --jsonrpc :40002 \
+   --seal
+   ```
+
+</details>
 
 ## What you'll learn
 
@@ -105,14 +180,6 @@ The diagram below illustrates a standard Supernet deployment in bridge mode.
 
 -->
 
-> Supernets already come pre-compiled with the core contracts submodule. Optionally, you may run:
-
->    ```bash
->    git submodule init
->    git submodule update
->    make compile-core-contracts
->   ```
-
 ### 1. Initialize PolyBFT Consensus
 
 > If you need to become more familiar with PolyBFT or consensus protocols in general, you can check out the [system design documents](/docs/category/system-design) for more information.
@@ -140,8 +207,7 @@ To initialize the PolyBFT consensus, we need to generate the necessary secrets f
   ./polygon-edge polybft-secrets --insecure --data-dir test-chain- --num 4
   ```
 
-<details>
-<summary>Output example</summary>
+Output example:
 
 ```bash
 Public key (address) = 0xae3dA71AF168d86bF2A0C64748B56ee49e2105FD
@@ -149,8 +215,6 @@ BLS Public key       = 2a4fa1b7aeb6d11b6d24d5c2baa6c2a5da735a66edf37bdadc51b6d59
 BLS Signature        = 1d65de8e967fe36af83c048619d066593707986deb76326e210035c184c7500020627a44cfe39dfe4669aa2a665d96a20c56a521321ec30efdcc222fb8262ac5
 Node ID              = 16Uiu2HAmUjMXX6vTvMEMtywPUpiUtJxuDPWrk1f1zdMHNqZrkKHB
 ```
-
-</details>
 
 Each command will print the validator key, BLS public key, BLS signature, and the node ID. You will need the node ID of the first node for the next step.
 
@@ -161,12 +225,6 @@ The following diagram gives a visual of what a PolyBFT node looks like:
 <!--
 ![bridge](/img/supernets/polybft-node.excalidraw.png)
 -->
-
-:::note Minimum number of nodes
-
-To create a fully functional PolyBFT cluster, it is recommended to have **at least 4 validator nodes**, as this is the minimum required for the PolyBFT consensus protocol to function properly."
-
-:::
 
 > The secrets output can be retrieved again if needed by running the following command: `./polygon-edge secrets output --data-dir test-chain-X`
 
@@ -512,6 +570,112 @@ To continue your Supernet journey, try deploying a [local Supernet in bridge-mod
 
 <TabItem value="bridge">
 
+<details>
+<summary>Fast track guide</summary>
+
+**Here's the fast-track guide if you're looking for a quick guide on the essential commands needed to set up a local Supernet.**
+
+### 1. Generate private keys
+
+   ```bash
+   ./polygon-edge polybft-secrets --insecure --data-dir test-chain- --num 4
+   ```
+
+  > Retrieve secrets output: `./polygon-edge secrets output --data-dir test-chain-X`.
+
+### 2. Generate manifest file
+
+  **Option 1:**
+
+  ```bash
+  ./polygon-edge manifest \
+  --validators-path ./ \
+  --validators-prefix test-chain- \
+  --path ./manifest.json \
+  --premine-validators 100
+  ```
+
+  **Option 2:**
+
+  ```bash
+  ./polygon-edge manifest \
+  --validators 16Uiu2HAmTkqGixWVxshMbbgtXhTUP8zLCZZiG1UyCNtxLhCkZJuv:DcBe0024206ec42b0Ef4214Ac7B71aeae1A11af0:1cf134e02c6b2afb2ceda50bf2c9a01da367ac48f7783ee6c55444e1cab418ec0f52837b90a4d8cf944814073fc6f2bd96f35366a3846a8393e3cb0b19197cde23e2b40c6401fa27ff7d0c36779d9d097d1393cab6fc1d332f92fb3df850b78703b2989d567d1344e219f0667a1863f52f7663092276770cf513f9704b5351c4 \
+  --validators 16Uiu2HAm1kVEh4uVw41WuhDfreCaVuj3kiWZy44kbnJrZnwnMKDW:2da750eD4AE1D5A7F7c996Faec592F3d44060e90:088d92c25b5f278750534e8a902da604a1aa39b524b4511f5f47c3a386374ca3031b667beb424faef068a01cee3428a1bc8c1c8bab826f30a1ee03fbe90cb5f01abcf4abd7af3bbe83eaed6f82179b9cbdc417aad65d919b802d91c2e1aaefec27ba747158bc18a0556e39bfc9175c099dd77517a85731894bbea3d191a622bc \
+  --path ./manifest.json \
+  --premine-validators 100
+  ```
+
+### 3. Initialize rootchain contracts
+
+   In a new session, start rootchain server (**only for demo instance**).
+
+    ```bash
+    ./polygon-edge rootchain server
+    ```
+
+   Deploy rootchain contracts on the rootchain instance in the original session:
+
+   ```bash
+    ./polygon-edge rootchain init-contracts
+    --data-dir <local_storage_secrets_path> | [--config <cloud_secrets_manager_config_path>]
+    [--manifest ./manifest.json]
+    [--json-rpc http://127.0.0.1:8545]
+   ```
+
+### 4. Create a genesis file
+
+   ```bash
+    ./polygon-edge genesis --block-gas-limit 10000000 --epoch-size 10 --mintable-native-token
+    [--consensus polybft] [--premine <premine_address>:<premine_amount>]
+    [--bridge-json-rpc <rootchain_ip_address>] [--manifest ./manifest.json]
+   ```
+
+### 5. Fund validators on rootchain
+
+  **This command is for testing purposes only.**
+   ```bash
+   ./polygon-edge rootchain fund --data-dir test-chain- --num 4
+   ```
+
+### 6. Run cluster
+
+   ```bash
+   ./polygon-edge server --data-dir ./test-chain-1 \
+   --chain genesis.json \
+   --grpc-address :5001 \
+   --libp2p :30301 \
+   --jsonrpc :9545 \
+   --seal \
+   --log-level DEBUG
+
+   ./polygon-edge server --data-dir ./test-chain-2 \
+   --chain genesis.json \
+   --grpc-address :5002 \
+   --libp2p :30302 \
+   --jsonrpc :10002 \
+   --seal \
+   --log-level DEBUG
+
+   ./polygon-edge server --data-dir ./test-chain-3 \
+   --chain genesis.json \
+   --grpc-address :5003 \
+   --libp2p :30303 \
+   --jsonrpc :10003 \
+   --seal \
+   --log-level DEBUG
+
+   ./polygon-edge server --data-dir ./test-chain-4 \
+   --chain genesis.json \
+   --grpc-address :5004 \
+   --libp2p :30304 \
+   --jsonrpc :10004 \
+   --seal \
+   --log-level DEBUG
+
+   ```
+
+</details>
+
 ## What you'll learn
 
 - How to build and initialize a PolyBFT network with multiple nodes.
@@ -576,14 +740,6 @@ Please consider the following points:
 
 </details>
 
-> Supernets already come pre-compiled with the core contracts submodule. Optionally, you may run:
-
->   ```bash
->   git submodule init
->   git submodule update
->   make compile-core-contracts
->   ```
-
 ### 1. Initialize PolyBFT consensus
 
 > If you need to become more familiar with PolyBFT or consensus protocols in general, you can check out the System Design documents (link to the relevant section) for more information.
@@ -611,8 +767,7 @@ To initialize PolyBFT consensus, we need to generate the necessary secrets for e
   ./polygon-edge polybft-secrets --insecure --data-dir test-chain- --num 4
   ```
 
-<details>
-<summary>Output example</summary>
+Output example:
 
   ```bash
   Public key (address) = 0xae3dA71AF168d86bF2A0C64748B56ee49e2105FD
@@ -621,8 +776,6 @@ To initialize PolyBFT consensus, we need to generate the necessary secrets for e
   Node ID              = 16Uiu2HAmUjMXX6vTvMEMtywPUpiUtJxuDPWrk1f1zdMHNqZrkKHB
   ```
 
-</details>
-
 Each command will print the validator key, BLS public key, BLS signature, and the node ID. You will need the node ID of the first node for the next step.
 
 Once the secrets have been generated, we can create the genesis file for the blockchain network. The number of validators in the validator set can be adjusted based on the needs of the network. In this case, we are creating 4 validator nodes with the `--num` 4 option. The following diagram gives a visual of what a PolyBFT node looks like:
@@ -630,12 +783,6 @@ Once the secrets have been generated, we can create the genesis file for the blo
 <!--
 ![bridge](/img/supernets/polybft-node.excalidraw.png)
 -->
-
-:::note Minimum number of nodes
-
-In order to create a fully functional PolyBFT cluster, it is recommended to have **at least 4 validator nodes**, as this is the minimum required for the PolyBFT consensus protocol to function properly."
-
-:::
 
 > The secrets output can be retrieved again if needed by running the following command: `./polygon-edge secrets output --data-dir test-chain-X`
 
@@ -746,9 +893,7 @@ In this example, we provide validator information using the `--validators` flag.
 ### 3. Deploy and initialize rootchain contracts
 
 <!-- ===================================================================================================================== -->
-<!-- ===================================================================================================================== -->
 <!-- ==================================================== ROOTCHAIN TABS ================================================= -->
-<!-- ===================================================================================================================== -->
 <!-- ===================================================================================================================== -->
 
 <Tabs
@@ -759,9 +904,7 @@ values={[
 ]
 }>
 
-<!-- ===================================================================================================================== -->
 <!-- ==================================================== GETH ROOTCHAIN ================================================= -->
-<!-- ===================================================================================================================== -->
 
 <TabItem value="geth">
 
@@ -775,8 +918,7 @@ The following command starts `ethereum/client-go` container which is a Geth node
   ./polygon-edge rootchain server
   ```
 
-<details>
-<summary>Output example</summary>
+Output example:
 
 You should see output similar to the following, indicating that the rootchain server is now running:
 
@@ -786,8 +928,6 @@ You should see output similar to the following, indicating that the rootchain se
   {"status":"Status: Image is up to date for ghcr.io/0xpolygon/go-ethereum-console:latest"}
   INFO [03-01|03:03:40.812] Starting Geth in ephemeral dev mode...
   ```
-
-</details>
 
 :::note Testing purposes only
 
@@ -822,8 +962,7 @@ This command starts `ethereum/client-go` container which is a Geth node, and dep
 
 You will start to see all the core contracts being deployed, such as:
 
-<details>
-<summary>Core contract deployment output</summary>
+Core contract deployment output example:
 
 ```bash
 [ROOTCHAIN - CONTRACTS DEPLOYMENT] started...
@@ -865,13 +1004,10 @@ Transaction (hash) = 0xcae650c1768ffe92959cd166bb6bacb5ce97be08450666141e3754ede
 [ROOTCHAIN - CONTRACTS DEPLOYMENT] finished. All contracts are successfully deployed and initialized.
 ```
 
-</details>
 </TabItem>
 </Tabs>
 
-<!-- ===================================================================================================================== -->
 <!-- =================================================== MUMBAI ROOTCHAIN ================================================ -->
-<!-- ===================================================================================================================== -->
 
 <TabItem value="mumbai">
 
@@ -896,8 +1032,7 @@ We can now deploy and initialize the rootchain smart contracts. This is done usi
 
 You will start to see all the core contracts being deployed, such as:
 
-<details>
-<summary>Core contract deployment output</summary>
+Core contract deployment output example:
 
 ```bash
 [ROOTCHAIN - CONTRACTS DEPLOYMENT] started...
@@ -939,10 +1074,7 @@ Transaction (hash) = 0xcae650c1768ffe92959cd166bb6bacb5ce97be08450666141e3754ede
 [ROOTCHAIN - CONTRACTS DEPLOYMENT] finished. All contracts are successfully deployed and initialized.
 ```
 
-</details>
-
 </TabItem>
-
 <br/>
 
 ### 4. Generate the genesis file
@@ -1144,8 +1276,7 @@ In this example, we are funding 4 validator nodes with the `--num` 4 option:
   ./polygon-edge rootchain fund --data-dir test-chain- --num 4
   ```
 
-<details>
-<summary>Funding output</summary>
+Funding output example:
 
   ```bash
   [ROOTCHAIN FUND]
@@ -1164,8 +1295,6 @@ In this example, we are funding 4 validator nodes with the `--num` 4 option:
   Validator (address) = 0x82e3D3e4222Cc872C5552363c86287B796312E27
   Transaction (hash)  = 0xd51e7f8b69071f88b5f7870c31c6942ed78c5c48f88594ed135f096b5f17a540
   ```
-
-</details>
 
 ### 6. Run childchain cluster
 
@@ -1198,8 +1327,7 @@ To run a childchain cluster, we'll use the `./polygon-edge server` command with 
   ./polygon-edge server --data-dir ./test-chain-4 --chain genesis.json --grpc-address :5004 --libp2p :30304 --jsonrpc :10004 --seal --log-level DEBUG
   ```
 
-<details>
-<summary>Dialing output </summary>
+Dialing output example:
 
   ```bash
   [ROOTCHAIN FUND]
@@ -1219,7 +1347,6 @@ To run a childchain cluster, we'll use the `./polygon-edge server` command with 
   Transaction (hash)  = 0xd51e7f8b69071f88b5f7870c31c6942ed78c5c48f88594ed135f096b5f17a540
   ```
 
-</details>
 
 ## Next Steps
 
@@ -1228,224 +1355,6 @@ Congratulations on successfully deploying a local Supernet! This is a crucial st
 To continue your Supernet journey, you can learn how to stake on the mainnet to earn rewards and support network security. Check out our staking guide here for more information.
 
 You can also explore how to transact cross-chain between the rootchain and childchain using the native bridge. The cross-chain bridge guide here will walk you through the process.
-
-</TabItem>
-
-<!-- ===================================================================================================================== -->
-<!-- =============================================== NON BRIDGE FAST GUIDE =============================================== -->
-<!-- ===================================================================================================================== -->
-
-<TabItem value="non-bridge-fast">
-
-## Fast track guide
-
-**Here's the fast-track guide if you're just looking for a quick guide on the essential commands needed to set up a local blockchain.**
-
-> Supernets already come pre-compiled with the core contracts submodule. Optionally, you may run:
-
->  ```bash
->  git submodule init
->  git submodule update
->  make compile-core-contracts
->  ```
-
-### 1. Initialize PolyBFT consensus
-
-   ```bash
-   ./polygon-edge polybft-secrets --insecure --data-dir test-chain- --num 4
-   ```
-
-   > Retrieve secrets output: `./polygon-edge secrets output --data-dir test-chain-X`
-
-### 2. Generate manifest file
-
- **Option 1:**
-
- ```bash
- ./polygon-edge manifest \
- --validators-path ./ \
- --validators-prefix test-chain- \
- --path ./manifest.json \
- --premine-validators 100
- ```
-
- **Option 2:**
-
- ```bash
- ./polygon-edge manifest \
- --validators 16Uiu2HAmTkqGixWVxshMbbgtXhTUP8zLCZZiG1UyCNtxLhCkZJuv:DcBe0024206ec42b0Ef4214Ac7B71aeae1A11af0:1cf134e02c6b2afb2ceda50bf2c9a01da367ac48f7783ee6c55444e1cab418ec0f52837b90a4d8cf944814073fc6f2bd96f35366a3846a8393e3cb0b19197cde23e2b40c6401fa27ff7d0c36779d9d097d1393cab6fc1d332f92fb3df850b78703b2989d567d1344e219f0667a1863f52f7663092276770cf513f9704b5351c4 \
- --validators 16Uiu2HAm1kVEh4uVw41WuhDfreCaVuj3kiWZy44kbnJrZnwnMKDW:2da750eD4AE1D5A7F7c996Faec592F3d44060e90:088d92c25b5f278750534e8a902da604a1aa39b524b4511f5f47c3a386374ca3031b667beb424faef068a01cee3428a1bc8c1c8bab826f30a1ee03fbe90cb5f01abcf4abd7af3bbe83eaed6f82179b9cbdc417aad65d919b802d91c2e1aaefec27ba747158bc18a0556e39bfc9175c099dd77517a85731894bbea3d191a622bc \
- --path ./manifest.json \
- --premine-validators 100
- ```
-
-### 3. Create a genesis file
-
-   ```bash
-   ./polygon-edge genesis \
-    --block-gas-limit 10000000 \
-    --epoch-size 10 \
-    --mintable-native-token
-    --consensus polybft \
-    --premine <premine_address>:<premine_amount> \
-    --bridge-json-rpc http://127.0.0.1:8545 \
-    --manifest ./manifest.json
-   ```
-
-### 4. Start the clients
-
-   ```bash
-   # Node 1
-   ./polygon-edge server --data-dir ./test-chain-1 \
-   --chain ./genesis.json \
-   --grpc-address :10000 \
-   --libp2p :30301 \
-   --jsonrpc :10002 \
-   --seal
-
-   # Node 2
-   ./polygon-edge server --data-dir ./test-chain-2 \
-   --chain ./genesis.json \
-   --grpc-address :20000 \
-   --libp2p :30302 \
-   --jsonrpc :20002 \
-   --seal
-
-   # Node 3
-   ./polygon-edge server --data-dir ./test-chain-3 \
-   --chain ./genesis.json \
-   --grpc-address :30000 \
-   --libp2p :30303 \
-   --jsonrpc :30002 \
-   --seal
-
-   # Node 4
-   ./polygon-edge server --data-dir ./test-chain-4 \
-   --chain ./genesis.json \
-   --grpc-address :40000 \
-   --libp2p :30304 \
-   --jsonrpc :40002 \
-   --seal
-   ```
-
-</TabItem>
-
-<!-- ===================================================================================================================== -->
-<!-- ================================================ BRIDGE FAST GUIDE ================================================== -->
-<!-- ===================================================================================================================== -->
-
-<TabItem value="bridge-fast">
-
-## Fast track guide
-
-**Here's the fast-track guide if you're looking for a quick guide on the essential commands needed to set up a local Supernet.**
-
-  > Supernets already come pre-compiled with the core contracts submodule. Optionally, you may run:
-
-  >   ```bash
-  >   git submodule init
-  >   git submodule update
-  >   make compile-core-contracts
-  >   ```
-
-### 1. Generate private keys
-
-   ```bash
-   ./polygon-edge polybft-secrets --insecure --data-dir test-chain- --num 4
-   ```
-
-  > Retrieve secrets output: `./polygon-edge secrets output --data-dir test-chain-X`.
-
-### 2. Generate manifest file
-
-  **Option 1:**
-
-  ```bash
-  ./polygon-edge manifest \
-  --validators-path ./ \
-  --validators-prefix test-chain- \
-  --path ./manifest.json \
-  --premine-validators 100
-  ```
-
-  **Option 2:**
-
-  ```bash
-  ./polygon-edge manifest \
-  --validators 16Uiu2HAmTkqGixWVxshMbbgtXhTUP8zLCZZiG1UyCNtxLhCkZJuv:DcBe0024206ec42b0Ef4214Ac7B71aeae1A11af0:1cf134e02c6b2afb2ceda50bf2c9a01da367ac48f7783ee6c55444e1cab418ec0f52837b90a4d8cf944814073fc6f2bd96f35366a3846a8393e3cb0b19197cde23e2b40c6401fa27ff7d0c36779d9d097d1393cab6fc1d332f92fb3df850b78703b2989d567d1344e219f0667a1863f52f7663092276770cf513f9704b5351c4 \
-  --validators 16Uiu2HAm1kVEh4uVw41WuhDfreCaVuj3kiWZy44kbnJrZnwnMKDW:2da750eD4AE1D5A7F7c996Faec592F3d44060e90:088d92c25b5f278750534e8a902da604a1aa39b524b4511f5f47c3a386374ca3031b667beb424faef068a01cee3428a1bc8c1c8bab826f30a1ee03fbe90cb5f01abcf4abd7af3bbe83eaed6f82179b9cbdc417aad65d919b802d91c2e1aaefec27ba747158bc18a0556e39bfc9175c099dd77517a85731894bbea3d191a622bc \
-  --path ./manifest.json \
-  --premine-validators 100
-  ```
-
-### 3. Initialize rootchain contracts
-
-   In a new session, start rootchain server (**only for demo instance**).
-
-  ```bash
-  ./polygon-edge rootchain server
-  ```
-
-   Deploy rootchain contracts on the rootchain instance in the original session:
-
-   ```bash
-    ./polygon-edge rootchain init-contracts
-    --data-dir <local_storage_secrets_path> | [--config <cloud_secrets_manager_config_path>]
-    [--manifest ./manifest.json]
-    [--json-rpc http://127.0.0.1:8545]
-   ```
-
-### 4. Create a genesis file
-
-   ```bash
-    ./polygon-edge genesis --block-gas-limit 10000000 --epoch-size 10 --mintable-native-token
-    [--consensus polybft] [--premine <premine_address>:<premine_amount>]
-    [--bridge-json-rpc <rootchain_ip_address>] [--manifest ./manifest.json]
-   ```
-
-### 5. Fund validators on rootchain
-
-  **This command is for testing purposes only.**
-   ```bash
-   ./polygon-edge rootchain fund --data-dir test-chain- --num 4
-   ```
-
-### 6. Run cluster
-
-   ```bash
-   ./polygon-edge server --data-dir ./test-chain-1 \
-   --chain genesis.json \
-   --grpc-address :5001 \
-   --libp2p :30301 \
-   --jsonrpc :9545 \
-   --seal \
-   --log-level DEBUG
-
-   ./polygon-edge server --data-dir ./test-chain-2 \
-   --chain genesis.json \
-   --grpc-address :5002 \
-   --libp2p :30302 \
-   --jsonrpc :10002 \
-   --seal \
-   --log-level DEBUG
-
-   ./polygon-edge server --data-dir ./test-chain-3 \
-   --chain genesis.json \
-   --grpc-address :5003 \
-   --libp2p :30303 \
-   --jsonrpc :10003 \
-   --seal \
-   --log-level DEBUG
-
-   ./polygon-edge server --data-dir ./test-chain-4 \
-   --chain genesis.json \
-   --grpc-address :5004 \
-   --libp2p :30304 \
-   --jsonrpc :10004 \
-   --seal \
-   --log-level DEBUG
-
-   ```
 
 </TabItem>
 

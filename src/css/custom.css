@@ -1804,6 +1804,7 @@ strong {
 }
 
 /* Code block styles */
+/* Code block styles */
 pre[class*="language-"] {
   background-color: #1E1E1E;
   color: #F8F8F2;
@@ -1827,6 +1828,14 @@ pre[class*="language-"] button {
   font-size: 0.8rem;
   border-radius: 3px;
   margin-left: 0.5rem;
+}
+
+/* Output code block styles */
+.gray-code-block {
+  background-color: #f7f7f7;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  padding: 10px;
 }
 
 details {
