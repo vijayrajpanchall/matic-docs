@@ -21,7 +21,9 @@ To install and run Supernets, you have several options. The tabs below provide g
 
 :::tip
 
-We recommend using the pre-built releases and verifying the provided checksums for security. The Docker image is also a convenient option for containerized deployment. Building from source provides greater flexibility, but requires a suitable development environment.
+We recommend using the pre-built releases and verifying the provided checksums for security. 
+
+The Docker image is also a convenient option for containerized deployment. Building from source provides greater flexibility, but requires a [suitable development environment](/docs/supernets/operate/system.md).
 
 :::
 
@@ -30,8 +32,6 @@ If you encounter any issues during the installation process, refer to the troubl
 :::info Latest release: v0.8.1
 
 **The latest stable test release is [v0.8.1](https://github.com/0xPolygon/polygon-edge/releases/tag/v0.8.1). 0.8.x is the first stable test release.**
-
-Please note that Supernets currently supports only x86 architecture for Darwin and Linux systems. For optimal performance, we recommend running Supernets on a machine with native x86 architecture; running architecture emulation on non-native systems may result in decreased performance.
 
 :::
 
@@ -59,7 +59,7 @@ values={[
 
 <div class="download-container">
   <div class="download-text">
-    <p>To access the pre-built releases, visit the <a href="https://github.com/0xPolygon/polygon-edge/releases" target="_blank">GitHub Releases</a> page for a list of releases. Polygon Edge provides cross-compiled AMD64/ARM64 binaries for Darwin and Linux. The appropriate download link will be selected based on your operating system.</p>
+    <p>To access the pre-built releases, visit the <a href="https://github.com/0xPolygon/polygon-edge/releases" target="_blank">GitHub Releases</a> page. Polygon Edge provides cross-compiled AMD64/ARM64 binaries for Darwin and Linux. <b>The download button will automatically provide the appropriate download link according your operating system.</b></p>
   </div>
   <div class="download-button">
     <DownloadButton
@@ -97,7 +97,11 @@ You can access the official Polygon Edge Docker images hosted under the [0xpolyg
 
 <TabItem value="source">
 
-To build from source, make sure you have Go version 1.18 or earlier installed and properly configured. Please note that versions above 1.18 are not currently supported. Compatibility is being worked on and will be available in the near future. 
+> Before getting started, ensure you have [Go](https://go.dev/) installed on your system (version >= 1.15 and <= 1.19). 
+> Compatibility is being worked on for other versions and will be available in the near future. 
+
+> To install Go, run the following command in your CLI (we are using 1.18 in this example): `sudo apt-get install golang-1.18`.
+> Or, use a package manager like [Snapcraft](https://snapcraft.io/go) for Linux, [Homebrew](https://formulae.brew.sh/formula/go) for Mac, and [Chocolatey](https://community.chocolatey.org/packages/golang) for Windows.
 
 Use the following commands to clone the Polygon Edge repository and build from source:
 

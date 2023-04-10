@@ -65,9 +65,12 @@ Before starting this tutorial, you should understand the basics of blockchain te
 
 Ensure you have the following system prerequisites:
 
-- Go programming language (version >= 1.15 and <= 1.19).
+- [Go](https://go.dev/)(version >= 1.15 and <= 1.19).
 
-  > To install Go, run the following command in your terminal (we are using 1.18 in this example): `sudo apt-get install golang-1.18`
+  > Before getting started, ensure you have [Go](https://go.dev/) installed on your system (version >= 1.15 and <= 1.19).
+  > Compatibility is being worked on for other versions and will be available in the near future.
+
+  > To install Go, run the following command in your CLI (we are using 1.18 in this example): `sudo apt-get install golang-1.18`.
   > Or, use a package manager like [Snapcraft](https://snapcraft.io/go) for Linux, [Homebrew](https://formulae.brew.sh/formula/go) for Mac, and [Chocolatey](https://community.chocolatey.org/packages/golang) for Windows.
 
 - At least 8 GB of RAM, 4 CPU cores, and sufficient disk space to store the childchain data.
@@ -523,9 +526,12 @@ Before starting this tutorial, you should understand the basics of blockchain te
 
 Ensure you have the following system prerequisites:
 
-- Go programming language (version >= 1.15 and <= 1.19)
-   > To install Go, run the following command in your terminal (we are using 1.18 in this example): `sudo apt-get install golang-1.18`
-   > Or, use a package manager like [Snapcraft](https://snapcraft.io/go) for Linux, [Homebrew](https://formulae.brew.sh/formula/go) for Mac, and [Chocolatey](https://> community.chocolatey.org/packages/golang) for Windows.
+- Go (version >= 1.15 and <= 1.19)
+
+  > Compatibility is being worked on for other versions and will be available in the near future.
+
+  > To install Go, run the following command in your CLI (we are using 1.18 in this example): `sudo apt-get install golang-1.18`.
+  > Or, use a package manager like [Snapcraft](https://snapcraft.io/go) for Linux, [Homebrew](https://formulae.brew.sh/formula/go) for Mac, and [Chocolatey](https://community.chocolatey.org/packages/golang) for Windows.
 
 - At least 8 GB of RAM, 4 CPU cores, and sufficient disk space to store the childchain data.
   Check out the [minimum hardware configuration](/docs/supernets/operate/system.md) for more information.
