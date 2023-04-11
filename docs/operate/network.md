@@ -124,6 +124,7 @@ You can sign up for a dedicated free RPC URL at the following:
 * [Infura](https://infura.io)
 * [MaticVigil](https://rpc.maticvigil.com/)
 * [Moralis](https://moralis.io)
+* [NodeReal](https://nodereal.io)
 * [Pocket Network](https://www.portal.pokt.network/)
 * [QuickNode](https://www.quicknode.com/chains/matic)
 * [SettleMint](https://docs.settlemint.com/docs/polygon-connect-to-a-node)
