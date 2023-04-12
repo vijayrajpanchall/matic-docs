@@ -18,19 +18,6 @@ keywords:
 
 This document outlines how to use the native bridge to deposit and withdraw ERC20 tokens across childchain and rootchain.
 
-:::info Test version only available
-
-Currently, Supernets are only available as a test release. The production-ready release is targetted for some time in Q2 2023, where the rootchain becomes Polygon PoS.
-
-:::
-
-:::tip Stay tuned for upcoming deployment guides
-
-Deployment guides for Polygon Supernets are forthcoming, with cloud deployment scripts for GCP, AWS, and Azure, and Terraform infrastructure-as-a-service guides to be included. Stay tuned for updates!
-:::
-
----
-
 ## Prerequisites
 
 If you haven't already, please follow the [deployment guide](/docs/supernets/operate/local-blockchain.md)
@@ -39,7 +26,7 @@ before trying to run the commands to interact with the bridge.
 ## Deposit
 
 ```bash
-$ ./polygon-edge bridge deposit-erc20 \
+ ./polygon-edge bridge deposit-erc20 \
       --data-dir ./rootchain-secrets \
       --amounts 1000000000000000000,1000000000000000000,1000000000000000000,1000000000000000000 \
       --receivers 0x762D91379bb4241d0A7C74A9FF8dc43d56B36375,0x762D91379bb4241d0A7C74A9FF8dc43d56B36375,0x762D91379bb4241d0A7C74A9FF8dc43d56B36375,0x762D91379bb4241d0A7C74A9FF8dc43d56B36375 \
@@ -51,7 +38,7 @@ $ ./polygon-edge bridge deposit-erc20 \
 ## Withdraw
 
 ```bash
-$ ./polygon-edge bridge withdraw-erc20 \
+ ./polygon-edge bridge withdraw-erc20 \
       --data-dir <child chain account data directory> [--config <childchain account config path>] \
       --amounts <amounts to withdraw>
       --receivers <list of receiving accounts addresses on the rootchain> \

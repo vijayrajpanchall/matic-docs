@@ -31,7 +31,7 @@ If you encounter any issues during the installation process, refer to the troubl
 
 :::info Latest release: v0.8.1
 
-**The latest stable test release is [v0.8.1](https://github.com/0xPolygon/polygon-edge/releases/tag/v0.8.1). 0.8.x is the first stable test release.**
+**The latest stable test release is [v0.8.1](https://github.com/0xPolygon/polygon-edge/releases/tag/v0.8.1.)**
 
 :::
 
