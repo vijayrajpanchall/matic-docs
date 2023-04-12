@@ -33,3 +33,17 @@ This is the minimum hardware configuration required to set up a Supernet:
 | Network | High-speed internet connection | Dedicated server with gigabit connection |
 
 > Note that these minimum requirements are based on the x2iezn.2xlarge instance type used in the [performance tests](/docs/supernets/operate/performance.md), which demonstrated satisfactory performance. However, for better performance and higher transaction throughput, consider using more powerful hardware configurations, such as those equivalent to x2iezn.4xlarge or x2iezn.8xlarge instance types.
+
+## Prerequisites
+
+Before starting any of the tutorials, you should understand the basics of blockchain technology and be familiar with command-line interfaces. It would help if you also had the `polygon-edge` binary installed on your machine. Check out the [installation guide](/docs/supernets/operate/supernets-install) for more information if you haven't already.
+
+Ensure you have the following system prerequisites:
+
+| Prerequisite | Description |
+| --- | --- |
+| Golang (v1.15-1.19) | Install Go using CLI or package manager like [Snapcraft](https://snapcraft.io/go) for Linux, [Homebrew](https://formulae.brew.sh/formula/go) for Mac, or [Chocolatey](https://community.chocolatey.org/packages/golang) for Windows. Compatibility for other versions coming soon. |
+| Docker | Required to run the geth instance. Follow [official Docker documentation](https://www.docker.com/) for installation instructions. |
+| Internet connection | Stable internet connection required. |
+| Network security | Ensure that network ports used by Polygon Edge are not blocked by firewalls or other security measures. |
+| Operating system | Ensure that the latest security patches and updates are installed. |

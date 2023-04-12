@@ -13,37 +13,106 @@ keywords:
   - cluster
 ---
 
-This document provides a quick start guide to help users set up a Supernet with the PolyBFT consensus engine using the Edge consensus client's script.
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import DownloadButton from '@site/src/data/DownloadButton';
 
-> Before getting started, ensure you have [Go](https://go.dev/) installed on your system (version >= 1.15 and <= 1.19).
-> Compatibility is being worked on for other versions and will be available in the near future.
+This document offers a quick start guide to assist users in setting up a local Supernet test environment using a pre-packaged Edge consensus client script.
 
-> To install Go, run the following command in your CLI (we are using 1.18 in this example): `sudo apt-get install golang-1.18`.
-> Or, use a package manager like [Snapcraft](https://snapcraft.io/go) for Linux, [Homebrew](https://formulae.brew.sh/formula/go) for Mac, and [Chocolatey](https://community.chocolatey.org/packages/golang) for Windows.
+Before proceeding, ensure that your system meets the necessary [system requirements](/docs/supernets/operate/system.md).
 
-:::caution Supernets are in active development and not recommended for production use
+## Spawn a local Supernet in 2 minutes
 
-In their current state, these guides are intended for testing purposes only. The software is subject to change and is still undergoing audits. Using Supernets in production may result in unexpected behavior and loss of funds. Please exercise caution and follow best practices when working with Supernets.
+<div class="download-container">
+  <div class="download-text">
+    <p><b>The download button will automatically provide the appropriate download link according your operating system.</b></p>
+  </div>
+  <div class="download-button">
+    <DownloadButton
+      macDownloadUrl="https://github.com/0xPolygon/polygon-edge/releases/download/v0.8.1/polygon-edge_0.8.1_darwin_amd64.tar.gz"
+      macArmDownloadUrl="https://github.com/0xPolygon/polygon-edge/releases/download/v0.8.1/polygon-edge_0.8.1_darwin_arm64.tar.gz"
+      linuxDownloadUrl="https://github.com/0xPolygon/polygon-edge/releases/download/v0.8.1/polygon-edge_0.8.1_linux_amd64.tar.gz"
+      linuxArmDownloadUrl="https://github.com/0xPolygon/polygon-edge/releases/download/v0.8.1/polygon-edge_0.8.1_linux_arm64.tar.gz"
+      buttonText="Download Polygon Supernets"
+    />
+  </div>
+</div>
 
-Please note that Supernets will be considered production ready upon the release of version 1.0.
+<details>
+<summary>[For reference] Extract pre-release package</summary>
 
-:::
+Extract the downloaded package using your file system's extraction tool or the provided commands below, and navigate to the pre-built release in your preferred interface or text editor.
 
----
+<Tabs
+defaultValue="linux"
+values={[
+{ label: 'Linux', value: 'linux', },
+{ label: 'Mac', value: 'mac', },
+{ label: 'Windows', value: 'windows', },
+]
+}>
 
-## 1. Clone and build Polygon Edge
+<TabItem value="linux">
 
-Start by cloning the repository and building the Edge binaries:
+```bash
+# replace <downloaded_package> with the actual package filename
+
+tar -xzf <downloaded_package>
+cd <downloaded_package>
+```
+
+</TabItem>
+
+<TabItem value="mac">
+
+```bash
+# replace <downloaded_package> with the actual package filename
+
+tar -xzf <downloaded_package>
+cd <downloaded_package>
+```
+
+</TabItem>
+
+<TabItem value="windows">
+
+The tar command is available in PowerShell on Windows 10 (build 17063 or newer). 
+
+```bash
+# replace <downloaded_package> with the actual package filename
+
+tar -xzf <downloaded_package>
+cd <downloaded_package>
+```
+
+For older Windows systems or Command Prompt, use third-party tools like 7-Zip or WinRAR, or the PowerShell cmdlet Expand-Archive.
+
+```bash
+# replace <downloaded_package> with the actual package filename
+# replace <destination_folder> with the desired folder path for extracted files
+
+Expand-Archive -Path <downloaded_package> -DestinationPath <destination_folder>
+cd <destination_folder>
+```
+
+</TabItem>
+</Tabs>
+
+</details>
+
+To run the Supernets test environment locally, use the following command from the project's root:
 
   ```bash
-  git clone https://github.com/0xPolygon/polygon-edge.git
-  cd polygon-edge/
-  go build -o polygon-edge
+  ./scripts/cluster polybft
   ```
 
-> Note that the default branch for the source code is `develop`.
+**That's it! You should have successfully been able to start a local Supernet just by running the script.**
 
-## 2. Use the deployment script to start a local network
+> - Stop the network: "CTRL/Command C" or `./scripts/cluster polybft stop`.
+> - Destroy the network: `./scripts/cluster polybft destroy`.
+
+<details>
+<summary>Deployment script details</summary>
 
 The script is available under the "scripts" directory of the client.
 These are the optional configuration parameters you can pass to the script:
@@ -68,17 +137,11 @@ These are the optional configuration parameters you can pass to the script:
 
 </details>
 
-To run the Supernets test environment locally, use the following command:
-
-  ```bash
-  ./scripts/cluster polybft
-  ```
-
 After running the command, the test network will be initialized with PolyBFT consensus engine and the genesis file will be created. Then, the four validators will start running, and their log outputs will be displayed in the terminal.
 
 By default, this will start a Supernets network with PolyBFT consensus engine, four validators, and premine of 1 billion tokens at address `0x85da99c8a7c2c95964c8efd687e95e632fc533d6`.
 
-The nodes will continue to run until stopped manually. To stop the network, open a new session and use the following command, or, simply press CTRL/Command C in the terminal window:
+The nodes will continue to run until stopped manually. To stop the network, open a new session and use the following command, or, simply press "CTRL/Command C" in the CLI:
 
   ```bash
   ./scripts/cluster polybft stop
@@ -90,7 +153,7 @@ If you want to destroy the environment, use the following command:
   ./scripts/cluster polybft destroy
   ```
 
-## 3. (Optional) Explanation of the deployment script
+### Explanation of the deployment script
 
 The deployment script is a wrapper script for starting a Supernets test network with PolyBFT consensus engine. It offers the following functionality:
 
@@ -101,7 +164,7 @@ The deployment script is a wrapper script for starting a Supernets test network 
 - Stop and destroy the environment when no longer needed.
 - The script also allows you to choose between running the environment from a local binary or a Docker container.
 
-For reference, it is included below.
+For reference, it is referenced below.
 
 <details>
 <summary>cluster</summary>
@@ -247,5 +310,4 @@ esac
 ```
 
 </details>
-
-That's it! You should have successfully been able to start a local Supernet just by running the script.
+</details>

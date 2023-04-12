@@ -72,6 +72,68 @@ values={[
   </div>
 </div>
 
+<details>
+<summary>[For reference] Extract pre-release package</summary>
+
+Extract the downloaded package using your file system's extraction tool or the provided commands below, and navigate to the pre-built release in your preferred interface or text editor.
+
+<Tabs
+defaultValue="linux"
+values={[
+{ label: 'Linux', value: 'linux', },
+{ label: 'Mac', value: 'mac', },
+{ label: 'Windows', value: 'windows', },
+]
+}>
+
+<TabItem value="linux">
+
+```bash
+# replace <downloaded_package> with the actual package filename
+
+tar -xzf <downloaded_package>
+cd <downloaded_package>
+```
+
+</TabItem>
+
+<TabItem value="mac">
+
+```bash
+# replace <downloaded_package> with the actual package filename
+
+tar -xzf <downloaded_package>
+cd <downloaded_package>
+```
+
+</TabItem>
+
+<TabItem value="windows">
+
+The tar command is available in PowerShell on Windows 10 (build 17063 or newer). 
+
+```bash
+# replace <downloaded_package> with the actual package filename
+
+tar -xzf <downloaded_package>
+cd <downloaded_package>
+```
+
+For older Windows systems or Command Prompt, use third-party tools like 7-Zip or WinRAR, or the PowerShell cmdlet Expand-Archive.
+
+```bash
+# replace <downloaded_package> with the actual package filename
+# replace <destination_folder> with the desired folder path for extracted files
+
+Expand-Archive -Path <downloaded_package> -DestinationPath <destination_folder>
+cd <destination_folder>
+```
+
+</TabItem>
+</Tabs>
+
+</details>
+
 </TabItem>
 
 <!-- ===================================================================================================================== -->
