@@ -165,7 +165,7 @@ The diagram below illustrates a standard Supernet deployment in bridge mode.
 
 ### 1. Initialize PolyBFT Consensus
 
-To initialize the PolyBFT consensus, we need to generate the necessary secrets for each node. This is done using the `./polygon-edge polybft-secrets` command with the following options:
+To initialize the PolyBFT consensus, we need to generate the necessary secrets for each node.
 
 <details>
 <summary>Flags</summary>
@@ -748,15 +748,15 @@ There are two ways to provide validators information:
 
   ```bash
   ./polygon-edge manifest \
-    --validators-path ./
-    --validators-prefix test-chain-
-    --path ./manifest.json
+    --validators-path ./ \
+    --validators-prefix test-chain- \
+    --path ./manifest.json \
     --premine-validators 100
   ```
 
 In this example, we assume that the secrets have been generated in the ./test-chain- directories, and the validator information can be found in files with the prefix test-chain-. The `--premine-validators` option is used to specify the number of validators to pre-fund on the chain. In this case, we are pre-funding 100 validators.
 
-**Option 2**: Validator information is scaffolded on multiple hosts, and therefore we supply necessary information using the `--validators` flag. Validator information needs to be supplied in the strictly following format:
+Option 2**: **Validator information is scaffolded on multiple hosts**, and therefore we supply necessary information using the `--validators` flag. Validator information needs to be supplied in the strictly following format:
 
 `<p2p node id>:<public ECDSA address>:<public BLS key>`.
 
@@ -859,7 +859,7 @@ The rootchain server should only be used for local testing purposes and not in p
 
 :::
 
-This will start the rootchain server on the default JSON-RPC port of 8545. Once the server is running, we can proceed to the next step of creating the manifest file.
+This will start the rootchain server on the default JSON-RPC port of `8545`. Once the server is running, we can proceed to the next step of creating the manifest file.
 
 #### Initialize rootchain contracts
 
