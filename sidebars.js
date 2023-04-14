@@ -235,6 +235,7 @@ module.exports = {
             "develop/truffle",
             "develop/hardhat",
             "develop/replit",
+            "develop/getblock",
           ],
         },
         "operate/genesis-contracts",
