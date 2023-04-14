@@ -12,24 +12,11 @@ keywords:
 image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 
-:::tip Stay in the know
-
-Keep up with the latest Wallet Suite updates from the Polygon team and community by subscribing to our [<ins>Notifications</ins>](https://polygon.technology/notifications/).
-
-:::
+This document serves as a wallet index for wallets compatible with Polygon.
+> Please note that this is not an exhaustive index.
 
 Wallets that support Polygon allow for key management, access to accounts controlled by
 private keys, and interfaces that allow users to perform chain actions and sign transactions.
-The following page serves as a wallet index for wallets compatible with Polygon. Please note
-that this is not an exhaustive index.
-
-:::caution Third-party wallets
-
-These third-party wallets have integrated Polygon and support a variety of features.
-**You should do your own due diligence before using them**. The official Polygon
-Support cannot provide assistance for issues with these wallets or other non-native wallets.
-
-:::
 
 :::info Centralized Exchanges (CEXs)
 
@@ -40,14 +27,44 @@ For a list of CEXs that support Polygon, visit a third-party tracking website su
 
 ## Native Wallets
 
-[Polygon Support](https://support.polygon.technology/support/home) can provide assistance to users and address issues related to the following wallets:
+The [Polygon Wallet Suite](https://wallet.polygon.technology) is a comprehensive solution for account management on Polygon.
 
-| Wallet                                                               | Custody       | Account Type | Multi-Sig | dApp Browser | Platform |
-|----------------------------------------------------------------------|---------------|--------------|-----------|--------------|----------|
-| [PoS Wallet](https://wallet.polygon.technology/login/)           | non-custodial | EOA          | no        | no           | browser  |
-| [Hermez Wallet](https://wallet.hermez.io/login)                      | non-custodial | EOA          | no        | no           | browser  |
+It includes:
+
+- A portfolio view to check balances on Polygon chains
+- A bridge for transferring assets between Polygon PoS and Ethereum
+- A swap feature for swapping between tokens
+- A token mapper for mapping tokens between Polygon and Ethereum
+- A faucet for obtaining free test tokens
+- A safe bridge for securely bridging between Polygon and Ethereum
+- A bridge explorer for checking bridging transactions
+- Staking options to secure the Polygon PoS by staking MATIC tokens
+- A bridge for transferring assets between Polygon zkEVM and Ethereum
+- A zkEVM explorer for block explorer and analytics
+- Access to ecosystem dApps
+
+[Polygon Support](https://support.polygon.technology/support/home) can also provide assistance to users and address issues related to the wallet suite.
+
+| Interfaces                                                               | Custody       | Account Type | Multi-Sig | dApp Browser | Platform |
+|----------------------------------------------------------------------------|---------------|--------------|-----------|--------------|----------|
+| [Polygon Wallet Suite](https://wallet.polygon.technology/login/)           | non-custodial | EOA          | yes (Safe Bridge) | yes          | browser  |
+| [Hermez Wallet](https://wallet.hermez.io/login)                          | non-custodial | EOA          | no        | no           | browser  |
+
+:::tip Stay in the know
+
+Keep up with the latest Wallet Suite updates from the Polygon team and community by subscribing to our [<ins>Notifications</ins>](https://polygon.technology/notifications/).
+
+:::
 
 ## Partner Wallets
+
+:::caution Third-party wallets
+
+These third-party wallets have integrated Polygon and support a variety of features.
+**You should do your own due diligence before using them**. The official Polygon
+Support cannot provide assistance for issues with these wallets or other non-native wallets.
+
+:::
 
 The following wallets are solutions that Polygon Technology has partnered with:
 
@@ -92,7 +109,7 @@ The following wallets are solutions that Polygon Technology has partnered with:
 | [XDeFi](https://www.xdefi.io/) 	| non-custodial 	| EOA 	| no 	| interface 	| no 	| no 	| no 	| browser 	|
 | [Zerion](https://zerion.io/) 	| non-custodial 	| EOA 	| no 	| yes 	| yes 	|yes|  	| mobile, browser 	|
 
-:::caution Non-native wallet support
+:::info Non-native wallet support
 
 Wallets denoted with * in the table above are not natively supported with the wallet software
 and require manual steps to add the Polygon network.
