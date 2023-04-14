@@ -11,7 +11,7 @@ keywords:
   - installation
 ---
 
-This document provides guidance on the minimum hardware requirements to run and maintain a Supernet.
+This document provides guidance on the minimum hardware requirements and required prerequisites to run and maintain a Supernet.
 
 ## Minimum Hardware Configuration
 
