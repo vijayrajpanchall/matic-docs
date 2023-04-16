@@ -713,6 +713,12 @@ module.exports = {
               "rel": null
             },
             {
+              "href": "https://nodereal.io",
+              "label": "NodeReal",
+              "target": "_blank",
+              "rel": null
+            },
+            {
               "href": "https://www.portal.pokt.network/",
               "label": "Pocket Network",
               "target": "_blank",
