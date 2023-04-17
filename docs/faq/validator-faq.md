@@ -174,7 +174,7 @@ This could happen when Bor has lost connectivity with other peers. In the case o
 
 1. Open the file `~/var/lib/bor/config.toml` on your Sentry node.
 
-2. Add the Trusted nodes, Static Nodes, and 
+2. Add the Trusted nodes, Static Nodes, and
 
 ```
 [Node.P2P]
@@ -222,17 +222,6 @@ If your node is suffering because of this, please contact the support team on [D
 ## Bor shows "Failed to prepare mining for header"
 
 This message is not an error. The message indicates that the Bor node is not the one creating blocks right now.
-
-## Bor shows "Invalid Merkle root" or "Retrieved hash chain is Invalid"
-
-Typically, this issue occurs because of 2 reasons. Either your Bor has seemingly crashed and has started giving you these errors or it has lost out sync with Heimdall.
-
-To resolve this there are 2 ways to do this:
-
-* Restart your Bor service and check if the issue is resolved. Usually restarting your Bor service should resolve the issue.
-* Check if your Heimdall is running correctly. If your Heimdall has stopped, restart your Heimdall service and let your Bor starty syncing and it should resolve the issue.
-
-If the issue is not resolved, contact support team on [Discord](https://discord.com/invite/0xPolygon).
 
 ## Bor shows "Address is required as argument"
 
@@ -335,10 +324,6 @@ Please check your Bor logs on your sentry and see if everything is okay.
 
 Restart the Bor service one on your Bor and then simultaneously restart your Bor service on your validator as well.
 
-## Upgrading Bor shows "build github.com/ethereum/go-ethereum/cmd/geth cannot load hash/maphash: malformed module path "hash/maphash": missing dot in first path element"
-
-This is because your Go Version is outdated. The recommended Go version is 1.15.x.
-
 ## Can I run multiple sentries for a validator?
 
 Yes, you can.
@@ -375,10 +360,6 @@ curl  http://<your ip>:8545 -X POST -H "Content-Type: application/json" -d '
   {"jsonrpc":"2.0", "id":1, "method":"bor_getSigners", "params":["0x98b3ea"]}
 '
 ```
-
-## Bor shows "ERROR[03-01|13:22:55.320] Block receipts missing, can't freezenumber=9397329 hash="2c38b0...cb41e7"
-
-This is generally not an error and should resolve on its own.
 
 ## Standard upgrade commands for Heimdall
 
