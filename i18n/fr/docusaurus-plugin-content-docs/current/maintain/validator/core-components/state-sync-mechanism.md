@@ -16,7 +16,7 @@ Les validateurs de la couche [Heimdall ](/docs/maintain/glossary.md#heimdall)ré
 
 Le **contrat de récepteur** hérite de [IStateReceiver](https://github.com/maticnetwork/genesis-contracts/blob/master/contracts/IStateReceiver.sol), et la logique personnalisée se trouve à l'intérieur de la fonction [onStateReceive](https://github.com/maticnetwork/genesis-contracts/blob/05556cfd91a6879a8190a6828428f50e4912ee1a/contracts/IStateReceiver.sol#L5).
 
-La dernière version, [Heimdall v.0.3.0](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.0), contient quelques améliorations telles que:
+La dernière version, [Heimdall v.0.3.3](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.3), contient quelques améliorations telles que:
 1. Restreindre la taille des données dans synchronisation d'état txs à :
     * **30 kB** lorsqu'elles sont représentées en **octets**
     * **60 kB** lorsqu'elles sont représentées sous forme de **chaîne**.

@@ -16,7 +16,7 @@ image: https://wiki.polygon.technology/img/polygon-wiki.png
 
 **리씨버 계약**은 [IStateReceiver](https://github.com/maticnetwork/genesis-contracts/blob/master/contracts/IStateReceiver.sol)를 상속하며, 사용자 정의 로직은 [onStateReceive](https://github.com/maticnetwork/genesis-contracts/blob/05556cfd91a6879a8190a6828428f50e4912ee1a/contracts/IStateReceiver.sol#L5) 기능 내부에 위치합니다.
 
-최신 버전인 [Heimdall](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.0) v.0.3.0에는 다음과 같은 몇 가지 개선이 포함되어 있습니다.
+최신 버전인 [Heimdall](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.3) v.0.3.3에는 다음과 같은 몇 가지 개선이 포함되어 있습니다.
 1. 상태 동기화 트랜잭션의 데이터 크기를 다음과 같이 제한합니다.
     * **30Kb** - **바이트**로 표시되는 경우
     * **60Kb** - **문자열**로 표시되는 경우

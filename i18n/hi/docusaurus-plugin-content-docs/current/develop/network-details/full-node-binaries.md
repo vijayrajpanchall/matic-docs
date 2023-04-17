@@ -71,7 +71,7 @@ sudo ln -nfs ~/.go/bin/go /usr/bin/go
 
 ### हेम्डल {#heimdall}
 
-हेम्डल और संबंधित सेवाओं का नवीनतम वर्जन इंस्टॉल करें. सुनिश्चित करें कि आप [रिलीज़ हुए उचित वर्ज़न](https://github.com/maticnetwork/heimdall/releases). से चेकआउट करें. ध्यान दें कि नवीनतम संस्करण, [Heimdall v.0.3.0](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.0) में ऐसे enhancements न्स शामिल होते हैं:
+हेम्डल और संबंधित सेवाओं का नवीनतम वर्जन इंस्टॉल करें. सुनिश्चित करें कि आप [रिलीज़ हुए उचित वर्ज़न](https://github.com/maticnetwork/heimdall/releases). से चेकआउट करें. ध्यान दें कि नवीनतम संस्करण, [Heimdall v.0.3.3](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.3) में ऐसे enhancements न्स शामिल होते हैं:
 1. स्टेट सिंक txs में डेटा के आकार को इतने तक प्रतिबंधित करना:
     * **30Kb**, **बाइट** में प्रस्तुत किए जाने पर
     * **60Kb** को जब एक **स्ट्रिंग** की तरह प्रस्तुत किया जाता है
@@ -94,7 +94,7 @@ git clone https://github.com/maticnetwork/heimdall
 cd heimdall
 
 # Checkout to a proper version, for example
-git checkout v0.3.0
+git checkout v0.3.3
 git checkout <TAG OR BRANCH>
 make install
 source ~/.profile

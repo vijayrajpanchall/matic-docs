@@ -99,7 +99,7 @@ Installa i binari per entrambe le macchine: sentinella e validatore.
 
 [Heimdall](/docs/pos/heimdall/overview) è il layer di verifica Proof-of-Stake responsabile per la creazione di checkpoint che rappresentino i blocchi Plasma sulla rete Ethereum mainnet.
 
-L'ultima versione, [Heimdall v.0.3.0](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.0), contiene alcuni miglioramenti come:
+L'ultima versione, [Heimdall v.0.3.3](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.3), contiene alcuni miglioramenti come:
 1. Limitare la dimensione dei dati in stato di sincronizzazione txs a:
     * **30Kb** se rappresentato in **byte**
     * **60Kb** se rappresentato in **stringa**.
@@ -131,7 +131,7 @@ git checkout RELEASE_TAG
 Per esempio:
 
 ```sh
-git checkout v0.3.0
+git checkout v0.3.3
 ```
 
 Una volta arrivato/a sulla versione corretta, installa heimdall:
@@ -174,7 +174,7 @@ git checkout RELEASE_TAG
 Per esempio:
 
 ```sh
-git checkout v0.3.3
+git checkout v0.3.7
 ```
 
 Installa bor:

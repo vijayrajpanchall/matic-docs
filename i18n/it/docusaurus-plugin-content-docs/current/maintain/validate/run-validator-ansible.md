@@ -131,7 +131,7 @@ xxx.xxx.xx.xx | SUCCESS => {
 Fai una prova della configurazione del nodo sentinella:
 
 ```sh
-ansible-playbook -l sentry playbooks/network.yml --extra-var="bor_branch=v0.3.3 heimdall_branch=v0.3.0  network_version=mainnet-v1 node_type=sentry/sentry heimdall_network=mainnet" --list-hosts
+ansible-playbook -l sentry playbooks/network.yml --extra-var="bor_branch=v0.3.7 heimdall_branch=v0.3.3  network_version=mainnet-v1 node_type=sentry/sentry heimdall_network=mainnet" --list-hosts
 ```
 
 Questo sarà l'output:
@@ -146,7 +146,7 @@ playbook: playbooks/network.yml
 Esegui la configurazione del nodo sentinella con privilegi sudo:
 
 ```sh
-ansible-playbook -l sentry playbooks/network.yml --extra-var="bor_branch=v0.3.3 heimdall_branch=v0.3.0  network_version=mainnet-v1 node_type=sentry/sentry heimdall_network=mainnet" --ask-become-pass
+ansible-playbook -l sentry playbooks/network.yml --extra-var="bor_branch=v0.3.7 heimdall_branch=v0.3.3  network_version=mainnet-v1 node_type=sentry/sentry heimdall_network=mainnet" --ask-become-pass
 ```
 
 Una volta completata la configurazione, visualizzerai un messaggio di completamento sul terminale.
@@ -184,7 +184,7 @@ xxx.xxx.xx.xx | SUCCESS => {
 Fai una prova della configurazione del nodo validatore:
 
 ```sh
-ansible-playbook -l validator playbooks/network.yml --extra-var="bor_branch=v0.3.3 heimdall_branch=v0.3.0 network_version=mainnet-v1 node_type=sentry/validator heimdall_network=mainnet" --list-hosts
+ansible-playbook -l validator playbooks/network.yml --extra-var="bor_branch=v0.3.7 heimdall_branch=v0.3.3 network_version=mainnet-v1 node_type=sentry/validator heimdall_network=mainnet" --list-hosts
 ```
 
 Dovresti ottenere il seguente output:
@@ -199,7 +199,7 @@ playbook: playbooks/network.yml
 Esegui la configurazione del nodo validatore con privilegi sudo:
 
 ```sh
-ansible-playbook -l validator playbooks/network.yml --extra-var="bor_branch=v0.3.3 heimdall_branch=v0.3.0  network_version=mainnet-v1 node_type=sentry/validator heimdall_network=mainnet" --ask-become-pass
+ansible-playbook -l validator playbooks/network.yml --extra-var="bor_branch=v0.3.7 heimdall_branch=v0.3.3  network_version=mainnet-v1 node_type=sentry/validator heimdall_network=mainnet" --ask-become-pass
 ```
 
 Una volta completata la configurazione, visualizzerai un messaggio di completamento sul terminale.
@@ -307,7 +307,7 @@ Per i link di download dello snapshot, consulta [Snaphot delle chain di Polygon]
 
 ### Avvia il servizio Heimdall {#start-the-heimdall-service}
 
-L'ultima versione, [Heimdall v.0.3.0](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.0), contiene alcuni miglioramenti come:
+L'ultima versione, [Heimdall v.0.3.3](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.3), contiene alcuni miglioramenti come:
 1. Limitare la dimensione dei dati in stato di sincronizzazione txs a:
     * **30Kb** se rappresentato in **byte**
     * **60Kb** se rappresentato in **stringa**.

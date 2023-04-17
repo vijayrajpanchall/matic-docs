@@ -39,7 +39,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 :::info Heimdall-এর উৎস সম্প্রসারণ
 
-সর্বশেষ Heimdall সংস্করণ, **[v.0.3.0](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.0)**, কিছু উন্নতি রয়েছে। বিভিন্ন যাচাইকারীর চুক্তির ঘটনাগুলোর মধ্যকার বিলম্বের সময়টি **বৃদ্ধি করা হয়েছে** এবং এর কারণ হলো মেমপুলটি
+সর্বশেষ Heimdall সংস্করণ, **[v.0.3.3](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.3)**, কিছু উন্নতি রয়েছে। বিভিন্ন যাচাইকারীর চুক্তির ঘটনাগুলোর মধ্যকার বিলম্বের সময়টি **বৃদ্ধি করা হয়েছে** এবং এর কারণ হলো মেমপুলটি
 কোনো ইভেন্ট বার্স্ট হলে দ্রুত পূরণ হয় না, যা চেইনের অগ্রগতিকে ব্যাহত করতে পারে।
 
 উপরন্তু, ডেটার আকার **স্টেট সিঙ্ক txs-এ 30Kb-এ সীমাবদ্ধ করা হয়েছে (যখন বাইট হিসেবে উপস্থাপন করা হয়) এবং 60Kb (যখন স্ট্রিং হিসেবে নির্ধারণ করা হয়)**। উদাহরণস্বরূপ:
@@ -65,10 +65,10 @@ Length in byte format - 4
 
   ```bash
   # Mainnet:
-  ansible-playbook playbooks/network.yml --extra-var="bor_version=v0.3.3 heimdall_version=v0.3.0 network=mainnet node_type=sentry" --list-hosts
+  ansible-playbook playbooks/network.yml --extra-var="bor_version=v0.3.7 heimdall_version=v0.3.3 network=mainnet node_type=sentry" --list-hosts
 
   # Testnet:
-  ansible-playbook playbooks/network.yml --extra-var="bor_version=v0.3.3 heimdall_version=v0.3.0 network=mumbai node_type=sentry" --list-hosts
+  ansible-playbook playbooks/network.yml --extra-var="bor_version=v0.3.7 heimdall_version=v0.3.3 network=mumbai node_type=sentry" --list-hosts
   ```
 
   <img src={useBaseUrl("img/network/full-node-mumbai.png")} />
@@ -77,10 +77,10 @@ Length in byte format - 4
 
   ```bash
   # Mainnet:
-  ansible-playbook playbooks/network.yml --extra-var="bor_version=v0.3.3 heimdall_version=v0.3.0 network=mainnet node_type=sentry"
+  ansible-playbook playbooks/network.yml --extra-var="bor_version=v0.3.7 heimdall_version=v0.3.3 network=mainnet node_type=sentry"
 
   # Testnet:
-  ansible-playbook playbooks/network.yml --extra-var="bor_version=v0.3.3 heimdall_version=v0.3.0 network=mumbai node_type=sentry"
+  ansible-playbook playbooks/network.yml --extra-var="bor_version=v0.3.7 heimdall_version=v0.3.3 network=mumbai node_type=sentry"
   ```
 
 - আপনি যদি কোন সমস্যায় রান করেন, তাহলে পুরো সেটআপ মুছে ফেলুন এবং পরিষ্কার করুন:

@@ -71,7 +71,7 @@ Kedua biner harus dipasang dan dijalankan dalam urutan yang benar untuk berfungs
 
 ### Heimdall {#heimdall}
 
-Pasang versi terbaru dari Heimdall dan layanan terkait. Pastikan Anda memeriksa ke [versi rilis](https://github.com/maticnetwork/heimdall/releases) yang benar. Perhatikan bahwa versi terbaru, [Heimdall v.0.3.0](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.0), berisi peningkatan seperti:
+Pasang versi terbaru dari Heimdall dan layanan terkait. Pastikan Anda memeriksa ke [versi rilis](https://github.com/maticnetwork/heimdall/releases) yang benar. Perhatikan bahwa versi terbaru, [Heimdall v.0.3.3](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.3), berisi peningkatan seperti:
 1. Membatasi ukuran data dalam transaksi sinkronisasi kondisi menjadi sebesar:
     * **30 Kb** ketika direpresentasikan dalam **byte**
     * **60Kb** ketika diwakilkan sebagai **string**
@@ -94,7 +94,7 @@ git clone https://github.com/maticnetwork/heimdall
 cd heimdall
 
 # Checkout to a proper version, for example
-git checkout v0.3.0
+git checkout v0.3.3
 git checkout <TAG OR BRANCH>
 make install
 source ~/.profile

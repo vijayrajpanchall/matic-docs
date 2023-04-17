@@ -16,7 +16,7 @@ image: https://wiki.polygon.technology/img/polygon-wiki.png
 
 **প্রাপক চুক্তি**, [IStateReceiver](https://github.com/maticnetwork/genesis-contracts/blob/master/contracts/IStateReceiver.sol) এবং [onStateReceive](https://github.com/maticnetwork/genesis-contracts/blob/05556cfd91a6879a8190a6828428f50e4912ee1a/contracts/IStateReceiver.sol#L5) ফাংশনের মধ্যে কাস্টম লজিক সিটগুলি লাভ করে।
 
-সর্বশেষ সংস্করণ, [Heimdall v.0.3.0](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.0), যেমন কয়েকটি উন্নতি রয়েছে:
+সর্বশেষ সংস্করণ, [Heimdall v.0.3.3](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.3), যেমন কয়েকটি উন্নতি রয়েছে:
 1. স্টেট সিঙ্ক txs-এ ডেটার আকার সীমিত করে দাঁড়িয়েছে:
     * **30Kb** যখন **বাইটস** এ উপস্থাপন করা হয়
     * **60Kb** যখন **স্ট্রিং** হিসাবে উপস্থাপন করা হয়।

@@ -130,7 +130,7 @@ xxx.xxx.xx.xx | SUCCESS => {
 Effectuez un test de configuration du nœud sentinelle :
 
 ```sh
-ansible-playbook -l sentry playbooks/network.yml --extra-var="bor_branch=v0.3.3 heimdall_branch=v0.3.0  network_version=mainnet-v1 node_type=sentry/sentry heimdall_network=mainnet" --list-hosts
+ansible-playbook -l sentry playbooks/network.yml --extra-var="bor_branch=v0.3.7 heimdall_branch=v0.3.3  network_version=mainnet-v1 node_type=sentry/sentry heimdall_network=mainnet" --list-hosts
 ```
 
 Le résultat sera le suivant :
@@ -145,7 +145,7 @@ playbook: playbooks/network.yml
 Exécutez la configuration du nœud sentinelle avec les privilèges sudo :
 
 ```sh
-ansible-playbook -l sentry playbooks/network.yml --extra-var="bor_branch=v0.3.3 heimdall_branch=v0.3.0  network_version=mainnet-v1 node_type=sentry/sentry heimdall_network=mainnet" --ask-become-pass
+ansible-playbook -l sentry playbooks/network.yml --extra-var="bor_branch=v0.3.7 heimdall_branch=v0.3.3  network_version=mainnet-v1 node_type=sentry/sentry heimdall_network=mainnet" --ask-become-pass
 ```
 
 Une fois la configuration terminée, vous verrez un message de validation s'afficher sur le terminal.
@@ -183,7 +183,7 @@ xxx.xxx.xx.xx | SUCCESS => {
 Effectuez un test de configuration du nœud validateur :
 
 ```sh
-ansible-playbook -l validator playbooks/network.yml --extra-var="bor_branch=v0.3.3 heimdall_branch=v0.3.0 network_version=mainnet-v1 node_type=sentry/validator heimdall_network=mainnet" --list-hosts
+ansible-playbook -l validator playbooks/network.yml --extra-var="bor_branch=v0.3.7 heimdall_branch=v0.3.3 network_version=mainnet-v1 node_type=sentry/validator heimdall_network=mainnet" --list-hosts
 ```
 
 Vous devriez obtenir le résultat suivant :
@@ -198,7 +198,7 @@ playbook: playbooks/network.yml
 Exécutez la configuration du nœud validateur avec les privilèges sudo :
 
 ```sh
-ansible-playbook -l validator playbooks/network.yml --extra-var="bor_branch=v0.3.3 heimdall_branch=v0.3.0  network_version=mainnet-v1 node_type=sentry/validator heimdall_network=mainnet" --ask-become-pass
+ansible-playbook -l validator playbooks/network.yml --extra-var="bor_branch=v0.3.7 heimdall_branch=v0.3.3  network_version=mainnet-v1 node_type=sentry/validator heimdall_network=mainnet" --ask-become-pass
 ```
 
 Une fois la configuration terminée, vous verrez un message de validation s'afficher sur le terminal.
@@ -306,7 +306,7 @@ Pour obtenir des liens de téléchargement des instantanés, voir [Instantanés 
 
 ### Démarrer le service Heimdall {#start-the-heimdall-service}
 
-La dernière version, [Heimdall v.0.3.0](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.0), contient quelques améliorations telles que:
+La dernière version, [Heimdall v.0.3.3](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.3), contient quelques améliorations telles que:
 1. Restreindre la taille des données dans synchronisation d'état txs à :
     * **30 kB** lorsqu'elles sont représentées en **octets**
     * **60 kB** lorsqu'elles sont représentées sous forme de **chaîne**.

@@ -43,7 +43,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 * স্থানীয় মেশিনটিতে, [Python 3.x](https://www.python.org/downloads/) ইনস্টল করা থাকে।
 * রিমোট মেশিনগুলোতে, Go যাতে ইনস্টল করা *না* থাকে তা নিশ্চিত করুন।
 * রিমোট মেশিনগুলিতে, আপনার স্থানীয় মেশিনের SSH পাবলিক কী রিমোট মেশিনগুলিতে Ansible সংযুক্ত করতে দেয়।
-* আমরা একটি রিলে নেটওয়ার্ক হিসাবে Bloxroute উপলভ্য রেখেছি। আপনার বিশ্বস্ত Peer ার হিসাবে আপনার একটি গেটওয়ে যোগ করতে হবে তবে দয়া **করে**[](https://discord.com/invite/0xPolygon)  
+* আমরা একটি রিলে নেটওয়ার্ক হিসাবে Bloxroute উপলভ্য রেখেছি। আপনার বিশ্বস্ত Peer ার হিসাবে আপনার একটি গেটওয়ে যোগ করতে হবে তবে দয়া **করে**[](https://discord.com/invite/0xPolygon)
 
 :::info
 
@@ -135,7 +135,7 @@ xxx.xxx.xx.xx | SUCCESS => {
 Sentry নোড সেটআপের একটি টেস্ট রান করুন:
 
 ```sh
-ansible-playbook -l sentry playbooks/network.yml --extra-var="bor_branch=v0.3.3 heimdall_branch=v0.3.0  network_version=mainnet-v1 node_type=sentry/sentry heimdall_network=mainnet" --list-hosts
+ansible-playbook -l sentry playbooks/network.yml --extra-var="bor_branch=v0.3.7 heimdall_branch=v0.3.3  network_version=mainnet-v1 node_type=sentry/sentry heimdall_network=mainnet" --list-hosts
 ```
 
 আউটপুট হিসাবে এটি পাওয়া যাবে:
@@ -150,7 +150,7 @@ playbook: playbooks/network.yml
 Sudo- সুবিধা দিয়ে নোডের সেটআপ চালান:
 
 ```sh
-ansible-playbook -l sentry playbooks/network.yml --extra-var="bor_branch=v0.3.3 heimdall_branch=v0.3.0  network_version=mainnet-v1 node_type=sentry/sentry heimdall_network=mainnet" --ask-become-pass
+ansible-playbook -l sentry playbooks/network.yml --extra-var="bor_branch=v0.3.7 heimdall_branch=v0.3.3  network_version=mainnet-v1 node_type=sentry/sentry heimdall_network=mainnet" --ask-become-pass
 ```
 
 একবার সেটআপ সম্পূর্ণ হয়ে গেলে, আপনি টার্মিনালটিতে সমাপ্তির একটি বার্তা দেখতে পাবেন।
@@ -188,7 +188,7 @@ xxx.xxx.xx.xx | SUCCESS => {
 যাচাইকারী নোডের সেটআপটির একটি টেস্ট রান করুন:
 
 ```sh
-ansible-playbook -l validator playbooks/network.yml --extra-var="bor_branch=v0.3.3 heimdall_branch=v0.3.0 network_version=mainnet-v1 node_type=sentry/validator heimdall_network=mainnet" --list-hosts
+ansible-playbook -l validator playbooks/network.yml --extra-var="bor_branch=v0.3.7 heimdall_branch=v0.3.3 network_version=mainnet-v1 node_type=sentry/validator heimdall_network=mainnet" --list-hosts
 ```
 
 আপনার আউটপুট হিসাবে এটি পাওয়া উচিত:
@@ -203,7 +203,7 @@ playbook: playbooks/network.yml
 Sudo সুবিধাদির সাথে যাচাইকারী নোডের সেটআপ চালান:
 
 ```sh
-ansible-playbook -l validator playbooks/network.yml --extra-var="bor_branch=v0.3.3 heimdall_branch=v0.3.0  network_version=mainnet-v1 node_type=sentry/validator heimdall_network=mainnet" --ask-become-pass
+ansible-playbook -l validator playbooks/network.yml --extra-var="bor_branch=v0.3.7 heimdall_branch=v0.3.3  network_version=mainnet-v1 node_type=sentry/validator heimdall_network=mainnet" --ask-become-pass
 ```
 
 একবার সেটআপ সম্পূর্ণ হয়ে গেলে, আপনি টার্মিনালটিতে সমাপ্তির একটি বার্তা দেখতে পাবেন।
@@ -311,7 +311,7 @@ Heimdall পরিষেবাটির একদম শূণ্য থেক�
 
 ### Heimdall পরিষেবাটি শুরু করুন {#start-the-heimdall-service}
 
-সর্বশেষ সংস্করণ, [Heimdall v.0.3.0](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.0), যেমন কয়েকটি উন্নতি রয়েছে:
+সর্বশেষ সংস্করণ, [Heimdall v.0.3.3](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.3), যেমন কয়েকটি উন্নতি রয়েছে:
 1. স্টেট সিঙ্ক txs-এ ডেটার আকার সীমিত করে দাঁড়িয়েছে:
     * **30Kb** যখন **বাইটস** এ উপস্থাপন করা হয়
     * **60Kb** যখন **স্ট্রিং** হিসাবে উপস্থাপন করা হয়।

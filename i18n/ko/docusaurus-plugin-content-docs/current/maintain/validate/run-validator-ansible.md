@@ -135,7 +135,7 @@ xxx.xxx.xx.xx | SUCCESS => {
 센트리 노드 설정 테스트를 수행합니다
 
 ```sh
-ansible-playbook -l sentry playbooks/network.yml --extra-var="bor_branch=v0.3.3 heimdall_branch=v0.3.0  network_version=mainnet-v1 node_type=sentry/sentry heimdall_network=mainnet" --list-hosts
+ansible-playbook -l sentry playbooks/network.yml --extra-var="bor_branch=v0.3.7 heimdall_branch=v0.3.3  network_version=mainnet-v1 node_type=sentry/sentry heimdall_network=mainnet" --list-hosts
 ```
 
 결과물은 다음과 같습니다.
@@ -150,7 +150,7 @@ playbook: playbooks/network.yml
 sudo 권한으로 센트리 노드 설정을 수행하세요.
 
 ```sh
-ansible-playbook -l sentry playbooks/network.yml --extra-var="bor_branch=v0.3.3 heimdall_branch=v0.3.0  network_version=mainnet-v1 node_type=sentry/sentry heimdall_network=mainnet" --ask-become-pass
+ansible-playbook -l sentry playbooks/network.yml --extra-var="bor_branch=v0.3.7 heimdall_branch=v0.3.3  network_version=mainnet-v1 node_type=sentry/sentry heimdall_network=mainnet" --ask-become-pass
 ```
 
 설정이 완료되면, 터미널에 완료 메시지가 표시됩니다.
@@ -188,7 +188,7 @@ xxx.xxx.xx.xx | SUCCESS => {
 유효성 검사 노드 설정의 테스트를 수행합니다.
 
 ```sh
-ansible-playbook -l validator playbooks/network.yml --extra-var="bor_branch=v0.3.3 heimdall_branch=v0.3.0 network_version=mainnet-v1 node_type=sentry/validator heimdall_network=mainnet" --list-hosts
+ansible-playbook -l validator playbooks/network.yml --extra-var="bor_branch=v0.3.7 heimdall_branch=v0.3.3 network_version=mainnet-v1 node_type=sentry/validator heimdall_network=mainnet" --list-hosts
 ```
 
 다음을 결과물로 받게 됩니다.
@@ -203,7 +203,7 @@ playbook: playbooks/network.yml
 sudo 권한으로 유효성 검사 노드 설정을 수행합니다.
 
 ```sh
-ansible-playbook -l validator playbooks/network.yml --extra-var="bor_branch=v0.3.3 heimdall_branch=v0.3.0  network_version=mainnet-v1 node_type=sentry/validator heimdall_network=mainnet" --ask-become-pass
+ansible-playbook -l validator playbooks/network.yml --extra-var="bor_branch=v0.3.7 heimdall_branch=v0.3.3  network_version=mainnet-v1 node_type=sentry/validator heimdall_network=mainnet" --ask-become-pass
 ```
 
 설정이 완료되면, 터미널에 완료 메시지가 표시됩니다.
@@ -311,7 +311,7 @@ Heimdall 서비스는 처음부터 완전히 동기화할 수 있을 때까지 �
 
 ### Heimdall 서비스 시작 {#start-the-heimdall-service}
 
-최신 버전인 [Heimdall](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.0) v.0.3.0에는 다음과 같은 몇 가지 개선이 포함되어 있습니다.
+최신 버전인 [Heimdall](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.3) v.0.3.3에는 다음과 같은 몇 가지 개선이 포함되어 있습니다.
 1. 상태 동기화 트랜잭션의 데이터 크기를 다음과 같이 제한합니다.
     * **30Kb** - **바이트**로 표시되는 경우
     * **60Kb** - **문자열**로 표시되는 경우

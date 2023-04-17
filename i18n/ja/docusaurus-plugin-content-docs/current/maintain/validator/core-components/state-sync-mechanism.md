@@ -16,7 +16,7 @@ image: https://wiki.polygon.technology/img/polygon-wiki.png
 
 **receiver contract**は[IStateReceiver](https://github.com/maticnetwork/genesis-contracts/blob/master/contracts/IStateReceiver.sol),を継承し、カスタムロジックは[onStateReceive](https://github.com/maticnetwork/genesis-contracts/blob/05556cfd91a6879a8190a6828428f50e4912ee1a/contracts/IStateReceiver.sol#L5)関数内に配置されています。
 
-最新バージョンである[Heimdall v.0.3.0](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.0)には、次のようないくつかの機能強化が含まれています：
+最新バージョンである[Heimdall v.0.3.3](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.3)には、次のようないくつかの機能強化が含まれています：
 1. 状態同期txsでデータサイズを制限するtxsは次のように：
     * **30Kb**：**バイト** として表現された場合
     * **60kb**： **文字列**として表現された場合。

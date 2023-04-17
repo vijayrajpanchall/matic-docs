@@ -102,7 +102,7 @@ Installieren Sie die Binaries für beide auf dem Sentry- und Validatorrechner.
 [Heimdall](/docs/pos/heimdall/overview) ist der Proof-of-Stake Verifier-Layer,
 verantwortlich für die Überprüfung der Darstellung der Plasmablöcke auf dem Ethereum Mainnet.
 
-Die neueste Version, [Heimdall v.0.3.0](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.0), enthält einige Verbesserungen wie:
+Die neueste Version, [Heimdall v.0.3.3](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.3), enthält einige Verbesserungen wie:
 1. Einschränkung der Datengröße in der state sync txs auf:
     * **30 kB** bei Darstellung in **Byte**
     * **60 kB** bei Darstellung als **String**.
@@ -134,7 +134,7 @@ wo `RELEASE_TAG` der Tag der Releaseversion, die Sie installieren, ist.
 Zum Beispiel:
 
 ```sh
-git checkout v0.3.0
+git checkout v0.3.3
 ```
 
 Sobald Sie auf der korrekten Version sind, installieren Sie Heimdall:
@@ -177,7 +177,7 @@ wo `RELEASE_TAG` der Tag der Releaseversion, die Sie installieren, ist.
 Zum Beispiel:
 
 ```sh
-git checkout v0.3.3
+git checkout v0.3.7
 ```
 
 Installieren von Bor:

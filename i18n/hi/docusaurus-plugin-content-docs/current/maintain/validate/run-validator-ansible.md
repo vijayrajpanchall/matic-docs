@@ -135,7 +135,7 @@ xxx.xxx.xx.xx | SUCCESS => {
 सेंट्री नोड सेटअप का टेस्ट रन करें:
 
 ```sh
-ansible-playbook -l sentry playbooks/network.yml --extra-var="bor_branch=v0.3.3 heimdall_branch=v0.3.0  network_version=mainnet-v1 node_type=sentry/sentry heimdall_network=mainnet" --list-hosts
+ansible-playbook -l sentry playbooks/network.yml --extra-var="bor_branch=v0.3.7 heimdall_branch=v0.3.3  network_version=mainnet-v1 node_type=sentry/sentry heimdall_network=mainnet" --list-hosts
 ```
 
 आउटपुट यह होगी:
@@ -150,7 +150,7 @@ playbook: playbooks/network.yml
 sudo विशेषाधिकार के साथ सेंट्री नोड सेटअप रन करें:
 
 ```sh
-ansible-playbook -l sentry playbooks/network.yml --extra-var="bor_branch=v0.3.3 heimdall_branch=v0.3.0  network_version=mainnet-v1 node_type=sentry/sentry heimdall_network=mainnet" --ask-become-pass
+ansible-playbook -l sentry playbooks/network.yml --extra-var="bor_branch=v0.3.7 heimdall_branch=v0.3.3  network_version=mainnet-v1 node_type=sentry/sentry heimdall_network=mainnet" --ask-become-pass
 ```
 
 सेटअप पूरा होने के बाद, आपको टर्मिनल पर पूरा होने का मैसेज मिलेगा.
@@ -188,7 +188,7 @@ xxx.xxx.xx.xx | SUCCESS => {
 वैलिडेटर नोड सेटअप का टेस्ट रन करें:
 
 ```sh
-ansible-playbook -l validator playbooks/network.yml --extra-var="bor_branch=v0.3.3 heimdall_branch=v0.3.0 network_version=mainnet-v1 node_type=sentry/validator heimdall_network=mainnet" --list-hosts
+ansible-playbook -l validator playbooks/network.yml --extra-var="bor_branch=v0.3.7 heimdall_branch=v0.3.3 network_version=mainnet-v1 node_type=sentry/validator heimdall_network=mainnet" --list-hosts
 ```
 
 आपको इसे आउटपुट के रूप में प्राप्त करना चाहिए:
@@ -203,7 +203,7 @@ playbook: playbooks/network.yml
 sudo विशेषाधिकार के साथ वैलिडेटर नोड सेटअप रन करें:
 
 ```sh
-ansible-playbook -l validator playbooks/network.yml --extra-var="bor_branch=v0.3.3 heimdall_branch=v0.3.0  network_version=mainnet-v1 node_type=sentry/validator heimdall_network=mainnet" --ask-become-pass
+ansible-playbook -l validator playbooks/network.yml --extra-var="bor_branch=v0.3.7 heimdall_branch=v0.3.3  network_version=mainnet-v1 node_type=sentry/validator heimdall_network=mainnet" --ask-become-pass
 ```
 
 सेटअप पूरा होने के बाद, आपको टर्मिनल पर पूरा होने का मैसेज मिलेगा.
@@ -311,7 +311,7 @@ ansible-playbook -l validator playbooks/clean.yml
 
 ### हेम्डल सेवा शुरू करें {#start-the-heimdall-service}
 
-नवीनतम संस्करण, [Heimdall v.0.3.0](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.0) में कुछ enhancements The शामिल हैं जैसे :
+नवीनतम संस्करण, [Heimdall v.0.3.3](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.3) में कुछ enhancements The शामिल हैं जैसे :
 1. स्टेट सिंक txs में डेटा के आकार को इतने तक प्रतिबंधित करना:
     * **30 Kb** जब **बाइट** में प्रस्तुत किया जाता है
     * **60 Kb** जब **स्ट्रिंग** के रूप में प्रस्तुत किया जाता है.

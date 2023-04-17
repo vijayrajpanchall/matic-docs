@@ -39,7 +39,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 :::info Heimdall 소스 향상
 
-최신 Heimdall 버전인 **[v.0.3.0에는](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.0)** 몇 가지 개선이 포함되어 있습니다. 서로 다른 유효성 검사자의 계약 이벤트 간의 지연 시간이 **늘어** 밈 풀이 채우지 않도록 합니다. 체인의 진행 상황을 방해할 수 있는 이벤트의 터빈이 발생하면 신속하게 가능합니다.
+최신 Heimdall 버전인 **[v.0.3.3에는](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.3)** 몇 가지 개선이 포함되어 있습니다. 서로 다른 유효성 검사자의 계약 이벤트 간의 지연 시간이 **늘어** 밈 풀이 채우지 않도록 합니다. 체인의 진행 상황을 방해할 수 있는 이벤트의 터빈이 발생하면 신속하게 가능합니다.
 
 또한, **상태 싱크 tx에서 30KB(바이트에서 표시되는 경우) 및 60KB(문자열로 정의 된 경우)로 표시되는 경우** 데이터 크기는 제한되었습니다. 예시:
 
@@ -64,10 +64,10 @@ Length in byte format - 4
 
   ```bash
   # Mainnet:
-  ansible-playbook playbooks/network.yml --extra-var="bor_version=v0.3.3 heimdall_version=v0.3.0 network=mainnet node_type=sentry" --list-hosts
+  ansible-playbook playbooks/network.yml --extra-var="bor_version=v0.3.7 heimdall_version=v0.3.3 network=mainnet node_type=sentry" --list-hosts
 
   # Testnet:
-  ansible-playbook playbooks/network.yml --extra-var="bor_version=v0.3.3 heimdall_version=v0.3.0 network=mumbai node_type=sentry" --list-hosts
+  ansible-playbook playbooks/network.yml --extra-var="bor_version=v0.3.7 heimdall_version=v0.3.3 network=mumbai node_type=sentry" --list-hosts
   ```
 
   <img src={useBaseUrl("img/network/full-node-mumbai.png")} />
@@ -76,10 +76,10 @@ Length in byte format - 4
 
   ```bash
   # Mainnet:
-  ansible-playbook playbooks/network.yml --extra-var="bor_version=v0.3.3 heimdall_version=v0.3.0 network=mainnet node_type=sentry"
+  ansible-playbook playbooks/network.yml --extra-var="bor_version=v0.3.7 heimdall_version=v0.3.3 network=mainnet node_type=sentry"
 
   # Testnet:
-  ansible-playbook playbooks/network.yml --extra-var="bor_version=v0.3.3 heimdall_version=v0.3.0 network=mumbai node_type=sentry"
+  ansible-playbook playbooks/network.yml --extra-var="bor_version=v0.3.7 heimdall_version=v0.3.3 network=mumbai node_type=sentry"
   ```
 
 - 다음 문제를 사용하면 전체 설정을 삭제하고 청소하십시오.

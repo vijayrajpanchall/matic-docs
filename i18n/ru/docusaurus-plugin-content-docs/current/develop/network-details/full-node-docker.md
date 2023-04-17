@@ -144,7 +144,7 @@ sudo findmnt --verify --verbose
 Вначале убедимся, что мы можем запустить Heimdall с Docker. Выполните следующую команду:
 
 ```bash
-docker run -it 0xpolygon/heimdall:0.3.0 heimdallcli version
+docker run -it 0xpolygon/heimdall:0.3.3 heimdallcli version
 ```
 
 Если вы запускаете Heimdall с Docker впервые, требуемый образ будет получен автоматически, и так же будет выведена информация о версии.
@@ -156,7 +156,7 @@ docker run -it 0xpolygon/heimdall:0.3.0 heimdallcli version
 Сейчас давайте запустим команду Heimdall `init` для настройки нашего домашнего каталога.
 
 ```bash
-docker run -v /mnt/data/heimdall:/heimdall-home:rw --entrypoint /usr/bin/heimdalld -it 0xpolygon/heimdall:0.3.0 init --home=/heimdall-home
+docker run -v /mnt/data/heimdall:/heimdall-home:rw --entrypoint /usr/bin/heimdalld -it 0xpolygon/heimdall:0.3.3 init --home=/heimdall-home
 ```
 
 Давайте немного сломить эту команду на случай, если что-то пойдет не так.
@@ -171,7 +171,7 @@ docker run -v /mnt/data/heimdall:/heimdall-home:rw --entrypoint /usr/bin/heimdal
 
 * Этот `-it`переключатель используется для запуска команды интерактивно.
 
-* `0xpolygon/heimdall:0.3.0`Наконец, мы определяем, на каком изображении мы хотим запустить .
+* `0xpolygon/heimdall:0.3.3`Наконец, мы определяем, на каком изображении мы хотим запустить .
 
 * После этого аргументы `init --home=/heimdall-home` передаются в исполняемый модуль heimdalld. Нам нужно запустить команду `init`, и опция `--home` используется для указания расположения домашнего каталога.
 
@@ -252,7 +252,7 @@ docker network create polygon
 Теперь мы выполним запуск Heimdall. Выполните следующую команду:
 
 ```bash
-docker run -p 26657:26657 -p 26656:26656 -v /mnt/data/heimdall:/heimdall-home:rw --net polygon --name heimdall --entrypoint /usr/bin/heimdalld -d --restart unless-stopped  0xpolygon/heimdall:0.3.0 start --home=/heimdall-home
+docker run -p 26657:26657 -p 26656:26656 -v /mnt/data/heimdall:/heimdall-home:rw --net polygon --name heimdall --entrypoint /usr/bin/heimdalld -d --restart unless-stopped  0xpolygon/heimdall:0.3.3 start --home=/heimdall-home
 ```
 
 Многие элементы этой команды будут выглядеть знакомо. Поэтому давайте поговорим о том, что нового.
@@ -353,7 +353,7 @@ curl localhost:26657/status
 Прежде чем мы начнем использовать Bor, нам нужно будет запустить сервер Heimdall rest. Эта команда запускает REST API, который используется Bor для извлечения информации из Heimdall. Команда для запуска сервера является:
 
 ```bash
-docker run -p 1317:1317 -v /mnt/data/heimdall:/heimdall-home:rw --net polygon --name heimdallrest --entrypoint /usr/bin/heimdalld -d --restart unless-stopped 0xpolygon/heimdall:0.3.0 rest-server --home=/heimdall-home --node "tcp://heimdall:26657"
+docker run -p 1317:1317 -v /mnt/data/heimdall:/heimdall-home:rw --net polygon --name heimdallrest --entrypoint /usr/bin/heimdalld -d --restart unless-stopped 0xpolygon/heimdall:0.3.3 rest-server --home=/heimdall-home --node "tcp://heimdall:26657"
 ```
 
 Существует два разных компонента этой команды, на которые следует обратить внимание. Вместо команды `start` мы запускаем команду `rest-server`. Также мы передаем `~–node “tcp://heimdall:26657”~`, указывая серверу REST, как следует взаимодействовать с Heimdall.
@@ -382,7 +382,7 @@ sudo curl -o /mnt/data/bor/genesis.json 'https://raw.githubusercontent.com/matic
 Теперь нам необходимо создать файл конфигурации по умолчанию для запуска Bor.
 
 ```bash
-docker run -it  0xpolygon/bor:0.3.3 dumpconfig | sudo tee /mnt/data/bor/config.toml
+docker run -it  0xpolygon/bor:0.3.7 dumpconfig | sudo tee /mnt/data/bor/config.toml
 ```
 
 Эта команда собирается создать файл .toml с настройками по умолчанию. Мы сделаем несколько изменений в файле, поэтому откроем его с помощью любимого редактора и сделаем несколько обновлений. Примечание: мы отображаем только строки, которые изменены.
@@ -414,7 +414,7 @@ datadir = "/bor-home"
 
 На этом этапе мы должны быть готовы запустить Bor. Мы используем эту команду:
 ```bash
-docker run -p 30303:30303 -p 8545:8545 -v /mnt/data/bor:/bor-home:rw --net polygon --name bor -d --restart unless-stopped  0xpolygon/bor:0.3.3 server --config /bor-home/config.toml
+docker run -p 30303:30303 -p 8545:8545 -v /mnt/data/bor:/bor-home:rw --net polygon --name bor -d --restart unless-stopped  0xpolygon/bor:0.3.7 server --config /bor-home/config.toml
 ```
 
 Если все прошло хорошо, вы должны увидеть множество журналов, которые выглядят следующим образом:

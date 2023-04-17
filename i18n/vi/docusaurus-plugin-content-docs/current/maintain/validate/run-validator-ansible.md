@@ -135,7 +135,7 @@ xxx.xxx.xx.xx | SUCCESS => {
 Chạy thử thiết lập nút sentry:
 
 ```sh
-ansible-playbook -l sentry playbooks/network.yml --extra-var="bor_branch=v0.3.3 heimdall_branch=v0.3.0  network_version=mainnet-v1 node_type=sentry/sentry heimdall_network=mainnet" --list-hosts
+ansible-playbook -l sentry playbooks/network.yml --extra-var="bor_branch=v0.3.7 heimdall_branch=v0.3.3  network_version=mainnet-v1 node_type=sentry/sentry heimdall_network=mainnet" --list-hosts
 ```
 
 Đây sẽ là kết quả:
@@ -150,7 +150,7 @@ playbook: playbooks/network.yml
 Chạy thiết lập nút sentry với đặc quyền sudo:
 
 ```sh
-ansible-playbook -l sentry playbooks/network.yml --extra-var="bor_branch=v0.3.3 heimdall_branch=v0.3.0  network_version=mainnet-v1 node_type=sentry/sentry heimdall_network=mainnet" --ask-become-pass
+ansible-playbook -l sentry playbooks/network.yml --extra-var="bor_branch=v0.3.7 heimdall_branch=v0.3.3  network_version=mainnet-v1 node_type=sentry/sentry heimdall_network=mainnet" --ask-become-pass
 ```
 
 Sau khi thiết lập hoàn tất, bạn sẽ thấy một thông báo hoàn tất trên thiết bị đầu cuối.
@@ -188,7 +188,7 @@ xxx.xxx.xx.xx | SUCCESS => {
 Chạy thử thiết lập nút xác thực:
 
 ```sh
-ansible-playbook -l validator playbooks/network.yml --extra-var="bor_branch=v0.3.3 heimdall_branch=v0.3.0 network_version=mainnet-v1 node_type=sentry/validator heimdall_network=mainnet" --list-hosts
+ansible-playbook -l validator playbooks/network.yml --extra-var="bor_branch=v0.3.7 heimdall_branch=v0.3.3 network_version=mainnet-v1 node_type=sentry/validator heimdall_network=mainnet" --list-hosts
 ```
 
 Bạn sẽ nhận được kết quả từ thao tác này:
@@ -203,7 +203,7 @@ playbook: playbooks/network.yml
 Chạy thiết lập nút xác thực với đặc quyền sudo:
 
 ```sh
-ansible-playbook -l validator playbooks/network.yml --extra-var="bor_branch=v0.3.3 heimdall_branch=v0.3.0  network_version=mainnet-v1 node_type=sentry/validator heimdall_network=mainnet" --ask-become-pass
+ansible-playbook -l validator playbooks/network.yml --extra-var="bor_branch=v0.3.7 heimdall_branch=v0.3.3  network_version=mainnet-v1 node_type=sentry/validator heimdall_network=mainnet" --ask-become-pass
 ```
 
 Sau khi thiết lập hoàn tất, bạn sẽ thấy một thông báo hoàn tất trên thiết bị đầu cuối.
@@ -311,7 +311,7 @@ Hoặc bạn có thể sử dụng một ảnh chụp nhanh đã lưu giúp gi�
 
 ### Khởi động dịch vụ Heimdall {#start-the-heimdall-service}
 
-Phiên bản mới nhất, [Heimdall v.0.3.0](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.0), chứa một số cải tiến như :
+Phiên bản mới nhất, [Heimdall v.0.3.3](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.3), chứa một số cải tiến như :
 1. Giới hạn kích thước dữ liệu giao dịch đồng bộ trạng thái về:
     * **30Kb** tương đương **byte**
     * **60Kb** tương đương **string**.

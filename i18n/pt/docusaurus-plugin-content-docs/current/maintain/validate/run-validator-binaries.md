@@ -111,7 +111,7 @@ Instalar os binários para as máquinas de sentry e de validador.
 [Heimdall](/docs/pos/heimdall/overview) é a camada de verificação proof-of-stake
 responsável pelo checkpointing da representação dos blocos plasma para mainnet Ethereum.
 
-A versão mais recente, [Heimdall v.0.3.0](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.0), contém alguns aprimoramentos, como:
+A versão mais recente, [Heimdall v.0.3.3](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.3), contém alguns aprimoramentos, como:
 1. Restrição do tamanho dos dados em txs de sincronização de estado para:
     * **30Kb** quando representado em **bytes**
     * **60Kb** quando representado como **string**.
@@ -143,7 +143,7 @@ onde `RELEASE_TAG` é a marca da versão de lançamento que se instala.
 Por exemplo:
 
 ```sh
-git checkout v0.3.0
+git checkout v0.3.3
 ```
 
 Assim que estiver na versão correta, instale a Heimdall:
@@ -186,7 +186,7 @@ onde `RELEASE_TAG` é a marca da versão de lançamento que se instala.
 Por exemplo:
 
 ```sh
-git checkout v0.3.3
+git checkout v0.3.7
 ```
 
 Instalar BOR:

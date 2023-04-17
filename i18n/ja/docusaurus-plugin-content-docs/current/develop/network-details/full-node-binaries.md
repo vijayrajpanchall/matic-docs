@@ -72,7 +72,7 @@ PolygonノードはHeimdallとBorの2つのレイヤーで構成されていま�
 
 ### Heimdall {#heimdall}
 
-Heimdallおよび関連するサービスの最新バージョンをインストールします。正しいリリースバージョンにチェックアウトしてください[。](https://github.com/maticnetwork/heimdall/releases)最新バージョンである[Heimdall v.0.3.0](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.0)には、次のような拡張機能が含まれています：
+Heimdallおよび関連するサービスの最新バージョンをインストールします。正しいリリースバージョンにチェックアウトしてください[。](https://github.com/maticnetwork/heimdall/releases)最新バージョンである[Heimdall v.0.3.3](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.3)には、次のような拡張機能が含まれています：
 1. 状態同期txsでデータサイズを制限するtxsは次のように：
     * **30Kb**：**バイト** として表現された場合
     * **文字列**として表現された場合**60Kb**
@@ -95,7 +95,7 @@ git clone https://github.com/maticnetwork/heimdall
 cd heimdall
 
 # Checkout to a proper version, for example
-git checkout v0.3.0
+git checkout v0.3.3
 git checkout <TAG OR BRANCH>
 make install
 source ~/.profile

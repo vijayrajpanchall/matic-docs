@@ -111,7 +111,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 [Heimdall](/docs/pos/heimdall/overview) — это уровень верификатора Proof-of-Stake,
 который отвечает за назначение чекпоинтов для представления блоков Plasma в Ethereum mainnet.
 
-Последняя версия [Heimdall v.0.3.0](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.0) содержит несколько улучшений, таких как:
+Последняя версия [Heimdall v.0.3.3](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.3) содержит несколько улучшений, таких как:
 1. Ограничение размера данных в транзакциях синхронизации состояний:
     * **30 КБ** при представлении в **байтах**.
     * **60 КБ** при представлении в виде **строки**.
@@ -143,7 +143,7 @@ git checkout RELEASE_TAG
 Например:
 
 ```sh
-git checkout v0.3.0
+git checkout v0.3.3
 ```
 
 Перейдя к нужной версии выпуска, установите Heimdall:
@@ -186,7 +186,7 @@ git checkout RELEASE_TAG
 Например:
 
 ```sh
-git checkout v0.3.3
+git checkout v0.3.7
 ```
 
 Установите Bor:

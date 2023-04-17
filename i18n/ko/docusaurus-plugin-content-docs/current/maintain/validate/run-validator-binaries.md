@@ -108,7 +108,7 @@ RabbitMQ 설치에 대한 자세한 정보를 [<ins>여기에서</ins>](https://
 
 [Heimdall](/docs/pos/heimdall/overview)은 스테이크 증명 확인자 계층입니다. 이더리움 메인넷에 플라즈마 블록을 나타내는 체크포인트 역할을 합니다.
 
-최신 버전인 [Heimdall](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.0) v.0.3.0에는 다음과 같은 몇 가지 개선이 포함되어 있습니다.
+최신 버전인 [Heimdall](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.3) v.0.3.3에는 다음과 같은 몇 가지 개선이 포함되어 있습니다.
 1. 상태 동기화 트랜잭션의 데이터 크기를 다음과 같이 제한합니다.
     * **30Kb** - **바이트**로 표시되는 경우
     * **60Kb** - **문자열**로 표시되는 경우
@@ -140,7 +140,7 @@ git checkout RELEASE_TAG
 예를 들어:
 
 ```sh
-git checkout v0.3.0
+git checkout v0.3.3
 ```
 
 올바른 릴리스를 사용 중이면 Heimdall 설치:
@@ -183,7 +183,7 @@ git checkout RELEASE_TAG
 예를 들어:
 
 ```sh
-git checkout v0.3.3
+git checkout v0.3.7
 ```
 
 Bor 설치:

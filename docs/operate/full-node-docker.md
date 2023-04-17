@@ -126,7 +126,7 @@ At this point, we have a host with docker running on it and we have ample mounte
 First let’s make sure we can run Heimdall with docker. Run the following command:
 
 ```bash
-docker run -it 0xpolygon/heimdall:0.3.0 heimdallcli version
+docker run -it 0xpolygon/heimdall:0.3.3 heimdallcli version
 ```
 
 If this is the first time you’ve run Heimdall with docker, it should pull the required image automatically and output the version information.
@@ -138,7 +138,7 @@ If you’d like to check the details of the Heimdall image or find a different t
 At this point, let’s run the Heimdall `init` command to set up our home directory.
 
 ```bash
-docker run -v /mnt/data/heimdall:/heimdall-home:rw --entrypoint /usr/bin/heimdalld -it 0xpolygon/heimdall:0.3.0 init --home=/heimdall-home
+docker run -v /mnt/data/heimdall:/heimdall-home:rw --entrypoint /usr/bin/heimdalld -it 0xpolygon/heimdall:0.3.3 init --home=/heimdall-home
 ```
 
 Let’s break this command down a bit in case anything goes wrong.
@@ -153,7 +153,7 @@ Let’s break this command down a bit in case anything goes wrong.
 
 * The switch `-it` is used to run the command interactively.
 
-* Finally we’re specifying which image we want to run with `0xpolygon/heimdall:0.3.0`.
+* Finally we’re specifying which image we want to run with `0xpolygon/heimdall:0.3.3`.
 
 * After that `init --home=/heimdall-home` are arguments being passed to the heimdalld executable. `init` is the command we want to run and `--home` is used to specify the location of the home directory.
 
@@ -234,7 +234,7 @@ docker network create polygon
 Now we’re going to start Heimdall. Run the following command:
 
 ```bash
-docker run -p 26657:26657 -p 26656:26656 -v /mnt/data/heimdall:/heimdall-home:rw --net polygon --name heimdall --entrypoint /usr/bin/heimdalld -d --restart unless-stopped  0xpolygon/heimdall:0.3.0 start --home=/heimdall-home
+docker run -p 26657:26657 -p 26656:26656 -v /mnt/data/heimdall:/heimdall-home:rw --net polygon --name heimdall --entrypoint /usr/bin/heimdalld -d --restart unless-stopped  0xpolygon/heimdall:0.3.3 start --home=/heimdall-home
 ```
 
 Many of the pieces of this command will look familiar. So let’s talk about what’s new.
@@ -335,7 +335,7 @@ At this point, you should have a node that’s successfully running Heimdall. Yo
 Before we get started with Bor, we need to run the Heimdall rest server. This command will start a REST API that Bor uses to retrieve information from Heimdall. The command to start server is:
 
 ```bash
-docker run -p 1317:1317 -v /mnt/data/heimdall:/heimdall-home:rw --net polygon --name heimdallrest --entrypoint /usr/bin/heimdalld -d --restart unless-stopped 0xpolygon/heimdall:0.3.0 rest-server --home=/heimdall-home --node "tcp://heimdall:26657"
+docker run -p 1317:1317 -v /mnt/data/heimdall:/heimdall-home:rw --net polygon --name heimdallrest --entrypoint /usr/bin/heimdalld -d --restart unless-stopped 0xpolygon/heimdall:0.3.3 rest-server --home=/heimdall-home --node "tcp://heimdall:26657"
 ```
 
 There are two pieces of this command that are different and worth noting. Rather than running the `start` command, we’re running the `rest-server` command. Also, we’re passing `~–node “tcp://heimdall:26657”~` which tells the rest server how to communicate with Heimdall.
@@ -364,7 +364,7 @@ Let’s verify the `sha256 sum` again for this file:
 Now we need to create a default config file for starting Bor.
 
 ```bash
-docker run -it  0xpolygon/bor:0.3.3 dumpconfig | sudo tee /mnt/data/bor/config.toml
+docker run -it  0xpolygon/bor:0.3.7 dumpconfig | sudo tee /mnt/data/bor/config.toml
 ```
 
 This command is going to generate a .toml file with default settings. We’re going to make a few changes to the file, so open it up with your favorite editor and make a few updates. Note: we’re only showing the lines that are changed.
@@ -396,7 +396,7 @@ datadir = "/bor-home"
 
 At this point, we should be ready to start Bor. We’re going to use this command:
 ``` bash
-docker run -p 30303:30303 -p 8545:8545 -v /mnt/data/bor:/bor-home:rw --net polygon --name bor -d --restart unless-stopped  0xpolygon/bor:0.3.3 server --config /bor-home/config.toml
+docker run -p 30303:30303 -p 8545:8545 -v /mnt/data/bor:/bor-home:rw --net polygon --name bor -d --restart unless-stopped  0xpolygon/bor:0.3.7 server --config /bor-home/config.toml
 ```
 
 If everything went well, you should see lots of logs that look like this:

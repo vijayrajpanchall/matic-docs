@@ -144,7 +144,7 @@ sudo findmnt --verify --verbose
 প্রথমে, docker দিয়ে Heimdall চালানোর বিষয়টি নিশ্চিত করতে হবে। নিম্নলিখিত কমান্ড চালান:
 
 ```bash
-docker run -it 0xpolygon/heimdall:0.3.0 heimdallcli version
+docker run -it 0xpolygon/heimdall:0.3.3 heimdallcli version
 ```
 
 যদি আপনি প্রথমবারের মতো docker দিয়ে Heimdall চালান, তবে এটি স্বয়ংক্রিয়ভাবে প্রয়োজনীয় ছবি টেনে নিয়ে আসবে এবং আউটপুট হিসেবে সংস্করণের তথ্য দেবে।
@@ -156,7 +156,7 @@ docker run -it 0xpolygon/heimdall:0.3.0 heimdallcli version
 এই সময়ে, আমাদের হোম ডিরেক্টরি সেট আপ করতে Heimdall `init` কমান্ড চালান।
 
 ```bash
-docker run -v /mnt/data/heimdall:/heimdall-home:rw --entrypoint /usr/bin/heimdalld -it 0xpolygon/heimdall:0.3.0 init --home=/heimdall-home
+docker run -v /mnt/data/heimdall:/heimdall-home:rw --entrypoint /usr/bin/heimdalld -it 0xpolygon/heimdall:0.3.3 init --home=/heimdall-home
 ```
 
 কিছু ভুল Let’s এই কমান্ডটি একটু নিচে বিরতি দেও।
@@ -171,7 +171,7 @@ docker run -v /mnt/data/heimdall:/heimdall-home:rw --entrypoint /usr/bin/heimdal
 
 * switch কমান্ড চালানোর জন্য সুইচ ব্যবহার করা `-it`হয়।
 
-* অবশেষে আমরা আমরা কোন ছবি যা দিয়ে রান করতে চাই নির্দিষ্ট করছি `0xpolygon/heimdall:0.3.0`।
+* অবশেষে আমরা আমরা কোন ছবি যা দিয়ে রান করতে চাই নির্দিষ্ট করছি `0xpolygon/heimdall:0.3.3`।
 
 * এরপরে, `init --home=/heimdall-home` হলো সেসকল আর্গুমেন্ট যেগুলো heimdalld এক্সিকিউটেবলে পাস করা করা হয়েছে। `init` হলো সেই কমান্ড যা আমরা চালাতে চাই এবং হোম ডিরেক্টরির অবস্থান নির্দিষ্ট করতে `--home` ব্যবহার করা হয়।
 
@@ -252,14 +252,14 @@ docker network create polygon
 এখন আমরা Heimdall শুরু করতে চলেছি। নিম্নলিখিত কমান্ড চালান:
 
 ```bash
-docker run -p 26657:26657 -p 26656:26656 -v /mnt/data/heimdall:/heimdall-home:rw --net polygon --name heimdall --entrypoint /usr/bin/heimdalld -d --restart unless-stopped  0xpolygon/heimdall:0.3.0 start --home=/heimdall-home
+docker run -p 26657:26657 -p 26656:26656 -v /mnt/data/heimdall:/heimdall-home:rw --net polygon --name heimdall --entrypoint /usr/bin/heimdalld -d --restart unless-stopped  0xpolygon/heimdall:0.3.3 start --home=/heimdall-home
 ```
 
 এই কমান্ডটির অনেক ছোট ছোট অংশ পরিচিত মনে হবে। তাই এর নতুন কি হচ্ছে তা সম্পর্কে কথা বলি।
 
 * `-p 26657:26657` এবং `-p 26656:26656` সুইচগুলো হলো পোর্ট ম্যাপিং। এটি ডকার কন্টেইনার `26657``26657`পোর্টে হোস্ট পোর্ট ম্যাপ করতে এবং এর জন্য একই জন্য নির্দেশ করবে।`26656`
 
-* `--net polygon`সুইচ ডকার বলছে যে  
+* `--net polygon`সুইচ ডকার বলছে যে
 
 * `--name heimdall`debugging, জন্য উপকারী যা কন্টেইনার নাম হচ্ছে কিন্তু এটি সব নাম যা Heimdall সাথে সংযোগ করতে অন্যান্য কন্টেইনার জন্য ব্যবহার করা হবে।
 
@@ -353,7 +353,7 @@ curl localhost:26657/status
 Bor দিয়ে শুরু করার আগে, আমাদেরকে Heimdall রেস্ট সার্ভার চালাতে হবে। এই কমান্ডটি একটি REST API চালু করবে, যা Heimdall থেকে তথ্য উদ্ধার করতে Bor ব্যবহার করে থাকে। সার্ভার শুরু করার জন্য কমান্ড হল:
 
 ```bash
-docker run -p 1317:1317 -v /mnt/data/heimdall:/heimdall-home:rw --net polygon --name heimdallrest --entrypoint /usr/bin/heimdalld -d --restart unless-stopped 0xpolygon/heimdall:0.3.0 rest-server --home=/heimdall-home --node "tcp://heimdall:26657"
+docker run -p 1317:1317 -v /mnt/data/heimdall:/heimdall-home:rw --net polygon --name heimdallrest --entrypoint /usr/bin/heimdalld -d --restart unless-stopped 0xpolygon/heimdall:0.3.3 rest-server --home=/heimdall-home --node "tcp://heimdall:26657"
 ```
 
 এই কমান্ডটির দুটি অংশ রয়েছে, যেগুলো ভিন্ন ভিন্ন এবং উল্লেখ করা জরুরি। `rest-server` কমান্ডটি চালানোর পরিবর্তে, আমরা `start` কমান্ডটি চালাচ্ছি। এছাড়াও, আমরা `~–node “tcp://heimdall:26657”~` পাস করছি, এটি আমরা Heimdall-এর সাথে কীভাবে যোগাযোগ করতে পারি তা রেস্ট সার্ভারকে বলে।
@@ -382,7 +382,7 @@ sudo curl -o /mnt/data/bor/genesis.json 'https://raw.githubusercontent.com/matic
 এখন আমাদের Bor-এ শুরু করার জন্য একটি ডিফল্ট কনফিগ ফাইল তৈরি করতে হবে।
 
 ```bash
-docker run -it  0xpolygon/bor:0.3.3 dumpconfig | sudo tee /mnt/data/bor/config.toml
+docker run -it  0xpolygon/bor:0.3.7 dumpconfig | sudo tee /mnt/data/bor/config.toml
 ```
 
 এই কমান্ড ডিফল্ট সেটিংসের সাথে একটি .toml ফাইল তৈরি করতে যাচ্ছে। আমরা ফাইলে কয়েক পরিবর্তন করতে যাচ্ছি, তাই আপনার প্রিয় এডিটরটি খুলুন, এবং কিছু আপডেট করুন। দ্রষ্টব্য: আমরা শুধুমাত্র যে লাইন পরিবর্তন করা হচ্ছে তা প্রদর্শন করছি।
@@ -414,7 +414,7 @@ datadir = "/bor-home"
 
 এই সময়ে, Bor চালু করার জন্য আমাদেরকে প্রস্তুত হতে হবে। আমরা এই কমান্ডটি ব্যবহার করতে যাচ্ছি:
 ```bash
-docker run -p 30303:30303 -p 8545:8545 -v /mnt/data/bor:/bor-home:rw --net polygon --name bor -d --restart unless-stopped  0xpolygon/bor:0.3.3 server --config /bor-home/config.toml
+docker run -p 30303:30303 -p 8545:8545 -v /mnt/data/bor:/bor-home:rw --net polygon --name bor -d --restart unless-stopped  0xpolygon/bor:0.3.7 server --config /bor-home/config.toml
 ```
 
 সবকিছু ভাল গেলে, তাহলে আপনাকে অনেক লগ দেখতে হবে যা এই মত দেখতে হবে:

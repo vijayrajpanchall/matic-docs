@@ -209,7 +209,7 @@ Les deux binaires doivent être installés et exécutés dans l'ordre correct po
 
 ### Heimdall {#heimdall}
 
-Installez la dernière version de Heimdall et des services connexes. Assurez-vous de vérifier la bonne [version de version](https://github.com/maticnetwork/heimdall/releases). Notez que la dernière version, [Heimdall v.0.3.0](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.0), contient des améliorations telles que:
+Installez la dernière version de Heimdall et des services connexes. Assurez-vous de vérifier la bonne [version de version](https://github.com/maticnetwork/heimdall/releases). Notez que la dernière version, [Heimdall v.0.3.3](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.3), contient des améliorations telles que:
 1. Restreindre la taille des données dans synchronisation d'état txs à :
     * **30 kB** lorsqu'elles sont représentées en **octets**
     * **60Kb** lorsqu'ils sont représentés comme **chaîne de caractères**
@@ -232,7 +232,7 @@ git clone https://github.com/maticnetwork/heimdall
 cd heimdall
 
 # Checkout to a proper version, for example
-git checkout v0.3.0
+git checkout v0.3.3
 git checkout <TAG OR BRANCH>
 make install
 source ~/.profile

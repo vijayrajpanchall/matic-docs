@@ -135,7 +135,7 @@ xxx.xxx.xx.xx | SUCCESS => {
 Sentry düğüm kurulumunun bir test çalıştırmasını yapın:
 
 ```sh
-ansible-playbook -l sentry playbooks/network.yml --extra-var="bor_branch=v0.3.3 heimdall_branch=v0.3.0  network_version=mainnet-v1 node_type=sentry/sentry heimdall_network=mainnet" --list-hosts
+ansible-playbook -l sentry playbooks/network.yml --extra-var="bor_branch=v0.3.7 heimdall_branch=v0.3.3  network_version=mainnet-v1 node_type=sentry/sentry heimdall_network=mainnet" --list-hosts
 ```
 
 Çıktı şu olacaktır:
@@ -150,7 +150,7 @@ playbook: playbooks/network.yml
 Sentry düğüm kurulumunu sudo ayrıcalıkları ile çalıştırın:
 
 ```sh
-ansible-playbook -l sentry playbooks/network.yml --extra-var="bor_branch=v0.3.3 heimdall_branch=v0.3.0  network_version=mainnet-v1 node_type=sentry/sentry heimdall_network=mainnet" --ask-become-pass
+ansible-playbook -l sentry playbooks/network.yml --extra-var="bor_branch=v0.3.7 heimdall_branch=v0.3.3  network_version=mainnet-v1 node_type=sentry/sentry heimdall_network=mainnet" --ask-become-pass
 ```
 
 Kurulum tamamlandıktan sonra, terminalde bir tamamlanma iletisi göreceksiniz.
@@ -188,7 +188,7 @@ xxx.xxx.xx.xx | SUCCESS => {
 Doğrulayıcı düğümü kurulumunun bir test çalıştırmasını yapın:
 
 ```sh
-ansible-playbook -l validator playbooks/network.yml --extra-var="bor_branch=v0.3.3 heimdall_branch=v0.3.0 network_version=mainnet-v1 node_type=sentry/validator heimdall_network=mainnet" --list-hosts
+ansible-playbook -l validator playbooks/network.yml --extra-var="bor_branch=v0.3.7 heimdall_branch=v0.3.3 network_version=mainnet-v1 node_type=sentry/validator heimdall_network=mainnet" --list-hosts
 ```
 
 Çıktı olarak şunu almanız gerekir:
@@ -203,7 +203,7 @@ playbook: playbooks/network.yml
 Doğrulayıcı düğümü kurulumunu sudo ayrıcalıkları ile çalıştırın:
 
 ```sh
-ansible-playbook -l validator playbooks/network.yml --extra-var="bor_branch=v0.3.3 heimdall_branch=v0.3.0  network_version=mainnet-v1 node_type=sentry/validator heimdall_network=mainnet" --ask-become-pass
+ansible-playbook -l validator playbooks/network.yml --extra-var="bor_branch=v0.3.7 heimdall_branch=v0.3.3  network_version=mainnet-v1 node_type=sentry/validator heimdall_network=mainnet" --ask-become-pass
 ```
 
 Kurulum tamamlandıktan sonra, terminalde bir tamamlanma iletisi göreceksiniz.
@@ -311,7 +311,7 @@ Anlık görüntü indirme bağlantıları için, bkz. [Polygon Zincirleri Anlık
 
 ### Heimdall Hizmetini başlatın {#start-the-heimdall-service}
 
-En son sürüm olan [Heimdall v.0.3.0](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.0) aşağıdaki gibi birkaç geliştirmeyi içerir:
+En son sürüm olan [Heimdall v.0.3.3](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.3) aşağıdaki gibi birkaç geliştirmeyi içerir:
 1. Durum senkronizasyon işlemlerinde veri boyutunu aşağıdakilerle kısıtlama:
     * **Bayt** cinsinden ifade edildiğinde **30 Kb**
     * **Dize** cinsinden ifade edildiğinde **60 Kb**.

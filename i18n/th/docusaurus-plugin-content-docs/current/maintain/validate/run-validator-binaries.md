@@ -111,7 +111,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 [Heimdall](/docs/pos/heimdall/overview) เป็นเลเยอร์ผู้ตรวจสอบ Proof-of-Stake
 ซึ่งทำหน้าที่รับผิดชอบในการทำเช็คพอยต์เพื่อนำเสนอบล็อก Plasma ไปที่ Ethereum Mainnet
 
-เวอร์ชั่นล่าสุด [Heimdall v.0.3.0](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.0) มีการปรับปรุงสองสามอย่าง เช่น :
+เวอร์ชั่นล่าสุด [Heimdall v.0.3.3](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.3) มีการปรับปรุงสองสามอย่าง เช่น :
 1. การจำกัดขนาดข้อมูลในธุรกรรมการซิงค์สถานะไว้ที่:
     * **30Kb** เมื่อแสดงในรูปแบบ**ไบต์**
     * **60Kb** เมื่อแสดงในรูปแบบ**สตริง**
@@ -143,7 +143,7 @@ git checkout RELEASE_TAG
 ตัวอย่างเช่น:
 
 ```sh
-git checkout v0.3.0
+git checkout v0.3.3
 ```
 
 เมื่อคุณเข้าสู่เวอร์ชันที่นำออกใช้ถูกต้องแล้ว โปรดติดตั้ง Heimdall:
@@ -186,7 +186,7 @@ git checkout RELEASE_TAG
 ตัวอย่างเช่น:
 
 ```sh
-git checkout v0.3.3
+git checkout v0.3.7
 ```
 
 ติดตั้ง Bor:

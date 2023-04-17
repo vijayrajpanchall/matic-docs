@@ -102,7 +102,7 @@ Installez les binaires à la fois sur les machines sentinelle et de validation.
 [Heimdall](/docs/pos/heimdall/overview) est la couche de vérification de la preuve d'enjeu
 responsable du point de contrôle de la représentation des blocs Plasma sur le réseau principal Ethereum.
 
-La dernière version, [Heimdall v.0.3.0](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.0), contient quelques améliorations telles que:
+La dernière version, [Heimdall v.0.3.3](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.3), contient quelques améliorations telles que:
 1. Restreindre la taille des données dans synchronisation d'état txs à :
     * **30 kB** lorsqu'elles sont représentées en **octets**
     * **60 kB** lorsqu'elles sont représentées sous forme de **chaîne**.
@@ -134,7 +134,7 @@ Dans `RELEASE_TAG` se trouve la balise de la version que vous installez.
 Par exemple :
 
 ```sh
-git checkout v0.3.0
+git checkout v0.3.3
 ```
 
 Une fois que vous obtenez la bonne version, installez Heimdall :
@@ -177,7 +177,7 @@ Dans `RELEASE_TAG` se trouve la balise de la version que vous installez.
 Par exemple :
 
 ```sh
-git checkout v0.3.3
+git checkout v0.3.7
 ```
 
 Installez Bor :

@@ -39,7 +39,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 :::info हेम्डल सोर्स सुधार
 
-नवीनतम Heimdall संस्करण, **[v.0.3.0](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.0)** में कुछ enhancements. शामिल हैं. विभिन्न वैलिडेटर्स के कॉन्ट्रैक्ट इवेंट के बीच देरी का समय **बढ़ा दिया गया** है, ताकि यह सुनिश्चित किया जा सके कि mempool भरा न हो जल्द ही उन घटनाओं के फटने की स्थिति में, जो चेन की प्रगति को बाधित कर सकते हैं.
+नवीनतम Heimdall संस्करण, **[v.0.3.3](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.3)** में कुछ enhancements. शामिल हैं. विभिन्न वैलिडेटर्स के कॉन्ट्रैक्ट इवेंट के बीच देरी का समय **बढ़ा दिया गया** है, ताकि यह सुनिश्चित किया जा सके कि mempool भरा न हो जल्द ही उन घटनाओं के फटने की स्थिति में, जो चेन की प्रगति को बाधित कर सकते हैं.
 
 इसके अतिरिक्त, डेटा साइज **को स्टेट सिंक ट्रांज़ैक्शनों में 30KB (बाइट के रूप में प्रदर्शित करने पर) और 60KB (स्ट्रिंग के रूप में परिभाषित करने पर) तक सीमित किया गया है**.
 उदाहरण के लिए:
@@ -65,10 +65,10 @@ Length in byte format - 4
 
   ```bash
   # Mainnet:
-  ansible-playbook playbooks/network.yml --extra-var="bor_version=v0.3.3 heimdall_version=v0.3.0 network=mainnet node_type=sentry" --list-hosts
+  ansible-playbook playbooks/network.yml --extra-var="bor_version=v0.3.7 heimdall_version=v0.3.3 network=mainnet node_type=sentry" --list-hosts
 
   # Testnet:
-  ansible-playbook playbooks/network.yml --extra-var="bor_version=v0.3.3 heimdall_version=v0.3.0 network=mumbai node_type=sentry" --list-hosts
+  ansible-playbook playbooks/network.yml --extra-var="bor_version=v0.3.7 heimdall_version=v0.3.3 network=mumbai node_type=sentry" --list-hosts
   ```
 
   <img src={useBaseUrl("img/network/full-node-mumbai.png")} />
@@ -77,10 +77,10 @@ Length in byte format - 4
 
   ```bash
   # Mainnet:
-  ansible-playbook playbooks/network.yml --extra-var="bor_version=v0.3.3 heimdall_version=v0.3.0 network=mainnet node_type=sentry"
+  ansible-playbook playbooks/network.yml --extra-var="bor_version=v0.3.7 heimdall_version=v0.3.3 network=mainnet node_type=sentry"
 
   # Testnet:
-  ansible-playbook playbooks/network.yml --extra-var="bor_version=v0.3.3 heimdall_version=v0.3.0 network=mumbai node_type=sentry"
+  ansible-playbook playbooks/network.yml --extra-var="bor_version=v0.3.7 heimdall_version=v0.3.3 network=mumbai node_type=sentry"
   ```
 
 - अगर आप किसी भी मुद्दे में रन बनाते हैं, तो पूरे सेटअप को using: करने को डिलीट करें और साफ करें :

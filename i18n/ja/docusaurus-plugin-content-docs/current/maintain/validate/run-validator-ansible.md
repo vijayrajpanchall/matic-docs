@@ -131,7 +131,7 @@ xxx.xxx.xx.xx | SUCCESS => {
 sentryノードのセットアップのテストランを行います。
 
 ```sh
-ansible-playbook -l sentry playbooks/network.yml --extra-var="bor_branch=v0.3.3 heimdall_branch=v0.3.0  network_version=mainnet-v1 node_type=sentry/sentry heimdall_network=mainnet" --list-hosts
+ansible-playbook -l sentry playbooks/network.yml --extra-var="bor_branch=v0.3.7 heimdall_branch=v0.3.3  network_version=mainnet-v1 node_type=sentry/sentry heimdall_network=mainnet" --list-hosts
 ```
 
 これは出力になります：
@@ -146,7 +146,7 @@ playbook: playbooks/network.yml
 sentyノード設定をsudo特権で実行します：
 
 ```sh
-ansible-playbook -l sentry playbooks/network.yml --extra-var="bor_branch=v0.3.3 heimdall_branch=v0.3.0  network_version=mainnet-v1 node_type=sentry/sentry heimdall_network=mainnet" --ask-become-pass
+ansible-playbook -l sentry playbooks/network.yml --extra-var="bor_branch=v0.3.7 heimdall_branch=v0.3.3  network_version=mainnet-v1 node_type=sentry/sentry heimdall_network=mainnet" --ask-become-pass
 ```
 
 セットアップが完了すると、端末に完了のメッセージが表示されます。
@@ -184,7 +184,7 @@ xxx.xxx.xx.xx | SUCCESS => {
 バリデータノード設定のテスト実行を行います：
 
 ```sh
-ansible-playbook -l validator playbooks/network.yml --extra-var="bor_branch=v0.3.3 heimdall_branch=v0.3.0 network_version=mainnet-v1 node_type=sentry/validator heimdall_network=mainnet" --list-hosts
+ansible-playbook -l validator playbooks/network.yml --extra-var="bor_branch=v0.3.7 heimdall_branch=v0.3.3 network_version=mainnet-v1 node_type=sentry/validator heimdall_network=mainnet" --list-hosts
 ```
 
 出力としてこれを取得する必要があります：
@@ -199,7 +199,7 @@ playbook: playbooks/network.yml
 sudo特権でバリデータノード設定を実行します：
 
 ```sh
-ansible-playbook -l validator playbooks/network.yml --extra-var="bor_branch=v0.3.3 heimdall_branch=v0.3.0  network_version=mainnet-v1 node_type=sentry/validator heimdall_network=mainnet" --ask-become-pass
+ansible-playbook -l validator playbooks/network.yml --extra-var="bor_branch=v0.3.7 heimdall_branch=v0.3.3  network_version=mainnet-v1 node_type=sentry/validator heimdall_network=mainnet" --ask-become-pass
 ```
 
 セットアップが完了すると、端末に完了のメッセージが表示されます。
@@ -307,7 +307,7 @@ Heimdallサービスはゼロから完全に同期するまでに数日かかり
 
 ### Heimdallサービスをスタート {#start-the-heimdall-service}
 
-最新バージョンである[Heimdall v.0.3.0](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.0)には、次のようないくつかの機能強化が含まれています：
+最新バージョンである[Heimdall v.0.3.3](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.3)には、次のようないくつかの機能強化が含まれています：
 1. 状態同期txsでデータサイズを制限するtxsは次のように：
     * **30Kb**：**バイト** として表現された場合
     * **60kb**： **文字列**として表現された場合。

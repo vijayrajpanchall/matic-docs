@@ -113,7 +113,7 @@ Cài đặt nhị phân cho cả sentry và máy xác thực.
 
 [Heimdall](/docs/pos/heimdall/overview) là lớp xác minh bằng chứng cổ phần chịu trách nhiệm kiểm tra sự đại diện của các khối Plasma với mạng lưới chính Ethereum.
 
-Phiên bản mới nhất, [Heimdall v.0.3.0](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.0), chứa một số cải tiến như :
+Phiên bản mới nhất, [Heimdall v.0.3.3](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.3), chứa một số cải tiến như :
 1. Giới hạn kích thước dữ liệu giao dịch đồng bộ trạng thái về:
     * **30Kb** tương đương **byte**
     * **60Kb** tương đương **string**.
@@ -145,7 +145,7 @@ git checkout RELEASE_TAG
 Ví dụ:
 
 ```sh
-git checkout v0.3.0
+git checkout v0.3.3
 ```
 
 Khi bạn đang sử dụng đúng bản phát hành, hãy cài đặt Heimdall:
@@ -189,7 +189,7 @@ git checkout RELEASE_TAG
 Ví dụ:
 
 ```sh
-git checkout v0.3.3
+git checkout v0.3.7
 ```
 
 Cài đặt Bor:

@@ -131,7 +131,7 @@ xxx.xxx.xx.xx | SUCCESS => {
 Führe einen Testlauf für die Einrichtung des Sentry-Knotens durch:
 
 ```sh
-ansible-playbook -l sentry playbooks/network.yml --extra-var="bor_branch=v0.3.3 heimdall_branch=v0.3.0  network_version=mainnet-v1 node_type=sentry/sentry heimdall_network=mainnet" --list-hosts
+ansible-playbook -l sentry playbooks/network.yml --extra-var="bor_branch=v0.3.7 heimdall_branch=v0.3.3  network_version=mainnet-v1 node_type=sentry/sentry heimdall_network=mainnet" --list-hosts
 ```
 
 Die Ausgabe wird wie folgt sein:
@@ -146,7 +146,7 @@ playbook: playbooks/network.yml
 Führe die Einrichtung des Sentry-Knotens mit sudo-Rechten durch:
 
 ```sh
-ansible-playbook -l sentry playbooks/network.yml --extra-var="bor_branch=v0.3.3 heimdall_branch=v0.3.0  network_version=mainnet-v1 node_type=sentry/sentry heimdall_network=mainnet" --ask-become-pass
+ansible-playbook -l sentry playbooks/network.yml --extra-var="bor_branch=v0.3.7 heimdall_branch=v0.3.3  network_version=mainnet-v1 node_type=sentry/sentry heimdall_network=mainnet" --ask-become-pass
 ```
 
 Sobald die Einrichtung abgeschlossen ist, wird auf dem Terminal eine Meldung über den Abschluss angezeigt.
@@ -184,7 +184,7 @@ xxx.xxx.xx.xx | SUCCESS => {
 Führe einen Testlauf für die Einrichtung des Prüfknotens durch:
 
 ```sh
-ansible-playbook -l validator playbooks/network.yml --extra-var="bor_branch=v0.3.3 heimdall_branch=v0.3.0 network_version=mainnet-v1 node_type=sentry/validator heimdall_network=mainnet" --list-hosts
+ansible-playbook -l validator playbooks/network.yml --extra-var="bor_branch=v0.3.7 heimdall_branch=v0.3.3 network_version=mainnet-v1 node_type=sentry/validator heimdall_network=mainnet" --list-hosts
 ```
 
 Du solltest folgende Ausgabe erhalten:
@@ -199,7 +199,7 @@ playbook: playbooks/network.yml
 Führe die Einrichtung des Prüfknotens mit sudo-Rechten durch:
 
 ```sh
-ansible-playbook -l validator playbooks/network.yml --extra-var="bor_branch=v0.3.3 heimdall_branch=v0.3.0  network_version=mainnet-v1 node_type=sentry/validator heimdall_network=mainnet" --ask-become-pass
+ansible-playbook -l validator playbooks/network.yml --extra-var="bor_branch=v0.3.7 heimdall_branch=v0.3.3  network_version=mainnet-v1 node_type=sentry/validator heimdall_network=mainnet" --ask-become-pass
 ```
 
 Sobald die Einrichtung abgeschlossen ist, wird auf dem Terminal eine Meldung über den Abschluss angezeigt.
@@ -307,7 +307,7 @@ Links zum Herunterladen von Snapshots findest du unter [Snapshots von Polygon Ch
 
 ### Starte den Heimdall-Dienst {#start-the-heimdall-service}
 
-Die neueste Version, [Heimdall v.0.3.0](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.0), enthält einige Verbesserungen wie:
+Die neueste Version, [Heimdall v.0.3.3](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.3), enthält einige Verbesserungen wie:
 1. Einschränkung der Datengröße in der state sync txs auf:
     * **30 kB** bei Darstellung in **Byte**
     * **60 kB** bei Darstellung als **String**.

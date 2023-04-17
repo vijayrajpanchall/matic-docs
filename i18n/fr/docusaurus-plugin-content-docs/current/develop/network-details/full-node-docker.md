@@ -144,7 +144,7 @@ sudo findmnt --verify --verbose
 Tout d'abord, assurons-nous que nous pouvons exécuter Heimdall avec docker. Exécutez la commande suivante:
 
 ```bash
-docker run -it 0xpolygon/heimdall:0.3.0 heimdallcli version
+docker run -it 0xpolygon/heimdall:0.3.3 heimdallcli version
 ```
 
 Si c'est la première fois que vous exécutez Heimdall avec Docker, il devrait récupérer automatiquement l'image requise et fournir les informations sur la version.
@@ -156,7 +156,7 @@ Si vous souhaitez vérifier les détails de l'image Heimdall ou trouver un tag d
 A ce stade, exécutons la `init`commande Heimdall  pour configurer notre répertoire personnel.
 
 ```bash
-docker run -v /mnt/data/heimdall:/heimdall-home:rw --entrypoint /usr/bin/heimdalld -it 0xpolygon/heimdall:0.3.0 init --home=/heimdall-home
+docker run -v /mnt/data/heimdall:/heimdall-home:rw --entrypoint /usr/bin/heimdalld -it 0xpolygon/heimdall:0.3.3 init --home=/heimdall-home
 ```
 
 cassons cette commande un peu au cas où quelque chose ne va pas.
@@ -171,7 +171,7 @@ cassons cette commande un peu au cas où quelque chose ne va pas.
 
 * Le commutateur `-it`est utilisé pour exécuter la commande de manière interactive.
 
-* Enfin, nous spécifions quelle image avec laquelle nous voulons exécuter `0xpolygon/heimdall:0.3.0`.
+* Enfin, nous spécifions quelle image avec laquelle nous voulons exécuter `0xpolygon/heimdall:0.3.3`.
 
 * Après cela, `init --home=/heimdall-home`ce sont des arguments passés à l'exécutable heimdalld. `init` est la commande que nous voulons exécuter et `--home` est utilisé pour spécifier l'emplacement du répertoire personnel.
 
@@ -252,7 +252,7 @@ docker network create polygon
 Nous allons commencer Heimdall. Exécutez la commande suivante:
 
 ```bash
-docker run -p 26657:26657 -p 26656:26656 -v /mnt/data/heimdall:/heimdall-home:rw --net polygon --name heimdall --entrypoint /usr/bin/heimdalld -d --restart unless-stopped  0xpolygon/heimdall:0.3.0 start --home=/heimdall-home
+docker run -p 26657:26657 -p 26656:26656 -v /mnt/data/heimdall:/heimdall-home:rw --net polygon --name heimdall --entrypoint /usr/bin/heimdalld -d --restart unless-stopped  0xpolygon/heimdall:0.3.3 start --home=/heimdall-home
 ```
 
 Beaucoup des morceaux de cette commande sembleront familiers. Parlons de ce qui est nouveau.
@@ -353,7 +353,7 @@ Dans cette phase initiale de configuration, il est important de prêter attentio
 Avant de commencer avec Bor, nous devons exécuter le serveur de repos Heimdall. Cette commande va démarrer une API REST que Bor utilise pour récupérer des informations de Heimdall. La commande pour démarrer le serveur est:
 
 ```bash
-docker run -p 1317:1317 -v /mnt/data/heimdall:/heimdall-home:rw --net polygon --name heimdallrest --entrypoint /usr/bin/heimdalld -d --restart unless-stopped 0xpolygon/heimdall:0.3.0 rest-server --home=/heimdall-home --node "tcp://heimdall:26657"
+docker run -p 1317:1317 -v /mnt/data/heimdall:/heimdall-home:rw --net polygon --name heimdallrest --entrypoint /usr/bin/heimdalld -d --restart unless-stopped 0xpolygon/heimdall:0.3.3 rest-server --home=/heimdall-home --node "tcp://heimdall:26657"
 ```
 
 Deux éléments de cette commande sont différents et méritent d'être notés. Au lieu d'exécuter la `start`commande , nous exécutons la `rest-server`commande. Aussi, nous passons `~–node “tcp://heimdall:26657”~`ce qui indique au serveur de repos comment communiquer avec Heimdall.
@@ -382,7 +382,7 @@ Vérifions le à `sha256 sum`nouveau pour ce fichier:
 Maintenant, nous devons créer un fichier de configuration par défaut pour démarrer Bor.
 
 ```bash
-docker run -it  0xpolygon/bor:0.3.3 dumpconfig | sudo tee /mnt/data/bor/config.toml
+docker run -it  0xpolygon/bor:0.3.7 dumpconfig | sudo tee /mnt/data/bor/config.toml
 ```
 
 Cette commande va générer un fichier .toml avec les paramètres par défaut. Nous allons apporter quelques modifications au fichier, alors ouvrez le avec votre éditeur préféré et faites quelques mises à jour. Note: nous affichons uniquement les lignes qui sont modifiées.
@@ -414,7 +414,7 @@ datadir = "/bor-home"
 
 À ce stade, nous devrions être prêts à commencer Bor. Nous allons utiliser cette commande:
 ```bash
-docker run -p 30303:30303 -p 8545:8545 -v /mnt/data/bor:/bor-home:rw --net polygon --name bor -d --restart unless-stopped  0xpolygon/bor:0.3.3 server --config /bor-home/config.toml
+docker run -p 30303:30303 -p 8545:8545 -v /mnt/data/bor:/bor-home:rw --net polygon --name bor -d --restart unless-stopped  0xpolygon/bor:0.3.7 server --config /bor-home/config.toml
 ```
 
 Si tout s'est bien passé, vous devriez voir beaucoup de fichiers journaux qui ressemblent à cela:

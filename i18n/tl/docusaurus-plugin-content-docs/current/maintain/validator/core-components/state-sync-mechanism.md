@@ -16,7 +16,7 @@ Kinukuha ng mga Validator na nasa [Heimdall](/docs/maintain/glossary.md#heimdall
 
 Natatanggap ng **receiver na kontrata** ang [IStateReceiver](https://github.com/maticnetwork/genesis-contracts/blob/master/contracts/IStateReceiver.sol), at nasa loob ng [onStateReceive](https://github.com/maticnetwork/genesis-contracts/blob/05556cfd91a6879a8190a6828428f50e4912ee1a/contracts/IStateReceiver.sol#L5) function ang custom logic.
 
-Ang pinakabagong bersyon, ang [Heimdall v.0.3.0](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.0), ay naglalaman ng ilang pagpapahusay tulad ng:
+Ang pinakabagong bersyon, ang [Heimdall v.0.3.3](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.3), ay naglalaman ng ilang pagpapahusay tulad ng:
 1. Paghihigpit sa laki ng data sa state sync txs sa:
     * **30Kb** kapag kinakatawan sa **bytes**
     * **60Kb** kapag kinakatawan sa **string**.

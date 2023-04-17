@@ -209,7 +209,7 @@ Beide Binärdateien müssen installiert und in der richtigen Reihenfolge ausgef�
 
 ### Heimdall {#heimdall}
 
-Installiere die neueste Version von Heimdall und verwandten Services. Vergewissere dich, dass du dich auf die richtige [Release-Version](https://github.com/maticnetwork/heimdall/releases) austauscht. Beachten Sie, dass die neueste Version, [Heimdall v.0.3.0](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.0), Verbesserungen enthält, wie:
+Installiere die neueste Version von Heimdall und verwandten Services. Vergewissere dich, dass du dich auf die richtige [Release-Version](https://github.com/maticnetwork/heimdall/releases) austauscht. Beachten Sie, dass die neueste Version, [Heimdall v.0.3.3](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.3), Verbesserungen enthält, wie:
 1. Einschränkung der Datengröße in der state sync txs auf:
     * **30 kB** bei Darstellung in **Byte**
     * **60Kb** wenn als **String** dargestellt
@@ -232,7 +232,7 @@ git clone https://github.com/maticnetwork/heimdall
 cd heimdall
 
 # Checkout to a proper version, for example
-git checkout v0.3.0
+git checkout v0.3.3
 git checkout <TAG OR BRANCH>
 make install
 source ~/.profile

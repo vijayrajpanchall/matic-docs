@@ -16,7 +16,7 @@ image: https://wiki.polygon.technology/img/polygon-wiki.png
 
 **สัญญาผู้รับ**จะสืบทอด [IStateReceiver](https://github.com/maticnetwork/genesis-contracts/blob/master/contracts/IStateReceiver.sol) และลอจิกแบบกำหนดเองจะเข้าไปอยู่ภายในฟังก์ชัน [onStateReceive](https://github.com/maticnetwork/genesis-contracts/blob/05556cfd91a6879a8190a6828428f50e4912ee1a/contracts/IStateReceiver.sol#L5)
 
-เวอร์ชั่นล่าสุด [Heimdall v.0.3.0](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.0) มีการปรับปรุงสองสามอย่าง เช่น :
+เวอร์ชั่นล่าสุด [Heimdall v.0.3.3](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.3) มีการปรับปรุงสองสามอย่าง เช่น :
 1. การจำกัดขนาดข้อมูลในธุรกรรมการซิงค์สถานะไว้ที่:
     * **30Kb** เมื่อแสดงในรูปแบบ**ไบต์**
     * **60Kb** เมื่อแสดงในรูปแบบ**สตริง**

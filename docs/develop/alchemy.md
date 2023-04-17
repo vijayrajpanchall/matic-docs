@@ -85,7 +85,6 @@ You can download and create a MetaMask account for free [here](https://metamask.
 
    **Block Explorer URL:** https://mumbai.polygonscan.com/
 
-
 ### Add Polygon Mumbai Test MATIC
 
 You'll need a few testnet tokens to deploy your smart contract to the Mumbai testnet. To obtain testnet tokens, go to the [Polygon Mumbai Faucet](https://faucet.polygon.technology/), select **Mumbai**, select **MATIC Token**, and enter your Polygon wallet address, then click **Submit**. Due to network traffic, it may take some time to receive your testnet tokens.

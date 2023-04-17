@@ -109,7 +109,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 [हेम्डल](/docs/pos/heimdall/overview) प्रूफ-ऑफ़-स्टेक का सत्यापन करने वाली लेयर है,
 यह एथेरेयम मेंनेट में प्लाज़्मा ब्लॉक को दिखाने के लिए चेकपॉइंटिंग के लिए ज़िम्मेदार है.
 
-नवीनतम संस्करण, [Heimdall v.0.3.0](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.0) में कुछ enhancements The शामिल हैं जैसे :
+नवीनतम संस्करण, [Heimdall v.0.3.3](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.3) में कुछ enhancements The शामिल हैं जैसे :
 1. स्टेट सिंक txs में डेटा के आकार को इतने तक प्रतिबंधित करना:
     * **30 Kb** जब **बाइट** में प्रस्तुत किया जाता है
     * **60 Kb** जब **स्ट्रिंग** के रूप में प्रस्तुत किया जाता है.
@@ -141,7 +141,7 @@ git checkout RELEASE_TAG
 उदाहरण के लिए:
 
 ```sh
-git checkout v0.3.0
+git checkout v0.3.3
 ```
 
 जब आप सही रिलीज़ पर हों, तब हेम्डल इंस्टॉल करें:
@@ -184,7 +184,7 @@ git checkout RELEASE_TAG
 उदाहरण के लिए:
 
 ```sh
-git checkout v0.3.3
+git checkout v0.3.7
 ```
 
 बोर इंस्टॉल करें:

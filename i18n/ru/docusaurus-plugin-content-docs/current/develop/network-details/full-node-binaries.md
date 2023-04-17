@@ -71,7 +71,7 @@ sudo ln -nfs ~/.go/bin/go /usr/bin/go
 
 ### Heimdall {#heimdall}
 
-Установите последнюю версию Heimdall и связанных с ним сервисов. Убедитесь, что вы checkout to the [correct version](https://github.com/maticnetwork/heimdall/releases). Обратите внимание, что последняя версия [Heimdall v.0.3.0](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.0) содержит следующие улучшения:
+Установите последнюю версию Heimdall и связанных с ним сервисов. Убедитесь, что вы checkout to the [correct version](https://github.com/maticnetwork/heimdall/releases). Обратите внимание, что последняя версия [Heimdall v.0.3.3](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.3) содержит следующие улучшения:
 1. Ограничение размера данных в транзакциях синхронизации состояний:
     * **30 КБ** при представлении в **байтах**.
     * **60Kb******
@@ -94,7 +94,7 @@ git clone https://github.com/maticnetwork/heimdall
 cd heimdall
 
 # Checkout to a proper version, for example
-git checkout v0.3.0
+git checkout v0.3.3
 git checkout <TAG OR BRANCH>
 make install
 source ~/.profile

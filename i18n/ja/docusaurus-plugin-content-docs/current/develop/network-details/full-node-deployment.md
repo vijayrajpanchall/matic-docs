@@ -39,7 +39,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 :::info Heimdallソースの強化
 
-最新のHeimdallバージョンである**[v.0.3.0](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.0)**には、いくつかの機能が追加されています。異なるバリデーターのコントラクトイベント間の遅延時間が**増加**し、メンバーが満たされないようにします。チェーンが進行を妨げる可能性のあるイベントがバーストした場合には、迅速に。
+最新のHeimdallバージョンである**[v.0.3.3](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.3)**には、いくつかの機能が追加されています。異なるバリデーターのコントラクトイベント間の遅延時間が**増加**し、メンバーが満たされないようにします。チェーンが進行を妨げる可能性のあるイベントがバーストした場合には、迅速に。
 
 さらに、**ステート同期のtxsで（バイトで表す場合）、60Kb（文字列として定義される場合）に制限されています。**例：
 
@@ -64,10 +64,10 @@ Length in byte format - 4
 
   ```bash
   # Mainnet:
-  ansible-playbook playbooks/network.yml --extra-var="bor_version=v0.3.3 heimdall_version=v0.3.0 network=mainnet node_type=sentry" --list-hosts
+  ansible-playbook playbooks/network.yml --extra-var="bor_version=v0.3.7 heimdall_version=v0.3.3 network=mainnet node_type=sentry" --list-hosts
 
   # Testnet:
-  ansible-playbook playbooks/network.yml --extra-var="bor_version=v0.3.3 heimdall_version=v0.3.0 network=mumbai node_type=sentry" --list-hosts
+  ansible-playbook playbooks/network.yml --extra-var="bor_version=v0.3.7 heimdall_version=v0.3.3 network=mumbai node_type=sentry" --list-hosts
   ```
 
   <img src={useBaseUrl("img/network/full-node-mumbai.png")} />
@@ -76,10 +76,10 @@ Length in byte format - 4
 
   ```bash
   # Mainnet:
-  ansible-playbook playbooks/network.yml --extra-var="bor_version=v0.3.3 heimdall_version=v0.3.0 network=mainnet node_type=sentry"
+  ansible-playbook playbooks/network.yml --extra-var="bor_version=v0.3.7 heimdall_version=v0.3.3 network=mainnet node_type=sentry"
 
   # Testnet:
-  ansible-playbook playbooks/network.yml --extra-var="bor_version=v0.3.3 heimdall_version=v0.3.0 network=mumbai node_type=sentry"
+  ansible-playbook playbooks/network.yml --extra-var="bor_version=v0.3.7 heimdall_version=v0.3.3 network=mumbai node_type=sentry"
   ```
 
 - 問題が発生した場合、設定全体を削除してクリーンする方法を説明します：

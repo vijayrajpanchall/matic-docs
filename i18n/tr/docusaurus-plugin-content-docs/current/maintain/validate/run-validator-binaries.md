@@ -110,7 +110,7 @@ Bu adımları farklı bir sırayla uygularsanız yapılandırma sorunlarıyla ka
 [Heimdall](/docs/pos/heimdall/overview) proof of stake (hisse kanıtı) doğrulayıcı katmanıdır
 Plasma bloklarının temsilinin Ethereum mainnet'e denetim noktası olarak işlenmesinden sorumludur.
 
-En son sürüm olan [Heimdall v.0.3.0](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.0) aşağıdaki gibi birkaç geliştirmeyi içerir:
+En son sürüm olan [Heimdall v.0.3.3](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.3) aşağıdaki gibi birkaç geliştirmeyi içerir:
 1. Durum senkronizasyon işlemlerinde veri boyutunu aşağıdakilerle kısıtlama:
     * **Bayt** cinsinden ifade edildiğinde **30 Kb**
     * **Dize** cinsinden ifade edildiğinde **60 Kb**.
@@ -142,7 +142,7 @@ burada `RELEASE_TAG`, kurduğunuz sürüm versiyonunun etiketidir.
 Örneğin:
 
 ```sh
-git checkout v0.3.0
+git checkout v0.3.3
 ```
 
 Doğru release'deyseniz (sürüm), Heimdall'ı kurun:
@@ -185,7 +185,7 @@ burada `RELEASE_TAG`, kurduğunuz sürüm versiyonunun etiketidir.
 Örneğin:
 
 ```sh
-git checkout v0.3.3
+git checkout v0.3.7
 ```
 
 Bor'u kurun:

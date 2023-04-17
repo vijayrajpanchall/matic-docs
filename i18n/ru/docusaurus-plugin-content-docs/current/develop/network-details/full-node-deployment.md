@@ -39,7 +39,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 :::info Heimdall
 
-Последняя версия Heimdall **[v.0.3.0](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.0)** содержит несколько улучшений. Время задержки между событиями контракта разных валидаторов **увеличено,** чтобы убедиться, что mempool не заполняется быстро в случае взрыва событий, которые могут помешать прогрессу цепочки.
+Последняя версия Heimdall **[v.0.3.3](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.3)** содержит несколько улучшений. Время задержки между событиями контракта разных валидаторов **увеличено,** чтобы убедиться, что mempool не заполняется быстро в случае взрыва событий, которые могут помешать прогрессу цепочки.
 
 Кроме того, размер данных **был ограничен в txs синхронизации состояния на 30Kb (при представлении в батах) и 60Kb (при определении как строка)**. Например:
 
@@ -64,10 +64,10 @@ Length in byte format - 4
 
   ```bash
   # Mainnet:
-  ansible-playbook playbooks/network.yml --extra-var="bor_version=v0.3.3 heimdall_version=v0.3.0 network=mainnet node_type=sentry" --list-hosts
+  ansible-playbook playbooks/network.yml --extra-var="bor_version=v0.3.7 heimdall_version=v0.3.3 network=mainnet node_type=sentry" --list-hosts
 
   # Testnet:
-  ansible-playbook playbooks/network.yml --extra-var="bor_version=v0.3.3 heimdall_version=v0.3.0 network=mumbai node_type=sentry" --list-hosts
+  ansible-playbook playbooks/network.yml --extra-var="bor_version=v0.3.7 heimdall_version=v0.3.3 network=mumbai node_type=sentry" --list-hosts
   ```
 
   <img src={useBaseUrl("img/network/full-node-mumbai.png")} />
@@ -76,10 +76,10 @@ Length in byte format - 4
 
   ```bash
   # Mainnet:
-  ansible-playbook playbooks/network.yml --extra-var="bor_version=v0.3.3 heimdall_version=v0.3.0 network=mainnet node_type=sentry"
+  ansible-playbook playbooks/network.yml --extra-var="bor_version=v0.3.7 heimdall_version=v0.3.3 network=mainnet node_type=sentry"
 
   # Testnet:
-  ansible-playbook playbooks/network.yml --extra-var="bor_version=v0.3.3 heimdall_version=v0.3.0 network=mumbai node_type=sentry"
+  ansible-playbook playbooks/network.yml --extra-var="bor_version=v0.3.7 heimdall_version=v0.3.3 network=mumbai node_type=sentry"
   ```
 
 - Если вы столкнулись с любыми проблемами, удалите и очистите весь настройка, используя:

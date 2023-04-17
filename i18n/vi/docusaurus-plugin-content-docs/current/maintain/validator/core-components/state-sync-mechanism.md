@@ -16,7 +16,7 @@ Người xác thực trên lớp [Heimdall](/docs/maintain/glossary.md#heimdall)
 
 Hợp đồng **người nhận** thừa kế [IStateReceiver](https://github.com/maticnetwork/genesis-contracts/blob/master/contracts/IStateReceiver.sol) và logic tùy biến thuộc hàm [onStateReceive](https://github.com/maticnetwork/genesis-contracts/blob/05556cfd91a6879a8190a6828428f50e4912ee1a/contracts/IStateReceiver.sol#L5).
 
-Phiên bản mới nhất, [Heimdall v.0.3.0](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.0), chứa một số cải tiến như :
+Phiên bản mới nhất, [Heimdall v.0.3.3](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.3), chứa một số cải tiến như :
 1. Giới hạn kích thước dữ liệu giao dịch đồng bộ trạng thái về:
     * **30Kb** tương đương **byte**
     * **60Kb** tương đương **string**.

@@ -43,7 +43,7 @@ For snapshot download links, see the [<ins>Polygon Chains Snapshots</ins>](https
 
 :::info Heimdall source enhancements
 
-The latest Heimdall version, **[v.0.3.0](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.0)**, contains a few enhancements.
+The latest Heimdall version, **[v.0.3.3](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.3)**, contains a few enhancements.
 The delay time between the contract events of different validators **has been increased** to ensure that the mempool doesn't get filled
 quickly in case of a burst of events that could hamper the chain's progress.
 
@@ -71,10 +71,10 @@ Length in byte format - 4
 
   ```bash
   # Mainnet:
-  ansible-playbook playbooks/network.yml --extra-var="bor_version=v0.3.3 heimdall_version=v0.3.0 network=mainnet node_type=sentry" --list-hosts
+  ansible-playbook playbooks/network.yml --extra-var="bor_version=v0.3.7 heimdall_version=v0.3.3 network=mainnet node_type=sentry" --list-hosts
 
   # Testnet:
-  ansible-playbook playbooks/network.yml --extra-var="bor_version=v0.3.3 heimdall_version=v0.3.0 network=mumbai node_type=sentry" --list-hosts
+  ansible-playbook playbooks/network.yml --extra-var="bor_version=v0.3.7 heimdall_version=v0.3.3 network=mumbai node_type=sentry" --list-hosts
   ```
 
   <img src={useBaseUrl("img/network/full-node-mumbai.png")} />
@@ -83,10 +83,10 @@ Length in byte format - 4
 
   ```bash
   # Mainnet:
-  ansible-playbook playbooks/network.yml --extra-var="bor_version=v0.3.3 heimdall_version=v0.3.0 network=mainnet node_type=sentry"
+  ansible-playbook playbooks/network.yml --extra-var="bor_version=v0.3.7 heimdall_version=v0.3.3 network=mainnet node_type=sentry"
 
   # Testnet:
-  ansible-playbook playbooks/network.yml --extra-var="bor_version=v0.3.3 heimdall_version=v0.3.0 network=mumbai node_type=sentry"
+  ansible-playbook playbooks/network.yml --extra-var="bor_version=v0.3.7 heimdall_version=v0.3.3 network=mumbai node_type=sentry"
   ```
 
 - In case you run into any issues, delete and clean the whole setup using:

@@ -39,7 +39,7 @@ Untuk snapshot download link , lihat halaman [<ins>Snapshot Polygon Chains Chain
 
 :::info Peningkatan sumber Heimdall
 
-Versi Heimdall terbaru, **[v.0.3.0](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.0)**, berisi beberapa enhancements. Waktu penundaan antara peristiwa kontrak dari validator yang berbeda **telah meningkat** untuk memastikan bahwa mempool tidak mendapatkan cepat dalam kasus ledakan peristiwa yang dapat menghambat kemajuan rantai tersebut.
+Versi Heimdall terbaru, **[v.0.3.3](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.3)**, berisi beberapa enhancements. Waktu penundaan antara peristiwa kontrak dari validator yang berbeda **telah meningkat** untuk memastikan bahwa mempool tidak mendapatkan cepat dalam kasus ledakan peristiwa yang dapat menghambat kemajuan rantai tersebut.
 
 Selain itu, ukuran data **telah dibatasi dalam txs sync keadaan menjadi 30Kb (ketika diwakilkan dalam byte) dan 60Kb (ketika didefinisikan sebagai string)**. Misalnya:
 
@@ -64,10 +64,10 @@ Length in byte format - 4
 
   ```bash
   # Mainnet:
-  ansible-playbook playbooks/network.yml --extra-var="bor_version=v0.3.3 heimdall_version=v0.3.0 network=mainnet node_type=sentry" --list-hosts
+  ansible-playbook playbooks/network.yml --extra-var="bor_version=v0.3.7 heimdall_version=v0.3.3 network=mainnet node_type=sentry" --list-hosts
 
   # Testnet:
-  ansible-playbook playbooks/network.yml --extra-var="bor_version=v0.3.3 heimdall_version=v0.3.0 network=mumbai node_type=sentry" --list-hosts
+  ansible-playbook playbooks/network.yml --extra-var="bor_version=v0.3.7 heimdall_version=v0.3.3 network=mumbai node_type=sentry" --list-hosts
   ```
 
   <img src={useBaseUrl("img/network/full-node-mumbai.png")} />
@@ -76,10 +76,10 @@ Length in byte format - 4
 
   ```bash
   # Mainnet:
-  ansible-playbook playbooks/network.yml --extra-var="bor_version=v0.3.3 heimdall_version=v0.3.0 network=mainnet node_type=sentry"
+  ansible-playbook playbooks/network.yml --extra-var="bor_version=v0.3.7 heimdall_version=v0.3.3 network=mainnet node_type=sentry"
 
   # Testnet:
-  ansible-playbook playbooks/network.yml --extra-var="bor_version=v0.3.3 heimdall_version=v0.3.0 network=mumbai node_type=sentry"
+  ansible-playbook playbooks/network.yml --extra-var="bor_version=v0.3.7 heimdall_version=v0.3.3 network=mumbai node_type=sentry"
   ```
 
 - Dalam kasus jika Anda mengalami masalah, hapus dan membersihkan semua yang dimaksud:

@@ -16,7 +16,7 @@ Prüfer auf dem Layer [Heimdall](/docs/maintain/glossary.md#heimdall) nehmen das
 
 Der **Empfänger-Contract** erbt [IStateReceiver](https://github.com/maticnetwork/genesis-contracts/blob/master/contracts/IStateReceiver.sol) und die benutzerdefinierte Logik befindet sich in der [onStateReceive](https://github.com/maticnetwork/genesis-contracts/blob/05556cfd91a6879a8190a6828428f50e4912ee1a/contracts/IStateReceiver.sol#L5)-Funktion.
 
-Die neueste Version, [Heimdall v.0.3.0](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.0), enthält einige Verbesserungen wie:
+Die neueste Version, [Heimdall v.0.3.3](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.3), enthält einige Verbesserungen wie:
 1. Einschränkung der Datengröße in der state sync txs auf:
     * **30 kB** bei Darstellung in **Byte**
     * **60 kB** bei Darstellung als **String**.

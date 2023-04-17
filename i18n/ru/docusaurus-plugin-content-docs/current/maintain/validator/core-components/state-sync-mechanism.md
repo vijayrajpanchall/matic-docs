@@ -16,7 +16,7 @@ image: https://wiki.polygon.technology/img/polygon-wiki.png
 
 **Контракт получателя** наследует [IStateReceiver](https://github.com/maticnetwork/genesis-contracts/blob/master/contracts/IStateReceiver.sol), а пользовательская логика располагается внутри функции [onStateReceive](https://github.com/maticnetwork/genesis-contracts/blob/05556cfd91a6879a8190a6828428f50e4912ee1a/contracts/IStateReceiver.sol#L5).
 
-Последняя версия [Heimdall v.0.3.0](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.0) содержит несколько улучшений, таких как:
+Последняя версия [Heimdall v.0.3.3](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.3) содержит несколько улучшений, таких как:
 1. Ограничение размера данных в транзакциях синхронизации состояний:
     * **30 КБ** при представлении в **байтах**.
     * **60 КБ** при представлении в виде **строки**.

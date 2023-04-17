@@ -16,7 +16,7 @@ Validator di lapisan [Heimdall](/docs/maintain/glossary.md#heimdall) mengambil p
 
 **Kontrak penerima** mewarisi [IStateReceiver](https://github.com/maticnetwork/genesis-contracts/blob/master/contracts/IStateReceiver.sol), dan logika kustom berada di dalam fungsi [onStateReceive](https://github.com/maticnetwork/genesis-contracts/blob/05556cfd91a6879a8190a6828428f50e4912ee1a/contracts/IStateReceiver.sol#L5).
 
-Versi terbaru, [Heimdall v.0.3.0](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.0), berisi beberapa perbaikan seperti:
+Versi terbaru, [Heimdall v.0.3.3](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.3), berisi beberapa perbaikan seperti:
 1. Membatasi ukuran data dalam transaksi sinkronisasi kondisi menjadi sebesar:
     * **30 Kb** ketika direpresentasikan dalam **byte**
     * **60 Kb** ketika direpresentasikan sebagai **string**.

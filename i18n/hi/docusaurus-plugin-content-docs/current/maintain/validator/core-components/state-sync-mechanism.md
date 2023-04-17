@@ -16,7 +16,7 @@ image: https://wiki.polygon.technology/img/polygon-wiki.png
 
 **पाने वाले के अनुबंध**, में [आईस्टेटररिसीवर](https://github.com/maticnetwork/genesis-contracts/blob/master/contracts/IStateReceiver.sol), और कस्टम लॉजिक जो [ऑनस्टेटरिसीव](https://github.com/maticnetwork/genesis-contracts/blob/05556cfd91a6879a8190a6828428f50e4912ee1a/contracts/IStateReceiver.sol#L5) फ़ंक्शन में मौजूद होते हैं, शामिल होते हैं.
 
-नवीनतम संस्करण, [Heimdall v.0.3.0](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.0) में कुछ enhancements The शामिल हैं जैसे :
+नवीनतम संस्करण, [Heimdall v.0.3.3](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.3) में कुछ enhancements The शामिल हैं जैसे :
 1. स्टेट सिंक txs में डेटा के आकार को इतने तक प्रतिबंधित करना:
     * **30 Kb** जब **बाइट** में प्रस्तुत किया जाता है
     * **60 Kb** जब **स्ट्रिंग** के रूप में प्रस्तुत किया जाता है.

@@ -135,7 +135,7 @@ xxx.xxx.xx.xx | SUCCESS => {
 Lakukan uji coba pengaturan node sentry:
 
 ```sh
-ansible-playbook -l sentry playbooks/network.yml --extra-var="bor_branch=v0.3.3 heimdall_branch=v0.3.0  network_version=mainnet-v1 node_type=sentry/sentry heimdall_network=mainnet" --list-hosts
+ansible-playbook -l sentry playbooks/network.yml --extra-var="bor_branch=v0.3.7 heimdall_branch=v0.3.3  network_version=mainnet-v1 node_type=sentry/sentry heimdall_network=mainnet" --list-hosts
 ```
 
 Keluarannya adalah:
@@ -150,7 +150,7 @@ playbook: playbooks/network.yml
 Jalankan pengaturan node sentry dengan privilese sudo:
 
 ```sh
-ansible-playbook -l sentry playbooks/network.yml --extra-var="bor_branch=v0.3.3 heimdall_branch=v0.3.0  network_version=mainnet-v1 node_type=sentry/sentry heimdall_network=mainnet" --ask-become-pass
+ansible-playbook -l sentry playbooks/network.yml --extra-var="bor_branch=v0.3.7 heimdall_branch=v0.3.3  network_version=mainnet-v1 node_type=sentry/sentry heimdall_network=mainnet" --ask-become-pass
 ```
 
 Setelah pengaturan selesai, Anda akan melihat pesan penyelesaian di terminal.
@@ -188,7 +188,7 @@ xxx.xxx.xx.xx | SUCCESS => {
 Lakukan uji coba pengaturan node validator:
 
 ```sh
-ansible-playbook -l validator playbooks/network.yml --extra-var="bor_branch=v0.3.3 heimdall_branch=v0.3.0 network_version=mainnet-v1 node_type=sentry/validator heimdall_network=mainnet" --list-hosts
+ansible-playbook -l validator playbooks/network.yml --extra-var="bor_branch=v0.3.7 heimdall_branch=v0.3.3 network_version=mainnet-v1 node_type=sentry/validator heimdall_network=mainnet" --list-hosts
 ```
 
 Anda akan mendapatkan keluaran ini:
@@ -203,7 +203,7 @@ playbook: playbooks/network.yml
 Jalankan pengaturan node validator dengan privilese sudo:
 
 ```sh
-ansible-playbook -l validator playbooks/network.yml --extra-var="bor_branch=v0.3.3 heimdall_branch=v0.3.0  network_version=mainnet-v1 node_type=sentry/validator heimdall_network=mainnet" --ask-become-pass
+ansible-playbook -l validator playbooks/network.yml --extra-var="bor_branch=v0.3.7 heimdall_branch=v0.3.3  network_version=mainnet-v1 node_type=sentry/validator heimdall_network=mainnet" --ask-become-pass
 ```
 
 Setelah pengaturan selesai, Anda akan melihat pesan penyelesaian di terminal.
@@ -311,7 +311,7 @@ Untuk tautan unduhan snapshot, lihat [Snapshot Rantai Polygon](https://snapshot.
 
 ### Memulai Layanan Heimdall {#start-the-heimdall-service}
 
-Versi terbaru, [Heimdall v.0.3.0](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.0), berisi beberapa perbaikan seperti:
+Versi terbaru, [Heimdall v.0.3.3](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.3), berisi beberapa perbaikan seperti:
 1. Membatasi ukuran data dalam transaksi sinkronisasi kondisi menjadi sebesar:
     * **30 Kb** ketika direpresentasikan dalam **byte**
     * **60 Kb** ketika direpresentasikan sebagai **string**.

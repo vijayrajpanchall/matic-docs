@@ -144,7 +144,7 @@ sudo findmnt --verify --verbose
 पहले आइए, सुनिश्चित करें कि हम हेम्डल को डॉकर के साथ रन कर सकते हैं. नीचे दी गई कमांड रन करें:
 
 ```bash
-docker run -it 0xpolygon/heimdall:0.3.0 heimdallcli version
+docker run -it 0xpolygon/heimdall:0.3.3 heimdallcli version
 ```
 
 अगर यह पहली बार है जब आपने हेम्डल को डॉकर के साथ रन किया है, तो इसे आवश्यक इमेज को अपने आप खींच लेना चाहिए और इसके वर्ज़न की जानकारी का आउटपुट देना चाहिए.
@@ -156,7 +156,7 @@ docker run -it 0xpolygon/heimdall:0.3.0 heimdallcli version
 इस बिंदु पर आइए, अपनी होम डायरेक्टरी को सेट करने के लिए हेम्डल `init` कमांड को रन करें.
 
 ```bash
-docker run -v /mnt/data/heimdall:/heimdall-home:rw --entrypoint /usr/bin/heimdalld -it 0xpolygon/heimdall:0.3.0 init --home=/heimdall-home
+docker run -v /mnt/data/heimdall:/heimdall-home:rw --entrypoint /usr/bin/heimdalld -it 0xpolygon/heimdall:0.3.3 init --home=/heimdall-home
 ```
 
 इस कमांड को कुछ भी गलत हो जाने पर नीचे कर दिया जाता है.
@@ -171,7 +171,7 @@ docker run -v /mnt/data/heimdall:/heimdall-home:rw --entrypoint /usr/bin/heimdal
 
 * स्विच का इस्तेमाल कमांड को इंटरएक्टिव रूप से चलाने के लिए किया जाता `-it`है.
 
-* अंत में हम निर्दिष्ट कर रहे हैं कि हम किस इमेज को लेकर चलना चाहते `0xpolygon/heimdall:0.3.0`हैं.
+* अंत में हम निर्दिष्ट कर रहे हैं कि हम किस इमेज को लेकर चलना चाहते `0xpolygon/heimdall:0.3.3`हैं.
 
 * उसके बाद `init --home=/heimdall-home` वे आर्ग्युमेंट हैं जो हेम्डल आईडी एक्जीक्यूटेबल को पास की जा रही हैं. `init` वह कमांड है जिसे हम रन करना चाहते हैं और `--home`.को होम डायरेक्टरी की लोकेशन को स्पष्ट करने के लिए इस्तेमाल जाता है.
 
@@ -252,7 +252,7 @@ docker network create polygon
 अब हम हेम्डल शुरू करने जा रहे हैं. नीचे दी गई कमांड रन करें:
 
 ```bash
-docker run -p 26657:26657 -p 26656:26656 -v /mnt/data/heimdall:/heimdall-home:rw --net polygon --name heimdall --entrypoint /usr/bin/heimdalld -d --restart unless-stopped  0xpolygon/heimdall:0.3.0 start --home=/heimdall-home
+docker run -p 26657:26657 -p 26656:26656 -v /mnt/data/heimdall:/heimdall-home:rw --net polygon --name heimdall --entrypoint /usr/bin/heimdalld -d --restart unless-stopped  0xpolygon/heimdall:0.3.3 start --home=/heimdall-home
 ```
 
 इस कमांड के कई हिस्से परिचित दिखेंगे. तो आइए बात करें कि क्या नया है.
@@ -353,7 +353,7 @@ curl localhost:26657/status
 बोर के साथ शुरू करने से पहले, हमें हेम्डल रेस्ट सर्वर को रन करने की ज़रुरत है. यह कमांड एक REST API शुरू करेगी जो बोर, हेम्डल से जानकारी को रिट्राइव करने के लिए इस्तेमाल करता है. सर्वर शुरू करने की कमांड है:
 
 ```bash
-docker run -p 1317:1317 -v /mnt/data/heimdall:/heimdall-home:rw --net polygon --name heimdallrest --entrypoint /usr/bin/heimdalld -d --restart unless-stopped 0xpolygon/heimdall:0.3.0 rest-server --home=/heimdall-home --node "tcp://heimdall:26657"
+docker run -p 1317:1317 -v /mnt/data/heimdall:/heimdall-home:rw --net polygon --name heimdallrest --entrypoint /usr/bin/heimdalld -d --restart unless-stopped 0xpolygon/heimdall:0.3.3 rest-server --home=/heimdall-home --node "tcp://heimdall:26657"
 ```
 
 इस कमांड के दो टुकड़े हैं, जो अलग हैं और जुड़ने लायक हैं. `start` कमांड को रन करने के बजाय, हम `rest-server` कमांड को रन कर रहे हैं. इसके अलावा, हम `~–node “tcp://heimdall:26657”~` को पास कर रहे हैं जो बाकी सर्वर को बताता है कि हेम्डल के साथ कैसे संचार किया जाए.
@@ -382,7 +382,7 @@ sudo curl -o /mnt/data/bor/genesis.json 'https://raw.githubusercontent.com/matic
 अब हमें a करने के लिए एक डिफॉल्ट कॉन्फिग फाइल बनाना होगा.
 
 ```bash
-docker run -it  0xpolygon/bor:0.3.3 dumpconfig | sudo tee /mnt/data/bor/config.toml
+docker run -it  0xpolygon/bor:0.3.7 dumpconfig | sudo tee /mnt/data/bor/config.toml
 ```
 
 यह कमांड डिफॉल्ट सेटिंग के साथ एक .toml फ़ाइल उत्पन्न करने जा रहा है. हम फ़ाइल में कुछ बदलाव करने जा रहे हैं, इसलिए इसे अपने पसंदीदा एडिटर के साथ खोल दें और कुछ अपडेट करें. नोट: हम केवल उन लाइनों को दिखा रहे हैं जो बदल रहे हैं.
@@ -414,7 +414,7 @@ datadir = "/bor-home"
 
 इस बिंदु पर, हमें बोर को शुरू करने के लिए तैयार रहना चाहिए. हम इस कमांड का इस्तेमाल करेंगे:
 ```bash
-docker run -p 30303:30303 -p 8545:8545 -v /mnt/data/bor:/bor-home:rw --net polygon --name bor -d --restart unless-stopped  0xpolygon/bor:0.3.3 server --config /bor-home/config.toml
+docker run -p 30303:30303 -p 8545:8545 -v /mnt/data/bor:/bor-home:rw --net polygon --name bor -d --restart unless-stopped  0xpolygon/bor:0.3.7 server --config /bor-home/config.toml
 ```
 
 अगर सब कुछ ठीक से चला गया तो आपको ऐसे लॉग्स को देखने के लिए चाहिए जो इस तरह से दिखते हैं:

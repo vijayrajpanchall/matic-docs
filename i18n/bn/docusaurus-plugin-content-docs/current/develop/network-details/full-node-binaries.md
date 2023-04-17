@@ -71,7 +71,7 @@ Polygon নোডে 2টি স্তর রয়েছে: Heimdall এবং
 
 ### Heimdall {#heimdall}
 
-Heimdall এবং সংশ্লিষ্ট পরিষেবাদির সর্বশেষ সংস্করণ ইনস্টল করুন। আপনি সঠিক [রিলিজ সংস্করণ](https://github.com/maticnetwork/heimdall/releases)-এ চেকআউট করতে ভুলবেন না। মনে রাখবেন যে সর্বশেষ সংস্করণ, [Heimdall v.0.3.0](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.0), যেমন উন্নত রয়েছে:
+Heimdall এবং সংশ্লিষ্ট পরিষেবাদির সর্বশেষ সংস্করণ ইনস্টল করুন। আপনি সঠিক [রিলিজ সংস্করণ](https://github.com/maticnetwork/heimdall/releases)-এ চেকআউট করতে ভুলবেন না। মনে রাখবেন যে সর্বশেষ সংস্করণ, [Heimdall v.0.3.3](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.3), যেমন উন্নত রয়েছে:
 1. স্টেট সিঙ্ক txs-এ ডেটার আকার সীমিত করে দাঁড়িয়েছে:
     * **30Kb** যখন **বাইটস** এ উপস্থাপন করা হয়
     * **60Kb** যখন **স্ট্রিং** হিসাবে উপস্থাপন করা হয়
@@ -94,7 +94,7 @@ git clone https://github.com/maticnetwork/heimdall
 cd heimdall
 
 # Checkout to a proper version, for example
-git checkout v0.3.0
+git checkout v0.3.3
 git checkout <TAG OR BRANCH>
 make install
 source ~/.profile

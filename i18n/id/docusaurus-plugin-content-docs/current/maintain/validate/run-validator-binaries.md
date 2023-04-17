@@ -111,7 +111,7 @@ Instal biner untuk mesin sentry dan validator.
 [Heimdall](/docs/pos/heimdall/overview) adalah lapisan pemverifikasi proof-of-stake
 bertanggung jawab untuk melakukan pemeriksaan titik representasi blok Plasma ke Ethereum mainnet.
 
-Versi terbaru, [Heimdall v.0.3.0](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.0), berisi beberapa perbaikan seperti:
+Versi terbaru, [Heimdall v.0.3.3](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.3), berisi beberapa perbaikan seperti:
 1. Membatasi ukuran data dalam transaksi sinkronisasi kondisi menjadi sebesar:
     * **30 Kb** ketika direpresentasikan dalam **byte**
     * **60 Kb** ketika direpresentasikan sebagai **string**.
@@ -143,7 +143,7 @@ di mana `RELEASE_TAG` adalah tag dari versi rilis yang Anda instal.
 Misalnya:
 
 ```sh
-git checkout v0.3.0
+git checkout v0.3.3
 ```
 
 Setelah Anda berada di rilis yang benar, instal Heimdall:
@@ -186,7 +186,7 @@ di mana `RELEASE_TAG` adalah tag dari versi rilis yang Anda instal.
 Misalnya:
 
 ```sh
-git checkout v0.3.3
+git checkout v0.3.7
 ```
 
 Instal Bor:

@@ -135,7 +135,7 @@ xxx.xxx.xx.xx | SUCCESS => {
 Выполните тестовый запуск сентри-нода:
 
 ```sh
-ansible-playbook -l sentry playbooks/network.yml --extra-var="bor_branch=v0.3.3 heimdall_branch=v0.3.0  network_version=mainnet-v1 node_type=sentry/sentry heimdall_network=mainnet" --list-hosts
+ansible-playbook -l sentry playbooks/network.yml --extra-var="bor_branch=v0.3.7 heimdall_branch=v0.3.3  network_version=mainnet-v1 node_type=sentry/sentry heimdall_network=mainnet" --list-hosts
 ```
 
 В результате вы получите следующее:
@@ -150,7 +150,7 @@ playbook: playbooks/network.yml
 Запустите установку сентри-нода с привилегиями sudo:
 
 ```sh
-ansible-playbook -l sentry playbooks/network.yml --extra-var="bor_branch=v0.3.3 heimdall_branch=v0.3.0  network_version=mainnet-v1 node_type=sentry/sentry heimdall_network=mainnet" --ask-become-pass
+ansible-playbook -l sentry playbooks/network.yml --extra-var="bor_branch=v0.3.7 heimdall_branch=v0.3.3  network_version=mainnet-v1 node_type=sentry/sentry heimdall_network=mainnet" --ask-become-pass
 ```
 
 После установки вы увидите сообщение о ее завершении в терминале.
@@ -188,7 +188,7 @@ xxx.xxx.xx.xx | SUCCESS => {
 Выполните тестовый запуск узла проверки:
 
 ```sh
-ansible-playbook -l validator playbooks/network.yml --extra-var="bor_branch=v0.3.3 heimdall_branch=v0.3.0 network_version=mainnet-v1 node_type=sentry/validator heimdall_network=mainnet" --list-hosts
+ansible-playbook -l validator playbooks/network.yml --extra-var="bor_branch=v0.3.7 heimdall_branch=v0.3.3 network_version=mainnet-v1 node_type=sentry/validator heimdall_network=mainnet" --list-hosts
 ```
 
 В результате вы должны получить следующее:
@@ -203,7 +203,7 @@ playbook: playbooks/network.yml
 Запустите установку узла проверки с привилегиями sudo:
 
 ```sh
-ansible-playbook -l validator playbooks/network.yml --extra-var="bor_branch=v0.3.3 heimdall_branch=v0.3.0  network_version=mainnet-v1 node_type=sentry/validator heimdall_network=mainnet" --ask-become-pass
+ansible-playbook -l validator playbooks/network.yml --extra-var="bor_branch=v0.3.7 heimdall_branch=v0.3.3  network_version=mainnet-v1 node_type=sentry/validator heimdall_network=mainnet" --ask-become-pass
 ```
 
 После установки вы увидите сообщение о ее завершении в терминале.
@@ -311,7 +311,7 @@ ansible-playbook -l validator playbooks/clean.yml
 
 ### Запуск службы Heimdall {#start-the-heimdall-service}
 
-Последняя версия [Heimdall v.0.3.0](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.0) содержит несколько улучшений, таких как:
+Последняя версия [Heimdall v.0.3.3](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.3) содержит несколько улучшений, таких как:
 1. Ограничение размера данных в транзакциях синхронизации состояний:
     * **30 КБ** при представлении в **байтах**.
     * **60 КБ** при представлении в виде **строки**.

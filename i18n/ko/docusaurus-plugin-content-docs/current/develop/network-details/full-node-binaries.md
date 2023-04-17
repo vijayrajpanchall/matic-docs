@@ -71,7 +71,7 @@ Polygon 노드는 2층으로 구성됩니다. Heimdall은 이더리움 네트워
 
 ### Heimdall {#heimdall}
 
-Heimdall 및 관련 서비스의 최신 버전을 설치하십시오. 올바른 [릴리스 버전에](https://github.com/maticnetwork/heimdall/releases) 체크 아웃을 확인하십시오. 최신 버전인 [Heimdall](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.0) v.0.3.0에 대한 메모에 다음과 같은 개선문이 포함되어 있습니다.
+Heimdall 및 관련 서비스의 최신 버전을 설치하십시오. 올바른 [릴리스 버전에](https://github.com/maticnetwork/heimdall/releases) 체크 아웃을 확인하십시오. 최신 버전인 [Heimdall](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.3) v.0.3.3에 대한 메모에 다음과 같은 개선문이 포함되어 있습니다.
 1. 상태 동기화 트랜잭션의 데이터 크기를 다음과 같이 제한합니다.
     * **30Kb** - **바이트**로 표시되는 경우
     * **문자열로** 나타낼 때 **60Kb**
@@ -94,7 +94,7 @@ git clone https://github.com/maticnetwork/heimdall
 cd heimdall
 
 # Checkout to a proper version, for example
-git checkout v0.3.0
+git checkout v0.3.3
 git checkout <TAG OR BRANCH>
 make install
 source ~/.profile

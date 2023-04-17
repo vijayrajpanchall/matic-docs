@@ -16,7 +16,7 @@ image: https://wiki.polygon.technology/img/polygon-wiki.png
 
 **Alıcı sözleşmesi** [IStateReceiver](https://github.com/maticnetwork/genesis-contracts/blob/master/contracts/IStateReceiver.sol)'ı devralır ve özel mantık [onStateReceive](https://github.com/maticnetwork/genesis-contracts/blob/05556cfd91a6879a8190a6828428f50e4912ee1a/contracts/IStateReceiver.sol#L5) fonksiyonu içinde bulunur.
 
-En son sürüm olan [Heimdall v.0.3.0](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.0) aşağıdaki gibi birkaç geliştirmeyi içerir:
+En son sürüm olan [Heimdall v.0.3.3](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.3) aşağıdaki gibi birkaç geliştirmeyi içerir:
 1. Durum senkronizasyon işlemlerinde veri boyutunu aşağıdakilerle kısıtlama:
     * **Bayt** cinsinden ifade edildiğinde **30 Kb**
     * **Dize** cinsinden ifade edildiğinde **60 Kb**.

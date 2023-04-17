@@ -135,7 +135,7 @@ xxx.xxx.xx.xx | SUCCESS => {
 ทำการทดสอบการทำงานหลังจากติดตั้งโหนด Sentry:
 
 ```sh
-ansible-playbook -l sentry playbooks/network.yml --extra-var="bor_branch=v0.3.3 heimdall_branch=v0.3.0  network_version=mainnet-v1 node_type=sentry/sentry heimdall_network=mainnet" --list-hosts
+ansible-playbook -l sentry playbooks/network.yml --extra-var="bor_branch=v0.3.7 heimdall_branch=v0.3.3  network_version=mainnet-v1 node_type=sentry/sentry heimdall_network=mainnet" --list-hosts
 ```
 
 จะได้ผลลัพธ์แบบนี้:
@@ -150,7 +150,7 @@ playbook: playbooks/network.yml
 เรียกใช้การติดตั้งโหนด Sentry ด้วยสิทธิ์แบบ Sudo:
 
 ```sh
-ansible-playbook -l sentry playbooks/network.yml --extra-var="bor_branch=v0.3.3 heimdall_branch=v0.3.0  network_version=mainnet-v1 node_type=sentry/sentry heimdall_network=mainnet" --ask-become-pass
+ansible-playbook -l sentry playbooks/network.yml --extra-var="bor_branch=v0.3.7 heimdall_branch=v0.3.3  network_version=mainnet-v1 node_type=sentry/sentry heimdall_network=mainnet" --ask-become-pass
 ```
 
 เมื่อการติดตั้งเสร็จสมบูรณ์ คุณจะเห็นข้อความแสดงการแล้วเสร็จบนเครื่องเทอร์มินัล
@@ -188,7 +188,7 @@ xxx.xxx.xx.xx | SUCCESS => {
 ทำการทดสอบการทำงานหลังจากติดตั้งโหนดผู้ตรวจสอบความถูกต้อง:
 
 ```sh
-ansible-playbook -l validator playbooks/network.yml --extra-var="bor_branch=v0.3.3 heimdall_branch=v0.3.0 network_version=mainnet-v1 node_type=sentry/validator heimdall_network=mainnet" --list-hosts
+ansible-playbook -l validator playbooks/network.yml --extra-var="bor_branch=v0.3.7 heimdall_branch=v0.3.3 network_version=mainnet-v1 node_type=sentry/validator heimdall_network=mainnet" --list-hosts
 ```
 
 คุณควรได้รับเป็นผลลัพธ์ดังต่อไปนี้:
@@ -203,7 +203,7 @@ playbook: playbooks/network.yml
 เรียกใช้การติดตั้งโหนดผู้ตรวจสอบการทำธุรกรรมด้วยสิทธิ์แบบ Sudo:
 
 ```sh
-ansible-playbook -l validator playbooks/network.yml --extra-var="bor_branch=v0.3.3 heimdall_branch=v0.3.0  network_version=mainnet-v1 node_type=sentry/validator heimdall_network=mainnet" --ask-become-pass
+ansible-playbook -l validator playbooks/network.yml --extra-var="bor_branch=v0.3.7 heimdall_branch=v0.3.3  network_version=mainnet-v1 node_type=sentry/validator heimdall_network=mainnet" --ask-become-pass
 ```
 
 เมื่อการติดตั้งเสร็จสมบูรณ์ คุณจะเห็นข้อความแสดงการแล้วเสร็จบนเครื่องเทอร์มินัล
@@ -311,7 +311,7 @@ ansible-playbook -l validator playbooks/clean.yml
 
 ### เริ่มบริการ Heimdall {#start-the-heimdall-service}
 
-เวอร์ชั่นล่าสุด [Heimdall v.0.3.0](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.0) มีการปรับปรุงสองสามอย่าง เช่น :
+เวอร์ชั่นล่าสุด [Heimdall v.0.3.3](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.3) มีการปรับปรุงสองสามอย่าง เช่น :
 1. การจำกัดขนาดข้อมูลในธุรกรรมการซิงค์สถานะไว้ที่:
     * **30Kb** เมื่อแสดงในรูปแบบ**ไบต์**
     * **60Kb** เมื่อแสดงในรูปแบบ**สตริง**

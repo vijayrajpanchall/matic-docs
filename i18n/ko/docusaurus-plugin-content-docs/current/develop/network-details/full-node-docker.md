@@ -144,7 +144,7 @@ sudo findmnt --verify --verbose
 먼저 Docker로 Heimdall을 실행할 수 있는지 확인해봅니다. 다음 명령어를 실행합니다.
 
 ```bash
-docker run -it 0xpolygon/heimdall:0.3.0 heimdallcli version
+docker run -it 0xpolygon/heimdall:0.3.3 heimdallcli version
 ```
 
 Docker를 사용하여 Heimdall을 실행하는 것이 처음인 경우 Heimdall는 필요한 이미지를 자동으로 가져와 버전 정보를 출력합니다.
@@ -156,7 +156,7 @@ Heimdall 이미지의 세부 정보를 확인하거나 다른 태그를 찾으�
 이제 Heimdall `init` 명령어를 실행하여 홈 디렉터리를 설정합니다.
 
 ```bash
-docker run -v /mnt/data/heimdall:/heimdall-home:rw --entrypoint /usr/bin/heimdalld -it 0xpolygon/heimdall:0.3.0 init --home=/heimdall-home
+docker run -v /mnt/data/heimdall:/heimdall-home:rw --entrypoint /usr/bin/heimdalld -it 0xpolygon/heimdall:0.3.3 init --home=/heimdall-home
 ```
 
 어떤 일이 잘못되면 이 명령을 조금 위반합시다.
@@ -171,7 +171,7 @@ docker run -v /mnt/data/heimdall:/heimdall-home:rw --entrypoint /usr/bin/heimdal
 
 * 이 `-it`스위치는 명령을 상호 작용적으로 실행하는 데 사용됩니다.
 
-* 마지막으로 우리는 어떤 이미지를 실행할지 `0xpolygon/heimdall:0.3.0`지정합니다.
+* 마지막으로 우리는 어떤 이미지를 실행할지 `0xpolygon/heimdall:0.3.3`지정합니다.
 
 * 이후 `init --home=/heimdall-home`은 Heimdall 실행 파일로 전달되는 인수입니다. `init`은 실행할 명령어고 `--home`은 홈 디렉터리의 위치를 지정하는 데 사용됩니다.
 
@@ -252,7 +252,7 @@ docker network create polygon
 이제 Heimdall을 시작하겠습니다. 다음 명령어를 실행합니다.
 
 ```bash
-docker run -p 26657:26657 -p 26656:26656 -v /mnt/data/heimdall:/heimdall-home:rw --net polygon --name heimdall --entrypoint /usr/bin/heimdalld -d --restart unless-stopped  0xpolygon/heimdall:0.3.0 start --home=/heimdall-home
+docker run -p 26657:26657 -p 26656:26656 -v /mnt/data/heimdall:/heimdall-home:rw --net polygon --name heimdall --entrypoint /usr/bin/heimdalld -d --restart unless-stopped  0xpolygon/heimdall:0.3.3 start --home=/heimdall-home
 ```
 
 이 명령어의 많은 부분이 익숙해 보일 것이므로, 이제 새로운 것에 대해 이야기해보죠.
@@ -353,7 +353,7 @@ curl localhost:26657/status
 Bor를 시작하기 전에 Heimdall REST 서버를 실행해야 합니다. 이 명령어는 Bor가 Heimdall에서 정보를 검색하는 데 사용하는 REST API를 시작합니다. 서버를 시작할 명령은 다음과 같습니다.
 
 ```bash
-docker run -p 1317:1317 -v /mnt/data/heimdall:/heimdall-home:rw --net polygon --name heimdallrest --entrypoint /usr/bin/heimdalld -d --restart unless-stopped 0xpolygon/heimdall:0.3.0 rest-server --home=/heimdall-home --node "tcp://heimdall:26657"
+docker run -p 1317:1317 -v /mnt/data/heimdall:/heimdall-home:rw --net polygon --name heimdallrest --entrypoint /usr/bin/heimdalld -d --restart unless-stopped 0xpolygon/heimdall:0.3.3 rest-server --home=/heimdall-home --node "tcp://heimdall:26657"
 ```
 
 이 명령어에는 주목할 만한 두 가지 다른 부분이 있습니다. `start` 명령어를 실행하는 대신 `rest-server` 명령어를 실행합니다. 또한 REST 서버에 Heimdall과 통신하는 방법을 알려주는 `~–node “tcp://heimdall:26657”~`를 전달합니다.
@@ -382,7 +382,7 @@ sudo curl -o /mnt/data/bor/genesis.json 'https://raw.githubusercontent.com/matic
 이제 Bor를 시작하기 위해 기본 구성 파일을 만들어야 합니다.
 
 ```bash
-docker run -it  0xpolygon/bor:0.3.3 dumpconfig | sudo tee /mnt/data/bor/config.toml
+docker run -it  0xpolygon/bor:0.3.7 dumpconfig | sudo tee /mnt/data/bor/config.toml
 ```
 
 이 명령은 기본 설정으로 .toml 파일을 생성합니다. 파일에 몇 가지 변경을 할 것이므로 좋아하는 에디터와 함께 열고 몇 가지 업데이트를 만들 수 있습니다. 참고 : 우리는 변경 된 라인을 보여주고 있습니다.
@@ -414,7 +414,7 @@ datadir = "/bor-home"
 
 이제 Bor를 시작할 준비가 되었습니다. 다음 명령어를 사용합니다.
 ```bash
-docker run -p 30303:30303 -p 8545:8545 -v /mnt/data/bor:/bor-home:rw --net polygon --name bor -d --restart unless-stopped  0xpolygon/bor:0.3.3 server --config /bor-home/config.toml
+docker run -p 30303:30303 -p 8545:8545 -v /mnt/data/bor:/bor-home:rw --net polygon --name bor -d --restart unless-stopped  0xpolygon/bor:0.3.7 server --config /bor-home/config.toml
 ```
 
 모든 것이 잘 된다면, 이렇게 보이는 많은 로그를 볼 수 있습니다.

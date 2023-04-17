@@ -144,7 +144,7 @@ Pada titik ini, kita memiliki hos dengan docker yang beroperasi di sana dan kita
 Pertama, pastikan kita dapat menjalankan Heimdall dengan docker. Jalankan perintah berikut:
 
 ```bash
-docker run -it 0xpolygon/heimdall:0.3.0 heimdallcli version
+docker run -it 0xpolygon/heimdall:0.3.3 heimdallcli version
 ```
 
 Jika ini adalah pertama kalinya Anda menjalankan Heimdall dengan docker, maka itu seharusnya menarik citra yang diperlukan secara otomatis dan menghasilkan output tentang informasi versi.
@@ -156,7 +156,7 @@ jika ingin memeriksa detail citra Heimdall atau menemukan tag yang berbeda, Anda
 Pada titik ini, mari kita jalankan perintah Heimdall `init` untuk menyiapkan direktori beranda.
 
 ```bash
-docker run -v /mnt/data/heimdall:/heimdall-home:rw --entrypoint /usr/bin/heimdalld -it 0xpolygon/heimdall:0.3.0 init --home=/heimdall-home
+docker run -v /mnt/data/heimdall:/heimdall-home:rw --entrypoint /usr/bin/heimdalld -it 0xpolygon/heimdall:0.3.3 init --home=/heimdall-home
 ```
 
 Mari kita hancurkan perintah ini sedikit demi jaga-jaga jika ada yang salah.
@@ -171,7 +171,7 @@ Mari kita hancurkan perintah ini sedikit demi jaga-jaga jika ada yang salah.
 
 * `-it`Saklar digunakan untuk menjalankan perintah secara interaktif.
 
-* Akhirnya kami menentukan gambar mana yang ingin kami `0xpolygon/heimdall:0.3.0`jalankan.
+* Akhirnya kami menentukan gambar mana yang ingin kami `0xpolygon/heimdall:0.3.3`jalankan.
 
 * Setelah itu, `init --home=/heimdall-home` adalah argumen yang akan diberikan ke Heimdall yang dapat dieksekusi. `init` adalah perintah yang ingin dijalankan dan `--home` digunakan untuk menentukan lokasi direktori beranda.
 
@@ -252,7 +252,7 @@ docker network create polygon
 Sekarang kita akan memulai Heimdall. Jalankan perintah berikut:
 
 ```bash
-docker run -p 26657:26657 -p 26656:26656 -v /mnt/data/heimdall:/heimdall-home:rw --net polygon --name heimdall --entrypoint /usr/bin/heimdalld -d --restart unless-stopped  0xpolygon/heimdall:0.3.0 start --home=/heimdall-home
+docker run -p 26657:26657 -p 26656:26656 -v /mnt/data/heimdall:/heimdall-home:rw --net polygon --name heimdall --entrypoint /usr/bin/heimdalld -d --restart unless-stopped  0xpolygon/heimdall:0.3.3 start --home=/heimdall-home
 ```
 
 Sebagian besar perintah ini akan terlihat familier. Jadi mari kita bicarakan tentang apa yang baru.
@@ -353,7 +353,7 @@ Pada titik ini, Anda memiliki node yang telah berhasil menjalankan Heimdall. And
 Sebelum memulai Bor, kita harus menjalankan server rest Heimdall. Perintah ini akan memulai REST API yang digunakan Bor untuk mengambil informasi dari Heimdall. Perintah untuk memulai server adalah:
 
 ```bash
-docker run -p 1317:1317 -v /mnt/data/heimdall:/heimdall-home:rw --net polygon --name heimdallrest --entrypoint /usr/bin/heimdalld -d --restart unless-stopped 0xpolygon/heimdall:0.3.0 rest-server --home=/heimdall-home --node "tcp://heimdall:26657"
+docker run -p 1317:1317 -v /mnt/data/heimdall:/heimdall-home:rw --net polygon --name heimdallrest --entrypoint /usr/bin/heimdalld -d --restart unless-stopped 0xpolygon/heimdall:0.3.3 rest-server --home=/heimdall-home --node "tcp://heimdall:26657"
 ```
 
 Ada dua bagian perintah ini yang berbeda dan patut dicatat. Alih-alih menjalankan perintah `start`, kita menjalankan perintah `rest-server`. Juga, kita memberikan `~–node “tcp://heimdall:26657”~` yang memberi tahu server rest tentang cara berkomunikasi dengan Heimdall.
@@ -382,7 +382,7 @@ Mari kita verifikasi `sha256 sum` lagi untuk file ini:
 Sekarang kita perlu membuat file konfigurasi default untuk memulai Bor.
 
 ```bash
-docker run -it  0xpolygon/bor:0.3.3 dumpconfig | sudo tee /mnt/data/bor/config.toml
+docker run -it  0xpolygon/bor:0.3.7 dumpconfig | sudo tee /mnt/data/bor/config.toml
 ```
 
 Perintah ini akan menghasilkan file .toml dengan pengaturan default. Kami akan membuat beberapa perubahan ke file, jadi membukanya dengan editor favorit dan membuat beberapa update. Catatan: Kami hanya menampilkan baris yang berubah.
@@ -414,7 +414,7 @@ datadir = "/bor-home"
 
 Pada titik ini, kita seharusnya sudah siap memulai Bor. Kita akan menggunakan perintah ini:
 ```bash
-docker run -p 30303:30303 -p 8545:8545 -v /mnt/data/bor:/bor-home:rw --net polygon --name bor -d --restart unless-stopped  0xpolygon/bor:0.3.3 server --config /bor-home/config.toml
+docker run -p 30303:30303 -p 8545:8545 -v /mnt/data/bor:/bor-home:rw --net polygon --name bor -d --restart unless-stopped  0xpolygon/bor:0.3.7 server --config /bor-home/config.toml
 ```
 
 Jika semuanya berjalan lancar, Anda harus melihat banyak log yang terlihat seperti ini:

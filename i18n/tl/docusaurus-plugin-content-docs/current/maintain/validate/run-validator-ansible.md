@@ -135,7 +135,7 @@ xxx.xxx.xx.xx | SUCCESS => {
 I-test run ang set up ng sentry node:
 
 ```sh
-ansible-playbook -l sentry playbooks/network.yml --extra-var="bor_branch=v0.3.3 heimdall_branch=v0.3.0  network_version=mainnet-v1 node_type=sentry/sentry heimdall_network=mainnet" --list-hosts
+ansible-playbook -l sentry playbooks/network.yml --extra-var="bor_branch=v0.3.7 heimdall_branch=v0.3.3  network_version=mainnet-v1 node_type=sentry/sentry heimdall_network=mainnet" --list-hosts
 ```
 
 Ganito ang magiging output:
@@ -150,7 +150,7 @@ playbook: playbooks/network.yml
 I-run ang setup ng sentry node nang may sudo priviledges:
 
 ```sh
-ansible-playbook -l sentry playbooks/network.yml --extra-var="bor_branch=v0.3.3 heimdall_branch=v0.3.0  network_version=mainnet-v1 node_type=sentry/sentry heimdall_network=mainnet" --ask-become-pass
+ansible-playbook -l sentry playbooks/network.yml --extra-var="bor_branch=v0.3.7 heimdall_branch=v0.3.3  network_version=mainnet-v1 node_type=sentry/sentry heimdall_network=mainnet" --ask-become-pass
 ```
 
 Kapag kumpleto na ang pag-setup, may makikita kang mensahe sa terminal na kumpleto na ito.
@@ -188,7 +188,7 @@ xxx.xxx.xx.xx | SUCCESS => {
 I-test run ang set up ng validator node:
 
 ```sh
-ansible-playbook -l validator playbooks/network.yml --extra-var="bor_branch=v0.3.3 heimdall_branch=v0.3.0 network_version=mainnet-v1 node_type=sentry/validator heimdall_network=mainnet" --list-hosts
+ansible-playbook -l validator playbooks/network.yml --extra-var="bor_branch=v0.3.7 heimdall_branch=v0.3.3 network_version=mainnet-v1 node_type=sentry/validator heimdall_network=mainnet" --list-hosts
 ```
 
 Ganito dapat ang makuha mong output:
@@ -203,7 +203,7 @@ playbook: playbooks/network.yml
 I-run ang setup ng validator node nang may sudo priviledges:
 
 ```sh
-ansible-playbook -l validator playbooks/network.yml --extra-var="bor_branch=v0.3.3 heimdall_branch=v0.3.0  network_version=mainnet-v1 node_type=sentry/validator heimdall_network=mainnet" --ask-become-pass
+ansible-playbook -l validator playbooks/network.yml --extra-var="bor_branch=v0.3.7 heimdall_branch=v0.3.3  network_version=mainnet-v1 node_type=sentry/validator heimdall_network=mainnet" --ask-become-pass
 ```
 
 Kapag kumpleto na ang pag-setup, may makikita kang mensahe sa terminal na kumpleto na ito.
@@ -311,7 +311,7 @@ Para sa mga download link ng snapshot, tingnan ang [Polygon Chains Snapshots](ht
 
 ### I-start ang Serbisyong Heimdall {#start-the-heimdall-service}
 
-Ang pinakabagong bersyon, ang [Heimdall v.0.3.0](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.0), ay naglalaman ng ilang pagpapahusay tulad ng:
+Ang pinakabagong bersyon, ang [Heimdall v.0.3.3](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.3), ay naglalaman ng ilang pagpapahusay tulad ng:
 1. Paghihigpit sa laki ng data sa state sync txs sa:
     * **30Kb** kapag kinakatawan sa **bytes**
     * **60Kb** kapag kinakatawan sa **string**.

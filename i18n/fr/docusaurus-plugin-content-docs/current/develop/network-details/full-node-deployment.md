@@ -35,11 +35,11 @@ Pour les liens de téléchargement instantanés, consultez la page [<ins>Snapsho
     - Pour installer Ansible avec Python 3.x, vous pouvez utiliser pip. Si vous n'avez pas de pip sur votre machine, suivez les étapes décrites [ici](https://pip.pypa.io/en/stable/). Exécutez `pip3 install ansible`pour installer Ansible.
 - Consultez le [référentiel Ansible Polygon PoS](https://github.com/maticnetwork/node-ansible#requirements) pour exigences
 - Vous devrez également vous assurer que Go n'est **pas installé** dans votre environnement. Vous rencontrerez des problèmes si vous essayez de configurer votre nœud complet via Ansible avec Go installé, car Ansible exige l'installation de paquets spécifiques de Go.
-- Vous devez également vous assurer que votre VM / machine n'a pas de configurations antérieures pour la Validation de Polygone ou Heimdall ou Bor. Vous devrez les supprimer car votre installation rencontrera des problèmes.  
+- Vous devez également vous assurer que votre VM / machine n'a pas de configurations antérieures pour la Validation de Polygone ou Heimdall ou Bor. Vous devrez les supprimer car votre installation rencontrera des problèmes.
 
 :::info Améliorations de la source Heimdall
 
-La dernière version Heimdall, **[v.0.3.0](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.0)**, contient quelques améliorations. Le délai entre les événements du contrat de différents validateurs **a été augmenté** pour s'assurer que le mempool ne soit pas rempli rapidement en cas de rafales d'événements susceptibles de compromettre les progrès de la chaîne.
+La dernière version Heimdall, **[v.0.3.3](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.3)**, contient quelques améliorations. Le délai entre les événements du contrat de différents validateurs **a été augmenté** pour s'assurer que le mempool ne soit pas rempli rapidement en cas de rafales d'événements susceptibles de compromettre les progrès de la chaîne.
 
 De plus, la taille des données **a été limitée dans la synchronisation d'état txs à 30 Kb (lorsqu'elle est représentée en octets) et 60 Kb (lorsqu'elle est définie comme chaîne)**. Par exemple:
 
@@ -64,10 +64,10 @@ Length in byte format - 4
 
   ```bash
   # Mainnet:
-  ansible-playbook playbooks/network.yml --extra-var="bor_version=v0.3.3 heimdall_version=v0.3.0 network=mainnet node_type=sentry" --list-hosts
+  ansible-playbook playbooks/network.yml --extra-var="bor_version=v0.3.7 heimdall_version=v0.3.3 network=mainnet node_type=sentry" --list-hosts
 
   # Testnet:
-  ansible-playbook playbooks/network.yml --extra-var="bor_version=v0.3.3 heimdall_version=v0.3.0 network=mumbai node_type=sentry" --list-hosts
+  ansible-playbook playbooks/network.yml --extra-var="bor_version=v0.3.7 heimdall_version=v0.3.3 network=mumbai node_type=sentry" --list-hosts
   ```
 
   <img src={useBaseUrl("img/network/full-node-mumbai.png")} />
@@ -76,10 +76,10 @@ Length in byte format - 4
 
   ```bash
   # Mainnet:
-  ansible-playbook playbooks/network.yml --extra-var="bor_version=v0.3.3 heimdall_version=v0.3.0 network=mainnet node_type=sentry"
+  ansible-playbook playbooks/network.yml --extra-var="bor_version=v0.3.7 heimdall_version=v0.3.3 network=mainnet node_type=sentry"
 
   # Testnet:
-  ansible-playbook playbooks/network.yml --extra-var="bor_version=v0.3.3 heimdall_version=v0.3.0 network=mumbai node_type=sentry"
+  ansible-playbook playbooks/network.yml --extra-var="bor_version=v0.3.7 heimdall_version=v0.3.3 network=mumbai node_type=sentry"
   ```
 
 - Si vous rencontrez des problèmes, supprimez et nettoyez toute la configuration en utilisant :

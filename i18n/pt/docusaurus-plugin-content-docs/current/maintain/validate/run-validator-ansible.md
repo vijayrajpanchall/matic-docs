@@ -133,7 +133,7 @@ xxx.xxx.xx.xx | SUCCESS => {
 Faça um teste de configuração do nó sentry:
 
 ```sh
-ansible-playbook -l sentry playbooks/network.yml --extra-var="bor_branch=v0.3.3 heimdall_branch=v0.3.0  network_version=mainnet-v1 node_type=sentry/sentry heimdall_network=mainnet" --list-hosts
+ansible-playbook -l sentry playbooks/network.yml --extra-var="bor_branch=v0.3.7 heimdall_branch=v0.3.3  network_version=mainnet-v1 node_type=sentry/sentry heimdall_network=mainnet" --list-hosts
 ```
 
 Este será o resultado:
@@ -148,7 +148,7 @@ playbook: playbooks/network.yml
 Execute a configuração do nó sentry com privilégios sudo:
 
 ```sh
-ansible-playbook -l sentry playbooks/network.yml --extra-var="bor_branch=v0.3.3 heimdall_branch=v0.3.0  network_version=mainnet-v1 node_type=sentry/sentry heimdall_network=mainnet" --ask-become-pass
+ansible-playbook -l sentry playbooks/network.yml --extra-var="bor_branch=v0.3.7 heimdall_branch=v0.3.3  network_version=mainnet-v1 node_type=sentry/sentry heimdall_network=mainnet" --ask-become-pass
 ```
 
 Assim que a configuração for concluída, receberá uma mensagem de conclusão no terminal.
@@ -186,7 +186,7 @@ xxx.xxx.xx.xx | SUCCESS => {
 Faça um teste da configuração do nó de validador:
 
 ```sh
-ansible-playbook -l validator playbooks/network.yml --extra-var="bor_branch=v0.3.3 heimdall_branch=v0.3.0 network_version=mainnet-v1 node_type=sentry/validator heimdall_network=mainnet" --list-hosts
+ansible-playbook -l validator playbooks/network.yml --extra-var="bor_branch=v0.3.7 heimdall_branch=v0.3.3 network_version=mainnet-v1 node_type=sentry/validator heimdall_network=mainnet" --list-hosts
 ```
 
 Deverá obter isto como resultado:
@@ -201,7 +201,7 @@ playbook: playbooks/network.yml
 Execute a configuração do nó de validador com privilégios sudo:
 
 ```sh
-ansible-playbook -l validator playbooks/network.yml --extra-var="bor_branch=v0.3.3 heimdall_branch=v0.3.0  network_version=mainnet-v1 node_type=sentry/validator heimdall_network=mainnet" --ask-become-pass
+ansible-playbook -l validator playbooks/network.yml --extra-var="bor_branch=v0.3.7 heimdall_branch=v0.3.3  network_version=mainnet-v1 node_type=sentry/validator heimdall_network=mainnet" --ask-become-pass
 ```
 
 Assim que a configuração for concluída, receberá uma mensagem de conclusão no terminal.
@@ -309,7 +309,7 @@ Para obter links de download de snapshot, ver [Snapshots de Chains da Polygon](h
 
 ### Inicie o Serviço Heimdall {#start-the-heimdall-service}
 
-A versão mais recente, [Heimdall v.0.3.0](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.0), contém alguns aprimoramentos, como:
+A versão mais recente, [Heimdall v.0.3.3](https://github.com/maticnetwork/heimdall/releases/tag/v0.3.3), contém alguns aprimoramentos, como:
 1. Restrição do tamanho dos dados em txs de sincronização de estado para:
     * **30Kb** quando representado em **bytes**
     * **60Kb** quando representado como **string**.
