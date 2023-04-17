@@ -118,7 +118,7 @@ Generate the manifest file for the new chain using the following command:
 Generate the genesis file for the new chain using the following command:
 
   ```bash
-  ./polygon-edge genesis --consensus polybft --validator-set-size=4 --bridge-json-rpc http://127.0.0.1:8545 \
+  ./polygon-edge genesis --consensus polybft --bridge-json-rpc http://127.0.0.1:8545 \
   --block-gas-limit 10000000 \
   --epoch-size 10 --trieroot 0xf5ef1a28c82226effb90f4465180ec3469226747818579673f4be929f1cd8663
   ```

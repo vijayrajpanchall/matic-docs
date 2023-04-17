@@ -336,7 +336,6 @@ This command generates a genesis file with the following parameters:
 | Flag | Description | Example |
 | --- | --- | --- |
 | `--consensus` | Specifies that we are using the PolyBFT consensus protocol. | `--consensus polybft` |
-| `--validator-set-size` | Specifies the size of the validator set. | `--validator-set-size=4` |
 | `--block-gas-limit` | Specifies the block gas limit. | `--block-gas-limit 60000000` |
 | `--premine` | Specifies the premine address and amount. | `--premine 0x85da99c8a7c2c95964c8efd687e95e632fc533d6:1000000000000000000000000000` |
 | `--epoch-size` | Specifies the epoch size. | `--epoch-size 10` |
@@ -1027,7 +1026,6 @@ We'll use the `./polygon-edge genesis` command to generate the genesis configura
 | Flag | Description | Example |
 | --- | --- | --- |
 | `--consensus` | Specifies that we are using the PolyBFT consensus protocol. | `--consensus polybft` |
-| `--validator-set-size` | Specifies the size of the validator set. | `--validator-set-size=4` |
 | `--block-gas-limit` | Specifies the block gas limit. | `--block-gas-limit 60000000` |
 | `--premine` | Specifies the premine address and amount. | `--premine 0x85da99c8a7c2c95964c8efd687e95e632fc533d6:1000000000000000000000000000` |
 | `--mintable-native-token` | Specifies whether the native token is mintable. | `--mintable-native-token` |
