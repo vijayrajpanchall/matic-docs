@@ -15,10 +15,23 @@ keywords:
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+<script src="./dataline.js" type="module"></script>
 
-This document explains how to set up a local blockchain with PolyBFT consensus. You can choose between non-bridge mode for a standalone blockchain, or bridge mode for cross-chain capabilities connected to a rootchain. The tabs below provide guides for both modes, including fast track guides with just the required commands. A troubleshoot guide will also be published soon. The tutorials use Polygon's polygon-edge binary to start multiple nodes on your machine and create a custom blockchain environment with PolyBFT consensus.
+This document explains how to set up a local blockchain with PolyBFT consensus.
 
-Before diving into any of the tutorials, make sure your environment meets the necessary prerequisites. For more information, refer to the [system requirements document](/docs/supernets/operate/system.md).
+- You can choose between non-bridge mode for a standalone blockchain, or bridge mode for cross-chain capabilities connected to a rootchain.
+- The tabs below provide guides for both modes, including fast track guides with just the required commands.
+- There is also a cross-chain transactions tab that includes a guide for bridge-mode transactions.
+- A "tips & troubleshooting" guide will also be published soon.
+- The tutorials use Polygon's polygon-edge binary to start multiple nodes on your machine and create a custom blockchain environment with PolyBFT consensus.
+
+:::info Prerequisites
+Before diving into any of the tutorials, make sure your environment meets the necessary prerequisites. They can be found **[[ here ]](/docs/supernets/operate/system.md)**.
+:::
+
+:::caution All guides are a work in progress
+As Supernets are rapidly evolving to get to their production-ready state, the instructions and concepts discussed in these guides are subject to change. However, the current versions can still be used for testing purposes.
+:::
 
 <!-- ===================================================================================================================== -->
 <!-- ===================================================================================================================== -->
@@ -29,8 +42,9 @@ Before diving into any of the tutorials, make sure your environment meets the ne
 <Tabs
 defaultValue="non-bridge"
 values={[
-{ label: 'Non-bridge mode', value: 'non-bridge', },
-{ label: 'Bridge mode', value: 'bridge', },
+{ label: 'Non-bridge mode deployment', value: 'non-bridge', },
+{ label: 'Bridge mode deployment', value: 'bridge', },
+{ label: 'Cross-chain transactions', value: 'bridge-transact', },
 { label: 'Tips & Troubleshoot', value: 'tips-troubleshoot', },
 ]
 }>
@@ -529,7 +543,7 @@ Repeat the above command for each node, replacing the --data-dir and port number
 
 Congratulations on successfully deploying a local blockchain with PolyBFT consensus! This is a crucial step towards creating a fully functional Supernet that acts as a childchain to PoS mainnet.
 
-To continue your Supernet journey, try deploying a [local Supernet in bridge-mode using a demo Geth instance](/docs/supernets/operate/supernets-local-deploy-supernet).
+To continue your Supernet journey, try deploying a local Supernet in bridge-mode using a demo Geth instance.
 
 </TabItem>
 
@@ -1271,14 +1285,54 @@ Dialing output example:
   Transaction (hash)  = 0xd51e7f8b69071f88b5f7870c31c6942ed78c5c48f88594ed135f096b5f17a540
   ```
 
-
 ## Next Steps
 
 Congratulations on successfully deploying a local Supernet! This is a crucial step towards creating a fully functional Supernet that acts as a childchain to PoS mainnet.
 
-To continue your Supernet journey, you can learn how to stake on the mainnet to earn rewards and support network security. Check out our staking guide here for more information.
+To continue your Supernet journey, you can explore how to transact cross-chain between the rootchain and childchain using the native bridge. The cross-chain bridge guide will walk you through the process.
 
-You can also explore how to transact cross-chain between the rootchain and childchain using the native bridge. The cross-chain bridge guide here will walk you through the process.
+</TabItem>
+
+<!-- ===================================================================================================================== -->
+<!-- ============================================== BRIDGE TRANSACTIONS GUIDE ============================================ -->
+<!-- ===================================================================================================================== -->
+
+<TabItem value="bridge-transact">
+
+## Deposit
+
+  ```bash
+  ./polygon-edge bridge deposit-erc20 \
+      --sender-key <hex_encoded_depositor_private_key> \
+      --receivers <receivers_addresses> \
+      --amounts <amounts> \
+      --root-token <root_erc20_token_address> \
+      --root-predicate <root_erc20_predicate_address> \
+      --json-rpc <root_chain_json_rpc_endpoint>
+  ```
+
+## Withdraw
+
+   ```bash
+   ./polygon-edge bridge withdraw-erc20 \
+      --sender-key <hex_encoded_txn_sender_private_key> \
+      --receivers <receivers_addresses> \
+      --amounts <amounts> \
+      --child-predicate <rchild_erc20_predicate_address> \
+      [--child-token <child_erc20_token_address>] \
+      --json-rpc <child_chain_json_rpc_endpoint>
+  ```
+
+## Exit
+
+  ```bash
+  ./polygon-edge bridge exit \
+    --sender-key <hex_encoded_txn_sender_private_key> \
+    --exit-helper <exit_helper_address> \
+    --exit-id <exit_event_id> \
+    --root-json-rpc <root_chain_json_rpc_endpoint> \
+    --child-json-rpc <child_chain_json_rpc_endpoint>
+```
 
 </TabItem>
 
@@ -1288,10 +1342,7 @@ You can also explore how to transact cross-chain between the rootchain and child
 
 <TabItem value="tips-troubleshoot">
 
-:::info Coming soon!
-:::
-
-Please consider the following points:
+## Tips
 
 - In a production environment, it is recommended to keep the validator secrets secure and only to retrieve them when necessary. The secrets should not be shared or made public as they can be used to compromise the security of the blockchain network.
 - To gain a deeper understanding of PolyBFT or consensus protocols in general, consider reviewing the [system design documents](/docs/category/system-design) for additional information.
@@ -1312,6 +1363,61 @@ Please consider the following points:
   <img src="/img/supernets/supernets-setup.excalidraw.png" alt="bridge" width="110%" height="40%" />
 </div>
 
+-->
+
+## Technical FAQs
+
+### Can I migrate from Edge to Supernets?
+
+Yes, it is possible to migrate from a blockchain running on an older Edge version with IBFT 1.0 consensus to a new blockchain running on Supernets with PolyBFT consensus using IBFT 2.0. However, the migration process will involve a hard fork, as IBFT 2.0 is not fully backward compatible with IBFT 1.0.
+
+To upgrade to a new blockchain with PolyBFT consensus using IBFT 2.0, you would need to:
+
+- Create a new genesis block for the new blockchain with PolyBFT consensus using IBFT 2.0.
+- Migrate the data and state from the old blockchain to the new blockchain.
+
+### What is the recommended RPC endpoint for the rootchain?
+
+Choosing a reliable and publicly available RPC endpoint for the rootchain is essential to ensure correct handling of checkpoint information. It is recommended to connect directly to a node endpoint rather than a load balancer to guarantee validators can facilitate specific requests.
+
+### Can a Supernet use a custom token standard instead of the default token contracts?
+
+While using the standard ERC20 and ERC721 contracts is highly preferred, it is not mandatory. If a Supernet employs a custom standard, it must adhere to the chain configuration, as the bridge allows for arbitrary messages and data sharing between chains and can interpret any form of data. Additionally, a custom standard would need to follow the same steps as generating a Native ERC-20 using the default core contracts, which includes deploying, mapping, and bridging.
+
+### Is using the native bridge integration mandatory?
+
+Using the native bridge integration is highly recommended, but not mandatory.
+
+A "full Supernet" utilizes the Edge client with PolyBFT consensus, native bridge, on-chain governance or allowlisting as needed, and an ecosystem of premium tooling.
+
+The native Supernet bridge logic consists of the `ChildERC20Predicate` core contract on the childchain for deposits and withdrawals, the `RootERC20Predicate` core contract on the rootchain for bridging tokens, a `relayer` to execute calls and transactions (one of the validators at genesis would be declared as the relayer), and a `JSON-RPC endpoint` to the rootchain.
+
+Other contracts work in conjunction with these components. If a custom bridge is used, it would need to work seamlessly with these contracts to ensure that deposits, withdrawals, and token bridging are handled correctly. In such cases, it's crucial to test the bridge rigorously and ensure that all necessary dependencies are available and properly configured.
+
+### Can existing rootchain contracts be used instead of needing to deploy new ones?
+
+In theory, existing rootchain contracts can be used, but it is not practical with the current contract configuration.
+
+Manually updating the childchain manifest to point to existing rootchain contract addresses may disrupt or challenge checkpoints and chain state, leading to problems if there is a fork on the childchain. Furthermore, updating the checkpoint manager's address could trigger an exit with the wrong checkpoint manager, leading to incorrect state transitions and potential loss of funds. Deploying new contracts on the rootchain ensures all necessary dependencies are available and properly configured, avoiding compatibility issues or other unforeseen problems.
+
+### Is it necessary to deploy new instances of rootchain contracts for each childchain instance when running multiple childchains?
+
+Yes, new instances of rootchain contracts must be deployed for each childchain instance. Each childchain instance is independent and requires its own set of contracts to function properly. Deploying and managing multiple instances of contracts can be complex and requires careful consideration of factors such as cost, security, and scalability. It is essential to plan and test thoroughly before implementing a solution with multiple childchains.
+
+### Is the identity of a childchain instance linked to the rootchain contract address on the rootchain?
+
+Yes, the identity of a childchain instance is linked to the rootchain contract address on the rootchain. Each childchain instance is associated with a specific set of rootchain contracts, and its identity is determined by the address of those contracts on the rootchain.
+
+<!--
+## Is Edge the only consensus client for Supernets?
+
+## How can you verify that checkpoints were successful?
+
+## How does the Supernet handle state transitions in case of a fork on the childchain?
+
+## What are the recovery options in case of a validator node failure on a Supernet?
+
+## How do Supernets manage the interchain communication latency and its impact on the overall performance?
 -->
 
 </TabItem>

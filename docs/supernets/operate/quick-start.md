@@ -25,7 +25,7 @@ Before proceeding, ensure that your system meets the necessary [system requireme
 
 <div class="download-container">
   <div class="download-text">
-    <p><b>The download button will automatically provide the appropriate download link according your operating system.</b></p>
+    <p><b>[EXPERIMENTAL] The download button will automatically provide the appropriate download link according your operating system.</b></p><p>For a list of releases, please visit the official release page <a href="https://github.com/0xPolygon/polygon-edge/releases">[ here ]</a>.</p>
   </div>
   <div class="download-button">
     <DownloadButton
@@ -76,7 +76,7 @@ cd <downloaded_package>
 
 <TabItem value="windows">
 
-The tar command is available in PowerShell on Windows 10 (build 17063 or newer). 
+The tar command is available in PowerShell on Windows 10 (build 17063 or newer).
 
 ```bash
 # replace <downloaded_package> with the actual package filename
@@ -100,7 +100,7 @@ cd <destination_folder>
 
 </details>
 
-To run the Supernets test environment locally, use the following command from the project's root:
+To run the Supernets test environment locally, run the following command from the project's root:
 
   ```bash
   ./scripts/cluster polybft

@@ -13,16 +13,24 @@ keywords:
   - modular
 ---
 
-This document provides a step-by-step guide to regenesis from an existing IBFT consensus chain to a new chain with PolyBFT consensus.
+In this guide, you will learn how to transition from an existing IBFT consensus chain to a new chain with PolyBFT consensus.
+
+## What you'll learn
+
+You will be introduced to the following concepts:
+
+- How to migrate from an existing IBFT consensus chain to a new chain with PolyBFT consensus.
+- How to generate a trie snapshot, create new validators, and generate manifest and genesis files for a new chain.
+- How to start a new PolyBFT chain and copy the new snapshot trie to each validator node.
 
 ## Prerequisites
 
-Before starting with the regenesis process, the following prerequisites must be fulfilled:
+Before beginning the regenesis process, there are some prerequisites that must be fulfilled. These include:
 
-- A local IBFT consensus cluster for development purposes must be set up.
-Ensure that the accounts have sufficient funds.
+- Setting up a local IBFT consensus cluster for development purposes.
 
-### Create cluster
+<details>
+<summary>Create cluster</summary>
 
 A dedicated script is provided as part of the client to facilitate the cluster setup, encompassing key generation, network configuration, data directory creation, and genesis block generation. To create an IBFT cluster, execute the following command:
 
@@ -30,7 +38,12 @@ A dedicated script is provided as part of the client to facilitate the cluster s
   scripts/cluster ibft
   ```
 
-### Check balance
+</details>
+
+- Ensuring that the accounts have sufficient funds.
+
+<details>
+<summary>Check balance</summary>
 
 Before performing the regenesis, it's essential to ensure that the accounts have sufficient funds. You can check the balance using the following command:
 
@@ -38,9 +51,22 @@ Before performing the regenesis, it's essential to ensure that the accounts have
   curl -s -X POST --data '{"jsonrpc":"2.0", "method":"eth_getBalance", "params":["0x85da99c8a7c2c95964c8efd687e95e632fc533d6", "latest"], "id":1}' http://localhost:10002
   ```
 
-## Regensis flow
+</details>
 
-The regenesis process involves several steps, which are discussed below:
+## What you'll do
+
+The regenesis process involves several steps, which are outlined below:
+
+1. Get trie root
+2. Create trie snapshot
+3. Remove old chain data
+4. Create new validators
+5. Generate the manifest file
+6. Generate the genesis file
+7. Start a new PolyBFT chain
+8. Copy the snapshot trie to the data directory
+9. Re-run the chain
+10. Check account balance on v0.7.x+
 
 ### 1. Get trie root
 
@@ -76,7 +102,7 @@ Create new validators using the following command:
   ```bash
   ./polygon-edge polybft-secrets --insecure --data-dir test-chain- --num 4
   ```
-  
+
 The above command generates four validator keys and saves them in the test-chain- directory. However, it's worth noting that these keys are insecure, and you shouldn't use them in a production environment.
 
 ### 5. Generate the manifest file

@@ -6,25 +6,14 @@ description: "The changelog for the Polygon Edge client and Supernets stack."
 keywords:
   - docs
   - polygon
+  - supernets
   - edge
-  - consensus
-  - interface
+  - features
+  - changelog
+  - updates
 ---
 
-## [v0.8.0] - First Stable Release
-
-**Release Date:** March 20th, 2023.
-**Commit:** f427c11
-
-This is the first version of full support for Supernets. For more detailed information, please refer to the [official changelog](https://github.com/0xPolygon/polygon-edge/releases/tag/v0.8.0).
-
-### Features
-
-- [Introduce PolyBFT consensus](/docs/supernets/design/consensus/polybft/overview.md)
-- [Bump go-IBFT to latest](/docs/supernets/design/consensus/polybft/ibft.md)
-- [Smart contract allowlisting](/docs/supernets/design/runtime/allowlist.md)
-- [Validator allowlisting](/docs/supernets/design/consensus/validator/allowlisting.md)
-- [Regenesis migration support](/docs/supernets/operate/ibft-to-polybft.md)
-- [Reuse chain ID from manifest when creating genesis configuration](/docs/supernets/operate/local-supernet.md#4-create-chain-configuration-and-generate-a-genesis-file)
-- [Provide validators in the same order when initializing CheckpointManager and genesis](/docs/supernets/operate/local-supernet.md#4-create-chain-configuration-and-generate-a-genesis-file)
-- [gRPC data validation](/docs/supernets/design/grpc.md)
+| Release Version | Release Date   | Commit   | Features and Highlights                                                                                                                                             |
+| --------------- | -------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| [v0.8.1](https://github.com/0xPolygon/polygon-edge/releases/tag/v0.8.1)          | April 5th, 2023| 7b7ee40  | <ul><li>Introduces NativeERC20Mintable token contract, allowing for native token minting.</li><li>EVM-568: Increases MaxBlockBacklog for block tracker to improve network performance.</li><li>EVM-433-TOB-EDGE-35: Addresses lack of domain separation vulnerability.</li><li>Adds support for `--stake` flag in manifest command, enabling easier configuration of validator nodes.</li><li>Fixes limit for TX pool contract creation size, resolving an issue that could cause failed transactions.</li></ul> |
+| [v0.8.0](https://github.com/0xPolygon/polygon-edge/releases/tag/v0.8.0)          | March 20th, 2023| f427c11 | <ul><li>Introduces PolyBFT consensus.</li><li>Bumps go-IBFT to latest.</li><li>Enables Smart contract allowlisting.</li><li>Enables Validator allowlisting.</li><li>Adds regenesis migration support.</li><li>Reuses chain ID from manifest when creating genesis configuration.</li><li>Provides validators in the same order when initializing CheckpointManager and genesis.</li><li>Adds gRPC data validation.</li></ul> |

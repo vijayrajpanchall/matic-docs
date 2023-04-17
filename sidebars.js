@@ -1251,6 +1251,7 @@ module.exports = {
         "supernets/get-started/why-supernets",
       ],
     },
+    "supernets/operate/supernets-quick-start",
     {
       type: "category",
       label: "System Design",
@@ -1316,7 +1317,6 @@ module.exports = {
       },
       collapsed: true,
       items: [
-        "supernets/operate/supernets-quick-start",
         {
               type: "category",
               label: "Setup & Installation",
@@ -1337,7 +1337,6 @@ module.exports = {
           items: [
             "supernets/operate/supernets-local-deploy-supernet",
             "supernets/operate/supernets-setup-dev-env",
-            "supernets/operate/supernets-bridge",
           ],
         },
         {
@@ -1416,7 +1415,6 @@ module.exports = {
         },
         "supernets/operate/supernets-ibft-to-polybft",
         "supernets/operate/supernets-performance",
-        "supernets/operate/supernets-faqs",
       ],
     },
     {

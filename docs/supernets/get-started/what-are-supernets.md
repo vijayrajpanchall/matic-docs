@@ -51,15 +51,16 @@ The following table offers a comprehensive overview on what Supernets are.
 
 :::caution In active development
 
-**Please note that the Supernets documentation hub currently only documents the functionality of the v0.8.0 release, as the code is still in active development and undergoing auditing. As such, it is not recommended for use in production environments.**
+**Please note that the Supernets documentation hub currently only documents the functionality of the v0.8.1 release, as the code is still in active development and undergoing auditing. As such, it is not recommended for use in production environments.**
 
 At present, the following components are available:
 
 - Smart contract and validator allowlisting.
+- Minting a native ERC20 token.
 - Transfers of ERC20 tokens and arbitrary message passing using the native bridge.
 - Migration support from older versions of the consensus client that use IBFT consensus.
 
-Additional components, including on-chain governance and creating a full production instance with MATIC staked, are currently in progress.
+Additional components, including on-chain governance and creating a full production instance with staked MATIC, are currently in progress.
 
 If you have any questions or are interested in using Supernets in a production environment, please get in touch with the Polygon team for guidance and support.
 
@@ -125,6 +126,9 @@ Supernets supports deployment to various cloud platforms and allow users to choo
 
 Supernets cloud deployment options also come with a range of features and capabilities, such as auto-scaling, load balancing, and disaster recovery, that can help ensure network stability, security, and availability. These features can be especially important for enterprise-level deployments that require high levels of reliability and performance.
 
-:::note Cloud deployment options will be available shortly
+:::note Check out the local cloud deployment options
+
+Get started with deploying a local private supernet on the cloud by checking out our cloud deployment guides
+available [[ here ]](/docs/supernets/operate/deploy-cloud.md).
 
 :::
