@@ -1085,6 +1085,7 @@ module.exports = {
           ],
         },
         "zkEVM/zkProver/arithmetic-sm",
+        "zkEVM/zkProver/binary-sm",
         "zkEVM/zkProver/memory-sm",
         "zkEVM/zkProver/mem-align-sm",
         {
