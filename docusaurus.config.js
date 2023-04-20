@@ -253,7 +253,7 @@ module.exports = {
         <div class="announcement-bar">
           Infinitely scaling Ethereum with Zero-Knowledge technology. 
             Polygon zkEVM Mainnet Beta is now Live! 
-            <a href="/docs/zkEVM/develop" class="announcement-link" style="color: #ffffff;">Start Building</a>
+            <a href="https://zkevm.polygon.technology/develop" class="announcement-link" style="color: #ffffff;">Start Building</a>
         </div>
       `,
       textColor: '#ffffff',
@@ -312,7 +312,7 @@ module.exports = {
               },
               {
                 label: "zkEVM",
-                href: "docs/category/zk-assembly"
+                href: "https://zkevm.polygon.technology"
               },
               {
                 label: "Miden",
@@ -466,7 +466,7 @@ module.exports = {
                     rel: null,
                   },
                   {
-                    href: '/docs/zkEVM/develop',
+                    href: 'https://zkevm.polygon.technology/develop',
                     label: 'Build on zkEVM',
                     target: '_self',
                     rel: null,
@@ -517,7 +517,7 @@ module.exports = {
                     rel: null,
                   },
                   {
-                    href: '/docs/zkEVM/setup-local-node',
+                    href: 'https://zkevm.polygon.technology/setup-local-node',
                     label: 'Run a zkEVM node',
                     target: '_self',
                     rel: null,
@@ -547,7 +547,7 @@ module.exports = {
                     rel: null,
                   },
                   {
-                    href: '/docs/zkEVM',
+                    href: 'https://zkevm.polygon.technology',
                     label: 'zkEVM',
                     target: '_self',
                     rel: null,
@@ -767,7 +767,7 @@ module.exports = {
                     rel: null,
                   },
                   {
-                    to: '/docs/zkEVM/faq/zkevm-general-faq',
+                    to: 'https://zkevm.polygon.technology/faq/zkevm-general-faq',
                     label: 'zkEVM FAQ',
                     target: '_self',
                     rel: null,
