@@ -105,15 +105,7 @@ Create new validators using the following command:
 
 The above command generates four validator keys and saves them in the test-chain- directory. However, it's worth noting that these keys are insecure, and you shouldn't use them in a production environment.
 
-### 5. Generate the manifest file
-
-Generate the manifest file for the new chain using the following command:
-
-  ```bash
-  ./polygon-edge manifest
-  ```
-
-### 6. Generate the genesis file
+### 5. Generate the genesis file
 
 Generate the genesis file for the new chain using the following command:
 
@@ -123,7 +115,7 @@ Generate the genesis file for the new chain using the following command:
   --epoch-size 10 --trieroot 0xf5ef1a28c82226effb90f4465180ec3469226747818579673f4be929f1cd8663
   ```
 
-### 7. Start new a PolyBFT chain
+### 6. Start new a PolyBFT chain
 
 Start the new chain using the following command:
 
@@ -134,7 +126,7 @@ Start the new chain using the following command:
   ./polygon-edge server --data-dir ./test-chain-4 --chain genesis.json --grpc-address :40000 --libp2p :30304 --jsonrpc :40002 --seal --log-level DEBUG &
   ```
 
-### 8. Copy the snapshot trie to the data directory
+### 7. Copy the snapshot trie to the data directory
 
 Once you have created a new snapshot trie, you need to copy it to the data directories of each of your four validator nodes. The following commands will remove the old trie directories and copy the new trie directory to each of the data directories:
 
@@ -149,7 +141,7 @@ Once you have created a new snapshot trie, you need to copy it to the data direc
   cp -fR ./trie_new/ ./test-chain-4/trie/
   ```
 
-### 9. Re-run chain
+### 8. Re-run chain
 
 Once you have copied the new snapshot trie to each of the data directories, you can restart each of the validator nodes using the following commands:
 
@@ -160,7 +152,7 @@ Once you have copied the new snapshot trie to each of the data directories, you 
   ./polygon-edge server --data-dir ./test-chain-4 --chain genesis.json --grpc-address :40000 --libp2p :30304 --jsonrpc :40002 --seal --log-level DEBUG &
   ```
 
-### 10. Check that balance of account on v0.6 is not 0
+### 9. Check that balance of account on v0.6 is not 0
 
 Finally, you should check that the balance of your account on the v0.6 chain is not 0. This can be done using the following command:
 
