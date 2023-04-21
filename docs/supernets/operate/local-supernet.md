@@ -508,11 +508,12 @@ The tutorial will cover the following steps:
    Deploy rootchain contracts on the rootchain instance in the original session:
 
    ```bash
-    ./polygon-edge rootchain init-contracts
-    --data-dir <local_storage_secrets_path> | [--config <cloud_secrets_manager_config_path>]
-    [--manifest ./manifest.json]
-    [--json-rpc http://127.0.0.1:8545]
-   ```
+    ./polygon-edge rootchain deploy \
+    --deployer-key <hex_encoded_rootchain_account_private_key> \
+    [--genesis ./genesis.json] \
+    [--json-rpc http://127.0.0.1:8545] \
+    [--test]
+    ```
 
 ### 3. Create a genesis file
 
@@ -691,7 +692,7 @@ This will start the rootchain server on the default JSON-RPC port of `8545`. Onc
 
 #### Initialize rootchain contracts
 
-Now that we have started the rootchain, we can deploy and initialize the rootchain smart contracts. This is done using the `polygon-edge rootchain init-contracts` command with the following options:
+Now that we have started the rootchain, we can deploy and initialize the rootchain smart contracts. This is done using the `polygon-edge rootchain deploy` command with the following options:
 
 <details>
 <summary>Flags</summary>
@@ -707,10 +708,14 @@ Now that we have started the rootchain, we can deploy and initialize the rootcha
 This command starts `ethereum/client-go` container which is a Geth node, and deploys the rootchain bridge and the checkpoint manager contracts.
 
   ```bash
-  ./polygon-edge rootchain init-contracts --manifest ./manifest.json --json-rpc http://127.0.0.1:8545
-  ```
+    ./polygon-edge rootchain deploy \
+    --deployer-key <hex_encoded_rootchain_account_private_key> \
+    [--genesis ./genesis.json] \
+    [--json-rpc http://127.0.0.1:8545] \
+    [--test]
+   ```
 
-> Note that the `--admin-key` option is optional, and if you omit it, the default account in your local Ethereum client will be used.
+> Note that the `--deployer-key` option is optional, and if you omit it, the default account in your local Ethereum client will be used.
 
 You will start to see all the core contracts being deployed, such as:
 
@@ -763,7 +768,7 @@ Transaction (hash) = 0xcae650c1768ffe92959cd166bb6bacb5ce97be08450666141e3754ede
 
 <TabItem value="mumbai">
 
-We can now deploy and initialize the rootchain smart contracts. This is done using the `polygon-edge rootchain init-contracts` command with the following options:
+We can now deploy and initialize the rootchain smart contracts. This is done using the `polygon-edge rootchain deploy` command with the following options:
 
 <details>
 <summary>Flags</summary>
@@ -777,10 +782,14 @@ We can now deploy and initialize the rootchain smart contracts. This is done usi
 </details>
 
   ```bash
-  ./polygon-edge rootchain init-contracts --manifest ./manifest.json --json-rpc <http://testnet-url-placeholder>
+   ./polygon-edge rootchain deploy \
+    --deployer-key <hex_encoded_rootchain_account_private_key> \
+    [--genesis ./genesis.json] \
+    [--json-rpc http://127.0.0.1:8545] \
+    [--test]
   ```
 
-> Note that the `--admin-key` option is optional, and if you omit it, the default account in your local Ethereum client will be used.
+> Note that the `--deployer-key` option is optional, and if you omit it, the default account in your local Ethereum client will be used.
 
 You will start to see all the core contracts being deployed, such as:
 
