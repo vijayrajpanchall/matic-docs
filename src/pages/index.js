@@ -283,7 +283,7 @@ function Home() {
                   <div class="padding-bottom padding-small"></div>
                   <p class="description-text">Unlock Ethereum scalability while maintaining security with the first ZK-rollup that offers EVM equivalence with fast transactions at near-zero gas cost today.</p>
                   <div class="padding-bottom custom-padding"></div>
-                  <Buttonizer docsUrl={'https://zkevm.polygon.technology'} linkUrl={'https://zkevm.polygon.technology/develop'} />
+                  <Buttonizer docsUrl={'https://zkevm.polygon.technology'} linkUrl={'https://zkevm.polygon.technology/docs/develop'} />
                 </div>
                 <div class="tabs_animation-wrapper">
                   <div class="tabs_animation-embed pb_video_embed w-embed w-iframe">
