@@ -12,6 +12,14 @@ keywords:
 image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 
+:::caution Content disclaimer
+
+Please view the third-party content disclaimer [<ins>here</ins>](https://github.com/maticnetwork/matic-docs/blob/master/CONTENT_DISCLAIMER.md).
+
+:::
+
+---
+
 Fortmatic SDK allows you to easily integrate your dApp with the Ethereum blockchain, whether you already have a dApp integrated with Web3 or are starting from scratch. Fortmatic provides a smooth and delightful experience for both you and your decentralized application users.
 
 ## Installation

@@ -14,6 +14,14 @@ image: https://wiki.polygon.technology/img/polygon-wiki.png
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
+:::caution Content disclaimer
+
+Please view the third-party content disclaimer [<ins>here</ins>](https://github.com/maticnetwork/matic-docs/blob/master/CONTENT_DISCLAIMER.md).
+
+:::
+
+---
+
 ## Overview
 
 [API3](https://api3.org) is a collaborative project to **deliver traditional API services to smart contract platforms** in a decentralized and trust-minimized way. It is governed by a decentralized autonomous organization (DAO), namely the [API3 DAO](https://api3.org/dao).
@@ -70,7 +78,7 @@ contract Requester is RrpRequesterV0 {
         address sponsor,
         address sponsorWallet,
         bytes calldata parameters
-        
+
     ) external {
         bytes32 requestId = airnodeRrp.makeFullRequest(
             airnode,
@@ -241,14 +249,14 @@ You can read more about dAPIs [here](https://docs.api3.org/guides/dapis/subscrib
 
 ### [Try deploying it on Remix!](https://remix.ethereum.org/#url=https://gist.githubusercontent.com/vanshwassan/1ec4230956a78c73a00768180cba3649/raw/176b4a3781d55d6fb2d2ad380be0c26f412a7e3c/DapiReader.sol)
 
-## Using API3 QRNG 
+## Using API3 QRNG
 
 [API3 QRNG](https://docs.api3.org/explore/qrng/) is a public utility we provide with the courtesy of [Australian National University (ANU)](https://www.anu.edu.au/). It is powered by an Airnode hosted by [ANU Quantum Random Numbers](https://quantumnumbers.anu.edu.au/), meaning that it is a first-party service.
 It is served as a public good and is free of charge (apart from the gas costs), and it **provides ‘true’ quantum randomness** via an easy-to-use solution when requiring RNG on-chain.
 
 To request randomness on-chain, the requester submits a request for a random number to `AirnodeRrpV0`. The ANU Airnode gathers the request from the `AirnodeRrpV0` protocol contract, retrieves the random number off-chain, and sends it back to `AirnodeRrpV0`. Once received, it performs a callback to the requester with the random number.
 
-### QRNG Getting Started 
+### QRNG Getting Started
 
 Here is an example of a basic `QrngRequester` that requests a random number:
 
@@ -267,7 +275,7 @@ contract RemixQrngExample is RrpRequesterV0 {
     mapping(bytes32 => bool) public waitingFulfillment;
 
     // These are for Remix demonstration purposes, their use is not practical.
-    struct LatestRequest { 
+    struct LatestRequest {
       bytes32 requestId;
       uint256 randomNumber;
     }
@@ -330,12 +338,12 @@ You can read more about API3 QRNG [here](https://docs.api3.org/explore/qrng/).
 
 ### [Try deploying it on Remix!](https://remix.ethereum.org/#url=https://github.com/vanshwassan/RemixContracts/blob/master/contracts/QrngRequester.sol&optimize=false&runs=200&evmVersion=null&version=soljson-v0.8.9+commit.e5eed63a.js)
 
-## ChainAPI 
+## ChainAPI
 
 [ChainAPI](https://chainapi.com/) is the Web3 data integration platform that provides businesses with all the tools they need to connect their data to blockchain-based applications.
 API providers can follow a simple GUI-based integration and deployment flow and start running their first-party Airnode without writing a single line of code.
 
-If you have a REST API, you can easily deploy your own Airnode using [ChainAPI](https://chainapi.com) to Polygon. 
+If you have a REST API, you can easily deploy your own Airnode using [ChainAPI](https://chainapi.com) to Polygon.
 
 Check out the API3 Docs [here](https://docs.api3.org).
 

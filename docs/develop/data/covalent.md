@@ -2,7 +2,7 @@
 id: covalent
 title: Using Covalent
 sidebar_label: Covalent
-description: Learn how to use Covalent's unified API for data 
+description: Learn how to use Covalent's unified API for data
 keywords:
   - docs
   - matic
@@ -13,16 +13,24 @@ keywords:
   - index
   - indexing
   - query
-image: https://matic.network/banners/matic-network-16x9.png 
+image: https://matic.network/banners/matic-network-16x9.png
+---
+
+:::caution Content disclaimer
+
+Please view the third-party content disclaimer [<ins>here</ins>](https://github.com/maticnetwork/matic-docs/blob/master/CONTENT_DISCLAIMER.md).
+
+:::
+
 ---
 
 ## Introduction
 
-Polygon brings massive scale to Ethereum using an adapted version of Plasma 
-with PoS based sidechains that provides a solution for faster and extremely 
-low-cost transactions with finality on the main chain. The Polygon network ensures 
-liveliness using PoS checkpoints which are pushed to the Ethereum mainchain. 
-This enables a single Polygon sidechain to theoretically achieve `2^16` transactions 
+Polygon brings massive scale to Ethereum using an adapted version of Plasma
+with PoS based sidechains that provides a solution for faster and extremely
+low-cost transactions with finality on the main chain. The Polygon network ensures
+liveliness using PoS checkpoints which are pushed to the Ethereum mainchain.
+This enables a single Polygon sidechain to theoretically achieve `2^16` transactions
 per block, and possibly millions of transactions on multiple chains in the future.
 
 ### Quick facts
@@ -41,7 +49,7 @@ per block, and possibly millions of transactions on multiple chains in the futur
 
 :::tip Quickstart
 
-Check out **[<ins>this introduction video</ins>](https://www.youtube.com/watch?v=qhibXxKANWE)** 
+Check out **[<ins>this introduction video</ins>](https://www.youtube.com/watch?v=qhibXxKANWE)**
 to get started.
 
 :::
@@ -57,13 +65,13 @@ are available on the [<ins>Covalent API documentation</ins>](https://www.covalen
 
 :::
 
---- 
+---
 
 ## Appendix
 
 ### Matic Gas token
 
-To interact with the Matic network, MATIC tokens are required to pay as gas fees. Covalent's 
+To interact with the Matic network, MATIC tokens are required to pay as gas fees. Covalent's
 responses automatically returns `gas_*` fields in the MATIC units.
 
 ### Token mapping

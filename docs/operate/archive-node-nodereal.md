@@ -1,6 +1,6 @@
 ---
 id: archive-node-nodereal
-title: Archive Node with NodeReal
+title: Using NodeReal
 description: Quick and easy third-party service that handles node requests and returns archive responses
 keywords:
   - docs
@@ -15,6 +15,14 @@ image: https://wiki.polygon.technology/img/polygon-logo.png
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
+:::caution Content disclaimer
+
+Please view the third-party content disclaimer [<ins>here</ins>](https://github.com/maticnetwork/matic-docs/blob/master/CONTENT_DISCLAIMER.md).
+
+:::
+
+---
+
 ## Get access to an Archive Node with NodeReal
 
 If you're new to Web3 development, [NodeReal](https://nodereal.io/) simplifies the process of setting up a full node on Polygon.
@@ -22,6 +30,7 @@ If you're new to Web3 development, [NodeReal](https://nodereal.io/) simplifies t
 :::tip Simplify Polygon node usage with NodeReal and its quality assurance capabilities
 
 Many developers prefer to use a node provider when getting started on Polygon, or any chain for that matter, as it offers a quick and easy way to handle requests and responses. NodeReal offers a range of features for developers looking for a node provider on the Polygon network. These features include a Standard Interface that simplifies node usage, as well as reliability and scalability for optimal performance. Additionally, NodeReal offers Archive Data for secure data storage, and an API Marketplace that provides additional resources for developers looking to build on Polygon.
+
 :::
 
 ## Send Your First Blockchain API Request
@@ -36,11 +45,11 @@ To start sending RPC requests on MegaNode, you'll need to create an API Key. Thi
 
 :::tip One API key for all chains
 
-[With only one API Key, you can request all the chains and networks we support on NodeReal.]
+With only one API Key, you can request all the chains and networks we support on NodeReal.
 
 :::
 
-**Get started &rarr;** Input an API **Key name** and leave any **notes** you prefer
+**Get started &rarr;** Input an API **Key name** and leave any **notes** you prefer:
 
 ![Create An API Key](https://files.readme.io/bd84a9f-Screen_Shot_2023-01-10_at_19.29.31.png)
 
@@ -48,7 +57,7 @@ After you have created an API Key, you can find a dashboard on the main screen.
 
 ![MegaNode User's Dashboard](https://files.readme.io/b715e5a-Screen_Shot_2023-01-10_at_19.31.18.png)
 
-:::Question of the day: How many API Keys can I create?
+:::info How many API Keys can I create?
 
 The number of available API Keys is subjected to the pricing plan.
 
@@ -62,20 +71,19 @@ After you have successfully created an API Key, you can find the API endpoints o
 
 ## Make Your First RPC Request
 
-After you find the API Key, you can now start to send RPC requests on MegaNode. Please note that all usage will be calculated on an account basis. You can find our API docs (here)[https://docs.nodereal.io/reference]. Furthermore, you can find more information about the Compute Unit (CU) usage (here)[https://docs.nodereal.io/docs/compute-units-cus] and the account Compute Unit Per Second (CUPS) rate limits (here)[https://docs.nodereal.io/docs/cups-rate-limit].
+After you find the API Key, you can now start to send RPC requests on MegaNode. Please note that all usage will be calculated on an account basis. You can find our API docs [here](https://docs.nodereal.io/reference). Furthermore, you can find more information about the Compute Unit (CU) usage [here](https://docs.nodereal.io/docs/compute-units-cus) and the account Compute Unit Per Second (CUPS) rate limits [here](https://docs.nodereal.io/docs/cups-rate-limit).
 
-:::info
+:::info Any concern about your Privacy?
 
-Concern about your Privacy?
-Check out NodeReal (Privacy Policy)[https://nodereal.io/privacy-policy]
+Check out NodeReal [<ins>Privacy Policy</ins>](https://nodereal.io/privacy-policy).
 
 :::
 
-We’ll be using (Web3.js)[https://web3js.readthedocs.io/en/v1.8.2/] libraries to make our first RPC request.
+We’ll be using [Web3.js](https://web3js.readthedocs.io/en/v1.8.2/) libraries to make our first RPC request.
 
 ## Install the Web3.js SDK​
 
-Install Web3.js SDK, you want to create a project, and then navigate to your project directory to run the installation. Let's go ahead and do that! Once we're in our home directory, let's execute the following:
+If you want to create a project, install Web3.js SDK, and then navigate to your project directory to run the installation. Once we're in our home directory, let's execute the following:
 
 With Yarn:
 
@@ -97,7 +105,7 @@ npm install web3
 
 ### Create `index.js`
 
-Create a JavaScript file named **index.js** and paste the following code:
+Create a JavaScript file named `index.js` and paste the following code:
 
 ```js title="index.js"
 const Web3 = require('web3');
@@ -123,15 +131,15 @@ web3.eth.getBlockNumber()
   });
 
 ```
-Make sure to replace `<API KEY>` with your NodeReal Https API key now!
+Make sure to replace `<API KEY>` with your NodeReal Https API key.
 
-You can retrieve the Polygon **Https URL** from your dashboard. 
+You can retrieve the Polygon **HTTPS URL** from your dashboard.
 
 ![Click on Polygon Standard API](https://files.readme.io/94f4b79-Screen_Shot_2023-01-16_at_20.24.34.png)
 
-If you encounter issue, do reach out to us at (Discord)[https://discord.com/invite/nodereal].
+If you encounter any issues, do reach out to us at (Discord)[https://discord.com/invite/nodereal].
 
-### Install dependency for `index.js` 
+### Install dependency for `index.js`
 
 npm
 ```bash
@@ -160,6 +168,6 @@ Latest block details: {.............}
 
 ### Self-Service Troubleshooting for MegaNode users
 
-Please refer to (MegaNode Errors)[https://docs.nodereal.io/docs/support] for more information.
+Please refer to [MegaNode Errors](https://docs.nodereal.io/docs/support) for more information.
 
 **Great work! You managed to write a working Web3 script and sent your first request via NodeReal API endpoint.**

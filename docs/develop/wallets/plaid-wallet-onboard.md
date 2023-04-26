@@ -15,6 +15,14 @@ image: https://wiki.polygon.technology/img/polygon-logo.png
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
+:::caution Content disclaimer
+
+Please view the third-party content disclaimer [<ins>here</ins>](https://github.com/maticnetwork/matic-docs/blob/master/CONTENT_DISCLAIMER.md).
+
+:::
+
+---
+
 **Plaid Wallet Onboard** allows your dApp to connect to hundreds of self-custody wallets, including browser plugin wallets, WalletConnect-compatible mobile wallets, and custom protocols or UX required by hybrid and hardware wallets. It's easier than ever to integrate Metamask, Coinbase Wallet, Rainbow, and more into your dApp.
 
 Wallet Onboard can be configured to automatically ensure that users have their wallets set up to use the Polygon network.

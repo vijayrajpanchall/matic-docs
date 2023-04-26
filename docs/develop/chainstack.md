@@ -14,6 +14,14 @@ keywords:
 image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 
+:::caution Content disclaimer
+
+Please view the third-party content disclaimer [<ins>here</ins>](https://github.com/maticnetwork/matic-docs/blob/master/CONTENT_DISCLAIMER.md).
+
+:::
+
+---
+
 ## Overview
 
 This section guides you through deploying a Hello World contract using [Chainstack](https://chainstack.com/build-better-with-polygon/) and [Foundry](https://github.com/gakonst/foundry/) on the Polygon Mumbai testnet.

@@ -16,6 +16,14 @@ keywords:
 image: https://matic.network/banners/matic-network-16x9.png
 ---
 
+:::caution Content disclaimer
+
+Please view the third-party content disclaimer [<ins>here</ins>](https://github.com/maticnetwork/matic-docs/blob/master/CONTENT_DISCLAIMER.md).
+
+:::
+
+---
+
 ## Sample Queries
 
 Below are some sample queries you can use to gather information from the polygon root subgraph

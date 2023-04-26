@@ -13,7 +13,16 @@ keywords:
   - band protocol
 image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
+
 import useBaseUrl from '@docusaurus/useBaseUrl';
+
+:::caution Content disclaimer
+
+Please view the third-party content disclaimer [<ins>here</ins>](https://github.com/maticnetwork/matic-docs/blob/master/CONTENT_DISCLAIMER.md).
+
+:::
+
+---
 
 Developers building on Polygon can now leverage Band Protocol's decentralized oracle infrastructure. With Band Protocol's oracle, they now have access to various cryptocurrency price data to integrate into their applications.
 

@@ -12,7 +12,16 @@ keywords:
   - band protocol
 image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
+
 import useBaseUrl from '@docusaurus/useBaseUrl';
+
+:::caution Content disclaimer
+
+Please view the third-party content disclaimer [<ins>here</ins>](https://github.com/maticnetwork/matic-docs/blob/master/CONTENT_DISCLAIMER.md).
+
+:::
+
+---
 
 Band Protocol allows you to query data from traditional web APIs and use it in the blockchain. Developers can make queries through **BandChain, a cosmos-based blockchain** for facilitating oracle requests and payment, and then use the data on the dApp through inter-chain communication. Integrating oracle data can be done in 3 simple steps:
 

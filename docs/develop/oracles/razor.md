@@ -11,6 +11,14 @@ keywords:
 image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 
+:::caution Content disclaimer
+
+Please view the third-party content disclaimer [<ins>here</ins>](https://github.com/maticnetwork/matic-docs/blob/master/CONTENT_DISCLAIMER.md).
+
+:::
+
+---
+
 **Razor Network** is a decentralized oracle providing data to the smart contracts using a network of stakers. The network consists of validators who lock in their tokens as a **Stake** and provide data to the network. The honest validators are rewarded and those who report incoherently are penalized.
 
 The core of Razor Network is a set of smart contracts that can run on any Ethereum-compatible blockchain. Razor relies on the underlying blockchain for providing certain properties such as censorship resistance, security from network partition attacks, etc.

@@ -16,6 +16,14 @@ keywords:
 image: https://matic.network/banners/matic-network-16x9.png
 ---
 
+:::caution Content disclaimer
+
+Please view the third-party content disclaimer [<ins>here</ins>](https://github.com/maticnetwork/matic-docs/blob/master/CONTENT_DISCLAIMER.md).
+
+:::
+
+---
+
 # Polygon Root Subgraph Introduction
 
 Polygon has a GraphQL API Endpoint hosted by [The Graph](https://thegraph.com/docs/about/introduction#what-the-graph-is) called a subgraph for indexing and organizing data from the Polygon smart contracts.

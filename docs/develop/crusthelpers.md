@@ -13,6 +13,14 @@ keywords:
 image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 
+:::caution Content disclaimer
+
+Please view the third-party content disclaimer [<ins>here</ins>](https://github.com/maticnetwork/matic-docs/blob/master/CONTENT_DISCLAIMER.md).
+
+:::
+
+---
+
 [Crust Network](https://crust.network) provides a decentralized storage network for Web3. It is designed to realize the core values of decentralization, privacy and assurance. Crust supports multiple storage-layer protocols such as IPFS, and exposes instantly accessible on-chain storage functions to users.
 
 The protocol matches people who have hard drive space to spare with those who need to store data or host content. Crust supports most smart contract platforms with its cross-chain solution, including Polygon. Find out all the platforms that Crust storage supports on their [official website](https://crust.network/).

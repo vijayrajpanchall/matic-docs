@@ -16,32 +16,40 @@ keywords:
 image: https://matic.network/banners/matic-network-16x9.png
 ---
 
+:::caution Content disclaimer
+
+Please view the third-party content disclaimer [<ins>here</ins>](https://github.com/maticnetwork/matic-docs/blob/master/CONTENT_DISCLAIMER.md).
+
+:::
+
+---
+
 # Entities
 
-- [Checkpoint](#checkpoint)
-- [StateSync](#statesync)
-- [StateRegistration](#stateregistration)
-- [PlasmaExit](#plasmaexit)
-- [PredicateRegistration](#predicateregistration)
-- [TokenMapping](#tokenmapping)
-- [FxTokenMapping](#fxtokenmapping)
-- [FxTokenMappingCounter](#fxtokenmappingcounter)
-- [FxDeposit](#fxdeposit)
-- [FxDepositCounter](#fxdepositcounter)
-- [FxWithdraw](#fxwithdraw)
-- [FxWithdrawCounter](#fxwithdrawcounter)
-- [Validator](#validator)
-- [StakeUpdate](#stakeupdate)
-- [GlobalDelegatorCounter](#globaldelegatorcounter)
-- [GlobalPlasmaExitCounter](#globalplasmaexitcounter)
-- [Delegator](#delegator)
-- [Topup](#topup)
-- [StakingParams](#stakingparams)
-- [StakingNFTTransfer](#stakingnfttransfer)
-- [DelegatorUnbond](#delegatorunbond)
-- [MaticTransfer](#matictransfer)
-- [GlobalDelegationCounter](#globaldelegationcounter)
-- [Delegation](#delegation)
+- [Entities](#entities)
+  - [Checkpoint](#checkpoint)
+  - [StateSync](#statesync)
+  - [StateRegistration](#stateregistration)
+  - [PlasmaExit](#plasmaexit)
+  - [PredicateRegistration](#predicateregistration)
+  - [TokenMapping](#tokenmapping)
+  - [FxTokenMapping](#fxtokenmapping)
+  - [FxTokenMappingCounter](#fxtokenmappingcounter)
+  - [FxDeposit](#fxdeposit)
+  - [FxDepositCounter](#fxdepositcounter)
+  - [FxWithdraw](#fxwithdraw)
+  - [FxWithdrawCounter](#fxwithdrawcounter)
+  - [Validator](#validator)
+  - [StakeUpdate](#stakeupdate)
+  - [GlobalDelegatorCounter](#globaldelegatorcounter)
+  - [GlobalPlasmaExitCounter](#globalplasmaexitcounter)
+  - [Delegator](#delegator)
+  - [Topup](#topup)
+  - [StakingNFTTransfer](#stakingnfttransfer)
+  - [DelegatorUnbond](#delegatorunbond)
+  - [MaticTransfer](#matictransfer)
+  - [GlobalDelegationCounter](#globaldelegationcounter)
+  - [Delegation](#delegation)
 
 ## Checkpoint
 

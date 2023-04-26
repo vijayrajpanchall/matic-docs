@@ -7,7 +7,16 @@ keywords:
   - polygon
 image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
+
 import useBaseUrl from '@docusaurus/useBaseUrl';
+
+:::caution Content disclaimer
+
+Please view the third-party content disclaimer [<ins>here</ins>](https://github.com/maticnetwork/matic-docs/blob/master/CONTENT_DISCLAIMER.md).
+
+:::
+
+---
 
 In case you are new to Ethereum and Metamask, here is a guide on how to create multiple accounts and import them:
 

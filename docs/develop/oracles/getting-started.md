@@ -21,6 +21,12 @@ Inbound oracles bring off-chain or real-world data to the blockchain, whereas th
 
 ## Blockchain Oracles
 
+:::caution Content disclaimer
+
+Please view the third-party content disclaimer [<ins>here</ins>](https://github.com/maticnetwork/matic-docs/blob/master/CONTENT_DISCLAIMER.md).
+
+:::
+
 To integrate your dApp with Oracles on Polygon, you can choose to go with one of the following solutions:
 
  1. [API3](api3.md)

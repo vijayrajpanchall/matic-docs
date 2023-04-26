@@ -11,6 +11,14 @@ image: https://wiki.polygon.technology/img/polygon-logo.png
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
+:::caution Content disclaimer
+
+Please view the third-party content disclaimer [<ins>here</ins>](https://github.com/maticnetwork/matic-docs/blob/master/CONTENT_DISCLAIMER.md).
+
+:::
+
+---
+
 This page demonstrates the process of configuring/adding custom tokens to Metamask.
 
 You can use the same process to add any custom tokens to any network on Metamask. You can refer to [this table](#tokens-and-contract-adresses) to visualize some examples of test tokens with their respective contract addresses.

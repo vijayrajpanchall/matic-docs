@@ -7,10 +7,18 @@ keywords:
   - polygon
 image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
+
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+:::caution Content disclaimer
+
+Please view the third-party content disclaimer [<ins>here</ins>](https://github.com/maticnetwork/matic-docs/blob/master/CONTENT_DISCLAIMER.md).
+
+:::
+
+---
 
 ## Configure Polygon on Walletlink
 

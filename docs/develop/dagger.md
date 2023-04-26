@@ -13,6 +13,14 @@ image: https://wiki.polygon.technology/img/polygon-logo.png
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+:::caution Content disclaimer
+
+Please view the third-party content disclaimer [<ins>here</ins>](https://github.com/maticnetwork/matic-docs/blob/master/CONTENT_DISCLAIMER.md).
+
+:::
+
+---
+
 Dagger is the best way to get realtime updates from Ethereum Blockchain.
 It provides a way for your DApps and Backend system to get Ethereum blockchain events i.e. transactions, token transfers, receipts and logs in realtime over websocket or socket.
 

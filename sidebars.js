@@ -114,6 +114,7 @@ module.exports = {
       items: [
         "operate/archive-node",
         "operate/erigon-client",
+        "operate/archive-node-nodereal",
       ],
     },
   ],

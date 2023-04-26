@@ -13,6 +13,14 @@ keywords:
 image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 
+:::caution Content disclaimer
+
+Please view the third-party content disclaimer [<ins>here</ins>](https://github.com/maticnetwork/matic-docs/blob/master/CONTENT_DISCLAIMER.md).
+
+:::
+
+---
+
 If you are looking for a user-friendly wallet on Polygon network, consider creating a [Venly (prev. Arkane Network)](https://www.venly.io/) wallet. It allows you to enable a recovery mechanism and comes with end-user support via their in-app chat.
 ## Sign Up to Venly
 

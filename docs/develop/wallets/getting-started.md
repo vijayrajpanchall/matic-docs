@@ -66,6 +66,12 @@ Support cannot provide assistance for issues with these wallets or other non-nat
 
 :::
 
+:::caution Content disclaimer
+
+Please view the third-party content disclaimer [<ins>here</ins>](https://github.com/maticnetwork/matic-docs/blob/master/CONTENT_DISCLAIMER.md).
+
+:::
+
 The following wallets are solutions that Polygon Technology has partnered with:
 
 | Wallet 	| Custody 	| Account Type 	| Multi-Sig 	| NFT 	| dApp Browser 	| Bridge Support 	| Fiat On-Ramp	| Platforms 	|

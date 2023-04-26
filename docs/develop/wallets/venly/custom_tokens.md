@@ -13,6 +13,14 @@ keywords:
 image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 
+:::caution Content disclaimer
+
+Please view the third-party content disclaimer [<ins>here</ins>](https://github.com/maticnetwork/matic-docs/blob/master/CONTENT_DISCLAIMER.md).
+
+:::
+
+---
+
 ## Fungible Tokens
 
 A developer can easily add support for their custom ERC20 token by creating a small pull request containing the token details toward the [Arkane Git repository](https://github.com/ArkaneNetwork/content-management/tree/master/tokens). Here is an example snippet of the information you must provide:

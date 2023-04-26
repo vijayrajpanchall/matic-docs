@@ -8,7 +8,16 @@ keywords:
   - matic
 image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
+
 import useBaseUrl from '@docusaurus/useBaseUrl';
+
+:::caution Content disclaimer
+
+Please view the third-party content disclaimer [<ins>here</ins>](https://github.com/maticnetwork/matic-docs/blob/master/CONTENT_DISCLAIMER.md).
+
+:::
+
+---
 
 If you are wondering how to create a new cryptocurrency wallet, consider creating one by installing the MetaMask extension.
 

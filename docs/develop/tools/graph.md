@@ -5,12 +5,20 @@ description: Learn how to set up a hosted project with The Graph and Polygon.
 keywords:
   - graph
   - matic
-image: https://matic.network/banners/matic-network-16x9.png 
+image: https://matic.network/banners/matic-network-16x9.png
 ---
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-The Graph, a decentralized protocol for indexing and querying chain data, supports the Polygon chain. Data defined through subgraphs is easy to query and explore. Subgraphs can be created locally, or use a free hosted explorer for indexing and data display. 
+:::caution Content disclaimer
+
+Please view the third-party content disclaimer [<ins>here</ins>](https://github.com/maticnetwork/matic-docs/blob/master/CONTENT_DISCLAIMER.md).
+
+:::
+
+---
+
+The Graph, a decentralized protocol for indexing and querying chain data, supports the Polygon chain. Data defined through subgraphs is easy to query and explore. Subgraphs can be created locally, or use a free hosted explorer for indexing and data display.
 
 > Note: See https://thegraph.com/docs/quick-start for more details, local installation and more. The docs include an example for learning how subgraphs work and this video provides a good introduction.
 
@@ -25,7 +33,7 @@ The Graph, a decentralized protocol for indexing and querying chain data, suppor
 
 3. Install Graph CLI on your machine (using either npm or yarn)
 
-```bash 
+```bash
 $ npm install -g @graphprotocol/graph-cli
 $ yarn global add @graphprotocol/graph-cli
 ```
@@ -56,7 +64,7 @@ You can find the access token by going to your dashboard on the graph website.
 
 6. cd to the directory you created and start defining the subgraph. Information on creating a subgraph is available in the Graph Docs here. https://thegraph.com/docs/define-a-subgraph
 
-7. When you are ready, deploy your subgraph. You can always test and redeploy as needed. 
+7. When you are ready, deploy your subgraph. You can always test and redeploy as needed.
 
 >If your previously deployed subgraph is still in status Syncing, it will be immediately replaced with the newly deployed version. If the previously deployed subgraph is already fully synced, Graph Node will mark the newly deployed version as the Pending Version, sync it in the background, and only replace the currently deployed version with the new one once syncing the new version has finished. This ensures that you have a subgraph to work with while the new version is syncing.
 

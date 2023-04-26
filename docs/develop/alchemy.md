@@ -13,6 +13,14 @@ keywords:
 image: https://wiki.polygon.technology/img/polygon-logo.png
 ---
 
+:::caution Content disclaimer
+
+Please view the third-party content disclaimer [<ins>here</ins>](https://github.com/maticnetwork/matic-docs/blob/master/CONTENT_DISCLAIMER.md).
+
+:::
+
+---
+
 ## Overview
 
 This tutorial is for developers who are either new to Ethereum blockchain development or want to understand the fundamentals of deploying and interacting with smart contracts. It will walk you through creating and deploying a smart contract on the Polygon Mumbai test network using a cryptocurrency wallet ([Metamask](https://metamask.io)), [Solidity](https://docs.soliditylang.org/en/v0.8.0/), [Hardhat](https://hardhat.org), and [Alchemy](https://alchemy.com/?a=polygon-docs).
