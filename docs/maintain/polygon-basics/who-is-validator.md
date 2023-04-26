@@ -26,7 +26,7 @@ Those who are interested in securing the network but are not running a full node
 
 ## Overview
 
-Validators on the Polygon network are selected through an on-chain auction process which happens at regular intervals. These selected validators participate as block producers and verifiers. Once a [checkpoint](/docs/maintain/glossary.md#checkpoint-transaction) is validated by the participants, updates are made on the parent chain (the Ethereum mainnet) which releases the rewards for validators depending on their stake in network.
+Validators participate as block producers and verifiers. Once a [checkpoint](/docs/maintain/glossary.md#checkpoint-transaction) is validated by the participants, updates are made on the parent chain (the Ethereum mainnet) which releases the rewards for validators depending on their stake in network.
 
 Polygon relies on a set of [validators](/docs/maintain/glossary.md#validator) to secure the network. The role of validators is to run a full node, [produce blocks](/docs/maintain/glossary.md#block-producer), validate and participate in consensus, and commit [checkpoints](/docs/maintain/glossary.md#checkpoint-transaction) on the Ethereum mainnet. To become a validator, one needs to [stake](/docs/maintain/glossary.md#staking) their MATIC tokens with staking management contracts residing on the Ethereum mainnet.
 
@@ -39,11 +39,11 @@ Polygon relies on a set of [validators](/docs/maintain/glossary.md#validator) to
 
 ## End-to-end flow for a Polygon Validator
 
-Validators set up their signing nodes, sync data and then stake their tokens on the Ethereum mainnet staking contracts to be accepted as a validator in the current set. If a slot is vacant, the validator is accepted immediately. Otherwise, one needs to go through the replacement mechanism to get a slot.
+Validators set up their signing nodes, sync data and then stake their tokens on the Ethereum mainnet staking contracts to be allocated a slot in the current set. 
 
 :::warning
 
-There is limited space for accepting new validators. New validators can only join the active set when a currently active validator unbonds. A new auction process for validator replacement will be rolled out.
+At present, there are no open validator slots available on Polygon PoS. There is also a waitlist to become a validator. In the future, if slots become available, validators may apply to be considered and removed off of the waitlist.
 
 :::
 
