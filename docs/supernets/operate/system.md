@@ -11,6 +11,12 @@ keywords:
   - installation
 ---
 
+:::caution Active development
+As Supernets are rapidly evolving to get to their production-ready state, the instructions and concepts discussed in these guides are subject to change.
+
+Test releases may include breaking changes. Use current versions for testing and familiarization only.
+:::
+
 This document provides guidance on the minimum hardware requirements and required prerequisites to run and maintain a Supernet.
 
 ## Minimum Hardware Configuration

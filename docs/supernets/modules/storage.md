@@ -11,9 +11,7 @@ keywords:
   - module
 ---
 
-This document describes the storage module available on a childchain and how to use it.
-
-:::caution In active development
+:::caution Active development
 
 This module is in active development and subject to change. The current version can be used by calling the functions directly in your smart contract code. However, in the future, the module may have CLI commands that allow you to call these functions directly from the command line.
 
@@ -21,7 +19,7 @@ It's important to note that this module is not yet fully tested and should not b
 
 :::
 
----
+This document describes the storage module available on a childchain and how to use it.
 
 ## Overview
 

@@ -17,6 +17,12 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 <script src="./dataline.js" type="module"></script>
 
+:::caution Active development
+As Supernets are rapidly evolving to get to their production-ready state, the instructions and concepts discussed in these guides are subject to change.
+
+Test releases may include breaking changes. Use current versions for testing and familiarization only.
+:::
+
 This document explains how to set up a local blockchain with PolyBFT consensus.
 
 - You can choose between non-bridge mode for a standalone blockchain, or bridge mode for cross-chain capabilities connected to a rootchain.
@@ -27,10 +33,6 @@ This document explains how to set up a local blockchain with PolyBFT consensus.
 
 :::info Prerequisites
 Before diving into any of the tutorials, make sure your environment meets the necessary prerequisites. They can be found **[[ here ]](/docs/supernets/operate/system.md)**.
-:::
-
-:::caution All guides are a work in progress
-As Supernets are rapidly evolving to get to their production-ready state, the instructions and concepts discussed in these guides are subject to change. However, the current versions can still be used for testing purposes.
 :::
 
 <!-- ===================================================================================================================== -->
@@ -57,7 +59,7 @@ values={[
 
 ## What you'll learn
 
-- How to set up a local blockchain with the Edge client using PolyBFT consensus.
+- How to set up a local blockchain with the Edge consensus client that uses PolyBFT consensus.
 - How to start configuring a custom blockchain environment with PolyBFT consensus.
 - Understand the key parameters required for configuring PolyBFT consensus.
 
@@ -65,17 +67,18 @@ values={[
 
 The tutorial will cover the following steps:
 
-1. Initialize PolyBFT consensus.
-2. Generate manifest file.
-3. Create a genesis file.
-4. Start the node servers.
+1. Initialize a childchain with PolyBFT consensus.
+2. Generate a manifest file.
+3. Generate a genesis file.
+4. Start the childchain node servers.
 
 <details>
 <summary>Fast-track guide</summary>
 
 **Here's the fast-track guide if you're just looking for a quick guide on the essential commands needed to set up a local blockchain.**
 
-1. Initialize PolyBFT consensus
+1. Initialize a PolyBFT chain
+
    - Run:
      ```
      ./polygon-edge polybft-secrets --insecure --data-dir test-chain- --num 4
@@ -177,9 +180,9 @@ The diagram below illustrates a standard Supernet deployment in bridge mode.
 
 -->
 
-### 1. Initialize PolyBFT Consensus
+### 1. Initialize a chain with PolyBFT consensus
 
-To initialize the PolyBFT consensus, we need to generate the necessary secrets for each node.
+To initialize a chain with PolyBFT consensus, we need to generate the necessary secrets for each childchain node.
 
 <details>
 <summary>Flags</summary>
@@ -707,10 +710,16 @@ To initialize PolyBFT consensus, we need to generate the necessary secrets for e
 Output example:
 
   ```bash
-  Public key (address) = 0xae3dA71AF168d86bF2A0C64748B56ee49e2105FD
-  BLS Public key       = 2a4fa1b7aeb6d11b6d24d5c2baa6c2a5da735a66edf37bdadc51b6d59f84859b277bb0c10ff6d2d795283d967eb6bac7aa1b66dfcb4e4234c6332f516e872ae7168fb1df46c2fd8d7c22cc5df4f00aaa3eb779cfc273c9eb947d6f72d4313c5c0fc895cc8de4eff8f5e33b9756c05d4f1bd2f34164bdeba2c1afaa9a7bdbe487
-  BLS Signature        = 1d65de8e967fe36af83c048619d066593707986deb76326e210035c184c7500020627a44cfe39dfe4669aa2a665d96a20c56a521321ec30efdcc222fb8262ac5
-  Node ID              = 16Uiu2HAmUjMXX6vTvMEMtywPUpiUtJxuDPWrk1f1zdMHNqZrkKHB
+  [WARNING: INSECURE LOCAL SECRETS - SHOULD NOT BE RUN IN PRODUCTION]
+
+   [SECRETS GENERATED]
+   network-key, validator-key, validator-bls-key, validator-bls-signature
+
+   [SECRETS INIT]
+   Public key (address) = 0x6271a765B246eCfd710D8e7fe61F079d82Ed83A4
+   BLS Public key       = 01941ac11e47ddd636fd0fa663d659e4aa77b945ffaa562e9798e402947735472d11caad10894838579f8ba7eff18ea11a70ab3d40407fd69ef2e2a833e63b7b1391c0433a0682acf459b13d1a1f9b4e3c593eb43c6f0d833fde21243a9a0d6e299e41f494615155c04948e483f74d62ffbbc9857f73349c5f1a2716e4927f1e
+   BLS Signature        = 2ef6a38e855fad0928c879fc8d125fbfac95b9d214d23a7deb1c7636daa23f7025565f0cc36935edafef748274d28c877b2e0884ea38937ca7e8704a6f4e7993
+   Node ID              = 16Uiu2HAmPkncxP92BVC5Txd8aj4qCSbzjYU8GuxSnbWTxTsVif6U
   ```
 
 Each command will print the validator key, BLS public key, BLS signature, and the node ID. You will need the node ID of the first node for the next step.
@@ -885,7 +894,7 @@ Now that we have started the rootchain, we can deploy and initialize the rootcha
 | ---- | ----------- | ------- |
 | `--manifest` | Specifies the path to the manifest file | `--manifest ./manifest.json` |
 | `--json-rpc` | Specifies the endpoint for the JSON-RPC API of the Ethereum client | `--json-rpc http://localhost:8545` |
-| `--admin-key` | Specifies the private key of the admin account that will be used to deploy the contracts | `--admin-key <PRIVATE_KEY>` |
+| `--deployer-key` | Specifies the private key of the admin account that will be used to deploy the contracts | `--admin-key <PRIVATE_KEY>` |
 
 </details>
 

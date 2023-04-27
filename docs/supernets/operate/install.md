@@ -15,13 +15,19 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import DownloadButton from '@site/src/data/DownloadButton';
 
+:::caution Active development
+As Supernets are rapidly evolving to get to their production-ready state, the instructions and concepts discussed in these guides are subject to change.
+
+Test releases may include breaking changes. Use current versions for testing and familiarization only.
+:::
+
 This document outlines the different methods available for installing the Polygon Supernet binaries.
 
 To install and run Supernets, you have several options. The tabs below provide guides for each installation method. You can choose to use pre-built releases, a Docker image, or build from source.
 
 :::tip
 
-We recommend using the pre-built releases and verifying the provided checksums for security. 
+We recommend using the pre-built releases and verifying the provided checksums for security.
 
 The Docker image is also a convenient option for containerized deployment. Building from source provides greater flexibility, but requires a [suitable development environment](/docs/supernets/operate/system.md).
 
@@ -110,7 +116,7 @@ cd <downloaded_package>
 
 <TabItem value="windows">
 
-The tar command is available in PowerShell on Windows 10 (build 17063 or newer). 
+The tar command is available in PowerShell on Windows 10 (build 17063 or newer).
 
 ```bash
 # replace <downloaded_package> with the actual package filename
@@ -159,8 +165,8 @@ You can access the official Polygon Edge Docker images hosted under the [0xpolyg
 
 <TabItem value="source">
 
-> Before getting started, ensure you have [Go](https://go.dev/) installed on your system (version >= 1.15 and <= 1.19). 
-> Compatibility is being worked on for other versions and will be available in the near future. 
+> Before getting started, ensure you have [Go](https://go.dev/) installed on your system (version >= 1.15 and <= 1.19).
+> Compatibility is being worked on for other versions and will be available in the near future.
 
 > To install Go, run the following command in your CLI (we are using 1.18 in this example): `sudo apt-get install golang-1.18`.
 > Or, use a package manager like [Snapcraft](https://snapcraft.io/go) for Linux, [Homebrew](https://formulae.brew.sh/formula/go) for Mac, and [Chocolatey](https://community.chocolatey.org/packages/golang) for Windows.

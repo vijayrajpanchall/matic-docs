@@ -13,6 +13,12 @@ keywords:
   - modular
 ---
 
+:::caution Active development
+As Supernets are rapidly evolving to get to their production-ready state, the instructions and concepts discussed in these guides are subject to change.
+
+Test releases may include breaking changes. Use current versions for testing and familiarization only.
+:::
+
 In this guide, you will learn how to transition from an existing IBFT consensus chain to a new chain with PolyBFT consensus.
 
 ## What you'll learn
