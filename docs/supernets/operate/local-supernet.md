@@ -17,13 +17,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 <script src="./dataline.js" type="module"></script>
 
-:::caution Active development
-As Supernets are rapidly evolving to get to their production-ready state, the instructions and concepts discussed in these guides are subject to change.
-
-Test releases may include breaking changes. Use current versions for testing and familiarization only.
-:::
-
 This document explains how to set up a local blockchain with PolyBFT consensus.
+
+:::warning Active development
+Supernets are rapidly evolving towards a production-ready state, and, as a result, instructions and concepts in these guides are subject to change.
+
+Test releases may include breaking changes and offer no guarantees, including backward compatibility. Use the current test releases for testing and familiarization only.
+
+It is highly recommended that you do not attempt deployments on your own; for support, please reach out to the Supernets team.
+:::
 
 - You can choose between non-bridge mode for a standalone blockchain, or bridge mode for cross-chain capabilities connected to a rootchain.
 - The tabs below provide guides for both modes, including fast track guides with just the required commands.
