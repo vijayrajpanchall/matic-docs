@@ -166,7 +166,7 @@ can help you with that.
 
 - [Polygon Community Forum](https://forum.polygon.technology/tag/pip)
 
-- [Polygon Builder Sessions](https://github.com/maticnetwork/Polygon-Improvement-Proposals/tree/main/Project%20Management)
+- [Polygon Protocol Governance Calls](https://github.com/maticnetwork/Polygon-Improvement-Proposals/tree/main/Project%20Management)
 
 ### What to do after submitting a PIP to the PIP GitHub repository?
 
