@@ -224,17 +224,17 @@ Log into the remote sentry machine.
 
 ### Configure the Heimdall Service
 
-Open `config.toml` for editing `vi ~/.heimdalld/config/config.toml`.
+Open `config.toml` for editing `vi /var/lib/heimdall/config/config.toml`.
 
 Change the following:
 
 * `moniker` — any name. Example: `moniker = "my-full-node"`.
 * `seeds` — the seed node addresses consisting of a node ID, an IP address, and a port.
 
-  Use the following values:
+  Should already have the following values:
 
   ```toml
-  seeds="f4f605d60b8ffaaf15240564e58a81103510631c@159.203.9.164:26656,4fb1bc820088764a564d4f66bba1963d47d82329@44.232.55.71:26656,2eadba4be3ce47ac8db0a3538cb923b57b41c927@35.199.4.13:26656,3b23b20017a6f348d329c102ddc0088f0a10a444@35.221.13.28:26656,25f5f65a09c56e9f1d2d90618aa70cd358aa68da@35.230.116.151:26656"
+  seeds="d3a8990f61bb3657da1664fe437d4993c4599a7e@3.211.248.31:26656,d3d7d397339c9126235dfab11bf925e269776f4f@3.212.183.151:26656,68254d33685fad151e45bfe1ed33d538ba6ec8cb@3.93.224.197:26656,d26c54ebbf274896f12977bb13d83ac1237a8226@184.73.124.158:26656,f4f605d60b8ffaaf15240564e58a81103510631c@159.203.9.164:26656,4fb1bc820088764a564d4f66bba1963d47d82329@44.232.55.71:26656,2eadba4be3ce47ac8db0a3538cb923b57b41c927@35.199.4.13:26656,25f5f65a09c56e9f1d2d90618aa70cd358aa68da@35.230.116.151:26656,3b23b20017a6f348d329c102ddc0088f0a10a444@35.221.13.28:26656"
   ```
 
 * `pex` — set the value to `true` to enable the peer exchange. Example: `pex = true`.
@@ -254,30 +254,30 @@ Save the changes in `config.toml`.
 
 ### Configure the Bor Service
 
-Open for editing `vi ~/node/bor/start.sh`.
+Open for editing `vi /var/lib/bor/config.toml`.
 
-In `start.sh`, add the boot node addresses consisting of a node ID, an IP address, and a port by adding the following line at the end:
+In `config.sh`, ensure the boot node addresses consisting of a node ID, an IP address, and a port by the bootnode paramater:
 
 ```config
---bootnodes "enode://0cb82b395094ee4a2915e9714894627de9ed8498fb881cec6db7c65e8b9a5bd7f2f25cc84e71e89d0947e51c76e85d0847de848c7782b13c0255247a6758178c@44.232.55.71:30303,enode://88116f4295f5a31538ae409e4d44ad40d22e44ee9342869e7d68bdec55b0f83c1530355ce8b41fbec0928a7d75a5745d528450d30aec92066ab6ba1ee351d710@159.203.9.164:30303,enode://3178257cd1e1ab8f95eeb7cc45e28b6047a0432b2f9412cff1db9bb31426eac30edeb81fedc30b7cd3059f0902b5350f75d1b376d2c632e1b375af0553813e6f@35.221.13.28:30303,enode://16d9a28eadbd247a09ff53b7b1f22231f6deaf10b86d4b23924023aea49bfdd51465b36d79d29be46a5497a96151a1a1ea448f8a8666266284e004306b2afb6e@35.199.4.13:30303,enode://ef271e1c28382daa6ac2d1006dd1924356cfd843dbe88a7397d53396e0741ca1a8da0a113913dee52d9071f0ad8d39e3ce87aa81ebc190776432ee7ddc9d9470@35.230.116.151:30303"
+bootnodes "enode://0cb82b395094ee4a2915e9714894627de9ed8498fb881cec6db7c65e8b9a5bd7f2f25cc84e71e89d0947e51c76e85d0847de848c7782b13c0255247a6758178c@44.232.55.71:30303,enode://88116f4295f5a31538ae409e4d44ad40d22e44ee9342869e7d68bdec55b0f83c1530355ce8b41fbec0928a7d75a5745d528450d30aec92066ab6ba1ee351d710@159.203.9.164:30303,enode://3178257cd1e1ab8f95eeb7cc45e28b6047a0432b2f9412cff1db9bb31426eac30edeb81fedc30b7cd3059f0902b5350f75d1b376d2c632e1b375af0553813e6f@35.221.13.28:30303,enode://16d9a28eadbd247a09ff53b7b1f22231f6deaf10b86d4b23924023aea49bfdd51465b36d79d29be46a5497a96151a1a1ea448f8a8666266284e004306b2afb6e@35.199.4.13:30303,enode://ef271e1c28382daa6ac2d1006dd1924356cfd843dbe88a7397d53396e0741ca1a8da0a113913dee52d9071f0ad8d39e3ce87aa81ebc190776432ee7ddc9d9470@35.230.116.151:30303"
 ```
 
-Save the changes in `start.sh`.
+Save the changes in `config.toml`.
 
-Open for editing `vi ~/.bor/data/bor/static-nodes.json`.
+Open for editing `vi /var/lib/bor/config.toml`.
 
-In `static-nodes.json`, change the following:
+In `config.toml`, ensure the `static-nodes` parameter has the following values:
 
-* `"<replace with enode://validator_machine_enodeID@validator_machine_ip:30303>"` — the node ID and IP address of Bor set up on the validator machine.
+* `"enode://validator_machine_enodeID@validator_machine_ip:30303"` — the node ID and IP address of Bor set up on the validator machine.
 
   To get the node ID of Bor on the validator machine:
 
   1. Log into the validator machine.
-  1. Run `bootnode -nodekey ~/.bor/data/bor/nodekey -writeaddress`.
+  1. Run `bor bootnode -node-key /var/lib/bor/data/bor/nodekey`, this command only works while bor is not running. If the ip address is `0.0.0.0` then replace it with external facing ip address
 
   Example: `"enode://410e359736bcd3a58181cf55d54d4e0bbd6db2939c5f548426be7d18b8fd755a0ceb730fe5cf7510c6fa6f0870e388277c5f4c717af66d53c440feedffb29b4b@134.209.100.175:30303"`.
 
-Save the changes in `static-nodes.json`.
+Save the changes in `config.toml`.
 
 ### Configure firewall
 
@@ -332,6 +332,7 @@ Start the Heimdall service:
 sudo service heimdalld start
 ```
 
+From v.0.3.0 the Heimdall rest-server is incorporated into Heimdall. Versions before v.0.3.0  will need to start the heimdall rest-server. Later versions can skip this action
 Start the Heimdall rest-server:
 
 ```sh
@@ -356,7 +357,7 @@ These mean that one of the nodes on the network refused a connection to your nod
 
 :::
 
-Check the Heimdall rest-server logs:
+Check the Heimdall rest-server logs if your install is before v.0.3.0:
 
 ```sh
 journalctl -u heimdalld-rest-server.service -f
@@ -395,7 +396,7 @@ journalctl -u bor.service -f
 
 :::note
 
-To complete this section, you must have an RPC endpoint of your fully synced Ethereum mainnet node ready.
+To complete this section, you must have your own RPC endpoint of your own fully synced Ethereum mainnet node ready. The use of Infura and Alchemy is also sufficient and widely used among validators.
 
 :::
 
@@ -403,7 +404,7 @@ To complete this section, you must have an RPC endpoint of your fully synced Eth
 
 Log into the remote validator machine.
 
-Open `config.toml` for editing `vi ~/.heimdalld/config/config.toml`.
+Open `config.toml` for editing `vi /var/lib/heimdall/config/config.toml`.
 
 Change the following:
 
@@ -423,7 +424,7 @@ Change the following:
 
 Save the changes in `config.toml`.
 
-Open for editing `vi ~/.heimdalld/config/heimdall-config.toml`.
+Open for editing `vi /var/lib/heimdall/config/heimdall-config.toml`.
 
 In `heimdall-config.toml`, change the following:
 
@@ -436,22 +437,29 @@ Save the changes in `heimdall-config.toml`.
 
 ### Configure the Bor Service
 
-Open for editing `vi ~/.bor/data/bor/static-nodes.json`.
+Open for editing `vi /var/lib/bor/config.toml`.
 
-In `static-nodes.json`, change the following:
+In `config.toml`, ensure the static-nodes parameter has the following values:
 
-* `"<replace with enode://sentry_machine_enodeID@sentry_machine_ip:30303>"` — the node ID and IP address of Bor set up on the sentry machine.
+* `"enode://sentry_machine_enodeID@sentry_machine_ip:30303"` — the node ID and IP address of Bor set up on the sentry machine.
 
   To get the node ID of Bor on the sentry machine:
 
   1. Log into the sentry machine.
-  1. Run `bootnode -nodekey ~/.bor/data/bor/nodekey -writeaddress`.
+  1. Run `bor bootnode -node-key /var/lib/bor/data/bor/nodekey`, this command only works while bor is not running. If the ip address is `0.0.0.0` then replace it with external facing ip address
 
   Example: `"enode://a8024075291c0dd3467f5af51a05d531f9e518d6cd229336156eb6545581859e8997a80bc679fdb7a3bd7473744c57eeb3411719b973b2d6c69eff9056c0578f@188.166.216.25:30303"`.
 
-Save the changes in `static-nodes.json`.
+Save the changes in `config.toml`.
 
 ## Set the owner and signer key
+
+:::note
+
+To complete this section, you must have already created two Ethereum wallets and have the private keys available as needed. One address will be used as the `Signer` and the other address as the `Owner`. Only the `Signer` address will be used in this section at the moment.
+
+:::
+
 
 On Polygon, you should keep the owner and signer keys different.
 
@@ -470,14 +478,14 @@ heimdallcli generate-validatorkey ETHEREUM_PRIVATE_KEY
 
 :::note
 
-ETHEREUM_PRIVATE_KEY — your Ethereum wallet’s private key
+ETHEREUM_PRIVATE_KEY — your Ethereum wallet’s `Signer` private key
 
 :::
 
 This will generate `priv_validator_key.json`. Move the generated JSON file to the Heimdall configuration directory:
 
 ```sh
-mv ./priv_validator_key.json ~/.heimdalld/config
+mv ./priv_validator_key.json /var/lib/heimdall/config/
 ```
 
 ### Generate a Bor keystore file
@@ -492,7 +500,7 @@ heimdallcli generate-keystore ETHEREUM_PRIVATE_KEY
 
 :::note
 
-ETHEREUM_PRIVATE_KEY — your Ethereum wallet’s private key.
+ETHEREUM_PRIVATE_KEY — your Ethereum wallet’s `Signer` private key.
 
 :::
 
@@ -503,20 +511,31 @@ This will generate a `UTC-<time>-<address>` keystore file.
 Move the generated keystore file to the Bor configuration directory:
 
 ```sh
-mv ./UTC-<time>-<address> ~/.bor/keystore/
+mv ./UTC-<time>-<address> /var/lib/bor/data/keystore/
 ```
+
+Ensure the `keystore` parameter in `/var/lib/bor/config.toml` matches the directory `/var/lib/bor/data/keystore/`
 
 ### Add `password.txt`
 
-Make sure to create a `password.txt` file then add the Bor keystore file password right in the `~/.bor/password.txt` file.
+Make sure to create a `password.txt` file then add the Bor keystore file password right in the `/var/lib/bor/data/password.txt` file. Ensure that `password` parameter in `/var/lib/bor/config.toml` matches the location of the password file.
 
 ### Add your Ethereum address
 
-Open for editing `vi /etc/matic/metadata`.
+Open for editing `vi /var/lib/bor/config.toml`.
 
-In `metadata`, add your Ethereum address. Example: `VALIDATOR_ADDRESS=0xca67a8D767e45056DC92384b488E9Af654d78DE2`.
+In `[accounts]` section you should have paramater `password` already defined from previous step, now add your Ethereum address to `unlock` parameter and also ensure `allow-insecure-unlock` has a value of `true`.
 
-Save the changes in `metadata`.
+Example: 
+
+```sh
+ [accounts]
+    allow-insecure-unlock = true
+    password = "/var/lib/bor/password.txt"
+    unlock = ["0xca67a8D767e45056DC92384b488E9Af654d78DE2"]
+```
+
+Save the changes in `/var/lib/bor/config.toml`.
 
 ## Start the Validator node
 
@@ -537,13 +556,13 @@ Start the Heimdall service:
 sudo service heimdalld start
 ```
 
-Start the Heimdall rest-server:
+Start the Heimdall rest-server (Versions before v.0.3.0):
 
 ```sh
 sudo service heimdalld-rest-server start
 ```
 
-Start the Heimdall bridge:
+Start the Heimdall bridge (Versions before v.0.3.0):
 
 ```sh
 sudo service heimdalld-bridge start
@@ -555,17 +574,24 @@ Check the Heimdall service logs:
 journalctl -u heimdalld.service -f
 ```
 
-Check the Heimdall rest-server logs:
+Check the Heimdall rest-server logs (Versions before v.0.3.0):
 
 ```sh
 journalctl -u heimdalld-rest-server.service -f
 ```
 
-Check the Heimdall bridge logs:
+Check the Heimdall bridge logs (Versions before v.0.3.0):
 
-```sh
+```sh-
 journalctl -u heimdalld-bridge.service -f
 ```
+
+:::note
+
+If your heimdall version is after v.0.3.0 then the logs of heimdalld-rest-server and heimdalld-bridge are in the heimdalld service logs as these three were combined into one service from v.0.3.0.
+
+:::
+
 
 Check the sync status of Heimdall:
 
