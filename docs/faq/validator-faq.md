@@ -1,6 +1,6 @@
 ---
 id: validator-faq
-title: Validator FAQ
+title: Node FAQ
 description: Common questions on validator operations
 keywords:
   - docs
@@ -117,11 +117,9 @@ curl http://localhost:26657/status
 
 Check the value of `catching_up`. If it is `false`, then the node is all synced up.
 
-
 ## Where can I find Heimdall account info location?
 
 `/var/lib/heimdall/config`
-
 
 ## Which file do I add the persistent_peers?
 
@@ -550,3 +548,64 @@ Go to `CS-2003/bor` and then run, `bash stop.sh`
 ### Diagnosing what went wrong in a node
 
 You can use [this script](https://github.com/maticnetwork/launch/tree/master/scripts/node_diagnostics.sh) to check periodially the sync status of your node.
+
+## How to Troubleshoot Your Node Mining More Zero Blocks
+
+If your node is mining more zero blocks, it's recommended to compare the size of the chaindata directory on both the sentry and validator. If the sizes are not matching, you should clear the chaindata directory that is less in size, and we recommend syncing from a fresh snapshot again.
+
+Steps to clear chaindata:
+
+1. Run the command `rm -r /var/lib/bor/data/bor/chaindata`. This command removes the chaindata directory and all its contents recursively. This step is necessary to clear any corrupted data that might be causing issues with your node.
+1. Then, run `mkdir /var/lib/bor/data/bor/chaindata`. This command creates a new, empty chaindata directory, which will be populated with the latest block data when you start syncing your node again. This step is necessary to ensure that your node has a clean slate to work with, and it won't face any issues caused by previous corrupted data.
+
+To sync from a snapshot, please follow the instructions provided [<ins>here</ins>](https://wiki.polygon.technology/docs/operate/snapshot-instructions-heimdall-bor/)
+
+## How to Address a Significant Block Reorg
+
+If your node has suffered a significant reorg, we recommend that you connect with the Polygon Team and share the logs. Our team is continuously working on improving the network's finality in the long term.
+
+## Using Public IP Addresses for `persistent_peers` and `trusted_nodes` Configuration
+
+When configuring the `persistent_peers` and `trusted_nodes` settings, we recommend using public IP addresses. This ensures that your node is connected to the correct public network and can communicate with other nodes effectively. Using private IP addresses can result in connectivity issues, as these addresses are not accessible outside your private network.
+
+## How to Troubleshoot `Looking for Peers Error` and Sidechain Ghost-State Attack
+
+If your node displays the error message "Looking for peers `peercount=0` `tried=2` `static=2` Sidechain ghost-state attack detected number=17483813 sideroot='19a361...'", it's likely due to the node importing a batch of blocks for which the state has been pruned, but encounters a block for which the state is present and aborts the process to prevent importing those blocks without verifying the state. This can also occur during large reorgs.
+
+To address this issue, try rewinding to 100 blocks from the current block number and then roll back the node by a few hundred blocks before resyncing from the previous blocks. To do this, you will need to convert the block number to hexadecimal using a tool for converting decimals to hexadecimal.
+
+Once you have the hexadecimal number, run the following commands:
+
+1. `bor attach ./.bor/data/bor.ipc`
+1. ``> debug.setHead("0xE92570")`
+
+The `debug.setHead()` function will allow your Bor to set the tip at a particular block height. The output for this should be null, which means the command was successful. You can now start monitoring your logs for Bor again and see if it passes that block number. If the provided solutions don't work, please contact the Polygon Support team immediately.
+
+## How to Resolve Sync Issues for a Falling-Behind Validator
+
+If your validator is falling behind the latest blocks and is currently syncing, follow these steps:
+
+1. Open port `8545` on the sentry.
+1. In the heimdall-config.toml file of the validator, replace it with http://ip:8545.
+1. Check that the sentry RPC has the http API enabled in config.toml.
+1. The validator must have the address of `0.0.0.0` and only listen to and from the validator.
+
+   > Once the node has caught up with the latest blocks, please revert all the changes to the defaults.
+
+If the sentry has also fallen behind the latest blocks, follow these additional steps:
+
+1. Open the heimdall-config.toml file on the validator.
+1. Change the value of the `bor_rpc_url` parameter to any one of the public endpoints listed [<ins>here</ins>](https://wiki.polygon.technology/).
+1. Restart the services.
+
+  > Once the node has caught up with the latest blocks, please revert all the changes to the defaults.
+
+## How to Troubleshoot Errors with Heimdall Bridge Tasks
+
+If you receive an error message similar to the following:
+
+```bash
+[0;94mINFO: 2023/02/24 09:25:12 amqp.go:326 Task not registered with this worker. Requeing message: {"UUID":"task_5c2d8983-89fa-42c1-a491-bacb682572b0","Name":"sendStakeUpdateToHeimdall","RoutingKey":"machinery_task","ETA":"2023-02-24T07:25:04.0895409Z","GroupUUID":"","GroupTaskCount":0,"Args":[{"Name":"","Type":"string","Value":"StakeUpdate"},{"Name":"","Type":"string","Value":"{\"address\":\"0xa59c847bd5ac0172ff4fe912c5d29e5a71a7512b\",\"topics\":[\"0x35af9eea1f0e7b300b0a14fae90139a072470e44daa3f14b5069bebbc1265bda\",\"0x0000000000000000000000000000000000000000000000000000000000000004\",\"0x0000000000000000000000000000000000000000000000000000000000000abd\",\"0x000000000000000000000000000000000000000000010693d2f1c350b752c130\"],\"data\":\"0x\",\"blockNumber\":\"0xfda81f\",\"transactionHash\":\"0xaa551dd79e0086aeee18e3e41207d2f0d9b3d1a8a09d885c794e7ba5939b410e\",\"transactionIndex\":\"0x65\",\"blockHash\":\"0x06ef6aad4402835be2d99968a26ac8e3d07a8f16351fba6c6c3f6808ead828d7\",\"logIndex\":\"0xe1\",\"removed\":false}"}],"Headers":{},"Priority":0,"Immutable":false,"RetryCount":2,"RetryTimeout":1,"OnSuccess":null,"OnError":null,"ChordCallback":null,"BrokerMessageGroupId":"","SQSReceiptHandle":"","StopTaskDeletionOnError":false,"IgnoreWhenTaskNotRegistered":false}[0m
+```
+
+It generally indicates that the Heimdall bridge is not properly up and running. Usually, the issue gets resolved in some time. However, if the problem persists, restarting the node can help resolve it.
