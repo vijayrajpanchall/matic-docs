@@ -568,9 +568,9 @@ If your node has suffered a significant reorg, we recommend that you connect wit
 
 When configuring the `persistent_peers` and `trusted_nodes` settings, we recommend using public IP addresses. This ensures that your node is connected to the correct public network and can communicate with other nodes effectively. Using private IP addresses can result in connectivity issues, as these addresses are not accessible outside your private network.
 
-## How to Troubleshoot `Looking for Peers Error` and Sidechain Ghost-State Attack
+## How to Troubleshoot Sidechain Ghost-State Attack
 
-If your node displays the error message "Looking for peers `peercount=0` `tried=2` `static=2` Sidechain ghost-state attack detected number=17483813 sideroot='19a361...'", it's likely due to the node importing a batch of blocks for which the state has been pruned, but encounters a block for which the state is present and aborts the process to prevent importing those blocks without verifying the state. This can also occur during large reorgs.
+If your node displays the error message "Sidechain ghost-state attack detected number=17483813 sideroot='19a361...'", it's likely due to the node importing a batch of blocks for which the state has been pruned, but encounters a block for which the state is present and aborts the process to prevent importing those blocks without verifying the state. This can also occur during large reorgs.
 
 To address this issue, try rewinding to 100 blocks from the current block number and then roll back the node by a few hundred blocks before resyncing from the previous blocks. To do this, you will need to convert the block number to hexadecimal using a tool for converting decimals to hexadecimal.
 
