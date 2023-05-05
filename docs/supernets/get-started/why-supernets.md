@@ -15,8 +15,6 @@ keywords:
 
 This document provides an overview on the significance and benefits of Polygon Supernets.
 
----
-
 ## Regulatory Compliance and Network Sovereignty
 
 Supernets offer network sovereignty and regulatory compliance by allowing maintainers to select validators that meet local regulations. This approach enables global networks to tailor their configurations while maintaining compliance with regional regulatory requirements.

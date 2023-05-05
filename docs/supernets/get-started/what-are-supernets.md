@@ -13,10 +13,42 @@ keywords:
   - modular
 ---
 
-This document provides an overview of what Polygon Supernets are through multiple perspectives;
-a comprehensive distributed network design to build scalable blockchains.
+## A distributed network design to build scalable application-specific blockchains
 
-:::info Edge + Supernets is like Geth + Ethereum
+This document provides an overview of what Polygon Supernets are through multiple perspectives.
+
+:::warning Breaking changes
+Supernets are rapidly evolving towards their production-ready state, and, as a result, instructions and concepts in these documents are subject to change.
+
+Test releases may include breaking changes and offer no guarantees, including backward compatibility. Use the current test releases for testing and familiarization only.
+
+It is highly recommended that you do not attempt deployments on your own; for support, please reach out to the Supernets team.
+
+<details>
+<summary>The following components are available for testing ↓</summary>
+
+- Local deployment.
+- Cloud deployments.
+- Smart contract and validator allowlisting.
+- Smart contract and validator blocklisting.
+- Minting a native ERC20 token.
+- Rootchain staking.
+- Transfers of ERC-20, ERC-721, ERC-1155 tokens and arbitrary message passing using the native bridge.
+- Migration support from older versions of the original Edge consensus client that use IBFT consensus to PolyBFT.
+
+Additional components, including on-chain governance and creating a full production instance with staked MATIC, are currently in progress.
+
+If you have any questions or are interested in using Supernets in a production environment, please get in touch with the Polygon team for guidance and support.
+
+</details>
+
+:::
+
+## Introduction
+
+Supernets are application-specific chains that operate on the Polygons Edge consensus client with [PolyBFT consensus](/docs/supernets/design/consensus/polybft/overview.md). They leverage a [native bridge](/docs/supernets/design/bridge/overview.md) to connect with an associated rootchain, namely, Polygon PoS mainnet, enabling them to inherit its security and capabilities. Additionally, Supernets extend the block space available on the rootchain, providing scalability and interoperability for decentralized applications. With on-chain governance mechanisms, Supernets empower communities to make decisions and upgrade the network in a transparent and compliant manner.
+
+:::info Edge + Supernets = Geth + Ethereum
 
 Before diving into the documentation, please keep the following points in mind:
 
@@ -25,19 +57,11 @@ Before diving into the documentation, please keep the following points in mind:
 
   The repository will remain accessible, and users may fork it and use it as they wish, subject to applicable open-source license terms. It is **highly recommended to upgrade to the latest version**, which includes the most up-to-date features and fixes. However, users who prefer to stay on older versions may continue to do so.
 
-- **Polygon Edge serves as a consensus client implementation for Polygon Supernets, much like how Geth serves as a client implementation for Ethereum.**
-
-Both geth and Edge serve as intermediaries between nodes and their respective blockchains, allowing users to interact with the network and take advantage of its benefits. To draw an analogy, Geth and Edge are to Ethereum and Supernets what web browsers are to the internet, enabling users to access and interact with the network.
+- **Polygon Edge serves as a consensus client implementation for Polygon Supernets, much like how Geth serves as a client implementation for Ethereum.** Both Geth and Edge serve as intermediaries between nodes and their respective blockchains, allowing users to interact with the network and take advantage of its benefits. To draw an analogy, Geth and Edge are to Ethereum and Supernets what web browsers are to the internet, enabling users to access and interact with the network.
 
 :::
 
----
-
-## Introduction
-
-In simple terms, a **Supernet refers to an application-specific chain that operates on the Polygon Edge consensus client with PolyBFT consensus, in bridge mode (and utilizes the transaction relayer), with stake on the associated rootchain (i.e. PoS mainnet), and employs the on-chain governance mechanism**.
-
-The following table offers a comprehensive overview on what Supernets are.
+The following table offers a comprehensive overview on what Supernets are through different prespectives.
 
 | Supernets are | Description |
 |-----------|-------------|
@@ -48,23 +72,6 @@ The following table offers a comprehensive overview on what Supernets are.
 | The most supported blockchain infrastructure in the web3 space. | The Supernets ecosystem includes the most extensive suite of premium service providers, who offer various node and deployment infrastructure, indexers, explorers, oracles, and many other world-class tools necessary for building and deploying Supernets and their associated applications. |
 | Adaptive and compliant blockchain networks that thoroughly reflect their maintainers. | Supernets feature an on-chain governance mechanism that enables community-driven decision making and management of the blockchain. This mechanism supports hybrid governance models and allows for the design of either permissionless networks or permissioned networks with varying degrees of sovereignty based on user and maintainer needs, including the ability to allowlist validators and network admins. |
 | Interoperable and multichain driven | A native bridging solution enables the seamless transfer of assets from various EVM-compatible blockchains back to the Polygon ecosystem. This bridging solution allows developers to customize bridge plugins to meet specific requirements, facilitating interoperability between blockchains and different layers. |
-
-:::caution In active development
-
-**Please note that the Supernets documentation hub currently only documents the functionality of the v0.8.1 release, as the code is still in active development and undergoing auditing. As such, it is not recommended for use in production environments.**
-
-At present, the following components are available:
-
-- Smart contract and validator allowlisting.
-- Minting a native ERC20 token.
-- Transfers of ERC20 tokens and arbitrary message passing using the native bridge.
-- Migration support from older versions of the consensus client that use IBFT consensus.
-
-Additional components, including on-chain governance and creating a full production instance with staked MATIC, are currently in progress.
-
-If you have any questions or are interested in using Supernets in a production environment, please get in touch with the Polygon team for guidance and support.
-
-:::
 
 ## Unstoppable Layer 2 & Layer 3 Networks
 
@@ -129,6 +136,6 @@ Supernets cloud deployment options also come with a range of features and capabi
 :::note Check out the local cloud deployment options
 
 Get started with deploying a local private supernet on the cloud by checking out our cloud deployment guides
-available [[ here ]](/docs/supernets/operate/deploy-cloud.md).
+available [<ins>here</ins>](/docs/supernets/operate/deploy-cloud.md).
 
 :::

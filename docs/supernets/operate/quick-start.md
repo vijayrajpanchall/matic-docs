@@ -19,8 +19,8 @@ import DownloadButton from '@site/src/data/DownloadButton';
 
 This document offers a quick start guide to assist users in setting up a local Supernet test environment using a pre-packaged Edge consensus client script.
 
-:::warning Active development
-Supernets are rapidly evolving towards a production-ready state, and, as a result, instructions and concepts in these guides are subject to change.
+:::warning Breaking changes
+Supernets are rapidly evolving towards their production-ready state, and, as a result, instructions and concepts in these documents are subject to change.
 
 Test releases may include breaking changes and offer no guarantees, including backward compatibility. Use the current test releases for testing and familiarization only.
 
@@ -31,6 +31,7 @@ Before proceeding, ensure that your system meets the necessary [system requireme
 
 ## Spawn a local Supernet in 2 minutes
 
+<!--
 <div class="download-container">
   <div class="download-text">
     <p><b>[EXPERIMENTAL] The download button will automatically provide the appropriate download link according your operating system.</b></p><p>For a list of releases, please visit the official release page <a href="https://github.com/0xPolygon/polygon-edge/releases">[ here ]</a>.</p>
@@ -45,9 +46,12 @@ Before proceeding, ensure that your system meets the necessary [system requireme
     />
   </div>
 </div>
+-->
+
+To access the pre-built releases, visit the [GitHub releases page](https://github.com/0xPolygon/polygon-edge/releases). The client provides cross-compiled AMD64/ARM64 binaries for Darwin and Linux.
 
 <details>
-<summary>[For reference] Extract pre-release package</summary>
+<summary>[REFERENCE] Extract pre-release package ↓</summary>
 
 Extract the downloaded package using your file system's extraction tool or the provided commands below, and navigate to the pre-built release in your preferred interface or text editor.
 
@@ -120,7 +124,7 @@ To run the Supernets test environment locally, run the following command from th
 > - Destroy the network: `./scripts/cluster polybft destroy`.
 
 <details>
-<summary>Deployment script details</summary>
+<summary>Deployment script details ↓</summary>
 
 The script is available under the "scripts" directory of the client.
 These are the optional configuration parameters you can pass to the script:
@@ -130,8 +134,6 @@ These are the optional configuration parameters you can pass to the script:
 
 | Flag | Description | Default Value |
 |------|-------------|---------------|
-| --validator-set-size | Number of validators in the network. | 4 |
-| --bridge-json-rpc | JSON-RPC endpoint for the bridge. | http://127.0.0.1:8545 |
 | --block-gas-limit | Maximum gas allowed for a block. | 10000000 |
 | --premine | Address and amount of tokens to premine in the genesis block. | 0x85da99c8a7c2c95964c8efd687e95e632fc533d6:1000000000000000000000 |
 | --epoch-size | Number of blocks per epoch. | 10 |
@@ -194,9 +196,8 @@ function initIbftConsensus() {
 
 function initPolybftConsensus() {
     echo "Running with polybft consensus"
-    genesis_params="--consensus polybft --bridge-json-rpc http://127.0.0.1:8545"
+    genesis_params="--consensus polybft"
     ./polygon-edge polybft-secrets --insecure --data-dir test-chain- --num 4
-    ./polygon-edge manifest
 }
 
 function createGenesis() {
@@ -265,7 +266,6 @@ set -e
 # Reset test-dirs
 rm -rf test-chain-*
 rm -f genesis.json
-rm -f manifest.json
 
 # Build binary
 go build -o polygon-edge .
