@@ -27,4 +27,4 @@ The allowlisting mechanism can also restrict access to other functions or featur
 
 In addition to restricting participation in consensus rounds, allowlisting can prevent malicious actors from taking control of the network. Restricting access to certain functions or features makes it much more difficult for attackers to compromise the network's security.
 
-The childchain [CVSAccessControl module](/docs/supernets/modules/access-control) allows the owner to add or remove addresses to the allowlist.
+The Supernet [CVSAccessControl module](/docs/supernets/modules/access-control) allows the owner to add or remove addresses to the allowlist.

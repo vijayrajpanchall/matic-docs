@@ -40,7 +40,7 @@ At the end of each epoch, a reward calculation occurs to reward the active valid
 
 ## Native Bridge Integration
 
-PolyBFT supports an in-built bridging mechanism that enables arbitrary message passing between a Supernet (childchain) and another Proof-of-Stake blockchain (rootchain) with the help of the consensus algorithm. Transfers can occur without mapping, allowing users to move assets between the two chains seamlessly.
+PolyBFT supports an in-built bridging mechanism that enables arbitrary message passing between a Supernet and another Proof-of-Stake blockchain (rootchain) with the help of the consensus algorithm. Transfers can occur without mapping, allowing users to move assets between the two chains seamlessly.
 
 ## Slashing
 
@@ -125,7 +125,7 @@ Examples of malicious activities are double-signing and equivocation:
 
 With the help of PolyBFT, the Polygon Supernets support an
 [in-built bridging mechanism (a two-way bridge)](/supernets/design/bridge/overview.md),
-which enables arbitrary message passing between a Supernet (`childchain`) and another Proof-of-Stake
+which enables arbitrary message passing between a Supernet and another Proof-of-Stake
 blockchain (`rootchain`). Transfers can occur without mapping.
 
 ![bridge](/img/supernets/contracts-bridge.excalidraw.png)

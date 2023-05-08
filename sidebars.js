@@ -1064,13 +1064,22 @@ module.exports = {
           },
           items: [
             "supernets/design/bridge/overview",
-            "supernets/design/bridge/erc20-child-predicate",
-            "supernets/design/bridge/erc20-predicate",
             "supernets/design/bridge/statesync",
             "supernets/design/bridge/checkpoint",
+            {
+              type: "category",
+              label: "Native assets",
+              link: {
+                type: "generated-index",
+              },
+              items: [
+                "supernets/design/bridge/assets/erc/erc20",
+                "supernets/design/bridge/assets/erc/erc721",
+                "supernets/design/bridge/assets/erc/erc1155",
+              ],
+            },
           ],
         },
-        "supernets/design/assets/erc/erc20",
         "supernets/design/supernets-libp2p",
         {
           type: "category",
@@ -1121,6 +1130,7 @@ module.exports = {
             "supernets/operate/supernets-setup-dev-env",
           ],
         },
+        "supernets/operate/supernets-cross-chain",
         {
           type: "category",
           label: "Supernet Interfaces",
