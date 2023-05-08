@@ -1050,7 +1050,6 @@ module.exports = {
             type: "generated-index",
           },
           items: [
-            "supernets/design/consensus/supernets-pos",
             "supernets/design/consensus/polybft/polybft-overview",
             "supernets/design/consensus/polybft/ibft-overview",
             "supernets/design/consensus/validator/polybft-allowlist",
