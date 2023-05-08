@@ -1205,6 +1205,7 @@ module.exports = {
           ],
         },
         "supernets/operate/supernets-ibft-to-polybft",
+        "supernets/operate/supernets-unstake",
         "supernets/operate/supernets-performance",
       ],
     },
