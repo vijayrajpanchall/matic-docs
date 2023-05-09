@@ -1037,7 +1037,9 @@ Using the `--deployer-key` flag, you will need to replace `<hex_encoded_deployer
 
 You also need to specify the path to the genesis file using the `--genesis` option, and the endpoint for the JSON-RPC endpoint for the rootchain using the `--json-rpc` option.
 
-To run the deployment in test mode, add the `--test` flag.
+To run the deployment in test mode and use the test account provided by the Geth dev instance as the depositor, add the `--test` flag. In this case, you can omit the `--deployer-key` flag, and the default test account will be used as the depositor.
+
+> Note that if you are deploying to Mumbai as the rootchain, you should omit the `--test` flag, and specify a deployer account using the `--deployer-key` flag.
 
 <details>
 <summary>Flags ↓</summary>
