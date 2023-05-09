@@ -631,7 +631,7 @@ module.exports = {
         },
         */
         {
-          label: "IPs",
+          label: "Infra Providers",
           position: "right",
           items: [
             {

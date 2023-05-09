@@ -130,7 +130,7 @@ The script is available under the "scripts" directory of the client.
 These are the optional configuration parameters you can pass to the script:
 
 <details>
-<summary>Flags</summary>
+<summary>Flags ↓</summary>
 
 | Flag | Description | Default Value |
 |------|-------------|---------------|

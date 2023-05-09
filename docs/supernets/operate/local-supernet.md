@@ -2,7 +2,7 @@
 id: supernets-local-deploy-supernet
 title: Deploy a Local Polygon Supernet
 sidebar_label: Deploy a local test Supernet
-description: "An introduction to Polygon Supernets."
+description: "Learn how to deploy a local test Supernet."
 keywords:
   - docs
   - Polygon
@@ -27,7 +27,7 @@ Test releases may include breaking changes and offer no guarantees, including ba
 It is highly recommended that you do not attempt deployments on your own; for support, please reach out to the Supernets team.
 :::
 
-:::caution Non-Bridge mode deployment
+:::info Non-bridge mode deployment
 
 In the latest v0.9 test release of Supernets, the previous "bridge mode" and "non-bridge mode" distinction has been deprecated.
 
@@ -37,8 +37,16 @@ If you require a standalone Supernet instance, custom configuration is necessary
 
 :::
 
-:::info Prerequisites
+## Prerequisites
+
 Before diving into any of the tutorials, make sure your environment meets the necessary prerequisites. They can be found **[<ins>here</ins>](/docs/supernets/operate/system.md)**.
+
+:::caution Don't use the develop branch for deployments
+
+Please ensure that you are not running on the `develop` branch, which is the active development branch and may include changes that are still being tested and not compatible with the current process.
+
+Instead, use the [<ins>latest release</ins>](/docs/supernets/operate/install.md) for deployments.
+
 :::
 
 <!-- ===================================================================================================================== -->
@@ -83,16 +91,17 @@ This tutorial will cover the following steps:
    - ii. [Chain configuration: generating the Genesis file](#ii-chain-configuration-generate-the-genesis-file)
 2. [Rootchain Configuration](#2-rootchain-configuration)
    - i. [Deploying rootchain contracts](#i-deploy-and-initialize-rootchain-contracts)
+   - ii. [Funding validators on the rootchain](#ii-funding-validators-on-the-rootchain)
 3. [Allowlisting](#3-allowlisting)
    - i. [Allowlisting validators on the rootchain](#i-allowlist-validators-on-the-rootchain)
    - ii. [Register validators on the rootchain](#ii-register-validators-on-the-rootchain)
 4. [Staking](#4-staking)
    - i. [Initial staking on rootchain](#i-initial-staking-on-rootchain)
    - ii. [Finalizing validator set on the rootchain](#ii-finalize-validator-set-on-the-rootchain)
-5. [Starting the Supernet](#5-start-the-supernet)
+5. [Starting the Chain](#5-start-the-chain)
 
 <details>
-<summary>Fast-track guide</summary>
+<summary>Fast-track guide ↓</summary>
 
 **Here's the fast-track guide if you're looking for a quick guide on the essential commands needed to set up a local Supernet.**
 
@@ -197,7 +206,7 @@ The `polygon-edge polybft-secrets` command is used to generate account secrets f
 **Keep in mind that this command is intended for testing purposes only and should not be used in a production environment.**
 
 <details>
-<summary>Flags</summary>
+<summary>Flags ↓</summary>
 
 | Flag            | Description                                                                                               | Example           |
 |-----------------|-----------------------------------------------------------------------------------------------------------|-------------------|
@@ -224,7 +233,7 @@ The `polygon-edge polybft-secrets` command is used to generate account secrets f
   ```
 
 <details>
-<summary>Output example</summary>
+<summary>Output example ↓</summary>
 
 ```bash
 [WARNING: INSECURE LOCAL SECRETS - SHOULD NOT BE RUN IN PRODUCTION]
@@ -853,7 +862,7 @@ To do this, open a new terminal session and run:
   ```
 
 <details>
-<summary>Output example</summary>
+<summary>Output example ↓</summary>
 
 You should see output similar to the following, indicating that the rootchain server is now running:
 
@@ -954,7 +963,7 @@ To deploy the rootchain contracts, we use the `polygon-edge rootchain deploy` co
 > Note that the `--deployer-key` option is optional, and if you omit it, the default account in your local client will be used.
 
 <details>
-<summary>Flags</summary>
+<summary>Flags ↓</summary>
 
 | Flag                  | Description                                                               | Example                                       |
 |-----------------------|---------------------------------------------------------------------------|-----------------------------------------------|
@@ -1115,7 +1124,7 @@ To deploy the rootchain contracts, we use the `polygon-edge rootchain deploy` co
 > Note that the `--deployer-key` option is optional, and if you omit it, the default account in your local client will be used.
 
 <details>
-<summary>Flags</summary>
+<summary>Flags ↓</summary>
 
 | Flag                  | Description                                                               | Example                                       |
 |-----------------------|---------------------------------------------------------------------------|-----------------------------------------------|
@@ -1133,14 +1142,13 @@ Global flags:
 
 :::info Funding required for validators
 
-Note that before initializing the contracts on Mumbai, the validators need to be funded with enough funds to pay for the gas cost of deploying the contracts. Otherwise, the initialization process may fail due to insufficient funds.
+Note that before initializing the contracts on the rootchain, the validators need to be funded with enough funds to pay for the gas cost of deploying the contracts. Otherwise, the initialization process may fail due to insufficient funds.
 
 You may see the following error as a result of insufficient funds:
 
 ```bash
 failed to deploy rootchain contracts: {"code":-32000,"message":"INTERNAL_ERROR: insufficient funds"}
 ```
-
 :::
 
 ```bash
@@ -1153,7 +1161,7 @@ failed to deploy rootchain contracts: {"code":-32000,"message":"INTERNAL_ERROR: 
 
 
 <details>
-<summary>Core contract deployment output example</summary>
+<summary>Core contract deployment output example ↓</summary>
 
 ```bash
 [ROOTCHAIN - CONTRACTS DEPLOYMENT] started... Rootchain JSON RPC address http://127.0.0.1:8545.
@@ -1304,7 +1312,7 @@ Here's an example of how to fund each of the validator accounts:
   ```
 
 <details>
-<summary>Funding output example</summary>
+<summary>Funding output example ↓</summary>
 
   ```bash
   [ROOTCHAIN FUND]
@@ -1339,7 +1347,7 @@ Before validators can be registered on the `CustomSupernetManager` contract on t
 This can be done using the `polygon-edge polybft whitelist-validators` command. The deployer can specify the hex-encoded private key of the `CustomSupernetManager` contract deployer or use the `--data-dir` flag if they have initialized their secrets.
 
 <details>
-<summary>Flags</summary>
+<summary>Flags ↓</summary>
 
 | Flag              | Description                                                                                      | Example                                     |
 | -----------------| ------------------------------------------------------------------------------------------------| ------------------------------------------- |
@@ -1366,7 +1374,7 @@ In the following example command, we are using a placeholder private key for the
 Each validator needs to register themselves on the `CustomSupernetManager` contract. This is done using the `polygon-edge polybft register-validator` command. **Note that this command is for testing purposes only.**
 
 <details>
-<summary>Flags</summary>
+<summary>Flags ↓</summary>
 
 | Flag                          | Description                                                                                                       | Example                                                |
 | -----------------------------| ----------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------ |
@@ -1389,7 +1397,7 @@ Each validator needs to register themselves on the `CustomSupernetManager` contr
 Each validator needs to perform initial staking on the rootchain `StakeManager` contract. This is done using the `polygon-edge polybft stake` command. **Note that this command is for testing purposes only.**
 
 <details>
-<summary>Flags</summary>
+<summary>Flags ↓</summary>
 
 | Flag                          | Description                                        | Example                                  |
 | -----------------------------| -------------------------------------------------- | ---------------------------------------- |
@@ -1426,7 +1434,7 @@ curl <mumbai-rpc-endpoint> \
 
 ### ii. Finalize validator set on the rootchain
 
-After all validators from the genesis block have performed initial staking on the rootchain, the final step required before starting the Supernet is to finalize the genesis validator set on the `SupernetManager` contract on the rootchain. This can be done using the `polygon-edge polybft supernet` command.
+After all validators from the genesis block have performed initial staking on the rootchain, the final step required before starting the chain is to finalize the genesis validator set on the `SupernetManager` contract on the rootchain. This can be done using the `polygon-edge polybft supernet` command.
 
 The deployer of the `SupernetManager` contract can specify their hex-encoded private key or use the `--data-dir` flag if they have initialized their secrets. If the `--enable-staking` flag is provided, validators will be able to continue staking on the rootchain. If not, genesis validators will not be able to update their stake or unstake, nor will newly registered validators after genesis be able to stake tokens on the rootchain. The enabling of staking can be done through this command or later after the Supernet starts.
 
@@ -1440,14 +1448,14 @@ In the following example command, we use a placeholder hex-encoded private key o
    --finalize-genesis --enable-staking
 ```
 
-## 5. Starting the Supernet
+## 5. Starting the Chain
 
-Now that we have set up the rootchain and created the chain configuration, we can run the childchain cluster. In this example, we'll run a childchain cluster of four Edge clients.
+Now that we have set up the rootchain and created the chain configuration, we can run the Supernet cluster of Edge clients. In this example, we'll run a cluster of four Edge clients.
 
-To run a childchain cluster, we use the `polygon-edge server` command with the following options:
+To run a Supernet cluster, we use the `polygon-edge server` command with the following options:
 
 <details>
-<summary>Flags</summary>
+<summary>Flags ↓</summary>
 
 | Flag                                   | Description                                                                                                                               | Example                                            |
 |----------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------|

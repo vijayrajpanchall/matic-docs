@@ -2,7 +2,7 @@
 id: supernets-setup-dev-env
 title: Deploy a Polygon Supernet to the Cloud
 sidebar_label: Deploy a test Supernet on the cloud
-description: "An introduction to Polygon Supernets."
+description: "Learn how to deploy a test Supernet instance to the cloud."
 keywords:
   - docs
   - Polygon

@@ -15,6 +15,14 @@ keywords:
 
 In this document, we'll go over how to unstake a validator's staked tokens and withdraw them to an external address.
 
+:::warning Breaking changes
+Supernets are rapidly evolving towards their production-ready state, and, as a result, instructions and concepts in these documents are subject to change.
+
+Test releases may include breaking changes and offer no guarantees, including backward compatibility. Use the current test releases for testing and familiarization only.
+
+It is highly recommended that you do not attempt deployments on your own; for support, please reach out to the Supernets team.
+:::
+
 ## Unstake
 
 :::info Check validator information
@@ -22,7 +30,7 @@ In this document, we'll go over how to unstake a validator's staked tokens and w
 First, check your validator information by running the `polygon-edge polybft validator-info` command.
 
 <details>
-<summary>Flags</summary>
+<summary>Flags ↓</summary>
 
 | Flag | Description | Example |
 |------|-------------|---------|
@@ -47,7 +55,7 @@ This will show you information about your validator account, including the stake
 To unstake, use the `polygon-edge polybft unstake` command.
 
 <details>
-<summary>Flags</summary>
+<summary>Flags ↓</summary>
 
 | Flag                | Description                                                | Example                               |
 |---------------------|------------------------------------------------------------|---------------------------------------|
@@ -70,7 +78,7 @@ To unstake, use the `polygon-edge polybft unstake` command.
 Once you have successfully unstaked, you will need to withdraw your unstaked tokens from the Supernet to the rootchain. To do so, use the `polygon-edge polybft withdraw-child` command.
 
 <details>
-<summary>Flags</summary>
+<summary>Flags ↓</summary>
 
 | Flag | Description | Example |
 |------|-------------|---------|
@@ -98,7 +106,7 @@ You can confirm that the checkpoint has been successfully processed by checking 
 Once the exit event has been included in a checkpoint, you can send an exit transaction to execute the transaction on the rootchain. To do so, use the `polygon-edge bridge exit` command.
 
 <details>
-<summary>Flags</summary>
+<summary>Flags ↓</summary>
 
 | Flag                 | Description                                                         | Example                              |
 |----------------------|---------------------------------------------------------------------|--------------------------------------|
@@ -127,7 +135,7 @@ This will trigger the withdrawal of the specified amount of tokens from the root
 Finally, you can withdraw your tokens from the rootchain to your address by using the `polygon-edge polybft withdraw-root` command.
 
 <details>
-<summary>Flags</summary>
+<summary>Flags ↓</summary>
 
 | Flag                   | Description                             | Example                            |
 |------------------------|-----------------------------------------|------------------------------------|

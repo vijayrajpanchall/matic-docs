@@ -50,29 +50,6 @@ In this guide, you'll gain an understanding of the following concepts:
 - Generating a trie snapshot, setting up new validators, and creating the chain configuration for the new chain.
 - Launching a new PolyBFT chain and ensuring the successful transfer of the snapshot trie to each validator node.
 
-Before beginning the regenesis process, there are some prerequisites that must be fulfilled.
-
-<details>
-<summary>Prerequisites</summary>
-
-- Setting up a local IBFT consensus cluster for development purposes.
-
-  A dedicated script is provided as part of the client to facilitate the cluster setup, encompassing key generation, network configuration, data directory creation, and genesis block generation. To create an IBFT cluster, execute the following command:
-
-  ```bash
-  scripts/cluster ibft
-  ```
-
-- Ensuring that the accounts have sufficient funds.
-
-  Before performing the regenesis, it's essential to ensure that the accounts have sufficient funds. You can check the balance using the following command:
-
-  ```bash
-  curl -s -X POST --data '{"jsonrpc":"2.0", "method":"eth_getBalance", "params":["0x85da99c8a7c2c95964c8efd687e95e632fc533d6", "latest"], "id":1}' http://localhost:10002
-  ```
-
-</details>
-
 ## What you'll do
 
 - **State Trie Migration**: The process starts with obtaining the trie root of the existing chain. A snapshot of the trie is created using this root, which will be utilized in the new chain.
@@ -84,6 +61,36 @@ Before beginning the regenesis process, there are some prerequisites that must b
 - **Resuming the Chain**: The new chain is restarted, and the validator nodes continue to seal new blocks. The state trie from the previous chain has been successfully migrated, allowing the new chain to maintain the same account balances, contract storage, and other state data.
 
 - **Verification**: After the regenesis process is complete, you can verify the success of the migration by checking the account balances on the new chain. If the account balance is non-zero and matches the previous chain's state, the snapshot import was successful.
+
+Before beginning the regenesis process, there are some prerequisites that must be fulfilled.
+
+## Prerequisites
+
+- Set up a local IBFT consensus cluster for development purposes.
+
+  A dedicated script is provided as part of the client to facilitate the cluster setup, encompassing key generation, network configuration, data directory creation, and genesis block generation. To create an IBFT cluster, execute the following command:
+
+  ```bash
+  scripts/cluster ibft
+  ```
+
+- Ensure that the accounts have sufficient funds.
+
+  Before performing the regenesis, it's essential to ensure that the accounts have sufficient funds. You can check the balance using the following command:
+
+  ```bash
+  curl -s -X POST --data '{"jsonrpc":"2.0", "method":"eth_getBalance", "params":["0x85da99c8a7c2c95964c8efd687e95e632fc533d6", "latest"], "id":1}' http://localhost:10002
+  ```
+
+  :::caution Don't use the develop branch for deployments
+
+  Please ensure that you are not running on the `develop` branch, which is the active development branch and may include changes that are still being tested and not compatible with the current process.
+
+  Instead, use the [<ins>latest release</ins>](/docs/supernets/operate/install.md) for deployments.
+
+  :::
+
+## Regenesis
 
 The regenesis process involves several steps, which are outlined below:
 
@@ -121,7 +128,7 @@ The regenesis process involves several steps, which are outlined below:
 1. **Generate the manifest file**: Produce the manifest file for the new chain, which is used to configure and manage the new chain's settings and components. You can also pass additional parameters to customize the configuration (use `--help` to view options).
 
    <details>
-   <summary>Flags</summary>
+   <summary>Flags ↓</summary>
 
    | Flag                          | Description                                                                                              |
    |-------------------------------|----------------------------------------------------------------------------------------------------------|
@@ -169,7 +176,7 @@ The regenesis process involves several steps, which are outlined below:
 1. **Generate the genesis file**: Generate the genesis file for the new chain, using the trie root from the snapshot. This file is essential for starting the new chain with the migrated state data. The values provided are default and placeholders; you can view other available options with the `--help` flag.
 
   <details>
-   <summary>Flags</summary>
+   <summary>Flags ↓</summary>
 
    | Flag                                              | Description                                                                                              |
    |---------------------------------------------------|----------------------------------------------------------------------------------------------------------|

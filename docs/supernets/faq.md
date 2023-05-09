@@ -88,7 +88,7 @@ This makes it possible to create highly scalable, application-specific blockchai
 
 ## What assets are supported on the bridge?
 
-The bridge currently supports ERC-20, ERC-721, and ERC-1155 tokens on Supernets for transfer. However, support for other asset types will soon be available. It is important to keep in mind that not all tokens on Supernets have the same functionality and capabilities. Users should review the [bridge document](/docs/supernets/design/assets/erc/erc20.md) to understand how to use tokens on Supernets and with the bridge.
+The bridge currently supports ERC-20, ERC-721, and ERC-1155 tokens on Supernets for transfer. However, support for other asset types will soon be available. It is important to keep in mind that not all tokens on Supernets have the same functionality and capabilities. Users should review the [bridge document](/docs/supernets/design/bridge/overview.md) to understand how to use tokens on Supernets and with the bridge.
 
 As the Supernets ecosystem evolves, the bridge will support additional assets, enhancing interoperability between various blockchain networks and applications.
 
@@ -113,12 +113,14 @@ The audits will assess the security and functionality of the v1.0 release. If an
 If any issues are found during the audits, they will be communicated through official channels:
 
 - The team will prepare and publish a comprehensive blog post detailing the outcome and findings of the audits. This will provide a clear and concise summary of the issues identified and the steps that will be taken to address them.
-- In addition to the blog post, the team will also use office hours to communicate specific changes to client needs resulting from the audits. This will provide an opportunity for clients to ask questions and receive direct feedback from the team.
+- In addition to the blog post, the team will also use office hours to communicate specific changes to users resulting from the audits. This will provide an opportunity for users to ask questions and receive direct feedback from the team.
 - Finally, the documentation will publish an official report outlining the findings of the audit. This report will provide a detailed overview of the issues identified, the risks associated with them, and the steps taken to mitigate these risks.
 
 ## Will there be migration support for v0.9 to v1.0?
 
-Yes, there is a plan to support regenesis for state migration from v0.9 to v1.0. For production releases of v1.0 and beyond, the goal is to support all-inclusive migration, which includes both state and data.
+Yes, regenesis support for state migration from v0.9 to v1.0 is planned. For production releases beyond v1.0, the goal is to support all-inclusive migration of both state and data.
+
+At the moment, state migration is supported from older versions of Polygon Edge to the latest release. The guide is available [<ins>here</ins>](/docs/supernets/operate/ibft-to-polybft.md).
 
 Please note that further details on migration support will be provided as they become available.
 
