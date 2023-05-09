@@ -34,7 +34,7 @@ Before proceeding, ensure that your system meets the necessary [system requireme
 <!--
 <div class="download-container">
   <div class="download-text">
-    <p><b>[EXPERIMENTAL] The download button will automatically provide the appropriate download link according your operating system.</b></p><p>For a list of releases, please visit the official release page <a href="https://github.com/0xPolygon/polygon-edge/releases">[ here ]</a>.</p>
+    <p><b>[EXPERIMENTAL] The download button will automatically provide the appropriate download link according your operating system.</b></p><p>For a list of releases, please visit the official release page <a href="https://github.com/0xPolygon/polygon-edge/releases"><ins>here</ins></a>.</p>
   </div>
   <div class="download-button">
     <DownloadButton

@@ -27,7 +27,7 @@ Test releases may include breaking changes and offer no guarantees, including ba
 It is highly recommended that you do not attempt deployments on your own; for support, please reach out to the Supernets team.
 :::
 
-:::info Non-bridge mode deployment
+:::caution No more non-bridge mode deployment
 
 In the latest v0.9 test release of Supernets, the previous "bridge mode" and "non-bridge mode" distinction has been deprecated.
 
@@ -196,6 +196,8 @@ This tutorial will cover the following steps:
 </details>
 
 ## 1. Node preparation
+
+In this section, we'll prepare initiate a new chain with PolyBFT consensus and prepare the initial Supernet nodes.
 
 ### i. Generating account secrets
 
@@ -432,6 +434,28 @@ We also add the `--transactions-allow-list-admin` flag to specify the admin addr
     --transactions-allow-list-enabled 0x61324166B0202DB1E7502924326262274Fa4358F,0xFE5E166BA5EA50c04fCa00b07b59966E6C2E9570
 ```
 
+:::info Create a Native Token and Premine
+
+The `--premine` flag specifies the premined accounts and their balances, and takes an address and a balance separated by a colon. If you want to specify multiple premined accounts, you can use the flag multiple times.
+
+The `--native-token-config` flag configures the native token, and takes four values separated by colons: the name of the token, the symbol, the decimal count, and a boolean flag indicating whether the token is mintable.
+
+For example, the following command creates a native token named `MyToken` with the symbol `MTK`, `18` decimal places, and a total supply of `1,000,000` tokens. It also premines `1,000` tokens to the account at address `0x61324166B0202DB1E7502924326262274Fa4358F`.
+
+```bash
+./polygon-edge genesis --block-gas-limit 10000000 --epoch-size 10 \
+    --validators-path ./ --validators-prefix test-chain- \
+    --consensus polybft \
+    --premine 0x61324166B0202DB1E7502924326262274Fa4358F:1000000000000000000000 \
+    --native-token-config "MyToken:MTK:18:true" \
+    --reward-wallet 0x61324166B0202DB1E7502924326262274Fa4358F:1000000
+```
+
+Note that you can omit the `--native-token-config` flag if you don't want to create a native token.
+
+:::
+
+
 By customizing these flags, we can tailor the network to meet our specific requirements. Remember to consider the impact of these parameters carefully, as they can significantly affect the network's performance, security, and scalability.
 
 <details>
@@ -660,6 +684,28 @@ We also add the `--transactions-allow-list-admin` flag to specify the admin addr
     --transactions-allow-list-enabled 0x61324166B0202DB1E7502924326262274Fa4358F,0xFE5E166BA5EA50c04fCa00b07b59966E6C2E9570
 ```
 
+:::info Create a Native Token and Premine
+
+The `--premine` flag specifies the premined accounts and their balances, and takes an address and a balance separated by a colon. If you want to specify multiple premined accounts, you can use the flag multiple times.
+
+The `--native-token-config` flag configures the native token, and takes four values separated by colons: the name of the token, the symbol, the decimal count, and a boolean flag indicating whether the token is mintable.
+
+For example, the following command creates a native token named `MyToken` with the symbol `MTK`, `18` decimal places, and a total supply of `1,000,000` tokens. It also premines `1,000` tokens to the account at address `0x61324166B0202DB1E7502924326262274Fa4358F`.
+
+```bash
+./polygon-edge genesis --block-gas-limit 10000000 --epoch-size 10 \
+     --validators "/ip4/127.0.0.1/tcp/30301/p2p/16Uiu2HAmMYyzK7c649Tnn6XdqFLP7fpPB2QWdck1Ee9vj5a7Nhg8:0x61324166B0202DB1E7502924326262274Fa4358F:06d8d9e6af67c28e85ac400b72c2e635e83234f8a380865e050a206554049a222c4792120d84977a6ca669df56ff3a1cf1cfeccddb650e7aacff4ed6c1d4e37b055858209f80117b3c0a6e7a28e456d4caf2270f430f9df2ba37221f23e9bbd313c9ef488e1849cc5c40d18284d019dde5ed86770309b9c24b70ceff6167a6ca" \
+    --validators "/ip4/127.0.0.1/tcp/30302/p2p/16Uiu2HAmLXVapjR2Yx3B1taCmHnckQ1ph2xrawBjW2kvSErps9CX:0xFE5E166BA5EA50c04fCa00b07b59966E6C2E9570:0601da8856a6d3d3bb0f3bcbb90ea7b8c0db8271b9203e6123c6804aa3fc5f810be33287968ca1af2be11839516850a6ffef2337d99e679b7531efbbea2e3bf727a053c0cbede71da3d5f489b6ad862ccd8bb0bfb7fa379e3395d3b1142594a73020e87d63c298a3a4eba0ace65727f8659bab6389b9448b72512db72bbe937f" \
+    --consensus polybft \
+    --premine 0x61324166B0202DB1E7502924326262274Fa4358F:1000000000000000000000 \
+    --native-token-config "MyToken:MTK:18:true" \
+    --reward-wallet 0x61324166B0202DB1E7502924326262274Fa4358F:1000000 
+```
+
+Note that you can omit the `--native-token-config` flag if you don't want to create a native token.
+
+:::
+
 By customizing these flags, we can tailor the network to meet our specific requirements. Remember to consider the impact of these parameters carefully, as they can significantly affect the network's performance, security, and scalability.
 
 <details>
@@ -831,6 +877,8 @@ Genesis written to ./genesis.json
 </Tabs>
 
 ## 2. Rootchain configuration
+
+In this section, we'll configure the associated rootchain of the Supernet and deploy the necessary rootchain core contracts.
 
 ### i. Deploy and initialize rootchain contracts
 
@@ -1336,7 +1384,7 @@ Here's an example of how to fund each of the validator accounts:
 
 ## 3. Allowlisting
 
-In this section, we will look at how to allowlist validators on the rootchain.
+In this section, we'll look at how to allowlist validators on the rootchain.
 
 ### i. Allowlist validators on the rootchain
 
@@ -1392,7 +1440,9 @@ Each validator needs to register themselves on the `CustomSupernetManager` contr
 
 ## 4. Staking
 
-### i. Initial Staking on the rootchain
+In this section, we'll walkthrough how to stake test MATIC on the associated rootchain.
+
+### i. Initial staking on the rootchain
 
 Each validator needs to perform initial staking on the rootchain `StakeManager` contract. This is done using the `polygon-edge polybft stake` command. **Note that this command is for testing purposes only.**
 
@@ -1416,7 +1466,7 @@ In the following example command, we use the validator key and the rootchain `St
 <details>
 <summary>Obtaining native root token address</summary>
 
-For example, if you are using the Mumbai test network, you can obtain the address of the MATIC token by sending a GET request to the Mumbai network's JSON-RPC endpoint:
+For example, if you are using the Mumbai test network, you can obtain the address of the MATIC testnet token by sending a GET request to the Mumbai network's JSON-RPC endpoint:
 
 ```bash
 curl <mumbai-rpc-endpoint> \
@@ -1553,7 +1603,7 @@ To continue your Supernet journey, you can explore how to transact cross-chain b
 
 ## Technical FAQs
 
-### Can I migrate from Edge to Supernets?
+### Can I migrate from an older version of Edge to Supernets?
 
 Yes, it is possible to migrate from a blockchain running on an older Edge version with IBFT 1.0 consensus to a new blockchain running on Supernets with PolyBFT consensus using IBFT 2.0. However, the migration process will involve a hard fork, as IBFT 2.0 is not fully backward compatible with IBFT 1.0.
 
@@ -1561,6 +1611,8 @@ To upgrade to a new blockchain with PolyBFT consensus using IBFT 2.0, you would 
 
 - Create a new genesis block for the new blockchain with PolyBFT consensus using IBFT 2.0.
 - Migrate the data and state from the old blockchain to the new blockchain.
+
+Check out the regenesis guide available [<ins>here</ins>](/docs/supernets/operate/ibft-to-polybft.md).
 
 ### What is the recommended RPC endpoint for the rootchain?
 
