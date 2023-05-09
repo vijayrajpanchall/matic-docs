@@ -1,7 +1,7 @@
 ---
 id: supernets-txrelayer
 title: Transaction Relayer
-sidebar_label: Transaction relayer
+sidebar_label: Transaction Relayer
 description: "The transaction relayer of Supernets."
 keywords:
   - docs

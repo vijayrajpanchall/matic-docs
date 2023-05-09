@@ -1,8 +1,8 @@
 ---
 id: supernets-performance
 title: Performance Benchmarks
-sidebar_label: Performance benchmarks
-description: "The first performance benchmarks for the new Edge client."
+sidebar_label: Performance Benchmarks
+description: "The first performance benchmarks for Supernets."
 keywords:
   - docs
   - polygon
@@ -11,9 +11,13 @@ keywords:
   - installation
 ---
 
-This document presents performance benchmarks and analysis of the Polygon Edge client, comparing versions 0.6.1, 0.7.0-alpha1, and 0.7.3-beta1 and showcasing significant improvements in transaction throughput, scalability, and efficiency in the latest 0.7.x versions utilizing the PolyBFT consensus algorithm.
+This document presents performance benchmarks and analysis for Supernets, comparing versions 0.6.1, 0.7.0-alpha1, and 0.7.3-beta1 and showcasing significant improvements in transaction throughput, scalability, and efficiency in the latest 0.7.x versions utilizing the PolyBFT consensus algorithm.
 
----
+:::note Upcoming benchmarks
+
+Upcoming performance benchmarks will be available for v0.8.x and 0.9.x releases shortly.
+
+:::
 
 ## Test Environment
 

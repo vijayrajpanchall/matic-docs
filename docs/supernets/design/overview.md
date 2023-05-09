@@ -1,7 +1,7 @@
 ---
 id: overview
 title: Architecture Overview
-sidebar_label: Supernets overview
+sidebar_label: Supernets Overview
 description: "Introduction to the architecture of Supernets."
 keywords:
   - docs
@@ -16,7 +16,7 @@ keywords:
 
 This document provides an architectural overview of Polygon Supernets.
 
-:::caution In active development
+:::caution Active development
 
 **Please note that the Supernets Wiki currently only documents the functionality of the v0.8.1 release, as the code is still in active development and undergoing auditing. As such, it is not recommended for use in production environments.**
 

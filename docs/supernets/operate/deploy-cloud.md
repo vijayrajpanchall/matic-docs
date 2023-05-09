@@ -1,7 +1,7 @@
 ---
 id: supernets-setup-dev-env
 title: Deploy a Polygon Supernet to the Cloud
-sidebar_label: Cloud deployment
+sidebar_label: Deploy a test Supernet on the cloud
 description: "An introduction to Polygon Supernets."
 keywords:
   - docs
@@ -18,7 +18,7 @@ import TabItem from '@theme/TabItem';
 
 This document provides references to tutorials for setting up and configuring a Supernet devnet on various cloud platforms.
 
-:::warning Active development
+:::warning Breaking changes
 Supernets are rapidly evolving towards a production-ready state, and, as a result, instructions and concepts in these guides are subject to change.
 
 Test releases may include breaking changes and offer no guarantees, including backward compatibility. Use the current test releases for testing and familiarization only.

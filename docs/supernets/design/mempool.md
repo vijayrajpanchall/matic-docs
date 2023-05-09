@@ -1,7 +1,7 @@
 ---
 id: supernets-mempool
 title: Memory pool
-sidebar_label: Memory pool
+sidebar_label: Memory Pool
 description: "The memory pool of Supernets."
 keywords:
   - docs

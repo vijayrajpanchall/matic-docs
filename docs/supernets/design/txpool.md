@@ -1,7 +1,7 @@
 ---
 id: supernets-txpool
 title: Transaction Pool
-sidebar_label: Transaction pool
+sidebar_label: Transaction Pool
 description: "The transaction pool of Supernets."
 keywords:
   - docs

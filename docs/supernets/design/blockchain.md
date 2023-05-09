@@ -1,7 +1,7 @@
 ---
 id: supernets-blockchain
 title: Blockchain Mechanics
-sidebar_label: Blockchain mechanics
+sidebar_label: Blockchain Mechanics
 description: "The state database for Supernets."
 keywords:
   - docs

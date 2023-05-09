@@ -1,7 +1,7 @@
 ---
 id: supernets-libp2p
 title: libp2p
-sidebar_label: P2P networking
+sidebar_label: P2P Networking
 description: "The networking layer of Supernets."
 keywords:
   - docs

@@ -11,7 +11,7 @@ keywords:
   - module
 ---
 
-:::caution Active development
+:::warning Breaking changes
 
 This module is in active development and subject to change. The current version can be used by calling the functions directly in your smart contract code. However, in the future, the module may have CLI commands that allow you to call these functions directly from the command line.
 

@@ -1045,7 +1045,7 @@ module.exports = {
         "supernets/design/overview",
         {
           type: "category",
-          label: "PolyBFT consensus",
+          label: "PolyBFT Consensus",
           link: {
             type: "generated-index",
           },
@@ -1057,7 +1057,7 @@ module.exports = {
         },
         {
           type: "category",
-          label: "Cross-chain bridge",
+          label: "Cross-Chain Bridge",
           link: {
             type: "generated-index",
           },
@@ -1082,7 +1082,7 @@ module.exports = {
         "supernets/design/supernets-libp2p",
         {
           type: "category",
-          label: "EVM runtime",
+          label: "EVM Runtime",
           link: {
             type: "generated-index",
           },
@@ -1118,6 +1118,7 @@ module.exports = {
                 "supernets/operate/supernets-install",
               ],
         },
+        "supernets/operate/supernets-ibft-to-polybft",
         {
           type: "category",
           label: "Launch a Local Private Supernet",
@@ -1130,6 +1131,7 @@ module.exports = {
           ],
         },
         "supernets/operate/supernets-cross-chain",
+        "supernets/operate/supernets-unstake",
         {
           type: "category",
           label: "Supernet Interfaces",
@@ -1140,7 +1142,7 @@ module.exports = {
           items: [
             {
               type: "category",
-              label: "ERC20",
+              label: "ERC-20",
               link: {
                 type: "generated-index",
               },
@@ -1149,6 +1151,30 @@ module.exports = {
                 "supernets/interfaces/erc20/childerc20",
                 "supernets/interfaces/erc20/childerc20-predicate",
                 "supernets/interfaces/erc20/rooterc20-predicate",
+              ],
+            },
+            {
+              type: "category",
+              label: "ERC-721",
+              link: {
+                type: "generated-index",
+              },
+              items: [
+                "supernets/interfaces/erc721/childerc721",
+                "supernets/interfaces/erc721/childerc721-predicate",
+                "supernets/interfaces/erc721/rooterc721-predicate",
+              ],
+            },
+            {
+              type: "category",
+              label: "ERC-1155",
+              link: {
+                type: "generated-index",
+              },
+              items: [
+                "supernets/interfaces/erc1155/childerc1155",
+                "supernets/interfaces/erc1155/childerc1155-predicate",
+                "supernets/interfaces/erc1155/rooterc1155-predicate",
               ],
             },
             {
@@ -1191,7 +1217,7 @@ module.exports = {
         },
         {
           type: "category",
-          label: "Childchain Modules",
+          label: "Supernet Modules",
           link: {
             type: "generated-index",
           },
@@ -1199,13 +1225,11 @@ module.exports = {
           items: [
             "supernets/modules/access-control",
             "supernets/modules/staking",
-            "supernets/modules/delegation",
+            //"supernets/modules/delegation",
             "supernets/modules/withdraw",
             "supernets/modules/storage",
           ],
         },
-        "supernets/operate/supernets-ibft-to-polybft",
-        "supernets/operate/supernets-unstake",
         "supernets/operate/supernets-performance",
       ],
     },

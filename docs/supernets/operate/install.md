@@ -17,7 +17,8 @@ import DownloadButton from '@site/src/data/DownloadButton';
 
 This document outlines the different methods available for installing the Polygon Supernet binaries.
 
-:::warning Active development
+:::warning Breaking changes
+
 Supernets are rapidly evolving towards a production-ready state, and, as a result, instructions and concepts in these guides are subject to change.
 
 Test releases may include breaking changes and offer no guarantees, including backward compatibility. Use the current test releases for testing and familiarization only.

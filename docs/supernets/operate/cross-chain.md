@@ -483,13 +483,11 @@ In this example, we're sending an exit transaction on a test Supernet instance:
 
 ## What's the difference between Withdraw and Exit?
 
-Both withdrawal and exit are mechanisms for transferring assets from a Supernet to the rootchain, but they differ in their implementation.
-
 Withdrawal initiates the transfer of tokens or assets from the Supernet to an address on the rootchain. This involves burning the tokens on the Supernet and paying gas and transaction fees. The transfer process may take some time as the transaction needs to be processed and confirmed.
 
 Exit, on the other hand, finalizes the withdrawal process by transferring the bridged tokens from the Supernet to the rootchain. It involves sending a message to the `ExitHelper` contract on the rootchain to request the exit of a particular asset. The `ExitHelper` contract verifies the request and then transfers the asset to the rootchain immediately, without queuing it. However, it is essential that the checkpoint block, containing the given withdrawal, is sent to the rootchain.
 
-Withdrawal is a direct transfer of assets from the Supernet to the rootchain, while exit is an indirect transfer that uses the `ExitHelper` contract to finalize the withdrawal process. Compared to withdrawal, exit is faster and more efficient as it does not require the same level of on-chain processing and confirmation.
+Withdrawal can be seen as a direct transfer of assets from the Supernet to the rootchain, while exit is an indirect transfer that uses the `ExitHelper` contract to finalize the withdrawal process. Compared to withdrawal, exit is faster and more efficient as it does not require the same level of on-chain processing and confirmation.
 
 </TabItem>
 </Tabs>

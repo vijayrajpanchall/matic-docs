@@ -1,7 +1,7 @@
 ---
 id: supernets-ibft-to-polybft
-title: State Trie Migration and Regenesis
-sidebar_label: Transitioning to PolyBFT through Regenesis
+title: State Trie Migration and Regenesis to PolyBFT
+sidebar_label: Transition to Supernets through Regenesis
 description: "Transition to a New Blockchain with PolyBFT Consensus from a Blockchain using IBFT Consensus with Edge."
 keywords:
   - docs
@@ -17,7 +17,7 @@ keywords:
 
 In this guide, you'll discover how to migrate from an existing IBFT consensus chain on the former Edge client to a new PolyBFT consensus-based chain.
 
-:::warning Active development
+:::warning Breaking changes
 Supernets are rapidly evolving towards a production-ready state, and, as a result, instructions and concepts in these guides are subject to change.
 
 Test releases may include breaking changes and offer no guarantees, including backward compatibility. Use the current test releases for testing and familiarization only.
