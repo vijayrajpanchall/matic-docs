@@ -1742,9 +1742,7 @@ strong {
   --docusaurus-highlighted-code-line-bg: #0f1722;
 }
 
-/* admonitions */
-
-/* ALERTS */
+/* ALERTS (admonitions) */
 
 .alert {
   border-left: 6px solid;
@@ -1784,6 +1782,18 @@ strong {
 
 }
 
+.alert--warning {
+  background-color: #FFE082;
+  border-left-color: #FFA000;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  font-family: "Roboto", sans-serif;
+  color: #333;
+}
+
+.alert--warning a {
+  color: #725a30;
+}
+
 /* sidebar-title */
 
 .sidebar-title {
@@ -1802,7 +1812,7 @@ strong {
 }
 
 /* Code block styles */
-/* Code block styles */
+
 pre[class*="language-"] {
   background-color: #1E1E1E;
   color: #F8F8F2;

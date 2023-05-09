@@ -29,11 +29,17 @@ It is highly recommended that you do not attempt deployments on your own; for su
 
 :::caution No more non-bridge mode deployment
 
-In the latest v0.9 test release of Supernets, the previous "bridge mode" and "non-bridge mode" distinction has been deprecated.
+The latest v0.9 test release of Supernets no longer makes a distinction between "bridge mode" and "non-bridge mode". The bridge is now included by default and must be used when running Supernets.
 
 The latest release aligns with the original vision of creating "Super networks" that achieves network scalability and sovereignty with an associated rootchain.
 
 If you require a standalone Supernet instance, custom configuration is necessary.
+
+:::
+
+:::caution Not backwards compatible with v0.8
+
+Supernets v0.9 is not backward compatible at this time. You must either start a new blockchain from scratch or wait for future migration scripts to support migration from previous versions.
 
 :::
 
@@ -46,6 +52,26 @@ Before diving into any of the tutorials, make sure your environment meets the ne
 Please ensure that you are not running on the `develop` branch, which is the active development branch and may include changes that are still being tested and not compatible with the current process.
 
 Instead, use the [<ins>latest release</ins>](/docs/supernets/operate/install.md) for deployments.
+
+:::
+
+:::caution Key management and secure values
+When passing values to run transactions, it is important to keep sensitive values like private keys and API keys secure.
+
+<b>The sample commands provided in this guide use sample private keys for demonstration purposes only, in order to show the format and expected value of the parameter. It is important to note that hardcoding or directly passing private keys should never be done in a development or production environment.</b>
+
+<details>
+<summary>Here are some options for securely storing and retrieving private keys ↓</summary>
+
+- **<ins>Environment Variables</ins>:** You can store the private key as an environment variable and access it in your code. For example, in Linux, you can set an environment variable like this: `export PRIVATE_KEY="my_private_key"`. Then, in your code, you can retrieve the value of the environment variable using `os.Getenv("PRIVATE_KEY")`.
+
+- **<ins>Configuration Files</ins>:** You can store the private key in a configuration file and read it in your session. Be sure to keep the configuration file in a secure location and restrict access to it.
+
+- **<ins>Vaults and Key Management Systems</ins>:** If you are working with sensitive data, you might consider using a vault or key management system to store your private keys. These systems provide additional layers of security and can help ensure that your private keys are kept safe.
+
+</details>
+
+Regardless of how a private key is stored and retrieved, it's important to keep it secure and not expose it unnecessarily. In addition to the private key, other potential values that you should consider securely passing for include chain IDs, contract addresses, and endpoint URLs for JSON-RPC servers. These should also be stored securely and not exposed unnecessarily.
 
 :::
 
@@ -307,7 +333,7 @@ While the use of alternative ACL-enabled contracts, such as bridge ACLs, offers 
 
 It's crucial to consider these parameters carefully, as they have a significant impact on the network's performance, security, and scalability. Informed decisions are vital to building a robust and efficient blockchain network.
 
-:::caution
+:::caution Must enable before launching the network
 
 Keep in mind that allowlists must be enabled prior to launching the network. After the network is started, configuration of the allowlist will no longer be possible. The access control process will be initiated by the initial allowlisted addresses.
 
