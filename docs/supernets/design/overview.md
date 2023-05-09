@@ -14,28 +14,8 @@ keywords:
   - extensible
 ---
 
-This document provides an architectural overview of Polygon Supernets.
-
-:::caution Active development
-
-**Please note that the Supernets Wiki currently only documents the functionality of the v0.8.1 release, as the code is still in active development and undergoing auditing. As such, it is not recommended for use in production environments.**
-
-At present, the following components are available:
-
-- Smart contract and validator allowlisting.
-- Minting a native ERC20 token.
-- Transfers of ERC20 tokens and arbitrary message passing using the native bridge.
-- Migration support from older versions of the consensus client that use IBFT consensus.
-
-Additional components, including on-chain governance and creating a full production instance with staked MATIC, are currently in progress.
-
-If you have any questions or are interested in using Supernets in a production environment, please get in touch with the Polygon team for guidance and support.
-
-:::
-
----
-
-The following diagram offers an architectural overview of Polygon Supernets.
+This document provides a system design overview of Polygon Supernets. 
+The diagram below illustrates the major coomponents of Supernets.
 
 <div align="center">
   <img src="/img/supernets/supernets-overview.excalidraw.png" alt="Supernets architecture overview" width="850" />

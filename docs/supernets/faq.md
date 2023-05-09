@@ -137,3 +137,5 @@ The reward mechanism in the network incentivizes validators with block rewards f
 ## Can an allowlist be added after genesis if it was not configured during chain configuration?
 
 No, it's not possible to add an allowlist after the genesis configuration. This is because the allowlist serves to specify the initial "admins" of the network who are responsible for the initial authority and adding new addresses thereafter. If the allowlist were to be changed after genesis, it would alter the initial authority of the network, potentially introducing security risks and undermining the integrity of the system. As such, it's important to carefully consider and configure the allowlist during the genesis setup to ensure the network's security and functionality.
+
+**If you have any further questions about configuring Supernets, please consult the documentation or reach out to the Supernets team for support.**

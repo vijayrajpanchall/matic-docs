@@ -14,8 +14,6 @@ keywords:
 
 This documents provides an overview on how checkpointing works when using the native Supernets bridge.
 
----
-
 ## Introduction
 
 Checkpointing is the process of recording and committing a snapshot of the state of a system at a specific point in time. In the context of blockchain, checkpoints are used to increase security by allowing faster verification of the state of the blockchain without needing to process all transactions from the genesis block. Checkpoints can be used to speed up sync times for new nodes and help prevent certain types of attacks, such as 51% attacks.

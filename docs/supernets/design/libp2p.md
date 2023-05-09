@@ -15,8 +15,6 @@ keywords:
 
 This documents provides an overview on how libp2p is used as the networking layer in Supernets.
 
----
-
 ## Overview
 
 PolyBFT uses a decentralized networking layer based on the libp2p protocol. The protocol provides peer-to-peer networking primitives such as peer discovery, connection management, and secure messaging. The network relies on a secure Identity Service to manage peer connectivity and handshaking, ensuring only valid peers can join the network.

@@ -16,8 +16,6 @@ keywords:
 
 This document provides an overview of the mempool in Supernets.
 
----
-
 ## What is a Mempool?
 
 A mempool, short for "memory pool," is a temporary storage area in a blockchain node for pending transactions before they are added to a block and confirmed on the network. When users submit transactions, they are initially held in the mempool, where miners or validators can select them to include in the next block. Transactions in the mempool are generally ordered based on factors such as transaction fees and age, which helps prioritize transactions for faster confirmation.

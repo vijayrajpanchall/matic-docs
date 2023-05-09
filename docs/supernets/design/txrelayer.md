@@ -16,8 +16,6 @@ keywords:
 
 This documents provides an overview on how a txrelayer is used in Supernets.
 
----
-
 ## What is a TxRelayer used for?
 
 A TxRelayer is a component that facilitates the creation and sending of transactions. It provides a simple interface for executing a message call without creating a dedicated transaction and sending signed transactions to a blockchain.

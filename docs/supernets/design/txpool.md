@@ -16,8 +16,6 @@ keywords:
 
 This documents provides an overview on how the txpool works in Supernets.
 
----
-
 ## What is the TxPool used for?
 
 The TxPool module manages the incoming transactions for processing. It maintains a list of unprocessed transactions and ensures they conform to specific constraints before entering the pool.

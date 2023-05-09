@@ -14,14 +14,6 @@ keywords:
 
 This document provides an overview of Polygon Byzantine Fault Tolerance (PolyBFT), the consensus mechanism of Polygon Supernets.
 
-:::caution In active development
-
-PolyBFT is currently in active development and subject to change. New features will be rolled out periodically as the code undergoes audits and improvements. It is not recommended to use PolyBFT in a production environment until it has been thoroughly tested and stabilized.
-
-:::
-
----
-
 ## Overview
 
 PolyBFT is a sophisticated and robust consensus mechanism employed by Polygon Supernets.

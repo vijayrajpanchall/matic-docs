@@ -14,8 +14,6 @@ keywords:
 
 This document presents an overview of the Istanbul Byzantine Fault Tolerant (IBFT) 2.0, the consensus engine of [PolyBFT](/docs/supernets/design/consensus/polybft/polybft-overview).
 
----
-
 ## Consensus Engine
 
 The PolyBFT consensus mechanism uses the IBFT 2.0 consensus engine to agree on adding new blocks to the blockchain. The validator pool in IBFT 2.0 is responsible for validating candidate blocks proposed by a randomly selected block proposer who is part of the validator pool. The proposer is responsible for constructing a block at the block interval. The proposer mechanism is based on [Tendermint](https://tendermint.com/), where a proposer is chosen based on a deterministic selection algorithm. The frequency of selection is proportional to the voting power of the validator.
@@ -45,7 +43,7 @@ PolyBFT limits network participation to around 100 validators, and a variable am
 
 The `n` block period to define one epoch is determined by governance, and until then, validators will remain the same. At the end of the epoch, a special state transaction to validatorSetManagementContract is emitted, notifying the system about the validators' uptime during the epoch. It is up to the smart contract to reward validators by their uptime and update the validator set for the next epoch. There is a function getValidatorSet which returns the current validator set at any time.
 
-:::caution Proposer selection algorithm - Section is being updated
+:::info Proposer selection algorithm - Section is being updated
 
 The proposer selection algorithm is Tendermint-based.
 
@@ -64,7 +62,7 @@ Staking is managed by staking contracts on the Supernet. The staking module on P
 
 At the end of each epoch, a reward calculation occurs to reward validators who actively participated in that epoch.
 
-:::caution Staking details and rewards - Section is being updated
+:::info Staking details and rewards - Section is being updated
 
 :::
 

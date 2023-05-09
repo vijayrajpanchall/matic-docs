@@ -16,8 +16,6 @@ keywords:
 
 This document provides an overview of how the EVM is used in Supernets.
 
----
-
 The EVM is the core interface for executing and interacting with smart contracts on a Supernet. It operates consistently with the Ethereum EVM and supports the same set of OPCODEs.
 
 <details>
