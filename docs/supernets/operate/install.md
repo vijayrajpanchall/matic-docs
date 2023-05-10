@@ -38,9 +38,9 @@ The Docker image is also a convenient option for containerized deployment. Build
 
 If you encounter any issues during the installation process, refer to the troubleshooting guide which will be available soon.
 
-:::info Latest release: v0.8.1
+:::info Latest release: v0.9.0
 
-**The latest stable test release is [v0.8.1](https://github.com/0xPolygon/polygon-edge/releases/tag/v0.8.1.)**
+**The latest stable test release is [v0.9.0](https://github.com/0xPolygon/polygon-edge/releases/tag/v0.9.0)**
 
 :::
 
@@ -66,6 +66,7 @@ values={[
 
 <TabItem value="pre-built">
 
+<!--
 <div class="download-container">
   <div class="download-text">
     <p>To access the pre-built releases, visit the <a href="https://github.com/0xPolygon/polygon-edge/releases" target="_blank">GitHub Releases</a> page. Polygon Edge provides cross-compiled AMD64/ARM64 binaries for Darwin and Linux. <b>The download button will automatically provide the appropriate download link according your operating system.</b></p>
@@ -80,6 +81,10 @@ values={[
     />
   </div>
 </div>
+
+-->
+
+To access the pre-built releases, visit the [GitHub releases page](https://github.com/0xPolygon/polygon-edge/releases). The client provides cross-compiled AMD64/ARM64 binaries for Darwin and Linux.
 
 <details>
 <summary>[For reference] Extract pre-release package</summary>

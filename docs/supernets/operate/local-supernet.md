@@ -340,6 +340,14 @@ Keep in mind that allowlists must be enabled prior to launching the network. Aft
 
 To create the chain configuration, we use the `polygon-edge genesis` command, which generates the genesis file.
 
+:::caution ChainID no longer configurable
+
+Previously, the ChainID was specified in the genesis command. However, this is no longer the case. Instead, the value for ChainID should come from the rootchain deployment, specifically from the `StakeManager` contract, when the Supernet is registered. This value is then automatically written to the genesis file during the deployment process. Please note that this means that the ChainID is no longer configurable through the genesis command, but rather through the `StakeManager` contract during Supernet registration.
+
+The `--chain-id` flag remains present in some commands because the old IBFT implementation has not yet been removed from the codebase. As a result, the decision was made not to deprecate the flag until the removal process is complete.
+
+:::
+
 <details>
 <summary>Common Flags ↓</summary>
 
@@ -1031,9 +1039,15 @@ This will start the rootchain server on the default JSON-RPC port of `8545`.
 
 #### Initialize rootchain contracts
 
-To deploy the rootchain contracts, we use the `polygon-edge rootchain deploy` command. In the command, you will need to replace `<hex_encoded_rootchain_account_private_key>` with the hex encoded private key of the rootchain account that will be used to deploy the smart contracts. You also need to specify the path to the genesis file using the `--genesis` option, and the endpoint for the JSON-RPC endpoint for Mumbai using the `--json-rpc` option. Finally, add the `--test` flag to run the deployment in test mode.
+To deploy the rootchain contracts, we use the `polygon-edge rootchain deploy` command. 
 
-> Note that the `--deployer-key` option is optional, and if you omit it, the default account in your local client will be used.
+Using the `--deployer-key` flag, you will need to replace `<hex_encoded_deployer_private_key>` with the hex-encoded private key of the deployer account that will be used to deploy the smart contracts. If you omit the `--deployer-key` option, the default account in your local client will be used.
+
+> The user is responsible for providing the deployer key, which should correspond to an address with sufficient funds for deployment. It is recommended to ensure the account is pre-funded before initiating the deployment process.
+
+You also need to specify the path to the genesis file using the `--genesis` option, and the endpoint for the JSON-RPC endpoint for the rootchain using the `--json-rpc` option.
+
+To run the deployment in test mode and use the test account provided by the Geth dev instance as the depositor, add the `--test` flag. In this case, you may omit the `--deployer-key` flag, and the default test account will be used as the depositor.
 
 <details>
 <summary>Flags ↓</summary>
@@ -1042,6 +1056,11 @@ To deploy the rootchain contracts, we use the `polygon-edge rootchain deploy` co
 |-----------------------|---------------------------------------------------------------------------|-----------------------------------------------|
 | `--deployer-key`      | Hex encoded private key of the account which deploys rootchain contracts  | `--deployer-key <PRIVATE_KEY>`                |
 | `--json-rpc`          | The JSON RPC rootchain IP address (e.g. http://127.0.0.1:8545)            | `--json-rpc http://127.0.0.1:8545`             |
+| `--genesis`           | Genesis file path that contains chain configuration                       | `--genesis ./genesis.json`                    |
+| `--erc1155-token`     | Existing rootchain ERC-1155 token address                                | `--erc1155-token <ERC_1155_ADDRESS>`           |
+| `--erc20-token`       | Existing rootchain ERC-20 token address                                  | `--erc20-token <ERC_20_ADDRESS>`               |
+| `--erc721-token`      | Existing rootchain ERC-721 token address                                 | `--erc721-token <ERC_721_ADDRESS>`             |
+| `--test`              | Indicates whether rootchain contracts deployer is hardcoded test account | `--test`                                      |
 
 Global flags:
 
@@ -1192,9 +1211,11 @@ Address=0xFE5E166BA5EA50c04fCa00b07b59966E6C2E9570; Balance=10000000000000000000
 
 <TabItem value="mumbai">
 
-To deploy the rootchain contracts, we use the `polygon-edge rootchain deploy` command. In the command, you will need to replace `<hex_encoded_rootchain_account_private_key>` with the hex encoded private key of the rootchain account that will be used to deploy the smart contracts. You also need to specify the path to the genesis file using the `--genesis` option, and the endpoint for the JSON-RPC endpoint for Mumbai using the `--json-rpc` option. Finally, add the `--test` flag to run the deployment in test mode.
+To deploy the rootchain contracts, we use the `polygon-edge rootchain deploy` command. 
 
-> Note that the `--deployer-key` option is optional, and if you omit it, the default account in your local client will be used.
+Using the `--deployer-key` flag, you will need to replace `<hex_encoded_deployer_private_key>` with the hex-encoded private key of the deployer account that will be used to deploy the smart contracts. If you omit the `--deployer-key` option, the default account in your local client will be used.
+
+You also need to specify the path to the genesis file using the `--genesis` option, and the endpoint for the JSON-RPC endpoint for the rootchain using the `--json-rpc` option.
 
 <details>
 <summary>Flags ↓</summary>
@@ -1203,6 +1224,10 @@ To deploy the rootchain contracts, we use the `polygon-edge rootchain deploy` co
 |-----------------------|---------------------------------------------------------------------------|-----------------------------------------------|
 | `--deployer-key`      | Hex encoded private key of the account which deploys rootchain contracts  | `--deployer-key <PRIVATE_KEY>`                |
 | `--json-rpc`          | The JSON RPC rootchain IP address (e.g. http://127.0.0.1:8545)            | `--json-rpc http://127.0.0.1:8545`             |
+| `--genesis`           | Genesis file path that contains chain configuration                       | `--genesis ./genesis.json`                    |
+| `--erc1155-token`     | Existing rootchain ERC-1155 token address                                | `--erc1155-token <ERC_1155_ADDRESS>`           |
+| `--erc20-token`       | Existing rootchain ERC-20 token address                                  | `--erc20-token <ERC_20_ADDRESS>`               |
+| `--erc721-token`      | Existing rootchain ERC-721 token address                                 | `--erc721-token <ERC_721_ADDRESS>`             |
 
 Global flags:
 
@@ -1212,6 +1237,13 @@ Global flags:
 | `--json`              | Get all outputs in JSON format                                            | `--json`                                      |
 
 </details>
+
+  ```bash
+  ./polygon-edge rootchain deploy \
+    --deployer-key <hex_encoded_rootchain_account_private_key> \
+    --genesis ./genesis.json \
+    --json-rpc http://127.0.0.1:8545 \
+  ```
 
 :::info Funding required for validators
 
