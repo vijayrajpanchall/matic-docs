@@ -66,6 +66,7 @@ values={[
 
 <TabItem value="pre-built">
 
+<!--
 <div class="download-container">
   <div class="download-text">
     <p>To access the pre-built releases, visit the <a href="https://github.com/0xPolygon/polygon-edge/releases" target="_blank">GitHub Releases</a> page. Polygon Edge provides cross-compiled AMD64/ARM64 binaries for Darwin and Linux. <b>The download button will automatically provide the appropriate download link according your operating system.</b></p>
@@ -80,6 +81,10 @@ values={[
     />
   </div>
 </div>
+
+-->
+
+To access the pre-built releases, visit the [GitHub releases page](https://github.com/0xPolygon/polygon-edge/releases). The client provides cross-compiled AMD64/ARM64 binaries for Darwin and Linux.
 
 <details>
 <summary>[For reference] Extract pre-release package</summary>
