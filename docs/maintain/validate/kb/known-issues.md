@@ -45,7 +45,8 @@ If you find that any of these services are not running correctly, then please re
 If a restart of your Bor and Heimdall services don't resolve the problem, then its probably that your Bor is stuck on a block. The block number will be evident in the logs. To check your logs for Bor you can run this command, `journalctl -u bor -f`.
 
 The Bad block would be displayed this way in your logs:
-<img src={useBaseUrl("img/knowledge-base/bad_block.png")} width="75%" height="100%"/>
+
+<img src={useBaseUrl("img/knowledge-base/bad_block.png")}/>
 
 Once you know the Bad block number, you could roll back your Blockchain by a few hundred blocks and resync from a previous block. In order to do this, you will first need to convert the Block number to hexadecimal. You can use [this tool](https://www.rapidtables.com/convert/number/decimal-to-hex.html) for converting decimals to hexadecimals.
 
@@ -61,6 +62,72 @@ bor attach ./.bor/data/bor.ipc
 Once you run these commands, the output for this would be `null` . Null means good and it is intended. You can now start monitoring your logs for Bor again and see if it passes that block number.
 
 If in any case, none of these solutions work for you, please contact the Polygon Support team immediately.
+
+### Log: Error validating checkpoint module=checkpoint startBlock
+
+If your node throws up these logs, please check the following:
+
+- Ensure that the **Bor node is in sync**. To check, run the following command:
+
+    ```bash
+    bor attach .bor/data/bor.ipc
+    eth.syncing
+    ```
+
+    If the output is **false**, then the Bor node is in sync.
+
+- Another possible cause of this issue is that **your node might be on the wrong fork**. To check, run the following command to find the current block on your node:
+
+    ```bash
+    bor attach .bor/data/bor.ipc
+    eth_blockNumber
+    ```
+
+    Find the associated block hash for the block number:
+
+    ```
+    bor attach .bor/data/bor.ipc
+    eth.getBlockByNumber("<Block Number>").hash
+    ```
+
+    Now, you can inspect the block number to identify if you are running on the right fork. One way to do this is to search for the block number on an explorer like [PolygonScan](https://polygonscan.com/).
+
+    <img src={useBaseUrl("img/knowledge-base/block_number.png")}/>
+
+    If the hashes match, then the node is on the right fork.
+
+### Log: Error dialing seed
+
+Please check whether your Heimdall node is configured with the latest seeds as listed on the [node setup documents](/docs/operate/full-node-deployment.md#full-node-setup).
+
+If you're still encountering the error after either updating to the latest seeds or confirming that you are using the right seeds, you may need to clear the `addrbook.json` file. To do this, follow the steps below.
+
+1. Open the `config.toml` file in your terminal: ```vi /var/lib/heimdall/config/config.toml```
+
+2. Stop `heimdalld` service: ```sudo service heimdalld stop```
+
+3. Clear your `addrbook`
+
+    ```
+    sudo service heimdalld stop
+    cp /var/lib/heimdall/config/addrbook.json /var/lib/heimdall/config/addrbook.json.bkp
+    rm /var/lib/heimdall/config/addrbook.json
+    ```
+
+4. Increase `max_num_inbound_peers` and `max_num_outbound_peers` in `/var/lib/heimdall/config/config.toml`:
+
+    ```
+    max_num_inbound_peers = 300
+    max_num_outbound_peers = 100
+    ```
+
+5. Start `heimdalld` service: ```sudo service heimdalld start```
+
+### Log: Demoting invalidated transaction 
+
+This log is not an error. It is a process in **txpool** which rearranges the transactions and removes some of them (as per specific conditions).
+
+It should in **no way affect the checkpointing mechanism**.
 
 ### Error: Failed Sanity Checks
 
