@@ -1043,7 +1043,7 @@ To deploy the rootchain contracts, we use the `polygon-edge rootchain deploy` co
 
 Using the `--deployer-key` flag, you will need to replace `<hex_encoded_deployer_private_key>` with the hex-encoded private key of the deployer account that will be used to deploy the smart contracts. If you omit the `--deployer-key` option, the default account in your local client will be used.
 
-> The user is responsible for providing the deployer-key, which should correspond to an address with sufficient funds for deployment. It is recommended to ensure the account is pre-funded before initiating the deployment process.
+> The user is responsible for providing the deployer key, which should correspond to an address with sufficient funds for deployment. It is recommended to ensure the account is pre-funded before initiating the deployment process.
 
 You also need to specify the path to the genesis file using the `--genesis` option, and the endpoint for the JSON-RPC endpoint for the rootchain using the `--json-rpc` option.
 
