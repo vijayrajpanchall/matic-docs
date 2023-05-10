@@ -340,6 +340,14 @@ Keep in mind that allowlists must be enabled prior to launching the network. Aft
 
 To create the chain configuration, we use the `polygon-edge genesis` command, which generates the genesis file.
 
+:::caution ChainID no longer configurable
+
+Previously, the ChainID was specified in the genesis command. However, this is no longer the case. Instead, the value for ChainID should come from the rootchain deployment, specifically from the `StakeManager` contract, when the Supernet is registered. This value is then automatically written to the genesis file during the deployment process. Please note that this means that the ChainID is no longer configurable through the genesis command, but rather through the `StakeManager` contract during Supernet registration.
+
+The `--chain-id` flag remains present in some commands because the old IBFT implementation has not yet been removed from the codebase. As a result, the decision was made not to deprecate the flag until the removal process is complete.
+
+:::
+
 <details>
 <summary>Common Flags ↓</summary>
 
