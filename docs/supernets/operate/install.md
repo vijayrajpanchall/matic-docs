@@ -38,9 +38,9 @@ The Docker image is also a convenient option for containerized deployment. Build
 
 If you encounter any issues during the installation process, refer to the troubleshooting guide which will be available soon.
 
-:::info Latest release: v0.8.1
+:::info Latest release: v0.9.0
 
-**The latest stable test release is [v0.8.1](https://github.com/0xPolygon/polygon-edge/releases/tag/v0.8.1.)**
+**The latest stable test release is [v0.9.0](https://github.com/0xPolygon/polygon-edge/releases/tag/v0.9.0)**
 
 :::
 
