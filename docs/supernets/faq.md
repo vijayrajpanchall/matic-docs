@@ -128,6 +128,10 @@ Please note that further details on migration support will be provided as they b
 
 The minimum number of validators required is three. This is due to the requirements of the IBFT 2.0 consensus mechanism, which requires at least three validators to ensure that at least two-thirds of the network can reach consensus.
 
+To achieve fault tolerance in PolyBFT, it is recommended to run at least four validators. 
+
+> PolyBFT does not support single validator architecture at this time.
+
 The maximum validator size is 100, which is currently the upper limit for network stability and performance. However, this may change in the future as the network evolves and undergoes further testing and optimization.
 
 ## How do validator rewards work?
