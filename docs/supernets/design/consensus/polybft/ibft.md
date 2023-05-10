@@ -23,7 +23,7 @@ Each block in IBFT 2.0 requires at least one round of voting by the validator to
 A validator's voting power is proportional to the amount of stake they have locked up on the network. This means that validators with more stake will have more voting power and, therefore, more influence over the decision-making process on the network. This also provides an economic incentive for validators to behave honestly and act in the network's best interest.
 
 <details>
-<summary>Sealing a block</summary>
+<summary>Sealing a block ↓</summary>
 
 ### State transitions
 

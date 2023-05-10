@@ -25,7 +25,7 @@ libp2p provides the underlying networking layer for establishing connections bet
 When a client makes a remote procedure call to the server, the gRPC protocol abstracts the details of network communication, serialization, and deserialization. The gRPC client sends a request message to the gRPC server, which deserializes the request message, executes the appropriate method, and serializes the response message. The gRPC server then sends the response message back to the client, which deserializes the response message and returns the result to the caller.
 
 <details>
-<summary> Breakdown of the gRPC API</summary>
+<summary> Breakdown of the gRPC API ↓</summary>
 
 The `GrpcStream` struct lies at the core of the gRPC implementation, providing developers with a flexible and powerful tool for building decentralized applications on the network. By abstracting away the intricacies of network communication, it offers a simple and high-level API for constructing distributed systems.
 

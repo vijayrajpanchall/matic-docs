@@ -27,7 +27,7 @@ JSON-RPC is implemented in Supernets as an API consensus.
 When a client makes a remote procedure call to the server, the JSON-RPC protocol abstracts the details of network communication, serialization, and deserialization. The JSON-RPC client sends a request message to the JSON-RPC server, which deserializes the request message, executes the appropriate method, and serializes the response message. The JSON-RPC server then sends the response message back to the client, which deserializes the response message and returns the result to the caller.
 
 <details>
-<summary> Breakdown of the JSON-RPC API</summary>
+<summary> Breakdown of the JSON-RPC API ↓</summary>
 
 The JSON-RPC implementation in Supernets consists of several key components, including the `JSONRPC` struct and the `JSONRPCStore` interface.
 

@@ -25,7 +25,7 @@ A TxRelayer is a component that facilitates the creation and sending of transact
 In Polygon Supernets, the TxRelayer module contains a client communicating with an Ethereum node and a wallet for signing transactions.
 
 <details>
-<summary> Details on using the TxRelayer</summary>
+<summary> Details on using the TxRelayer ↓</summary>
 
 The first step for those looking to use the TxRelayer is to create a new instance by calling the `NewTxRelayer()` function. This function takes several optional arguments that can be used to configure the TxRelayer, such as `clientConfig` and `receiptTimeout`. By default, the client is set to connect to an Ethereum node running on `localhost:8545`, and the `receiptTimeout` is set to 50 milliseconds.
 

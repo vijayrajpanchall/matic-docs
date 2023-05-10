@@ -40,7 +40,7 @@ The tests utilized various Amazon Web Services (AWS) instance types to evaluate 
 - **c6a.xlarge**
 
 <details>
-<summary>General instance specifications</summary>
+<summary>General instance specifications ↓</summary>
 
 - **t2.xlarge**
   - vCPU: 4
@@ -95,7 +95,7 @@ The following key performance metrics were considered during the tests:
 ## Performance Observations
 
 <details>
-<summary> General comparison of 0.6.x (IBFT) and 0.7.x (PolyBFT) Versions </summary>
+<summary> General comparison of 0.6.x (IBFT) and 0.7.x (PolyBFT) Versions ↓</summary>
 
 - **Higher Transactions Per Second (TPS)**: The 0.7.x versions consistently demonstrate higher TPS rates, both sent and mined, than the 0.6.x versions. This improvement indicates that the newer versions can process more transactions in a shorter period.
 
@@ -124,7 +124,7 @@ The following key performance metrics were considered during the tests:
   - The highest Gas per Transaction: 115,158 in multiple tests using x2iezn.2xlarge and c5.2xlarge
 
 <details>
-<summary>EOA to EOA transaction tests</summary>
+<summary>EOA to EOA transaction tests ↓</summary>
 
 | Version | Validators | Consensus | Instance Type | Block Time | Block Gas Limit | Tool     | Type        | Transactions | TPS Sent | TPS Mined | Gas per tx | Gas per sec |
 | ------- | ---------- | --------- | ------------- | ---------- | -------------- | -------- | ----------- | ------------| -------- | --------- | ---------- | ----------- |
@@ -142,7 +142,7 @@ The following key performance metrics were considered during the tests:
 </details>
 
 <details>
-<summary>ERC20 transaction tests</summary>
+<summary>ERC20 transaction tests ↓</summary>
 
 | Version         | Validators | Consensus | Instance Type  | Block Time | Block Gas Limit | Tool    | Type  | Transactions | TPS Sent | TPS Mined | Gas per tx | Gas per sec |
 | ---------------| ----------| --------- | -------------- | --------- | -------------- | ------- | ------| ------------ | -------- | --------- | ---------- | ----------- |
@@ -161,7 +161,7 @@ The following key performance metrics were considered during the tests:
 </details>
 
 <details>
-<summary>ERC721 transaction tests</summary>
+<summary>ERC721 transaction tests ↓</summary>
 
 | Version | Validators | Consensus | Instance Type | Block Time | Block Gas Limit | Tool     | Type        | Transactions | TPS Sent | TPS Mined | Gas per tx | Gas per sec |
 | ------- | ---------- | --------- | ------------- | ---------- | -------------- | -------- | ----------- | ------------| -------- | --------- | ---------- | ----------- |

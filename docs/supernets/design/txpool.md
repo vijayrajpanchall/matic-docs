@@ -25,7 +25,7 @@ The TxPool module manages the incoming transactions for processing. It maintains
 The TxPool has several methods to handle incoming transactions.
 
 <details>
-<summary> Details on how the TxPool works </summary>
+<summary> Details on how the TxPool works ↓</summary>
 
 The `addTx()` method is the main entry point for all new transactions. It validates the incoming transaction and adds it to the pool. If the call is successful, an account is created for this address (only once), and an `enqueueRequest` is signaled.
 

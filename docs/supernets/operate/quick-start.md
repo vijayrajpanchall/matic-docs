@@ -177,7 +177,7 @@ The deployment script is a wrapper script for starting a Supernets test network 
 For reference, it is referenced below.
 
 <details>
-<summary>cluster</summary>
+<summary>cluster ↓</summary>
 
 ```sh
 #!/usr/bin/env bash

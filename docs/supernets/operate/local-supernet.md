@@ -1080,7 +1080,7 @@ Global flags:
   ```
 
 <details>
-<summary>Core contract deployment output example</summary>
+<summary>Core contract deployment output example ↓</summary>
 
 ```bash
 [ROOTCHAIN - CONTRACTS DEPLOYMENT] started... Rootchain JSON RPC address http://127.0.0.1:8545.
@@ -1521,7 +1521,7 @@ Each validator needs to perform initial staking on the rootchain `StakeManager` 
 In the following example command, we use the validator key and the rootchain `StakeManager` contract address that were generated earlier. We also set the staking amount to `1000000000000000000` which is equivalent to 1 token. The `--native-root-token` flag is used to specify the address of the native token of the root chain. In the case of Polygon, this is the MATIC token. You can obtain the address of the MATIC token by checking the network explorer or by querying the network using a tool like curl or web3.js.
 
 <details>
-<summary>Obtaining native root token address</summary>
+<summary>Obtaining native root token address ↓</summary>
 
 For example, if you are using the Mumbai test network, you can obtain the address of the MATIC testnet token by sending a GET request to the Mumbai network's JSON-RPC endpoint:
 
@@ -1608,7 +1608,7 @@ To run a Supernet cluster, we use the `polygon-edge server` command with the fol
   ```
 
 <details>
-<summary>Dialing output example</summary>
+<summary>Dialing output example ↓</summary>
 
   ```bash
   [ROOTCHAIN FUND]

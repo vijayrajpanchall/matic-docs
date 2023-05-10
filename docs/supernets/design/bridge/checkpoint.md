@@ -46,7 +46,7 @@ The contract also implements a BLS signature scheme to verify the signatures sub
 </div>
 -->
 <details>
-<summary>Details of the checkpoint</summary>
+<summary>Details of the checkpoint ↓</summary>
 
 To elaborate, the root of the Merkle tree is a hash value that represents a specific subset of the Supernet state at a specific point in time. This state includes only the exit events sent by the L2StateSender contract. When a user wants to exit the L2 chain (transfer their tokens from L2 to L1), their exit transaction is included in this Merkle tree.
 

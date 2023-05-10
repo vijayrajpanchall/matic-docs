@@ -44,7 +44,7 @@ To enable communication from the Supernet to the rootchain, the `L2StateSender` 
 On the rootchain, the `ExitHelper` contract is responsible for verifying the execution of the exit events and enabling users to withdraw their funds from the Supernet to the rootchain. It is analogous to the StateReceiver on the Supernet, and both contracts work together to enable two-way communication between the rootchain and the Supernet.
 
 <details>
-<summary>Synchronization and commitments</summary>
+<summary>Synchronization and commitments ↓</summary>
 
 The `StateSync` process involves two main steps: synchronization and commitments.
 

@@ -19,7 +19,7 @@ This document provides an overview of how the EVM is used in Supernets.
 The EVM is the core interface for executing and interacting with smart contracts on a Supernet. It operates consistently with the Ethereum EVM and supports the same set of OPCODEs.
 
 <details>
-<summary> Overview of the EVM </summary>
+<summary> Overview of the EVM ↓</summary>
 
 Smart contracts represent self-executing agreements, with their terms explicitly encoded into the contract's code. Deployed on the Ethereum network, these contracts are processed by the EVM, which provides a secure, decentralized environment for execution. The EVM guarantees that all network nodes adhere to the same rules and yield identical outcomes when running smart contracts.
 

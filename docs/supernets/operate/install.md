@@ -87,7 +87,7 @@ values={[
 To access the pre-built releases, visit the [GitHub releases page](https://github.com/0xPolygon/polygon-edge/releases). The client provides cross-compiled AMD64/ARM64 binaries for Darwin and Linux.
 
 <details>
-<summary>[For reference] Extract pre-release package</summary>
+<summary>[For reference] Extract pre-release package ↓</summary>
 
 Extract the downloaded package using your file system's extraction tool or the provided commands below, and navigate to the pre-built release in your preferred interface or text editor.
 
