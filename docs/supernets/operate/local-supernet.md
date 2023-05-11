@@ -1071,6 +1071,21 @@ Global flags:
 
 </details>
 
+:::info Funding required for nodes
+
+Note that before initializing the contracts on the rootchain, the nodes need to be funded with enough funds to pay for the gas cost of deploying the contracts. Otherwise, the initialization process may fail due to insufficient funds.
+
+You may see the following error as a result of insufficient funds:
+
+```bash
+failed to deploy rootchain contracts: {"code":-32000,"message":"INTERNAL_ERROR: insufficient funds"}
+```
+
+You can create a rootchain wallet and fund the nodes by using `polygon-cli`.
+Follow the steps outlined [<ins>here</ins>](https://github.com/maticnetwork/polygon-cli).
+
+:::
+
   ```bash
   ./polygon-edge rootchain deploy \
     --deployer-key <hex_encoded_rootchain_account_private_key> \
@@ -1205,7 +1220,6 @@ Address=0xFE5E166BA5EA50c04fCa00b07b59966E6C2E9570; Balance=10000000000000000000
 </details>
 
 </TabItem>
-</Tabs>
 
 <!-- =================================================== MUMBAI ROOTCHAIN ================================================ -->
 
@@ -1238,32 +1252,27 @@ Global flags:
 
 </details>
 
-  ```bash
-  ./polygon-edge rootchain deploy \
-    --deployer-key <hex_encoded_rootchain_account_private_key> \
-    --genesis ./genesis.json \
-    --json-rpc http://127.0.0.1:8545 \
-  ```
+:::info Funding required for nodes
 
-:::info Funding required for validators
-
-Note that before initializing the contracts on the rootchain, the validators need to be funded with enough funds to pay for the gas cost of deploying the contracts. Otherwise, the initialization process may fail due to insufficient funds.
+Note that before initializing the contracts on the rootchain, the nodes need to be funded with enough funds to pay for the gas cost of deploying the contracts. Otherwise, the initialization process may fail due to insufficient funds.
 
 You may see the following error as a result of insufficient funds:
 
 ```bash
 failed to deploy rootchain contracts: {"code":-32000,"message":"INTERNAL_ERROR: insufficient funds"}
 ```
+
+You can create a rootchain wallet and fund the nodes by using `polygon-cli`.
+Follow the steps outlined [<ins>here</ins>](https://github.com/maticnetwork/polygon-cli).
+
 :::
 
-```bash
+  ```bash
   ./polygon-edge rootchain deploy \
     --deployer-key <hex_encoded_rootchain_account_private_key> \
     --genesis ./genesis.json \
-    --json-rpc <rootchain-rpc> \
-    --test
-```
-
+    --json-rpc http://127.0.0.1:8545 \
+  ```
 
 <details>
 <summary>Core contract deployment output example ↓</summary>
@@ -1391,6 +1400,7 @@ Address=0xFE5E166BA5EA50c04fCa00b07b59966E6C2E9570; Balance=10000000000000000000
 </details>
 
 </TabItem>
+</Tabs>
 <br/>
 
 ### ii. Funding validators on the rootchain
