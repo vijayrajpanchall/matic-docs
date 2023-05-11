@@ -1073,15 +1073,15 @@ Global flags:
 
 :::info Funding required for nodes
 
-Note that before initializing the contracts on the rootchain, the nodes need to be funded with enough funds to pay for the gas cost of deploying the contracts. Otherwise, the initialization process may fail due to insufficient funds.
+Before initializing the contracts on the rootchain, we need to make sure that the nodes are funded with sufficient funds to cover the gas cost of deploying the contracts. Otherwise, the initialization process may fail due to a lack of funds. 
 
-You may see the following error as a result of insufficient funds:
+Note that the demo server already funds the default test account. If you're not omitting `--deployer-key`, ensure that you pass the correct key; otherwise, you may encounter an error due to insufficient funds, such as the following:
 
 ```bash
 failed to deploy rootchain contracts: {"code":-32000,"message":"INTERNAL_ERROR: insufficient funds"}
 ```
 
-You can create a rootchain wallet and fund the nodes by using `polygon-cli`.
+You can also create a rootchain wallet and fund the nodes by using `polygon-cli`.
 Follow the steps outlined [<ins>here</ins>](https://github.com/maticnetwork/polygon-cli).
 
 :::
