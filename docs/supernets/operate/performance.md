@@ -105,76 +105,66 @@ The following key performance metrics were considered during the tests:
 
 ### Summary of test results
 
-- **EOA to EOA transactions:**
-  - The highest TPS Sent: 2,600 using x2iezn.2xlarge
-  - The highest TPS Mined: 2,525 using x2iezn.2xlarge
-  - The highest Gas per Second: 53,025,000 using x2iezn.2xlarge
-  - The highest Gas per Transaction: 21,000 using x2iezn.2xlarge
-
-- **ERC20 transactions:**
-  - The highest TPS Sent: 1,300 using x2iezn.2xlarge
-  - The highest TPS Mined: 724 using x2iezn.2xlarge
-  - The highest Gas per Second: 32,385,650 using c6a.48xlarge
-  - The highest Gas per Transaction: 29,150 using x2iezn.2xlarge and c6a.48xlarge
-
-- **ERC721 transactions:**
-  - The highest TPS Sent: 800 using x2iezn.2xlarge
-  - The highest TPS Mined: 574 using x2iezn.2xlarge
-  - The highest Gas per Second: 82,222,812 using c5.2xlarge
-  - The highest Gas per Transaction: 115,158 in multiple tests using x2iezn.2xlarge and c5.2xlarge
+| Transaction Type | TPS Sent | TPS Mined | Gas per Second | Gas per Transaction | Instance Type(s) |
+|------------------|----------|-----------|----------------|---------------------|------------------|
+| EOA to EOA        | 2,600    | 2,525     | 53,025,000     | 21,000              | x2iezn.2xlarge    |
+| ERC20            | 1,300    | 724       | 32,385,650     | 29,150              | x2iezn.2xlarge, c6a.48xlarge |
+| ERC721            | 800      | 574       | 82,222,812     | 115,158             | x2iezn.2xlarge, c5.2xlarge |
 
 <details>
 <summary>EOA to EOA transaction tests</summary>
 
-| Version | Validators | Consensus | Instance Type | Block Time | Block Gas Limit | Tool     | Type        | Transactions | TPS Sent | TPS Mined | Gas per tx | Gas per sec |
-| ------- | ---------- | --------- | ------------- | ---------- | -------------- | -------- | ----------- | ------------| -------- | --------- | ---------- | ----------- |
-| v0.6.1  | 4          | ibft      | x2iezn.2xlarge| 1          | 200,000,000    | polycli  | EOA to EOA | 30,000      | 1,900    | 1,666     | 21,000     | 34,986,000  |
-| v0.7.0-alpha1 | 4    | ibft      | x2iezn.2xlarge| 1          | 200,000,000    | polycli  | EOA to EOA | 30,000      | 1,900    | 1,666     | 21,000     | 34,986,000  |
-| v0.7.0-alpha1 | 4    | polybft   | x2iezn.2xlarge| 1         | 200,000,000    | polycli  | EOA to EOA | 30,000      | 1,800    | 1,764     | 21,000      | 37,044,000  |
-| v0.7.0-alpha1 | 4    | polybft   | c6a.48xlarge  | 1          | 70,778,880     | Loadbot  | EOA to EOA | 30,000      | 1,428    | 491       | 21,000     | 10,311,000  |
-| v0.7.0-alpha1 | 4    | polybft   | c6a.48xlarge   | 1          | 200,000,000    | polycli | EOA to EOA | 30,000       | 1,900    | 1,875     | 21,000    | 39,375,000  |
-| v0.7.1-alpha2     | 4    | polybft   | x2iezn.2xlarge | 2          | 200,000,000    | polycli | EOA to EOA | 100,000    | 2,300    | 2,222     | 21,000    | 46,662,000    |
-| v0.7.3-beta1      | 4    | polybft   | x2iezn.2xlarge | 2          | 200,000,000    | polycli | EOA to EOA | 476,000    | 2,200    | 2,078      | 21,000    | 43,638,000  |
-| v0.7.3-beta1      | 4    | polybft   | c6a.xlarge     | 2          | 200,000,000    | polycli | EOA to EOA | 476,000    | 2,200    | 756        | 21,000  | 15,876,000   |
-| v0.7.3-beta1      | 4    | polybft   | c6a.xlarge     | 5          | 50,000,000     | polycli | EOA to EOA | 100,000 | 475            | 400          | 21,000              | 8,400,000      |
-| v0.7.3-beta1     | 4     | polybft   | x2iezn.2xlarge| 1       | 200,000,000     | polycli | EOA to EOA | 500,000| 2,600        | 2,525       | 21,000      | 53,025,000      |
+| Version         | Validators | Consensus | Instance Type  | Block Time | Block Gas Limit | Tool     | Transactions | TPS Sent | TPS Mined | Gas per tx | Gas per sec   |
+| --------------- | ----------| ---------| ---------------| ----------| ---------------| --------| ------------| -------- | ---------| -----------| --------------|
+| v0.6.1          | 4         | ibft     | x2iezn.2xlarge | 1         | 200,000,000    | polycli | 30,000      | 1,900    | 1,666    | 21,000     | 34,986,000    |
+| v0.7.0-alpha1   | 4         | ibft     | x2iezn.2xlarge | 1         | 200,000,000    | polycli | 30,000      | 1,900    | 1,666    | 21,000     | 34,986,000    |
+| v0.7.0-alpha1   | 4         | polybft  | x2iezn.2xlarge | 1         | 200,000,000    | polycli | 30,000      | 1,800    | 1,764    | 21,000     | 37,044,000    |
+| v0.7.0-alpha1   | 4         | polybft  | c6a.48xlarge   | 1         | 70,778,880     | Loadbot | 30,000      | 1,428    | 491      | 21,000     | 10,311,000    |
+| v0.7.0-alpha1   | 4         | polybft  | c6a.48xlarge   | 1         | 200,000,000    | polycli | 30,000      | 1,900    | 1,875    | 21,000     | 39,375,000    |
+| e6f620fd   | 4         | polybft  | x2iezn.2xlarge | 2         | 200,000,000    | polycli | 100,000     | 2,250    | 2,127    | 21,000     | 44,667,000    |
+| v0.7.0-alpha2   | 4         | polybft  | x2iezn.2xlarge | 2         | 200,000,000    | polycli | 100,000     | 2,300    | 2,222    | 21,000     | 46,662,000    |
+| v0.7.3-beta1    | 4         | polybft  | x2iezn.2xlarge | 2         | 200,000,000    | polycli | 476,000     | 2,200    | 2,078    | 21,000     | 43,638,000    |
+| v0.7.3-beta1    | 4         | polybft  | c6a.xlarge     | 2         | 200,000,000    | polycli | 476,000     | 2,200    | 756      | 21,000     | 15,876,000    |
+| v0.7.3-beta1    | 4         | polybft  | c6a.xlarge     | 5         | 50,000,000     | polycli | 100,000     | 475      | 400      | 21,000     | 8,400,000     |
+| v0.7.3-beta1    | 4         | polybft  | x2iezn.2xlarge  | 5         | 200,000,000     | polycli | 500,000     | 2,600      | 2,525      | 21,000     | 53,025,000     |
 
 </details>
 
 <details>
 <summary>ERC20 transaction tests</summary>
 
-| Version         | Validators | Consensus | Instance Type  | Block Time | Block Gas Limit | Tool    | Type  | Transactions | TPS Sent | TPS Mined | Gas per tx | Gas per sec |
-| ---------------| ----------| --------- | -------------- | --------- | -------------- | ------- | ------| ------------ | -------- | --------- | ---------- | ----------- |
-| v0.6.1          | 4         | ibft      | x2iezn.2xlarge | 714       | 80,000,000    | polycli | ERC20 | 50,000      | 700      | 0.12      | 28,258     | 20,176,212  |
-| v0.7.0-alpha1   | 4         | ibft      | x2iezn.2xlarge | 704       | 50,000,000    | polycli | ERC20 | 50,000      | 700      | 0.12      | 28,258     | 19,893,632  |
-| v0.7.0-alpha1   | 4         | polybft   | x2iezn.2xlarge | 704       | 50,000,000    | polycli | ERC20 | 50,000      | 700      | 0.12      | 28,258     | 19,893,632  |
-| v0.7.0-alpha1   | 4         | polybft   | c6a.48xlarge   | 602       | 47,185,920    | Loadbot | ERC20 | 50,000      | 1,111    | 0.14      | 29,150     | 17,548,300  |
-| v0.7.0-alpha1   | 4         | polybft   | c6a.48xlarge   | 684       | 200,000,000   | polycli | ERC20 | 50,000      | 700      | 0.07      | 28,258     | 19,328,472  |
-| e6f620fd        | 4         | polybft   | x2iezn.2xlarge | 697       | 200,000,000   | polycli | ERC20 | 50,000      | 1,300    | 0.19      | 28,258     | 19,695,826  |
-| v0.7.1-alpha2 | 4 | polybft | x2iezn.2xlarge | 667 | 200,000,000 | polycli | ERC20 | 50,000 | 650 | 0.23 | 28,240 | 18,836,080 |
-| v0.7.3-beta1 | 4 | polybft | x2iezn.2xlarge | 549 | 200,000,000 | polycli | ERC20 | 50,000 | 600 | 0.21 | 23,446 | 12,871,854 |
-| v0.7.3-beta1 | 4 | polybft | c6a.xlarge | 285 | 200,000,000 | polycli | ERC20 | 50,000 | 600 | 0.18 | 23,446 | 6,682,110 |
-| v0.7.3-beta1 | 4 | polybft | c6a.xlarge | 194 | 50,000,000 | polycli | ERC20 | 50,000 | 425 | 0.16 | 23,446 | 4,548,524 |
-| v0.7.3-beta1 | 4 | polybft | x2iezn.2xlarge | 724 | 45,000,000 | polycli | ERC20 | 100,000 | 750 | 0.27 | 28,317 | 20,501,508 |
-
+| Version         | Validators | Consensus | Instance Type  | Block Time | Block Gas Limit | Tool    | Transactions | TPS Sent | TPS Mined | Gas per tx | Gas per sec |
+| ---------------| ----------| --------- | -------------- | --------- | -------------- | ------- | ------------ | -------- | --------- | ---------- | ----------- |
+| v0.6.1         | 4          | ibft      | x2iezn.2xlarge | 1         | 80,000,000      | polycli | 50,000       | 700      | 714       | 28,258     | 20,176,212  |
+| v0.7.0-alpha1  | 4          | ibft      | x2iezn.2xlarge | 1         | 50,000,000      | polycli | 50,000       | 700      | 704       | 28,258     | 19,893,632  |
+| v0.7.0-alpha1  | 4          | polybft   | x2iezn.2xlarge | 1         | 50,000,000      | polycli | 50,000       | 700      | 704       | 28,258     | 19,893,632  |
+| v0.7.0-alpha1  | 4          | polybft   | c6a.48xlarge   | 1         | 47,185,920      | Loadbot | 50,000       | 1,111    | 602       | 29,150     | 17,548,300  |
+| v0.7.0-alpha1  | 4          | polybft   | c6a.48xlarge   | 1         | 200,000,000     | polycli | 50,000       | 700      | 684       | 28,258     | 19,328,472  |
+| e6f620fd       | 4          | polybft   | x2iezn.2xlarge | 2         | 200,000,000     | polycli | 50,000       | 1,300    | 697       | 28,258     | 19,695,826  |
+| v0.7.1-alpha2  | 4          | polybft   | x2iezn.2xlarge | 2         | 200,000,000     | polycli | 50,000       | 650      | 667       | 28,240     | 18,836,080  |
+| v0.7.3-beta1   | 4          | polybft   | x2iezn.2xlarge | 2         | 200,000,000     | polycli | 50,000       | 600      | 549       | 23,446     | 12,871,854  |
+| v0.7.3-beta1   | 4          | polybft   | c6a.xlarge     | 2         | 200,000,000     | polycli | 50,000       | 600      | 285       | 23,446     | 6,682,110   |
+| v0.7.3-beta1   | 4          | polybft   | c6a.xlarge     | 5         | 50,000,000      | polycli | 50,000       | 425      | 194       | 23,446     | 4,548,524   |
+| v0.7.3-beta1   | 4          | polybft   | x2iezn.2xlarge  | 5        | 45,000,000     | polycli | 100,000       | 750      | 724       | 28,317     | 20,501,508   |
+ 
 </details>
 
 <details>
 <summary>ERC721 transaction tests</summary>
 
-| Version | Validators | Consensus | Instance Type | Block Time | Block Gas Limit | Tool     | Type        | Transactions | TPS Sent | TPS Mined | Gas per tx | Gas per sec |
-| ------- | ---------- | --------- | ------------- | ---------- | -------------- | -------- | ----------- | ------------| -------- | --------- | ---------- | ----------- |
-| v0.6.1   | 4          | ibft    | x2iezn.2xlarge | 697        | 100,000,000   | polycli | ERC721 | 30,000      | 700      | 0.2       | 48,113     | 16,746,449  |
-| v0.7.0-alpha1 | 4     | ibft    | x2iezn.2xlarge | 697        | 100,000,000   | polycli | ERC721 | 30,000      | 700      | 0.2       | 48,113     | 16,746,449  |
-| v0.7.0-alpha1 | 4     | polybft | x2iezn.2xlarge | 681        | 100,000,000   | polycli | ERC721 | 30,000      | 700      | 0.2       | 48,113     | 16,387,603  |
-| v0.7.0-alpha1 | 4     | polybft | c6a.48xlarge   | 428        | 94,371,840    | Loadbot | ERC721 | 30,000      | 714      | 0.07      | 115,158    | 4,947,703   |
-| v0.7.0-alpha1 | 4     | polybft | c6a.48xlarge   | 526        | 200,000,000   | polycli | ERC721 | 30,000      | 700      | 0.14      | 48,113     | 23,652,693  |
-| v0.7.1-alpha2 | 4     | polybft | x2iezn.2xlarge | 675        | 200,000,000   | polycli | ERC721 | 50,000      | 750      | 0.15      | 48,000     | 36,000,000  |
-| v0.7.3-beta1   | 4          | polybft   | x2iezn.2xlarge | 471        | 200,000,000     | polycli | ERC721| 50,000      | 600      | 0.13      | 50,105     | 23,599,455  |
-| v0.7.3-beta1   | 4          | polybft   | c6a.xlarge     | 257        | 200,000,000     | polycli | ERC721| 50,000      | 600      | 0.23      | 50,105     | 12,876,985  |
-| v0.7.3-beta1   | 4          | polybft   | c6a.xlarge     | 145        | 50,000,000      | polycli | ERC721| 50,000      | 200      | 0.03      | 50,105     | 3,878,377   |
-| v0.7.3-beta1   | 4          | polybft   | x2iezn.2xlarge | 531        | 45,000,000      | polycli | ERC721| 100,000     | 650      | 1.22      | 50,105     | 26,605,755  |
+| Version         | Validators | Consensus | Instance Type   | Block Time | Block Gas Limit | Tool     | Type  | Transactions | TPS Sent | TPS Mined | Gas per tx | Gas per sec  |
+| --------------- | ---------- | --------- | --------------- | ---------- | -------------- | -------- | ----- | ------------ | -------- | --------- | ---------- | ------------ |
+| v0.6.1          | 4          | ibft      | x2iezn.2xlarge  | 1          | 100,000,000     | polycli  | ERC721| 30,000       | 700      | 697       | 48,113     | 33,534,761   |
+| v0.7.0-alpha1   | 4          | ibft      | x2iezn.2xlarge  | 1          | 100,000,000     | polycli  | ERC721| 30,000       | 700      | 697       | 48,113     | 33,534,761   |
+| v0.7.0-alpha1   | 4          | polybft   | x2iezn.2xlarge  | 1          | 100,000,000     | polycli  | ERC721| 30,000       | 700      | 681       | 48,113     | 32,764,953   |
+| v0.7.0-alpha1   | 4          | polybft   | c6a.48xlarge    | 1          | 94,371,840      | Loadbot  | ERC721| 30,000       | 714      | 428       | 115,158    | 49,287,624   |
+| v0.7.0-alpha1   | 4          | polybft   | c6a.48xlarge    | 1          | 200,000,000     | polycli  | ERC721| 30,000       | 700      | 526       | 48,113     | 25,307,438   |
+| e6f620fd        | 4          | polybft   | x2iezn.2xlarge  | 2          | 200,000,000     | polycli  | ERC721| 50,000       | 800      | 574       | 48,113     | 27,616,862   |
+| v0.7.1-alpha2   | 4          | polybft   | x2iezn.2xlarge  | 2          | 200,000,000     | polycli  | ERC721| 50,000       | 750      | 675       | 48,000     | 32,400,000   |
+| v0.7.3-beta1    | 4          | polybft   | x2iezn.2xlarge  | 2          | 200,000,000     | polycli  | ERC721| 50,000       | 600      | 471       | 50,105     | 23,599,455   |
+| v0.7.3-beta1    | 4          | polybft   | c6a.xlarge      | 2          | 200,000,000     | polycli  | ERC721| 50,000       | 600      | 257       | 50,105     | 12,876
+| v0.7.3-beta1    | 4          | polybft   | c6a.xlarge      | 5          | 50,000,000     | polycli  | ERC721| 50,000       | 200      | 145       | 50,105     | 7,265,225
+| v0.7.3-beta1    | 4          | polybft   | x2iezn.2xlarge   | 5         | 45,000,000     | polycli  | ERC721| 100,000       | 650      | 531       | 50,105     | 26,605,755
 
 </details>
 
