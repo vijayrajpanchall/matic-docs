@@ -14,29 +14,21 @@ image: https://wiki.polygon.technology/img/polygon-logo.png
 
 ## What is Polygon
 
-Polygon is the world’s largest blockchain ecosystem, providing the best solutions for scaling Ethereum. Starting from its groundbreaking POS, a successful EVM-enabled sidechain, Polygon entirely shifted to a Multichain paradigm, backed up by Zero-Knowledge oriented protocols, ZkEVM and Miden, a decentralized identity system, Polygon ID  and an App-chains building service, Supernets.
+Polygon is a blockchain ecosystem providing the best solutions for scaling Ethereum. Starting from its groundbreaking POS, a successful EVM-enabled sidechain, Polygon amplified its repertoire to a Multichain paradigm, backed up by Zero-Knowledge oriented protocols, a decentralized identity system, and an App-chains building service.
 
 ## The Role of Polygon in the Web3 Ecosystem
 
 Polygon is committed to a future where individuals can maintain self-sovereignty and privacy in a highly collaborative environment. To achieve this vision, Polygon's solutions prioritize security, scalability, and interoperability. With an open and transparent approach, Polygon strives to drive innovation across all networks and communities."
 
-The technical challenge Polygon proposes to solve is to scale Ethereum, overcoming its limitations, such as high gas fees, poor user experience and slow transaction time. Adding to that, Polygon aims to tackle the issue of interoperability and interconnection between networks, enabling a novel Internet of Blockchains where all instances of the Web3 space can interact with each other in a seamless manner.
+The technical challenge Polygon proposes to solve is to scale Ethereum, overcoming its limitations, such as high gas fees, poor user experience and slow transaction time. Adding to that, Polygon aims to tackle the issue of interoperability and interconnection between networks.
 
-:::info Blockchain and Web3
+:::info Web3 in simple terms
 
-Web 3.0 or Web3 represents a paradigm shift from the hitherto centralized network for a new perspective of a decentralized set of computers.
-
-The first version of the Web enabled the global expansion of the internet with static websites providing not much interaction but rife with easily accessible information. Next, Web2 came with a promise of pervasive interaction and personalized content creation. However, with many issues in Web2, such as illegal data collection and sharing, as well as failures in centralized servers resulting in dire consequences, there has been an urge for a new paradigm.
-
-Web3 is the immediate response to Web2’s known vices: the lack of data transparency and the excessive centralization of the network. Trust is a real concern, in a scenario where only a few large corporations control private information and decide how it is shared in the network. One of the ideas behind Web3 is to move the power away from the big tech company, whose algorithms, for instance, actually decide what kind of information is to be shared with their clients at the user’s hand.
-
-**Web3 revolves around some crucial concepts, which are usually part of the Web3 industry parlance, such as trust, ownership, permissionless, blockchain and many others.** The ultimate goal of this new paradigm is to generate a new internet that follows these principles and establish innovative digital communication and social activity.
+Web 3.0 or Web3 represents a paradigm shift from the hitherto centralized network for a new perspective of a decentralized set of computers. Web3 is the immediate response to Web2’s known vices: the lack of data transparency and the excessive centralization of the network. Trust is a real concern, in a scenario where only a few large corporations control private information and decide how it is shared in the network. **Web3 revolves around some crucial concepts, which are usually part of the Web3 industry parlance, such as trust, ownership, permissionless, blockchain and many others.** The ultimate goal of this new paradigm is to generate a new internet that follows these principles and establish innovative digital communication and social activity.
 
 :::
 
 ## Benefits of Polygon
-
-What makes Polygon one of the most crucial projects in the blockchain industry? It is the idea that Polygon solutions and protocols represent the next step in the industry, grounded on continuous research and development.
 
 Here are some of the cornerstones of Polygon technology:
 
@@ -71,7 +63,7 @@ At the beginning of 2021, Matic became Polygon Technology and shifted its focus 
 ## Polygon solutions
 
 ### POS
-POS is a Proof-of-Stake scaling solution for Ethereum-based public blockchain network, which enables the use of sidechains. As POS offers low gas fees and fast TPS, this solution is ideal for creating decentralized services, applications and finance. It also supports the creation and issue of non-fungible tokens (NFTs) and game development.
+POS is a Proof-of-Stake scaling solution for Ethereum-based public blockchain network, enabling the ability to create dApps that can appeal to the general public while maintaining the power of decentralization. As POS offers low gas fees and fast TPS, this solution is ideal for creating decentralized services, applications and finance. It also supports the creation and issue of non-fungible tokens (NFTs) and game development.
 
 Codebase: https://github.com/0xPolygon, https://github.com/maticnetwork
 
