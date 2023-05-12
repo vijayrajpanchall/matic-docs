@@ -228,6 +228,26 @@ In this section, we'll prepare initiate a new chain with PolyBFT consensus and p
 
 To initialize PolyBFT consensus, we need to generate the necessary secrets for each node.
 
+:::caution Key management and secure values
+When passing values, it is important to keep sensitive values like private keys and API keys secure.
+
+<b>The sample commands provided in this guide use sample private keys for demonstration purposes only, in order to show the format and expected value of the parameter. It is important to note that hardcoding or directly passing private keys should never be done in a development or production environment.</b>
+
+<details>
+<summary>Here are some options for securely storing and retrieving private keys ↓</summary>
+
+- **<ins>Environment Variables</ins>:** You can store the private key as an environment variable and access it in your code. For example, in Linux, you can set an environment variable like this: `export PRIVATE_KEY="my_private_key"`. Then, in your code, you can retrieve the value of the environment variable using `os.Getenv("PRIVATE_KEY")`.
+
+- **<ins>Configuration Files</ins>:** You can store the private key in a configuration file and read it in your session. Be sure to keep the configuration file in a secure location and restrict access to it.
+
+- **<ins>Vaults and Key Management Systems</ins>:** If you are working with sensitive data, you might consider using a vault or key management system like a keystore to store your private keys. These systems provide additional layers of security and can help ensure that your private keys are kept safe.
+
+</details>
+
+Regardless of how a private key is stored and retrieved, it's important to keep it secure and not expose it unnecessarily.
+
+:::
+
 The `polygon-edge polybft-secrets` command is used to generate account secrets for validators. The command initializes private keys for the consensus client (validators + networking) to a Secrets Manager config file.
 
 **Keep in mind that this command is intended for testing purposes only and should not be used in a production environment.**
@@ -1088,7 +1108,6 @@ Follow the steps outlined [<ins>here</ins>](https://github.com/maticnetwork/poly
 
   ```bash
   ./polygon-edge rootchain deploy \
-    --deployer-key <hex_encoded_rootchain_account_private_key> \
     --genesis ./genesis.json \
     --json-rpc http://127.0.0.1:8545 \
     --test
@@ -1269,7 +1288,7 @@ Follow the steps outlined [<ins>here</ins>](https://github.com/maticnetwork/poly
 
   ```bash
   ./polygon-edge rootchain deploy \
-    --deployer-key <hex_encoded_rootchain_account_private_key> \
+    --deployer-key 0x0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef \
     --genesis ./genesis.json \
     --json-rpc http://127.0.0.1:8545 \
   ```
@@ -1466,16 +1485,20 @@ This can be done using the `polygon-edge polybft whitelist-validators` command. 
 
 | Flag              | Description                                                                                      | Example                                     |
 | -----------------| ------------------------------------------------------------------------------------------------| ------------------------------------------- |
-| --private-key     | Hex-encoded private key of the account that deploys the SupernetManager contract                | `--private-key <hex_encoded_rootchain_account_private_key_of_CustomSupernetManager_deployer>`             |
-| --addresses       | Comma-separated list of hex-encoded addresses of validators to be whitelisted                   | `--addresses 0x8a98f47a9820e3f3a6C16f44194F1d7eCCe3A110,0x8a98f47a9820e3f3a6C16f44194F1d7eCCe3A110` |
+| `--private-key`     | Hex-encoded private key of the account that deploys the SupernetManager contract                | `--private-key <hex_encoded_rootchain_account_private_key_of_CustomSupernetManager_deployer>`             |
+| `--addresses`       | Comma-separated list of hex-encoded addresses of validators to be whitelisted                   | `--addresses 0x8a98f47a9820e3f3a6C16f44194F1d7eCCe3A110,0x8a98f47a9820e3f3a6C16f44194F1d7eCCe3A110` |
 | --supernet-manager| Address of the SupernetManager contract on the rootchain                                        | `--supernet-manager 0x3c6f8c6Fd90b2Bee1E78E2B2D1e7aB6cFf9Dc113` |
-| --data-dir        | Directory for the Polygon Edge data if the local FS is used                                     | `--data-dir ./polygon-edge/data`             |
-| --jsonrpc         | JSON-RPC interface                                                                              | `--jsonrpc 0.0.0.0:8545`                    |
-| --config          | Path to the SecretsManager config file. If omitted, the local FS secrets manager is used        | `--config /path/to/config/file.yaml`        |
+| `--data-dir`        | Directory for the Polygon Edge data if the local FS is used                                     | `--data-dir ./polygon-edge/data`             |
+| `--jsonrpc`         | JSON-RPC interface                                                                              | `--jsonrpc 0.0.0.0:8545`                    |
+| `--config`          | Path to the SecretsManager config file. If omitted, the local FS secrets manager is used        | `--config /path/to/config/file.yaml`        |
 
 </details>
 
-In the following example command, we are using a placeholder private key for the `CustomSupernetManager` contract deployer. The `--addresses` flag is a comma-separated list of the first two validators generated earlier. The `--supernet-manager` flag specifies the actual `CustomSupernetManager` contract address that was deployed.
+In the following example command, we are using a placeholder private key for the `CustomSupernetManager` contract deployer. 
+
+> If running the demo geth instance, the test account private key has been hardcoded: `aa75e9a7d427efc732f8e4f1a5b7646adcc61fd5bae40f80d13c8419c9f43d6d`.
+
+The `--addresses` flag is a comma-separated list of the first two validators generated earlier. The `--supernet-manager` flag specifies the actual `CustomSupernetManager` contract address that was deployed.
 
 ```bash
 ./polygon-edge polybft whitelist-validators \
@@ -1493,10 +1516,10 @@ Each validator needs to register themselves on the `CustomSupernetManager` contr
 
 | Flag                          | Description                                                                                                       | Example                                                |
 | -----------------------------| ----------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------ |
-| --config                      | Path to the SecretsManager config file. If omitted, the local FS secrets manager is used.                          | `--config /path/to/config/file.yaml`                   |
-| --data-dir                    | The directory path where the new validator key is stored.                                                         | `--data-dir /path/to/validator1`                       |                                                      |
-| --jsonrpc                     | The JSON-RPC interface. Default is `0.0.0.0:8545`.                                                                 | `--jsonrpc 0.0.0.0:8545`                              |
-| --supernet-manager            | Address of the SupernetManager contract on the rootchain.                                                          | `--supernet-manager 0x75aA024A2292A3FD3C17d67b54B3d00435437246`      |
+| `--config`                      | Path to the SecretsManager config file. If omitted, the local FS secrets manager is used.                          | `--config /path/to/config/file.yaml`                   |
+| `--data-dir`                    | The directory path where the new validator key is stored.                                                         | `--data-dir /path/to/validator1`                       |                                                      |
+| `--jsonrpc`                     | The JSON-RPC interface. Default is `0.0.0.0:8545`.                                                                 | `--jsonrpc 0.0.0.0:8545`                              |
+| `--supernet-manager`            | Address of the SupernetManager contract on the rootchain.                                                          | `--supernet-manager 0x75aA024A2292A3FD3C17d67b54B3d00435437246`      |
 
 </details>
 
@@ -1518,13 +1541,13 @@ Each validator needs to perform initial staking on the rootchain `StakeManager` 
 
 | Flag                          | Description                                        | Example                                  |
 | -----------------------------| -------------------------------------------------- | ---------------------------------------- |
-| --amount                      | The amount to stake                                | `--amount 5000000000000000000`           |
-| --chain-id                    | The ID of the child chain                          | `--chain-id 100`                         |
-| --config                      | The path to the SecretsManager config file         | `--config /path/to/config/file.yaml`     |
-| --data-dir                    | The directory for the Polygon Edge data            | `--data-dir ./polygon-edge/data`         |
-| --jsonrpc                     | The JSON-RPC interface                             | `--jsonrpc 0.0.0.0:8545`                |
-| --native-root-token           | The address of the native root token               | `--native-root-token 0x<token_address>`  |
-| --stake-manager               | The address of the stake manager contract          | `--stake-manager 0x<manager_address>`   |
+| `--amount `                     | The amount to stake                                | `--amount 5000000000000000000`           |
+| `--chain-id`                    | The ID of the child chain                          | `--chain-id 100`                         |
+| `--config `                     | The path to the SecretsManager config file         | `--config /path/to/config/file.yaml`     |
+| `--data-dir`                    | The directory for the Polygon Edge data            | `--data-dir ./polygon-edge/data`         |
+| `--jsonrpc`                     | The JSON-RPC interface                             | `--jsonrpc 0.0.0.0:8545`                |
+| `--native-root-token `          | The address of the native root token               | `--native-root-token 0x<token_address>`  |
+| `--stake-manager`               | The address of the stake manager contract          | `--stake-manager 0x<manager_address>`   |
 
 </details>
 
@@ -1558,7 +1581,7 @@ The deployer of the `SupernetManager` contract can specify their hex-encoded pri
 In the following example command, we use a placeholder hex-encoded private key of the `SupernetManager` contract deployer. The addresses of the `SupernetManager` and `StakeManager` contracts are the addresses that were generated earlier. We also use the `--finalize-genesis` and `--enable-staking` flags to enable staking and finalize the genesis state.
 
 ```bash
-   ./polygon-edge polybft supernet --private-key <hex_encoded_rootchain_account_private_key_of_supernetManager_deployer> \
+   ./polygon-edge polybft supernet --private-key 0x0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef \
    --genesis /path/to/genesis/file \
    --supernet-manager 0x75aA024A2292A3FD3C17d67b54B3d00435437246 \
    --stake-manager 0x811068e4106f7A70D443684FF4927eC3940439Ec \

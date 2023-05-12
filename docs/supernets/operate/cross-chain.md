@@ -44,11 +44,11 @@ When passing values to run transactions, it is important to keep sensitive value
 
 - **<ins>Configuration Files</ins>:** You can store the private key in a configuration file and read it in your session. Be sure to keep the configuration file in a secure location and restrict access to it.
 
-- **<ins>Vaults and Key Management Systems</ins>:** If you are working with sensitive data, you might consider using a vault or key management system to store your private keys. These systems provide additional layers of security and can help ensure that your private keys are kept safe.
+- **<ins>Vaults and Key Management Systems</ins>:** If you are working with sensitive data, you might consider using a vault or key management system like a keystore to store your private keys. These systems provide additional layers of security and can help ensure that your private keys are kept safe.
 
 </details>
 
-Regardless of how a private key is stored and retrieved, it's important to keep it secure and not expose it unnecessarily. In addition to the private key, other potential values that you should consider securely passing for include chain IDs, contract addresses, and endpoint URLs for JSON-RPC servers. These should also be stored securely and not exposed unnecessarily.
+Regardless of how a private key is stored and retrieved, it's important to keep it secure and not expose it unnecessarily.
 
 :::
 
