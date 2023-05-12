@@ -439,18 +439,18 @@ Save the changes in `heimdall-config.toml`.
 
 Open for editing `vi /var/lib/bor/config.toml`.
 
-In `config.toml`, ensure the static-nodes parameter has the following values:
+In `config.toml`, ensure the trusted-nodes parameter has the following values:
 
 * `"enode://sentry_machine_enodeID@sentry_machine_ip:30303"` — the node ID and IP address of Bor set up on the sentry machine.
 
   To get the node ID of Bor on the sentry machine:
 
   1. Log into the sentry machine.
-  1. Run `bor bootnode -node-key /var/lib/bor/data/bor/nodekey`, this command only works while bor is not running. If the ip address is `0.0.0.0` then replace it with external facing ip address
+  1. Run ```bor bootnode -node-key /var/lib/bor/data/bor/nodekey```, this command only works while Bor is not running. If the IP address is `0.0.0.0`, replace it with external facing IP address
 
   Example: `"enode://a8024075291c0dd3467f5af51a05d531f9e518d6cd229336156eb6545581859e8997a80bc679fdb7a3bd7473744c57eeb3411719b973b2d6c69eff9056c0578f@188.166.216.25:30303"`.
 
-Save the changes in `config.toml`.
+Save the changes in `config.toml` file.
 
 ## Set the owner and signer key
 
@@ -588,7 +588,7 @@ journalctl -u heimdalld-bridge.service -f
 
 :::note
 
-If your heimdall version is after v.0.3.0 then the logs of heimdalld-rest-server and heimdalld-bridge are in the heimdalld service logs as these three were combined into one service from v.0.3.0.
+If your Heimdall version is after v.0.3.0 then the logs of heimdalld-rest-server and heimdalld-bridge are in the heimdalld service logs as these three were combined into one service from v.0.3.0.
 
 :::
 
