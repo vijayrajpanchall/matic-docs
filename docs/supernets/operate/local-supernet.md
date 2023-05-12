@@ -55,7 +55,7 @@ Instead, use the [<ins>latest release</ins>](/docs/supernets/operate/install.md)
 :::
 
 :::caution Key management and secure values
-When passing values to run transactions, it is important to keep sensitive values like private keys and API keys secure.
+When passing values, it is important to keep sensitive values like private keys and API keys secure.
 
 <b>The sample commands provided in this guide use sample private keys for demonstration purposes only, in order to show the format and expected value of the parameter. It is important to note that hardcoding or directly passing private keys should never be done in a development or production environment.</b>
 
@@ -66,11 +66,11 @@ When passing values to run transactions, it is important to keep sensitive value
 
 - **<ins>Configuration Files</ins>:** You can store the private key in a configuration file and read it in your session. Be sure to keep the configuration file in a secure location and restrict access to it.
 
-- **<ins>Vaults and Key Management Systems</ins>:** If you are working with sensitive data, you might consider using a vault or key management system to store your private keys. These systems provide additional layers of security and can help ensure that your private keys are kept safe.
+- **<ins>Vaults and Key Management Systems</ins>:** If you are working with sensitive data, you might consider using a vault or key management system like a keystore to store your private keys. These systems provide additional layers of security and can help ensure that your private keys are kept safe.
 
 </details>
 
-Regardless of how a private key is stored and retrieved, it's important to keep it secure and not expose it unnecessarily. In addition to the private key, other potential values that you should consider securely passing for include chain IDs, contract addresses, and endpoint URLs for JSON-RPC servers. These should also be stored securely and not exposed unnecessarily.
+Regardless of how a private key is stored and retrieved, it's important to keep it secure and not expose it unnecessarily.
 
 :::
 
@@ -227,26 +227,6 @@ In this section, we'll prepare initiate a new chain with PolyBFT consensus and p
 ### i. Generating account secrets
 
 To initialize PolyBFT consensus, we need to generate the necessary secrets for each node.
-
-:::caution Key management and secure values
-When passing values, it is important to keep sensitive values like private keys and API keys secure.
-
-<b>The sample commands provided in this guide use sample private keys for demonstration purposes only, in order to show the format and expected value of the parameter. It is important to note that hardcoding or directly passing private keys should never be done in a development or production environment.</b>
-
-<details>
-<summary>Here are some options for securely storing and retrieving private keys ↓</summary>
-
-- **<ins>Environment Variables</ins>:** You can store the private key as an environment variable and access it in your code. For example, in Linux, you can set an environment variable like this: `export PRIVATE_KEY="my_private_key"`. Then, in your code, you can retrieve the value of the environment variable using `os.Getenv("PRIVATE_KEY")`.
-
-- **<ins>Configuration Files</ins>:** You can store the private key in a configuration file and read it in your session. Be sure to keep the configuration file in a secure location and restrict access to it.
-
-- **<ins>Vaults and Key Management Systems</ins>:** If you are working with sensitive data, you might consider using a vault or key management system like a keystore to store your private keys. These systems provide additional layers of security and can help ensure that your private keys are kept safe.
-
-</details>
-
-Regardless of how a private key is stored and retrieved, it's important to keep it secure and not expose it unnecessarily.
-
-:::
 
 The `polygon-edge polybft-secrets` command is used to generate account secrets for validators. The command initializes private keys for the consensus client (validators + networking) to a Secrets Manager config file.
 
@@ -936,6 +916,14 @@ In this section, we'll configure the associated rootchain of the Supernet and de
 ### i. Deploy and initialize rootchain contracts
 
 After generating the initial chain state for your Supernet, the next step is to connect and initialize the rootchain contracts. This can be done using either a demo Geth instance or the Mumbai testnet. The demo Geth instance is a local instance of a Geth node running in development mode, which simulates the Ethereum network and is **only intended for testing purposes**. The Mumbai testnet, on the other hand, is the live test network for Polygon PoS mainnet and allows for testing and development with real transactions and contract deployments.
+
+:::caution Solidity v0.8.19 or earlier recommended
+
+[<ins>Solidity v0.8.20</ins>](https://blog.soliditylang.org/2023/05/10/solidity-0.8.20-release-announcement/) introduces new features, including the implementation of `PUSH0` opcode, which is not yet supported in Supernets. If you decide to use v0.8.20, ensure that you set your EVM version to "Paris" in the framework you use to deploy your contracts. 
+
+For now, we recommend using Solidity v0.8.19 or earlier.
+
+:::
 
 <!-- ===================================================================================================================== -->
 <!-- ==================================================== ROOTCHAIN TABS ================================================= -->
@@ -1720,13 +1708,13 @@ While using the standard ERC-20, ERC-721, and ERC-1155 contracts is highly prefe
 
 Yes, with the latest release, the network now uses the native bridge by default, which means that using the native bridge integration is now mandatory.
 
-The Supernet utilizes the native bridge integration with PolyBFT consensus, on-chain governance or allowlisting as needed, MATIC staked on the associated rootchain, and an ecosystem of premium tooling. The Supernet's native bridge logic comprises predicate contracts for cross-chain message passing, a relayer to execute calls and transactions (where one of the validators at genesis would be declared as the relayer), and a JSON-RPC endpoint to the rootchain.
+Supernets rely on the native bridge integration that utilizes PolyBFT consensus, on-chain governance, allowlisting, and a range of premium tools. The bridge logic comprises predicate contracts for cross-chain message passing, a relayer to execute calls and transactions (with one of the genesis validators being declared as the relayer), and a JSON-RPC endpoint to the rootchain.
 
-Other contracts work in conjunction with these components. If a custom bridge is used, it must work seamlessly with these contracts to ensure that deposits, withdrawals, and token bridging are handled correctly. In such cases, rigorous testing of the bridge is crucial, and it is essential to ensure that all necessary dependencies are available and properly configured.
+Other contracts interact with these components, so it's crucial to ensure that any custom bridge works seamlessly with these contracts to enable proper handling of deposits, withdrawals, and token bridging. Rigorous testing of the bridge is essential, and all necessary dependencies must be available and correctly configured.
 
 ### Can the gas token be different from the staking token in Supernets?
 
-Yes, Supernets allows for decoupling of the gas token and the staking token, as per the v0.9 release. You can set any ERC-20 token as your gas token, and use MATIC for staking.
+Yes, Supernets allows for the decoupling of the native gas token and the staking token, as per the v0.9 release. You can set any ERC-20 token as your gas token, and use MATIC for staking.
 
 Decoupling the gas token and the staking token provides greater flexibility and enables more use cases for the network. However, it's important to note that the specifics of how this is configured may depend on the specific implementation of the network you're using.
 

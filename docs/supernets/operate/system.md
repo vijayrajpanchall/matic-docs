@@ -55,3 +55,11 @@ Ensure you have the following system prerequisites:
 | Internet connection | Stable internet connection required. |
 | Network security | Ensure that network ports used by Polygon Edge are not blocked by firewalls or other security measures. |
 | Operating system | Ensure that the latest security patches and updates are installed. |
+
+:::caution Solidity v0.8.19 or earlier recommended
+
+[<ins>Solidity v0.8.20</ins>](https://blog.soliditylang.org/2023/05/10/solidity-0.8.20-release-announcement/) introduces new features, including the implementation of `PUSH0` opcode, which is not yet supported in Supernets. If you decide to use v0.8.20, ensure that you set your EVM version to "Paris" in the framework you use to deploy your contracts. 
+
+For now, we recommend using Solidity v0.8.19 or earlier.
+
+:::
