@@ -53,7 +53,7 @@ To interact with the Polygon Network, you need to have an Ethereum-based wallet 
 
 ### Smart Contracts
 
-Polygon supports many services you can use to test, compile, debug, and deploy decentralized applications onto the Polygon Network. These include deployment using [Alchemy](https://github.com/maticnetwork/matic-docs/blob/master/docs/develop/alchemy.md), [Chainstack](https://github.com/maticnetwork/matic-docs/blob/master/docs/develop/chainstack.md), [QuickNode](https://github.com/maticnetwork/matic-docs/blob/master/docs/develop/quicknode.md), [Remix](https://github.com/maticnetwork/matic-docs/blob/master/docs/develop/remix.md), [Truffle](https://github.com/maticnetwork/matic-docs/blob/master/docs/develop/truffle.md), [Hardhat](https://github.com/maticnetwork/matic-docs/blob/master/docs/develop/hardhat.md), and [Replit](https://github.com/maticnetwork/matic-docs/blob/master/docs/develop/replit.md).
+Polygon supports many services you can use to test, compile, debug, and deploy decentralized applications onto the Polygon Network. These include deployment using [thirdweb]((https://github.com/maticnetwork/matic-docs/blob/master/docs/develop/thirdweb.md), [Alchemy](https://github.com/maticnetwork/matic-docs/blob/master/docs/develop/alchemy.md), [Chainstack](https://github.com/maticnetwork/matic-docs/blob/master/docs/develop/chainstack.md), [QuickNode](https://github.com/maticnetwork/matic-docs/blob/master/docs/develop/quicknode.md), [Remix](https://github.com/maticnetwork/matic-docs/blob/master/docs/develop/remix.md), [Truffle](https://github.com/maticnetwork/matic-docs/blob/master/docs/develop/truffle.md), [Hardhat](https://github.com/maticnetwork/matic-docs/blob/master/docs/develop/hardhat.md), and [Replit](https://github.com/maticnetwork/matic-docs/blob/master/docs/develop/replit.md).
 
 ### Connecting to Polygon
 
@@ -90,6 +90,7 @@ Suppose you have no prior experience building decentralized applications (dApps)
 - [Full Stack dApp: Tutorial Series](https://kauri.io/full-stack-dapp-tutorial-series/5b8e401ee727370001c942e3/c)
 - [Web3.js](https://www.dappuniversity.com/articles/web3-js-intro)
 - [Ethers.js](https://docs.ethers.io/v5/)
+- [thirdweb](https://portal.thirdweb.com)
 - [Remix](https://docs.polygon.technology/docs/develop/remix/)
 - [Truffle](https://docs.polygon.technology/docs/develop/truffle)
 - [Metamask](https://docs.polygon.technology/docs/develop/metamask/overview)

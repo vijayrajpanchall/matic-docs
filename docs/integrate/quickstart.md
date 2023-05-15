@@ -27,18 +27,20 @@ this section is for you.
 ## Setup a Full Node
 
 Follow the instructions on the articles:
-* [Full Node Deployment](/docs/operate/full-node-deployment)
-* [Full Node Binaries](/docs/operate/full-node-binaries)
+
+- [Full Node Deployment](/docs/operate/full-node-deployment)
+- [Full Node Binaries](/docs/operate/full-node-binaries)
 
 ## Deploy smart contracts
 
-* Deploy your Contracts on Polygon
-    - [Using Alchemy](/docs/develop/alchemy)
-    - [Using Chainstack](/docs/develop/chainstack)
-    - [Using QuickNode](/docs/develop/quicknode)
-    - [Using Remix](/docs/develop/remix)
-    - [Using Truffle](/docs/develop/truffle)
-* Configure the Web3 RPC-URL to https://rpc-mumbai.matic.today, *Everything else remains the same*
+- Deploy your Contracts on Polygon
+  - [Using thirdweb](/docs/develop/thirdweb)
+  - [Using Alchemy](/docs/develop/alchemy)
+  - [Using Chainstack](/docs/develop/chainstack)
+  - [Using QuickNode](/docs/develop/quicknode)
+  - [Using Remix](/docs/develop/remix)
+  - [Using Truffle](/docs/develop/truffle)
+- Configure the Web3 RPC-URL to https://rpc-mumbai.matic.today, _Everything else remains the same_
 
 ## Jump to the Essentials
 

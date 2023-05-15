@@ -8,9 +8,9 @@
 module.exports = {
   basics: [
     {
-      type: 'html',
-      value: 'Learning Hub',
-      className: 'sidebar-title',
+      type: "html",
+      value: "Learning Hub",
+      className: "sidebar-title",
     },
     "home/new-to-polygon",
     {
@@ -59,9 +59,9 @@ module.exports = {
 
   govern: [
     {
-      type: 'html',
-      value: 'Polygon Governance',
-      className: 'sidebar-title',
+      type: "html",
+      value: "Polygon Governance",
+      className: "sidebar-title",
     },
     {
       type: "category",
@@ -79,10 +79,7 @@ module.exports = {
     "maintain/govern/governance-pos",
   ],
 
-  operate: [
-    "operate/technical-requirements",
-    "miden/user_docs/main",
-  ],
+  operate: ["operate/technical-requirements", "miden/user_docs/main"],
 
   operatepos: [
     "operate/technical-requirements",
@@ -121,9 +118,9 @@ module.exports = {
 
   develop: [
     {
-      type: 'html',
-      value: 'Developer Hub',
-      className: 'sidebar-title',
+      type: "html",
+      value: "Developer Hub",
+      className: "sidebar-title",
     },
     "develop/getting-started",
     "develop/developer-resources",
@@ -227,6 +224,7 @@ module.exports = {
             type: "generated-index",
           },
           items: [
+            "develop/thirdweb",
             "develop/alchemy",
             "develop/quicknode",
             "develop/chainstack",
@@ -534,9 +532,9 @@ module.exports = {
 
   maticjs: [
     {
-      type: 'html',
-      value: 'MaticJS SDK',
-      className: 'sidebar-title',
+      type: "html",
+      value: "MaticJS SDK",
+      className: "sidebar-title",
     },
     "develop/ethereum-polygon/matic-js/get-started",
     "develop/ethereum-polygon/matic-js/api-architecture",
@@ -649,7 +647,7 @@ module.exports = {
         "develop/ethereum-polygon/matic-js/zkevm/initialize-zkevm",
         "develop/ethereum-polygon/matic-js/zkevm/zkevm-client-erc20",
         "develop/ethereum-polygon/matic-js/zkevm/common-methods",
-      ]
+      ],
     },
     "develop/ethereum-polygon/matic-js/fx-portal",
     "develop/ethereum-polygon/matic-js/set-proof-api",
@@ -702,9 +700,9 @@ module.exports = {
 
   pos: [
     {
-      type: 'html',
-      value: 'Polygon PoS',
-      className: 'sidebar-title',
+      type: "html",
+      value: "Polygon PoS",
+      className: "sidebar-title",
     },
     "pos/polygon-architecture",
     {
@@ -818,9 +816,9 @@ module.exports = {
   ],
   miden: [
     {
-      type: 'html',
-      value: 'Polygon Miden',
-      className: 'sidebar-title',
+      type: "html",
+      value: "Polygon Miden",
+      className: "sidebar-title",
     },
     "miden/index",
     {
@@ -851,7 +849,7 @@ module.exports = {
               },
               items: [
                 "miden/design/decoder/main",
-                "miden/design/decoder/constraints"
+                "miden/design/decoder/constraints",
               ],
             },
             {
@@ -1016,9 +1014,9 @@ module.exports = {
 
   supernets: [
     {
-      type: 'html',
-      value: 'Polygon Supernets',
-      className: 'sidebar-title',
+      type: "html",
+      value: "Polygon Supernets",
+      className: "sidebar-title",
     },
     "supernets/index",
     {
@@ -1108,15 +1106,15 @@ module.exports = {
       collapsed: true,
       items: [
         {
-              type: "category",
-              label: "Setup & Installation",
-              link: {
-                type: "generated-index",
-              },
-              items: [
-                "supernets/operate/supernets-requirements",
-                "supernets/operate/supernets-install",
-              ],
+          type: "category",
+          label: "Setup & Installation",
+          link: {
+            type: "generated-index",
+          },
+          items: [
+            "supernets/operate/supernets-requirements",
+            "supernets/operate/supernets-install",
+          ],
         },
         "supernets/operate/supernets-ibft-to-polybft",
         {

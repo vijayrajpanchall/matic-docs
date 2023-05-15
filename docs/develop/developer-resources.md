@@ -56,6 +56,7 @@ Here are some links that might be useful for new Web3 developers and anyone who 
 
 ## External Documentation
 
+- [thirdweb's docs](https://portal.thirdweb.com)
 - [Alchemy's Polygon Docs](https://docs.alchemy.com/reference/polygon-api-quickstart)
 - [QuickNode's Polygon Docs](https://www.quicknode.com/docs/polygon?utm_source=polygon_docs&utm_campaign=ploygon_docs_contract_guide)
 - [ConsenSys Academy Developer Course](https://consensys.net/academy/ondemand/)

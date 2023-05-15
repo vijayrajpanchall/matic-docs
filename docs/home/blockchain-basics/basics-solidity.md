@@ -13,9 +13,10 @@ image: https://wiki.polygon.technology/img/polygon-logo.png
 
 # What is Solidity
 
-Solidity is an object-oriented, high-level programming language for implementing smart contracts. It allows to write programs, which governs the behavior of accounts within the blockchain network. It is statically typed, supports contract inheritance and has many built-in Contract Libraries. Solidity is similar to programming languages like  C++, Python and JavaScript.
+Solidity is an object-oriented, high-level programming language for implementing smart contracts. It allows to write programs, which governs the behavior of accounts within the blockchain network. It is statically typed, supports contract inheritance and has many built-in Contract Libraries. Solidity is similar to programming languages like C++, Python and JavaScript.
 
 It is comprised of:
+
 - variables
 - operators
 - loops
@@ -38,10 +39,12 @@ Essentially the following points need to be kept in mind always:
 - Each write operation has a cost associated with it - you pay it with ether. The cost is measured in gas.
 
 ### Tools for Working With Solidity
+
 - [Hardhat](https://hardhat.org): dApp development framework
+- [thirdweb](https://thirdweb.com): dApp development framework
 - [Truffle](https://trufflesuite.com/): dApp development framework
 - [Alchemy SDK](https://docs.alchemy.com/reference/alchemy-sdk-quickstart): Web3 SDK for deploying / reading smart contracts
-- [Remix](https://remix-project.org/):  Web IDE for Solidity
+- [Remix](https://remix-project.org/): Web IDE for Solidity
 - [Metamask](https://metamask.io/): Most popular crypto wallet
 
 ### Resources
@@ -50,4 +53,3 @@ Essentially the following points need to be kept in mind always:
 - [Solidity By Example](https://solidity-by-example.org/): Use short snippets to learn to write Solidity.
 - [Web3 University](https://web3.university): Community-driven hub for smart contract development
 - [Alchemy University](https://university.alchemy.com/): 10-week courses on Web3 / Smart Contract dev.
-

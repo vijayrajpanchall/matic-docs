@@ -22,8 +22,8 @@ Think of a Sidechain as a clone of a **parent blockchain**, supporting transfer 
 
 ## Types of Interaction on Polygon
 
-* [Polygon PoS chain](/develop/getting-started.md)
-* [Ethereum + Polygon with PoS bridge](/develop/ethereum-polygon/pos/getting-started.md)
+- [Polygon PoS chain](/develop/getting-started.md)
+- [Ethereum + Polygon with PoS bridge](/develop/ethereum-polygon/pos/getting-started.md)
 
 ## Query the Blockchain
 
@@ -33,7 +33,8 @@ Alchemy offers a reference guide on how to make basic requests to the blockchain
 
 ## Deploy Smart Contracts
 
-* Deploy your Contracts on Polygon
+- Deploy your Contracts on Polygon
+  - [Using thirdweb](/develop/thirdweb.md)
   - [Using Alchemy](/develop/alchemy.md)
   - [Using QuickNode](/develop/quicknode.md)
   - [Using Chainstack](/develop/chainstack.md)
@@ -51,8 +52,8 @@ Configure the Web3 RPC-URL to "https://rpc-mumbai.matic.today", everything else 
 
 On the Polygon Network, you can be a validator or a delegator. See:
 
-* [Who Is a Validator](/maintain/polygon-basics/who-is-validator.md)
-* [Who Is a Delegator](/maintain/polygon-basics/who-is-delegator.md)
+- [Who Is a Validator](/maintain/polygon-basics/who-is-validator.md)
+- [Who Is a Delegator](/maintain/polygon-basics/who-is-delegator.md)
 
 ## Architecture
 
@@ -64,17 +65,17 @@ See [Polygon Architecture](/maintain/validator/architecture.md).
 
 To have a granular understanding of the Polygon architecture, see core components:
 
-* [Heimdall](/pos/heimdall/overview.md)
-* [Bor](/pos/bor/overview.md)
-* [Contracts](/pos/contracts/stakingmanager.md)
+- [Heimdall](/pos/heimdall/overview.md)
+- [Bor](/pos/bor/overview.md)
+- [Contracts](/pos/contracts/stakingmanager.md)
 
 ### Codebases
 
 To have a granular understanding of the core components, check out their codebases:
 
-* [Heimdall](https://github.com/maticnetwork/heimdall)
-* [Bor](https://github.com/maticnetwork/bor)
-* [Contracts](https://github.com/maticnetwork/contracts)
+- [Heimdall](https://github.com/maticnetwork/heimdall)
+- [Bor](https://github.com/maticnetwork/bor)
+- [Contracts](https://github.com/maticnetwork/contracts)
 
 ## How-Tos
 
@@ -85,9 +86,10 @@ If you want to run a full node on the Polygon Mainnet or Mumbai Testnet, you can
 
 ### Staking operations
 
-* [Validator Staking Operations](/docs/maintain/validate/validator-staking-operations)
-* [Delegate](/docs/maintain/delegate/delegate)
+- [Validator Staking Operations](/docs/maintain/validate/validator-staking-operations)
+- [Delegate](/docs/maintain/delegate/delegate)
 
 ### External Resources
+
 - [Your first dApp](https://www.youtube.com/watch?v=rzvk2kdjr2I)
 - [Sidechains and Childchains](https://hackernoon.com/what-are-sidechains-and-childchains-7202cc9e5994)
