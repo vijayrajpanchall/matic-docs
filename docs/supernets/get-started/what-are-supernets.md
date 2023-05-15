@@ -18,9 +18,9 @@ keywords:
 This document provides an overview of what Polygon Supernets are through multiple perspectives.
 
 :::warning Breaking changes
-Supernets are rapidly evolving towards their production-ready state, and, as a result, instructions and concepts in these documents are subject to change.
+Supernets are rapidly evolving towards their production-ready state, and, as a result, instructions and concepts in these documents are subject to change. For production releases, we plan to version the documentation.
 
-Test releases may include breaking changes and offer no guarantees, including backward compatibility. Use the current test releases for testing and familiarization only.
+Test releases include breaking changes and offer no guarantees, including backward compatibility. Use the current test releases for testing and familiarization only.
 
 It is highly recommended that you do not attempt deployments on your own; for support, please reach out to the Supernets team.
 
@@ -31,14 +31,14 @@ It is highly recommended that you do not attempt deployments on your own; for su
 - Cloud deployments.
 - Smart contract and validator allowlisting.
 - Smart contract and validator blocklisting.
-- Minting a native ERC20 token.
-- Rootchain staking.
+- Minting a native ERC-20 token.
+- Rootchain MATIC staking.
 - Transfers of ERC-20, ERC-721, ERC-1155 tokens and arbitrary message passing using the native bridge.
 - Migration support from older versions of the original Edge consensus client that use IBFT consensus to PolyBFT.
 
-Additional components, including on-chain governance and creating a full production instance with staked MATIC, are currently in progress.
+Additional components, including on-chain governance and account abstraction, are currently in progress.
 
-If you have any questions or are interested in using Supernets in a production environment, please get in touch with the Polygon team for guidance and support.
+If you have any questions or are interested in using Supernets in a production environment, please get in touch with the Supernets team for guidance and support.
 
 </details>
 
@@ -52,16 +52,16 @@ Supernets are application-specific chains that operate on the Polygons Edge cons
 
 Before diving into the documentation, please keep the following points in mind:
 
-- **Polygon Supernets were officially introduced in v0.7.x of the Polygon Edge client.**
+- **The Polygon Supernets product suite was officially introduced in v0.7.x of the Polygon Edge client.**
 - **The Polygon team will prioritize the latest version of the Edge client and as a result, will no longer provide support for older versions (v0.6.2 and earlier).**
 
-  The repository will remain accessible, and users may fork it and use it as they wish, subject to applicable open-source license terms. It is **highly recommended to upgrade to the latest version**, which includes the most up-to-date features and fixes. However, users who prefer to stay on older versions may continue to do so.
+  The Edge repository will remain accessible, and users may fork it and use it as they wish, subject to applicable open-source license terms. It is **highly recommended to upgrade to the latest version**, which includes the most up-to-date features and fixes. However, users who prefer to stay on older versions may continue to do so.
 
 - **Polygon Edge serves as a consensus client implementation for Polygon Supernets, much like how Geth serves as a client implementation for Ethereum.** Both Geth and Edge serve as intermediaries between nodes and their respective blockchains, allowing users to interact with the network and take advantage of its benefits. To draw an analogy, Geth and Edge are to Ethereum and Supernets what web browsers are to the internet, enabling users to access and interact with the network.
 
 :::
 
-The following table offers a comprehensive overview on what Supernets are through different prespectives.
+The following table offers a comprehensive overview on what Supernets are through different perspectives.
 
 | Supernets are | Description |
 |-----------|-------------|

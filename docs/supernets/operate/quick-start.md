@@ -20,9 +20,9 @@ import DownloadButton from '@site/src/data/DownloadButton';
 This document offers a quick start guide to assist users in setting up a local Supernet test environment using a pre-packaged Edge consensus client script.
 
 :::warning Breaking changes
-Supernets are rapidly evolving towards their production-ready state, and, as a result, instructions and concepts in these documents are subject to change.
+Supernets are rapidly evolving towards their production-ready state, and, as a result, instructions and concepts in these documents are subject to change. For production releases, we plan to version the documentation.
 
-Test releases may include breaking changes and offer no guarantees, including backward compatibility. Use the current test releases for testing and familiarization only.
+Test releases include breaking changes and offer no guarantees, including backward compatibility. Use the current test releases for testing and familiarization only.
 
 It is highly recommended that you do not attempt deployments on your own; for support, please reach out to the Supernets team.
 :::

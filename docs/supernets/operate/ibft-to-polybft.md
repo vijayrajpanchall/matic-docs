@@ -20,7 +20,7 @@ In this guide, you'll discover how to migrate from an existing IBFT consensus ch
 :::warning Breaking changes
 Supernets are rapidly evolving towards a production-ready state, and, as a result, instructions and concepts in these guides are subject to change.
 
-Test releases may include breaking changes and offer no guarantees, including backward compatibility. Use the current test releases for testing and familiarization only.
+Test releases include breaking changes and offer no guarantees, including backward compatibility. Use the current test releases for testing and familiarization only.
 
 It is highly recommended that you do not attempt deployments on your own; for support, please reach out to the Supernets team.
 :::
@@ -84,7 +84,7 @@ Before beginning the regenesis process, there are some prerequisites that must b
 
   :::caution Don't use the develop branch for deployments
 
-  Please ensure that you are not running on the `develop` branch, which is the active development branch and may include changes that are still being tested and not compatible with the current process.
+  Please ensure that you are not running on the `develop` branch, which is the active development branch and include changes that are still being tested and not compatible with the current process.
 
   Instead, use the [<ins>latest release</ins>](/docs/supernets/operate/install.md) for deployments.
 

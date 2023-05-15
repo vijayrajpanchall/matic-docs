@@ -18,8 +18,8 @@ export const firstRow = [
         description: "Explore the new in-built bridging mechanism."
     },
     {
-        title: "Native Gas Token",
-        linkUrl: "/docs/supernets/design/assets/erc/erc20",
+        title: "Asset Standards",
+        linkUrl: "/docs/category/native-assets",
         imageUrl: "/img/supernets/supernets-logo.png",
         description: "Learn about the token standards available on Supernets."
     },
@@ -30,7 +30,7 @@ export const firstRow = [
         description: "Start building by deploying a childchain and connecting it to the testnet."
     },
     {
-        title: "Regenesis to PolyBFT",
+        title: "Migrate to Supernets",
         linkUrl: "/docs/supernets/operate/supernets-ibft-to-polybft",
         imageUrl: "/img/supernets/supernets-logo.png",
         description: "Discover how to migrate from IBFT to PolyBFT."

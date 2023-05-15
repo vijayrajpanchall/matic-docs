@@ -19,9 +19,9 @@ import TabItem from '@theme/TabItem';
 This document explains the end-to-end process for setting up and deploying a local Supernet.
 
 :::warning Breaking changes
-Supernets are rapidly evolving towards their production-ready state, and, as a result, instructions and concepts in these documents are subject to change.
+Supernets are rapidly evolving towards their production-ready state, and, as a result, instructions and concepts in these documents are subject to change. For production releases, we plan to version the documentation.
 
-Test releases may include breaking changes and offer no guarantees, including backward compatibility. Use the current test releases for testing and familiarization only.
+Test releases include breaking changes and offer no guarantees, including backward compatibility. Use the current test releases for testing and familiarization only.
 
 It is highly recommended that you do not attempt deployments on your own; for support, please reach out to the Supernets team.
 :::
@@ -48,7 +48,7 @@ Before diving into any of the tutorials, make sure your environment meets the ne
 
 :::caution Don't use the develop branch for deployments
 
-Please ensure that you are not running on the `develop` branch, which is the active development branch and may include changes that are still being tested and not compatible with the current process.
+Please ensure that you are not running on the `develop` branch, which is the active development branch and include changes that are still being tested and not compatible with the current process.
 
 Instead, use the [<ins>latest release</ins>](/docs/supernets/operate/install.md) for deployments.
 
@@ -73,26 +73,6 @@ When passing values, it is important to keep sensitive values like private keys 
 Regardless of how a private key is stored and retrieved, it's important to keep it secure and not expose it unnecessarily.
 
 :::
-
-<!-- ===================================================================================================================== -->
-<!-- ===================================================================================================================== -->
-<!-- ===================================================== GUIDE TABS ==================================================== -->
-<!-- ===================================================================================================================== -->
-<!-- ===================================================================================================================== -->
-
-<Tabs
-defaultValue="bridge"
-values={[
-{ label: 'How to Deploy a Supernet', value: 'bridge', },
-{ label: 'Tips & Troubleshoot', value: 'tips-troubleshoot', },
-]
-}>
-
-<!-- ===================================================================================================================== -->
-<!-- ================================================== BRIDGE GUIDE ===================================================== -->
-<!-- ===================================================================================================================== -->
-
-<TabItem value="bridge">
 
 ## What you'll learn
 
@@ -1427,10 +1407,10 @@ In a production environment, you would need to ensure that the validators have s
 Here's an example of how to fund each of the validator accounts:
 
   ```bash
-  ./polygon-edge rootchain fund --data-dir ./test-chain-1 --amount 10
-  ./polygon-edge rootchain fund --data-dir ./test-chain-2 --amount 10
-  ./polygon-edge rootchain fund --data-dir ./test-chain-3 --amount 10
-  ./polygon-edge rootchain fund --data-dir ./test-chain-4 --amount 10
+  ./polygon-edge rootchain fund --data-dir ./test-chain-1 --amount 1000000000000000000
+  ./polygon-edge rootchain fund --data-dir ./test-chain-2 --amount 1000000000000000000
+  ./polygon-edge rootchain fund --data-dir ./test-chain-3 --amount 1000000000000000000
+  ./polygon-edge rootchain fund --data-dir ./test-chain-4 --amount 1000000000000000000
   ```
 
 <details>
@@ -1656,98 +1636,3 @@ To run a Supernet cluster, we use the `polygon-edge server` command with the fol
 Congratulations on successfully deploying a local Supernet! This is a crucial step towards creating a fully functional Supernet that acts as a childchain to Polygon PoS mainnet.
 
 To continue your Supernet journey, you can explore how to transact cross-chain between the rootchain and Supernet using the native bridge. The cross-chain bridge guide will walk you through the process.
-
-</TabItem>
-
-<!-- ===================================================================================================================== -->
-<!-- ================================================ TROUBLESHOOT GUIDE ================================================= -->
-<!-- ===================================================================================================================== -->
-
-<TabItem value="tips-troubleshoot">
-
-## Tips
-
-- In a production environment, it is recommended to keep the validator secrets secure and only to retrieve them when necessary. The secrets should not be shared or made public as they can be used to compromise the security of the blockchain network.
-- To gain a deeper understanding of PolyBFT or consensus protocols in general, consider reviewing the [system design documents](/docs/category/system-design) for additional information.
-- If you are new to testing out Supernets and the latest stable release, we highly recommend beginning with a demo deployment using a demo geth instance located at
-  **<http://127.0.0.1:8545>** as the **JSON-RPC endpoint**.
-- You can specify any available **rootchain JSON-RPC endpoint** for a demo instance or the Mumbai testnet.
-- To fulfill the requirements of IBFT 2.0, at least three validators must be running so at least two-thirds of the network can reach consensus.
-- It is possible to run a Supernet node in "relayer" mode. The relayer allows automatic execution of deposit events on behalf of users.
-- When generating a new Supernet instance (i.e. launching a new blockchain network with PolyBFT consensus), the initial supply of tokens can be created through premining or minting.
-  Premining involves generating and distributing tokens to specific addresses before the network launch, and specifying the premine address at genesis. Minting involves creating new tokens in response to certain conditions or events, such as the completion of a particular task or the issuance of a new asset.
-- When running a Supernet instance, the core contracts can be used to create and manage native tokens on the Supernet, or to enable the bridging
-  of tokens between a Supernet and rootchain.
-
-## Technical FAQs
-
-### Is Edge the only consensus client for Supernets?
-
-Yes, Edge is currently the only consensus client for Supernets.
-
-### Can I migrate from an older version of Edge to Supernets?
-
-Yes, it is possible to migrate from a blockchain running on an older Edge version with IBFT 1.0 consensus to a new blockchain running on Supernets with PolyBFT consensus using IBFT 2.0. However, the migration process will involve a hard fork, as IBFT 2.0 is not fully backward compatible with IBFT 1.0.
-
-To upgrade to a new blockchain with PolyBFT consensus using IBFT 2.0, you would need to:
-
-- Create a new genesis block for the new blockchain with PolyBFT consensus using IBFT 2.0.
-- Migrate the data and state from the old blockchain to the new blockchain.
-
-Check out the regenesis guide available [<ins>here</ins>](/docs/supernets/operate/ibft-to-polybft.md).
-
-### What is the recommended RPC endpoint for the rootchain?
-
-Choosing a reliable and publicly available RPC endpoint for the rootchain is essential to ensure correct handling of checkpoint information. It is recommended to connect directly to a node endpoint rather than a load balancer to guarantee validators can facilitate specific requests.
-
-### Can a Supernet use a custom token standard instead of the default token contracts?
-
-While using the standard ERC-20, ERC-721, and ERC-1155 contracts is highly preferred, it is not mandatory. If a Supernet employs a custom standard, it must adhere to the chain configuration, as the bridge allows for arbitrary messages and data sharing between chains and can interpret any form of data. Additionally, a custom standard would need to follow the same steps as generating a native ERC-20 using the default core contracts, which includes deploying, mapping, and bridging.
-
-### Is using the native bridge integration mandatory?
-
-Yes, with the latest release, the network now uses the native bridge by default, which means that using the native bridge integration is now mandatory.
-
-Supernets rely on the native bridge integration that utilizes PolyBFT consensus, on-chain governance, allowlisting, and a range of premium tools. The bridge logic comprises predicate contracts for cross-chain message passing, a relayer to execute calls and transactions (with one of the genesis validators being declared as the relayer), and a JSON-RPC endpoint to the rootchain.
-
-Other contracts interact with these components, so it's crucial to ensure that any custom bridge works seamlessly with these contracts to enable proper handling of deposits, withdrawals, and token bridging. Rigorous testing of the bridge is essential, and all necessary dependencies must be available and correctly configured.
-
-### Can the gas token be different from the staking token in Supernets?
-
-Yes, Supernets allows for the decoupling of the native gas token and the staking token, as per the v0.9 release. You can set any ERC-20 token as your gas token, and use MATIC for staking.
-
-Decoupling the gas token and the staking token provides greater flexibility and enables more use cases for the network. However, it's important to note that the specifics of how this is configured may depend on the specific implementation of the network you're using.
-
-### Can existing rootchain contracts be used instead of needing to deploy new ones?
-
-In theory, existing rootchain contracts can be used, but it is not practical with the current contract configuration.
-
-Manually updating the Supernet configuration to point to existing rootchain contract addresses may disrupt or challenge checkpoints and chain state, leading to problems if there is a fork on the Supernet. Furthermore, updating the checkpoint manager's address could trigger an exit with the wrong checkpoint manager, leading to incorrect state transitions and potential loss of funds. Deploying new contracts on the rootchain ensures all necessary dependencies are available and properly configured, avoiding compatibility issues or other unforeseen problems.
-
-### Is it necessary to deploy new instances of rootchain contracts for each Supernet instance when running multiple Supernets?
-
-Yes, new instances of rootchain contracts must be deployed for each Supernet instance. Each Supernet instance is independent and requires its own set of contracts to function properly. Deploying and managing multiple instances of contracts can be complex and requires careful consideration of factors such as cost, security, and scalability. It is essential to plan and test thoroughly before implementing a solution with multiple Supernets.
-
-### Is the identity of a Supernet instance linked to the rootchain contract address on the rootchain?
-
-Yes, the identity of a Supernet instance is linked to the rootchain contract address on the rootchain. Each Supernet instance is associated with a specific set of rootchain contracts, and its identity is determined by the address of those contracts on the rootchain.
-
-### How can I monitor my nodes?
-
-You can use common tools like [Prometheus](https://prometheus.io/) and [Grafana](https://grafana.com/) to monitor your nodes. These tools can help you track important metrics like CPU usage, memory consumption, and network activity. Additionally, you can use block explorers like Polyscan to monitor your node's health and activity.
-
-We will also provide monitoring node guides, as well as tutorials on how to *upgrade* or *migrate* and test shortly.
-
-<!--
-## How can you verify that checkpoints were successful?
-
-## How does the Supernet handle state transitions in case of a fork?
-
-## What are the recovery options in case of a validator node failure on a Supernet?
-
-## How do Supernets manage the interchain communication latency and its impact on the overall performance?
--->
-**If you have any further questions about configuring Supernets, please consult the documentation or reach out to the Supernets team for support.**
-
-</TabItem>
-</Tabs>
